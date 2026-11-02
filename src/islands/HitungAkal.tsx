@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
-import { harga, hitungEstimasi, rupiahRingkas, type Merek } from '../data/harga';
+import { bagianRentang, harga, hitungEstimasi, rupiahRingkas, type Merek } from '../data/harga';
 import { waLink } from '../data/bisnis';
 import './hitung-akal.css';
 
@@ -196,20 +196,27 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda' }: { awal?: 
         </li>
       </ol>
 
-      <div class="ha-slip">
+      <div class="ha-slip" data-nosnippet>
         <div class="ha-slip-kepala">
           <p class="ha-label-kecil">Perkiraan biaya total</p>
           {harga.contoh && <span class="contoh">Harga contoh</span>}
         </div>
-        <p class="hasil-angka angka" aria-live="polite" aria-atomic="true">
+        <p class="hasil-angka" aria-live="polite" aria-atomic="true">
           <span class="sr-only">{rentang}</span>
-          <span aria-hidden="true">{rupiahRingkas(minTampil)}<span class="hasil-sd"> – </span>{rupiahRingkas(maxTampil)}</span>
+          {(() => {
+            const b = bagianRentang(minTampil, maxTampil);
+            return (
+              <span aria-hidden="true">
+                <span class="hasil-rp">Rp</span>{b.min}<span class="hasil-sd">–</span>{b.max}<span class="hasil-satuan">{b.satuan === 'jt' ? 'juta' : 'ribu'}</span>
+              </span>
+            );
+          })()}
         </p>
         <p class="hasil-durasi angka">{est.hari[0]}–{est.hari[1]} hari kerja untuk {luas} m²</p>
         {pekerjaan === 'Perbaikan' && (
           <p class="ha-catatan">Untuk perbaikan, biaya bergantung pada sumber bocor yang ditemukan saat survey. Angka di atas adalah biaya penggantian penuh sebagai batas atas.</p>
         )}
-        <dl class="rincian angka">
+        <dl class="rincian">
           {est.baris.map((b) => (
             <div class="rincian-baris">
               <dt>{b.label}</dt>

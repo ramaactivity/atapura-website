@@ -1,6 +1,6 @@
 // Jalankan: node --experimental-strip-types src/data/harga.test.ts
 import assert from 'node:assert/strict';
-import { hitungEstimasi, rupiahRingkas } from './harga.ts';
+import { bagianRentang, hitungEstimasi, rupiahRingkas } from './harga.ts';
 
 const e = hitungEstimasi(100, 'CTI');
 assert.equal(e.baris.length, 4);
@@ -12,4 +12,6 @@ assert.deepEqual(e.hari, [4, 5]);
 assert.ok(hitungEstimasi(200, 'CTI').total[0] > e.total[0], 'luas lebih besar = lebih mahal');
 assert.equal(rupiahRingkas(31_250_000), 'Rp31,3 jt');
 assert.equal(rupiahRingkas(950_000), 'Rp950 rb');
+assert.deepEqual(bagianRentang(41_400_000, 53_100_000), { min: '41,4', max: '53,1', satuan: 'jt' });
+assert.deepEqual(bagianRentang(135_000, 160_000), { min: '135', max: '160', satuan: 'rb' });
 console.log('harga.test ok');

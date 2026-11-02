@@ -19,9 +19,13 @@ import kafe from '../../assets/gambar/magnific/segmen-kafe-3x2.jpg';
 import kafeHp from '../../assets/gambar/magnific/segmen-kafe-4x5.jpg';
 import '../styles/desktop.css';
 import { bisnis, waLink } from '../data/bisnis';
-import { harga, rupiahRingkas, tanggalPanjang } from '../data/harga';
+import { bagianRentang, harga, tanggalPanjang } from '../data/harga';
 
 const tanya = [
+  {
+    q: 'Apa bedanya atap bitumen, genteng aspal, sirap aspal, dan shingle?',
+    a: 'Keempatnya sebutan untuk produk yang sama: lembaran fiberglass berlapis aspal dengan butiran batu di permukaannya. Shingle adalah istilah Inggrisnya, sirap aspal sebutan lama, dan di toko bangunan lebih sering disebut genteng aspal. Atapura memasang tiga merek: Maxxi, CTI, dan Javabitumen.',
+  },
   {
     q: 'Berapa biaya pasang atap bitumen per meter persegi?',
     a: 'Biaya ditentukan oleh merek genteng, jenis alas, dan kerumitan bentuk atap. Hitung AKAL di atas memberi rentang total untuk luas dan merek pilihan Anda, sudah termasuk alas, underlayment, aksesoris, dan jasa pasang. Harga final kami tulis setelah survey gratis.',
@@ -77,18 +81,13 @@ const faqSchema = {
         <h1 id="judul" class="hero-judul">
           <span class="baris"><span>Atap yang masuk</span></span>
           <span class="baris miring-hero"><span>AKAL.</span></span>
+          <span class="hero-h1-sub">Jasa pasang atap bitumen (genteng aspal) di Jabodetabek.</span>
         </h1>
-        <p class="hero-sub">
-          Pasang atap bitumen Maxxi, CTI, dan Javabitumen di Jabodetabek. Harga terbuka sebelum Anda bicara dengan siapa pun.
-        </p>
-        <form class="hitung-bar" data-hero-hitung action="#hitung">
-          <label class="hitung-bar-isi">
-            <span>Luas atap (m²)</span>
-            <input name="luas" inputmode="numeric" autocomplete="off" value="120" aria-label="Luas atap dalam meter persegi" />
-          </label>
-          <button type="submit" class="pill pill-gelap">Hitung estimasi</button>
-        </form>
-        <p class="hero-alt">Untuk proyek perumahan atau gedung? <a href="#layanan-proyek">Jalur perusahaan</a></p>
+        <p class="hero-sub">Maxxi, CTI, dan Javabitumen. Harga terbuka sebelum Anda bicara dengan siapa pun.</p>
+        <div class="hero-aksi">
+          <a href="#hitung" class="pill hero-utama">Hitung estimasi biaya</a>
+          <a href="#layanan-proyek" class="pill pill-garis hero-kedua">Untuk perusahaan &amp; proyek</a>
+        </div>
       </div>
       <p class="ilustrasi">Ilustrasi, bukan proyek Atapura</p>
     </section>
@@ -96,12 +95,12 @@ const faqSchema = {
     <section class="bukti" aria-label="Fakta Atapura">
       <div class="wrap">
         <ul class="bukti-daftar">
-          <li><b>PT Atapura</b><span>Karya Lestari, kontrak &amp; faktur resmi</span></li>
+          <li><b>Kontrak</b><span>tertulis sebelum uang muka</span></li>
           <li><b>{bisnis.merek.length} merek</b><span>{bisnis.merek.join(', ')}</span></li>
           <li><b>{bisnis.area.length} kota</b><span>dan kabupaten Jabodetabek</span></li>
           <li><b>Gratis</b><span>survey &amp; ukur di lokasi</span></li>
           <li><b>Tertulis</b><span>garansi pemasangan</span></li>
-          <li><b>Rekening PT</b><span>satu-satunya tujuan bayar</span></li>
+          <li><b>Rekening resmi</b><span>atas nama perusahaan, bukan pribadi</span></li>
         </ul>
       </div>
     </section>
@@ -153,7 +152,7 @@ const faqSchema = {
           <p class="lead">Empat pertanyaan, satu menit. Hasilnya bisa Anda kirim ke WhatsApp atau simpan untuk dibahas di rumah.</p>
         </div>
         <HitungAkal client:idle awal={120} />
-        <p class="hitung-catatan">
+        <p class="hitung-catatan" data-nosnippet>
           {harga.contoh ? 'Angka ini contoh untuk uji tampilan, bukan harga resmi. ' : ''}Harga per {tanggalPanjang(harga.berlakuSejak)}.
         </p>
       </div>
@@ -222,7 +221,7 @@ const faqSchema = {
           </p>
         </div>
         <div class="datasheet" role="region" aria-label="Perbandingan merek" tabindex="0">
-          <table class="ds angka">
+          <table class="ds">
             <caption class="sr-only">Perbandingan tiga merek atap bitumen yang dipasang Atapura</caption>
             <thead>
               <tr>
@@ -233,9 +232,9 @@ const faqSchema = {
               </tr>
             </thead>
             <tbody>
-              <tr class="ds-harga">
+              <tr class="ds-harga" data-nosnippet>
                 <th scope="row">Genteng per m²{harga.contoh && <span class="contoh contoh-kecil">contoh</span>}</th>
-                {merekTabel.map((m) => <td>{rupiahRingkas(m.r[0])}<span class="ds-sd">–</span>{rupiahRingkas(m.r[1]).replace('Rp', '')}</td>)}
+                {merekTabel.map((m) => { const b = bagianRentang(m.r[0], m.r[1]); return <td><span class="harga-rp">Rp</span>{b.min}<span class="ds-sd">–</span>{b.max}<span class="harga-sat">{b.satuan} / m²</span></td>; })}
               </tr>
               <tr>
                 <th scope="row">Kelas harga</th>
@@ -252,13 +251,13 @@ const faqSchema = {
             </tbody>
           </table>
         </div>
-        <ol class="merek-hp angka" aria-label="Perbandingan merek">
+        <ol class="merek-hp" aria-label="Perbandingan merek">
           {merekTabel.map((m, i) => (
             <li>
               <p class="ds-no">{String(i + 1).padStart(2, '0')}</p>
               <p class="ds-merek">{m.nama}</p>
               <p class="merek-hp-kelas">{m.kelas}</p>
-              <p class="merek-hp-harga">{rupiahRingkas(m.r[0])}<span class="ds-sd">–</span>{rupiahRingkas(m.r[1]).replace('Rp', '')} <span class="merek-hp-satuan">/ m²</span>{harga.contoh && <span class="contoh contoh-kecil">contoh</span>}</p>
+              <p class="merek-hp-harga" data-nosnippet>{(() => { const b = bagianRentang(m.r[0], m.r[1]); return <><span class="harga-rp">Rp</span>{b.min}<span class="ds-sd">–</span>{b.max}<span class="harga-sat">{b.satuan} / m²</span></>; })()}{harga.contoh && <span class="contoh contoh-kecil">contoh</span>}</p>
               <p class="merek-hp-pasti">{m.pasti}</p>
             </li>
           ))}
@@ -345,38 +344,34 @@ const faqSchema = {
 </Base>
 
 <script>
-  // Desktop: cahaya senja & foto mengikuti kursor dengan pegas (lerp), berhenti sendiri saat diam.
+  // Desktop: foto besar (hero, hujan, penutup) bergeser halus mengikuti kursor dengan pegas; cahaya senja ikut di hero.
   const desktop = matchMedia('(min-width: 64rem) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
-  const hero = document.querySelector<HTMLElement>('.hero');
-  const foto = hero?.querySelector<HTMLElement>('.hero-foto');
-  const cahaya = hero?.querySelector<HTMLElement>('.hero-cahaya');
-  if (desktop.matches && hero && foto && cahaya) {
-    let tx = 0.75, ty = 0.15, x = tx, y = ty, id = 0;
-    const jalan = () => {
-      x += (tx - x) * 0.07;
-      y += (ty - y) * 0.07;
-      const r = hero.getBoundingClientRect();
-      const d = cahaya.offsetWidth / 2;
-      foto.style.transform = `scale(1.06) translate(${((0.5 - x) * 16).toFixed(2)}px, ${((0.5 - y) * 10).toFixed(2)}px)`;
-      cahaya.style.transform = `translate(${(x * r.width - d).toFixed(1)}px, ${(y * r.height - d).toFixed(1)}px)`;
-      id = Math.abs(tx - x) + Math.abs(ty - y) > 0.0008 ? requestAnimationFrame(jalan) : 0;
-    };
-    hero.addEventListener('pointermove', (e) => {
-      const r = hero.getBoundingClientRect();
-      tx = (e.clientX - r.left) / r.width;
-      ty = (e.clientY - r.top) / r.height;
-      if (!id) id = requestAnimationFrame(jalan);
-    });
-    jalan();
+  if (desktop.matches) {
+    for (const [pilih, kekuatan] of [['.hero', 16], ['.hujan', 22], ['.penutup', 22]] as const) {
+      const sek = document.querySelector<HTMLElement>(pilih);
+      const foto = sek?.querySelector<HTMLElement>('img');
+      if (!sek || !foto) continue;
+      const cahaya = sek.querySelector<HTMLElement>('.hero-cahaya');
+      let tx = 0.6, ty = 0.4, x = tx, y = ty, id = 0;
+      const jalan = () => {
+        x += (tx - x) * 0.07;
+        y += (ty - y) * 0.07;
+        foto.style.translate = `${((0.5 - x) * kekuatan).toFixed(2)}px ${((0.5 - y) * kekuatan * 0.6).toFixed(2)}px`;
+        if (cahaya) {
+          const r = sek.getBoundingClientRect();
+          const d = cahaya.offsetWidth / 2;
+          cahaya.style.transform = `translate(${(x * r.width - d).toFixed(1)}px, ${(y * r.height - d).toFixed(1)}px)`;
+        }
+        id = Math.abs(tx - x) + Math.abs(ty - y) > 0.0008 ? requestAnimationFrame(jalan) : 0;
+      };
+      sek.addEventListener('pointermove', (e) => {
+        const r = sek.getBoundingClientRect();
+        tx = (e.clientX - r.left) / r.width;
+        ty = (e.clientY - r.top) / r.height;
+        if (!id) id = requestAnimationFrame(jalan);
+      });
+    }
   }
-
-  // Kolom luas di hero: kirim angka ke Hitung AKAL lalu gulir ke sana.
-  document.querySelector<HTMLFormElement>('[data-hero-hitung]')?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const n = Number(new FormData(e.currentTarget as HTMLFormElement).get('luas')?.toString().replace(/\D/g, ''));
-    document.getElementById('hitung')?.scrollIntoView({ behavior: 'smooth' });
-    setTimeout(() => dispatchEvent(new CustomEvent('atapura:luas', { detail: n || 120 })), 400);
-  });
 
   // FAQ: di desktop, pertanyaan yang disorot mouse langsung terbuka (satu per satu, name="tanya" menutup yang lain).
   const sorot = matchMedia('(hover: hover) and (pointer: fine)');
@@ -420,19 +415,16 @@ const faqSchema = {
   .hero-isi { width: 100%; padding-bottom: clamp(2.5rem, 6vh, 4rem); color: var(--color-putih); }
   .hero-judul { display: flex; flex-direction: column; font-size: clamp(3.2rem, 1.4rem + 7vw, 7rem); line-height: 0.92; letter-spacing: -0.05em; font-weight: 300; max-width: 7.5ch; }
   .miring-hero { font-variation-settings: "ital" 11; font-weight: 400; }
-  .hero-sub { margin-top: 1.4rem; max-width: 34ch; font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem); line-height: 1.5; }
-  .hitung-bar {
-    margin-top: 1.75rem; display: flex; align-items: center; gap: 0.5rem; max-width: 30rem;
-    background: var(--color-putih); color: var(--color-tinta); border-radius: 999px; padding: 0.4rem;
-    box-shadow: 0 20px 40px -20px rgb(16 35 30 / 0.5);
+  .hero-h1-sub { display: block; margin-top: 1.4rem; font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem); line-height: 1.45; letter-spacing: 0; font-weight: 500; max-width: 30ch; }
+  .hero-sub { margin-top: 0.4rem; max-width: 34ch; font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem); line-height: 1.5; }
+  .hero-aksi { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .hero-aksi .pill { min-height: 54px; padding-inline: 1.6rem; font-size: 1rem; }
+  .hero-utama { background: var(--color-tunas); color: var(--color-pinus); }
+  .hero-kedua { color: var(--color-putih); border-color: rgb(255 255 255 / 0.6); }
+  @media (min-width: 64rem) {
+    .hero-utama { background: var(--color-pinus); color: var(--color-putih); }
+    .hero-kedua { color: var(--color-pinus); border-color: rgb(16 35 30 / 0.45); background: rgb(242 244 241 / 0.4); }
   }
-  .hitung-bar-isi { flex: 1; display: grid; padding-left: 1.2rem; min-width: 0; }
-  .hitung-bar-isi span { font-size: 0.75rem; color: var(--color-lumut); }
-  .hitung-bar-isi input { border: 0; outline: none; background: transparent; font: inherit; font-size: 1.15rem; color: var(--color-tinta); width: 100%; font-variant-numeric: tabular-nums; }
-  .hitung-bar .pill { min-height: 52px; }
-  .hitung-bar:focus-within { box-shadow: 0 0 0 2px var(--color-pinus), 0 20px 40px -20px rgb(16 35 30 / 0.5); }
-  .hero-alt { margin-top: 1rem; font-size: 0.95rem; }
-  .hero-alt a { font-weight: 500; }
   .ilustrasi { position: absolute; right: var(--gutter); bottom: 0.9rem; font-size: 0.72rem; color: rgb(255 255 255 / 0.8); }
   @media (min-width: 64rem) {
     .hero { align-items: center; }
@@ -550,7 +542,9 @@ const faqSchema = {
   .ds thead th { padding-top: 1.5rem; padding-bottom: 1.75rem; }
   .ds-no { display: block; font-size: 0.8rem; color: var(--color-lumut); margin-bottom: 0.4rem; }
   .ds-merek { display: block; font-size: clamp(2rem, 1.2rem + 2.4vw, 3.4rem); font-weight: 300; letter-spacing: -0.045em; line-height: 1; }
-  .ds-harga td { font-size: clamp(1.4rem, 1.1rem + 1vw, 2rem); font-weight: 300; letter-spacing: -0.03em; }
+  .ds-harga td { font-size: clamp(1.8rem, 1.2rem + 1.6vw, 2.6rem); font-weight: 300; letter-spacing: -0.045em; line-height: 1; font-variant-numeric: proportional-nums; }
+  .harga-rp { font-size: 0.4em; letter-spacing: 0; vertical-align: 0.85em; margin-right: 0.15em; color: var(--color-lumut); }
+  .harga-sat { font-size: 0.36em; letter-spacing: 0; margin-left: 0.35em; color: var(--color-lumut); }
   .ds-sd { color: var(--color-lumut); }
   .ds-pasti { font-size: 0.95rem; color: var(--color-lumut) !important; }
   .ds-tunggu { font-size: 0.95rem; color: var(--color-lumut) !important; }

@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import { waLink } from '../data/bisnis';
+---
+
+<Base title="Halaman tidak ditemukan | Atapura" description="Halaman yang Anda cari tidak ada. Kembali ke beranda Atapura untuk menghitung biaya atap bitumen.">
+  <main class="hilang">
+    <div class="wrap">
+      <p class="hilang-kode angka">404</p>
+      <h1 class="hilang-judul">Halaman ini <span class="hilang-miring">tidak ada.</span></h1>
+      <p class="hilang-teks">Mungkin alamatnya salah ketik, atau halamannya belum terbit. Dari beranda Anda bisa menghitung biaya atap atau langsung bertanya.</p>
+      <div class="hilang-aksi">
+        <a class="pill pill-tunas" href="/">Ke beranda</a>
+        <a class="pill pill-garis" href={waLink('Halo Atapura, saya mau tanya soal atap bitumen.')} target="_blank" rel="noopener">Chat WhatsApp</a>
+      </div>
+    </div>
+  </main>
+</Base>
+
+<style>
+  .hilang { min-height: 100svh; display: flex; align-items: center; background: var(--color-pinus); color: var(--color-embun); padding-block: 6rem; }
+  .hilang-kode { font-size: 0.9rem; color: var(--color-tunas); }
+  .hilang-judul { margin-top: 1rem; font-size: clamp(3rem, 1.4rem + 6vw, 6.5rem); font-weight: 300; letter-spacing: -0.05em; line-height: 0.95; max-width: 10ch; }
+  .hilang-miring { font-variation-settings: "ital" 11; font-weight: 400; }
+  .hilang-teks { margin-top: 1.5rem; max-width: 42ch; color: var(--embun-redup); font-size: 1.15rem; }
+  .hilang-aksi { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.6rem; }
+</style>

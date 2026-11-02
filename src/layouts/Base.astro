@@ -7,13 +7,16 @@ interface Props {
   description: string;
   /** JSON-LD tambahan khusus halaman (FAQPage, BreadcrumbList, dst.). */
   schema?: object[];
+  /** Gambar pratinjau share (relatif dari root). */
+  ogImage?: string;
 }
 
-const { title, description, schema = [] } = Astro.props;
+const { title, description, schema = [], ogImage = '/og/beranda.jpg' } = Astro.props;
 // build.format 'file' membuat pathname berakhiran .html; canonical selalu versi bersih tanpa .html / slash akhir.
 const bersih = Astro.url.pathname.replace(/(\/index)?\.html$/, '').replace(/\/$/, '');
 const canonical = new URL(bersih || '/', Astro.site).href;
 const siteUrl = new URL('/', Astro.site).href;
+const gambar = new URL(ogImage, Astro.site).href;
 
 // Bisnis tanpa toko: tanpa address, area layanan eksplisit. Field yang belum ada datanya tidak ditulis.
 const organisasi = {
@@ -33,9 +36,18 @@ const organisasi = {
   })),
   founder: bisnis.pendiri.map((name) => ({ '@type': 'Person', name })),
   knowsAbout: ['atap bitumen', 'genteng aspal', 'asphalt shingle', ...bisnis.merek],
-  inLanguage: 'id-ID',
+  image: gambar,
 };
-const jsonLd = [organisasi, ...schema];
+const situs = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${siteUrl}#situs`,
+  name: bisnis.nama,
+  url: siteUrl,
+  inLanguage: 'id-ID',
+  publisher: { '@id': `${siteUrl}#bisnis` },
+};
+const jsonLd = [organisasi, situs, ...schema];
 ---
 
 <!doctype html>
@@ -55,6 +67,10 @@ const jsonLd = [organisasi, ...schema];
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={gambar} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body>

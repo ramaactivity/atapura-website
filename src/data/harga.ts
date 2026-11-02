@@ -59,6 +59,14 @@ export function rupiahRingkas(n: number): string {
   return `Rp${Math.round(n / 1000).toLocaleString('id-ID')} rb`;
 }
 
+/** Rentang rupiah untuk tampilan besar: satu "Rp" dan satu satuan, misal { min: '41,4', max: '53,1', satuan: 'jt' }. */
+export function bagianRentang(min: number, max: number): { min: string; max: string; satuan: 'jt' | 'rb' } {
+  const satuan = min >= 1_000_000 ? 'jt' : 'rb';
+  const bagi = satuan === 'jt' ? 1_000_000 : 1000;
+  const f = (n: number) => (n / bagi).toLocaleString('id-ID', { maximumFractionDigits: satuan === 'jt' ? 1 : 0 });
+  return { min: f(min), max: f(max), satuan };
+}
+
 export function tanggalPanjang(iso: string): string {
   return new Date(`${iso}T00:00:00+07:00`).toLocaleDateString('id-ID', {
     weekday: 'long',

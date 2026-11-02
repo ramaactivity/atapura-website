@@ -14,7 +14,12 @@
     background: radial-gradient(circle, rgb(242 182 107 / 0.26) 0%, rgb(242 182 107 / 0.1) 30%, transparent 62%);
     transform: translate(40vw, -20vmax); will-change: transform;
   }
-  .hero-foto { will-change: transform; transform: scale(1.06); }
+  .hero-foto { will-change: translate; scale: 1.06; }
+
+  /* Foto hujan & penutup ikut kursor (translate diatur skrip), poin hujan terangkat saat disorot. */
+  .hujan-foto, .penutup-foto { will-change: translate, scale; }
+  .hujan-fakta li { transition: transform 500ms var(--ease-film), border-color 400ms; }
+  .hujan-fakta li:hover { transform: translateY(-6px); border-color: var(--color-tunas); }
 
   /* Judul naik dari balik garis, baris demi baris. */
   .baris { display: block; clip-path: inset(-0.1em -0.6em -0.14em -0.1em); }
@@ -95,5 +100,23 @@
     :where(html) .lapisan-gambar .l { animation-timeline: --lapisan; animation-range: entry 30% cover 55%; }
     :where(html) .tahap::after { animation-timeline: view(); animation-range: entry 40% cover 60%; }
     :where(html) .rapor { animation-timeline: view(); animation-range: entry 0% cover 45%; }
+  }
+}
+
+
+/* Foto besar tidak diam: zoom out pelan mengikuti scroll (HP & desktop), teks naik bertahap. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hujan-foto, .penutup-foto { animation: zoom-pelan linear both; }
+    @keyframes zoom-pelan { from { scale: 1.22; } to { scale: 1; } }
+    .hujan-isi > *, .penutup-isi > * { animation: naik-pelan linear both; }
+    @keyframes naik-pelan { from { opacity: 0; translate: 0 48px; } to { opacity: 1; translate: 0 0; } }
+  }
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    :where(html) .hujan-foto, :where(html) .penutup-foto { animation-timeline: --foto-besar; animation-range: cover 0% cover 100%; }
+    :where(html) .hujan, :where(html) .penutup { view-timeline-name: --foto-besar; }
+    :where(html) .hujan-isi > *, :where(html) .penutup-isi > * { animation-timeline: view(); animation-range: entry 10% cover 35%; }
   }
 }
