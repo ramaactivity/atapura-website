@@ -18,90 +18,112 @@ const foto = await Promise.all(pilar.map(async (p) => ({ ...p, img: await getIma
 ---
 
 <div class="cerita" data-cerita>
-  <div class="cerita-panggung" aria-hidden="true">
-    {foto.map((p, i) => (
-      <figure class="cerita-foto" data-foto={p.id} data-aktif={i === 0 ? '' : undefined}>
-        <img src={p.img.src} alt="" width="1100" height="1375" loading="lazy" decoding="async" />
-        <span class="cerita-huruf">{p.h}</span>
-      </figure>
-    ))}
-    <ol class="cerita-titik">
-      {foto.map((p, i) => <li data-titik={p.id} data-aktif={i === 0 ? '' : undefined}>{p.h}</li>)}
+  <div class="cerita-lekat">
+    <div class="cerita-panggung" aria-hidden="true">
+      {foto.map((p, i) => (
+        <figure class="cerita-foto" data-foto={p.id} data-aktif={i === 0 ? '' : undefined}>
+          <img src={p.img.src} alt="" width="1100" height="1375" loading="lazy" decoding="async" />
+        </figure>
+      ))}
+      <ol class="cerita-titik">
+        {foto.map((p, i) => <li data-titik={p.id} data-aktif={i === 0 ? '' : undefined}>{p.h}</li>)}
+      </ol>
+    </div>
+    <ol class="cerita-babak">
+      {foto.map((p, i) => (
+        <li class="babak" data-babak={p.id} data-aktif={i === 0 ? '' : undefined}>
+          <img class="babak-foto" src={p.img.src} alt={p.alt} width="1100" height="1375" loading="lazy" decoding="async" />
+          <div class="babak-isi">
+            <p class="babak-nama"><span class="babak-urut">{String(i + 1).padStart(2, '0')} / 04</span>{p.nama}</p>
+            <h3 class="babak-takut">{p.takut}</h3>
+            <p class="babak-dapat">{p.dapat}</p>
+            <a class="babak-bukti" href={p.bukti}>{p.label}</a>
+          </div>
+        </li>
+      ))}
     </ol>
+    <div class="cerita-progres" aria-hidden="true"><span></span></div>
   </div>
-  <ol class="cerita-babak">
-    {foto.map((p) => (
-      <li class="babak" data-babak={p.id}>
-        <img class="babak-foto" src={p.img.src} alt={p.alt} width="1100" height="1375" loading="lazy" decoding="async" />
-        <div class="babak-isi">
-          <p class="babak-nama"><span class="babak-huruf">{p.h}</span>{p.nama}</p>
-          <h3 class="babak-takut">{p.takut}</h3>
-          <p class="babak-dapat">{p.dapat}</p>
-          <a class="babak-bukti" href={p.bukti}>{p.label}</a>
-        </div>
-      </li>
-    ))}
-  </ol>
 </div>
 
 <script>
-  // Babak yang sedang di tengah layar menentukan foto & titik aktif (hanya berdampak di desktop).
+  // Desktop: foto & teks terkunci di layar; posisi scroll di dalam bagian menentukan pilar aktif (tanpa teks melompat).
   for (const root of document.querySelectorAll<HTMLElement>('[data-cerita]')) {
+    const ids = [...root.querySelectorAll<HTMLElement>('[data-babak]')].map((b) => b.dataset.babak!);
+    const bar = root.querySelector<HTMLElement>('.cerita-progres span');
+    const mq = matchMedia('(min-width: 64rem)');
+    let aktif = '', antre = 0;
     const set = (id: string) => {
+      if (id === aktif) return;
+      aktif = id;
       root.querySelectorAll<HTMLElement>('[data-foto],[data-titik],[data-babak]').forEach((el) => {
-        const cocok = (el.dataset.foto ?? el.dataset.titik ?? el.dataset.babak) === id;
-        if (cocok) el.setAttribute('data-aktif', ''); else el.removeAttribute('data-aktif');
+        if ((el.dataset.foto ?? el.dataset.titik ?? el.dataset.babak) === id) el.setAttribute('data-aktif', ''); else el.removeAttribute('data-aktif');
       });
     };
-    const io = new IntersectionObserver((entri) => {
-      for (const e of entri) if (e.isIntersecting) set((e.target as HTMLElement).dataset.babak!);
-    }, { rootMargin: '-45% 0px -45% 0px' });
-    root.querySelectorAll<HTMLElement>('[data-babak]').forEach((b) => io.observe(b));
+    const hitung = () => {
+      antre = 0;
+      if (!mq.matches) return;
+      const r = root.getBoundingClientRect();
+      const p = Math.min(1, Math.max(0, -r.top / (r.height - innerHeight)));
+      if (bar) bar.style.transform = `scaleX(${p})`;
+      set(ids[Math.min(ids.length - 1, Math.floor(p * ids.length))]);
+    };
+    addEventListener('scroll', () => { if (!antre) antre = requestAnimationFrame(hitung); }, { passive: true });
+    hitung();
   }
 </script>
 
 <style>
   /* HP: kartu foto per pilar */
-  .cerita-panggung { display: none; }
+  .cerita-panggung, .cerita-progres { display: none; }
   .cerita-babak { display: grid; gap: 1.25rem; }
   .babak { border-radius: 18px; overflow: hidden; background: var(--color-pinus-2); }
   .babak-foto { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
   .babak-isi { padding: 1.5rem 1.4rem 1.75rem; display: grid; gap: 0.6rem; }
-  .babak-nama { display: flex; align-items: baseline; gap: 0.6rem; font-size: 0.95rem; font-weight: 500; color: var(--color-tunas); }
-  .babak-huruf { font-size: 2.6rem; line-height: 0.8; letter-spacing: -0.04em; }
+  .babak-nama {
+    font-size: clamp(2.6rem, 1.6rem + 4vw, 3.4rem); font-weight: 500; letter-spacing: -0.05em; line-height: 0.95; color: var(--color-tunas);
+    display: grid; gap: 0.5rem;
+  }
+  .babak-urut { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.02em; color: var(--embun-redup); }
   .babak-takut { font-size: 1.45rem; font-weight: 500; letter-spacing: -0.03em; line-height: 1.2; color: var(--color-embun); }
   .babak-dapat { color: var(--embun-redup); }
   .babak-bukti { justify-self: start; margin-top: 0.3rem; font-weight: 500; color: var(--color-embun); text-decoration: underline; text-decoration-color: rgb(242 244 241 / 0.35); }
   .babak-bukti:hover { color: var(--color-tunas); }
 
-  /* Desktop: foto menempel, cerita berjalan */
+  /* Desktop: satu panggung terkunci; panjang bagian = jarak scroll untuk 4 pilar. */
   @media (min-width: 64rem) {
-    .cerita { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 5rem; }
-    .cerita-panggung { display: block; position: sticky; top: 8vh; height: 84vh; border-radius: 22px; overflow: hidden; background: var(--color-pinus-2); }
-    .cerita-foto { position: absolute; inset: 0; margin: 0; opacity: 0; transition: opacity 900ms var(--ease-out); }
-    .cerita-foto img { width: 100%; height: 100%; object-fit: cover; scale: 1.08; transition: scale 2400ms var(--ease-out); }
-    .cerita-foto[data-aktif] { opacity: 1; }
-    .cerita-foto[data-aktif] img { scale: 1; }
-    .cerita-foto::after { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, rgb(10 20 16 / 0.65) 0%, transparent 45%); }
-    .cerita-huruf {
-      position: absolute; z-index: 1; left: 2rem; bottom: 1.25rem; font-size: clamp(9rem, 4rem + 10vw, 15rem); font-weight: 500;
-      letter-spacing: -0.06em; line-height: 0.8; color: var(--color-tunas);
-      translate: 0 30px; opacity: 0; transition: translate 900ms var(--ease-out) 150ms, opacity 900ms var(--ease-out) 150ms;
+    .cerita { height: 360vh; position: relative; }
+    .cerita-lekat {
+      position: sticky; top: 8vh; height: 84vh;
+      display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 5rem; align-items: center;
     }
-    .cerita-foto[data-aktif] .cerita-huruf { translate: 0 0; opacity: 1; }
+    .cerita-panggung { display: block; position: relative; height: 100%; border-radius: 22px; overflow: hidden; background: var(--color-pinus-2); }
+    .cerita-foto { position: absolute; inset: 0; margin: 0; opacity: 0; transition: opacity 900ms cubic-bezier(0.65, 0, 0.35, 1); }
+    .cerita-foto img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.08); transition: transform 2400ms cubic-bezier(0.16, 1, 0.3, 1); }
+    .cerita-foto[data-aktif] { opacity: 1; }
+    .cerita-foto[data-aktif] img { transform: scale(1); }
     .cerita-titik { position: absolute; z-index: 2; top: 1.5rem; right: 1.5rem; display: flex; gap: 0.4rem; }
     .cerita-titik li {
       width: 2.4rem; height: 2.4rem; display: grid; place-items: center; border-radius: 50%; font-size: 0.85rem; font-weight: 500;
-      color: rgb(242 244 241 / 0.75); background: rgb(10 20 16 / 0.45); transition: background-color 500ms, color 500ms;
+      color: rgb(242 244 241 / 0.8); background: rgb(10 20 16 / 0.5); transition: background-color 500ms, color 500ms;
     }
     .cerita-titik li[data-aktif] { background: var(--color-tunas); color: var(--color-pinus); }
-    .cerita-babak { gap: 0; }
-    .babak { min-height: 84vh; display: flex; align-items: center; background: none; border-radius: 0; opacity: 0.28; transition: opacity 700ms var(--ease-out); }
-    .babak[data-aktif] { opacity: 1; }
+
+    /* Semua teks ditumpuk di satu sel; hanya yang aktif terlihat. Posisi tidak pernah berpindah. */
+    .cerita-babak { display: grid; gap: 0; align-self: center; }
+    .babak { grid-area: 1 / 1; background: none; border-radius: 0; opacity: 0; transform: translate3d(0, 28px, 0); pointer-events: none;
+      transition: opacity 600ms cubic-bezier(0.7, 0, 0.84, 0), transform 600ms cubic-bezier(0.7, 0, 0.84, 0); }
+    .babak[data-aktif] { opacity: 1; transform: none; pointer-events: auto;
+      transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1) 250ms, transform 900ms cubic-bezier(0.16, 1, 0.3, 1) 250ms; }
     .babak-foto { display: none; }
-    .babak-isi { padding: 0; gap: 1rem; max-width: 30rem; }
-    .babak-takut { font-size: clamp(2rem, 1.2rem + 2vw, 3rem); letter-spacing: -0.04em; line-height: 1.05; }
-    .babak-dapat { font-size: 1.15rem; line-height: 1.55; }
-    .babak-huruf { display: none; }
+    .babak-isi { padding: 0; gap: 1.1rem; max-width: 32rem; }
+    .babak-nama { font-size: clamp(4rem, 1.5rem + 5.5vw, 7rem); gap: 1rem; }
+    .babak-takut { font-size: clamp(1.6rem, 1.1rem + 1.2vw, 2.3rem); letter-spacing: -0.035em; line-height: 1.12; }
+    .babak-dapat { font-size: 1.1rem; line-height: 1.55; }
+    .cerita-progres { display: block; position: absolute; left: calc(52.5% + 2.5rem); right: 0; bottom: 0; height: 2px; background: rgb(242 244 241 / 0.15); }
+    .cerita-progres span { display: block; height: 100%; background: var(--color-tunas); transform-origin: 0 50%; transform: scaleX(0); }
+  }
+  @media (min-width: 64rem) and (prefers-reduced-motion: reduce) {
+    .babak, .babak[data-aktif], .cerita-foto, .cerita-foto img { transition: none; }
   }
 </style>
