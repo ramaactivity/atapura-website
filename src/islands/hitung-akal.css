@@ -5,7 +5,7 @@
 .hasil { padding-bottom: 0.9rem; border-bottom: 1px solid var(--color-garis); }
 .hasil-label { font-size: 0.875rem; color: var(--color-lumut); }
 .hasil-angka {
-  font-size: clamp(1.9rem, 1.4rem + 2vw, 2.6rem); font-weight: 760; letter-spacing: -0.035em; line-height: 1.1;
+  font-size: clamp(1.9rem, 1.4rem + 2vw, 2.6rem); font-weight: 720; letter-spacing: -0.015em; line-height: 1.1;
   margin-top: 0.2rem; white-space: nowrap;
 }
 .hasil-sd { font-weight: 300; color: var(--color-lumut); }

@@ -1,8 +1,18 @@
 @import "tailwindcss";
-@import "@fontsource-variable/plus-jakarta-sans/wght.css";
+
+/* Switzer (Indian Type Foundry, ITF Free Font License — docs/lisensi/Switzer-FFL.txt).
+   Lisensi melarang mengubah file font, jadi variable font dipakai utuh tanpa subset. */
+@font-face {
+  font-family: "Switzer"; font-style: normal; font-weight: 100 900; font-display: swap;
+  src: url("/fonts/Switzer-Variable.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Switzer"; font-style: italic; font-weight: 100 900; font-display: swap;
+  src: url("/fonts/Switzer-VariableItalic.woff2") format("woff2");
+}
 
 @theme {
-  --font-sans: "Plus Jakarta Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Switzer", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --color-pinus: #10231e;
   --color-pinus-2: #183129;
   --color-tinta: #151a18;

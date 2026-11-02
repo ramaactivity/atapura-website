@@ -1,0 +1,481 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-02T00:00:00+07:00",
+  "title": "Design System: Atapura",
+  "extensions": {
+    "colorMeta": {
+      "tunas": {
+        "role": "primary",
+        "displayName": "Tunas (lime)",
+        "canonical": "oklch(90.0% 0.191 123)",
+        "tonalRamp": [
+          "#050f00",
+          "#1a2e00",
+          "#345000",
+          "#527400",
+          "#749a00",
+          "#97c000",
+          "#bde262",
+          "#ddfe95"
+        ]
+      },
+      "tunas-hover": {
+        "role": "primary",
+        "displayName": "Tunas hover",
+        "tonalRamp": [
+          "#050f00",
+          "#1a2e00",
+          "#345000",
+          "#527400",
+          "#749a00",
+          "#97c000",
+          "#bde262",
+          "#ddfe95"
+        ]
+      },
+      "tunas-pucat": {
+        "role": "primary",
+        "displayName": "Tunas pucat",
+        "canonical": "oklch(95.6% 0.069 120)",
+        "tonalRamp": [
+          "#090d00",
+          "#232a0a",
+          "#414a21",
+          "#616c3e",
+          "#849060",
+          "#a8b584",
+          "#ccd7ad",
+          "#eaf4cf"
+        ]
+      },
+      "pinus": {
+        "role": "neutral",
+        "displayName": "Pinus",
+        "canonical": "oklch(23.8% 0.027 175)",
+        "tonalRamp": [
+          "#050d0b",
+          "#1c2a26",
+          "#374944",
+          "#566b65",
+          "#798f88",
+          "#9db4ad",
+          "#c3d6d0",
+          "#e2f3ee"
+        ]
+      },
+      "pinus-2": {
+        "role": "neutral",
+        "displayName": "Pinus 2",
+        "canonical": "oklch(29.0% 0.035 171)",
+        "tonalRamp": [
+          "#030e0a",
+          "#192b25",
+          "#344b43",
+          "#526d63",
+          "#759086",
+          "#99b5ab",
+          "#bfd8ce",
+          "#dff4ec"
+        ]
+      },
+      "tinta": {
+        "role": "neutral",
+        "displayName": "Tinta",
+        "canonical": "oklch(21.2% 0.008 169)",
+        "tonalRamp": [
+          "#090c0b",
+          "#242726",
+          "#414644",
+          "#626865",
+          "#848b88",
+          "#a9b0ad",
+          "#cdd2d0",
+          "#ebf0ee"
+        ]
+      },
+      "lumut": {
+        "role": "neutral",
+        "displayName": "Lumut",
+        "canonical": "oklch(46.4% 0.026 164)",
+        "tonalRamp": [
+          "#060d09",
+          "#1e2a24",
+          "#3a4941",
+          "#596b62",
+          "#7b8e85",
+          "#a0b3a9",
+          "#c5d6cd",
+          "#e4f3eb"
+        ]
+      },
+      "embun": {
+        "role": "neutral",
+        "displayName": "Embun",
+        "canonical": "oklch(96.5% 0.004 135)",
+        "tonalRamp": [
+          "#0b0b0a",
+          "#262725",
+          "#444543",
+          "#656764",
+          "#888a87",
+          "#adaeac",
+          "#d0d1cf",
+          "#edefed"
+        ]
+      },
+      "embun-redup": {
+        "role": "neutral",
+        "displayName": "Embun redup (72%)",
+        "canonical": "rgb(242 244 241 / 0.72)"
+      },
+      "putih": {
+        "role": "neutral",
+        "displayName": "Putih",
+        "canonical": "oklch(100.0% 0.000 90)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#262626",
+          "#454545",
+          "#666666",
+          "#898989",
+          "#aeaeae",
+          "#d1d1d1",
+          "#eeeeee"
+        ]
+      },
+      "garis": {
+        "role": "neutral",
+        "displayName": "Garis",
+        "canonical": "oklch(89.5% 0.010 141)",
+        "tonalRamp": [
+          "#0a0c0a",
+          "#252724",
+          "#434642",
+          "#636762",
+          "#868b85",
+          "#abafaa",
+          "#ced2cd",
+          "#ecf0eb"
+        ]
+      },
+      "senja": {
+        "role": "tertiary",
+        "displayName": "Senja (hanya grading foto)",
+        "canonical": "oklch(81.6% 0.116 71)",
+        "tonalRamp": [
+          "#1b0400",
+          "#3f1c00",
+          "#673800",
+          "#8f5800",
+          "#b57c2e",
+          "#dba157",
+          "#f9c78a",
+          "#ffe6b2"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display tipis",
+        "purpose": "Bagian tipis judul hero."
+      },
+      "display-strong": {
+        "displayName": "Display tebal",
+        "purpose": "Kata tebal judul hero; boleh Tunas di atas gelap."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Judul section, maks 18ch."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Sub-judul dalam section."
+      },
+      "figure": {
+        "displayName": "Angka estimasi",
+        "purpose": "Angka hasil di slip, tabular."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Paragraf pembuka section, maks 38ch."
+      },
+      "body": {
+        "displayName": "Body HP",
+        "purpose": "Teks baca 17px."
+      },
+      "body-desktop": {
+        "displayName": "Body desktop",
+        "purpose": "Teks baca 18px mulai 64rem."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Label kontrol dan tombol."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Catatan kecil Lumut."
+      }
+    },
+    "shadows": [
+      {
+        "name": "course-drop",
+        "value": "0 22px 32px -22px rgb(16 35 30 / 0.55)",
+        "purpose": "Tepi bawah tiap section (baris genteng)."
+      },
+      {
+        "name": "slip",
+        "value": "0 1px 0 rgb(255 255 255 / 0.6) inset, 0 30px 60px -24px rgb(0 0 0 / 0.55), 0 8px 18px -10px rgb(0 0 0 / 0.3)",
+        "purpose": "Slip rincian di atas foto genteng."
+      },
+      {
+        "name": "paper-small",
+        "value": "0 14px 30px -14px rgb(0 0 0 / 0.6)",
+        "purpose": "Kartu rekening tujuan di atas Pinus."
+      },
+      {
+        "name": "tunas-glow",
+        "value": "0 6px 18px -8px rgb(198 242 78 / 0.6)",
+        "purpose": "Tombol utama Tunas."
+      },
+      {
+        "name": "floating",
+        "value": "0 12px 28px -10px rgb(16 35 30 / 0.6)",
+        "purpose": "Tombol WA melayang."
+      },
+      {
+        "name": "control-raised",
+        "value": "0 1px 2px rgb(16 35 30 / 0.12)",
+        "purpose": "Tombol stepper."
+      },
+      {
+        "name": "segment-selected",
+        "value": "0 2px 6px -2px rgb(16 35 30 / 0.5)",
+        "purpose": "Segmen merek terpilih."
+      },
+      {
+        "name": "thumb",
+        "value": "0 4px 10px -3px rgb(16 35 30 / 0.45)",
+        "purpose": "Jempol slider."
+      },
+      {
+        "name": "sticky-edge",
+        "value": "0 16px 16px -16px rgb(16 35 30 / 0.25)",
+        "purpose": "Diagram lapisan sticky di HP."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Easing standar semua transisi."
+      },
+      {
+        "name": "press",
+        "value": "transform 140-160ms ease-out, scale 0.94-0.97",
+        "purpose": "Umpan balik tekan tombol/stepper."
+      },
+      {
+        "name": "state-color",
+        "value": "200-250ms",
+        "purpose": "Perubahan warna hover/terpilih."
+      },
+      {
+        "name": "number-roll",
+        "value": "520ms, ease-out quartic",
+        "purpose": "Angka estimasi bergulir; lompat langsung saat reduced-motion."
+      },
+      {
+        "name": "layer-lift",
+        "value": "opacity 400ms, transform 600ms ease-out, translateY(-22px)",
+        "purpose": "Mengangkat lapis aktif di penampang."
+      },
+      {
+        "name": "floating-enter",
+        "value": "opacity 400ms, transform 500ms ease-out, dari translateY(24px)",
+        "purpose": "Tombol WA melayang muncul."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "transition/animation 0.01ms, scroll-behavior auto",
+        "purpose": "prefers-reduced-motion: reduce."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "tabel",
+        "value": "48rem"
+      },
+      {
+        "name": "dua-kolom",
+        "value": "60rem"
+      },
+      {
+        "name": "desktop",
+        "value": "64rem"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Tombol utama (Tunas)",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Aksi utama: hitung estimasi, kirim ke WhatsApp. Teks selalu Pinus.",
+      "html": "<a class=\"ds-pill ds-pill-tunas\" href=\"#\">Hitung estimasi biaya</a>",
+      "css": ".ds-pill{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:48px;padding:0 1.4rem;border-radius:999px;font-family:\"Switzer\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;font-weight:650;font-size:1rem;letter-spacing:-.005em;text-decoration:none;cursor:pointer;transition:transform 160ms cubic-bezier(.16,1,.3,1),background-color 200ms,box-shadow 200ms}.ds-pill:active{transform:scale(.97)}.ds-pill:focus-visible{outline:2px solid #10231e;outline-offset:3px}.ds-pill-tunas{background:#c6f24e;color:#10231e;box-shadow:0 6px 18px -8px rgb(198 242 78 / .6)}.ds-pill-tunas:hover{background:#d3f76c}"
+    },
+    {
+      "name": "Tombol garis (di atas Pinus)",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Aksi kedua di bidang gelap, garis 1px warna teks.",
+      "html": "<div class=\"ds-gelap\"><a class=\"ds-pill-garis\" href=\"#\">Jadwalkan survey lewat WhatsApp</a></div>",
+      "css": ".ds-gelap{background:#183129;padding:24px;border-radius:6px}.ds-pill-garis{display:inline-flex;align-items:center;min-height:48px;padding:0 1.4rem;border-radius:999px;border:1px solid currentColor;color:#f2f4f1;font-family:\"Switzer\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;font-weight:650;font-size:1rem;text-decoration:none;transition:transform 160ms cubic-bezier(.16,1,.3,1),background-color 200ms}.ds-pill-garis:hover{background:rgb(242 244 241 / .1)}.ds-pill-garis:active{transform:scale(.97)}.ds-pill-garis:focus-visible{outline:2px solid #c6f24e;outline-offset:3px}"
+    },
+    {
+      "name": "Chip fakta di atas foto",
+      "kind": "chip",
+      "refersTo": "chip-fact",
+      "description": "Fakta singkat yang benar sekarang, melayang di hero. Blur hanya di desktop.",
+      "html": "<ul class=\"ds-fakta\"><li>3 merek</li><li>13 kota</li><li>Survey gratis</li></ul>",
+      "css": ".ds-fakta{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;margin:0;padding:20px;background:#10231e}.ds-fakta li{padding:.45rem .95rem;border-radius:999px;font-family:\"Switzer\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;font-size:.9rem;font-weight:550;color:#f2f4f1;background:rgb(16 35 30 / .72);border:1px solid rgb(242 244 241 / .16)}"
+    },
+    {
+      "name": "Chip penanda contoh",
+      "kind": "chip",
+      "refersTo": "chip-contoh",
+      "description": "Penanda jujur pada angka yang belum resmi.",
+      "html": "<span class=\"ds-contoh\">contoh</span>",
+      "css": ".ds-contoh{display:inline-flex;align-items:center;padding:.2rem .65rem;border-radius:999px;background:#eaf8c4;color:#10231e;font-family:\"Switzer\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;font-size:.75rem;font-weight:650}"
+    },
+    {
+      "name": "Stepper luas",
+      "kind": "input",
+      "refersTo": "stepper",
+      "description": "Pengganti input number: tombol -/+ 44px, angka tabular.",
+      "html": "<div class=\"ds-stepper\"><button class=\"ds-step\" aria-label=\"Kurangi\"><svg viewBox=\"0 0 16 16\"><path d=\"M3 8h10\"/></svg></button><span class=\"ds-isi\"><b>100</b> m²</span><button class=\"ds-step\" aria-label=\"Tambah\"><svg viewBox=\"0 0 16 16\"><path d=\"M3 8h10M8 3v10\"/></svg></button></div>",
+      "css": ".ds-stepper{display:inline-flex;align-items:center;border:1px solid #d9ded8;border-radius:999px;padding:3px;background:#f2f4f1;font-family:\"Switzer\", \"Helvetica Neue\", Helvetica, Arial, sans-serif}.ds-stepper:focus-within{border-color:#10231e}.ds-step{display:grid;place-items:center;width:44px;height:44px;border:0;border-radius:999px;background:#fff;color:#10231e;cursor:pointer;box-shadow:0 1px 2px rgb(16 35 30 / .12);transition:transform 140ms cubic-bezier(.16,1,.3,1)}.ds-step:active{transform:scale(.94)}.ds-step:focus-visible{outline:2px solid #10231e;outline-offset:3px}.ds-step svg{width:16px;height:16px;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;fill:none}.ds-isi{padding-inline:.6rem;color:#4c5e55;font-size:.95rem;font-variant-numeric:tabular-nums lining-nums}.ds-isi b{color:#151a18;font-weight:720;font-size:1.15rem}"
+    },
+    {
+      "name": "Segmen merek",
+      "kind": "input",
+      "refersTo": "segmented",
+      "description": "Pengganti select/radio: tiga opsi pill, terpilih berlatar Pinus.",
+      "html": "<div class=\"ds-segmen\" role=\"radiogroup\"><button role=\"radio\" aria-checked=\"false\">Maxxi</button><button role=\"radio\" aria-checked=\"true\">CTI</button><button role=\"radio\" aria-checked=\"false\">Javabitumen</button></div>",
+      "css": ".ds-segmen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding:3px;border-radius:999px;background:#f2f4f1;border:1px solid #d9ded8;font-family:\"Switzer\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;max-width:420px}.ds-segmen button{min-height:42px;border:0;border-radius:999px;background:transparent;font:600 .92rem \"Switzer\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;color:#4c5e55;cursor:pointer;transition:background-color 220ms,color 220ms,box-shadow 220ms}.ds-segmen button:hover{color:#151a18}.ds-segmen button:focus-visible{outline:2px solid #10231e;outline-offset:2px}.ds-segmen button[aria-checked=true]{background:#10231e;color:#f2f4f1;box-shadow:0 2px 6px -2px rgb(16 35 30 / .5)}"
+    },
+    {
+      "name": "Slip rincian",
+      "kind": "custom",
+      "refersTo": "slip",
+      "description": "Kertas penawaran putih bertepi atas chevron, dengan angka hasil dan rincian bertitik.",
+      "html": "<div class=\"ds-slip\"><p class=\"ds-lbl\">Perkiraan total</p><p class=\"ds-angka\">Rp42,5 jt <span>s/d Rp51 jt</span></p><dl class=\"ds-rincian\"><div><dt>Genteng</dt><dd>Rp28 jt</dd></div><div><dt>Aksesoris</dt><dd>Rp6 jt</dd></div><div><dt>Jasa pasang</dt><dd>Rp8,5 jt</dd></div></dl></div>",
+      "css": ".ds-slip{max-width:380px;background:#fff;color:#151a18;font-family:\"Switzer\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;clip-path:polygon(0 28px,50% 0,100% 28px,100% 100%,0 100%);border-radius:0 0 1.25rem 1.25rem;padding:2.75rem 1.25rem 1.25rem;box-shadow:0 30px 60px -24px rgb(0 0 0 / .55),0 8px 18px -10px rgb(0 0 0 / .3)}.ds-lbl{margin:0;font-size:.875rem;color:#4c5e55}.ds-angka{margin:.2rem 0 .9rem;font-size:2.2rem;font-weight:760;letter-spacing:-.035em;line-height:1.1;font-variant-numeric:tabular-nums lining-nums;white-space:nowrap;padding-bottom:.9rem;border-bottom:1px solid #d9ded8}.ds-angka span{font-weight:300;color:#4c5e55;font-size:.6em}.ds-rincian{display:grid;gap:.3rem;margin:0;font-size:.9rem;font-variant-numeric:tabular-nums}.ds-rincian div{display:flex;align-items:baseline;background-image:radial-gradient(circle,#d9ded8 1px,transparent 1.2px);background-size:6px 6px;background-repeat:repeat-x;background-position:0 calc(100% - 4px)}.ds-rincian dt{color:#4c5e55;background:#fff;padding-right:.4rem}.ds-rincian dd{margin-left:auto;font-weight:600;background:#fff;padding-left:.4rem}"
+    },
+    {
+      "name": "Course (baris genteng)",
+      "kind": "card",
+      "refersTo": "course-light",
+      "description": "Section yang menimpa section di bawahnya dengan bayangan jatuh.",
+      "html": "<div class=\"ds-courses\"><section class=\"ds-course ds-terang\"><h2>Atap bocor lagi setelah diperbaiki?</h2></section><section class=\"ds-course ds-gelap2\"><h2><span>Masuk AKAL,</span> bisa dicek.</h2></section></div>",
+      "css": ".ds-courses{font-family:\"Switzer\", \"Helvetica Neue\", Helvetica, Arial, sans-serif}.ds-course{position:relative;border-radius:0 0 6px 6px;margin-bottom:-32px;padding:56px 24px 72px;box-shadow:0 22px 32px -22px rgb(16 35 30 / .55)}.ds-course h2{margin:0;font-size:2rem;font-weight:720;letter-spacing:-.025em;line-height:1.08}.ds-course h2 span{font-weight:280}.ds-terang{background:#f2f4f1;color:#151a18;z-index:2}.ds-gelap2{background:#10231e;color:#f2f4f1;z-index:1;margin-bottom:0}"
+    },
+    {
+      "name": "Navigasi atas",
+      "kind": "nav",
+      "refersTo": "button-outline",
+      "description": "Header transparan di atas hero: wordmark, menu Embun redup, tombol WA garis.",
+      "html": "<header class=\"ds-nav\"><a class=\"ds-wm\" href=\"#\">Atapura</a><nav><a href=\"#\">Hitung biaya</a><a href=\"#\">Cara pasang</a><a href=\"#\">Merek</a></nav><a class=\"ds-wa\" href=\"#\">Chat WhatsApp</a></header>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:2rem;min-height:76px;padding:0 24px;background:#10231e;color:#f2f4f1;font-family:\"Switzer\", \"Helvetica Neue\", Helvetica, Arial, sans-serif}.ds-wm{font-weight:760;font-size:1.3rem;letter-spacing:-.035em;color:inherit;text-decoration:none}.ds-nav nav{display:flex;gap:1.75rem;margin-left:auto;font-size:.95rem}.ds-nav nav a{color:rgb(242 244 241 / .72);text-decoration:none;padding-block:.6rem;transition:color 200ms}.ds-nav nav a:hover{color:#f2f4f1}.ds-nav a:focus-visible{outline:2px solid #c6f24e;outline-offset:3px;border-radius:6px}.ds-wa{display:inline-flex;align-items:center;min-height:44px;padding:0 1.1rem;border-radius:999px;border:1px solid rgb(242 244 241 / .35);color:#f2f4f1;text-decoration:none;font-weight:650;font-size:.95rem}.ds-wa:hover{background:rgb(242 244 241 / .1)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Slip rincian di atas genteng",
+    "overview": "Atapura terasa seperti sore yang tenang di rumah yang atapnya bisa dipercaya: hangat, dewasa, jelas. Halaman dibangun sebagai estimasi tukang yang jujur, diletakkan langsung di atas material aslinya. Hero memakai foto makro butiran genteng aspal dengan grading cahaya sore, digelapkan Pinus di kiri. Di atasnya duduk \"slip rincian\" putih: kertas penawaran dengan garis titik-titik penuntun antara nama pos dan angkanya, tepi atasnya terpotong mengikuti kemiringan atap. Kalkulator adalah pahlawannya, bukan tombol \"hubungi kami\".\n\nStruktur halaman meniru baris genteng: tiap section menimpa section di bawahnya, sudut bawahnya membulat sedikit, dan bayangan lembut jatuh ke baris berikutnya. Latar bergantian antara bidang baca terang (Embun, Putih) untuk harga, tabel, dan tanya-jawab, dan bidang gelap Pinus untuk bukti dan penutup. Satu garis tipis chevron Λ pada kemiringan atap menjadi supergrafis. Kepadatan sedang dan lapang: pembacanya orang dewasa 30 sampai 60 tahun di HP Android kelas menengah yang sedang menimbang pengeluaran puluhan juta rupiah, jadi kejelasan selalu menang atas efek.\n\nYang ditolak secara visual: pola kontraktor standar (foto rumah stok + kartu ikon \"Kenapa memilih kami\" + baris statistik), gelap-hitam ala UI AI, glassmorphism penuh, neubrutalism, dan bukti palsu. Slot bukti yang belum ada datanya ditulis jujur sebagai \"segera ada\", dengan bingkai putus-putus.",
+    "keyCharacteristics": [
+      "Estimasi terlihat di layar pertama, termasuk di HP.",
+      "Section bertumpuk seperti baris genteng (overlap + bayangan jatuh ke bawah).",
+      "Hijau pinus, bukan hitam; satu aksen lime (Tunas) yang sangat hemat.",
+      "Satu keluarga huruf, kontras berat 280 lawan 780 dalam satu kalimat.",
+      "Semua angka tabular; rupiah tanpa desimal.",
+      "Semua kontrol custom berbentuk pill, target sentuh minimal 44px."
+    ],
+    "rules": [
+      {
+        "name": "The Satu Tunas Rule",
+        "body": "Tunas tidak pernah jadi teks di atas latar terang (kontrasnya gagal), dan paling banyak satu kata Tunas per layar, hanya di atas Pinus atau foto. Selebihnya Tunas hanya untuk aksi utama.",
+        "section": "colors"
+      },
+      {
+        "name": "The Pinus Bukan Hitam Rule",
+        "body": "Bidang gelap selalu Pinus atau Pinus 2. Hitam murni hanya boleh muncul di dalam bayangan.",
+        "section": "colors"
+      },
+      {
+        "name": "The Teks Turunan Rule",
+        "body": "Teks sekunder di atas gelap memakai Embun dengan opasitas (72% untuk isi, 60% untuk baris kaki, 14 sampai 16% untuk garis), tidak pernah abu netral baru.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tipis Lawan Tebal Rule",
+        "body": "Penekanan judul datang dari berat huruf dalam satu kalimat (280 lawan 720 sampai 780), bukan dari warna-warni atau font kedua.",
+        "section": "typography"
+      },
+      {
+        "name": "The Angka Tabular Rule",
+        "body": "Setiap angka yang dibandingkan atau berubah (estimasi, luas, harga di tabel, durasi) memakai `tabular-nums lining-nums`. Rupiah ditulis tanpa desimal.",
+        "section": "typography"
+      },
+      {
+        "name": "The Huruf Pilar Rule",
+        "body": "Huruf A-K-A-L ditulis raksasa berat 280 (4.5rem di HP, sampai 8.5rem di desktop) sebagai jangkar tiap pilar, turun ke bawah membentuk satu kata.",
+        "section": "typography"
+      },
+      {
+        "name": "The Jawaban Dulu Rule",
+        "body": "Estimasi dan tombol WhatsApp harus terlihat tanpa scroll di HP. Tombol WA melayang muncul hanya setelah hero lewat, dan hanya di bawah 64rem.",
+        "section": "layout"
+      },
+      {
+        "name": "The Bayangan Jatuh ke Bawah Rule",
+        "body": "Semua bayangan punya offset Y positif dan spread negatif: cahaya dari atas, seperti matahari di atap. Tidak ada bayangan keras tanpa blur, tidak ada glow ke segala arah selain pendar Tunas di tombol utama.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Blur Hemat Rule",
+        "body": "`backdrop-filter: blur(8px)` hanya untuk chip fakta di hero, dan hanya mulai 64rem. Di HP chip memakai Pinus 72% tanpa blur.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Satu Chevron Rule",
+        "body": "Satu chevron Λ per layar, selalu tipis 1px, selalu pada kemiringan atap yang sama dengan potongan slip.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do letakkan estimasi (slip rincian) di layar pertama; angka harus terlihat tanpa scroll di HP.",
+      "Do susun section sebagai course yang menimpa course berikutnya (overlap `clamp(28px, 4vw, 48px)`, radius bawah 6px, bayangan jatuh ke bawah) dan bergantian terang/gelap.",
+      "Do taruh harga, tabel, dan tanya-jawab di bidang terang (Embun/Putih) dengan teks Tinta; Pinus untuk bukti dan penutup.",
+      "Do pakai Tunas hanya untuk aksi utama dan satu kata di atas gelap, selalu dengan teks Pinus di atasnya.",
+      "Do tekankan judul lewat berat (280 lawan 720 sampai 780) dalam satu kalimat.",
+      "Do pakai `tabular-nums` untuk setiap angka; rupiah tanpa desimal.",
+      "Do beri setiap kontrol target sentuh minimal 44px dan bentuk pill.",
+      "Do tandai angka uji dengan chip \"contoh\" dan slot bukti kosong dengan bingkai putus-putus yang jujur.",
+      "Do hormati `prefers-reduced-motion` (transisi 0.01ms, angka langsung lompat, scroll biasa).",
+      "Do animasikan hanya `transform` dan `opacity` untuk gerak yang besar."
+    ],
+    "donts": [
+      "Don't pakai pola kontraktor standar: foto rumah stok + kartu ikon \"Kenapa memilih kami\" + baris statistik.",
+      "Don't pakai Tunas sebagai teks di atas Embun atau Putih.",
+      "Don't pakai hitam atau abu netral untuk bidang gelap; gelapnya Pinus.",
+      "Don't pakai Senja sebagai warna UI; ia hanya cahaya di foto.",
+      "Don't pakai font serif atau font kedua.",
+      "Don't pakai kontrol native browser (select, checkbox, range, number, date, textarea polos, alert/confirm).",
+      "Don't pasang blur di HP atau glassmorphism penuh.",
+      "Don't pakai lebih dari satu chevron Λ per layar.",
+      "Don't pakai bayangan keras tanpa blur atau bayangan yang tidak jatuh ke bawah.",
+      "Don't tampilkan foto, proyek, review, atau angka yang belum ada; jangan pernah memalsukan bukti.",
+      "Don't pakai kilatan warna jenuh bergantian atau efek fade-slide di setiap section."
+    ]
+  }
+}

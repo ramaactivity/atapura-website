@@ -41,7 +41,7 @@ Visitor flow: search question → answer page (price/guide/area) → Hitung AKAL
 - Voice: calm, plain, numeric, honest about when bitumen is not suitable. Banned phrases listed in `.agents/product-marketing.md` and bahan/atapura/07.
 - Logo is designed separately by Rama (not yet supplied); never generated or assembled.
 - Binding visual references: `docs/desain/referensi/` (33 images, Rama's picks) summarized in bahan/atapura/02-DESIGN-NOTES.md.
-- Sans-serif only (Plus Jakarta Sans); pill buttons/chips.
+- Sans-serif only: Switzer, a Helvetica-style neo-grotesque with true italics (Rama rejected Plus Jakarta Sans as too generic, 2 Nov 2026); pill buttons/chips.
 
 ## Evidence on Hand
 - None yet: no completed projects, no real photos, no testimonials, no reviews, no project metrics. Must not be fabricated. AI-generated imagery (made by Rama in Magnific) may set atmosphere only and must never be presented as an Atapura project.

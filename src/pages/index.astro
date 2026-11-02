@@ -172,7 +172,7 @@ const faqSchema = {
     <section class="course gelap c-pinus" aria-labelledby="judul-akal">
       <div class="wrap">
         <h2 id="judul-akal" class="judul-2 akal-judul">
-          <span class="hero-tipis">Masuk AKAL,</span> bisa dicek.
+          <span class="hero-tipis">Masuk AKAL,</span> bisa <span class="miring">dicek.</span>
         </h2>
         <ol class="akal">
           <li class="akal-baris">
@@ -247,7 +247,7 @@ const faqSchema = {
     <section class="course gelap c-pinus-2 penutup" aria-labelledby="judul-penutup">
       <div class="wrap penutup-isi">
         <h2 id="judul-penutup" class="judul-2">
-          <span class="hero-tipis">Hitung dulu,</span> baru pasang.
+          <span class="hero-tipis">Hitung dulu,</span> <span class="miring">baru pasang.</span>
         </h2>
         <p class="lead">Hujan deras seharusnya cuma jadi suara, bukan kekhawatiran.</p>
         <div class="penutup-aksi">
@@ -299,7 +299,8 @@ const faqSchema = {
   .lead { font-size: clamp(1.125rem, 1.05rem + 0.4vw, 1.35rem); line-height: 1.5; max-width: 38ch; }
   .terang .lead { color: var(--color-tinta); }
   .gelap .lead { color: var(--embun-redup); }
-  .hero-tipis { font-weight: 280; }
+  .hero-tipis { font-weight: 300; }
+  .miring { font-style: italic; }
 
   /* Hero */
   .hero { background: var(--color-pinus); color: var(--color-embun); overflow: clip; isolation: isolate; }
@@ -327,7 +328,7 @@ const faqSchema = {
     display: flex; flex-direction: column;
     font-size: clamp(3.1rem, 1.6rem + 6.4vw, 6rem); line-height: 0.95; letter-spacing: -0.04em;
   }
-  .hero-tebal { font-weight: 780; color: var(--color-tunas); }
+  .hero-tebal { font-weight: 760; font-style: italic; color: var(--color-tunas); letter-spacing: -0.045em; }
   .hero-sub { margin-top: 1.5rem; max-width: 44ch; color: var(--embun-redup); font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem); }
   .hero-fakta { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.75rem; }
   .hero-fakta li {
@@ -417,7 +418,7 @@ const faqSchema = {
   }
   .akal-baris:last-child { border-bottom: 1px solid rgb(242 244 241 / 0.14); }
   .akal-huruf {
-    grid-row: span 3; font-size: 4.5rem; font-weight: 280; line-height: 0.8; letter-spacing: -0.05em; color: var(--color-embun);
+    grid-row: span 3; font-size: 4.5rem; font-weight: 300; line-height: 0.8; letter-spacing: -0.05em; color: var(--color-embun);
   }
   .akal-nama { color: var(--color-embun); font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; }
   .akal-bukti { color: var(--embun-redup); max-width: 52ch; }
