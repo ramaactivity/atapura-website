@@ -62,3 +62,6 @@ Arahan Rama: SEO/GEO butuh blog/artikel. Content collection `src/content/panduan
 
 ## 021 · 2 November 2026 · Pola askmidnight untuk bagian teks: latar suasana, tab, pill melayang
 Arahan Rama (screenshot askmidnight.com): bagian polos diberi latar suasana dari foto Magnific yang dikecilkan & diburamkan (`public/kabut/*.webp`, ±1,5 KB tiap file) — Cara kerja (hujan senja), Garansi (villa). Cara kerja jadi tab 7 tahap dengan panel "Yang Anda pegang" (fokus pelanggan). Pill "Berapa biaya atap Anda? · Hitung estimasi" melayang di desktop setelah hero, sembunyi saat kalkulator/penutup/footer terlihat.
+
+## 022 · 2 November 2026 · Bumper pembuka "atap terangkat"
+Permintaan Rama: bumper keren & profesional (bukan loading screen) yang menyambung mulus ke hero. `src/components/Bumper.astro`: Λ tergambar (lime) → logo → Andal · Kualitas · Amanah · Lestari → layar terangkat dengan tepi bawah berbentuk Λ membuka hero; foto hero mendekat dan teks naik menyambung. ±2,6 dtk, sekali per sesi (sessionStorage), lewati dengan klik/tombol/scroll roda, pengaman 4 dtk. Tidak tampil tanpa JS, reduced-motion, atau kunjungan ulang — HTML hero tetap utuh untuk Google. Catatan: nama @keyframes wajib unik (prefiks bp-); nama `muncul` sempat bentrok dengan desktop.css dan membuat teks tak terlihat.
