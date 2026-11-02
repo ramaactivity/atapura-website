@@ -23,7 +23,7 @@
 @media (min-width: 64rem) { .ha-slip { position: sticky; top: 2rem; } }
 .ha-slip-kepala { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
 .ha-label-kecil { font-size: 0.85rem; color: rgb(242 244 241 / 0.68); }
-.ha-slip .contoh { background: rgb(198 242 78 / 0.16); color: var(--color-tunas); }
+.ha-slip .contoh { white-space: nowrap; flex: none; background: rgb(198 242 78 / 0.16); color: var(--color-tunas); }
 /* Angka harga: proporsional (bukan tabular), tipis, "Rp" dan satuan mengecil supaya angka yang bicara. */
 .hasil-angka {
   font-size: clamp(2.2rem, 1.2rem + 4vw, 4.8rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1;
@@ -76,3 +76,24 @@
 .hitung-cta { width: 100%; min-height: 54px; margin-top: 1.25rem; font-size: 1.02rem; }
 .ikon-wa { width: 20px; height: 20px; fill: currentColor; flex: none; }
 .hitung-kaki { margin-top: 0.7rem; font-size: 0.85rem; line-height: 1.45; color: rgb(242 244 241 / 0.6); text-align: center; }
+
+/* Spek pendukung (revisi Bang Yusuf) */
+.ha-spek { display: grid; gap: 0.75rem; }
+.ha-spek-baris { display: grid; gap: 0.4rem; }
+.ha-spek-nama { font-size: 0.85rem; color: var(--color-lumut); }
+.ha-luar { color: #8a5a12; }
+
+/* Slip: kebutuhan material → harga terpasang per m² → pembayaran */
+.ha-butuh { display: grid; margin-top: 0.6rem; border-top: 1px solid rgb(242 244 241 / 0.16); }
+.ha-butuh li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.55rem 0; border-bottom: 1px solid rgb(242 244 241 / 0.08); font-size: 0.93rem; color: rgb(242 244 241 / 0.72); }
+.ha-butuh b { font-weight: 500; color: var(--color-embun); white-space: nowrap; }
+.ha-butuh small { font-size: 0.8em; font-weight: 400; color: rgb(242 244 241 / 0.6); }
+.ha-label-harga { margin-top: 1.4rem; }
+.ha-bayar { display: grid; gap: 0.5rem; margin-top: 1.1rem; padding: 0.9rem 1rem; border-radius: 12px; background: rgb(242 244 241 / 0.06); font-size: 0.9rem; }
+.ha-bayar > div { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.ha-bayar dt { color: rgb(242 244 241 / 0.62); }
+.ha-bayar dd { color: rgb(242 244 241 / 0.8); text-align: right; }
+.ha-bayar b { font-weight: 500; color: var(--color-embun); }
+.ha-rinci { margin-top: 0.9rem; }
+.ha-rinci summary { cursor: pointer; font-size: 0.9rem; color: rgb(242 244 241 / 0.75); padding-block: 0.4rem; list-style-position: inside; }
+.ha-rinci .rincian { margin-top: 0.4rem; }

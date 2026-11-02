@@ -3,12 +3,12 @@
 // (pola askmidnight.com). Tiap tahap menjawab: apa yang Anda pegang di tahap ini.
 import { bisnis } from '../data/bisnis';
 
-const dp = bisnis.termin[0]?.persen;
+const dp = bisnis.pembayaran.jasa[0]?.persen;
 const tahap = [
   { nama: 'Survey', judul: 'Atap Anda diukur, bukan ditebak', pegang: 'Ukuran atap, foto kondisi rangka, dan saran merek & warna.', isi: 'Tim datang tanpa biaya, mengukur atap, memeriksa rangka, dan membawa sampel genteng untuk dicocokkan dengan cahaya rumah Anda.' },
   { nama: 'Penawaran', judul: 'Semua biaya tertulis sebelum Anda setuju', pegang: 'Penawaran berkop dengan rincian per item dan jadwal.', isi: 'Material, aksesoris, jasa, dan perkiraan hari kerja dirinci. Tidak ada biaya yang muncul belakangan.' },
   { nama: 'Kontrak', judul: 'Janji dituliskan, bukan diucapkan', pegang: 'Kontrak bertanda tangan: lingkup kerja, termin, dan garansi.', isi: 'Kontrak memuat jadwal, cara bayar bertahap, dan ketentuan garansi pemasangan, untuk Anda simpan.' },
-  { nama: 'Uang muka', judul: 'Uang baru berpindah di tahap ini', pegang: `Kuitansi uang muka${dp ? ` ${dp}%` : ''} atas nama perusahaan.`, isi: 'Pembayaran hanya ke rekening atas nama perusahaan, tidak pernah ke rekening pribadi siapa pun.' },
+  { nama: 'Pembayaran', judul: 'Uang baru berpindah di tahap ini', pegang: `Kuitansi pelunasan material dan termin jasa ${dp}% atas nama perusahaan.`, isi: 'Material dibayar lunas sebelum dikirim, jasa pasang bertahap mengikuti progres. Semua hanya ke rekening atas nama perusahaan, tidak pernah ke rekening pribadi siapa pun.' },
   { nama: 'Pengerjaan', judul: 'Lapis yang tertutup tetap bisa Anda lihat', pegang: 'Foto setiap lapis sebelum ditutup lapis berikutnya.', isi: 'Alas, underlayment, flashing, genteng, dan nok dipasang berurutan. Kabar progres dikirim lewat chat.' },
   { nama: 'Serah terima', judul: 'Diperiksa bersama sebelum dinyatakan selesai', pegang: 'Berita acara, Rapor Proyek, dan kartu garansi.', isi: 'Atap diperiksa bersama. Catatan perbaikan diselesaikan sebelum berita acara ditandatangani.' },
   { nama: 'Pelunasan', judul: 'Lunas setelah atapnya Anda terima', pegang: `Invoice lunas; garansi ${bisnis.garansiPemasanganTahun} tahun mulai berjalan.`, isi: 'Sisa pembayaran dilakukan setelah serah terima, dan masa garansi pemasangan dimulai.' },

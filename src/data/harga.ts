@@ -1,8 +1,8 @@
-// Rentang harga jual per m² (bukan HPP/margin — rahasia bisnis tidak pernah masuk file ini).
-// KONSEP (DECISIONS 019): acuan harga pasar Jabodetabek, 2 Nov 2026 —
-//   genteng: batas atas = harga Dokter Atap (dokteratap.co.id, Maxxi 160 rb, CTI 170 rb /m²), batas bawah = pasar (riset 05);
-//   alas: multiplek Rp179,5 rb/lbr ≈3 m², GRC Rp210 rb/lbr ≈2,9 m²; underlayment self-adhesive Rp600 rb/roll 10 m² (Dokter Atap);
-//   aksesoris: flashing Rp45 rb/1,2 m, paku Rp250/bh (Dokter Atap); jasa: Rp50–70 rb/m² (ilhamplafon.com, Apr 2026).
+// Harga acuan per satuan (bukan HPP/margin — rahasia bisnis tidak pernah masuk file ini).
+// KONSEP (DECISIONS 019, 024): acuan harga pasar Jabodetabek, 2 Nov 2026 —
+//   genteng per m²: batas atas = Dokter Atap (Maxxi 160 rb, CTI 170 rb), batas bawah = pasar; dikonfirmasi Bang Yusuf.
+//   material pendukung = harga satuan toko dokteratap.co.id; jasa Rp50–70 rb/m² (ilhamplafon.com, Apr 2026).
+// Kebutuhan paku & skrup per m² dari contoh Bang Yusuf (100 m² → skrup 1.200, paku 2.000).
 // `contoh: true` = angka acuan, belum harga Atapura; UI menandai "Harga acuan".
 export const harga = {
   contoh: true,
@@ -10,47 +10,106 @@ export const harga = {
   // Tambahan material untuk potongan & sambungan.
   susut: 0.1,
   merek: {
-    Maxxi: { kelas: 'Ekonomis', genteng: [135_000, 160_000], garansiPabrik: '25 tahun (material)' },
-    CTI: { kelas: 'Menengah', genteng: [145_000, 170_000], garansiPabrik: '20 tahun (material)' },
-    Javabitumen: { kelas: 'Menunggu data', genteng: [130_000, 165_000], garansiPabrik: 'Menunggu dokumen resmi' },
+    Javabitumen: { kelas: 'Menunggu data', genteng: [130_000, 165_000], m2PerBundel: 3.0, garansiPabrik: 'Menunggu dokumen resmi' },
+    CTI: { kelas: 'Menengah', genteng: [145_000, 170_000], m2PerBundel: 3.0, garansiPabrik: '20 tahun (material)' },
+    Maxxi: { kelas: 'Ekonomis', genteng: [135_000, 160_000], m2PerBundel: 3.1, garansiPabrik: '25 tahun (material)' },
   },
-  // Per m² luas atap, sama untuk semua merek.
-  alasUnderlayment: [120_000, 145_000],
-  aksesoris: [15_000, 30_000], // paku, nok, flashing, starter
+  alas: {
+    'Multiplek 12 mm': { harga: 179_500, m2: 1.22 * 2.44, satuan: 'lembar' },
+    'GRC 9 mm': { harga: 210_000, m2: 1.2 * 2.4, satuan: 'lembar' },
+  },
+  lapisKedap: {
+    Underlayer: { harga: 600_000, m2: 10, satuan: 'roll', nama: 'Underlayer self-adhesive' },
+    Membrane: { harga: 700_000, m2: 10, satuan: 'roll', nama: 'Membrane torching' },
+  },
+  flashing: {
+    'Flashing U': { harga: 45_000, panjang: 1.2, satuan: 'batang' },
+    'Flashing Z': { harga: 45_000, panjang: 1.2, satuan: 'batang' },
+  },
+  // Asumsi: panjang flashing ±0,4 m per m² atap (tepi, talang, pertemuan dinding) — final setelah survey.
+  flashingMPerM2: 0.4,
+  paku: { harga: 250, perM2: 20 },
+  skrup: { harga: 150, perM2: 12 },
   jasa: [50_000, 70_000],
   // Produktivitas tim per hari (m²), untuk perkiraan durasi.
   m2PerHari: [30, 45],
 } as const;
 
 export type Merek = keyof typeof harga.merek;
+export type Alas = keyof typeof harga.alas;
+export type LapisKedap = keyof typeof harga.lapisKedap;
+export type Flashing = keyof typeof harga.flashing;
 export type Rentang = [number, number];
 
+export interface Pilihan {
+  merek: Merek;
+  alas: Alas;
+  lapis: LapisKedap;
+  flashing: Flashing;
+}
+
 export interface Estimasi {
+  kebutuhan: { nama: string; jumlah: number; satuan: string }[];
   baris: { label: string; rentang: Rentang }[];
+  material: Rentang;
+  jasa: Rentang;
   total: Rentang;
+  perM2: Rentang;
   hari: Rentang;
 }
 
-const bulatkan = (n: number) => Math.round(n / 50_000) * 50_000;
+export const PILIHAN_AWAL: Pilihan = { merek: 'CTI', alas: 'Multiplek 12 mm', lapis: 'Underlayer', flashing: 'Flashing U' };
 
-export function hitungEstimasi(luas: number, merek: Merek): Estimasi {
-  const m = harga.merek[merek];
-  const kali = (r: readonly [number, number], f = 1): Rentang => [bulatkan(r[0] * luas * f), bulatkan(r[1] * luas * f)];
-  const baris = [
-    { label: 'Genteng + 10% potongan', rentang: kali(m.genteng, 1 + harga.susut) },
-    { label: 'Alas & underlayment', rentang: kali(harga.alasUnderlayment) },
-    { label: 'Nok, flashing & paku', rentang: kali(harga.aksesoris) },
-    { label: 'Jasa pasang', rentang: kali(harga.jasa) },
+const bulat = (n: number, ke: number) => Math.round(n / ke) * ke;
+// Toleransi galat desimal: 100 × 1,1 / 10 = 11,000…02 tidak boleh jadi 12 roll.
+const ceil = (n: number) => Math.ceil(n - 1e-9);
+
+export function hitungEstimasi(luas: number, p: Pilihan = PILIHAN_AWAL): Estimasi {
+  const m = harga.merek[p.merek];
+  const alas = harga.alas[p.alas];
+  const lapis = harga.lapisKedap[p.lapis];
+  const fl = harga.flashing[p.flashing];
+
+  const bundel = ceil((luas * (1 + harga.susut)) / m.m2PerBundel);
+  const lembar = ceil((luas * 1.05) / alas.m2);
+  const roll = ceil((luas * (1 + harga.susut)) / lapis.m2);
+  const batang = ceil((luas * harga.flashingMPerM2) / fl.panjang);
+  const paku = bulat(luas * harga.paku.perM2, 100);
+  const skrup = bulat(luas * harga.skrup.perM2, 100);
+
+  const tetap = (n: number): Rentang => [n, n];
+  const baris: Estimasi['baris'] = [
+    { label: `Genteng ${p.merek}`, rentang: [bundel * m.m2PerBundel * m.genteng[0], bundel * m.m2PerBundel * m.genteng[1]] },
+    { label: p.alas, rentang: tetap(lembar * alas.harga) },
+    { label: lapis.nama, rentang: tetap(roll * lapis.harga) },
+    { label: p.flashing, rentang: tetap(batang * fl.harga) },
+    { label: 'Paku & skrup', rentang: tetap(paku * harga.paku.harga + skrup * harga.skrup.harga) },
+    { label: 'Jasa pasang', rentang: [luas * harga.jasa[0], luas * harga.jasa[1]] },
   ];
-  const total: Rentang = [
-    baris.reduce((s, b) => s + b.rentang[0], 0),
-    baris.reduce((s, b) => s + b.rentang[1], 0),
-  ];
-  const hari: Rentang = [
-    Math.ceil(luas / harga.m2PerHari[1]) + 1,
-    Math.ceil(luas / harga.m2PerHari[0]) + 1,
-  ];
-  return { baris, total, hari };
+  const jumlah = (b: Estimasi['baris'], i: 0 | 1) => b.reduce((s, x) => s + x.rentang[i], 0);
+  const bahan = baris.slice(0, -1);
+  const material: Rentang = [jumlah(bahan, 0), jumlah(bahan, 1)];
+  const jasa = baris[baris.length - 1].rentang;
+  const total: Rentang = [bulat(material[0] + jasa[0], 50_000), bulat(material[1] + jasa[1], 50_000)];
+  const perM2: Rentang = [bulat(total[0] / luas, 1000), bulat(total[1] / luas, 1000)];
+  const hari: Rentang = [ceil(luas / harga.m2PerHari[1]) + 1, ceil(luas / harga.m2PerHari[0]) + 1];
+
+  return {
+    kebutuhan: [
+      { nama: `Genteng ${p.merek}`, jumlah: bundel, satuan: 'bundel' },
+      { nama: p.alas, jumlah: lembar, satuan: alas.satuan },
+      { nama: lapis.nama, jumlah: roll, satuan: lapis.satuan },
+      { nama: p.flashing, jumlah: batang, satuan: fl.satuan },
+      { nama: 'Skrup', jumlah: skrup, satuan: 'pcs' },
+      { nama: 'Paku bitumen', jumlah: paku, satuan: 'pcs' },
+    ],
+    baris,
+    material,
+    jasa,
+    total,
+    perM2,
+    hari,
+  };
 }
 
 export function rupiahRingkas(n: number): string {

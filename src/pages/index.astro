@@ -35,6 +35,10 @@ const panduanTerbaru = (await getCollection('panduan')).sort((a, b) => b.data.di
 
 const tanya = [
   {
+    q: 'Apakah Atapura melayani di luar Jabodetabek?',
+    a: `Ya. Basis kami di Jabodetabek, tempat survey gratis. Proyek di luar Jabodetabek tetap dikerjakan dengan biaya survey sesuai jarak yang disampaikan di awal. Tim pemasang kami berpengalaman mengerjakan atap hingga ${bisnis.survey.pengalamanLuar.join(', ')}.`,
+  },
+  {
     q: 'Apa bedanya atap bitumen, genteng aspal, sirap aspal, dan shingle?',
     a: 'Keempatnya sebutan untuk produk yang sama: lembaran fiberglass berlapis aspal dengan butiran batu di permukaannya. Shingle adalah istilah Inggrisnya, sirap aspal sebutan lama, dan di toko bangunan lebih sering disebut genteng aspal. Atapura memasang tiga merek: Maxxi, CTI, dan Javabitumen.',
   },
@@ -56,7 +60,7 @@ const tanya = [
   },
   {
     q: 'Bagaimana cara bayarnya?',
-    a: `Survey gratis, lalu penawaran tertulis dan kontrak. Pembayaran bertahap: ${bisnis.termin.map((t) => `${t.persen}% ${t.tahap.toLowerCase()} (${t.saat.toLowerCase()})`).join(', ')}. Semua pembayaran hanya ke rekening atas nama perusahaan, tidak pernah ke rekening pribadi.`,
+    a: `Survey (gratis di Jabodetabek), lalu penawaran tertulis dan kontrak. Material dibayar lunas sebelum dikirim ke lokasi. Jasa pasang dibayar bertahap ${bisnis.pembayaran.jasa.map((t) => `${t.persen}%`).join(', ')}: ${bisnis.pembayaran.jasa.map((t) => t.saat.toLowerCase()).join('; ')}. Semua pembayaran hanya ke rekening atas nama perusahaan, tidak pernah ke rekening pribadi.`,
   },
 ];
 
@@ -108,7 +112,7 @@ const faqSchema = {
     <section class="bukti" aria-label="Fakta Atapura">
       <div class="wrap">
         <ul class="bukti-daftar">
-          <li><b>Kontrak</b><span>tertulis sebelum uang muka</span></li>
+          <li><b>Kontrak</b><span>tertulis sebelum pembayaran</span></li>
           <li><b>{bisnis.merek.length} merek</b><span>{bisnis.merek.join(', ')}</span></li>
           <li><b>{bisnis.area.length} kota</b><span>dan kabupaten Jabodetabek</span></li>
           <li><b>Gratis</b><span>survey &amp; ukur di lokasi</span></li>
@@ -172,7 +176,7 @@ const faqSchema = {
       <div class="wrap">
         <div class="kepala">
           <h2 id="hitung-judul" class="judul-besar">Hitung dulu, <span class="miring">baru bicara.</span></h2>
-          <p class="lead">Empat pertanyaan, satu menit. Hasilnya bisa Anda kirim ke WhatsApp atau simpan untuk dibahas di rumah.</p>
+          <p class="lead">Lima pertanyaan, satu menit. Hasilnya bisa Anda kirim ke WhatsApp atau simpan untuk dibahas di rumah.</p>
         </div>
         <HitungAkal client:idle awal={120} />
         <p class="hitung-catatan" data-nosnippet>
@@ -229,7 +233,7 @@ const faqSchema = {
       <div class="wrap">
         <div class="cara-kepala">
           <h2 id="judul-cara" class="judul-besar">Uang Anda baru berpindah <span class="miring">di tahap empat.</span></h2>
-          <p class="lead">Tujuh tahap, semuanya tertulis. Sebelum uang muka, Anda sudah memegang hasil survey, penawaran berkop, dan kontrak.</p>
+          <p class="lead">Tujuh tahap, semuanya tertulis. Sebelum membayar apa pun, Anda sudah memegang hasil survey, penawaran berkop, dan kontrak.</p>
         </div>
         <CaraKerja />
       </div>
@@ -239,20 +243,25 @@ const faqSchema = {
       <div class="wrap">
         <div class="kepala">
           <h2 id="judul-garansi" class="judul-besar">Bayar bertahap, <span class="miring">garansi {bisnis.garansiPemasanganTahun} tahun.</span></h2>
-          <p class="lead">Uang Anda mengikuti kemajuan pekerjaan. Hasil pemasangan kami jamin tertulis, terpisah dari garansi pabrik.</p>
+          <p class="lead">Jasa pasang dibayar mengikuti kemajuan pekerjaan. Hasil pemasangan kami jamin tertulis, terpisah dari garansi pabrik.</p>
         </div>
         <div class="gb">
           <div class="gb-termin">
-            <h3 class="gb-judul">Termin pembayaran</h3>
+            <h3 class="gb-judul">Cara pembayaran</h3>
+            <div class="bayar-material">
+              <p class="bayar-label">Material</p>
+              <p class="bayar-isi"><b>Lunas sebelum dikirim.</b> Material dipesan khusus untuk atap Anda, jadi dibayar penuh sebelum diantar ke lokasi.</p>
+            </div>
+            <p class="bayar-label bayar-label-jasa">Jasa pasang, bertahap</p>
             <ol class="termin">
-              {bisnis.termin.map((t) => (
+              {bisnis.pembayaran.jasa.map((t) => (
                 <li>
                   <span class="termin-persen">{t.persen}<span>%</span></span>
                   <span class="termin-teks"><b>{t.tahap}</b>{t.saat}</span>
                 </li>
               ))}
             </ol>
-            <p class="gb-catatan">Semua pembayaran ke rekening atas nama perusahaan. Setiap termin disertai kuitansi dan foto progres.</p>
+            <p class="gb-catatan">Semua pembayaran ke rekening atas nama perusahaan, disertai kuitansi. Setiap termin jasa disertai foto progres.</p>
           </div>
           <div class="gb-garansi">
             <p class="garansi-angka">{bisnis.garansiPemasanganTahun}<span>tahun</span></p>
@@ -342,8 +351,8 @@ const faqSchema = {
               air hujan mengalir terlalu pelan dan bisa merembes ke sambungan. Untuk dak atau atap nyaris datar, kami jelaskan alternatifnya saat survey.
             </li>
             <li>
-              <strong>Lokasi di luar Jabodetabek.</strong> Tim kami belum melayani di luar {bisnis.area.length} kota dan kabupaten
-              di peta bawah, karena kami ingin bisa kembali untuk Cek Atap Gratis.
+              <strong>Jarak bukan halangan, tapi ada biayanya.</strong> Proyek di luar Jabodetabek tetap kami kerjakan, dan tim pemasang kami
+              berpengalaman sampai {bisnis.survey.pengalamanLuar.join(', ')}. Survey di luar Jabodetabek dikenai biaya sesuai jarak yang kami sampaikan di awal.
             </li>
           </ol>
         </div>
@@ -364,7 +373,7 @@ const faqSchema = {
       <div class="wrap area">
         <div class="area-teks">
           <h2 id="judul-area" class="judul-besar">Survey gratis di <span class="miring">{bisnis.area.length} kota dan kabupaten.</span></h2>
-          <p class="lead">Tim kami datang mengukur atap, memeriksa rangka, dan mencocokkan warna di bawah cahaya asli rumah Anda.</p>
+          <p class="lead">Tim kami datang mengukur atap, memeriksa rangka, dan mencocokkan warna di bawah cahaya asli rumah Anda. Di luar Jabodetabek? Tetap bisa, dengan biaya survey sesuai jarak.</p>
           <div class="wilayah">
             {wilayah.map((w) => (
               <div>
@@ -767,6 +776,11 @@ const faqSchema = {
   .gb-judul { font-size: 1.25rem; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 1.25rem; }
   .gb-label { font-size: 0.85rem; font-weight: 500; color: var(--color-lumut); margin-bottom: 0.6rem; }
   .gb-termin { padding: clamp(1.5rem, 3vw, 2.5rem); border-radius: 16px; background: var(--color-embun); color: var(--color-tinta); }
+  .bayar-label { font-size: 0.85rem; font-weight: 500; color: var(--color-lumut); }
+  .bayar-material { padding-bottom: 1.25rem; margin-bottom: 1.25rem; border-bottom: 1px solid var(--color-garis); display: grid; gap: 0.35rem; }
+  .bayar-isi { color: var(--color-lumut); font-size: 0.95rem; }
+  .bayar-isi b { color: var(--color-tinta); font-weight: 500; }
+  .bayar-label-jasa { margin-bottom: 0.6rem; }
   .termin { border-top: 1px solid var(--color-tinta); }
   .termin li { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 1rem; align-items: center; padding: 1.2rem 0; border-bottom: 1px solid var(--color-garis); }
   .termin-persen { font-size: 3rem; font-weight: 500; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums; }

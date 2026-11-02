@@ -11,7 +11,7 @@ export const bisnis = {
   statusLegal: 'dalam proses pendirian',
   tagline: 'Atap yang masuk AKAL.',
   deskripsi:
-    'Aplikator dan supplier atap bitumen (genteng aspal) Maxxi, CTI, dan Javabitumen untuk rumah, villa, kafe, dan proyek di Jabodetabek.',
+    'Aplikator dan supplier atap bitumen (genteng aspal) Maxxi, CTI, dan Javabitumen untuk rumah, villa, kafe, dan proyek. Berbasis di Jabodetabek, melayani proyek di luar Jabodetabek.',
   // Format internasional tanpa "+" untuk wa.me. null = belum ada; tombol WA tetap tampil tapi diarahkan ke halaman kontak WA umum.
   whatsapp: '6289611394867' as string | null, // sementara, dari Rama 2 Nov 2026
   telepon: null as string | null,
@@ -39,12 +39,25 @@ export const bisnis = {
       { nama: 'Laporan', isi: 'Foto sebelum dan sesudah dikirim, dicatat di Rapor Proyek.' },
     ],
   },
-  // KONSEP — termin bertahap sesuai progres (pola Sejasa/Arsitag/kontraktor umum).
-  termin: [
-    { tahap: 'Uang muka', saat: 'Setelah kontrak ditandatangani', persen: 30 },
-    { tahap: 'Termin kedua', saat: 'Material tiba di lokasi dan alas terpasang', persen: 40 },
-    { tahap: 'Pelunasan', saat: 'Setelah serah terima dan berita acara', persen: 30 },
-  ],
+  // Revisi Bang Yusuf (2 Nov 2026): material cash before delivery; jasa pasang termin 40/30/30.
+  // Momen tiap termin jasa = KONSEP (pola kontraktor umum), menunggu konfirmasi.
+  pembayaran: {
+    material: 'Lunas sebelum material dikirim ke lokasi (cash before delivery)',
+    jasa: [
+      { tahap: 'Termin 1', saat: 'Saat tim mulai bekerja di lokasi', persen: 40 },
+      { tahap: 'Termin 2', saat: 'Saat genteng mulai terpasang (progres ±50%)', persen: 30 },
+      { tahap: 'Pelunasan', saat: 'Setelah serah terima dan berita acara', persen: 30 },
+    ],
+  },
+  // Revisi Bang Yusuf: survey gratis di Jabodetabek; di luar itu ada biaya survey (besaran menunggu ketetapan).
+  survey: {
+    jabodetabek: 'Gratis',
+    luar: 'Ada biaya survey sesuai jarak, disampaikan sebelum jadwal dibuat',
+    // Pengalaman tim pemasang (Bang Yusuf), bukan portofolio Atapura sebagai perusahaan baru.
+    pengalamanLuar: ['Bandung', 'Sumatra', 'Kalimantan', 'Sulawesi', 'Papua'],
+  },
+  // Kata kunci kota untuk mengenali lokasi di dalam Jabodetabek (kolom Kota di Hitung AKAL).
+  kataJabodetabek: ['jakarta', 'bogor', 'depok', 'tangerang', 'bekasi', 'tangsel', 'cibubur', 'bintaro', 'serpong', 'cikarang', 'cibinong', 'ciputat', 'pamulang', 'cileungsi', 'jaksel', 'jaktim', 'jakbar', 'jakut', 'jakpus', 'bsd'],
   sosmed: [] as string[], // URL profil resmi untuk JSON-LD sameAs — isi saat akun sudah dibuat
   // Ikon sosial di footer. url null = akun belum ada: ikon tampil redup tanpa tautan ("segera").
   sosial: [
@@ -78,4 +91,11 @@ export const bisnis = {
 export function waLink(pesan: string): string {
   const teks = encodeURIComponent(pesan);
   return bisnis.whatsapp ? `https://wa.me/${bisnis.whatsapp}?text=${teks}` : `https://wa.me/?text=${teks}`;
+}
+
+/** true kalau teks kota mengandung nama wilayah Jabodetabek; kosong = belum diketahui (null). */
+export function dalamJabodetabek(kota: string): boolean | null {
+  const k = kota.trim().toLowerCase();
+  if (!k) return null;
+  return bisnis.kataJabodetabek.some((w) => k.includes(w));
 }
