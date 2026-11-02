@@ -23,3 +23,6 @@ Nomor WA (`bisnis.whatsapp = null` → link wa.me tanpa nomor), garansi pemasang
 
 ## 008 · 2 November 2026 · Skill tambahan dipasang (perintah Rama: wajib pakai skill)
 Di `~/.claude/skills`: 24 skill marketing coreyhaines31 (ai-seo, cro, offers, ads, ad-creative, free-tools, schema, site-architecture, programmatic-seo, dll.), better-ui/typography/colors/layout/writing/accessibility (jakubkrehel), web-design-guidelines (vercel-labs), astro (astrolicious), local SEO garrettjsmith (service-area-seo, local-landing-pages, local-schema, local-citations, review-management, local-content-briefs). Agen impeccable-finish-reviewer & impeccable-documenter ditautkan ke `~/.claude/agents`.
+
+## 009 · 2 November 2026 · Vercel pindah ke akun khusus Atapura (menggantikan 004)
+Rama membuat akun Vercel atapurakaryalestari@gmail.com (team `atapura`) dan menaruh tokennya di `.env.local`. Proyek kosong di ramaactivity98 (0 deploy) dihapus agar `atapura.vercel.app` lepas, lalu dibuat ulang di akun baru (prj_R9OCxzPUAjRnUTZR4Uavihp5QK36). Prinsip dari Rama: Markas hanya alat bantu; setelah dibuat, proyek ini otonom (akun, token, konfigurasi sendiri). GitHub tetap ramaactivity / rama.activity98@gmail.com.

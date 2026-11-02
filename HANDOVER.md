@@ -9,7 +9,7 @@ Milestone 1 (bahan/atapura/04-ROADMAP.md):
 - ✅ Beranda v1: hero tekstur genteng + slip Hitung AKAL (berfungsi, pesan WA tersusun), "atap bocor" + diagram 5 lapis interaktif, tabel 3 merek + "kapan kami menyarankan pilihan lain", AKAL, area 13 kota, Rapor Proyek (kosong jujur), FAQ, penutup
 - ✅ robots.txt (wildcard allow), llms.txt (dari data, tanpa angka harga contoh), sitemap
 - ✅ `data/keyword-validasi.csv` — 50 keyword untuk dicek volumenya
-- ⏳ Deploy: proyek Vercel `atapura` sudah dibuat (deploy.md), workflow `.github/workflows/deploy.yml` siap. **Belum bisa jalan: secret repo `VERCEL_TOKEN` belum terpasang** (pengaman auto mode memblokir Claude menulis secret; menunggu keputusan Rama).
+- ✅ Deploy: akun Vercel khusus Atapura (deploy.md), secret `VERCEL_TOKEN` terpasang, workflow Actions → Vercel.
 - ⏳ DESIGN.md versi Impeccable (documenter) belum ditulis — menunggu pilihan Rama (refresh/overwrite/merge DESIGN.md boilerplate Markas).
 
 Review desain: Impeccable finish reviewer 2 putaran (fix → fix). Semua 8 temuan material + 2 regresi sudah diperbaiki; putaran ketiga (verdict) belum dijalankan. Detektor Impeccable: 0 temuan (terbukti bisa menangkap slop di fixture).
@@ -18,7 +18,7 @@ Review desain: Impeccable finish reviewer 2 putaran (fix → fix). Semua 8 temua
 WhatsApp bisnis, harga resmi per merek, durasi garansi pemasangan, logo, foto proyek/Magnific, brosur Javabitumen, status agen resmi, NIB/NPWP setelah PT terbit.
 
 ## Berikutnya
-1. Pasang `VERCEL_TOKEN` → push → pantau Actions → cek https://atapura.vercel.app di HP Rama.
+1. Rama cek https://atapura.vercel.app di HP.
 2. Verdict pass reviewer + documenter → DESIGN.md + `.impeccable/design.json`.
 3. Milestone 2 (mesin konten): content collections, template produk/proyek/area/artikel.
 4. Polesan: skill better-ui/better-typography di slip & tabel; uji di iPhone Rama.
