@@ -11,7 +11,9 @@ interface Props {
 }
 
 const { title, description, schema = [] } = Astro.props;
-const canonical = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', Astro.site).href;
+// build.format 'file' membuat pathname berakhiran .html; canonical selalu versi bersih tanpa .html / slash akhir.
+const bersih = Astro.url.pathname.replace(/(\/index)?\.html$/, '').replace(/\/$/, '');
+const canonical = new URL(bersih || '/', Astro.site).href;
 const siteUrl = new URL('/', Astro.site).href;
 
 // Bisnis tanpa toko: tanpa address, area layanan eksplisit. Field yang belum ada datanya tidak ditulis.
