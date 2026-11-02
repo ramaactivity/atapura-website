@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Lapisan from '../components/Lapisan.astro';
 import CaraKerja from '../components/CaraKerja.astro';
+import KlaimGaransi from '../components/KlaimGaransi.astro';
 import PetaArea from '../components/PetaArea.astro';
 import RaporContoh from '../components/RaporContoh.astro';
 import Warna from '../components/Warna.astro';
@@ -264,14 +265,7 @@ const faqSchema = {
             </div>
           </div>
         </div>
-        <div class="klaim">
-          <h3 class="gb-judul">Cara klaim garansi</h3>
-          <ol class="klaim-daftar">
-            {bisnis.garansi.klaim.map((k, i) => (
-              <li><span class="klaim-no">{String(i + 1).padStart(2, '0')}</span><b>{k.nama}</b><p>{k.isi}</p></li>
-            ))}
-          </ol>
-        </div>
+        <KlaimGaransi />
         <aside class="cek-atap">
           <div class="cek-foto"><Foto desktop={cekAtap} alt="Ilustrasi teknisi memeriksa talang dan flashing setelah hujan" sizes="(min-width: 64rem) 30vw, 100vw" /></div>
           <div class="cek-teks">
@@ -769,18 +763,10 @@ const faqSchema = {
   .garansi-daftar li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 0.6rem; height: 0.35rem; border-left: 1.5px solid var(--color-tunas); border-bottom: 1.5px solid var(--color-tunas); transform: rotate(-45deg); }
   .garansi-tidak li { color: var(--embun-redup); }
   .garansi-tidak li::before { width: 0.6rem; height: 0; border-left: 0; border-bottom: 1.5px solid rgb(242 244 241 / 0.45); transform: none; top: 0.7em; }
-  .klaim { margin-top: clamp(3rem, 6vw, 4.5rem); }
-  .klaim-daftar { display: grid; gap: 1.25rem; grid-template-columns: minmax(0, 1fr); border-top: 1px solid var(--color-tinta); padding-top: 1.5rem; }
-  @media (min-width: 48rem) { .klaim-daftar { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-  .klaim-no { display: block; font-size: 0.85rem; color: var(--color-lumut); margin-bottom: 0.4rem; }
-  .klaim-daftar b { font-weight: 500; font-size: 1.1rem; letter-spacing: -0.02em; }
-  .klaim-daftar p { margin-top: 0.3rem; color: var(--color-lumut); font-size: 0.93rem; }
   .cek-atap {
     margin-top: clamp(2.5rem, 5vw, 4rem); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem;
     padding: clamp(1.5rem, 3vw, 2.25rem); border-radius: 16px; border: 1px solid rgb(242 244 241 / 0.25); background: rgb(10 16 13 / 0.35);
   }
-  .kabut .klaim-daftar { border-top-color: rgb(242 244 241 / 0.4); }
-  .kabut .klaim-no, .kabut .klaim-daftar p { color: var(--embun-redup); }
   .kabut .cek-atap .pill-gelap { background: var(--color-tunas); color: var(--color-pinus); }
   .cek-atap p { color: var(--embun-redup); max-width: 60ch; margin-top: 0.3rem; }
   .cek-atap { display: grid !important; grid-template-columns: minmax(0, 1fr); gap: 1.5rem !important; align-items: center; }

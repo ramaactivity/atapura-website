@@ -1,0 +1,113 @@
+---
+// Cara klaim garansi sebagai alur bersambung: ilustrasi garis per langkah, garis penghubung tergambar
+// dan langkah menyala berurutan saat bagian ini masuk layar. Tanpa JS/gerak: tampil lengkap dan diam.
+import { bisnis } from '../data/bisnis';
+
+// Ilustrasi garis 64×64, stroke currentColor. Urutan mengikuti bisnis.garansi.klaim.
+const ikon = [
+  // HP dengan foto atap + panah kirim
+  `<rect x="18" y="6" width="28" height="52" rx="6"/><path d="M28 11h8"/><path d="M23 34l7-8 6 6 5-5"/><rect x="23" y="19" width="18" height="17" rx="2"/><path d="M27 46h10"/><path d="M50 22l8-6-2 10"/><path d="M58 16c-3 6-7 9-12 10"/>`,
+  // Atap + kaca pembesar
+  `<path d="M6 36L28 18l22 18"/><path d="M12 31v19h32V31"/><circle cx="44" cy="40" r="9"/><path d="M50.5 46.5L58 54"/><path d="M40 40h8M44 36v8" opacity=".55"/>`,
+  // Genteng bertumpuk + palu
+  `<path d="M8 50h34M8 42h34M14 34h28"/><path d="M8 50l6-8M20 50l6-8M32 50l6-8M14 42l6-8M26 42l6-8"/><path d="M44 12l10 10-6 6-10-10z"/><path d="M42 22L26 38"/>`,
+  // Laporan: dua foto sebelum/sesudah + centang
+  `<rect x="10" y="8" width="44" height="50" rx="5"/><rect x="16" y="15" width="14" height="12" rx="2"/><rect x="34" y="15" width="14" height="12" rx="2"/><path d="M17 24l4-4 3 3 4-4M35 24l4-4 3 3 4-4" opacity=".55"/><path d="M16 36h32M16 43h20"/><path d="M38 47l4 4 8-9"/>`,
+];
+const sla = ['Hari ini', '≤ 3 hari kerja', 'Terjadwal tertulis', 'Sebelum & sesudah'];
+---
+
+<div class="klaim" data-klaim>
+  <div class="klaim-kepala">
+    <h3 class="klaim-judul">Cara klaim garansi</h3>
+    <p class="klaim-sub">Empat langkah, semuanya lewat WhatsApp dan tercatat.</p>
+  </div>
+  <ol class="klaim-alur">
+    <span class="klaim-garis" aria-hidden="true"><span></span></span>
+    {bisnis.garansi.klaim.map((k, i) => (
+      <li class="klaim-langkah" style={`--i: ${i}`}>
+        <div class="klaim-ikon" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={ikon[i]} />
+          <span class="klaim-no">{i + 1}</span>
+        </div>
+        <span class="klaim-sla">{sla[i]}</span>
+        <b class="klaim-nama">{k.nama}</b>
+        <p class="klaim-isi">{k.isi}</p>
+      </li>
+    ))}
+  </ol>
+</div>
+
+<script>
+  // Mulai gerak hanya saat terlihat; tanpa dukungan atau dengan kurangi-gerak, keadaan akhir langsung tampil.
+  for (const el of document.querySelectorAll<HTMLElement>('[data-klaim]')) {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) continue;
+    el.dataset.siap = '';
+    const io = new IntersectionObserver((e) => {
+      if (e.some((x) => x.isIntersecting)) { el.dataset.jalan = ''; io.disconnect(); }
+    }, { threshold: 0.35 });
+    io.observe(el);
+  }
+</script>
+
+<style>
+  .klaim { margin-top: clamp(3rem, 6vw, 4.5rem); --dur: 1400ms; }
+  .klaim-kepala { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.5rem 2rem; margin-bottom: 1.75rem; }
+  .klaim-judul { font-size: 1.25rem; font-weight: 500; letter-spacing: -0.02em; }
+  .klaim-sub { font-size: 0.93rem; color: var(--embun-redup); }
+
+  .klaim-alur { position: relative; display: grid; gap: 1.75rem; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 48rem) { .klaim-alur { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; } }
+
+  /* Garis penghubung. HP: potongan per langkah dari bawah ikon ke ikon berikutnya. Layar lebar: satu garis horizontal. */
+  .klaim-garis { display: none; }
+  .klaim-langkah:not(:last-child)::after {
+    content: ''; position: absolute; left: 32px; top: 72px; bottom: calc(-1.75rem + 8px); width: 1px;
+    background: linear-gradient(var(--color-tunas), var(--color-tunas)) top / 100% 100% no-repeat, rgb(242 244 241 / 0.18);
+  }
+  @media (min-width: 48rem) {
+    .klaim-langkah::after { display: none; }
+    .klaim-garis { display: block; position: absolute; left: 32px; right: calc(25% - 32px); top: 32px; height: 1px; background: rgb(242 244 241 / 0.18); }
+    .klaim-garis span { position: absolute; inset: 0; background: var(--color-tunas); transform-origin: left; }
+  }
+
+  .klaim-langkah { position: relative; display: grid; gap: 0.35rem; align-content: start; padding-left: 84px; min-width: 0; }
+  @media (min-width: 48rem) { .klaim-langkah { padding-left: 0; padding-top: 0; } }
+  .klaim-ikon {
+    position: absolute; left: 0; top: 0; width: 64px; height: 64px; border-radius: 20px;
+    display: grid; place-items: center; color: var(--color-tunas);
+    background: var(--color-pinus); box-shadow: inset 0 0 0 1px rgb(242 244 241 / 0.16), 0 14px 30px -14px rgb(0 0 0 / 0.6);
+    transition: transform 400ms var(--ease-out), box-shadow 400ms var(--ease-out);
+  }
+  @media (min-width: 48rem) { .klaim-ikon { position: relative; margin-bottom: 1.1rem; } }
+  .klaim-ikon svg { width: 40px; height: 40px; }
+  .klaim-no {
+    position: absolute; right: -6px; top: -6px; width: 22px; height: 22px; border-radius: 50%;
+    display: grid; place-items: center; font-size: 0.72rem; font-weight: 600;
+    background: var(--color-tunas); color: var(--color-pinus); font-variant-numeric: tabular-nums;
+  }
+  .klaim-sla {
+    justify-self: start; margin-bottom: 0.35rem; padding: 0.15rem 0.6rem; border-radius: 999px;
+    font-size: 0.75rem; font-weight: 500; color: var(--color-embun); background: rgb(242 244 241 / 0.1);
+    border: 1px solid rgb(242 244 241 / 0.16);
+  }
+  .klaim-nama { font-weight: 500; font-size: 1.1rem; letter-spacing: -0.02em; }
+  .klaim-isi { color: var(--embun-redup); font-size: 0.93rem; max-width: 30ch; }
+  @media (hover: hover) and (pointer: fine) {
+    .klaim-langkah:hover .klaim-ikon { transform: translateY(-3px); box-shadow: inset 0 0 0 1px rgb(198 242 78 / 0.5), 0 18px 34px -14px rgb(0 0 0 / 0.65); }
+  }
+
+  /* Gerak masuk (hanya bila skrip menandai siap). Garis tergambar, langkah menyala bergiliran mengikuti garis. */
+  .klaim[data-siap] .klaim-garis span { transform: scaleX(0); transition: transform var(--dur) var(--ease-out); }
+  .klaim[data-siap] .klaim-langkah::after { background-size: 100% 0%; transition: background-size 500ms var(--ease-out); transition-delay: calc(var(--i) * 300ms + 300ms); }
+  .klaim[data-siap][data-jalan] .klaim-langkah::after { background-size: 100% 100%; }
+  .klaim[data-siap][data-jalan] .klaim-garis span { transform: none; }
+  .klaim[data-siap] .klaim-langkah > :not(.klaim-ikon) { opacity: 0; translate: 0 8px; transition: opacity 600ms var(--ease-out), translate 700ms var(--ease-out); transition-delay: calc(var(--i) * 300ms + 200ms); }
+  .klaim[data-siap] .klaim-ikon { color: rgb(242 244 241 / 0.35); transition: color 500ms var(--ease-out), transform 400ms var(--ease-out), box-shadow 400ms var(--ease-out); transition-delay: calc(var(--i) * 300ms + 100ms), 0s, 0s; }
+  .klaim[data-siap] .klaim-ikon svg :is(path, rect, circle) { stroke-dasharray: 160; stroke-dashoffset: 160; transition: stroke-dashoffset 1100ms var(--ease-out); transition-delay: calc(var(--i) * 300ms + 100ms); }
+  .klaim[data-siap] .klaim-no { scale: 0; transition: scale 450ms cubic-bezier(0.34, 1.56, 0.64, 1); transition-delay: calc(var(--i) * 300ms + 450ms); }
+  .klaim[data-siap][data-jalan] .klaim-langkah > :not(.klaim-ikon) { opacity: 1; translate: none; }
+  .klaim[data-siap][data-jalan] .klaim-ikon { color: var(--color-tunas); }
+  .klaim[data-siap][data-jalan] .klaim-ikon svg :is(path, rect, circle) { stroke-dashoffset: 0; }
+  .klaim[data-siap][data-jalan] .klaim-no { scale: 1; }
+</style>
