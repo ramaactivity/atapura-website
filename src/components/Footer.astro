@@ -4,6 +4,21 @@
 import { getCollection } from 'astro:content';
 import { bisnis, waLink } from '../data/bisnis';
 import Logo from './Logo.astro';
+import ikonInstagram from '../assets/ikon/instagram.svg?raw';
+import ikonTiktok from '../assets/ikon/tiktok.svg?raw';
+import ikonThreads from '../assets/ikon/threads.svg?raw';
+import ikonX from '../assets/ikon/x.svg?raw';
+import ikonShopee from '../assets/ikon/shopee.svg?raw';
+import ikonTokopedia from '../assets/ikon/tokopedia.svg?raw';
+import ikonWhatsapp from '../assets/ikon/whatsapp.svg?raw';
+import ikonEmail from '../assets/ikon/email.svg?raw';
+
+const ikon: Record<string, string> = { instagram: ikonInstagram, tiktok: ikonTiktok, threads: ikonThreads, x: ikonX, shopee: ikonShopee, tokopedia: ikonTokopedia };
+const sosial = [
+  { nama: 'WhatsApp', url: waLink('Halo Atapura, saya mau tanya soal atap bitumen.'), svg: ikonWhatsapp, luar: true },
+  { nama: 'Email', url: `mailto:${bisnis.email}`, svg: ikonEmail, luar: false },
+  ...bisnis.sosial.map((x) => ({ nama: x.nama, url: x.url, svg: ikon[x.id], luar: true })),
+];
 
 const tahun = new Date().getFullYear();
 const panduan = (await getCollection('panduan')).sort((a, b) => b.data.diperbarui.getTime() - a.data.diperbarui.getTime()).slice(0, 3);
@@ -82,37 +97,71 @@ const kolom: { judul: string; tautan: { label: string; href: string; luar?: bool
   </div>
   <div class="wrap kaki-identitas">
     <span class="kaki-logo"><Logo tinggi="1.7rem" /><span class="sr-only">Atapura</span></span>
-    <p class="kaki-legal">{bisnis.namaLegal} ({bisnis.statusLegal}).<br />Didirikan oleh {bisnis.pendiri.join(' dan ')}.</p>
-    <p class="kaki-legal">Survey gratis di {bisnis.area.length} kota dan kabupaten Jabodetabek.</p>
+    <div class="kaki-legal-grup">
+      <p class="kaki-legal kaki-legal-pt">{bisnis.namaLegal} ({bisnis.statusLegal}).<br />Didirikan oleh {bisnis.pendiri.join(' dan ')}. Survey gratis di {bisnis.area.length} kota dan kabupaten Jabodetabek.</p>
+      <ul class="kaki-sosial" aria-label="Kontak dan media sosial">
+        {sosial.map((x) => (
+          <li>
+            {x.url ? (
+              <a href={x.url} aria-label={x.nama} title={x.nama} {...(x.luar ? { target: '_blank', rel: 'noopener' } : {})} set:html={x.svg} />
+            ) : (
+              <span class="kaki-sosial-segera" aria-label={`${x.nama} (segera hadir)`} title={`${x.nama} — segera hadir`} set:html={x.svg} />
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
   </div>
   <div class="wrap kaki-bawah">
     <p>© {tahun} Atapura</p>
-    <p>Foto rumah, villa, kafe, hujan, dan tukang adalah ilustrasi buatan AI, bukan proyek Atapura.</p>
+    <p>Foto rumah, villa, kafe, hujan, dan tukang adalah ilustrasi buatan AI, bukan proyek Atapura. Ikon: Simple Icons (CC0), Arcticons (CC BY-SA 4.0).</p>
   </div>
 </footer>
 
 <style>
-  .kaki { background: var(--color-embun); color: var(--color-tinta); padding-top: clamp(4rem, 7vw, 6rem); padding-bottom: 2rem; border-top: 1px solid var(--color-garis); }
+  /* Tipografi footer (acuan Andermatt): judul kolom seukuran tautan & menempel ke daftarnya,
+     tautan rapat satu ritme, tagline kompak. Skala: tagline 2.4rem / isi 1rem / legal 0.875rem. */
+  .kaki {
+    background:
+      radial-gradient(55% 75% at 0% 0%, rgb(198 242 78 / 0.22), transparent 70%),
+      radial-gradient(45% 70% at 100% 100%, rgb(242 182 107 / 0.24), transparent 70%),
+      radial-gradient(40% 60% at 70% 10%, rgb(76 94 85 / 0.10), transparent 70%),
+      linear-gradient(180deg, #f2f4f1 0%, #e7ece6 100%); color: var(--color-tinta); padding-top: clamp(4rem, 7vw, 6.5rem); padding-bottom: 2rem; border-top: 1px solid rgb(16 35 30 / 0.08); }
   .kaki-atas { display: grid; gap: 3rem 4rem; grid-template-columns: minmax(0, 1fr); }
-  @media (min-width: 64rem) { .kaki-atas { grid-template-columns: minmax(0, 0.9fr) minmax(0, 2fr); } }
-  .kaki-besar { font-size: clamp(2rem, 1.3rem + 2.2vw, 3rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.05; max-width: 13ch; }
+  @media (min-width: 64rem) { .kaki-atas { grid-template-columns: minmax(0, 1fr) minmax(0, 1.9fr); } }
+  .kaki-besar { font-size: clamp(1.9rem, 1.4rem + 1.4vw, 2.5rem); font-weight: 500; letter-spacing: -0.035em; line-height: 1.12; max-width: 16ch; text-wrap: balance; }
   .kaki-aksi {
-    display: inline-block; margin-top: 1.5rem; padding-block: 0.4rem; font-weight: 500; color: var(--color-pinus);
-    text-decoration: underline; text-decoration-color: var(--color-tunas); text-decoration-thickness: 2px; text-underline-offset: 0.35em;
+    display: inline-block; margin-top: 1.25rem; font-size: 1rem; font-weight: 500; color: var(--color-pinus);
+    text-decoration: underline; text-decoration-color: var(--color-tunas); text-decoration-thickness: 2px; text-underline-offset: 0.4em;
   }
-  .kaki-kolom { display: grid; gap: 2.5rem 2rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .kaki-kolom { display: grid; gap: 2.75rem 2rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   @media (min-width: 48rem) { .kaki-kolom { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-  .kaki-judul { font-weight: 500; color: var(--color-pinus); margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.5rem; }
-  .kaki-judul::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--color-tunas); box-shadow: 0 0 0 1px rgb(16 35 30 / 0.25); }
-  .kaki-kolom ul { display: grid; gap: 0.1rem; }
-  .kaki-kolom a { display: inline-block; padding-block: 0.3rem; color: var(--color-lumut); text-decoration: none; transition: color 200ms; overflow-wrap: anywhere; }
-  .kaki-kolom a:hover { color: var(--color-pinus); }
-  .kaki-identitas { margin-top: clamp(3.5rem, 6vw, 5rem); display: grid; gap: 1.25rem 4rem; align-items: center; grid-template-columns: minmax(0, 1fr); }
-  @media (min-width: 64rem) { .kaki-identitas { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr) minmax(0, 1fr); } }
-  .kaki-logo { color: var(--color-pinus); }
-  .kaki-legal { font-size: 0.9rem; color: var(--color-lumut); }
+  .kaki-judul { font-size: 1rem; line-height: 1.4; font-weight: 500; color: var(--color-pinus); padding-bottom: 0.15rem; }
+  .kaki-kolom ul { display: grid; }
+  .kaki-kolom li { font-size: 1rem; line-height: 1.5; }
+  .kaki-kolom li + li { margin-top: 0.12rem; }
+  .kaki-kolom a { color: var(--color-lumut); text-decoration: none; transition: color 200ms; }
+  .kaki-kolom a:hover { color: var(--color-pinus); text-decoration: underline; text-underline-offset: 0.25em; }
+  .kaki-identitas {
+    margin-top: clamp(3.5rem, 6vw, 5.5rem); display: grid; gap: 1rem 4rem; align-items: start;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  @media (min-width: 64rem) { .kaki-identitas { grid-template-columns: minmax(0, 1fr) minmax(0, 1.9fr); } }
+  /* Legal mengikuti grid kolom tautan di atasnya: PT selebar 2 kolom, area di kolom ke-3. */
+  .kaki-legal-grup { display: grid; gap: 1rem 2rem; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 48rem) { .kaki-legal-grup { grid-template-columns: repeat(3, minmax(0, 1fr)); } .kaki-legal-pt { grid-column: span 2; } }
+  .kaki-logo { color: var(--color-pinus); padding-top: 0.15rem; }
+  .kaki-legal { font-size: 0.875rem; line-height: 1.6; color: var(--color-lumut); }
+  .kaki-sosial { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .kaki-sosial a, .kaki-sosial-segera {
+    display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; color: var(--color-pinus);
+    background: rgb(255 255 255 / 0.55); box-shadow: inset 0 0 0 1px rgb(16 35 30 / 0.08); transition: background-color 250ms, color 250ms, transform 250ms var(--ease-out);
+  }
+  .kaki-sosial :global(svg) { width: 18px; height: 18px; }
+  .kaki-sosial a:hover { background: var(--color-pinus); color: var(--color-tunas); transform: translateY(-2px); }
+  .kaki-sosial-segera { opacity: 0.45; cursor: default; }
   .kaki-bawah {
     margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid var(--color-garis);
-    display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; justify-content: space-between; font-size: 0.82rem; color: var(--color-lumut);
+    display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; justify-content: space-between; font-size: 0.875rem; line-height: 1.6; color: var(--color-lumut);
   }
 </style>

@@ -45,7 +45,16 @@ export const bisnis = {
     { tahap: 'Termin kedua', saat: 'Material tiba di lokasi dan alas terpasang', persen: 40 },
     { tahap: 'Pelunasan', saat: 'Setelah serah terima dan berita acara', persen: 30 },
   ],
-  sosmed: [] as string[],
+  sosmed: [] as string[], // URL profil resmi untuk JSON-LD sameAs — isi saat akun sudah dibuat
+  // Ikon sosial di footer. url null = akun belum ada: ikon tampil redup tanpa tautan ("segera").
+  sosial: [
+    { id: 'instagram', nama: 'Instagram', url: null },
+    { id: 'tiktok', nama: 'TikTok', url: null },
+    { id: 'threads', nama: 'Threads', url: null },
+    { id: 'x', nama: 'X (Twitter)', url: null },
+    { id: 'shopee', nama: 'Shopee', url: null },
+    { id: 'tokopedia', nama: 'Tokopedia', url: null },
+  ] as { id: string; nama: string; url: string | null }[],
   area: [
     'Jakarta Selatan',
     'Jakarta Timur',
