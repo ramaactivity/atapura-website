@@ -26,11 +26,11 @@
 .ha-slip .contoh { background: rgb(198 242 78 / 0.16); color: var(--color-tunas); }
 /* Angka harga: proporsional (bukan tabular), tipis, "Rp" dan satuan mengecil supaya angka yang bicara. */
 .hasil-angka {
-  font-size: clamp(3rem, 1.8rem + 3.6vw, 4.8rem); font-weight: 300; letter-spacing: -0.055em; line-height: 1;
+  font-size: clamp(3rem, 1.8rem + 3.6vw, 4.8rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1;
   font-variant-numeric: proportional-nums lining-nums; white-space: nowrap; margin: 0.6rem 0 0.2rem;
 }
 .hasil-rp { font-size: 0.36em; letter-spacing: 0; vertical-align: 0.95em; margin-right: 0.18em; color: rgb(242 244 241 / 0.7); }
-.hasil-sd { color: var(--color-tunas); margin: 0 0.04em; font-weight: 300; }
+.hasil-sd { color: var(--color-tunas); margin: 0 0.04em; font-weight: 500; }
 .hasil-satuan { font-size: 0.3em; letter-spacing: 0; margin-left: 0.35em; color: rgb(242 244 241 / 0.7); }
 .hasil-durasi { font-size: 0.95rem; color: rgb(242 244 241 / 0.72); }
 .ha-catatan { margin-top: 0.6rem; font-size: 0.88rem; line-height: 1.45; color: var(--color-embun); padding: 0.75rem 0.95rem; border-radius: 10px; background: rgb(242 244 241 / 0.08); }
@@ -45,7 +45,7 @@
 .stepper-btn:disabled { opacity: 0.35; cursor: default; }
 .stepper-btn svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; fill: none; }
 .stepper-isi { display: inline-flex; align-items: baseline; gap: 0.2rem; padding-inline: 0.6rem; }
-.stepper-input { width: 3ch; text-align: right; font-size: 1.15rem; background: transparent; border: 0; outline: none; color: var(--color-tinta); caret-color: var(--color-pinus); font-family: inherit; }
+.stepper-input { width: 3.6ch; text-align: right; font-size: 1.15rem; background: transparent; border: 0; outline: none; color: var(--color-tinta); caret-color: var(--color-pinus); font-family: inherit; }
 .stepper-satuan { font-size: 0.95rem; color: var(--color-lumut); }
 .stepper:focus-within { border-color: var(--color-pinus); }
 

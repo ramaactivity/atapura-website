@@ -398,10 +398,9 @@ const faqSchema = {
   .c-pinus { background: var(--color-pinus); }
   .terang { color: var(--color-tinta); }
   .gelap { color: var(--color-embun); }
-  .judul-2 { font-size: clamp(2.1rem, 1.3rem + 3vw, 4rem); font-weight: 300; max-width: 18ch; }
+  .judul-2 { font-size: clamp(2.1rem, 1.3rem + 3vw, 4rem); font-weight: 500; max-width: 18ch; }
   .lead { font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem); line-height: 1.5; max-width: 40ch; color: var(--color-lumut); }
   .gelap .lead { color: var(--embun-redup); }
-  .miring { font-weight: 400; }
   .kepala { display: grid; gap: 1.5rem 4rem; grid-template-columns: minmax(0, 1fr); margin-bottom: clamp(2.5rem, 5vw, 4rem); }
   @media (min-width: 60rem) { .kepala { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); align-items: end; } }
 
@@ -413,8 +412,9 @@ const faqSchema = {
   :global(.hero-foto) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 40%; z-index: -2; }
   .hero::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgb(10 20 16 / 0.92) 0%, rgb(10 20 16 / 0.68) 45%, transparent 75%); }
   .hero-isi { width: 100%; padding-bottom: clamp(2.5rem, 6vh, 4rem); color: var(--color-putih); }
-  .hero-judul { display: flex; flex-direction: column; font-size: clamp(3.2rem, 1.4rem + 7vw, 7rem); line-height: 0.92; letter-spacing: -0.05em; font-weight: 300; max-width: 7.5ch; }
-  .miring-hero { font-variation-settings: "ital" 11; font-weight: 400; }
+  .hero-judul { display: flex; flex-direction: column; font-size: clamp(3.2rem, 1.4rem + 7vw, 7rem); line-height: 0.92; letter-spacing: -0.04em; font-weight: 500; max-width: 7.5ch; }
+  .miring-hero { color: var(--color-tunas); }
+  @media (min-width: 64rem) { .miring-hero { color: inherit; } }
   .hero-h1-sub { display: block; margin-top: 1.4rem; font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem); line-height: 1.45; letter-spacing: 0; font-weight: 500; max-width: 30ch; }
   .hero-sub { margin-top: 0.4rem; max-width: 34ch; font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem); line-height: 1.5; }
   .hero-aksi { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.6rem; }
@@ -439,7 +439,7 @@ const faqSchema = {
   .bukti-daftar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .bukti-daftar li { padding: 1.4rem 1rem 1.4rem 0; border-top: 1px solid var(--color-garis); }
   .bukti-daftar li:nth-child(-n+2) { border-top: 0; }
-  .bukti-daftar b { display: block; font-weight: 300; font-size: 1.6rem; letter-spacing: -0.04em; line-height: 1.05; }
+  .bukti-daftar b { display: block; font-weight: 500; font-size: 1.6rem; letter-spacing: -0.04em; line-height: 1.05; }
   .bukti-daftar span { font-size: 0.85rem; color: var(--color-lumut); line-height: 1.4; display: block; margin-top: 0.2rem; }
   @media (min-width: 64rem) {
     .bukti-daftar { grid-template-columns: repeat(6, minmax(0, 1fr)); }
@@ -457,7 +457,7 @@ const faqSchema = {
   .kartu-isi p { color: rgb(255 255 255 / 0.85); font-size: 0.95rem; }
   .kartu-judul { font-size: 1.35rem; font-weight: 400; letter-spacing: -0.02em; line-height: 1.2; }
   .kartu-label { font-size: 0.82rem; color: var(--color-lumut); }
-  .kartu .kartu-angka { font-size: 3.4rem; font-weight: 300; letter-spacing: -0.05em; line-height: 1; margin: 0.3rem 0; }
+  .kartu .kartu-angka { font-size: 3.4rem; font-weight: 500; letter-spacing: -0.04em; line-height: 1; margin: 0.3rem 0; }
   .kartu p { font-size: 0.95rem; }
   .kartu-tautan { margin-top: auto; padding-top: 1rem; font-weight: 500; }
   .kartu.gelap { background: var(--color-pinus); color: var(--color-embun); }
@@ -493,7 +493,7 @@ const faqSchema = {
   .hujan-fakta b { display: block; font-weight: 500; color: var(--color-putih); }
 
   /* Judul section besar: tipis, rapat, satu kata miring. */
-  .judul-besar { font-size: clamp(2.4rem, 1.2rem + 4.6vw, 5.4rem); font-weight: 300; letter-spacing: -0.045em; line-height: 0.98; max-width: 16ch; }
+  .judul-besar { font-size: clamp(2.4rem, 1.2rem + 4.6vw, 5.4rem); font-weight: 500; letter-spacing: -0.04em; line-height: 0.98; max-width: 16ch; }
 
   /* Anatomi: lembar gambar teknik di atas grid tipis. */
   .anatomi {
@@ -541,8 +541,8 @@ const faqSchema = {
   .ds td { width: 27%; color: var(--color-tinta); }
   .ds thead th { padding-top: 1.5rem; padding-bottom: 1.75rem; }
   .ds-no { display: block; font-size: 0.8rem; color: var(--color-lumut); margin-bottom: 0.4rem; }
-  .ds-merek { display: block; font-size: clamp(2rem, 1.2rem + 2.4vw, 3.4rem); font-weight: 300; letter-spacing: -0.045em; line-height: 1; }
-  .ds-harga td { font-size: clamp(1.8rem, 1.2rem + 1.6vw, 2.6rem); font-weight: 300; letter-spacing: -0.045em; line-height: 1; font-variant-numeric: proportional-nums; }
+  .ds-merek { display: block; font-size: clamp(2rem, 1.2rem + 2.4vw, 3.4rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1; }
+  .ds-harga td { font-size: clamp(1.8rem, 1.2rem + 1.6vw, 2.6rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums lining-nums; }
   .harga-rp { font-size: 0.4em; letter-spacing: 0; vertical-align: 0.85em; margin-right: 0.15em; color: var(--color-lumut); }
   .harga-sat { font-size: 0.36em; letter-spacing: 0; margin-left: 0.35em; color: var(--color-lumut); }
   .ds-sd { color: var(--color-lumut); }
@@ -553,7 +553,7 @@ const faqSchema = {
     .datasheet { display: none; }
     .merek-hp { display: grid; border-top: 1px solid var(--color-tinta); }
     .merek-hp li { padding: 1.4rem 0; border-bottom: 1px solid var(--color-garis); }
-    .merek-hp-harga { margin-top: 0.5rem; font-size: 1.5rem; font-weight: 300; letter-spacing: -0.03em; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.35rem; }
+    .merek-hp-harga { margin-top: 0.5rem; font-size: 1.5rem; font-weight: 500; letter-spacing: -0.03em; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.35rem; }
     .merek-hp-kelas { margin-top: 0.3rem; font-size: 0.9rem; color: var(--color-lumut); }
     .merek-hp-satuan { font-size: 0.9rem; color: var(--color-lumut); }
     .merek-hp-pasti { margin-top: 0.4rem; color: var(--color-lumut); font-size: 0.95rem; }
@@ -564,7 +564,7 @@ const faqSchema = {
     padding: clamp(1.5rem, 3vw, 2.5rem); background: var(--color-embun); border-radius: 0.5rem;
   }
   @media (min-width: 60rem) { .batas { grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); } }
-  .batas-judul { font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.4rem); font-weight: 300; letter-spacing: -0.035em; line-height: 1.05; }
+  .batas-judul { font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.4rem); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05; }
   .batas-daftar { display: grid; gap: 1.25rem; color: var(--color-lumut); counter-reset: batas; }
   .batas-daftar li { padding-left: 2.25rem; position: relative; }
   .batas-daftar li::before { counter-increment: batas; content: counter(batas, decimal-leading-zero); position: absolute; left: 0; top: 0.15rem; font-size: 0.85rem; color: var(--color-lumut); }
@@ -597,8 +597,7 @@ const faqSchema = {
     padding-block: 1.4rem; cursor: pointer; list-style: none;
   }
   .tanya-item summary::-webkit-details-marker { display: none; }
-  .tanya-q { font-size: clamp(1.15rem, 1rem + 0.5vw, 1.45rem); font-weight: 300; letter-spacing: -0.02em; transition: transform 400ms var(--ease-out); }
-  .tanya-item[open] .tanya-q { font-variation-settings: "ital" 11; }
+  .tanya-q { font-size: clamp(1.15rem, 1rem + 0.5vw, 1.45rem); font-weight: 500; letter-spacing: -0.02em; transition: transform 400ms var(--ease-out); }
   .tanya-tanda { position: relative; flex: none; width: 14px; height: 14px; }
   .tanya-tanda::before, .tanya-tanda::after {
     content: ''; position: absolute; left: 0; top: 50%; width: 14px; height: 1px; background: currentColor;
@@ -621,7 +620,7 @@ const faqSchema = {
   :global(.penutup-foto) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 60%; z-index: -2; }
   .penutup::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgb(10 20 16 / 0.88) 0%, rgb(10 20 16 / 0.3) 60%, transparent); }
   .penutup-isi { width: 100%; padding-block: 4rem; display: grid; gap: 1.75rem; justify-items: start; }
-  .penutup-judul { font-size: clamp(3rem, 0.5rem + 10vw, 9.5rem); font-weight: 300; letter-spacing: -0.055em; line-height: 0.9; max-width: 11ch; }
+  .penutup-judul { font-size: clamp(3rem, 0.5rem + 10vw, 9.5rem); font-weight: 500; letter-spacing: -0.04em; line-height: 0.9; max-width: 11ch; }
   .penutup-aksi { display: flex; flex-wrap: wrap; gap: 0.75rem; }
 
   /* WA melayang (HP saja) */

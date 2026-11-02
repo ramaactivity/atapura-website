@@ -322,7 +322,7 @@
       "refersTo": "button-primary",
       "description": "Aksi utama: hitung estimasi, kirim ke WhatsApp. Teks selalu Pinus.",
       "html": "<a class=\"ds-pill ds-pill-tunas\" href=\"#\">Hitung estimasi biaya</a>",
-      "css": ".ds-pill{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:48px;padding:0 1.4rem;border-radius:999px;font-family:\"Uncut Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;font-weight:650;font-size:1rem;letter-spacing:-.005em;text-decoration:none;cursor:pointer;transition:transform 160ms cubic-bezier(.16,1,.3,1),background-color 200ms,box-shadow 200ms}.ds-pill:active{transform:scale(.97)}.ds-pill:focus-visible{outline:2px solid #10231e;outline-offset:3px}.ds-pill-tunas{background:#c6f24e;color:#10231e;box-shadow:0 6px 18px -8px rgb(198 242 78 / .6)}.ds-pill-tunas:hover{background:#d3f76c}"
+      "css": ".ds-pill{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:48px;padding:0 1.4rem;border-radius:999px;font-family:\"Public Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;font-weight:650;font-size:1rem;letter-spacing:-.005em;text-decoration:none;cursor:pointer;transition:transform 160ms cubic-bezier(.16,1,.3,1),background-color 200ms,box-shadow 200ms}.ds-pill:active{transform:scale(.97)}.ds-pill:focus-visible{outline:2px solid #10231e;outline-offset:3px}.ds-pill-tunas{background:#c6f24e;color:#10231e;box-shadow:0 6px 18px -8px rgb(198 242 78 / .6)}.ds-pill-tunas:hover{background:#d3f76c}"
     },
     {
       "name": "Tombol garis (di atas Pinus)",
@@ -330,7 +330,7 @@
       "refersTo": "button-outline",
       "description": "Aksi kedua di bidang gelap, garis 1px warna teks.",
       "html": "<div class=\"ds-gelap\"><a class=\"ds-pill-garis\" href=\"#\">Jadwalkan survey lewat WhatsApp</a></div>",
-      "css": ".ds-gelap{background:#183129;padding:24px;border-radius:6px}.ds-pill-garis{display:inline-flex;align-items:center;min-height:48px;padding:0 1.4rem;border-radius:999px;border:1px solid currentColor;color:#f2f4f1;font-family:\"Uncut Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;font-weight:650;font-size:1rem;text-decoration:none;transition:transform 160ms cubic-bezier(.16,1,.3,1),background-color 200ms}.ds-pill-garis:hover{background:rgb(242 244 241 / .1)}.ds-pill-garis:active{transform:scale(.97)}.ds-pill-garis:focus-visible{outline:2px solid #c6f24e;outline-offset:3px}"
+      "css": ".ds-gelap{background:#183129;padding:24px;border-radius:6px}.ds-pill-garis{display:inline-flex;align-items:center;min-height:48px;padding:0 1.4rem;border-radius:999px;border:1px solid currentColor;color:#f2f4f1;font-family:\"Public Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;font-weight:650;font-size:1rem;text-decoration:none;transition:transform 160ms cubic-bezier(.16,1,.3,1),background-color 200ms}.ds-pill-garis:hover{background:rgb(242 244 241 / .1)}.ds-pill-garis:active{transform:scale(.97)}.ds-pill-garis:focus-visible{outline:2px solid #c6f24e;outline-offset:3px}"
     },
     {
       "name": "Chip fakta di atas foto",
@@ -338,7 +338,7 @@
       "refersTo": "chip-fact",
       "description": "Fakta singkat yang benar sekarang, melayang di hero. Blur hanya di desktop.",
       "html": "<ul class=\"ds-fakta\"><li>3 merek</li><li>13 kota</li><li>Survey gratis</li></ul>",
-      "css": ".ds-fakta{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;margin:0;padding:20px;background:#10231e}.ds-fakta li{padding:.45rem .95rem;border-radius:999px;font-family:\"Uncut Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;font-size:.9rem;font-weight:550;color:#f2f4f1;background:rgb(16 35 30 / .72);border:1px solid rgb(242 244 241 / .16)}"
+      "css": ".ds-fakta{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;margin:0;padding:20px;background:#10231e}.ds-fakta li{padding:.45rem .95rem;border-radius:999px;font-family:\"Public Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;font-size:.9rem;font-weight:550;color:#f2f4f1;background:rgb(16 35 30 / .72);border:1px solid rgb(242 244 241 / .16)}"
     },
     {
       "name": "Chip penanda contoh",
@@ -346,7 +346,7 @@
       "refersTo": "chip-contoh",
       "description": "Penanda jujur pada angka yang belum resmi.",
       "html": "<span class=\"ds-contoh\">contoh</span>",
-      "css": ".ds-contoh{display:inline-flex;align-items:center;padding:.2rem .65rem;border-radius:999px;background:#eaf8c4;color:#10231e;font-family:\"Uncut Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;font-size:.75rem;font-weight:650}"
+      "css": ".ds-contoh{display:inline-flex;align-items:center;padding:.2rem .65rem;border-radius:999px;background:#eaf8c4;color:#10231e;font-family:\"Public Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;font-size:.75rem;font-weight:650}"
     },
     {
       "name": "Stepper luas",
@@ -354,7 +354,7 @@
       "refersTo": "stepper",
       "description": "Pengganti input number: tombol -/+ 44px, angka tabular.",
       "html": "<div class=\"ds-stepper\"><button class=\"ds-step\" aria-label=\"Kurangi\"><svg viewBox=\"0 0 16 16\"><path d=\"M3 8h10\"/></svg></button><span class=\"ds-isi\"><b>100</b> m²</span><button class=\"ds-step\" aria-label=\"Tambah\"><svg viewBox=\"0 0 16 16\"><path d=\"M3 8h10M8 3v10\"/></svg></button></div>",
-      "css": ".ds-stepper{display:inline-flex;align-items:center;border:1px solid #d9ded8;border-radius:999px;padding:3px;background:#f2f4f1;font-family:\"Uncut Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif}.ds-stepper:focus-within{border-color:#10231e}.ds-step{display:grid;place-items:center;width:44px;height:44px;border:0;border-radius:999px;background:#fff;color:#10231e;cursor:pointer;box-shadow:0 1px 2px rgb(16 35 30 / .12);transition:transform 140ms cubic-bezier(.16,1,.3,1)}.ds-step:active{transform:scale(.94)}.ds-step:focus-visible{outline:2px solid #10231e;outline-offset:3px}.ds-step svg{width:16px;height:16px;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;fill:none}.ds-isi{padding-inline:.6rem;color:#4c5e55;font-size:.95rem;font-variant-numeric:tabular-nums lining-nums}.ds-isi b{color:#151a18;font-weight:720;font-size:1.15rem}"
+      "css": ".ds-stepper{display:inline-flex;align-items:center;border:1px solid #d9ded8;border-radius:999px;padding:3px;background:#f2f4f1;font-family:\"Public Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif}.ds-stepper:focus-within{border-color:#10231e}.ds-step{display:grid;place-items:center;width:44px;height:44px;border:0;border-radius:999px;background:#fff;color:#10231e;cursor:pointer;box-shadow:0 1px 2px rgb(16 35 30 / .12);transition:transform 140ms cubic-bezier(.16,1,.3,1)}.ds-step:active{transform:scale(.94)}.ds-step:focus-visible{outline:2px solid #10231e;outline-offset:3px}.ds-step svg{width:16px;height:16px;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;fill:none}.ds-isi{padding-inline:.6rem;color:#4c5e55;font-size:.95rem;font-variant-numeric:tabular-nums lining-nums}.ds-isi b{color:#151a18;font-weight:720;font-size:1.15rem}"
     },
     {
       "name": "Segmen merek",
@@ -362,7 +362,7 @@
       "refersTo": "segmented",
       "description": "Pengganti select/radio: tiga opsi pill, terpilih berlatar Pinus.",
       "html": "<div class=\"ds-segmen\" role=\"radiogroup\"><button role=\"radio\" aria-checked=\"false\">Maxxi</button><button role=\"radio\" aria-checked=\"true\">CTI</button><button role=\"radio\" aria-checked=\"false\">Javabitumen</button></div>",
-      "css": ".ds-segmen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding:3px;border-radius:999px;background:#f2f4f1;border:1px solid #d9ded8;font-family:\"Uncut Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;max-width:420px}.ds-segmen button{min-height:42px;border:0;border-radius:999px;background:transparent;font:600 .92rem \"Uncut Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;color:#4c5e55;cursor:pointer;transition:background-color 220ms,color 220ms,box-shadow 220ms}.ds-segmen button:hover{color:#151a18}.ds-segmen button:focus-visible{outline:2px solid #10231e;outline-offset:2px}.ds-segmen button[aria-checked=true]{background:#10231e;color:#f2f4f1;box-shadow:0 2px 6px -2px rgb(16 35 30 / .5)}"
+      "css": ".ds-segmen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding:3px;border-radius:999px;background:#f2f4f1;border:1px solid #d9ded8;font-family:\"Public Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;max-width:420px}.ds-segmen button{min-height:42px;border:0;border-radius:999px;background:transparent;font:600 .92rem \"Public Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;color:#4c5e55;cursor:pointer;transition:background-color 220ms,color 220ms,box-shadow 220ms}.ds-segmen button:hover{color:#151a18}.ds-segmen button:focus-visible{outline:2px solid #10231e;outline-offset:2px}.ds-segmen button[aria-checked=true]{background:#10231e;color:#f2f4f1;box-shadow:0 2px 6px -2px rgb(16 35 30 / .5)}"
     },
     {
       "name": "Slip rincian",
@@ -370,7 +370,7 @@
       "refersTo": "slip",
       "description": "Kertas penawaran putih bertepi atas chevron, dengan angka hasil dan rincian bertitik.",
       "html": "<div class=\"ds-slip\"><p class=\"ds-lbl\">Perkiraan total</p><p class=\"ds-angka\">Rp42,5 jt <span>s/d Rp51 jt</span></p><dl class=\"ds-rincian\"><div><dt>Genteng</dt><dd>Rp28 jt</dd></div><div><dt>Aksesoris</dt><dd>Rp6 jt</dd></div><div><dt>Jasa pasang</dt><dd>Rp8,5 jt</dd></div></dl></div>",
-      "css": ".ds-slip{max-width:380px;background:#fff;color:#151a18;font-family:\"Uncut Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;clip-path:polygon(0 28px,50% 0,100% 28px,100% 100%,0 100%);border-radius:0 0 1.25rem 1.25rem;padding:2.75rem 1.25rem 1.25rem;box-shadow:0 30px 60px -24px rgb(0 0 0 / .55),0 8px 18px -10px rgb(0 0 0 / .3)}.ds-lbl{margin:0;font-size:.875rem;color:#4c5e55}.ds-angka{margin:.2rem 0 .9rem;font-size:2.2rem;font-weight:760;letter-spacing:-.035em;line-height:1.1;font-variant-numeric:tabular-nums lining-nums;white-space:nowrap;padding-bottom:.9rem;border-bottom:1px solid #d9ded8}.ds-angka span{font-weight:300;color:#4c5e55;font-size:.6em}.ds-rincian{display:grid;gap:.3rem;margin:0;font-size:.9rem;font-variant-numeric:tabular-nums}.ds-rincian div{display:flex;align-items:baseline;background-image:radial-gradient(circle,#d9ded8 1px,transparent 1.2px);background-size:6px 6px;background-repeat:repeat-x;background-position:0 calc(100% - 4px)}.ds-rincian dt{color:#4c5e55;background:#fff;padding-right:.4rem}.ds-rincian dd{margin-left:auto;font-weight:600;background:#fff;padding-left:.4rem}"
+      "css": ".ds-slip{max-width:380px;background:#fff;color:#151a18;font-family:\"Public Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;clip-path:polygon(0 28px,50% 0,100% 28px,100% 100%,0 100%);border-radius:0 0 1.25rem 1.25rem;padding:2.75rem 1.25rem 1.25rem;box-shadow:0 30px 60px -24px rgb(0 0 0 / .55),0 8px 18px -10px rgb(0 0 0 / .3)}.ds-lbl{margin:0;font-size:.875rem;color:#4c5e55}.ds-angka{margin:.2rem 0 .9rem;font-size:2.2rem;font-weight:760;letter-spacing:-.035em;line-height:1.1;font-variant-numeric:tabular-nums lining-nums;white-space:nowrap;padding-bottom:.9rem;border-bottom:1px solid #d9ded8}.ds-angka span{font-weight:300;color:#4c5e55;font-size:.6em}.ds-rincian{display:grid;gap:.3rem;margin:0;font-size:.9rem;font-variant-numeric:tabular-nums}.ds-rincian div{display:flex;align-items:baseline;background-image:radial-gradient(circle,#d9ded8 1px,transparent 1.2px);background-size:6px 6px;background-repeat:repeat-x;background-position:0 calc(100% - 4px)}.ds-rincian dt{color:#4c5e55;background:#fff;padding-right:.4rem}.ds-rincian dd{margin-left:auto;font-weight:600;background:#fff;padding-left:.4rem}"
     },
     {
       "name": "Course (baris genteng)",
@@ -378,7 +378,7 @@
       "refersTo": "course-light",
       "description": "Section yang menimpa section di bawahnya dengan bayangan jatuh.",
       "html": "<div class=\"ds-courses\"><section class=\"ds-course ds-terang\"><h2>Atap bocor lagi setelah diperbaiki?</h2></section><section class=\"ds-course ds-gelap2\"><h2><span>Masuk AKAL,</span> bisa dicek.</h2></section></div>",
-      "css": ".ds-courses{font-family:\"Uncut Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif}.ds-course{position:relative;border-radius:0 0 6px 6px;margin-bottom:-32px;padding:56px 24px 72px;box-shadow:0 22px 32px -22px rgb(16 35 30 / .55)}.ds-course h2{margin:0;font-size:2rem;font-weight:720;letter-spacing:-.025em;line-height:1.08}.ds-course h2 span{font-weight:280}.ds-terang{background:#f2f4f1;color:#151a18;z-index:2}.ds-gelap2{background:#10231e;color:#f2f4f1;z-index:1;margin-bottom:0}"
+      "css": ".ds-courses{font-family:\"Public Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif}.ds-course{position:relative;border-radius:0 0 6px 6px;margin-bottom:-32px;padding:56px 24px 72px;box-shadow:0 22px 32px -22px rgb(16 35 30 / .55)}.ds-course h2{margin:0;font-size:2rem;font-weight:720;letter-spacing:-.025em;line-height:1.08}.ds-course h2 span{font-weight:280}.ds-terang{background:#f2f4f1;color:#151a18;z-index:2}.ds-gelap2{background:#10231e;color:#f2f4f1;z-index:1;margin-bottom:0}"
     },
     {
       "name": "Navigasi atas",
@@ -386,7 +386,7 @@
       "refersTo": "button-outline",
       "description": "Header transparan di atas hero: wordmark, menu Embun redup, tombol WA garis.",
       "html": "<header class=\"ds-nav\"><a class=\"ds-wm\" href=\"#\">Atapura</a><nav><a href=\"#\">Hitung biaya</a><a href=\"#\">Cara pasang</a><a href=\"#\">Merek</a></nav><a class=\"ds-wa\" href=\"#\">Chat WhatsApp</a></header>",
-      "css": ".ds-nav{display:flex;align-items:center;gap:2rem;min-height:76px;padding:0 24px;background:#10231e;color:#f2f4f1;font-family:\"Uncut Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif}.ds-wm{font-weight:760;font-size:1.3rem;letter-spacing:-.035em;color:inherit;text-decoration:none}.ds-nav nav{display:flex;gap:1.75rem;margin-left:auto;font-size:.95rem}.ds-nav nav a{color:rgb(242 244 241 / .72);text-decoration:none;padding-block:.6rem;transition:color 200ms}.ds-nav nav a:hover{color:#f2f4f1}.ds-nav a:focus-visible{outline:2px solid #c6f24e;outline-offset:3px;border-radius:6px}.ds-wa{display:inline-flex;align-items:center;min-height:44px;padding:0 1.1rem;border-radius:999px;border:1px solid rgb(242 244 241 / .35);color:#f2f4f1;text-decoration:none;font-weight:650;font-size:.95rem}.ds-wa:hover{background:rgb(242 244 241 / .1)}"
+      "css": ".ds-nav{display:flex;align-items:center;gap:2rem;min-height:76px;padding:0 24px;background:#10231e;color:#f2f4f1;font-family:\"Public Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif}.ds-wm{font-weight:760;font-size:1.3rem;letter-spacing:-.035em;color:inherit;text-decoration:none}.ds-nav nav{display:flex;gap:1.75rem;margin-left:auto;font-size:.95rem}.ds-nav nav a{color:rgb(242 244 241 / .72);text-decoration:none;padding-block:.6rem;transition:color 200ms}.ds-nav nav a:hover{color:#f2f4f1}.ds-nav a:focus-visible{outline:2px solid #c6f24e;outline-offset:3px;border-radius:6px}.ds-wa{display:inline-flex;align-items:center;min-height:44px;padding:0 1.1rem;border-radius:999px;border:1px solid rgb(242 244 241 / .35);color:#f2f4f1;text-decoration:none;font-weight:650;font-size:.95rem}.ds-wa:hover{background:rgb(242 244 241 / .1)}"
     }
   ],
   "narrative": {

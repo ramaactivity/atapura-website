@@ -44,3 +44,6 @@ Rama menilai beranda masih "basic, murahan, tidak terasa amanah/profesional" set
 
 ## 015 · 2 November 2026 · Beranda dibangun dari mockup yang disetujui
 Rama menyetujui docs/mockup/beranda.html ("lebih profesional, trusted dan bagus"). Dibangun: hero foto Magnific (desktop teks gelap di atas langit, HP teks putih di bawah), kolom luas di hero yang mengisi Hitung AKAL, deretan bukti, bento layanan berfoto, Hitung AKAL 4 langkah (luas, merek, pekerjaan, kota; catatan jujur untuk perbaikan), bagian hujan, penutup berfoto kafe. Bagian AKAL dilepas (pesannya tercakup bukti & cara kerja). Pesan pendiri tidak dibuat: Rama menilai tidak perlu; nama pendiri (Ramadan Saputra, Yusuf Nasution) hanya akan tampil di halaman Tentang/JSON-LD bila Rama mengizinkan. Foto AI diberi keterangan "ilustrasi, bukan proyek Atapura" di hero dan footer.
+
+## 016 · 2 November 2026 · Font: Public Sans gaya askmidnight (menggantikan 011)
+Keputusan Rama (diteruskan sesi a2): Rama "suka banget" font askmidnight.com — Public Sans variable, judul 500 dengan tracking -0.04em, isi 400, tanpa italic. Self-host subset Latin 27 KB (OFL). Aksen miring diganti penekanan redup (opacity 0.55) pada bagian judul; "AKAL." di hero HP berwarna Tunas. Kolom harga tabular. Logo "Λtapura" (Arah A, Public Sans 500) dipasang setelah SVG final dari a2.

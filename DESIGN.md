@@ -16,58 +16,58 @@ colors:
   embun-redup: "rgb(242 244 241 / 0.72)"
 typography:
   display:
-    fontFamily: "Uncut Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontFamily: "Public Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
     fontSize: "clamp(3.1rem, 1.6rem + 6.4vw, 6rem)"
-    fontWeight: 300
+    fontWeight: 500
     lineHeight: 0.95
     letterSpacing: "-0.04em"
   display-strong:
-    fontFamily: "Uncut Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontFamily: "Public Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
     fontSize: "clamp(3.1rem, 1.6rem + 6.4vw, 6rem)"
     fontWeight: 400
     lineHeight: 0.95
     letterSpacing: "-0.04em"
   headline:
-    fontFamily: "Uncut Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontFamily: "Public Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
     fontSize: "clamp(2rem, 1.3rem + 2.6vw, 3.6rem)"
-    fontWeight: 300
+    fontWeight: 500
     lineHeight: 1.08
     letterSpacing: "-0.025em"
   title:
-    fontFamily: "Uncut Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontFamily: "Public Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
     fontSize: "clamp(1.35rem, 1.1rem + 0.8vw, 1.75rem)"
     fontWeight: 400
     lineHeight: 1.08
     letterSpacing: "-0.025em"
   figure:
-    fontFamily: "Uncut Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontFamily: "Public Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
     fontSize: "clamp(1.9rem, 1.4rem + 2vw, 2.6rem)"
     fontWeight: 400
     lineHeight: 1.1
     letterSpacing: "-0.035em"
     fontFeature: "tnum, lnum"
   lead:
-    fontFamily: "Uncut Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontFamily: "Public Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
     fontSize: "clamp(1.125rem, 1.05rem + 0.4vw, 1.35rem)"
     fontWeight: 400
     lineHeight: 1.5
   body:
-    fontFamily: "Uncut Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontFamily: "Public Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
     fontSize: "1.0625rem"
     fontWeight: 400
     lineHeight: 1.6
   body-desktop:
-    fontFamily: "Uncut Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontFamily: "Public Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
     fontSize: "1.125rem"
     fontWeight: 400
     lineHeight: 1.6
   label:
-    fontFamily: "Uncut Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontFamily: "Public Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
     fontSize: "0.95rem"
     fontWeight: 500
     lineHeight: 1.45
   caption:
-    fontFamily: "Uncut Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontFamily: "Public Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
     fontSize: "0.85rem"
     fontWeight: 400
     lineHeight: 1.45
@@ -181,7 +181,7 @@ Yang ditolak secara visual: pola kontraktor standar (foto rumah stok + kartu iko
 ### Aturan dasar pemilik (lintas proyek, tetap berlaku)
 
 - Rasa: bersih, modern, lembut. Hindari kaku/"jadul 2010" dan gaya template AI.
-- Huruf: sans-serif, tidak pernah serif. Proyek ini memakai Uncut Sans (grotesk ala Neue Montreal/Aeonik); Plus Jakarta Sans dan Switzer ditolak Rama 2 Nov 2026 karena terlalu generik/basic. Angka uang tabular, rupiah tanpa desimal.
+- Huruf: sans-serif, tidak pernah serif. Proyek ini memakai Public Sans (pilihan Rama, acuan askmidnight.com); Plus Jakarta Sans, Switzer, dan Uncut Sans sudah ditolak/diganti 2 Nov 2026.
 - Komponen: tombol & chip berbentuk pill; kartu rounded dengan bayangan lembut; aksen warna pastel.
 - Tidak memakai kontrol bawaan browser: confirm/alert, select, input color, textarea polos. Pakai komponen sendiri + toast.
 - Mobile-first: cek tampilan di layar HP; target sentuh minimal 44px.
@@ -226,10 +226,10 @@ Palet hijau hutan yang tenang dengan latar terang sedikit kehijauan, ditusuk sat
 
 ## Typography
 
-**Display Font:** Uncut Sans variable (Kasper Nordkvist, SIL OFL 1.1, dipangkas ke Latin, self-host `/public/fonts/UncutSans-Variable-latin.woff2`, 46 KB). Sumbu `wght` 300–700 dan `ital` 0–11; miring = `font-variation-settings: "ital" 11` lewat kelas `.miring`. Cadangan Helvetica Neue, Helvetica, Arial
-**Body Font:** Uncut Sans (sama)
+**Display Font:** Public Sans variable (USWDS, SIL OFL 1.1, subset Latin, self-host `/public/fonts/PublicSans-Variable-latin.woff2`, 27 KB), wght 100–900, tanpa italic. Cadangan Helvetica Neue, Helvetica, Arial
+**Body Font:** Public Sans (sama)
 
-**Character:** Gaya referensi Rama (eyebot, Vaseline, Space): judul besar berbobot tipis 300 dengan tracking rapat, penekanan lewat satu kata miring 400, bukan huruf tebal. Bobot yang dipakai hanya 300 (judul), 400 (badan & aksen miring), 500 (label, nama, angka kecil). Tidak ada bobot di atas 500.
+**Character:** Gaya askmidnight.com: judul bobot 500 dengan tracking -0.04em, isi 400, label/nama 500. Tanpa italic; penekanan bagian kalimat lewat warna diredupkan (`.miring` = opacity 0.55), atau Tunas untuk "AKAL." di hero HP. Angka di kolom harga tabular; angka besar kalkulator proporsional dengan "Rp" & satuan mengecil.
 
 ### Hierarchy
 - **Display** (300, kata kunci miring 400, clamp 3.2rem sampai 6.4rem, line-height 0.94, tracking -0.045em): judul hero saja. Kalimat yang sama dipecah tipis lalu tebal-miring ("Atap yang masuk" / "*AKAL.*").
@@ -242,9 +242,9 @@ Palet hijau hutan yang tenang dengan latar terang sedikit kehijauan, ditusuk sat
 - **Caption** (400, 0.8 sampai 0.85rem, line-height 1.45, Lumut): catatan di bawah slip, bantuan kontrol, kaki kalkulator.
 
 ### Named Rules
-**The Miring Sebagai Aksen Rule.** Miring hanya untuk kata kunci penutup judul (*AKAL.*, *dicek.*, *baru pasang.*), paling banyak satu frasa per judul; tidak pernah untuk paragraf.
+**The Satu Frasa Rule.** Paling banyak satu frasa diredupkan per judul; tidak pernah untuk paragraf.
 
-**The Tipis Lawan Miring Rule.** Penekanan judul datang dari satu kata miring (ital 11, bobot 400) di kalimat yang berbobot 300 — bukan dari huruf tebal, warna-warni, atau font kedua.
+**The Redup Sebagai Aksen Rule.** Penekanan judul datang dari meredupkan sebagian kalimat (opacity 0.55) di judul berbobot 500 — bukan italic, bukan warna-warni, bukan font kedua.
 
 **The Angka Tabular Rule.** Setiap angka yang dibandingkan atau berubah (estimasi, luas, harga di tabel, durasi) memakai `tabular-nums lining-nums`. Rupiah ditulis tanpa desimal.
 

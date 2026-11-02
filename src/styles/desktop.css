@@ -37,8 +37,8 @@
   .pill-tunas:hover { transform: translateY(-2px); box-shadow: 0 14px 28px -12px rgb(198 242 78 / 0.7); }
   .pill-garis:hover { background: var(--color-embun); color: var(--color-pinus); }
 
-  .ds thead th .ds-merek { transition: font-variation-settings 500ms var(--ease-film), transform 500ms var(--ease-film); }
-  .ds thead th:hover .ds-merek { font-variation-settings: "ital" 11; transform: translateX(6px); }
+  .ds thead th .ds-merek { transition: transform 500ms var(--ease-film); }
+  .ds thead th:hover .ds-merek { transform: translateX(6px); }
   .ds tbody tr { transition: background-color 240ms; }
   .ds tbody tr:hover { background: var(--color-embun); }
 
@@ -64,7 +64,7 @@
 
     /* Kata kunci judul perlahan miring saat masuk layar. */
     .sek .miring { animation: jadi-miring linear both; }
-    @keyframes jadi-miring { from { font-variation-settings: "ital" 0; } to { font-variation-settings: "ital" 11; } }
+    @keyframes jadi-miring { from { opacity: 1; } to { opacity: 0.55; } }
 
     /* Diagram lapisan: tertumpuk rapat, lalu terurai mengikuti scroll. */
     .lapisan-gambar .l { animation: urai linear both; }

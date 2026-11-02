@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
-/* Uncut Sans (Kasper Nordkvist, SIL OFL 1.1 — docs/lisensi/UncutSans-OFL.txt), dipangkas ke Latin.
-   Satu file variable: sumbu wght 300–700 dan ital 0–11 (miring lewat .miring, bukan file italic terpisah). */
+/* Public Sans (USWDS, SIL OFL 1.1 — docs/lisensi/PublicSans-OFL.txt), variable 100–900, subset Latin.
+   Gaya acuan Rama: askmidnight.com — judul 500 dengan tracking -0.04em, isi 400, tanpa italic. */
 @font-face {
-  font-family: "Uncut Sans"; font-style: normal; font-weight: 300 700; font-display: swap;
-  src: url("/fonts/UncutSans-Variable-latin.woff2") format("woff2");
+  font-family: "Public Sans"; font-style: normal; font-weight: 100 900; font-display: swap;
+  src: url("/fonts/PublicSans-Variable-latin.woff2") format("woff2");
 }
 
 @theme {
-  --font-sans: "Uncut Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-sans: "Public Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --color-pinus: #10231e;
   --color-pinus-2: #183129;
   --color-tinta: #151a18;
@@ -54,11 +54,11 @@ h1, h2, h3 {
   text-wrap: balance;
   letter-spacing: -0.035em;
   line-height: 1.04;
-  font-weight: 300;
+  font-weight: 500;
 }
 
-/* Satu-satunya cara memiringkan huruf: sumbu ital Uncut Sans. */
-.miring { font-variation-settings: "ital" 11; }
+/* Penekanan judul tanpa italic: bagian kalimat diredupkan (gaya askmidnight). */
+.miring { opacity: 0.55; }
 
 p { text-wrap: pretty; }
 

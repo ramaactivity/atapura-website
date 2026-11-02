@@ -41,7 +41,7 @@ Visitor flow: search question → answer page (price/guide/area) → Hitung AKAL
 - Voice: calm, plain, numeric, honest about when bitumen is not suitable. Banned phrases listed in `.agents/product-marketing.md` and bahan/atapura/07.
 - Logo is designed separately by Rama (not yet supplied); never generated or assembled.
 - Binding visual references: `docs/desain/referensi/` (33 images, Rama's picks) summarized in bahan/atapura/02-DESIGN-NOTES.md.
-- Sans-serif only: Uncut Sans (Neue Montreal/Aeonik-like grotesk, OFL), set light (300) with one italic keyword per headline and no weights above 500 — the reference style Rama chose (eyebot, Vaseline, Space). Plus Jakarta Sans and Switzer were rejected as too generic, 2 Nov 2026. Pill buttons/chips.
+- Sans-serif only: Public Sans (OFL), styled after askmidnight.com — headings weight 500 with -0.04em tracking, body 400, no italics; emphasis by dimming part of a headline. Plus Jakarta Sans, Switzer and Uncut Sans were rejected/replaced on 2 Nov 2026. Pill buttons/chips.
 
 ## Evidence on Hand
 - None yet: no completed projects, no real photos, no testimonials, no reviews, no project metrics. Must not be fabricated. AI-generated imagery (made by Rama in Magnific) may set atmosphere only and must never be presented as an Atapura project.
