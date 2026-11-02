@@ -1,21 +1,23 @@
 // Rentang harga jual per m² (bukan HPP/margin — rahasia bisnis tidak pernah masuk file ini).
-// CONTOH: angka di bawah disusun dari harga material publik (bahan/atapura/05) + perkiraan kasar
-// jasa & alas. BELUM VALID sampai Rama mengisi harga resmi. Selama `contoh: true`, UI wajib menampilkan tanda contoh.
-
+// KONSEP (DECISIONS 019): acuan harga pasar Jabodetabek, 2 Nov 2026 —
+//   genteng: batas atas = harga Dokter Atap (dokteratap.co.id, Maxxi 160 rb, CTI 170 rb /m²), batas bawah = pasar (riset 05);
+//   alas: multiplek Rp179,5 rb/lbr ≈3 m², GRC Rp210 rb/lbr ≈2,9 m²; underlayment self-adhesive Rp600 rb/roll 10 m² (Dokter Atap);
+//   aksesoris: flashing Rp45 rb/1,2 m, paku Rp250/bh (Dokter Atap); jasa: Rp50–70 rb/m² (ilhamplafon.com, Apr 2026).
+// `contoh: true` = angka acuan, belum harga Atapura; UI menandai "Harga acuan".
 export const harga = {
   contoh: true,
   berlakuSejak: '2026-11-02',
   // Tambahan material untuk potongan & sambungan.
   susut: 0.1,
   merek: {
-    Maxxi: { kelas: 'Ekonomis', genteng: [135_000, 160_000] },
-    CTI: { kelas: 'Menengah', genteng: [145_000, 170_000] },
-    Javabitumen: { kelas: 'Menunggu data', genteng: [130_000, 165_000] },
+    Maxxi: { kelas: 'Ekonomis', genteng: [135_000, 160_000], garansiPabrik: '25 tahun (material)' },
+    CTI: { kelas: 'Menengah', genteng: [145_000, 170_000], garansiPabrik: '20 tahun (material)' },
+    Javabitumen: { kelas: 'Menunggu data', genteng: [130_000, 165_000], garansiPabrik: 'Menunggu dokumen resmi' },
   },
   // Per m² luas atap, sama untuk semua merek.
-  alasUnderlayment: [95_000, 125_000],
-  aksesoris: [25_000, 40_000], // paku, nok, flashing, starter
-  jasa: [65_000, 90_000],
+  alasUnderlayment: [120_000, 145_000],
+  aksesoris: [15_000, 30_000], // paku, nok, flashing, starter
+  jasa: [50_000, 70_000],
   // Produktivitas tim per hari (m²), untuk perkiraan durasi.
   m2PerHari: [30, 45],
 } as const;

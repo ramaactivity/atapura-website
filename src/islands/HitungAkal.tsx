@@ -115,7 +115,7 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda' }: { awal?: 
     `Luas atap: ${luas} m²`,
     `Merek: ${merek}`,
     `Lokasi: ${kota.trim() || '(belum diisi)'}`,
-    `Estimasi dari website: ${rentang}${harga.contoh ? ' (harga contoh, belum harga resmi)' : ''}`,
+    `Estimasi dari website: ${rentang}${harga.contoh ? ' (harga acuan, final setelah survey)' : ''}`,
     `(dari ${sumber})`,
   ].join('\n');
 
@@ -199,7 +199,7 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda' }: { awal?: 
       <div class="ha-slip" data-nosnippet>
         <div class="ha-slip-kepala">
           <p class="ha-label-kecil">Perkiraan biaya total</p>
-          {harga.contoh && <span class="contoh">Harga contoh</span>}
+          {harga.contoh && <span class="contoh">Harga acuan</span>}
         </div>
         <p class="hasil-angka" aria-live="polite" aria-atomic="true">
           <span class="sr-only">{rentang}</span>

@@ -56,9 +56,9 @@ const wilayah = [
 ];
 
 const merekTabel = [
-  { nama: 'Maxxi', kelas: harga.merek.Maxxi.kelas, pasti: 'Model 3-tab, 1000 × 333 mm, tebal 2,6 mm, 21 lembar per bundel', r: harga.merek.Maxxi.genteng },
-  { nama: 'CTI', kelas: harga.merek.CTI.kelas, pasti: 'Diproduksi di Indonesia, bersertifikat TKDN; seri CT3, CT5, CT6', r: harga.merek.CTI.genteng },
-  { nama: 'Javabitumen', kelas: harga.merek.Javabitumen.kelas, pasti: 'Spesifikasi menunggu brosur resmi dari produsen', r: harga.merek.Javabitumen.genteng },
+  { nama: 'Maxxi', kelas: harga.merek.Maxxi.kelas, pasti: 'Model 3-tab, 1000 × 333 mm, tebal 2,6 mm, 3,10 m² per bundel', r: harga.merek.Maxxi.genteng, garansi: harga.merek.Maxxi.garansiPabrik },
+  { nama: 'CTI', kelas: harga.merek.CTI.kelas, pasti: 'Produksi Indonesia, bersertifikat TKDN; seri CT3 (1000 × 333 mm), CT5 dan CT6 (1000 × 320 mm), 3,00 m² per bundel', r: harga.merek.CTI.genteng, garansi: harga.merek.CTI.garansiPabrik },
+  { nama: 'Javabitumen', kelas: harga.merek.Javabitumen.kelas, pasti: 'Spesifikasi menunggu brosur resmi dari produsen', r: harga.merek.Javabitumen.genteng, garansi: harga.merek.Javabitumen.garansiPabrik },
 ];
 
 const faqSchema = {
@@ -154,7 +154,7 @@ const faqSchema = {
         </div>
         <HitungAkal client:idle awal={120} />
         <p class="hitung-catatan" data-nosnippet>
-          {harga.contoh ? 'Angka ini contoh untuk uji tampilan, bukan harga resmi. ' : ''}Harga per {tanggalPanjang(harga.berlakuSejak)}.
+          {harga.contoh ? 'Harga acuan pasar Jabodetabek, dihitung dari harga distributor dan jasa pasang. Harga final kami tulis setelah survey gratis. ' : ''}Acuan per {tanggalPanjang(harga.berlakuSejak)}.
         </p>
       </div>
     </section>
@@ -286,7 +286,7 @@ const faqSchema = {
             </thead>
             <tbody>
               <tr class="ds-harga" data-nosnippet>
-                <th scope="row">Genteng per m²{harga.contoh && <span class="contoh contoh-kecil">contoh</span>}</th>
+                <th scope="row">Genteng per m²{harga.contoh && <span class="contoh contoh-kecil">acuan</span>}</th>
                 {merekTabel.map((m) => { const b = bagianRentang(m.r[0], m.r[1]); return <td><span class="harga-rp">Rp</span>{b.min}<span class="ds-sd">–</span>{b.max}<span class="harga-sat">{b.satuan} / m²</span></td>; })}
               </tr>
               <tr>
@@ -299,7 +299,7 @@ const faqSchema = {
               </tr>
               <tr>
                 <th scope="row">Garansi pabrik</th>
-                {merekTabel.map(() => <td class="ds-tunggu">Ditulis sesuai dokumen resmi</td>)}
+                {merekTabel.map((m) => <td class="ds-tunggu">{m.garansi}</td>)}
               </tr>
             </tbody>
           </table>
@@ -310,12 +310,12 @@ const faqSchema = {
               <p class="ds-no">{String(i + 1).padStart(2, '0')}</p>
               <p class="ds-merek">{m.nama}</p>
               <p class="merek-hp-kelas">{m.kelas}</p>
-              <p class="merek-hp-harga" data-nosnippet>{(() => { const b = bagianRentang(m.r[0], m.r[1]); return <><span class="harga-rp">Rp</span>{b.min}<span class="ds-sd">–</span>{b.max}<span class="harga-sat">{b.satuan} / m²</span></>; })()}{harga.contoh && <span class="contoh contoh-kecil">contoh</span>}</p>
+              <p class="merek-hp-harga" data-nosnippet>{(() => { const b = bagianRentang(m.r[0], m.r[1]); return <><span class="harga-rp">Rp</span>{b.min}<span class="ds-sd">–</span>{b.max}<span class="harga-sat">{b.satuan} / m²</span></>; })()}{harga.contoh && <span class="contoh contoh-kecil">acuan</span>}</p>
               <p class="merek-hp-pasti">{m.pasti}</p>
             </li>
           ))}
         </ol>
-        <p class="tabel-catatan">Data spesifikasi dari brosur publik, diverifikasi ulang dengan dokumen resmi sebelum kontrak.</p>
+        <p class="tabel-catatan">Harga genteng per m² dan garansi pabrik mengacu harga pasar distributor Jabodetabek (November 2026). Spesifikasi diverifikasi ulang dengan dokumen resmi sebelum kontrak.</p>
         <div class="batas">
           <h3 class="batas-judul">Kapan kami menyarankan <span class="miring">pilihan lain</span></h3>
           <ol class="batas-daftar">
