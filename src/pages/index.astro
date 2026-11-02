@@ -214,7 +214,7 @@ const faqSchema = {
       </div>
     </section>
 
-    <section id="cara-kerja" class="sek gelap c-pinus" aria-labelledby="judul-cara">
+    <section id="cara-kerja" class="sek gelap kabut" style="--kabut: url(/kabut/hujan.webp)" aria-labelledby="judul-cara">
       <div class="wrap">
         <div class="cara-kepala">
           <h2 id="judul-cara" class="judul-besar">Uang Anda baru berpindah <span class="miring">di tahap empat.</span></h2>
@@ -224,7 +224,7 @@ const faqSchema = {
       </div>
     </section>
 
-    <section id="garansi" class="sek terang c-putih" aria-labelledby="judul-garansi">
+    <section id="garansi" class="sek gelap kabut" style="--kabut: url(/kabut/villa.webp)" aria-labelledby="judul-garansi">
       <div class="wrap">
         <div class="kepala">
           <h2 id="judul-garansi" class="judul-besar">Bayar bertahap, <span class="miring">garansi {bisnis.garansiPemasanganTahun} tahun.</span></h2>
@@ -414,6 +414,11 @@ const faqSchema = {
   </main>
   <Footer />
 
+  <div class="cta-apung no-print" data-cta-apung hidden>
+    <span>Berapa biaya atap Anda?</span>
+    <a class="pill pill-tunas" href="#hitung">Hitung estimasi</a>
+  </div>
+
   <a href={waLink('Halo Atapura, saya mau tanya soal atap bitumen.')} target="_blank" rel="noopener" class="wa-apung no-print" data-wa="apung" aria-label="Chat WhatsApp Atapura" hidden>
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3a.4.4 0 0 0 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3Z" /></svg>
     <span>Chat</span>
@@ -455,6 +460,18 @@ const faqSchema = {
   document.querySelectorAll<HTMLDetailsElement>('[data-tanya] details').forEach((d) => {
     d.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse' && sorot.matches) d.open = true; });
   });
+
+  // Desktop: pill "Hitung estimasi" melayang setelah hero lewat; sembunyi saat kalkulator atau penutup terlihat.
+  const cta = document.querySelector<HTMLElement>('[data-cta-apung]');
+  if (cta && matchMedia('(min-width: 64rem)').matches) {
+    cta.hidden = false;
+    const terlihat = new Set<Element>();
+    let heroLewat = false;
+    const perbarui = () => cta.classList.toggle('tampil', heroLewat && terlihat.size === 0);
+    new IntersectionObserver(([e]) => { heroLewat = !e.isIntersecting && e.boundingClientRect.top < 0; perbarui(); }).observe(document.querySelector('.hero')!);
+    const io = new IntersectionObserver((es) => { es.forEach((e) => (e.isIntersecting ? terlihat.add(e.target) : terlihat.delete(e.target))); perbarui(); });
+    document.querySelectorAll('#hitung, .penutup, footer').forEach((el) => io.observe(el));
+  }
 
   // Tombol WA melayang muncul di HP setelah slip Hitung AKAL lewat, supaya tidak dobel dengan tombol di slip.
   const apung = document.querySelector<HTMLElement>('.wa-apung');
@@ -702,12 +719,17 @@ const faqSchema = {
     .tanya-item:hover .tanya-q { transform: translateX(6px); }
   }
 
+  /* Latar suasana: foto Magnific dikecilkan & diburamkan (±1,5 KB), digelapkan supaya teks terbaca (pola askmidnight). */
+  .kabut { position: relative; isolation: isolate; background: var(--color-pinus) var(--kabut) center / cover no-repeat; }
+  .kabut::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgb(10 16 13 / 0.55), rgb(10 16 13 / 0.35) 50%, rgb(10 16 13 / 0.6)); }
+  .kabut .lead { color: rgb(242 244 241 / 0.78); }
+
   /* Garansi & bayar */
   .gb { display: grid; gap: 1.5rem; grid-template-columns: minmax(0, 1fr); }
   @media (min-width: 64rem) { .gb { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); } }
   .gb-judul { font-size: 1.25rem; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 1.25rem; }
   .gb-label { font-size: 0.85rem; font-weight: 500; color: var(--color-lumut); margin-bottom: 0.6rem; }
-  .gb-termin { padding: clamp(1.5rem, 3vw, 2.5rem); border-radius: 16px; background: var(--color-embun); }
+  .gb-termin { padding: clamp(1.5rem, 3vw, 2.5rem); border-radius: 16px; background: var(--color-embun); color: var(--color-tinta); }
   .termin { border-top: 1px solid var(--color-tinta); }
   .termin li { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 1rem; align-items: center; padding: 1.2rem 0; border-bottom: 1px solid var(--color-garis); }
   .termin-persen { font-size: 3rem; font-weight: 500; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums; }
@@ -735,9 +757,12 @@ const faqSchema = {
   .klaim-daftar p { margin-top: 0.3rem; color: var(--color-lumut); font-size: 0.93rem; }
   .cek-atap {
     margin-top: clamp(2.5rem, 5vw, 4rem); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem;
-    padding: clamp(1.5rem, 3vw, 2.25rem); border-radius: 16px; border: 1px solid var(--color-garis);
+    padding: clamp(1.5rem, 3vw, 2.25rem); border-radius: 16px; border: 1px solid rgb(242 244 241 / 0.25); background: rgb(10 16 13 / 0.35);
   }
-  .cek-atap p { color: var(--color-lumut); max-width: 60ch; margin-top: 0.3rem; }
+  .kabut .klaim-daftar { border-top-color: rgb(242 244 241 / 0.4); }
+  .kabut .klaim-no, .kabut .klaim-daftar p { color: var(--embun-redup); }
+  .kabut .cek-atap .pill-gelap { background: var(--color-tunas); color: var(--color-pinus); }
+  .cek-atap p { color: var(--embun-redup); max-width: 60ch; margin-top: 0.3rem; }
   .cek-judul { font-size: 1.4rem; font-weight: 500; letter-spacing: -0.03em; }
 
   /* Penutup: foto kafe + kalimat besar */
@@ -747,6 +772,18 @@ const faqSchema = {
   .penutup-isi { width: 100%; padding-block: 4rem; display: grid; gap: 1.75rem; justify-items: start; }
   .penutup-judul { font-size: clamp(3rem, 0.5rem + 10vw, 9.5rem); font-weight: 500; letter-spacing: -0.04em; line-height: 0.9; max-width: 11ch; }
   .penutup-aksi { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+  /* Pill ajakan melayang (desktop, pola askmidnight) */
+  .cta-apung {
+    position: fixed; z-index: 30; left: 50%; bottom: 1.5rem; display: flex; align-items: center; gap: 1.25rem;
+    padding: 0.45rem 0.45rem 0.45rem 1.5rem; border-radius: 999px; background: rgb(16 35 30 / 0.88); color: var(--color-embun);
+    box-shadow: 0 20px 40px -18px rgb(0 0 0 / 0.55); backdrop-filter: blur(10px);
+    opacity: 0; translate: -50% 24px; pointer-events: none; transition: opacity 500ms var(--ease-out), translate 600ms var(--ease-out);
+  }
+  .cta-apung span { font-size: 0.98rem; }
+  .cta-apung .pill { min-height: 46px; }
+  .cta-apung.tampil { opacity: 1; translate: -50% 0; pointer-events: auto; }
+  @media (max-width: 63.99rem) { .cta-apung { display: none; } }
 
   /* WA melayang (HP saja) */
   .wa-apung {

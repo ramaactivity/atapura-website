@@ -69,12 +69,6 @@
     /* Diagram lapisan: tertumpuk rapat, lalu terurai mengikuti scroll. */
     .lapisan-gambar .l { animation: urai linear both; }
 
-    /* Garis tahapan terisi Tunas mengikuti scroll. */
-    .tahap::after {
-      content: ''; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--color-tunas);
-      transform-origin: 0 50%; animation: isi-garis linear both;
-    }
-    @keyframes isi-garis { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
     /* Lembar Rapor "diletakkan" ke meja saat masuk layar. */
     .rapor { animation: letakkan linear both; }
@@ -98,7 +92,6 @@
     :where(html) main > .sek:not(:last-child)::after { animation-timeline: view(); animation-range: exit 0% exit 100%; }
     :where(html) .sek .miring { animation-timeline: view(); animation-range: entry 20% cover 40%; }
     :where(html) .lapisan-gambar .l { animation-timeline: --lapisan; animation-range: entry 30% cover 55%; }
-    :where(html) .tahap::after { animation-timeline: view(); animation-range: entry 40% cover 60%; }
     :where(html) .rapor { animation-timeline: view(); animation-range: entry 0% cover 45%; }
   }
 }

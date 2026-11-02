@@ -1,51 +1,80 @@
 ---
-// Tahapan dari bahan/atapura/01-PRODUCT-SPEC.md (/cara-kerja). Uang baru berpindah di tahap 4.
+// Tahapan dari bahan/atapura/01-PRODUCT-SPEC.md (/cara-kerja), disajikan sebagai tab di atas latar suasana
+// (pola askmidnight.com). Tiap tahap menjawab: apa yang Anda pegang di tahap ini.
+import { bisnis } from '../data/bisnis';
+
+const dp = bisnis.termin[0]?.persen;
 const tahap = [
-  { nama: 'Survey gratis', isi: 'Tim mengukur atap, memeriksa rangka, dan mencocokkan warna di rumah Anda.' },
-  { nama: 'Penawaran tertulis', isi: 'Rincian per item: material, aksesoris, jasa, dan jadwal. Tanpa biaya kejutan.' },
-  { nama: 'Kontrak', isi: 'Lingkup kerja, termin, dan garansi pemasangan ditulis dan ditandatangani.' },
-  { nama: 'Uang muka', isi: 'Dibayar ke rekening atas nama perusahaan, tidak pernah ke rekening pribadi.' },
-  { nama: 'Pengerjaan', isi: 'Lima lapis dipasang berurutan. Tiap lapis difoto sebelum ditutup.' },
-  { nama: 'Serah terima', isi: 'Pemeriksaan bersama, berita acara, rapor foto, dan kartu garansi.' },
-  { nama: 'Pelunasan', isi: 'Sisa pembayaran setelah Anda menerima atap yang sudah jadi.' },
+  { nama: 'Survey', judul: 'Atap Anda diukur, bukan ditebak', pegang: 'Ukuran atap, foto kondisi rangka, dan saran merek & warna.', isi: 'Tim datang tanpa biaya, mengukur atap, memeriksa rangka, dan membawa sampel genteng untuk dicocokkan dengan cahaya rumah Anda.' },
+  { nama: 'Penawaran', judul: 'Semua biaya tertulis sebelum Anda setuju', pegang: 'Penawaran berkop dengan rincian per item dan jadwal.', isi: 'Material, aksesoris, jasa, dan perkiraan hari kerja dirinci. Tidak ada biaya yang muncul belakangan.' },
+  { nama: 'Kontrak', judul: 'Janji dituliskan, bukan diucapkan', pegang: 'Kontrak bertanda tangan: lingkup kerja, termin, dan garansi.', isi: 'Kontrak memuat jadwal, cara bayar bertahap, dan ketentuan garansi pemasangan, untuk Anda simpan.' },
+  { nama: 'Uang muka', judul: 'Uang baru berpindah di tahap ini', pegang: `Kuitansi uang muka${dp ? ` ${dp}%` : ''} atas nama perusahaan.`, isi: 'Pembayaran hanya ke rekening atas nama perusahaan, tidak pernah ke rekening pribadi siapa pun.' },
+  { nama: 'Pengerjaan', judul: 'Lapis yang tertutup tetap bisa Anda lihat', pegang: 'Foto setiap lapis sebelum ditutup lapis berikutnya.', isi: 'Alas, underlayment, flashing, genteng, dan nok dipasang berurutan. Kabar progres dikirim lewat chat.' },
+  { nama: 'Serah terima', judul: 'Diperiksa bersama sebelum dinyatakan selesai', pegang: 'Berita acara, Rapor Proyek, dan kartu garansi.', isi: 'Atap diperiksa bersama. Catatan perbaikan diselesaikan sebelum berita acara ditandatangani.' },
+  { nama: 'Pelunasan', judul: 'Lunas setelah atapnya Anda terima', pegang: `Invoice lunas; garansi ${bisnis.garansiPemasanganTahun} tahun mulai berjalan.`, isi: 'Sisa pembayaran dilakukan setelah serah terima, dan masa garansi pemasangan dimulai.' },
 ];
 ---
 
-<ol class="tahap" data-tahap>
+<div class="ck" data-tab-kerja>
+  <div class="ck-tab" role="tablist" aria-label="Tahap pemasangan">
+    {tahap.map((t, i) => (
+      <button type="button" role="tab" id={`ck-tab-${i}`} aria-controls={`ck-panel-${i}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1} class="ck-tombol">
+        <span class="ck-no">{String(i + 1).padStart(2, '0')}</span>{t.nama}
+      </button>
+    ))}
+  </div>
   {tahap.map((t, i) => (
-    <li class="tahap-item">
-      <span class="tahap-no angka" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-      <h3 class="tahap-nama">{t.nama}</h3>
-      <p class="tahap-isi">{t.isi}</p>
-    </li>
+    <section class="ck-panel" role="tabpanel" id={`ck-panel-${i}`} aria-labelledby={`ck-tab-${i}`} hidden={i !== 0}>
+      <h3 class="ck-judul">{t.judul}</h3>
+      <div class="ck-kanan">
+        <p class="ck-pegang"><span>Yang Anda pegang</span>{t.pegang}</p>
+        <p class="ck-isi">{t.isi}</p>
+      </div>
+    </section>
   ))}
-</ol>
+</div>
+
+<script>
+  for (const root of document.querySelectorAll<HTMLElement>('[data-tab-kerja]')) {
+    const tab = [...root.querySelectorAll<HTMLButtonElement>('[role=tab]')];
+    const panel = root.querySelectorAll<HTMLElement>('[role=tabpanel]');
+    const pilih = (i: number, fokus = false) => {
+      tab.forEach((t, j) => { t.setAttribute('aria-selected', String(i === j)); t.tabIndex = i === j ? 0 : -1; });
+      panel.forEach((p, j) => { p.hidden = i !== j; });
+      if (fokus) { tab[i].focus(); tab[i].scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' }); }
+    };
+    tab.forEach((t, i) => {
+      t.addEventListener('click', () => pilih(i));
+      t.addEventListener('keydown', (e) => {
+        const arah = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (arah) { e.preventDefault(); pilih((i + arah + tab.length) % tab.length, true); }
+      });
+    });
+  }
+</script>
 
 <style>
-  .tahap { position: relative; display: grid; gap: 0; counter-reset: none; }
-  .tahap-item { position: relative; padding: 0 0 2rem 2.75rem; }
-  .tahap-item::before {
-    content: ''; position: absolute; left: 0.55rem; top: 0.3rem; width: 11px; height: 11px; border-radius: 50%;
-    border: 1px solid var(--color-tunas); background: var(--color-pinus);
+  .ck-tab { display: flex; gap: 0.25rem; overflow-x: auto; scrollbar-width: none; padding-inline: 0.25rem; }
+  .ck-tab::-webkit-scrollbar { display: none; }
+  .ck-tombol {
+    flex: none; display: inline-flex; align-items: baseline; gap: 0.45rem; min-height: 52px; padding: 0 1.2rem;
+    border-radius: 14px 14px 0 0; color: rgb(242 244 241 / 0.78); font-size: 1rem; cursor: pointer;
+    transition: background-color 300ms, color 300ms;
   }
-  .tahap-item::after {
-    content: ''; position: absolute; left: calc(0.55rem + 5px); top: 1.2rem; bottom: 0; width: 1px;
-    background: rgb(242 244 241 / 0.2);
+  .ck-tombol:hover { color: var(--color-embun); }
+  .ck-tombol[aria-selected='true'] { background: var(--color-embun); color: var(--color-tinta); }
+  .ck-no { font-size: 0.78rem; opacity: 0.6; }
+  .ck-panel {
+    display: grid; gap: 1.5rem 4rem; grid-template-columns: minmax(0, 1fr); padding: clamp(1.75rem, 4vw, 4rem);
+    background: var(--color-embun); color: var(--color-tinta); border-radius: 0 18px 18px 18px; min-height: 18rem; align-items: center;
+    animation: ck-masuk 600ms var(--ease-out);
   }
-  .tahap-item:last-child::after { display: none; }
-  .tahap-no { display: block; font-size: 0.85rem; color: var(--color-tunas); margin-bottom: 0.35rem; }
-  .tahap-nama { font-size: 1.35rem; font-weight: 400; letter-spacing: -0.02em; color: var(--color-embun); }
-  .tahap-isi { margin-top: 0.4rem; color: var(--embun-redup); font-size: 0.98rem; max-width: 32ch; }
-
-  @media (min-width: 64rem) {
-    .tahap { grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 1.5rem; padding-top: 2.5rem; }
-    .tahap::before {
-      content: ''; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: rgb(242 244 241 / 0.2);
-    }
-    .tahap-item { padding: 0; }
-    .tahap-item::before { left: 0; top: calc(-2.5rem - 5px); }
-    .tahap-item::after { display: none; }
-    .tahap-nama { font-size: 1.2rem; }
-    .tahap-isi { font-size: 0.92rem; }
-  }
+  @keyframes ck-masuk { from { opacity: 0; translate: 0 10px; } }
+  @media (prefers-reduced-motion: reduce) { .ck-panel { animation: none; } }
+  @media (min-width: 64rem) { .ck-panel { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); } }
+  .ck-judul { font-size: clamp(2rem, 1.2rem + 2.6vw, 3.6rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.02; max-width: 14ch; }
+  .ck-kanan { display: grid; gap: 1rem; }
+  .ck-pegang { font-size: clamp(1.2rem, 1rem + 0.6vw, 1.5rem); font-weight: 500; letter-spacing: -0.02em; line-height: 1.3; }
+  .ck-pegang span { display: block; font-size: 0.8rem; font-weight: 500; letter-spacing: 0; color: var(--color-lumut); margin-bottom: 0.4rem; }
+  .ck-isi { color: var(--color-lumut); max-width: 46ch; }
 </style>
