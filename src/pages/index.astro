@@ -21,6 +21,9 @@ import villa from '../../assets/gambar/magnific/segmen-villa-3x2.jpg';
 import villaHp from '../../assets/gambar/magnific/segmen-villa-4x5.jpg';
 import kafe from '../../assets/gambar/magnific/segmen-kafe-3x2.jpg';
 import kafeHp from '../../assets/gambar/magnific/segmen-kafe-4x5.jpg';
+import drone from '../../assets/gambar/magnific/cara-kerja-drone-16x9.jpg';
+import cekAtap from '../../assets/gambar/magnific/garansi-cek-atap.jpg';
+import terasHujan from '../../assets/gambar/magnific/faq-teras-hujan-16x9.jpg';
 import '../styles/desktop.css';
 import { bisnis, waLink } from '../data/bisnis';
 import { bagianRentang, harga, tanggalPanjang } from '../data/harga';
@@ -216,7 +219,8 @@ const faqSchema = {
       </div>
     </section>
 
-    <section id="cara-kerja" class="sek gelap kabut" style="--kabut: url(/kabut/hujan.webp)" aria-labelledby="judul-cara">
+    <section id="cara-kerja" class="sek gelap latar-foto" aria-labelledby="judul-cara">
+      <Foto desktop={drone} alt="" class="latar-img" sizes="100vw" />
       <div class="wrap">
         <div class="cara-kepala">
           <h2 id="judul-cara" class="judul-besar">Uang Anda baru berpindah <span class="miring">di tahap empat.</span></h2>
@@ -269,11 +273,12 @@ const faqSchema = {
           </ol>
         </div>
         <aside class="cek-atap">
-          <div>
+          <div class="cek-foto"><Foto desktop={cekAtap} alt="Ilustrasi teknisi memeriksa talang dan flashing setelah hujan" sizes="(min-width: 64rem) 30vw, 100vw" /></div>
+          <div class="cek-teks">
             <h3 class="cek-judul">Cek Atap Gratis</h3>
             <p>Setelah musim hujan pertama, tim kami datang memeriksa flashing, talang, dan nok tanpa biaya. Atap yang baik dirawat sebelum bermasalah.</p>
+            <a class="pill pill-gelap" href={waLink('Halo Atapura, saya mau tanya soal garansi dan Cek Atap Gratis.')} target="_blank" rel="noopener" data-wa="garansi">Tanya soal garansi</a>
           </div>
-          <a class="pill pill-gelap" href={waLink('Halo Atapura, saya mau tanya soal garansi dan Cek Atap Gratis.')} target="_blank" rel="noopener" data-wa="garansi">Tanya soal garansi</a>
         </aside>
       </div>
     </section>
@@ -390,8 +395,11 @@ const faqSchema = {
 
     <section id="tanya" class="sek terang c-embun" aria-labelledby="judul-tanya">
       <div class="wrap tanya">
-        <h2 id="judul-tanya" class="judul-2">Yang biasanya ditanyakan sebelum survey</h2>
-        <a class="tanya-panduan" href="/panduan">Baca panduan lengkap atap bitumen</a>
+        <div class="tanya-kiri">
+          <h2 id="judul-tanya" class="judul-2">Yang biasanya ditanyakan sebelum survey</h2>
+          <div class="tanya-foto"><Foto desktop={terasHujan} alt="Ilustrasi hujan deras dilihat dari ruang tamu, air menetes rapi dari atap" sizes="(min-width: 60rem) 38vw, 100vw" /></div>
+          <a class="tanya-panduan" href="/panduan">Baca panduan lengkap atap bitumen</a>
+        </div>
         <div class="tanya-daftar" data-tanya>
           {tanya.map((t, i) => (
             <details class="tanya-item" name="tanya" open={i === 0}>
@@ -696,8 +704,11 @@ const faqSchema = {
   }
   .tanya-daftar { display: grid; border-top: 1px solid var(--color-garis); interpolate-size: allow-keywords; }
   .tanya-item { border-bottom: 1px solid var(--color-garis); }
+  .tanya-kiri { display: grid; gap: 1.25rem; align-content: start; }
+  .tanya-foto { border-radius: 16px; overflow: hidden; aspect-ratio: 16 / 10; }
+  .tanya-foto :global(img) { width: 100%; height: 100%; object-fit: cover; }
   .tanya-panduan { display: inline-block; margin-top: 1.25rem; font-weight: 500; color: var(--color-pinus); text-decoration: underline; text-decoration-color: rgb(16 35 30 / 0.3); }
-  @media (min-width: 60rem) { .tanya-panduan { position: sticky; top: 14rem; } }
+  @media (min-width: 60rem) { .tanya-kiri { position: sticky; top: 2rem; } .tanya .judul-2 { position: static; } }
   .tanya-item summary {
     display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
     padding-block: 1.4rem; cursor: pointer; list-style: none;
@@ -725,6 +736,13 @@ const faqSchema = {
   .kabut { position: relative; isolation: isolate; background: var(--color-pinus) var(--kabut) center / cover no-repeat; }
   .kabut::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgb(10 16 13 / 0.55), rgb(10 16 13 / 0.35) 50%, rgb(10 16 13 / 0.6)); }
   .kabut .lead { color: rgb(242 244 241 / 0.78); }
+
+  /* Latar foto penuh (drone) digelapkan */
+  .latar-foto { position: relative; isolation: isolate; background: var(--color-pinus); overflow: clip; }
+  .latar-foto :global(picture) { position: absolute; inset: 0; z-index: -2; }
+  :global(.latar-img) { width: 100%; height: 100%; object-fit: cover; }
+  .latar-foto::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgb(10 16 13 / 0.82), rgb(10 16 13 / 0.55) 45%, rgb(10 16 13 / 0.78)); }
+  .latar-foto .lead { color: rgb(242 244 241 / 0.8); }
 
   /* Garansi & bayar */
   .gb { display: grid; gap: 1.5rem; grid-template-columns: minmax(0, 1fr); }
@@ -765,6 +783,11 @@ const faqSchema = {
   .kabut .klaim-no, .kabut .klaim-daftar p { color: var(--embun-redup); }
   .kabut .cek-atap .pill-gelap { background: var(--color-tunas); color: var(--color-pinus); }
   .cek-atap p { color: var(--embun-redup); max-width: 60ch; margin-top: 0.3rem; }
+  .cek-atap { display: grid !important; grid-template-columns: minmax(0, 1fr); gap: 1.5rem !important; align-items: center; }
+  @media (min-width: 64rem) { .cek-atap { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); } }
+  .cek-foto { border-radius: 12px; overflow: hidden; aspect-ratio: 4 / 3; }
+  .cek-foto :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .cek-teks { display: grid; gap: 0.6rem; justify-items: start; }
   .cek-judul { font-size: 1.4rem; font-weight: 500; letter-spacing: -0.03em; }
 
   /* Penutup: foto kafe + kalimat besar */

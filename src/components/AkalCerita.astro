@@ -1,18 +1,18 @@
 ---
 // AKAL sebagai cerita seiring scroll: foto menempel di kiri dan berganti per pilar, cerita berjalan di kanan.
-// HP: tiap pilar jadi kartu foto penuh. Foto sementara dari set Magnific yang ada; diganti foto cerita khusus (prompt di docs/desain/prompt-magnific-gelombang-2.md).
+// HP: tiap pilar jadi kartu foto penuh. Foto: Magnific gelombang 2 (docs/desain/prompt-magnific-gelombang-2.md), ilustrasi.
 import { getImage } from 'astro:assets';
 import { bisnis } from '../data/bisnis';
-import fotoAndal from '../../assets/gambar/magnific/tukang-4x5.jpg';
-import fotoKualitas from '../../assets/gambar/magnific/hujan-hp.jpg';
-import fotoAmanah from '../../assets/gambar/magnific/hero-hp.jpg';
-import fotoLestari from '../../assets/gambar/magnific/segmen-villa-4x5.jpg';
+import fotoAndal from '../../assets/gambar/magnific/akal-andal.jpg';
+import fotoKualitas from '../../assets/gambar/magnific/akal-kualitas.jpg';
+import fotoAmanah from '../../assets/gambar/magnific/akal-amanah.jpg';
+import fotoLestari from '../../assets/gambar/magnific/akal-lestari.jpg';
 
 const pilar = [
-  { id: 'andal', h: 'A', nama: 'Andal', takut: 'Tukang datang seenaknya, kerjaan molor?', dapat: 'Anda tahu tanggal mulai dan perkiraan selesai sebelum membayar apa pun, tertulis. Setiap tahap dikabari lewat chat.', bukti: '#cara-kerja', label: 'Lihat 7 tahap kerja', foto: fotoAndal, alt: 'Ilustrasi tukang atap sedang memasang genteng aspal' },
-  { id: 'kualitas', h: 'K', nama: 'Kualitas', takut: 'Takut bocor lagi padahal sudah bayar mahal?', dapat: 'Anda bisa melihat bagian atap yang nanti tertutup: setiap lapis difoto sebelum ditutup lapis berikutnya, lalu dikirim ke Anda.', bukti: '#lapisan', label: 'Lihat kelima lapis', foto: fotoKualitas, alt: 'Ilustrasi hujan deras mengalir rapi di atap genteng aspal' },
-  { id: 'amanah', h: 'A', nama: 'Amanah', takut: 'Takut harga membengkak atau tertipu?', dapat: 'Anda tahu kisaran biayanya sebelum bicara dengan siapa pun, lalu membayar bertahap mengikuti progres, hanya ke rekening perusahaan.', bukti: '#garansi', label: 'Lihat termin bayar', foto: fotoAmanah, alt: 'Ilustrasi rumah dengan atap genteng aspal yang baru selesai' },
-  { id: 'lestari', h: 'L', nama: 'Lestari', takut: 'Ditinggal begitu lunas?', dapat: `Atap Anda tetap dijaga ${bisnis.garansiPemasanganTahun} tahun: bocor akibat pemasangan diperbaiki gratis, dan dicek lagi setelah musim hujan pertama.`, bukti: '#garansi', label: 'Lihat garansi', foto: fotoLestari, alt: 'Ilustrasi villa beratap genteng aspal di sore hari' },
+  { id: 'andal', h: 'A', nama: 'Andal', takut: 'Tukang datang seenaknya, kerjaan molor?', dapat: 'Anda tahu tanggal mulai dan perkiraan selesai sebelum membayar apa pun, tertulis. Setiap tahap dikabari lewat chat.', bukti: '#cara-kerja', label: 'Lihat 7 tahap kerja', foto: fotoAndal, alt: 'Ilustrasi pemilik rumah menerima kabar jadwal sementara tim tiba membawa genteng' },
+  { id: 'kualitas', h: 'K', nama: 'Kualitas', takut: 'Takut bocor lagi padahal sudah bayar mahal?', dapat: 'Anda bisa melihat bagian atap yang nanti tertutup: setiap lapis difoto sebelum ditutup lapis berikutnya, lalu dikirim ke Anda.', bukti: '#lapisan', label: 'Lihat kelima lapis', foto: fotoKualitas, alt: 'Ilustrasi tangan tukang memaku genteng aspal di atas underlayment, ponsel memotret pekerjaan' },
+  { id: 'amanah', h: 'A', nama: 'Amanah', takut: 'Takut harga membengkak atau tertipu?', dapat: 'Anda tahu kisaran biayanya sebelum bicara dengan siapa pun, lalu membayar bertahap mengikuti progres, hanya ke rekening perusahaan.', bukti: '#garansi', label: 'Lihat termin bayar', foto: fotoAmanah, alt: 'Ilustrasi penandatanganan kontrak dengan sampel genteng di meja' },
+  { id: 'lestari', h: 'L', nama: 'Lestari', takut: 'Ditinggal begitu lunas?', dapat: `Atap Anda tetap dijaga ${bisnis.garansiPemasanganTahun} tahun: bocor akibat pemasangan diperbaiki gratis, dan dicek lagi setelah musim hujan pertama.`, bukti: '#garansi', label: 'Lihat garansi', foto: fotoLestari, alt: 'Ilustrasi keluarga bersantai di teras saat hujan sore' },
 ];
 const foto = await Promise.all(pilar.map(async (p) => ({ ...p, img: await getImage({ src: p.foto, width: 1100, format: 'webp', quality: 74 }) })));
 ---
