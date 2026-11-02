@@ -1,0 +1,66 @@
+---
+// Contoh FORMAT Rapor Proyek (bukan proyek nyata). Isian kosong sengaja: belum ada proyek selesai.
+const tahap = ['Survey', 'Alas', 'Underlayment', 'Flashing', 'Genteng', 'Nok & serah terima'];
+const isian = [
+  ['Kota', '—'],
+  ['Luas atap', '— m²'],
+  ['Merek & warna', '—'],
+  ['Lama pengerjaan', '— hari kerja'],
+];
+---
+
+<article class="rapor" aria-label="Contoh format Rapor Proyek">
+  <header class="rapor-kepala">
+    <div>
+      <p class="rapor-jenis">Rapor Proyek</p>
+      <p class="rapor-judul">Contoh format</p>
+    </div>
+    <span class="rapor-cap">Bukan proyek nyata</span>
+  </header>
+  <dl class="rapor-isian">
+    {isian.map(([k, v]) => (
+      <div><dt>{k}</dt><dd class="angka">{v}</dd></div>
+    ))}
+  </dl>
+  <ol class="rapor-foto">
+    {tahap.map((t, i) => (
+      <li>
+        <div class="rapor-bingkai" aria-hidden="true"></div>
+        <p class="rapor-tahap"><span class="angka">{i + 1}</span> {t}</p>
+      </li>
+    ))}
+  </ol>
+  <footer class="rapor-kaki">
+    <p>Foto tiap tahap diambil sebelum lapis berikutnya menutupnya.</p>
+    <p class="rapor-ttd">Diperiksa &amp; ditandatangani kepala aplikator</p>
+  </footer>
+</article>
+
+<style>
+  .rapor {
+    background: var(--color-putih); color: var(--color-tinta); border-radius: 0.5rem;
+    padding: clamp(1.25rem, 2.5vw, 2rem); box-shadow: 0 30px 60px -30px rgb(16 35 30 / 0.35), 0 2px 6px rgb(16 35 30 / 0.06);
+  }
+  .rapor-kepala { display: flex; justify-content: space-between; align-items: start; gap: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--color-tinta); }
+  .rapor-jenis { font-size: 0.85rem; color: var(--color-lumut); }
+  .rapor-judul { font-size: 1.6rem; font-weight: 300; letter-spacing: -0.03em; }
+  .rapor-cap {
+    font-size: 0.75rem; font-weight: 500; padding: 0.3rem 0.7rem; border-radius: 999px;
+    border: 1px solid var(--color-lumut); color: var(--color-lumut); white-space: nowrap;
+  }
+  .rapor-isian { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-bottom: 1px solid var(--color-garis); }
+  @media (min-width: 48rem) { .rapor-isian { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  .rapor-isian > div { padding: 0.85rem 0; }
+  .rapor-isian dt { font-size: 0.8rem; color: var(--color-lumut); }
+  .rapor-isian dd { font-size: 1.05rem; }
+  .rapor-foto { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; padding-top: 1.1rem; }
+  @media (min-width: 48rem) { .rapor-foto { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+  .rapor-bingkai {
+    aspect-ratio: 4 / 5; border-radius: 0.25rem; border: 1px solid var(--color-garis);
+    background: repeating-linear-gradient(135deg, transparent 0 7px, rgb(76 94 85 / 0.12) 7px 8px), var(--color-embun);
+  }
+  .rapor-tahap { margin-top: 0.45rem; font-size: 0.82rem; line-height: 1.3; }
+  .rapor-tahap span { color: var(--color-lumut); margin-right: 0.15rem; }
+  .rapor-kaki { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 2rem; margin-top: 1.25rem; padding-top: 0.9rem; border-top: 1px solid var(--color-garis); font-size: 0.85rem; color: var(--color-lumut); }
+  .rapor-ttd { padding-top: 1.4rem; border-top: 1px solid var(--color-tinta); min-width: 15rem; color: var(--color-tinta); }
+</style>

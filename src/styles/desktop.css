@@ -53,10 +53,10 @@
   .akal-baris:hover .akal-huruf { transform: translateX(10px); color: var(--color-tunas); font-variation-settings: "ital" 11; }
   .akal-baris:hover .akal-nama { transform: translateX(6px); }
 
-  .tabel tbody tr { transition: background-color 240ms; }
-  .tabel tbody tr:hover > * { background: var(--color-embun); }
-  .tabel tbody th { transition: font-variation-settings 400ms var(--ease-film); }
-  .tabel tbody tr:hover th { font-variation-settings: "ital" 11; }
+  .ds thead th .ds-merek { transition: font-variation-settings 500ms var(--ease-film), transform 500ms var(--ease-film); }
+  .ds thead th:hover .ds-merek { font-variation-settings: "ital" 11; transform: translateX(6px); }
+  .ds tbody tr { transition: background-color 240ms; }
+  .ds tbody tr:hover { background: var(--color-embun); }
 
   .tanya-item dt { transition: transform 400ms var(--ease-film); }
   .tanya-item:hover dt { transform: translateX(6px); }
@@ -86,6 +86,17 @@
 
     /* Diagram lapisan: tertumpuk rapat, lalu terurai mengikuti scroll. */
     .lapisan-gambar .l { animation: urai linear both; }
+
+    /* Garis tahapan terisi Tunas mengikuti scroll. */
+    .tahap::after {
+      content: ''; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--color-tunas);
+      transform-origin: 0 50%; animation: isi-garis linear both;
+    }
+    @keyframes isi-garis { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+    /* Lembar Rapor "diletakkan" ke meja saat masuk layar. */
+    .rapor { animation: letakkan linear both; }
+    @keyframes letakkan { from { rotate: -3deg; translate: 0 60px; } to { rotate: 0deg; translate: 0 0; } }
     .lapisan-gambar { view-timeline-name: --lapisan; }
     .lapisan-gambar .l-nok { --kumpul: 330px; }
     .lapisan-gambar .l-genteng { --kumpul: 250px; }
@@ -105,5 +116,7 @@
     :where(html) main > .course:not(:last-child)::after { animation-timeline: view(); animation-range: exit 0% exit 100%; }
     :where(html) .course:not(.hero) .miring { animation-timeline: view(); animation-range: entry 20% cover 40%; }
     :where(html) .lapisan-gambar .l { animation-timeline: --lapisan; animation-range: entry 30% cover 55%; }
+    :where(html) .tahap::after { animation-timeline: view(); animation-range: entry 40% cover 60%; }
+    :where(html) .rapor { animation-timeline: view(); animation-range: entry 0% cover 45%; }
   }
 }

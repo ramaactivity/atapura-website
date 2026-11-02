@@ -1,0 +1,61 @@
+---
+import { bisnis } from '../data/bisnis';
+
+// Peta skematik (bukan skala): posisi relatif kota terhadap Jakarta Pusat, cukup untuk orientasi.
+const titik: Record<string, [number, number, 'kiri' | 'kanan' | 'bawah' | 'atas']> = {
+  'Jakarta Utara': [300, 104, 'atas'],
+  'Jakarta Pusat': [300, 188, 'atas'],
+  'Jakarta Barat': [222, 182, 'kiri'],
+  'Jakarta Timur': [372, 222, 'bawah'],
+  'Jakarta Selatan': [292, 258, 'kiri'],
+  'Kota Tangerang': [142, 168, 'atas'],
+  'Kabupaten Tangerang': [62, 132, 'atas'],
+  'Tangerang Selatan': [190, 282, 'kiri'],
+  'Kota Bekasi': [462, 194, 'bawah'],
+  'Kabupaten Bekasi': [548, 158, 'atas'],
+  Depok: [296, 336, 'kanan'],
+  'Kota Bogor': [310, 438, 'kanan'],
+  'Kabupaten Bogor': [196, 410, 'kiri'],
+};
+const pos = (k: string) => titik[k];
+---
+
+<figure class="peta" aria-labelledby="peta-ket">
+  <svg viewBox="0 0 620 490" role="img" aria-labelledby="peta-ket">
+    <g class="peta-cincin">
+      {[90, 175, 260].map((r) => <circle cx="300" cy="188" r={r} />)}
+    </g>
+    <g class="peta-garis">
+      {bisnis.area.filter((k) => k !== 'Jakarta Pusat').map((k) => <line x1="300" y1="188" x2={pos(k)[0]} y2={pos(k)[1]} />)}
+    </g>
+    {bisnis.area.map((k) => {
+      const [x, y, sisi] = pos(k);
+      const dx = sisi === 'kiri' ? -12 : sisi === 'kanan' ? 12 : 0;
+      const dy = sisi === 'atas' ? -14 : sisi === 'bawah' ? 22 : 5;
+      const anchor = sisi === 'kiri' ? 'end' : sisi === 'kanan' ? 'start' : 'middle';
+      return (
+        <g class:list={['peta-titik', k.startsWith('Jakarta') && 'peta-jkt']}>
+          <circle cx={x} cy={y} r="5" />
+          <text x={x + dx} y={y + dy} text-anchor={anchor}>{k}</text>
+        </g>
+      );
+    })}
+  </svg>
+  <figcaption id="peta-ket" class="peta-ket">
+    Area survey gratis Atapura: {bisnis.area.length} kota dan kabupaten di Jabodetabek. Peta skematik, bukan skala.
+  </figcaption>
+</figure>
+
+<style>
+  .peta { margin: 0; }
+  .peta svg { width: 100%; height: auto; display: block; overflow: visible; }
+  .peta-cincin circle { fill: none; stroke: var(--color-garis); stroke-width: 1; stroke-dasharray: 2 5; }
+  .peta-garis line { stroke: var(--color-lumut); stroke-width: 0.75; opacity: 0.28; }
+  .peta-titik circle { fill: var(--color-putih); stroke: var(--color-pinus); stroke-width: 1.5; transition: transform 300ms var(--ease-out); transform-box: fill-box; transform-origin: center; }
+  .peta-jkt circle { fill: var(--color-pinus); }
+  .peta-titik text { font-size: 13px; fill: var(--color-tinta); font-family: var(--font-sans); letter-spacing: -0.01em; }
+  .peta-ket { margin-top: 1rem; font-size: 0.85rem; color: var(--color-lumut); }
+  @media (hover: hover) and (pointer: fine) {
+    .peta-titik:hover circle { transform: scale(1.6); }
+  }
+</style>

@@ -1,0 +1,51 @@
+---
+// Tahapan dari bahan/atapura/01-PRODUCT-SPEC.md (/cara-kerja). Uang baru berpindah di tahap 4.
+const tahap = [
+  { nama: 'Survey gratis', isi: 'Tim mengukur atap, memeriksa rangka, dan mencocokkan warna di rumah Anda.' },
+  { nama: 'Penawaran tertulis', isi: 'Rincian per item: material, aksesoris, jasa, dan jadwal. Tanpa biaya kejutan.' },
+  { nama: 'Kontrak', isi: 'Lingkup kerja, termin, dan garansi pemasangan ditulis dan ditandatangani.' },
+  { nama: 'Uang muka', isi: 'Dibayar ke rekening atas nama perusahaan, tidak pernah ke rekening pribadi.' },
+  { nama: 'Pengerjaan', isi: 'Lima lapis dipasang berurutan. Tiap lapis difoto sebelum ditutup.' },
+  { nama: 'Serah terima', isi: 'Pemeriksaan bersama, berita acara, rapor foto, dan kartu garansi.' },
+  { nama: 'Pelunasan', isi: 'Sisa pembayaran setelah Anda menerima atap yang sudah jadi.' },
+];
+---
+
+<ol class="tahap" data-tahap>
+  {tahap.map((t, i) => (
+    <li class="tahap-item">
+      <span class="tahap-no angka" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+      <h3 class="tahap-nama">{t.nama}</h3>
+      <p class="tahap-isi">{t.isi}</p>
+    </li>
+  ))}
+</ol>
+
+<style>
+  .tahap { position: relative; display: grid; gap: 0; counter-reset: none; }
+  .tahap-item { position: relative; padding: 0 0 2rem 2.75rem; }
+  .tahap-item::before {
+    content: ''; position: absolute; left: 0.55rem; top: 0.3rem; width: 11px; height: 11px; border-radius: 50%;
+    border: 1px solid var(--color-tunas); background: var(--color-pinus);
+  }
+  .tahap-item::after {
+    content: ''; position: absolute; left: calc(0.55rem + 5px); top: 1.2rem; bottom: 0; width: 1px;
+    background: rgb(242 244 241 / 0.2);
+  }
+  .tahap-item:last-child::after { display: none; }
+  .tahap-no { display: block; font-size: 0.85rem; color: var(--color-tunas); margin-bottom: 0.35rem; }
+  .tahap-nama { font-size: 1.35rem; font-weight: 400; letter-spacing: -0.02em; color: var(--color-embun); }
+  .tahap-isi { margin-top: 0.4rem; color: var(--embun-redup); font-size: 0.98rem; max-width: 32ch; }
+
+  @media (min-width: 64rem) {
+    .tahap { grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 1.5rem; padding-top: 2.5rem; }
+    .tahap::before {
+      content: ''; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: rgb(242 244 241 / 0.2);
+    }
+    .tahap-item { padding: 0; }
+    .tahap-item::before { left: 0; top: calc(-2.5rem - 5px); }
+    .tahap-item::after { display: none; }
+    .tahap-nama { font-size: 1.2rem; }
+    .tahap-isi { font-size: 0.92rem; }
+  }
+</style>
