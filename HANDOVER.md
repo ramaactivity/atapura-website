@@ -10,7 +10,7 @@ Milestone 1 (bahan/atapura/04-ROADMAP.md):
 - ✅ robots.txt (wildcard allow), llms.txt (dari data, tanpa angka harga contoh), sitemap
 - ✅ `data/keyword-validasi.csv` — 50 keyword untuk dicek volumenya
 - ✅ Deploy: akun Vercel khusus Atapura (deploy.md), secret `VERCEL_TOKEN` terpasang, workflow Actions → Vercel.
-- ✅ DESIGN.md + `.impeccable/design.json` (documenter, mode gabung). Font diganti ke Switzer (DECISIONS 010).
+- ✅ DESIGN.md + `.impeccable/design.json` (documenter, mode gabung). Font: Uncut Sans tipis + miring (DECISIONS 011). WA sementara terpasang (012).
 
 Review desain: Impeccable finish reviewer 2 putaran (fix → fix). Semua 8 temuan material + 2 regresi sudah diperbaiki; putaran ketiga (verdict) belum dijalankan. Detektor Impeccable: 0 temuan (terbukti bisa menangkap slop di fixture).
 

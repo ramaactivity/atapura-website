@@ -29,3 +29,9 @@ Rama membuat akun Vercel atapurakaryalestari@gmail.com (team `atapura`) dan mena
 
 ## 010 · 2 November 2026 · Font: Switzer menggantikan Plus Jakarta Sans
 Rama: Plus Jakarta Sans terlalu generik; mau gaya Helvetica dengan kombinasi tipis-tebal dan italic yang bagus (referensi: poster Helvetica, Vaseline, Yensis, Sunlight). Dibandingkan dengan spesimen teks asli: Switzer, Hanken Grotesk, Host Grotesk. Dipilih Switzer (ITF/Fontshare): paling dekat Helvetica, italic asli, angka rapi; lisensi ITF FFL boleh komersial & self-host, tetapi file tidak boleh diubah (tanpa subset) — tegak 43 KB + italic 33 KB. Lisensi di docs/lisensi/Switzer-FFL.txt. Italic hanya aksen kata kunci judul.
+
+## 011 · 2 November 2026 · Font: Uncut Sans + tata tipis-miring (menggantikan 010)
+Rama: Switzer dengan bobot tebal masih "kurang profesional, generik, basic" dibanding referensi (Space, eyebot, Steply, Vaseline). Analisis: referensi memakai judul besar berbobot tipis, tracking rapat, dan tebal/miring hanya untuk satu kata. Lima font diuji dalam tata yang sama (Switzer, Satoshi, General Sans, Mona Sans, Uncut Sans); Rama memilih Uncut Sans (paling dekat Neue Montreal/Aeonik). Lisensi OFL → dipangkas ke Latin, satu file variable 46 KB (wght 300–700, ital 0–11). Bobot dibatasi 300/400/500.
+
+## 012 · 2 November 2026 · WhatsApp bisnis sementara 0896-1139-4867
+Dari Rama. Disimpan di `src/data/bisnis.ts` (`6289611394867`), dipakai semua tombol WA dan pesan Hitung AKAL. Belum dipakai sebagai `telephone` di JSON-LD sampai Rama mengonfirmasi nomor telepon resmi.

@@ -1,18 +1,14 @@
 @import "tailwindcss";
 
-/* Switzer (Indian Type Foundry, ITF Free Font License — docs/lisensi/Switzer-FFL.txt).
-   Lisensi melarang mengubah file font, jadi variable font dipakai utuh tanpa subset. */
+/* Uncut Sans (Kasper Nordkvist, SIL OFL 1.1 — docs/lisensi/UncutSans-OFL.txt), dipangkas ke Latin.
+   Satu file variable: sumbu wght 300–700 dan ital 0–11 (miring lewat .miring, bukan file italic terpisah). */
 @font-face {
-  font-family: "Switzer"; font-style: normal; font-weight: 100 900; font-display: swap;
-  src: url("/fonts/Switzer-Variable.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Switzer"; font-style: italic; font-weight: 100 900; font-display: swap;
-  src: url("/fonts/Switzer-VariableItalic.woff2") format("woff2");
+  font-family: "Uncut Sans"; font-style: normal; font-weight: 300 700; font-display: swap;
+  src: url("/fonts/UncutSans-Variable-latin.woff2") format("woff2");
 }
 
 @theme {
-  --font-sans: "Switzer", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-sans: "Uncut Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --color-pinus: #10231e;
   --color-pinus-2: #183129;
   --color-tinta: #151a18;
@@ -58,9 +54,13 @@ body {
 
 h1, h2, h3 {
   text-wrap: balance;
-  letter-spacing: -0.025em;
-  line-height: 1.08;
+  letter-spacing: -0.035em;
+  line-height: 1.04;
+  font-weight: 300;
 }
+
+/* Satu-satunya cara memiringkan huruf: sumbu ital Uncut Sans. */
+.miring { font-variation-settings: "ital" 11; }
 
 p { text-wrap: pretty; }
 
@@ -91,7 +91,7 @@ a { text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
 .pill {
   display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
   min-height: 48px; padding: 0 1.4rem; border-radius: 999px;
-  font-weight: 650; font-size: 1rem; letter-spacing: -0.005em;
+  font-weight: 500; font-size: 1rem; letter-spacing: -0.005em;
   transition: transform 160ms var(--ease-out), background-color 200ms, box-shadow 200ms;
   text-decoration: none; cursor: pointer;
 }
@@ -113,6 +113,6 @@ a { text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
 
 .contoh {
   display: inline-flex; align-items: center; padding: 0.2rem 0.65rem; border-radius: 999px;
-  background: var(--color-tunas-pucat); color: var(--color-pinus); font-size: 0.75rem; font-weight: 650;
+  background: var(--color-tunas-pucat); color: var(--color-pinus); font-size: 0.75rem; font-weight: 500;
 }
 .contoh-kecil { margin-left: 0.4rem; padding: 0.05rem 0.5rem; font-size: 0.7rem; }

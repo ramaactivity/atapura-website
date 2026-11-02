@@ -294,13 +294,13 @@ const faqSchema = {
   .gelap { color: var(--color-embun); }
   .course:not(.hero) { padding-top: calc(var(--course-overlap) + clamp(56px, 8vw, 112px)); }
 
-  .judul-2 { font-size: clamp(2rem, 1.3rem + 2.6vw, 3.6rem); font-weight: 720; max-width: 18ch; }
-  .judul-3 { font-size: clamp(1.35rem, 1.1rem + 0.8vw, 1.75rem); font-weight: 700; }
+  .judul-2 { font-size: clamp(2.1rem, 1.3rem + 3vw, 4rem); font-weight: 300; max-width: 18ch; }
+  .judul-3 { font-size: clamp(1.35rem, 1.1rem + 0.8vw, 1.75rem); font-weight: 400; letter-spacing: -0.02em; }
   .lead { font-size: clamp(1.125rem, 1.05rem + 0.4vw, 1.35rem); line-height: 1.5; max-width: 38ch; }
   .terang .lead { color: var(--color-tinta); }
   .gelap .lead { color: var(--embun-redup); }
   .hero-tipis { font-weight: 300; }
-  .miring { font-style: italic; }
+  .miring { font-weight: 400; }
 
   /* Hero */
   .hero { background: var(--color-pinus); color: var(--color-embun); overflow: clip; isolation: isolate; }
@@ -326,13 +326,13 @@ const faqSchema = {
   }
   .hero-judul {
     display: flex; flex-direction: column;
-    font-size: clamp(3.1rem, 1.6rem + 6.4vw, 6rem); line-height: 0.95; letter-spacing: -0.04em;
+    font-size: clamp(3.2rem, 1.6rem + 6.8vw, 6.4rem); line-height: 0.94; letter-spacing: -0.045em; font-weight: 300;
   }
-  .hero-tebal { font-weight: 760; font-style: italic; color: var(--color-tunas); letter-spacing: -0.045em; }
+  .hero-tebal { font-weight: 400; font-variation-settings: "ital" 11; color: var(--color-tunas); }
   .hero-sub { margin-top: 1.5rem; max-width: 44ch; color: var(--embun-redup); font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem); }
   .hero-fakta { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.75rem; }
   .hero-fakta li {
-    padding: 0.45rem 0.95rem; border-radius: 999px; font-size: 0.9rem; font-weight: 550;
+    padding: 0.45rem 0.95rem; border-radius: 999px; font-size: 0.9rem; font-weight: 450;
     background: rgb(16 35 30 / 0.72); border: 1px solid rgb(242 244 241 / 0.16);
   }
   @media (min-width: 64rem) {
@@ -373,13 +373,13 @@ const faqSchema = {
   .tabel-gulir { overflow-x: auto; border-radius: 1.25rem; border: 1px solid var(--color-garis); }
   .tabel { width: 100%; min-width: 46rem; border-collapse: collapse; font-size: 1rem; }
   .tabel th, .tabel td { padding: 1.1rem 1.25rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--color-garis); }
-  .tabel thead th { font-size: 0.85rem; font-weight: 650; color: var(--color-lumut); background: var(--color-embun); position: sticky; top: 0; }
+  .tabel thead th { font-size: 0.85rem; font-weight: 500; color: var(--color-lumut); background: var(--color-embun); position: sticky; top: 0; }
   .tabel tr > :first-child { position: sticky; left: 0; background: var(--color-putih); z-index: 1; }
   .tabel thead tr > :first-child { background: var(--color-embun); z-index: 2; }
-  .tabel tbody th { font-weight: 720; font-size: 1.15rem; letter-spacing: -0.015em; }
+  .tabel tbody th { font-weight: 500; font-size: 1.15rem; letter-spacing: -0.015em; }
   .tabel tbody tr:last-child > * { border-bottom: 0; }
   .tabel td { color: var(--color-lumut); }
-  .nowrap { white-space: nowrap; color: var(--color-tinta) !important; font-weight: 600; }
+  .nowrap { white-space: nowrap; color: var(--color-tinta) !important; font-weight: 500; }
   @media (max-width: 47.99rem) {
     .tabel-gulir { overflow: visible; border: 0; }
     .tabel { min-width: 0; }
@@ -405,7 +405,7 @@ const faqSchema = {
   }
   @media (min-width: 60rem) { .batas { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
   .batas-daftar { display: grid; gap: 1.25rem; color: var(--color-lumut); }
-  .batas-daftar strong { color: var(--color-tinta); font-weight: 700; }
+  .batas-daftar strong { color: var(--color-tinta); font-weight: 500; }
   .tabel-catatan { margin-top: 1rem; font-size: 0.9rem; color: var(--color-lumut); }
 
   /* AKAL: huruf-huruf membentuk satu kata turun ke bawah, tiap huruf menambatkan satu pilar */
@@ -420,10 +420,10 @@ const faqSchema = {
   .akal-huruf {
     grid-row: span 3; font-size: 4.5rem; font-weight: 300; line-height: 0.8; letter-spacing: -0.05em; color: var(--color-embun);
   }
-  .akal-nama { color: var(--color-embun); font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; }
+  .akal-nama { color: var(--color-embun); font-size: 1.4rem; font-weight: 500; letter-spacing: -0.02em; }
   .akal-bukti { color: var(--embun-redup); max-width: 52ch; }
   .akal-tautan {
-    color: var(--color-embun); font-weight: 600; padding-block: 0.4rem; justify-self: start;
+    color: var(--color-embun); font-weight: 500; padding-block: 0.4rem; justify-self: start;
     text-decoration: underline; text-decoration-color: rgb(242 244 241 / 0.35); transition: color 200ms, text-decoration-color 200ms;
   }
   .akal-tautan:hover, .akal-tautan:focus-visible { color: var(--color-tunas); text-decoration-color: currentColor; }
@@ -433,7 +433,7 @@ const faqSchema = {
     box-shadow: 0 14px 30px -14px rgb(0 0 0 / 0.6);
   }
   .transfer-label { font-size: 0.8rem; color: var(--color-lumut); }
-  .transfer-nama { font-weight: 720; font-size: 1.05rem; letter-spacing: -0.01em; }
+  .transfer-nama { font-weight: 500; font-size: 1.05rem; letter-spacing: -0.01em; }
   @media (min-width: 60rem) {
     .akal-baris {
       grid-template-columns: clamp(7rem, 11vw, 10rem) minmax(0, 0.7fr) minmax(0, 1.5fr) minmax(0, 0.8fr);
@@ -448,7 +448,7 @@ const faqSchema = {
   @media (min-width: 60rem) { .area { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); } }
   .area .lead { margin-top: 1.25rem; color: var(--color-lumut); }
   .wilayah { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); }
-  .wilayah-nama { font-weight: 700; font-size: 1.05rem; padding-bottom: 0.6rem; margin-bottom: 0.6rem; border-bottom: 1px solid var(--color-garis); }
+  .wilayah-nama { font-weight: 500; font-size: 1.05rem; padding-bottom: 0.6rem; margin-bottom: 0.6rem; border-bottom: 1px solid var(--color-garis); }
   .wilayah-kota { display: grid; gap: 0.35rem; color: var(--color-lumut); }
   .rapor {
     grid-column: 1 / -1; display: grid; gap: 0.75rem; max-width: 52rem;
@@ -465,7 +465,7 @@ const faqSchema = {
   .tanya-daftar { display: grid; }
   .tanya-item { padding-block: 1.5rem; border-top: 1px solid var(--color-garis); }
   .tanya-item:first-child { border-top: 0; padding-top: 0; }
-  .tanya-item dt { font-weight: 700; font-size: 1.2rem; letter-spacing: -0.015em; margin-bottom: 0.5rem; }
+  .tanya-item dt { font-weight: 500; font-size: 1.2rem; letter-spacing: -0.015em; margin-bottom: 0.5rem; }
   .tanya-item dd { color: var(--color-lumut); max-width: 62ch; }
 
   /* Penutup */
@@ -477,7 +477,7 @@ const faqSchema = {
   .wa-apung {
     position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 30;
     display: inline-flex; align-items: center; gap: 0.5rem; min-height: 52px; padding: 0 1.2rem 0 1rem;
-    border-radius: 999px; background: var(--color-tunas); color: var(--color-pinus); font-weight: 700; text-decoration: none;
+    border-radius: 999px; background: var(--color-tunas); color: var(--color-pinus); font-weight: 500; text-decoration: none;
     box-shadow: 0 12px 28px -10px rgb(16 35 30 / 0.6);
     opacity: 0; transform: translateY(24px); pointer-events: none;
     transition: opacity 400ms var(--ease-out), transform 500ms var(--ease-out);

@@ -16,58 +16,58 @@ colors:
   embun-redup: "rgb(242 244 241 / 0.72)"
 typography:
   display:
-    fontFamily: "Switzer, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontFamily: "Uncut Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
     fontSize: "clamp(3.1rem, 1.6rem + 6.4vw, 6rem)"
     fontWeight: 300
     lineHeight: 0.95
     letterSpacing: "-0.04em"
   display-strong:
-    fontFamily: "Switzer, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontFamily: "Uncut Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
     fontSize: "clamp(3.1rem, 1.6rem + 6.4vw, 6rem)"
-    fontWeight: 760
+    fontWeight: 400
     lineHeight: 0.95
     letterSpacing: "-0.04em"
   headline:
-    fontFamily: "Switzer, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontFamily: "Uncut Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
     fontSize: "clamp(2rem, 1.3rem + 2.6vw, 3.6rem)"
-    fontWeight: 720
+    fontWeight: 300
     lineHeight: 1.08
     letterSpacing: "-0.025em"
   title:
-    fontFamily: "Switzer, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontFamily: "Uncut Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
     fontSize: "clamp(1.35rem, 1.1rem + 0.8vw, 1.75rem)"
-    fontWeight: 700
+    fontWeight: 400
     lineHeight: 1.08
     letterSpacing: "-0.025em"
   figure:
-    fontFamily: "Switzer, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontFamily: "Uncut Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
     fontSize: "clamp(1.9rem, 1.4rem + 2vw, 2.6rem)"
-    fontWeight: 760
+    fontWeight: 400
     lineHeight: 1.1
     letterSpacing: "-0.035em"
     fontFeature: "tnum, lnum"
   lead:
-    fontFamily: "Switzer, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontFamily: "Uncut Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
     fontSize: "clamp(1.125rem, 1.05rem + 0.4vw, 1.35rem)"
     fontWeight: 400
     lineHeight: 1.5
   body:
-    fontFamily: "Switzer, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontFamily: "Uncut Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
     fontSize: "1.0625rem"
     fontWeight: 400
     lineHeight: 1.6
   body-desktop:
-    fontFamily: "Switzer, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontFamily: "Uncut Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
     fontSize: "1.125rem"
     fontWeight: 400
     lineHeight: 1.6
   label:
-    fontFamily: "Switzer, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontFamily: "Uncut Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
     fontSize: "0.95rem"
-    fontWeight: 650
+    fontWeight: 500
     lineHeight: 1.45
   caption:
-    fontFamily: "Switzer, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontFamily: "Uncut Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
     fontSize: "0.85rem"
     fontWeight: 400
     lineHeight: 1.45
@@ -181,7 +181,7 @@ Yang ditolak secara visual: pola kontraktor standar (foto rumah stok + kartu iko
 ### Aturan dasar pemilik (lintas proyek, tetap berlaku)
 
 - Rasa: bersih, modern, lembut. Hindari kaku/"jadul 2010" dan gaya template AI.
-- Huruf: sans-serif, tidak pernah serif. Proyek ini memakai Switzer (neo-grotesk ala Helvetica); Plus Jakarta Sans ditolak Rama 2 Nov 2026 karena terlalu generik. Angka uang tabular, rupiah tanpa desimal.
+- Huruf: sans-serif, tidak pernah serif. Proyek ini memakai Uncut Sans (grotesk ala Neue Montreal/Aeonik); Plus Jakarta Sans dan Switzer ditolak Rama 2 Nov 2026 karena terlalu generik/basic. Angka uang tabular, rupiah tanpa desimal.
 - Komponen: tombol & chip berbentuk pill; kartu rounded dengan bayangan lembut; aksen warna pastel.
 - Tidak memakai kontrol bawaan browser: confirm/alert, select, input color, textarea polos. Pakai komponen sendiri + toast.
 - Mobile-first: cek tampilan di layar HP; target sentuh minimal 44px.
@@ -226,25 +226,25 @@ Palet hijau hutan yang tenang dengan latar terang sedikit kehijauan, ditusuk sat
 
 ## Typography
 
-**Display Font:** Switzer variable, tegak + italic asli (Indian Type Foundry, ITF Free Font License, self-host di `/public/fonts`, file tidak boleh diubah/di-subset), cadangan Helvetica Neue, Helvetica, Arial
-**Body Font:** Switzer (sama)
+**Display Font:** Uncut Sans variable (Kasper Nordkvist, SIL OFL 1.1, dipangkas ke Latin, self-host `/public/fonts/UncutSans-Variable-latin.woff2`, 46 KB). Sumbu `wght` 300–700 dan `ital` 0–11; miring = `font-variation-settings: "ital" 11` lewat kelas `.miring`. Cadangan Helvetica Neue, Helvetica, Arial
+**Body Font:** Uncut Sans (sama)
 
-**Character:** Satu keluarga neo-grotesk gaya Swiss (Helvetica). Hierarki dibangun lewat ukuran, berat variabel (300 sampai 760), dan italic asli sebagai aksen, bukan font kedua. Judul rapat (tracking negatif), badan lapang.
+**Character:** Gaya referensi Rama (eyebot, Vaseline, Space): judul besar berbobot tipis 300 dengan tracking rapat, penekanan lewat satu kata miring 400, bukan huruf tebal. Bobot yang dipakai hanya 300 (judul), 400 (badan & aksen miring), 500 (label, nama, angka kecil). Tidak ada bobot di atas 500.
 
 ### Hierarchy
-- **Display** (300 dan 760, clamp 3.1rem sampai 6rem, line-height 0.95): judul hero saja. Kalimat yang sama dipecah tipis lalu tebal-miring ("Atap yang masuk" / "*AKAL.*").
-- **Headline** (720, clamp 2rem sampai 3.6rem, line-height 1.08, maks 18ch): judul section. Bagian pembuka boleh berat 300 ("Masuk AKAL," bisa dicek). Penutup memakai versi lebih besar (clamp 2.5rem sampai 5rem, maks 14ch).
-- **Title** (700, clamp 1.35rem sampai 1.75rem): sub-judul dalam section (lapisan, "kapan kami menyarankan pilihan lain", slot bukti).
-- **Figure** (720, tracking -0.015em, clamp 1.9rem sampai 2.6rem, tabular): angka estimasi di slip; batas atas rentang diawali "s/d" berat 300 warna Lumut.
+- **Display** (300, kata kunci miring 400, clamp 3.2rem sampai 6.4rem, line-height 0.94, tracking -0.045em): judul hero saja. Kalimat yang sama dipecah tipis lalu tebal-miring ("Atap yang masuk" / "*AKAL.*").
+- **Headline** (300, kata kunci miring 400, clamp 2rem sampai 3.6rem, line-height 1.08, maks 18ch): judul section. Bagian pembuka boleh berat 300 ("Masuk AKAL," bisa dicek). Penutup memakai versi lebih besar (clamp 2.5rem sampai 5rem, maks 14ch).
+- **Title** (400, clamp 1.35rem sampai 1.75rem): sub-judul dalam section (lapisan, "kapan kami menyarankan pilihan lain", slot bukti).
+- **Figure** (400, tracking -0.03em, clamp 1.9rem sampai 2.6rem, tabular): angka estimasi di slip; batas atas rentang diawali "s/d" berat 300 warna Lumut.
 - **Lead** (400, clamp 1.125rem sampai 1.35rem, line-height 1.5, maks 38ch): paragraf pembuka section.
 - **Body** (400, 17px di HP / 18px mulai 64rem, line-height 1.6): teks baca; jawaban tanya-jawab maks 62ch, bukti AKAL maks 52ch.
-- **Label** (650, 0.95rem): label kontrol, judul kolom footer, label tombol (tombol 1rem).
+- **Label** (500, 0.95rem): label kontrol, judul kolom footer, label tombol (tombol 1rem).
 - **Caption** (400, 0.8 sampai 0.85rem, line-height 1.45, Lumut): catatan di bawah slip, bantuan kontrol, kaki kalkulator.
 
 ### Named Rules
-**The Miring Sebagai Aksen Rule.** Italic asli Switzer hanya untuk kata kunci penutup kalimat judul (*AKAL.*, *dicek.*, *baru pasang.*), paling banyak satu frasa per judul; tidak pernah untuk paragraf.
+**The Miring Sebagai Aksen Rule.** Miring hanya untuk kata kunci penutup judul (*AKAL.*, *dicek.*, *baru pasang.*), paling banyak satu frasa per judul; tidak pernah untuk paragraf.
 
-**The Tipis Lawan Tebal Rule.** Penekanan judul datang dari berat huruf dalam satu kalimat (300 lawan 720 sampai 760), bukan dari warna-warni atau font kedua.
+**The Tipis Lawan Miring Rule.** Penekanan judul datang dari satu kata miring (ital 11, bobot 400) di kalimat yang berbobot 300 — bukan dari huruf tebal, warna-warni, atau font kedua.
 
 **The Angka Tabular Rule.** Setiap angka yang dibandingkan atau berubah (estimasi, luas, harga di tabel, durasi) memakai `tabular-nums lining-nums`. Rupiah ditulis tanpa desimal.
 
@@ -342,7 +342,7 @@ Pill Tunas 52px di kanan bawah (16px + safe area), hanya di bawah 64rem, muncul 
 - **Do** susun section sebagai course yang menimpa course berikutnya (overlap `clamp(28px, 4vw, 48px)`, radius bawah 6px, bayangan jatuh ke bawah) dan bergantian terang/gelap.
 - **Do** taruh harga, tabel, dan tanya-jawab di bidang terang (Embun/Putih) dengan teks Tinta; Pinus untuk bukti dan penutup.
 - **Do** pakai Tunas hanya untuk aksi utama dan satu kata di atas gelap, selalu dengan teks Pinus di atasnya.
-- **Do** tekankan judul lewat berat (300 lawan 720 sampai 760) dalam satu kalimat.
+- **Do** tekankan judul lewat satu kata miring di kalimat berbobot 300; jangan pakai bobot di atas 500.
 - **Do** pakai `tabular-nums` untuk setiap angka; rupiah tanpa desimal.
 - **Do** beri setiap kontrol target sentuh minimal 44px dan bentuk pill.
 - **Do** tandai angka uji dengan chip "contoh" dan slot bukti kosong dengan bingkai putus-putus yang jujur.

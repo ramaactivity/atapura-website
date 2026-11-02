@@ -9,7 +9,7 @@ export const bisnis = {
   deskripsi:
     'Aplikator dan supplier atap bitumen (genteng aspal) Maxxi, CTI, dan Javabitumen untuk rumah, villa, kafe, dan proyek di Jabodetabek.',
   // Format internasional tanpa "+" untuk wa.me. null = belum ada; tombol WA tetap tampil tapi diarahkan ke halaman kontak WA umum.
-  whatsapp: null as string | null,
+  whatsapp: '6289611394867' as string | null, // sementara, dari Rama 2 Nov 2026
   telepon: null as string | null,
   email: 'atapurakaryalestari@gmail.com',
   jamKerja: null as string | null,
