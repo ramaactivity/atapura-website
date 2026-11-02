@@ -11,6 +11,7 @@ Milestone 1 (bahan/atapura/04-ROADMAP.md):
 - ✅ `data/keyword-validasi.csv` — 50 keyword untuk dicek volumenya
 - ✅ Deploy: akun Vercel khusus Atapura (deploy.md), secret `VERCEL_TOKEN` terpasang, workflow Actions → Vercel.
 - ✅ DESIGN.md + `.impeccable/design.json` (documenter, mode gabung). Font: Uncut Sans tipis + miring (DECISIONS 011). WA sementara terpasang (012).
+- ✅ Logo final Λtapura (DECISIONS 018) di `public/brand/` + terpasang di header, footer, favicon, JSON-LD. Halaman **/branding** = panduan brand & design system (unduh logo/ZIP, warna, huruf, komponen, foto, templat sosmed, penerapan, tulisan) — patokan konten sosmed. Ubah logo lewat `tools/logo/build.py`, lalu buat ulang ZIP (lihat `public/brand/README.md`). `vercel.json` cleanUrls aktif (halaman baru tanpa .html).
 
 Review desain: Impeccable finish reviewer 2 putaran (fix → fix). Semua 8 temuan material + 2 regresi sudah diperbaiki; putaran ketiga (verdict) belum dijalankan. Detektor Impeccable: 0 temuan (terbukti bisa menangkap slop di fixture).
 
