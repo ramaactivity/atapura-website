@@ -14,6 +14,15 @@ Milestone 1 (bahan/atapura/04-ROADMAP.md):
 
 Review desain: Impeccable finish reviewer 2 putaran (fix → fix). Semua 8 temuan material + 2 regresi sudah diperbaiki; putaran ketiga (verdict) belum dijalankan. Detektor Impeccable: 0 temuan (terbukti bisa menangkap slop di fixture).
 
+## Prioritas berikutnya (POV calon customer + riset a2, 2 Nov 2026)
+Sumber: docs/riset/kompetitor-website-2026-11-02.md, docs/riset/audit-seo-geo-2026-11-02.md. Quick wins audit di kode SUDAH dikerjakan (commit c1bce77).
+Bisa dibangun tanpa data baru:
+1. Bagian "Pilih warna" (swatch dari foto sampel asli — tekstur Magnific hanya ilustrasi, wajib label "cek sampel fisik saat survey").
+2. Tabel termin bayar + "Cara klaim garansi" (isi persentase DP/termin menunggu Rama).
+3. "Cek Atap Gratis" setelah musim hujan + layanan perawatan sebagai kartu/bagian sendiri.
+4. Halaman /harga-atap-bitumen, /atap-bitumen, /tentang (2 pendiri), /cara-kerja, /garansi (multi-halaman = SEO).
+Butuh data/aksi Rama: harga resmi, garansi (tahun), termin DP, foto proyek asli + ulasan Google, brosur/TDS (pusat unduhan), spesifikasi teknis per merek (kemiringan min., berat, angin), domain sendiri, Google Business Profile, Search Console, telepon resmi, logo (a2).
+
 ## Menunggu dari Rama
 WhatsApp bisnis, harga resmi per merek, durasi garansi pemasangan, logo, foto proyek/Magnific, brosur Javabitumen, status agen resmi, NIB/NPWP setelah PT terbit.
 
