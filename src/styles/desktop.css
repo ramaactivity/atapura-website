@@ -22,36 +22,15 @@
   .baris:nth-child(2) > span { animation-delay: 120ms; }
   @keyframes naik-baris { from { transform: translateY(105%); } }
 
-  .hero-sub, .hero-fakta { animation: muncul 1000ms var(--ease-film) 380ms both; }
+  .hero-sub, .hitung-bar, .hero-alt { animation: muncul 1000ms var(--ease-film) 380ms both; }
   @keyframes muncul { from { opacity: 0; transform: translateY(14px); } }
 
-  .slip-atap .slip { animation: slip-naik 1200ms var(--ease-film) 220ms both; }
-  @keyframes slip-naik { from { opacity: 0; transform: translateY(40px); } }
 
-  /* Garis atap tergambar dari puncak ke kedua sisi. */
-  .garis-atap path {
-    stroke-dasharray: 340; stroke-dashoffset: 340;
-    animation: gambar-garis 1600ms var(--ease-film) 500ms forwards;
-  }
-  @keyframes gambar-garis { to { stroke-dashoffset: 0; } }
 
   /* 5. Hover yang menjawab. */
   .pill { transition: transform 220ms var(--ease-film), background-color 220ms, box-shadow 260ms var(--ease-film), color 220ms; }
   .pill-tunas:hover { transform: translateY(-2px); box-shadow: 0 14px 28px -12px rgb(198 242 78 / 0.7); }
   .pill-garis:hover { background: var(--color-embun); color: var(--color-pinus); }
-  .kepala-wa:hover { background: var(--color-embun); color: var(--color-pinus); }
-
-  .akal-baris { position: relative; isolation: isolate; }
-  .akal-baris::before {
-    content: ''; position: absolute; inset: 0 -1.25rem; z-index: -1; border-radius: 0.75rem;
-    background: rgb(242 244 241 / 0.045);
-    clip-path: inset(0 100% 0 0 round 0.75rem);
-    transition: clip-path 520ms var(--ease-film);
-  }
-  .akal-baris:hover::before { clip-path: inset(0 0 0 0 round 0.75rem); }
-  .akal-huruf, .akal-nama { transition: transform 520ms var(--ease-film), color 300ms, font-variation-settings 520ms var(--ease-film); }
-  .akal-baris:hover .akal-huruf { transform: translateX(10px); color: var(--color-tunas); font-variation-settings: "ital" 11; }
-  .akal-baris:hover .akal-nama { transform: translateX(6px); }
 
   .ds thead th .ds-merek { transition: font-variation-settings 500ms var(--ease-film), transform 500ms var(--ease-film); }
   .ds thead th:hover .ds-merek { font-variation-settings: "ital" 11; transform: translateX(6px); }
@@ -69,8 +48,8 @@
 @supports (animation-timeline: view()) {
   @media (min-width: 64rem) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
     /* Tumpuk: bagian yang naik keluar layar mengecil & meredup, tertindih bagian berikutnya. */
-    main > .course:not(:last-child) { animation: tertindih linear both; transform-origin: 50% 100%; }
-    main > .course:not(:last-child)::after {
+    main > .sek:not(:last-child) { animation: tertindih linear both; transform-origin: 50% 100%; }
+    main > .sek:not(:last-child)::after {
       content: ''; position: absolute; inset: 0; pointer-events: none; border-radius: inherit;
       background: #0b1714; opacity: 0;
       animation: redup linear both;
@@ -79,7 +58,7 @@
     @keyframes redup { to { opacity: 0.55; } }
 
     /* Kata kunci judul perlahan miring saat masuk layar. */
-    .course:not(.hero) .miring { animation: jadi-miring linear both; }
+    .sek .miring { animation: jadi-miring linear both; }
     @keyframes jadi-miring { from { font-variation-settings: "ital" 0; } to { font-variation-settings: "ital" 11; } }
 
     /* Diagram lapisan: tertumpuk rapat, lalu terurai mengikuti scroll. */
@@ -110,9 +89,9 @@
    :where(html) membuat selektornya berbeda (tidak digabung) tanpa menambah spesifisitas. */
 @supports (animation-timeline: view()) {
   @media (min-width: 64rem) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-    :where(html) main > .course:not(:last-child),
-    :where(html) main > .course:not(:last-child)::after { animation-timeline: view(); animation-range: exit 0% exit 100%; }
-    :where(html) .course:not(.hero) .miring { animation-timeline: view(); animation-range: entry 20% cover 40%; }
+    :where(html) main > .sek:not(:last-child),
+    :where(html) main > .sek:not(:last-child)::after { animation-timeline: view(); animation-range: exit 0% exit 100%; }
+    :where(html) .sek .miring { animation-timeline: view(); animation-range: entry 20% cover 40%; }
     :where(html) .lapisan-gambar .l { animation-timeline: --lapisan; animation-range: entry 30% cover 55%; }
     :where(html) .tahap::after { animation-timeline: view(); animation-range: entry 40% cover 60%; }
     :where(html) .rapor { animation-timeline: view(); animation-range: entry 0% cover 45%; }

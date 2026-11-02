@@ -3,10 +3,10 @@ import { waLink } from '../data/bisnis';
 
 const menu = [
   { href: '#hitung', label: 'Hitung biaya' },
-  { href: '#lapisan', label: 'Cara pasang' },
+  { href: '#layanan', label: 'Layanan' },
+  { href: '#cara-kerja', label: 'Cara kerja' },
   { href: '#merek', label: 'Merek' },
   { href: '#area', label: 'Area' },
-  { href: '#tanya', label: 'Tanya jawab' },
 ];
 ---
 
@@ -16,6 +16,7 @@ const menu = [
     <nav aria-label="Utama" class="kepala-nav">
       {menu.map((m) => <a href={m.href}>{m.label}</a>)}
     </nav>
+    <a class="pill kepala-perusahaan" href="#layanan-proyek">Untuk perusahaan</a>
     <a class="pill kepala-wa" href={waLink('Halo Atapura, saya mau tanya soal atap bitumen.')} target="_blank" rel="noopener" data-wa="header">
       Chat WhatsApp
     </a>
@@ -23,31 +24,20 @@ const menu = [
 </header>
 
 <style>
-  .kepala {
-    position: absolute; inset: 0 0 auto; z-index: 20;
-    color: var(--color-embun);
-  }
-  .kepala-isi {
-    display: flex; align-items: center; gap: 2rem;
-    min-height: 76px;
-  }
-  .merek-kata {
-    font-weight: 500; font-size: 1.3rem; letter-spacing: -0.035em;
-    text-decoration: none; color: inherit;
-  }
+  .kepala { position: absolute; inset: 0 0 auto; z-index: 20; color: var(--color-putih); }
+  .kepala-isi { display: flex; align-items: center; gap: 2rem; min-height: 80px; }
+  .merek-kata { font-weight: 500; font-size: 1.4rem; letter-spacing: -0.04em; text-decoration: none; color: inherit; text-shadow: 0 1px 10px rgb(0 0 0 / 0.3); }
   .kepala-nav { display: none; gap: 1.75rem; margin-left: auto; font-size: 0.95rem; }
-  .kepala-nav a {
-    color: var(--embun-redup); text-decoration: none; padding-block: 0.6rem;
-    transition: color 200ms;
-  }
-  .kepala-nav a:hover { color: var(--color-embun); }
-  .kepala-wa {
-    margin-left: auto; min-height: 44px; padding-inline: 1.1rem; font-size: 0.95rem;
-    border: 1px solid rgb(242 244 241 / 0.35); color: var(--color-embun);
-  }
-  .kepala-wa:hover { background: rgb(242 244 241 / 0.1); }
+  .kepala-nav a { color: inherit; text-decoration: none; padding-block: 0.6rem; opacity: 0.8; transition: opacity 200ms; }
+  .kepala-nav a:hover { opacity: 1; }
+  .kepala-wa { margin-left: auto; min-height: 44px; padding-inline: 1.2rem; font-size: 0.92rem; background: var(--color-pinus); color: var(--color-putih); }
+  .kepala-wa:hover { background: var(--color-pinus-2); }
+  .kepala-perusahaan { display: none; min-height: 44px; padding-inline: 1.2rem; font-size: 0.92rem; border: 1px solid currentColor; color: inherit; }
   @media (min-width: 64rem) {
+    .kepala { color: var(--color-pinus); }
+    .merek-kata { text-shadow: none; }
     .kepala-nav { display: flex; }
     .kepala-wa { margin-left: 0; }
+    .kepala-perusahaan { display: inline-flex; }
   }
 </style>

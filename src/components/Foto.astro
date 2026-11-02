@@ -1,0 +1,48 @@
+---
+// Foto dengan potongan berbeda untuk HP dan desktop (art direction), AVIF + WebP, ukuran responsif.
+import type { ImageMetadata } from 'astro';
+import { getImage } from 'astro:assets';
+
+interface Props {
+  desktop: ImageMetadata;
+  hp?: ImageMetadata;
+  alt: string;
+  class?: string;
+  eager?: boolean;
+  /** Lebar tampil di desktop, untuk atribut sizes. */
+  sizes?: string;
+}
+
+const { desktop, hp, alt, class: kelas, eager = false, sizes = '100vw' } = Astro.props;
+const lebar = (img: ImageMetadata, daftar: number[]) => daftar.filter((w) => w <= img.width).concat(daftar.some((w) => w > img.width) ? [img.width] : []);
+const set = async (img: ImageMetadata, format: 'avif' | 'webp', daftar: number[]) =>
+  (await Promise.all(lebar(img, daftar).map(async (w) => `${(await getImage({ src: img, width: w, format })).src} ${w}w`))).join(', ');
+
+const lebarD = [960, 1440, 1920, 2560];
+const lebarH = [480, 780, 1080];
+const sumber = [
+  ...(hp
+    ? [
+        { media: '(max-width: 47.99rem)', type: 'image/avif', srcset: await set(hp, 'avif', lebarH), sizes: '100vw' },
+        { media: '(max-width: 47.99rem)', type: 'image/webp', srcset: await set(hp, 'webp', lebarH), sizes: '100vw' },
+      ]
+    : []),
+  { type: 'image/avif', srcset: await set(desktop, 'avif', lebarD), sizes },
+  { type: 'image/webp', srcset: await set(desktop, 'webp', lebarD), sizes },
+];
+const cadangan = await getImage({ src: desktop, width: Math.min(1440, desktop.width), format: 'jpg' });
+---
+
+<picture>
+  {sumber.map((s) => <source media={s.media} type={s.type} srcset={s.srcset} sizes={s.sizes} />)}
+  <img
+    src={cadangan.src}
+    alt={alt}
+    class={kelas}
+    width={desktop.width}
+    height={desktop.height}
+    loading={eager ? 'eager' : 'lazy'}
+    decoding={eager ? 'sync' : 'async'}
+    fetchpriority={eager ? 'high' : 'auto'}
+  />
+</picture>

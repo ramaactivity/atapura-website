@@ -24,8 +24,6 @@
 :root {
   /* Teks sekunder di atas Pinus: diturunkan dari Embun, bukan abu netral. */
   --embun-redup: rgb(242 244 241 / 0.72);
-  --course-r: 6px;
-  --course-overlap: clamp(28px, 4vw, 48px);
   --gutter: clamp(20px, 5vw, 72px);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   color-scheme: light;
@@ -77,15 +75,6 @@ p { text-wrap: pretty; }
 
 a { text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
 
-/* Tata "baris genteng": tiap section menimpa section di bawahnya seperti baris genteng di atap. */
-.course {
-  position: relative;
-  border-radius: 0 0 var(--course-r) var(--course-r);
-  margin-bottom: calc(var(--course-overlap) * -1);
-  padding-bottom: calc(var(--course-overlap) + clamp(56px, 8vw, 112px));
-  box-shadow: 0 22px 32px -22px rgb(16 35 30 / 0.55);
-}
-
 .wrap { padding-inline: var(--gutter); max-width: 90rem; margin-inline: auto; }
 
 .pill {
@@ -107,7 +96,6 @@ a { text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
 
 @media print {
   html { background: white; }
-  .course { box-shadow: none; margin-bottom: 0; }
   .no-print { display: none !important; }
 }
 
