@@ -1,6 +1,6 @@
 ---
 // Footer pola Andermatt: tagline besar + satu ajakan di kiri, kolom tautan bertajuk di kanan,
-// baris identitas, lalu baris legal. Latar terang supaya kontras dengan penutup gelap.
+// baris identitas, lalu baris legal. Latar gradasi gelap (pilihan Rama).
 import { getCollection } from 'astro:content';
 import { bisnis, waLink } from '../data/bisnis';
 import Logo from './Logo.astro';
@@ -123,25 +123,27 @@ const kolom: { judul: string; tautan: { label: string; href: string; luar?: bool
      tautan rapat satu ritme, tagline kompak. Skala: tagline 2.4rem / isi 1rem / legal 0.875rem. */
   .kaki {
     background:
-      radial-gradient(55% 75% at 0% 0%, rgb(198 242 78 / 0.22), transparent 70%),
-      radial-gradient(45% 70% at 100% 100%, rgb(242 182 107 / 0.24), transparent 70%),
-      radial-gradient(40% 60% at 70% 10%, rgb(76 94 85 / 0.10), transparent 70%),
-      linear-gradient(180deg, #f2f4f1 0%, #e7ece6 100%); color: var(--color-tinta); padding-top: clamp(4rem, 7vw, 6.5rem); padding-bottom: 2rem; border-top: 1px solid rgb(16 35 30 / 0.08); }
+      radial-gradient(50% 70% at 8% 0%, rgb(198 242 78 / 0.10), transparent 70%),
+      radial-gradient(45% 75% at 96% 100%, rgb(242 182 107 / 0.16), transparent 70%),
+      radial-gradient(40% 60% at 60% 30%, rgb(76 94 85 / 0.22), transparent 70%),
+      linear-gradient(180deg, #10231e 0%, #0b1714 100%);
+    color: var(--color-embun); padding-top: clamp(4rem, 7vw, 6.5rem); padding-bottom: 2rem; border-top: 1px solid rgb(242 244 241 / 0.08); }
   .kaki-atas { display: grid; gap: 3rem 4rem; grid-template-columns: minmax(0, 1fr); }
   @media (min-width: 64rem) { .kaki-atas { grid-template-columns: minmax(0, 1fr) minmax(0, 1.9fr); } }
   .kaki-besar { font-size: clamp(1.9rem, 1.4rem + 1.4vw, 2.5rem); font-weight: 500; letter-spacing: -0.035em; line-height: 1.12; max-width: 16ch; text-wrap: balance; }
   .kaki-aksi {
-    display: inline-block; margin-top: 1.25rem; font-size: 1rem; font-weight: 500; color: var(--color-pinus);
+    display: inline-block; margin-top: 1.25rem; font-size: 1rem; font-weight: 500; color: var(--color-embun);
     text-decoration: underline; text-decoration-color: var(--color-tunas); text-decoration-thickness: 2px; text-underline-offset: 0.4em;
   }
+  .kaki-aksi:hover { color: var(--color-tunas); }
   .kaki-kolom { display: grid; gap: 2.75rem 2rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   @media (min-width: 48rem) { .kaki-kolom { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-  .kaki-judul { font-size: 1rem; line-height: 1.4; font-weight: 500; color: var(--color-pinus); padding-bottom: 0.15rem; }
+  .kaki-judul { font-size: 1rem; line-height: 1.4; font-weight: 500; color: var(--color-embun); padding-bottom: 0.15rem; }
   .kaki-kolom ul { display: grid; }
   .kaki-kolom li { font-size: 1rem; line-height: 1.5; }
   .kaki-kolom li + li { margin-top: 0.12rem; }
-  .kaki-kolom a { color: var(--color-lumut); text-decoration: none; transition: color 200ms; }
-  .kaki-kolom a:hover { color: var(--color-pinus); text-decoration: underline; text-underline-offset: 0.25em; }
+  .kaki-kolom a { color: rgb(242 244 241 / 0.62); text-decoration: none; transition: color 200ms; }
+  .kaki-kolom a:hover { color: var(--color-tunas); text-decoration: underline; text-underline-offset: 0.25em; }
   .kaki-identitas {
     margin-top: clamp(3.5rem, 6vw, 5.5rem); display: grid; gap: 1rem 4rem; align-items: start;
     grid-template-columns: minmax(0, 1fr);
@@ -150,18 +152,18 @@ const kolom: { judul: string; tautan: { label: string; href: string; luar?: bool
   /* Legal mengikuti grid kolom tautan di atasnya: PT selebar 2 kolom, area di kolom ke-3. */
   .kaki-legal-grup { display: grid; gap: 1rem 2rem; grid-template-columns: minmax(0, 1fr); }
   @media (min-width: 48rem) { .kaki-legal-grup { grid-template-columns: repeat(3, minmax(0, 1fr)); } .kaki-legal-pt { grid-column: span 2; } }
-  .kaki-logo { color: var(--color-pinus); padding-top: 0.15rem; }
-  .kaki-legal { font-size: 0.875rem; line-height: 1.6; color: var(--color-lumut); }
+  .kaki-logo { color: var(--color-embun); padding-top: 0.15rem; }
+  .kaki-legal { font-size: 0.875rem; line-height: 1.6; color: rgb(242 244 241 / 0.6); }
   .kaki-sosial { display: flex; flex-wrap: wrap; gap: 0.35rem; }
   .kaki-sosial a, .kaki-sosial-segera {
-    display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; color: var(--color-pinus);
-    background: rgb(255 255 255 / 0.55); box-shadow: inset 0 0 0 1px rgb(16 35 30 / 0.08); transition: background-color 250ms, color 250ms, transform 250ms var(--ease-out);
+    display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; color: var(--color-embun);
+    background: rgb(242 244 241 / 0.07); box-shadow: inset 0 0 0 1px rgb(242 244 241 / 0.12); transition: background-color 250ms, color 250ms, transform 250ms var(--ease-out);
   }
   .kaki-sosial :global(svg) { width: 18px; height: 18px; }
-  .kaki-sosial a:hover { background: var(--color-pinus); color: var(--color-tunas); transform: translateY(-2px); }
-  .kaki-sosial-segera { opacity: 0.45; cursor: default; }
+  .kaki-sosial a:hover { background: var(--color-tunas); color: var(--color-pinus); transform: translateY(-2px); }
+  .kaki-sosial-segera { opacity: 0.35; cursor: default; }
   .kaki-bawah {
-    margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid var(--color-garis);
-    display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; justify-content: space-between; font-size: 0.875rem; line-height: 1.6; color: var(--color-lumut);
+    margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid rgb(242 244 241 / 0.1);
+    display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; justify-content: space-between; font-size: 0.875rem; line-height: 1.6; color: rgb(242 244 241 / 0.5);
   }
 </style>
