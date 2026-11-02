@@ -23,15 +23,17 @@ const tahap = [
       </button>
     ))}
   </div>
-  {tahap.map((t, i) => (
-    <section class="ck-panel" role="tabpanel" id={`ck-panel-${i}`} aria-labelledby={`ck-tab-${i}`} hidden={i !== 0}>
-      <h3 class="ck-judul">{t.judul}</h3>
-      <div class="ck-kanan">
-        <p class="ck-pegang"><span>Yang Anda pegang</span>{t.pegang}</p>
-        <p class="ck-isi">{t.isi}</p>
-      </div>
-    </section>
-  ))}
+  <div class="ck-kartu">
+    {tahap.map((t, i) => (
+      <section class="ck-panel" role="tabpanel" id={`ck-panel-${i}`} aria-labelledby={`ck-tab-${i}`} data-aktif={String(i === 0)} inert={i !== 0}>
+        <h3 class="ck-judul">{t.judul}</h3>
+        <div class="ck-kanan">
+          <p class="ck-pegang"><span>Yang Anda pegang</span>{t.pegang}</p>
+          <p class="ck-isi">{t.isi}</p>
+        </div>
+      </section>
+    ))}
+  </div>
 </div>
 
 <script>
@@ -40,7 +42,8 @@ const tahap = [
     const panel = root.querySelectorAll<HTMLElement>('[role=tabpanel]');
     const pilih = (i: number, fokus = false) => {
       tab.forEach((t, j) => { t.setAttribute('aria-selected', String(i === j)); t.tabIndex = i === j ? 0 : -1; });
-      panel.forEach((p, j) => { p.hidden = i !== j; });
+      // Kartu tetap diam; hanya isi yang berganti (semua panel menumpuk di satu sel grid, tinggi tidak meloncat).
+      panel.forEach((p, j) => { p.dataset.aktif = String(i === j); p.inert = i !== j; });
       if (fokus) { tab[i].focus(); tab[i].scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' }); }
     };
     tab.forEach((t, i) => {
@@ -54,23 +57,33 @@ const tahap = [
 </script>
 
 <style>
-  .ck-tab { display: flex; gap: 0.25rem; overflow-x: auto; scrollbar-width: none; padding-inline: 0.25rem; }
+  .ck-tab { display: flex; gap: 0.25rem; overflow-x: auto; scrollbar-width: none; }
   .ck-tab::-webkit-scrollbar { display: none; }
   .ck-tombol {
     flex: none; display: inline-flex; align-items: baseline; gap: 0.45rem; min-height: 52px; padding: 0 1.2rem;
-    border-radius: 14px 14px 0 0; color: rgb(242 244 241 / 0.78); font-size: 1rem; cursor: pointer;
-    transition: background-color 300ms, color 300ms;
+    position: relative; border-radius: 14px 14px 0 0; color: rgb(242 244 241 / 0.78); font-size: 1rem; cursor: pointer;
+    transition: color 200ms;
   }
   .ck-tombol:hover { color: var(--color-embun); }
   .ck-tombol[aria-selected='true'] { background: var(--color-embun); color: var(--color-tinta); }
+  /* Lengkung cekung di kaki tab aktif supaya tab dan kartu jadi satu bentuk (tab pertama terpotong rapi oleh tepi daftar). */
+  .ck-tombol[aria-selected='true']::before, .ck-tombol[aria-selected='true']::after {
+    content: ''; position: absolute; bottom: 0; width: 14px; height: 14px; pointer-events: none;
+  }
+  .ck-tombol[aria-selected='true']::before { left: -14px; background: radial-gradient(circle at 0 0, transparent 13.5px, var(--color-embun) 14px); }
+  .ck-tombol[aria-selected='true']::after { right: -14px; background: radial-gradient(circle at 100% 0, transparent 13.5px, var(--color-embun) 14px); }
+  .ck-kartu { display: grid; background: var(--color-embun); color: var(--color-tinta); border-radius: 18px; transition: border-radius 200ms; }
+  .ck:has(.ck-tombol:first-child[aria-selected='true']) .ck-kartu { border-top-left-radius: 0; }
   .ck-no { font-size: 0.78rem; opacity: 0.6; }
   .ck-panel {
-    display: grid; gap: 1.5rem 4rem; grid-template-columns: minmax(0, 1fr); padding: clamp(1.75rem, 4vw, 4rem);
-    background: var(--color-embun); color: var(--color-tinta); border-radius: 0 18px 18px 18px; min-height: 18rem; align-items: center;
-    animation: ck-masuk 600ms var(--ease-out);
+    grid-area: 1 / 1; display: grid; gap: 1.5rem 4rem; grid-template-columns: minmax(0, 1fr); padding: clamp(1.75rem, 4vw, 4rem);
+    min-height: 18rem; align-items: center;
+    transition: opacity 380ms var(--ease-out) 150ms, translate 500ms var(--ease-out) 150ms, visibility 0s 150ms;
   }
-  @keyframes ck-masuk { from { opacity: 0; translate: 0 10px; } }
-  @media (prefers-reduced-motion: reduce) { .ck-panel { animation: none; } }
+  .ck-panel[data-aktif='false'] {
+    opacity: 0; translate: 0 8px; visibility: hidden;
+    transition: opacity 140ms ease-in, translate 140ms ease-in, visibility 0s 140ms;
+  }
   @media (min-width: 64rem) { .ck-panel { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); } }
   .ck-judul { font-size: clamp(2rem, 1.2rem + 2.6vw, 3.6rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.02; max-width: 14ch; }
   .ck-kanan { display: grid; gap: 1rem; }
