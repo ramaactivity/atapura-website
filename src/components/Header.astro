@@ -1,0 +1,53 @@
+---
+import { waLink } from '../data/bisnis';
+
+const menu = [
+  { href: '#hitung', label: 'Hitung biaya' },
+  { href: '#lapisan', label: 'Cara pasang' },
+  { href: '#merek', label: 'Merek' },
+  { href: '#area', label: 'Area' },
+  { href: '#tanya', label: 'Tanya jawab' },
+];
+---
+
+<header class="kepala no-print">
+  <div class="wrap kepala-isi">
+    <a href="/" class="merek-kata" aria-label="Atapura, ke beranda">Atapura</a>
+    <nav aria-label="Utama" class="kepala-nav">
+      {menu.map((m) => <a href={m.href}>{m.label}</a>)}
+    </nav>
+    <a class="pill kepala-wa" href={waLink('Halo Atapura, saya mau tanya soal atap bitumen.')} target="_blank" rel="noopener" data-wa="header">
+      Chat WhatsApp
+    </a>
+  </div>
+</header>
+
+<style>
+  .kepala {
+    position: absolute; inset: 0 0 auto; z-index: 20;
+    color: var(--color-embun);
+  }
+  .kepala-isi {
+    display: flex; align-items: center; gap: 2rem;
+    min-height: 76px;
+  }
+  .merek-kata {
+    font-weight: 760; font-size: 1.3rem; letter-spacing: -0.035em;
+    text-decoration: none; color: inherit;
+  }
+  .kepala-nav { display: none; gap: 1.75rem; margin-left: auto; font-size: 0.95rem; }
+  .kepala-nav a {
+    color: var(--embun-redup); text-decoration: none; padding-block: 0.6rem;
+    transition: color 200ms;
+  }
+  .kepala-nav a:hover { color: var(--color-embun); }
+  .kepala-wa {
+    margin-left: auto; min-height: 44px; padding-inline: 1.1rem; font-size: 0.95rem;
+    border: 1px solid rgb(242 244 241 / 0.35); color: var(--color-embun);
+  }
+  .kepala-wa:hover { background: rgb(242 244 241 / 0.1); }
+  @media (min-width: 64rem) {
+    .kepala-nav { display: flex; }
+    .kepala-wa { margin-left: 0; }
+  }
+</style>

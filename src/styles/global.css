@@ -1,0 +1,108 @@
+@import "tailwindcss";
+@import "@fontsource-variable/plus-jakarta-sans/wght.css";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --color-pinus: #10231e;
+  --color-pinus-2: #183129;
+  --color-tinta: #151a18;
+  --color-lumut: #4c5e55;
+  --color-embun: #f2f4f1;
+  --color-putih: #ffffff;
+  --color-tunas: #c6f24e;
+  --color-tunas-pucat: #eaf8c4;
+  --color-senja: #f2b66b;
+  --color-garis: #d9ded8;
+}
+
+:root {
+  /* Teks sekunder di atas Pinus: diturunkan dari Embun, bukan abu netral. */
+  --embun-redup: rgb(242 244 241 / 0.72);
+  --course-r: 6px;
+  --course-overlap: clamp(28px, 4vw, 48px);
+  --gutter: clamp(20px, 5vw, 72px);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  color-scheme: light;
+}
+
+html {
+  font-family: var(--font-sans);
+  color: var(--color-tinta);
+  background: var(--color-pinus);
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-size: 1.0625rem; /* 17px di HP */
+  line-height: 1.6;
+  font-feature-settings: "kern", "liga";
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (min-width: 64rem) {
+  body { font-size: 1.125rem; }
+}
+
+h1, h2, h3 {
+  text-wrap: balance;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+}
+
+p { text-wrap: pretty; }
+
+.angka { font-variant-numeric: tabular-nums lining-nums; }
+
+::selection { background: var(--color-tunas); color: var(--color-pinus); }
+
+:focus-visible {
+  outline: 2px solid var(--color-tunas);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+.terang :focus-visible { outline-color: var(--color-pinus); }
+
+a { text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+
+/* Tata "baris genteng": tiap section menimpa section di bawahnya seperti baris genteng di atap. */
+.course {
+  position: relative;
+  border-radius: 0 0 var(--course-r) var(--course-r);
+  margin-bottom: calc(var(--course-overlap) * -1);
+  padding-bottom: calc(var(--course-overlap) + clamp(56px, 8vw, 112px));
+  box-shadow: 0 22px 32px -22px rgb(16 35 30 / 0.55);
+}
+
+.wrap { padding-inline: var(--gutter); max-width: 90rem; margin-inline: auto; }
+
+.pill {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  min-height: 48px; padding: 0 1.4rem; border-radius: 999px;
+  font-weight: 650; font-size: 1rem; letter-spacing: -0.005em;
+  transition: transform 160ms var(--ease-out), background-color 200ms, box-shadow 200ms;
+  text-decoration: none; cursor: pointer;
+}
+.pill:active { transform: scale(0.97); }
+.pill-tunas { background: var(--color-tunas); color: var(--color-pinus); box-shadow: 0 6px 18px -8px rgb(198 242 78 / 0.6); }
+.pill-tunas:hover { background: #d3f76c; }
+.pill-garis { border: 1px solid currentColor; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+
+@media print {
+  html { background: white; }
+  .course { box-shadow: none; margin-bottom: 0; }
+  .no-print { display: none !important; }
+}
+
+.contoh {
+  display: inline-flex; align-items: center; padding: 0.2rem 0.65rem; border-radius: 999px;
+  background: var(--color-tunas-pucat); color: var(--color-pinus); font-size: 0.75rem; font-weight: 650;
+}
+.contoh-kecil { margin-left: 0.4rem; padding: 0.05rem 0.5rem; font-size: 0.7rem; }

@@ -1,0 +1,61 @@
+---
+import '../styles/global.css';
+import fontLatin from '@fontsource-variable/plus-jakarta-sans/files/plus-jakarta-sans-latin-wght-normal.woff2?url';
+import { bisnis } from '../data/bisnis';
+
+interface Props {
+  title: string;
+  description: string;
+  /** JSON-LD tambahan khusus halaman (FAQPage, BreadcrumbList, dst.). */
+  schema?: object[];
+}
+
+const { title, description, schema = [] } = Astro.props;
+const canonical = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', Astro.site).href;
+const siteUrl = new URL('/', Astro.site).href;
+
+// Bisnis tanpa toko: tanpa address, area layanan eksplisit. Field yang belum ada datanya tidak ditulis.
+const organisasi = {
+  '@context': 'https://schema.org',
+  '@type': 'RoofingContractor',
+  '@id': `${siteUrl}#bisnis`,
+  name: bisnis.nama,
+  description: bisnis.deskripsi,
+  slogan: bisnis.tagline,
+  url: siteUrl,
+  email: bisnis.email,
+  ...(bisnis.telepon && { telephone: `+${bisnis.telepon}` }),
+  ...(bisnis.sosmed.length && { sameAs: bisnis.sosmed }),
+  areaServed: bisnis.area.map((name) => ({
+    '@type': name.startsWith('Kabupaten') ? 'AdministrativeArea' : 'City',
+    name: `${name}, Indonesia`,
+  })),
+  knowsAbout: ['atap bitumen', 'genteng aspal', 'asphalt shingle', ...bisnis.merek],
+  inLanguage: 'id-ID',
+};
+const jsonLd = [organisasi, ...schema];
+---
+
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="preload" href={fontLatin} as="font" type="font/woff2" crossorigin />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="theme-color" content="#10231e" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:site_name" content={bisnis.nama} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

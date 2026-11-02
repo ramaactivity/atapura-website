@@ -1,6 +1,7 @@
-docs/
-*.md
-bahan/
-bahan-besar/
-data/
-assets/desain/
+/docs/
+/*.md
+/bahan/
+/data/
+/assets/desain/
+/.impeccable/
+/.agents/

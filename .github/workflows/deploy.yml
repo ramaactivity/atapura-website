@@ -1,0 +1,31 @@
+name: Deploy ke Vercel (produksi)
+
+# Jalur deploy = GitHub Actions + VERCEL_TOKEN, bukan sambungan Git bawaan Vercel:
+# satu akun GitHub dipakai banyak proyek yang tersebar di beberapa akun Vercel.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: vercel-production
+  cancel-in-progress: true
+
+env:
+  VERCEL_ORG_ID: team_BSJVaxRgvlGYUgzntvcZZwcD
+  VERCEL_PROJECT_ID: prj_f6zL8H6PpoCj9nlqK2hHrM7EMo7c
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pasang Vercel CLI
+        run: npm install -g vercel@latest
+      - name: Ambil setelan proyek Vercel
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      # Wajib di Hobby: tanpa ini deploy ke-block "commit email could not be matched".
+      - name: Buang metadata git (deploy atas nama pemilik token)
+        run: rm -rf .git
+      - name: Deploy produksi (build di Vercel)
+        run: vercel deploy --prod --yes --token=${{ secrets.VERCEL_TOKEN }}

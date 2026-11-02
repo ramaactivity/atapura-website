@@ -1,0 +1,51 @@
+keyword,klaster,tahap_pembeli,intent,halaman_target,prioritas_hipotesis,volume_bulanan_id,tren_12_bulan,catatan
+atap bitumen,inti,kenal,informasi,/atap-bitumen,1,,,pilar utama
+genteng aspal,inti,kenal,informasi,/atap-bitumen,1,,,sinonim paling umum? bandingkan dengan atap bitumen
+genteng bitumen,inti,kenal,informasi,/atap-bitumen,2,,,
+sirap aspal,inti,kenal,informasi,/atap-bitumen,3,,,
+atap shingle,inti,kenal,informasi,/atap-bitumen,2,,,
+genteng aspal adalah,inti,kenal,informasi,/atap-bitumen,3,,,
+harga atap bitumen per meter,harga,memutuskan,komersial,/harga-atap-bitumen,1,,,
+harga genteng aspal per meter,harga,memutuskan,komersial,/harga-atap-bitumen,1,,,
+harga genteng aspal 2026,harga,memutuskan,komersial,/harga-atap-bitumen,1,,,
+biaya pasang atap bitumen,harga,memutuskan,komersial,/kalkulator,1,,,kalkulator = information gain
+biaya pasang genteng aspal per meter,harga,memutuskan,komersial,/kalkulator,1,,,
+harga pasang atap bitumen per m2,harga,memutuskan,komersial,/harga-atap-bitumen,1,,,
+kalkulator atap bitumen,harga,memutuskan,transaksi,/kalkulator,2,,,
+hitung kebutuhan genteng aspal,harga,memutuskan,transaksi,/kalkulator,2,,,
+jasa pasang genteng aspal jakarta,lokal,memutuskan,transaksi,/area/jakarta-selatan,1,,,terbit hanya kalau ada isi unik
+jasa pasang atap bitumen bekasi,lokal,memutuskan,transaksi,/area/kota-bekasi,1,,,
+jasa pasang atap bitumen depok,lokal,memutuskan,transaksi,/area/depok,1,,,
+jasa pasang atap bitumen bogor,lokal,memutuskan,transaksi,/area/kota-bogor,1,,,
+jasa pasang atap bitumen tangerang,lokal,memutuskan,transaksi,/area/kota-tangerang,1,,,
+aplikator atap bitumen jabodetabek,lokal,memutuskan,transaksi,/,1,,,
+tukang atap bitumen terdekat,lokal,memutuskan,transaksi,Google Business Profile,2,,,dimenangkan lewat Maps
+kontraktor atap bitumen,lokal,memutuskan,transaksi,/,2,,,
+genteng maxxi,merek,membandingkan,komersial,/produk/maxxi,1,,,
+harga maxxi roof,merek,memutuskan,komersial,/produk/maxxi,1,,,
+cti ct3,merek,membandingkan,komersial,/produk/cti/ct3,2,,,
+cti ct5,merek,membandingkan,komersial,/produk/cti/ct5,2,,,
+harga genteng cti,merek,memutuskan,komersial,/produk/cti,1,,,
+javabitumen,merek,membandingkan,komersial,/produk/javabitumen,2,,,merek tanpa jejak online = peluang jadi hasil pertama
+atap bitumen bocor,masalah,kenal,informasi,/panduan/kenapa-atap-bitumen-bocor,1,,,foto kesalahan pasang = information gain
+genteng aspal mengelupas,masalah,kenal,informasi,/panduan/kenapa-atap-bitumen-bocor,2,,,
+genteng aspal berjamur,masalah,kenal,informasi,/panduan/perawatan-atap-bitumen,3,,,
+atap berisik saat hujan,masalah,kenal,informasi,/panduan/atap-bitumen-berisik,2,,,butuh uji dB sendiri
+perbaikan atap bocor jakarta,masalah,memutuskan,transaksi,/layanan/perbaikan-atap-bocor,2,,,
+atap bitumen vs metal,perbandingan,membandingkan,komersial,/bandingkan/bitumen-vs-metal,1,,,
+genteng aspal vs genteng keramik,perbandingan,membandingkan,komersial,/bandingkan/bitumen-vs-keramik,2,,,
+genteng aspal vs beton,perbandingan,membandingkan,komersial,/bandingkan/bitumen-vs-beton,2,,,
+kelebihan dan kekurangan atap bitumen,perbandingan,membandingkan,informasi,/panduan/kelebihan-kekurangan-atap-bitumen,1,,,
+cti vs maxxi,perbandingan,membandingkan,komersial,/bandingkan/cti-vs-maxxi,2,,,
+atap bitumen cocok untuk rumah,keputusan,membandingkan,informasi,/atap-bitumen,2,,,
+kemiringan minimal atap bitumen,keputusan,membandingkan,informasi,/panduan/kemiringan-minimal-atap-bitumen,1,,,butuh angka resmi pabrik
+umur atap bitumen,keputusan,membandingkan,informasi,/panduan/umur-atap-bitumen,2,,,
+apakah atap bitumen panas,keputusan,membandingkan,informasi,/panduan/atap-bitumen-panas,2,,,butuh uji suhu sendiri
+alas atap bitumen multiplek atau grc,keputusan,membandingkan,informasi,/panduan/alas-atap-bitumen,2,,,
+ganti genteng beton ke bitumen,keputusan,memutuskan,komersial,/layanan/ganti-atap-lama,1,,,
+berapa lama pasang atap bitumen,keputusan,memutuskan,informasi,/panduan/lama-pasang-atap-bitumen,2,,,butuh data proyek
+atap bitumen villa,keputusan,membandingkan,komersial,/layanan/atap-villa-dan-kafe,2,,,
+supplier atap bitumen proyek,b2b,memutuskan,transaksi,/untuk-perusahaan,2,,,
+genteng aspal tkdn,b2b,memutuskan,komersial,/untuk-perusahaan,2,,,
+tds genteng aspal,b2b,membandingkan,informasi,/dokumen,3,,,
+spesifikasi teknis atap bitumen,b2b,membandingkan,informasi,/dokumen,3,,,

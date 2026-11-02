@@ -1,0 +1,89 @@
+.hitung { display: grid; gap: 1rem; }
+.hitung-kepala { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.hitung-judul { font-size: 1.3rem; font-weight: 760; letter-spacing: -0.03em; line-height: 1.2; }
+
+.hasil { padding-bottom: 0.9rem; border-bottom: 1px solid var(--color-garis); }
+.hasil-label { font-size: 0.875rem; color: var(--color-lumut); }
+.hasil-angka {
+  font-size: clamp(1.9rem, 1.4rem + 2vw, 2.6rem); font-weight: 760; letter-spacing: -0.035em; line-height: 1.1;
+  margin-top: 0.2rem; white-space: nowrap;
+}
+.hasil-sd { font-weight: 300; color: var(--color-lumut); }
+.hasil-durasi { margin-top: 0.35rem; font-size: 0.95rem; color: var(--color-lumut); }
+
+.kontrol { display: grid; gap: 0.6rem; }
+.kontrol-baris { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.kontrol-baris-merek { margin-top: 0.2rem; flex-direction: column; align-items: stretch; gap: 0.5rem; }
+.kontrol-label { font-weight: 650; font-size: 0.95rem; }
+.kontrol-bantu { font-size: 0.85rem; line-height: 1.45; color: var(--color-lumut); }
+
+.stepper {
+  display: inline-flex; align-items: center; border: 1px solid var(--color-garis); border-radius: 999px;
+  padding: 3px; background: var(--color-embun);
+}
+.stepper-btn {
+  display: grid; place-items: center; width: 44px; height: 44px; border-radius: 999px;
+  background: var(--color-putih); cursor: pointer; color: var(--color-pinus);
+  box-shadow: 0 1px 2px rgb(16 35 30 / 0.12);
+  transition: transform 140ms var(--ease-out), opacity 200ms;
+}
+.stepper-btn:active { transform: scale(0.94); }
+.stepper-btn:disabled { opacity: 0.35; cursor: default; }
+.stepper-btn svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; fill: none; }
+.stepper-isi { display: inline-flex; align-items: baseline; gap: 0.2rem; padding-inline: 0.6rem; }
+.stepper-input {
+  width: 3ch; text-align: right; font-weight: 720; font-size: 1.15rem; background: transparent;
+  border: 0; outline: none; color: var(--color-tinta); caret-color: var(--color-pinus);
+}
+.stepper-satuan { font-size: 0.95rem; color: var(--color-lumut); }
+.stepper:focus-within { border-color: var(--color-pinus); }
+
+.slider {
+  --p: 50%;
+  position: relative; height: 40px; cursor: pointer; touch-action: none; border-radius: 999px;
+}
+.slider::before {
+  content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 6px; margin-top: -3px;
+  border-radius: 999px; background: var(--color-garis);
+}
+.slider-isi {
+  position: absolute; left: 0; top: 50%; height: 6px; margin-top: -3px; width: var(--p);
+  border-radius: 999px; background: var(--color-pinus);
+}
+.slider-jempol {
+  position: absolute; top: 50%; left: var(--p); width: 28px; height: 28px; margin: -14px 0 0 -14px;
+  border-radius: 999px; background: var(--color-tunas); border: 3px solid var(--color-pinus);
+  box-shadow: 0 4px 10px -3px rgb(16 35 30 / 0.45);
+  transition: transform 160ms var(--ease-out);
+}
+.slider:active .slider-jempol { transform: scale(1.12); }
+.slider:focus-visible { outline-offset: 2px; }
+
+.segmen {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: 3px; border-radius: 999px; background: var(--color-embun); border: 1px solid var(--color-garis);
+}
+.segmen-btn {
+  min-height: 42px; border-radius: 999px; font-weight: 600; font-size: 0.92rem; color: var(--color-lumut);
+  cursor: pointer; transition: background-color 220ms, color 220ms, box-shadow 220ms;
+}
+.segmen-btn[aria-checked="true"] {
+  background: var(--color-pinus); color: var(--color-embun); box-shadow: 0 2px 6px -2px rgb(16 35 30 / 0.5);
+}
+
+.rincian { display: grid; gap: 0.3rem; font-size: 0.9rem; }
+.rincian-baris { display: flex; align-items: baseline; gap: 0.5rem; }
+.rincian-baris dt { color: var(--color-lumut); }
+.rincian-baris::after { content: none; }
+.rincian-baris dt::after {
+  content: ''; display: inline-block; flex: 1;
+}
+.rincian-baris dd { margin-left: auto; font-weight: 600; white-space: nowrap; }
+.rincian-baris { background-image: radial-gradient(circle, var(--color-garis) 1px, transparent 1.2px); background-size: 6px 6px; background-repeat: repeat-x; background-position: 0 calc(100% - 4px); }
+.rincian-baris dt, .rincian-baris dd { background: var(--color-putih); }
+.rincian-baris dt { padding-right: 0.4rem; }
+.rincian-baris dd { padding-left: 0.4rem; }
+
+.hitung-cta { width: 100%; min-height: 54px; font-size: 1.02rem; }
+.ikon-wa { width: 20px; height: 20px; fill: currentColor; flex: none; }
+.hitung-kaki { font-size: 0.85rem; line-height: 1.45; color: var(--color-lumut); text-align: center; }

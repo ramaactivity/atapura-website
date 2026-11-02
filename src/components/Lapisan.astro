@@ -1,0 +1,168 @@
+---
+// Penampang atap bitumen terurai, digambar isometrik (sumbu 2:1). Nomor = urutan pemasangan;
+// daftar ditampilkan dari atas (Nok) ke bawah (Alas) supaya sejajar dengan gambarnya.
+const lapis = [
+  {
+    id: 'alas',
+    nama: 'Alas',
+    isi: 'Papan rata (multiplek atau GRC) yang dipasang di atas rangka. Genteng bitumen lentur, jadi kerataan alas menentukan kerapian hasil akhir.',
+  },
+  {
+    id: 'underlayment',
+    nama: 'Underlayment',
+    isi: 'Lembaran kedap air di atas alas. Kalau ada air yang lolos dari genteng, lapisan ini yang menahannya agar tidak sampai ke plafon.',
+  },
+  {
+    id: 'flashing',
+    nama: 'Flashing',
+    isi: 'Pelapis di titik rawan: pertemuan atap dengan dinding, talang, dan tepi atap. Di sini paling sering kebocoran bermula.',
+  },
+  {
+    id: 'genteng',
+    nama: 'Genteng bitumen',
+    isi: 'Lembaran fiberglass berlapis aspal dan butiran batu, dipasang dari bawah ke atas dengan pola paku sesuai panduan pabrik.',
+  },
+  {
+    id: 'nok',
+    nama: 'Nok',
+    isi: 'Penutup bubungan, garis puncak tempat dua sisi atap bertemu. Dipasang terakhir dan menutup sambungan paling atas.',
+  },
+];
+
+// Slab isometrik: muka atas belah ketupat + dua muka samping.
+const slab = (cx: number, cy: number, w: number, h: number, t: number) => ({
+  atas: `M${cx} ${cy - h}L${cx + w} ${cy}L${cx} ${cy + h}L${cx - w} ${cy}Z`,
+  kiri: `M${cx - w} ${cy}L${cx} ${cy + h}L${cx} ${cy + h + t}L${cx - w} ${cy + t}Z`,
+  kanan: `M${cx} ${cy + h}L${cx + w} ${cy}L${cx + w} ${cy + t}L${cx} ${cy + h + t}Z`,
+});
+const alas = slab(260, 575, 200, 100, 18);
+const under = slab(260, 410, 200, 100, 6);
+const genteng = slab(260, 210, 200, 100, 10);
+---
+
+<div class="lapisan" data-lapisan>
+  <figure class="lapisan-gambar" aria-hidden="true">
+    <svg viewBox="0 0 520 700" role="presentation">
+      <defs>
+        <pattern id="p-papan" width="40" height="40" patternUnits="userSpaceOnUse" patternTransform="matrix(1 .5 -1 .5 0 0)">
+          <rect width="40" height="40" fill="#b89a72" />
+          <path d="M0 39.5h40" stroke="#9c7f58" stroke-width="1.5" />
+          <path d="M14 8c6 2 12 2 18 0M6 24c8 2 14 2 22 0" stroke="#a88b63" fill="none" />
+        </pattern>
+        <pattern id="p-under" width="60" height="60" patternUnits="userSpaceOnUse" patternTransform="matrix(1 .5 -1 .5 0 0)">
+          <rect width="60" height="60" fill="#2b302d" />
+          <path d="M0 59.5h60" stroke="#3b423e" stroke-width="2" />
+        </pattern>
+        <pattern id="p-genteng" width="36" height="24" patternUnits="userSpaceOnUse" patternTransform="matrix(1 .5 -1 .5 0 0)">
+          <rect width="36" height="24" fill="#34413b" />
+          <path d="M0 23.5h36M18 12v12M0 0v12" stroke="#1f2824" stroke-width="1.6" />
+          <path d="M0 11.5h36" stroke="#4a5852" stroke-width="1" />
+          <circle cx="7" cy="6" r=".9" fill="#6e7b74" /><circle cx="25" cy="17" r=".9" fill="#6e7b74" />
+          <circle cx="29" cy="4" r=".7" fill="#8a7a62" /><circle cx="11" cy="19" r=".7" fill="#8a7a62" />
+        </pattern>
+      </defs>
+
+      <g class="l l-alas" data-l="alas">
+        <path d={alas.atas} fill="url(#p-papan)" />
+        <path d={alas.kiri} fill="#8f7550" /><path d={alas.kanan} fill="#7a6343" />
+      </g>
+      <g class="l l-underlayment" data-l="underlayment">
+        <path d={under.atas} fill="url(#p-under)" />
+        <path d={under.kiri} fill="#1d211f" /><path d={under.kanan} fill="#161917" />
+      </g>
+      <g class="l l-flashing" data-l="flashing">
+        <path d="M60 410L220 330L240 340L80 420Z" fill="#a9b1ac" />
+        <path d="M60 410L220 330L220 296L60 376Z" fill="#c9d0cb" />
+        <path d="M60 376L220 296" stroke="#eef1ef" stroke-width="1.5" />
+      </g>
+      <g class="l l-genteng" data-l="genteng">
+        <path d={genteng.atas} fill="url(#p-genteng)" />
+        <path d={genteng.kiri} fill="#222b27" /><path d={genteng.kanan} fill="#1a211e" />
+      </g>
+      <g class="l l-nok" data-l="nok">
+        <path d="M60 160L260 60L280 70L80 170Z" fill="#4a5852" />
+        <path d="M80 170L280 70L280 82L80 182Z" fill="#26302b" />
+        <path d="M60 160L80 170L80 182L60 172Z" fill="#323c37" />
+      </g>
+    </svg>
+  </figure>
+
+  <ol class="lapisan-daftar" reversed>
+    {lapis.map((l, i) => ({ ...l, no: i + 1 })).reverse().map((l) => (
+      <li>
+        <button type="button" class="lapis" data-pilih={l.id} aria-pressed="false">
+          <span class="lapis-no angka">{l.no}</span>
+          <span class="lapis-teks">
+            <span class="lapis-nama">{l.nama}</span>
+            <span class="lapis-isi">{l.isi}</span>
+          </span>
+        </button>
+      </li>
+    ))}
+  </ol>
+</div>
+
+<script>
+  for (const root of document.querySelectorAll<HTMLElement>('[data-lapisan]')) {
+    const tombol = root.querySelectorAll<HTMLButtonElement>('[data-pilih]');
+    const pilih = (id: string | null) => {
+      if (id) root.dataset.aktif = id;
+      else delete root.dataset.aktif;
+      tombol.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.pilih === id)));
+    };
+    tombol.forEach((b) => {
+      b.addEventListener('click', () => pilih(b.dataset.pilih!));
+      b.addEventListener('pointerenter', (e) => e.pointerType === 'mouse' && pilih(b.dataset.pilih!));
+    });
+    root.addEventListener('pointerleave', (e) => e.pointerType === 'mouse' && pilih(null));
+  }
+</script>
+
+<style>
+  .lapisan {
+    display: grid; gap: clamp(2rem, 4vw, 4rem); align-items: center;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  @media (min-width: 60rem) { .lapisan { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+  .lapisan-gambar { margin: 0; max-width: 34rem; width: 100%; justify-self: center; }
+  .lapisan-gambar svg { width: 100%; height: auto; overflow: visible; }
+
+  .l { transition: opacity 400ms var(--ease-out), transform 600ms var(--ease-out); }
+  .l path { transition: stroke 300ms; stroke: transparent; stroke-width: 1.5; stroke-linejoin: round; }
+  [data-aktif] .l { opacity: 0.15; }
+  [data-aktif="alas"] .l-alas,
+  [data-aktif="underlayment"] .l-underlayment,
+  [data-aktif="flashing"] .l-flashing,
+  [data-aktif="genteng"] .l-genteng,
+  [data-aktif="nok"] .l-nok { opacity: 1; transform: translateY(-22px); }
+  [data-aktif="alas"] .l-alas path,
+  [data-aktif="underlayment"] .l-underlayment path,
+  [data-aktif="flashing"] .l-flashing path,
+  [data-aktif="genteng"] .l-genteng path,
+  [data-aktif="nok"] .l-nok path { stroke: var(--color-tunas); }
+  @media (max-width: 59.99rem) {
+    .lapisan-gambar {
+      position: sticky; top: 0; z-index: 2; background: var(--color-embun);
+      height: 38svh; padding-block: 0.75rem; overflow: hidden;
+      box-shadow: 0 16px 16px -16px rgb(16 35 30 / 0.25);
+    }
+    .lapisan-gambar svg { height: 100%; width: 100%; overflow: hidden; }
+  }
+
+  .lapisan-daftar { display: grid; gap: 0.25rem; counter-reset: none; }
+  .lapis {
+    display: grid; grid-template-columns: 2.25rem minmax(0, 1fr); gap: 1rem; align-items: start;
+    width: 100%; text-align: left; padding: 1rem 1rem 1rem 0.75rem; border-radius: 1rem;
+    cursor: pointer; transition: background-color 250ms;
+  }
+  .lapis:hover, .lapis[aria-pressed="true"] { background: var(--color-putih); }
+  .lapis-no {
+    display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border-radius: 999px;
+    border: 1px solid var(--color-garis); font-weight: 650; font-size: 0.95rem; color: var(--color-lumut);
+    transition: background-color 250ms, color 250ms, border-color 250ms;
+  }
+  .lapis[aria-pressed="true"] .lapis-no { background: var(--color-pinus); border-color: var(--color-pinus); color: var(--color-tunas); }
+  .lapis-teks { display: grid; gap: 0.2rem; }
+  .lapis-nama { font-weight: 700; font-size: 1.15rem; letter-spacing: -0.015em; }
+  .lapis-isi { color: var(--color-lumut); }
+</style>

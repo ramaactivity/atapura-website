@@ -1,0 +1,51 @@
+---
+import { bisnis, waLink } from '../data/bisnis';
+const tahun = new Date().getFullYear();
+---
+
+<footer class="kaki">
+  <div class="wrap kaki-grid">
+    <div>
+      <p class="kaki-nama">Atapura</p>
+      <p class="kaki-teks">
+        Spesialis atap bitumen untuk Jabodetabek. {bisnis.namaLegal} ({bisnis.statusLegal}).
+      </p>
+    </div>
+    <div>
+      <p class="kaki-judul">Kontak</p>
+      <ul class="kaki-daftar">
+        <li><a href={waLink('Halo Atapura, saya mau tanya soal atap bitumen.')} target="_blank" rel="noopener" data-wa="footer">WhatsApp</a></li>
+        <li><a href={`mailto:${bisnis.email}`}>{bisnis.email}</a></li>
+        {bisnis.telepon && <li><a href={`tel:+${bisnis.telepon}`}>+{bisnis.telepon}</a></li>}
+      </ul>
+    </div>
+    <div>
+      <p class="kaki-judul">Area layanan</p>
+      <p class="kaki-teks">{bisnis.area.join(', ')}.</p>
+    </div>
+  </div>
+  <div class="wrap kaki-bawah">
+    <p>© {tahun} Atapura</p>
+    <p>
+      Foto tekstur genteng: Shadowmeld Photography, <a href="https://commons.wikimedia.org/wiki/File:Asphalt_Shingles_Texture_DTXR-ST-AP-1.jpg" rel="noopener">Wikimedia Commons</a>,
+      <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.id" rel="noopener license">CC BY-SA 4.0</a>, warna disesuaikan.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .kaki { background: var(--color-pinus); color: var(--color-embun); padding-top: calc(var(--course-overlap) + 4rem); padding-bottom: 2.5rem; }
+  .kaki-grid { display: grid; gap: 2.5rem; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 48rem) { .kaki-grid { grid-template-columns: 1.2fr 1fr 1.6fr; } }
+  .kaki-nama { font-weight: 760; font-size: 1.5rem; letter-spacing: -0.035em; margin-bottom: 0.5rem; }
+  .kaki-judul { font-weight: 650; margin-bottom: 0.6rem; }
+  .kaki-teks, .kaki-daftar { color: var(--embun-redup); font-size: 0.95rem; }
+  .kaki-daftar { display: grid; gap: 0.35rem; }
+  .kaki a { color: inherit; }
+  .kaki-daftar a { display: inline-block; padding-block: 0.35rem; }
+  .kaki-bawah {
+    margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgb(242 244 241 / 0.14);
+    display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; justify-content: space-between;
+    font-size: 0.8rem; color: rgb(242 244 241 / 0.6);
+  }
+</style>
