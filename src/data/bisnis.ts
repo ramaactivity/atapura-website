@@ -19,10 +19,11 @@ export const bisnis = {
   jamKerja: null as string | null,
   nib: null as string | null,
   npwp: null as string | null,
-  garansiPemasanganTahun: 5 as number | null, // KONSEP — pola aplikator: garansi pengerjaan tertulis terpisah dari pabrik
+  garansiPemasanganTahun: 5 as number | null, // Bang Yusuf 2 Nov 2026: garansi kebocoran & kesalahan pasang
   garansi: {
     cakupan: [
       'Kebocoran akibat pemasangan: sambungan, flashing, paku, dan nok',
+      'Kesalahan pasang yang tidak sesuai panduan pabrik',
       'Genteng terlepas atau bergeser bukan karena bencana',
       'Perbaikan termasuk material dan jasa, tanpa biaya',
     ],
@@ -52,7 +53,7 @@ export const bisnis = {
   // Revisi Bang Yusuf: survey gratis di Jabodetabek; di luar itu ada biaya survey (besaran menunggu ketetapan).
   survey: {
     jabodetabek: 'Gratis',
-    luar: 'Ada biaya survey sesuai jarak, disampaikan sebelum jadwal dibuat',
+    luar: 'Harga dihitung bersama admin: ada akomodasi tukang dan pengiriman material sesuai lokasi',
     // Pengalaman tim pemasang (Bang Yusuf), bukan portofolio Atapura sebagai perusahaan baru.
     pengalamanLuar: ['Bandung', 'Sumatra', 'Kalimantan', 'Sulawesi', 'Papua'],
   },

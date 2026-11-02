@@ -26,7 +26,8 @@ const pilihan = [
   },
 ] as const;
 
-const harga2 = (m: 'Maxxi' | 'CTI') => bagianRentang(harga.merek[m].genteng[0], harga.merek[m].genteng[1]);
+const terpasang = (m: 'Maxxi' | 'CTI') => bagianRentang(harga.merek[m].terpasang[0], harga.merek[m].terpasang[1]);
+const ribu = (n: number) => (n / 1000).toLocaleString('id-ID');
 ---
 
 <div class="pm" data-pilih-merek>
@@ -50,13 +51,14 @@ const harga2 = (m: 'Maxxi' | 'CTI') => bagianRentang(harga.merek[m].genteng[0], 
         {p.merek && (
           <dl class="pm-fakta">
             <div>
-              <dt>Harga genteng</dt>
+              <dt>Terpasang, Jabodetabek</dt>
               <dd data-nosnippet>
-                {(() => { const b = harga2(p.merek); return <>Rp{b.min}–{b.max} ribu <span>per m²</span></>; })()}
+                {(() => { const b = terpasang(p.merek); return <>Rp{b.min}–{b.max} ribu <span>per m²</span></>; })()}
               </dd>
             </div>
+            <div><dt>Genteng saja</dt><dd data-nosnippet>Rp{ribu(harga.merek[p.merek].genteng)} ribu <span>per m²</span></dd></div>
             <div><dt>Garansi pabrik</dt><dd>{harga.merek[p.merek].garansiPabrik}</dd></div>
-            <div><dt>Belum termasuk</dt><dd>alas, underlayment, aksesoris, jasa</dd></div>
+            <div><dt>Belum termasuk</dt><dd>rangka (bila perlu diganti)</dd></div>
           </dl>
         )}
         <div class="pm-aksi">

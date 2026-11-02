@@ -11,8 +11,12 @@ const ALAS = Object.keys(harga.alas) as Alas[];
 const LAPIS = Object.keys(harga.lapisKedap) as LapisKedap[];
 const FLASHING = Object.keys(harga.flashing) as Flashing[];
 const angka = (n: number) => n.toLocaleString('id-ID');
+// Rentang ringkas; satu angka saja kalau batas bawah dan atas sama (mis. harga material yang sudah pasti).
+const kisaran = ([a, b]: readonly [number, number]) => (a === b ? rupiahRingkas(a) : `${rupiahRingkas(a)}–${rupiahRingkas(b).replace('Rp', '')}`);
 const termin = bisnis.pembayaran.jasa.map((t) => t.persen).join('/');
 const PEKERJAAN = ['Pasang baru', 'Ganti atap lama', 'Perbaikan'] as const;
+const RANGKA = ['Sudah ada', 'Baja ringan baru'] as const;
+type Rangka = (typeof RANGKA)[number];
 type Pekerjaan = (typeof PEKERJAAN)[number];
 
 const jepit = (n: number) => Math.min(MAX, Math.max(MIN, Math.round(n)));
@@ -80,11 +84,12 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda' }: { awal?: 
   const [lapis, setLapis] = useState<LapisKedap>('Underlayer');
   const [flashing, setFlashing] = useState<Flashing>('Flashing U');
   const [pekerjaan, setPekerjaan] = useState<Pekerjaan>('Pasang baru');
+  const [rangka, setRangka] = useState<Rangka>('Sudah ada');
   const [kota, setKota] = useState('');
   const [membuka, setMembuka] = useState(false);
   const track = useRef<HTMLDivElement>(null);
 
-  const est = hitungEstimasi(luas, { merek, alas, lapis, flashing });
+  const est = hitungEstimasi(luas, { merek, alas, lapis, flashing, rangka: rangka === 'Baja ringan baru' });
   const minTampil = useGulir(est.perM2[0]);
   const maxTampil = useGulir(est.perM2[1]);
   const jabo = dalamJabodetabek(kota);
@@ -125,10 +130,12 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda' }: { awal?: 
     'Halo Atapura, saya mau tanya pemasangan atap bitumen.',
     `Pekerjaan: ${pekerjaan}`,
     `Luas atap: ${luas} m²`,
-    `Spek: ${merek}, ${alas}, ${harga.lapisKedap[lapis].nama}, ${flashing}`,
+    `Spek: ${merek}, ${alas}, ${harga.lapisKedap[lapis].nama}, ${flashing}, rangka ${rangka.toLowerCase()}`,
     `Kebutuhan: ${est.kebutuhan.map((k) => `${k.nama} ${angka(k.jumlah)} ${k.satuan}`).join('; ')}`,
     `Lokasi: ${kota.trim() || '(belum diisi)'}`,
-    `Estimasi terpasang: ${perM2} (total ${rentang})${harga.contoh ? ', harga acuan, final setelah survey' : ''}`,
+    jabo === false
+      ? 'Lokasi di luar Jabodetabek: mohon dihitung termasuk akomodasi tukang dan pengiriman material.'
+      : `Estimasi terpasang: ${perM2} (total ${rentang})${harga.contoh ? ', harga acuan' : ''}, final setelah survey`,
     `(dari ${sumber})`,
   ].join('\n');
 
@@ -201,6 +208,8 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda' }: { awal?: 
               <div class="ha-spek-baris"><span class="ha-spek-nama">Alas</span><Pilihan label="Alas atap" opsi={ALAS} nilai={alas} ubah={setAlas} /></div>
               <div class="ha-spek-baris"><span class="ha-spek-nama">Lapis kedap air</span><Pilihan label="Lapis kedap air" opsi={LAPIS} nilai={lapis} ubah={setLapis} /></div>
               <div class="ha-spek-baris"><span class="ha-spek-nama">Flashing</span><Pilihan label="Flashing" opsi={FLASHING} nilai={flashing} ubah={setFlashing} /></div>
+              <div class="ha-spek-baris"><span class="ha-spek-nama">Rangka</span><Pilihan label="Rangka atap" opsi={RANGKA} nilai={rangka} ubah={setRangka} /></div>
+              {rangka === 'Baja ringan baru' && <p class="ha-bantu">{harga.rangka.spek}, Rp{angka(harga.rangka.harga / 1000)} rb per m².</p>}
             </div>
           </div>
         </li>
@@ -217,7 +226,7 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda' }: { awal?: 
             <label for="ha-kota" class="ha-label">Kota</label>
             <input id="ha-kota" class="ha-teks" placeholder="Contoh: Tangerang Selatan" autoComplete="address-level2" value={kota} onInput={(e) => setKota((e.currentTarget as HTMLInputElement).value)} />
             {jabo === true && <p class="ha-bantu">Survey gratis untuk lokasi di Jabodetabek.</p>}
-            {jabo === false && <p class="ha-bantu ha-luar">Di luar Jabodetabek: {bisnis.survey.luar.toLowerCase()}.</p>}
+            {jabo === false && <p class="ha-bantu ha-luar">Di luar Jabodetabek: {bisnis.survey.luar.charAt(0).toLowerCase() + bisnis.survey.luar.slice(1)}.</p>}
           </div>
         </li>
       </ol>
@@ -233,6 +242,13 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda' }: { awal?: 
           ))}
         </ul>
 
+        {jabo === false ? (
+          <div class="ha-luar-kotak" aria-live="polite">
+            <p class="ha-label-kecil ha-label-harga">Harga untuk lokasi Anda</p>
+            <p class="ha-luar-judul">Dihitung langsung bersama admin</p>
+            <p class="ha-luar-isi">Di luar Jabodetabek ada akomodasi tukang dan pengiriman material, misalnya tiket pesawat atau ekspedisi antarpulau. Tiket dan ekspedisi bisa kami carikan atau Anda atur sendiri. Kami tidak mengambil untung dari akomodasi.</p>
+          </div>
+        ) : (<>
         <p class="ha-label-kecil ha-label-harga">Estimasi harga terpasang</p>
         <p class="hasil-angka" aria-live="polite" aria-atomic="true">
           <span class="sr-only">{perM2}</span>
@@ -250,20 +266,21 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda' }: { awal?: 
           <p class="ha-catatan">Untuk perbaikan, biaya bergantung pada sumber bocor yang ditemukan saat survey. Angka di atas adalah biaya penggantian penuh sebagai batas atas.</p>
         )}
         <dl class="ha-bayar">
-          <div><dt>Material</dt><dd><b class="angka">{rupiahRingkas(est.material[0])}–{rupiahRingkas(est.material[1]).replace('Rp', '')}</b> dibayar sebelum dikirim</dd></div>
-          <div><dt>Jasa pasang</dt><dd><b class="angka">{rupiahRingkas(est.jasa[0])}–{rupiahRingkas(est.jasa[1]).replace('Rp', '')}</b> termin {termin}</dd></div>
+          <div><dt>Material</dt><dd><b class="angka">{kisaran(est.material)}</b> dibayar sebelum dikirim</dd></div>
+          <div><dt>Jasa pasang</dt><dd><b class="angka">{kisaran(est.jasa)}</b> termin {termin}</dd></div>
         </dl>
-        <details class="ha-rinci">
+        </>)}
+        {jabo !== false && <details class="ha-rinci">
           <summary>Rincian biaya per item</summary>
           <dl class="rincian">
             {est.baris.map((b) => (
               <div class="rincian-baris">
                 <dt>{b.label}</dt>
-                <dd>{b.rentang[0] === b.rentang[1] ? rupiahRingkas(b.rentang[0]) : `${rupiahRingkas(b.rentang[0])}–${rupiahRingkas(b.rentang[1]).replace('Rp', '')}`}</dd>
+                <dd>{kisaran(b.rentang)}</dd>
               </div>
             ))}
           </dl>
-        </details>
+        </details>}
         <a
           class="pill pill-tunas hitung-cta"
           href={waLink(pesan)}
@@ -273,7 +290,7 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda' }: { awal?: 
           onClick={() => { setMembuka(true); setTimeout(() => setMembuka(false), 2500); }}
         >
           <svg viewBox="0 0 24 24" aria-hidden="true" class="ikon-wa"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3a.4.4 0 0 0 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3Z" /></svg>
-          {membuka ? 'Membuka WhatsApp…' : 'Kirim estimasi ke WhatsApp'}
+          {membuka ? 'Membuka WhatsApp…' : jabo === false ? 'Chat admin untuk lokasi Anda' : 'Kirim estimasi ke WhatsApp'}
         </a>
         <p class="hitung-kaki">Survey gratis di Jabodetabek sebelum harga final. Bayar hanya ke rekening atas nama perusahaan.</p>
       </div>

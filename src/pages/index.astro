@@ -36,7 +36,7 @@ const panduanTerbaru = (await getCollection('panduan')).sort((a, b) => b.data.di
 const tanya = [
   {
     q: 'Apakah Atapura melayani di luar Jabodetabek?',
-    a: `Ya. Basis kami di Jabodetabek, tempat survey gratis. Proyek di luar Jabodetabek tetap dikerjakan dengan biaya survey sesuai jarak yang disampaikan di awal. Tim pemasang kami berpengalaman mengerjakan atap hingga ${bisnis.survey.pengalamanLuar.join(', ')}.`,
+    a: `Ya. Basis kami di Jabodetabek, tempat survey gratis. Untuk lokasi di luar Jabodetabek, harga dihitung langsung bersama admin lewat WhatsApp karena ada akomodasi tukang dan pengiriman material (misalnya tiket pesawat atau ekspedisi antarpulau). Tiket dan ekspedisi bisa kami carikan atau Anda atur sendiri; kami tidak mengambil untung dari akomodasi. Tim pemasang kami berpengalaman mengerjakan atap hingga ${bisnis.survey.pengalamanLuar.join(', ')}.`,
   },
   {
     q: 'Apa bedanya atap bitumen, genteng aspal, sirap aspal, dan shingle?',
@@ -44,19 +44,19 @@ const tanya = [
   },
   {
     q: 'Berapa biaya pasang atap bitumen per meter persegi?',
-    a: 'Biaya ditentukan oleh merek genteng, jenis alas, dan kerumitan bentuk atap. Hitung AKAL di atas memberi rentang total untuk luas dan merek pilihan Anda, sudah termasuk alas, underlayment, aksesoris, dan jasa pasang. Harga final kami tulis setelah survey gratis.',
+    a: `Di Jabodetabek, estimasi terpasang per m² (genteng, alas, underlayment, aksesoris, dan jasa pasang): CTI Rp${harga.merek.CTI.terpasang.map((n) => n / 1000).join('–')} ribu, Maxxi dan Javabitumen Rp${harga.merek.Maxxi.terpasang.map((n) => n / 1000).join('–')} ribu. Harga genteng saja: CTI Rp${harga.merek.CTI.genteng / 1000} ribu, Maxxi dan Javabitumen Rp${harga.merek.Maxxi.genteng / 1000} ribu per m². Rangka baja ringan baru, bila perlu, Rp${harga.rangka.harga / 1000} ribu per m². Harga final kami tulis setelah survey gratis dan opname luas.`,
   },
   {
     q: 'Apakah atap bitumen cocok untuk rumah saya?',
-    a: 'Atap bitumen cocok untuk atap miring dengan rangka kayu atau baja ringan, karena bobotnya jauh lebih ringan dari genteng beton atau keramik. Setiap merek punya kemiringan minimal dari pabrik. Kalau atap Anda lebih landai dari batas itu, kami sarankan material lain dan kami jelaskan alasannya saat survey.',
+    a: 'Atap bitumen cocok untuk atap miring dengan rangka kayu atau baja ringan, karena bobotnya jauh lebih ringan dari genteng beton atau keramik. Kemiringan minimal yang kami pasang 5 derajat. Kalau atap Anda lebih landai dari itu, kami sarankan material lain dan kami jelaskan alasannya saat survey.',
   },
   {
     q: 'Berapa lama pengerjaannya?',
-    a: 'Tergantung luas dan bentuk atap. Hitung AKAL menampilkan perkiraan hari kerja. Jadwal pasti kami kirim tertulis setelah survey, sebelum Anda membayar uang muka.',
+    a: 'Atap 100–120 m² umumnya selesai sekitar 4 hari kerja, tergantung cuaca dan bentuk atap. Hitung AKAL menampilkan perkiraan untuk luas Anda. Jadwal pasti kami kirim tertulis setelah survey.',
   },
   {
     q: 'Garansinya seperti apa?',
-    a: `Ada dua garansi terpisah. Garansi pabrik menanggung material genteng sesuai dokumen resmi tiap merek. Garansi pemasangan dari Atapura berlaku ${bisnis.garansiPemasanganTahun} tahun sejak serah terima dan menanggung kebocoran akibat pemasangan, termasuk material dan jasa perbaikannya. Klaim cukup lewat WhatsApp dengan foto; tim memeriksa paling lambat 3 hari kerja.`,
+    a: `Ada dua garansi terpisah. Garansi pabrik menanggung material genteng sesuai dokumen resmi tiap merek. Garansi pemasangan dari Atapura berlaku ${bisnis.garansiPemasanganTahun} tahun sejak serah terima dan menanggung kebocoran dan kesalahan pasang, termasuk material dan jasa perbaikannya. Klaim cukup lewat WhatsApp dengan foto; tim memeriksa paling lambat 3 hari kerja.`,
   },
   {
     q: 'Bagaimana cara bayarnya?',
@@ -71,9 +71,9 @@ const wilayah = [
 ];
 
 const merekTabel = [
-  { nama: 'Maxxi', kelas: harga.merek.Maxxi.kelas, pasti: 'Model 3-tab, 1000 × 333 mm, tebal 2,6 mm, 3,10 m² per bundel', r: harga.merek.Maxxi.genteng, garansi: harga.merek.Maxxi.garansiPabrik },
-  { nama: 'CTI', kelas: harga.merek.CTI.kelas, pasti: 'Produksi Indonesia, bersertifikat TKDN; seri CT3 (1000 × 333 mm), CT5 dan CT6 (1000 × 320 mm), 3,00 m² per bundel', r: harga.merek.CTI.genteng, garansi: harga.merek.CTI.garansiPabrik },
-  { nama: 'Javabitumen', kelas: harga.merek.Javabitumen.kelas, pasti: 'Spesifikasi menunggu brosur resmi dari produsen', r: harga.merek.Javabitumen.genteng, garansi: harga.merek.Javabitumen.garansiPabrik },
+  { nama: 'Maxxi', kelas: harga.merek.Maxxi.kelas, pasti: 'Model 3-tab, 1000 × 333 mm, tebal 2,6 mm, 3,10 m² per bundel', r: harga.merek.Maxxi.terpasang, g: harga.merek.Maxxi.genteng, garansi: harga.merek.Maxxi.garansiPabrik },
+  { nama: 'CTI', kelas: harga.merek.CTI.kelas, pasti: 'Produksi Indonesia, bersertifikat TKDN; seri CT3 (1000 × 333 mm), CT5 dan CT6 (1000 × 320 mm), 3,00 m² per bundel', r: harga.merek.CTI.terpasang, g: harga.merek.CTI.genteng, garansi: harga.merek.CTI.garansiPabrik },
+  { nama: 'Javabitumen', kelas: harga.merek.Javabitumen.kelas, pasti: 'Spesifikasi menunggu brosur resmi dari produsen', r: harga.merek.Javabitumen.terpasang, g: harga.merek.Javabitumen.genteng, garansi: harga.merek.Javabitumen.garansiPabrik },
 ];
 
 const faqSchema = {
@@ -180,7 +180,7 @@ const faqSchema = {
         </div>
         <HitungAkal client:idle awal={120} />
         <p class="hitung-catatan" data-nosnippet>
-          {harga.contoh ? 'Harga acuan pasar Jabodetabek, dihitung dari harga distributor dan jasa pasang. Harga final kami tulis setelah survey gratis. ' : ''}Acuan per {tanggalPanjang(harga.berlakuSejak)}.
+          {harga.contoh ? 'Harga acuan pasar Jabodetabek, dihitung dari harga distributor dan jasa pasang. Harga final kami tulis setelah survey gratis. ' : 'Estimasi untuk lokasi di Jabodetabek. Harga final kami tulis setelah survey gratis dan opname luas. '}Harga per {tanggalPanjang(harga.berlakuSejak)}.
         </p>
       </div>
     </section>
@@ -312,8 +312,12 @@ const faqSchema = {
             </thead>
             <tbody>
               <tr class="ds-harga" data-nosnippet>
-                <th scope="row">Genteng per m²{harga.contoh && <span class="contoh contoh-kecil">acuan</span>}</th>
+                <th scope="row">Terpasang per m²<span class="ds-ket">Jabodetabek, spek standar</span></th>
                 {merekTabel.map((m) => { const b = bagianRentang(m.r[0], m.r[1]); return <td><span class="harga-rp">Rp</span>{b.min}<span class="ds-sd">–</span>{b.max}<span class="harga-sat">{b.satuan} / m²</span></td>; })}
+              </tr>
+              <tr data-nosnippet>
+                <th scope="row">Genteng saja per m²</th>
+                {merekTabel.map((m) => <td class="angka">Rp{(m.g / 1000).toLocaleString('id-ID')} rb</td>)}
               </tr>
               <tr>
                 <th scope="row">Kelas harga</th>
@@ -336,23 +340,23 @@ const faqSchema = {
               <p class="ds-no">{String(i + 1).padStart(2, '0')}</p>
               <p class="ds-merek">{m.nama}</p>
               <p class="merek-hp-kelas">{m.kelas}</p>
-              <p class="merek-hp-harga" data-nosnippet>{(() => { const b = bagianRentang(m.r[0], m.r[1]); return <><span class="harga-rp">Rp</span>{b.min}<span class="ds-sd">–</span>{b.max}<span class="harga-sat">{b.satuan} / m²</span></>; })()}{harga.contoh && <span class="contoh contoh-kecil">acuan</span>}</p>
+              <p class="merek-hp-harga" data-nosnippet>{(() => { const b = bagianRentang(m.r[0], m.r[1]); return <><span class="harga-rp">Rp</span>{b.min}<span class="ds-sd">–</span>{b.max}<span class="harga-sat">{b.satuan} / m² terpasang</span></>; })()}{harga.contoh && <span class="contoh contoh-kecil">acuan</span>}</p>
               <p class="merek-hp-pasti">{m.pasti}</p>
             </li>
           ))}
         </ol>
-        <p class="tabel-catatan">Harga genteng per m² dan garansi pabrik mengacu harga pasar distributor Jabodetabek (November 2026). Spesifikasi diverifikasi ulang dengan dokumen resmi sebelum kontrak.</p>
+        <p class="tabel-catatan">Harga terpasang = estimasi kasar untuk Jabodetabek dengan spek standar (alas multiplek, underlayer, flashing), belum termasuk rangka baru (baja ringan Rp220 rb/m²). Genteng kami ambil langsung dari pabrikan. Garansi pabrik dan spesifikasi diverifikasi ulang dengan dokumen resmi sebelum kontrak.</p>
         </details>
         <div class="batas">
           <h3 class="batas-judul">Kapan kami menyarankan <span class="miring">pilihan lain</span></h3>
           <ol class="batas-daftar">
             <li>
-              <strong>Atap terlalu landai.</strong> Setiap merek punya kemiringan minimal dari pabrik. Di bawah batas itu,
+              <strong>Atap terlalu landai.</strong> Kemiringan minimal yang kami pasang 5 derajat. Di bawah batas itu,
               air hujan mengalir terlalu pelan dan bisa merembes ke sambungan. Untuk dak atau atap nyaris datar, kami jelaskan alternatifnya saat survey.
             </li>
             <li>
               <strong>Jarak bukan halangan, tapi ada biayanya.</strong> Proyek di luar Jabodetabek tetap kami kerjakan, dan tim pemasang kami
-              berpengalaman sampai {bisnis.survey.pengalamanLuar.join(', ')}. Survey di luar Jabodetabek dikenai biaya sesuai jarak yang kami sampaikan di awal.
+              berpengalaman sampai {bisnis.survey.pengalamanLuar.join(', ')}. Untuk lokasi di luar Jabodetabek, biaya akomodasi tukang dan pengiriman material dihitung bersama admin sesuai lokasi. Tiket dan ekspedisi bisa kami carikan atau Anda atur sendiri, dan kami tidak mengambil untung dari akomodasi.
             </li>
           </ol>
         </div>
@@ -373,7 +377,7 @@ const faqSchema = {
       <div class="wrap area">
         <div class="area-teks">
           <h2 id="judul-area" class="judul-besar">Survey gratis di <span class="miring">{bisnis.area.length} kota dan kabupaten.</span></h2>
-          <p class="lead">Tim kami datang mengukur atap, memeriksa rangka, dan mencocokkan warna di bawah cahaya asli rumah Anda. Di luar Jabodetabek? Tetap bisa, dengan biaya survey sesuai jarak.</p>
+          <p class="lead">Tim kami datang mengukur atap, memeriksa rangka, dan mencocokkan warna di bawah cahaya asli rumah Anda. Di luar Jabodetabek? Tetap bisa: chat admin, biaya akomodasi dan pengiriman dihitung sesuai lokasi.</p>
           <div class="wilayah">
             {wilayah.map((w) => (
               <div>

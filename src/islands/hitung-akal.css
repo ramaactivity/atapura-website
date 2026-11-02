@@ -97,3 +97,8 @@
 .ha-rinci { margin-top: 0.9rem; }
 .ha-rinci summary { cursor: pointer; font-size: 0.9rem; color: rgb(242 244 241 / 0.75); padding-block: 0.4rem; list-style-position: inside; }
 .ha-rinci .rincian { margin-top: 0.4rem; }
+
+/* Lokasi di luar Jabodetabek: harga tidak ditampilkan, diganti ajakan ke admin. */
+.ha-luar-kotak { display: grid; gap: 0.35rem; padding-block: 0.25rem 0.5rem; }
+.ha-luar-judul { font-size: clamp(1.4rem, 1.1rem + 1.2vw, 1.9rem); font-weight: 500; letter-spacing: -0.035em; line-height: 1.1; }
+.ha-luar-isi { font-size: 0.93rem; line-height: 1.55; opacity: 0.8; max-width: 46ch; }
