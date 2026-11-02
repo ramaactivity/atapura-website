@@ -23,6 +23,9 @@ Bisa dibangun tanpa data baru:
 4. Halaman /harga-atap-bitumen, /atap-bitumen, /tentang (2 pendiri), /cara-kerja, /garansi (multi-halaman = SEO).
 Butuh data/aksi Rama: harga resmi, garansi (tahun), termin DP, foto proyek asli + ulasan Google, brosur/TDS (pusat unduhan), spesifikasi teknis per merek (kemiringan min., berat, angin), domain sendiri, Google Business Profile, Search Console, telepon resmi, logo (a2).
 
+## Status konsep
+Situs masih KONSEP untuk partner (DECISIONS 017): `bisnis.konsep = true` → noindex + robots Disallow. Ubah ke false setelah angka termin/garansi/harga final.
+
 ## Menunggu dari Rama
 WhatsApp bisnis, harga resmi per merek, durasi garansi pemasangan, logo, foto proyek/Magnific, brosur Javabitumen, status agen resmi, NIB/NPWP setelah PT terbit.
 

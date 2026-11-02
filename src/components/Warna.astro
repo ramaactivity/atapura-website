@@ -1,0 +1,106 @@
+---
+// Pilihan warna dari tekstur makro (Magnific, ilustrasi). Warna asli dicocokkan dengan sampel fisik saat survey.
+import { getImage } from 'astro:assets';
+import charcoal from '../../assets/gambar/magnific/tekstur-charcoal.jpg';
+import coklat from '../../assets/gambar/magnific/tekstur-coklat.jpg';
+import abu from '../../assets/gambar/magnific/tekstur-abu.jpg';
+import merah from '../../assets/gambar/magnific/tekstur-merah.jpg';
+import hijau from '../../assets/gambar/magnific/tekstur-hijau.jpg';
+
+const daftar = [
+  { id: 'arang', nama: 'Hitam arang', cocok: 'Rumah modern, fasad putih atau beton ekspos', img: charcoal },
+  { id: 'cokelat', nama: 'Cokelat kayu', cocok: 'Villa, rumah tropis dengan aksen kayu', img: coklat },
+  { id: 'abu', nama: 'Abu batu', cocok: 'Rumah minimalis, cluster, ruko', img: abu },
+  { id: 'merah', nama: 'Merah bata', cocok: 'Rumah klasik, pengganti genteng tanah liat', img: merah },
+  { id: 'hijau', nama: 'Hijau lumut', cocok: 'Villa pegunungan, kafe di tengah taman', img: hijau },
+];
+const gambar = await Promise.all(
+  daftar.map(async (d) => ({
+    ...d,
+    besar: await getImage({ src: d.img, width: 960, format: 'webp', quality: 72 }),
+    kecil: await getImage({ src: d.img, width: 120, format: 'webp', quality: 70 }),
+  })),
+);
+---
+
+<div class="warna" data-warna>
+  <div class="warna-pratinjau">
+    {gambar.map((g, i) => (
+      <img
+        src={g.besar.src}
+        alt={`Ilustrasi tekstur genteng aspal warna ${g.nama.toLowerCase()}`}
+        width="960"
+        height="960"
+        loading="lazy"
+        decoding="async"
+        class="warna-besar"
+        data-panel={g.id}
+        aria-hidden={i === 0 ? 'false' : 'true'}
+      />
+    ))}
+    <p class="warna-label" data-label>{gambar[0].nama}</p>
+  </div>
+  <div class="warna-pilihan">
+    <div class="warna-chip-daftar" role="radiogroup" aria-label="Pilih warna genteng">
+      {gambar.map((g, i) => (
+        <button type="button" role="radio" class="warna-chip" data-pilih-warna={g.id} data-nama={g.nama} aria-checked={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>
+          <img src={g.kecil.src} alt="" width="120" height="120" loading="lazy" />
+          <span class="warna-teks"><span class="warna-nama">{g.nama}</span><span class="warna-cocok">{g.cocok}</span></span>
+        </button>
+      ))}
+    </div>
+    <p class="warna-catatan">Gambar adalah ilustrasi tekstur. Ketersediaan warna berbeda per merek; warna asli kami cocokkan dengan sampel fisik di bawah cahaya rumah Anda saat survey.</p>
+  </div>
+</div>
+
+<script>
+  for (const root of document.querySelectorAll<HTMLElement>('[data-warna]')) {
+    const chips = [...root.querySelectorAll<HTMLButtonElement>('[data-pilih-warna]')];
+    const panel = root.querySelectorAll<HTMLImageElement>('[data-panel]');
+    const label = root.querySelector<HTMLElement>('[data-label]')!;
+    const pilih = (c: HTMLButtonElement, fokus = false) => {
+      chips.forEach((b) => { const on = b === c; b.setAttribute('aria-checked', String(on)); b.tabIndex = on ? 0 : -1; });
+      panel.forEach((p) => p.setAttribute('aria-hidden', String(p.dataset.panel !== c.dataset.pilihWarna)));
+      label.textContent = c.dataset.nama!;
+      if (fokus) c.focus();
+    };
+    chips.forEach((c, i) => {
+      c.addEventListener('click', () => pilih(c));
+      c.addEventListener('keydown', (e) => {
+        const arah = e.key === 'ArrowDown' || e.key === 'ArrowRight' ? 1 : e.key === 'ArrowUp' || e.key === 'ArrowLeft' ? -1 : 0;
+        if (!arah) return;
+        e.preventDefault();
+        pilih(chips[(i + arah + chips.length) % chips.length], true);
+      });
+    });
+  }
+</script>
+
+<style>
+  .warna { display: grid; gap: 2rem 4rem; grid-template-columns: minmax(0, 1fr); align-items: start; }
+  @media (min-width: 64rem) { .warna { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); } }
+  .warna-pratinjau { position: relative; aspect-ratio: 1; border-radius: 16px; overflow: hidden; background: var(--color-pinus); }
+  .warna-besar {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    opacity: 1; scale: 1; transition: opacity 700ms var(--ease-out), scale 1200ms var(--ease-out);
+  }
+  .warna-besar[aria-hidden='true'] { opacity: 0; scale: 1.06; }
+  .warna-label {
+    position: absolute; left: 1.25rem; bottom: 1.25rem; padding: 0.5rem 1rem; border-radius: 999px;
+    background: rgb(16 35 30 / 0.78); color: var(--color-embun); font-weight: 500; font-size: 0.95rem;
+  }
+  .warna-chip-daftar { display: grid; border-top: 1px solid var(--color-garis); }
+  .warna-chip {
+    display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 1rem; align-items: center; width: 100%;
+    padding: 0.8rem 0.6rem; text-align: left; border-bottom: 1px solid var(--color-garis); cursor: pointer;
+    transition: background-color 250ms;
+  }
+  .warna-chip img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 2px transparent; transition: box-shadow 300ms; }
+  .warna-chip[aria-checked='true'] { background: var(--color-putih); }
+  .warna-chip[aria-checked='true'] img { box-shadow: 0 0 0 2px var(--color-putih), 0 0 0 4px var(--color-pinus); }
+  .warna-teks { display: grid; gap: 0.1rem; }
+  .warna-nama { font-weight: 500; font-size: 1.08rem; letter-spacing: -0.02em; }
+  .warna-cocok { font-size: 0.9rem; color: var(--color-lumut); }
+  .warna-catatan { margin-top: 1.25rem; font-size: 0.85rem; color: var(--color-lumut); }
+  @media (hover: hover) and (pointer: fine) { .warna-chip:hover { background: var(--color-putih); } }
+</style>

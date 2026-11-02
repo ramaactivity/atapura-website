@@ -6,6 +6,7 @@ import Lapisan from '../components/Lapisan.astro';
 import CaraKerja from '../components/CaraKerja.astro';
 import PetaArea from '../components/PetaArea.astro';
 import RaporContoh from '../components/RaporContoh.astro';
+import Warna from '../components/Warna.astro';
 import HitungAkal from '../islands/HitungAkal';
 import Foto from '../components/Foto.astro';
 import heroDesktop from '../../assets/gambar/magnific/hero-desktop.jpg';
@@ -40,11 +41,11 @@ const tanya = [
   },
   {
     q: 'Garansinya seperti apa?',
-    a: 'Ada dua garansi terpisah. Garansi pabrik menanggung material genteng sesuai dokumen resmi tiap merek. Garansi pemasangan dari Atapura menanggung hasil kerja tim kami, diberikan tertulis bersama berita acara serah terima.',
+    a: `Ada dua garansi terpisah. Garansi pabrik menanggung material genteng sesuai dokumen resmi tiap merek. Garansi pemasangan dari Atapura berlaku ${bisnis.garansiPemasanganTahun} tahun sejak serah terima dan menanggung kebocoran akibat pemasangan, termasuk material dan jasa perbaikannya. Klaim cukup lewat WhatsApp dengan foto; tim memeriksa paling lambat 3 hari kerja.`,
   },
   {
     q: 'Bagaimana cara bayarnya?',
-    a: 'Survey gratis, lalu penawaran tertulis. Setelah Anda setuju, kami buat kontrak, Anda membayar uang muka, dan pelunasan dilakukan setelah serah terima. Semua pembayaran hanya ke rekening atas nama perusahaan, tidak pernah ke rekening pribadi.',
+    a: `Survey gratis, lalu penawaran tertulis dan kontrak. Pembayaran bertahap: ${bisnis.termin.map((t) => `${t.persen}% ${t.tahap.toLowerCase()} (${t.saat.toLowerCase()})`).join(', ')}. Semua pembayaran hanya ke rekening atas nama perusahaan, tidak pernah ke rekening pribadi.`,
   },
 ];
 
@@ -99,7 +100,7 @@ const faqSchema = {
           <li><b>{bisnis.merek.length} merek</b><span>{bisnis.merek.join(', ')}</span></li>
           <li><b>{bisnis.area.length} kota</b><span>dan kabupaten Jabodetabek</span></li>
           <li><b>Gratis</b><span>survey &amp; ukur di lokasi</span></li>
-          <li><b>Tertulis</b><span>garansi pemasangan</span></li>
+          <li><b>{bisnis.garansiPemasanganTahun} tahun</b><span>garansi pemasangan tertulis</span></li>
           <li><b>Rekening resmi</b><span>atas nama perusahaan, bukan pribadi</span></li>
         </ul>
       </div>
@@ -211,6 +212,58 @@ const faqSchema = {
       </div>
     </section>
 
+    <section id="garansi" class="sek terang c-putih" aria-labelledby="judul-garansi">
+      <div class="wrap">
+        <div class="kepala">
+          <h2 id="judul-garansi" class="judul-besar">Bayar bertahap, <span class="miring">garansi {bisnis.garansiPemasanganTahun} tahun.</span></h2>
+          <p class="lead">Uang Anda mengikuti kemajuan pekerjaan. Hasil pemasangan kami jamin tertulis, terpisah dari garansi pabrik.</p>
+        </div>
+        <div class="gb">
+          <div class="gb-termin">
+            <h3 class="gb-judul">Termin pembayaran</h3>
+            <ol class="termin">
+              {bisnis.termin.map((t) => (
+                <li>
+                  <span class="termin-persen">{t.persen}<span>%</span></span>
+                  <span class="termin-teks"><b>{t.tahap}</b>{t.saat}</span>
+                </li>
+              ))}
+            </ol>
+            <p class="gb-catatan">Semua pembayaran ke rekening atas nama perusahaan. Setiap termin disertai kuitansi dan foto progres.</p>
+          </div>
+          <div class="gb-garansi">
+            <p class="garansi-angka">{bisnis.garansiPemasanganTahun}<span>tahun</span></p>
+            <p class="garansi-sub">Garansi pemasangan, berlaku sejak berita acara serah terima.</p>
+            <div class="garansi-dua">
+              <div>
+                <h3 class="gb-label">Yang ditanggung</h3>
+                <ul class="garansi-daftar">{bisnis.garansi.cakupan.map((c) => <li>{c}</li>)}</ul>
+              </div>
+              <div>
+                <h3 class="gb-label">Yang tidak ditanggung</h3>
+                <ul class="garansi-daftar garansi-tidak">{bisnis.garansi.pengecualian.map((c) => <li>{c}</li>)}</ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="klaim">
+          <h3 class="gb-judul">Cara klaim garansi</h3>
+          <ol class="klaim-daftar">
+            {bisnis.garansi.klaim.map((k, i) => (
+              <li><span class="klaim-no">{String(i + 1).padStart(2, '0')}</span><b>{k.nama}</b><p>{k.isi}</p></li>
+            ))}
+          </ol>
+        </div>
+        <aside class="cek-atap">
+          <div>
+            <h3 class="cek-judul">Cek Atap Gratis</h3>
+            <p>Setelah musim hujan pertama, tim kami datang memeriksa flashing, talang, dan nok tanpa biaya. Atap yang baik dirawat sebelum bermasalah.</p>
+          </div>
+          <a class="pill pill-gelap" href={waLink('Halo Atapura, saya mau tanya soal garansi dan Cek Atap Gratis.')} target="_blank" rel="noopener" data-wa="garansi">Tanya soal garansi</a>
+        </aside>
+      </div>
+    </section>
+
     <section id="merek" class="sek terang c-putih" aria-labelledby="judul-merek">
       <div class="wrap">
         <div class="merek-kepala">
@@ -276,6 +329,16 @@ const faqSchema = {
             </li>
           </ol>
         </div>
+      </div>
+    </section>
+
+    <section id="warna" class="sek terang c-embun" aria-labelledby="judul-warna">
+      <div class="wrap">
+        <div class="kepala">
+          <h2 id="judul-warna" class="judul-besar">Pilih warna, <span class="miring">kami cocokkan di rumah Anda.</span></h2>
+          <p class="lead">Warna genteng terlihat berbeda di brosur, di siang terik, dan saat mendung. Itu sebabnya kami membawa sampel fisik saat survey.</p>
+        </div>
+        <Warna />
       </div>
     </section>
 
@@ -614,6 +677,44 @@ const faqSchema = {
   @media (hover: hover) and (pointer: fine) {
     .tanya-item:hover .tanya-q { transform: translateX(6px); }
   }
+
+  /* Garansi & bayar */
+  .gb { display: grid; gap: 1.5rem; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 64rem) { .gb { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); } }
+  .gb-judul { font-size: 1.25rem; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 1.25rem; }
+  .gb-label { font-size: 0.85rem; font-weight: 500; color: var(--color-lumut); margin-bottom: 0.6rem; }
+  .gb-termin { padding: clamp(1.5rem, 3vw, 2.5rem); border-radius: 16px; background: var(--color-embun); }
+  .termin { border-top: 1px solid var(--color-tinta); }
+  .termin li { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 1rem; align-items: center; padding: 1.2rem 0; border-bottom: 1px solid var(--color-garis); }
+  .termin-persen { font-size: 3rem; font-weight: 500; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+  .termin-persen span { font-size: 0.45em; color: var(--color-lumut); margin-left: 0.05em; }
+  .termin-teks { display: grid; color: var(--color-lumut); font-size: 0.95rem; }
+  .termin-teks b { color: var(--color-tinta); font-weight: 500; font-size: 1.05rem; }
+  .gb-catatan { margin-top: 1rem; font-size: 0.88rem; color: var(--color-lumut); }
+  .gb-garansi { padding: clamp(1.5rem, 3vw, 2.5rem); border-radius: 16px; background: var(--color-pinus); color: var(--color-embun); }
+  .garansi-angka { font-size: clamp(5rem, 3rem + 6vw, 8rem); font-weight: 500; letter-spacing: -0.05em; line-height: 0.9; }
+  .garansi-angka span { font-size: 0.22em; letter-spacing: -0.01em; margin-left: 0.3em; color: var(--color-tunas); }
+  .garansi-sub { margin-top: 0.75rem; color: var(--embun-redup); }
+  .garansi-dua { margin-top: 2rem; display: grid; gap: 1.5rem; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 48rem) { .garansi-dua { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .gb-garansi .gb-label { color: rgb(242 244 241 / 0.6); }
+  .garansi-daftar { display: grid; gap: 0.5rem; font-size: 0.93rem; }
+  .garansi-daftar li { padding-left: 1.4rem; position: relative; color: var(--color-embun); }
+  .garansi-daftar li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 0.6rem; height: 0.35rem; border-left: 1.5px solid var(--color-tunas); border-bottom: 1.5px solid var(--color-tunas); transform: rotate(-45deg); }
+  .garansi-tidak li { color: var(--embun-redup); }
+  .garansi-tidak li::before { width: 0.6rem; height: 0; border-left: 0; border-bottom: 1.5px solid rgb(242 244 241 / 0.45); transform: none; top: 0.7em; }
+  .klaim { margin-top: clamp(3rem, 6vw, 4.5rem); }
+  .klaim-daftar { display: grid; gap: 1.25rem; grid-template-columns: minmax(0, 1fr); border-top: 1px solid var(--color-tinta); padding-top: 1.5rem; }
+  @media (min-width: 48rem) { .klaim-daftar { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  .klaim-no { display: block; font-size: 0.85rem; color: var(--color-lumut); margin-bottom: 0.4rem; }
+  .klaim-daftar b { font-weight: 500; font-size: 1.1rem; letter-spacing: -0.02em; }
+  .klaim-daftar p { margin-top: 0.3rem; color: var(--color-lumut); font-size: 0.93rem; }
+  .cek-atap {
+    margin-top: clamp(2.5rem, 5vw, 4rem); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem;
+    padding: clamp(1.5rem, 3vw, 2.25rem); border-radius: 16px; border: 1px solid var(--color-garis);
+  }
+  .cek-atap p { color: var(--color-lumut); max-width: 60ch; margin-top: 0.3rem; }
+  .cek-judul { font-size: 1.4rem; font-weight: 500; letter-spacing: -0.03em; }
 
   /* Penutup: foto kafe + kalimat besar */
   .penutup { position: relative; min-height: 80svh; display: flex; align-items: flex-end; color: var(--color-putih); overflow: clip; isolation: isolate; }

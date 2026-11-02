@@ -88,6 +88,8 @@ a { text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
 .pill-tunas { background: var(--color-tunas); color: var(--color-pinus); box-shadow: 0 6px 18px -8px rgb(198 242 78 / 0.6); }
 .pill-tunas:hover { background: #d3f76c; }
 .pill-garis { border: 1px solid currentColor; }
+.pill-gelap { background: var(--color-pinus); color: var(--color-putih); }
+.pill-gelap:hover { background: var(--color-pinus-2); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
