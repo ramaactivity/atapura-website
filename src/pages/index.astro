@@ -12,6 +12,8 @@ import PilihMerek from '../components/PilihMerek.astro';
 import AkalCerita from '../components/AkalCerita.astro';
 import HitungAkal from '../islands/HitungAkal';
 import Foto from '../components/Foto.astro';
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
 import Bumper from '../components/Bumper.astro';
 import heroDesktop from '../../assets/gambar/magnific/hero-desktop.jpg';
 import heroHp from '../../assets/gambar/magnific/hero-hp.jpg';
@@ -28,6 +30,8 @@ import terasHujan from '../../assets/gambar/magnific/faq-teras-hujan-16x9.jpg';
 import '../styles/desktop.css';
 import { bisnis, waLink } from '../data/bisnis';
 import { bagianRentang, harga, tanggalPanjang } from '../data/harga';
+
+const panduanTerbaru = (await getCollection('panduan')).sort((a, b) => b.data.diperbarui.getTime() - a.data.diperbarui.getTime()).slice(0, 3);
 
 const tanya = [
   {
@@ -406,13 +410,32 @@ const faqSchema = {
     </section>
 
     <section class="penutup" aria-labelledby="judul-penutup">
-      <Foto desktop={kafe} hp={kafeHp} alt="" class="penutup-foto" />
+      <div class="penutup-latar"><Foto desktop={kafe} hp={kafeHp} alt="" class="penutup-foto" /></div>
       <div class="wrap penutup-isi">
         <h2 id="judul-penutup" class="penutup-judul">Hitung dulu, <span class="miring">baru pasang.</span></h2>
+        <p class="penutup-teks">Satu menit untuk tahu kisaran biayanya, satu chat untuk menjadwalkan survey gratis. Setelah itu, keputusan sepenuhnya di tangan Anda.</p>
         <div class="penutup-aksi">
-          <a href="#hitung" class="pill pill-tunas">Hitung estimasi biaya</a>
-          <a href={waLink('Halo Atapura, saya mau jadwalkan survey atap.')} target="_blank" rel="noopener" class="pill pill-garis" data-wa="penutup">Jadwalkan survey lewat WhatsApp</a>
+          <a href="#hitung" class="pill pill-terang">Hitung estimasi biaya</a>
+          <a href={waLink('Halo Atapura, saya mau jadwalkan survey atap.')} target="_blank" rel="noopener" class="penutup-tautan" data-wa="penutup">Jadwalkan survey lewat WhatsApp</a>
         </div>
+      </div>
+      <div class="wrap penutup-panduan" aria-labelledby="judul-jurnal">
+        <h2 id="judul-jurnal" class="jurnal-judul">Dari panduan</h2>
+        <ul class="jurnal">
+          {panduanTerbaru.map((a) => (
+            <li>
+              <a class="jurnal-item" href={`/panduan/${a.id}`}>
+                <Image src={a.data.sampul} alt="" widths={[320, 560]} sizes="(min-width: 64rem) 22vw, 100vw" class="jurnal-foto" />
+                <span class="jurnal-teks">
+                  <span class="jurnal-kat">{a.data.kategori}</span>
+                  <span class="jurnal-nama">{a.data.judul}</span>
+                  <span class="jurnal-ringkas">{a.data.ringkasan}</span>
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <a class="penutup-tautan jurnal-semua" href="/panduan">Semua panduan</a>
       </div>
     </section>
   </main>
@@ -474,7 +497,7 @@ const faqSchema = {
     const perbarui = () => cta.classList.toggle('tampil', heroLewat && terlihat.size === 0);
     new IntersectionObserver(([e]) => { heroLewat = !e.isIntersecting && e.boundingClientRect.top < 0; perbarui(); }).observe(document.querySelector('.hero')!);
     const io = new IntersectionObserver((es) => { es.forEach((e) => (e.isIntersecting ? terlihat.add(e.target) : terlihat.delete(e.target))); perbarui(); });
-    document.querySelectorAll('#hitung, .penutup, footer').forEach((el) => io.observe(el));
+    document.querySelectorAll('#hitung, .penutup-isi, footer').forEach((el) => io.observe(el));
   }
 
   // Tombol WA melayang muncul di HP setelah slip Hitung AKAL lewat, supaya tidak dobel dengan tombol di slip.
@@ -505,7 +528,7 @@ const faqSchema = {
   /* Hero: foto penuh, satu ajakan. Desktop: teks gelap di atas langit; HP: teks putih di bawah foto. */
   .hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end; overflow: clip; isolation: isolate; background: #cfdde4; }
   /* Foto lahir di komponen Foto, jadi selektornya global; <picture> dijadikan lapisan latar. */
-  .hero :global(picture), .hujan :global(picture), .penutup :global(picture), .kartu.foto :global(picture) { position: absolute; inset: 0; z-index: -2; }
+  .hero :global(picture), .hujan :global(picture), .kartu.foto :global(picture) { position: absolute; inset: 0; z-index: -2; }
   .kartu.foto :global(picture) { z-index: 0; }
   :global(.hero-foto) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 40%; z-index: -2; }
   .hero::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgb(10 20 16 / 0.92) 0%, rgb(10 20 16 / 0.68) 45%, transparent 75%); }
@@ -776,13 +799,45 @@ const faqSchema = {
   .cek-teks { display: grid; gap: 0.6rem; justify-items: start; }
   .cek-judul { font-size: 1.4rem; font-weight: 500; letter-spacing: -0.03em; }
 
-  /* Penutup: foto kafe + kalimat besar */
-  .penutup { position: relative; min-height: 80svh; display: flex; align-items: flex-end; color: var(--color-putih); overflow: clip; isolation: isolate; }
-  :global(.penutup-foto) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 60%; z-index: -2; }
-  .penutup::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgb(10 20 16 / 0.88) 0%, rgb(10 20 16 / 0.3) 60%, transparent); }
-  .penutup-isi { width: 100%; padding-block: 4rem; display: grid; gap: 1.75rem; justify-items: start; }
-  .penutup-judul { font-size: clamp(3rem, 0.5rem + 10vw, 9.5rem); font-weight: 500; letter-spacing: -0.04em; line-height: 0.9; max-width: 11ch; }
-  .penutup-aksi { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  /* Penutup + panduan: satu latar gelap, foto memudar ke latar dan menyambung dua bagian (pola "Are we a match?"). */
+  .penutup { position: relative; isolation: isolate; overflow: clip; background: #0c1a16; color: var(--color-embun); }
+  .penutup-latar {
+    position: absolute; z-index: -1; top: 0; right: 0; width: 100%; height: 72svh;
+    -webkit-mask-image: linear-gradient(180deg, #000 35%, transparent 100%);
+    mask-image: linear-gradient(180deg, #000 35%, transparent 100%);
+  }
+  .penutup-latar :global(picture), .penutup-latar :global(img) { display: block; width: 100%; height: 100%; }
+  :global(.penutup-foto) { object-fit: cover; object-position: 60% 50%; opacity: 0.85; }
+  .penutup-isi { min-height: 92svh; display: grid; align-content: end; gap: 1.5rem; justify-items: start; padding-block: 6rem 4rem; }
+  .penutup-judul { font-size: clamp(2.8rem, 1rem + 7vw, 6.5rem); font-weight: 500; letter-spacing: -0.04em; line-height: 0.95; max-width: 11ch; text-shadow: 0 2px 30px rgb(0 0 0 / 0.35); }
+  .penutup-teks { max-width: 40ch; font-size: 1.15rem; line-height: 1.6; color: rgb(242 244 241 / 0.82); }
+  .penutup-aksi { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.75rem; margin-top: 0.5rem; }
+  .pill-terang { background: var(--color-embun); color: var(--color-pinus); min-height: 54px; padding-inline: 1.6rem; }
+  .pill-terang:hover { background: var(--color-tunas); }
+  .penutup-tautan { color: rgb(242 244 241 / 0.8); text-decoration: underline; text-decoration-color: rgb(242 244 241 / 0.3); text-underline-offset: 0.3em; transition: color 250ms; padding-block: 0.6rem; }
+  .penutup-tautan:hover { color: var(--color-tunas); }
+  @media (min-width: 64rem) {
+    .penutup-latar { left: auto; width: 62%; height: 100svh;
+      -webkit-mask-image: linear-gradient(180deg, #000 45%, transparent 100%), linear-gradient(270deg, #000 55%, transparent 100%);
+      -webkit-mask-composite: source-in; mask-image: linear-gradient(180deg, #000 45%, transparent 100%), linear-gradient(270deg, #000 55%, transparent 100%); mask-composite: intersect; }
+    .penutup-isi { align-content: center; min-height: 100svh; padding-block: 8rem 6rem; }
+  }
+  .penutup-panduan { padding-bottom: clamp(4rem, 8vw, 7rem); }
+  .jurnal-judul { padding-top: clamp(3rem, 6vw, 5rem); border-top: 1px solid rgb(242 244 241 / 0.14); font-size: clamp(2rem, 1.2rem + 2.6vw, 3.4rem); font-weight: 500; letter-spacing: -0.04em; margin-bottom: 2.5rem; }
+  .jurnal { display: grid; }
+  .jurnal-item { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; padding-block: 1.75rem; border-bottom: 1px solid rgb(242 244 241 / 0.1); color: inherit; text-decoration: none; }
+  .jurnal li:first-child .jurnal-item { padding-top: 0; }
+  :global(.jurnal-foto) { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 12px; transition: transform 700ms var(--ease-out); }
+  .jurnal-teks { display: grid; gap: 0.5rem; align-content: center; }
+  .jurnal-kat { font-size: 0.85rem; color: var(--color-tunas); }
+  .jurnal-nama { font-size: clamp(1.4rem, 1rem + 1.4vw, 2.2rem); font-weight: 500; letter-spacing: -0.035em; line-height: 1.12; transition: color 300ms; }
+  .jurnal-ringkas { color: rgb(242 244 241 / 0.66); max-width: 56ch; }
+  .jurnal-semua { display: inline-block; margin-top: 2rem; }
+  @media (min-width: 64rem) {
+    .jurnal-item { grid-template-columns: minmax(0, 0.32fr) minmax(0, 1fr); gap: 3rem; align-items: center; }
+    .jurnal-item:hover .jurnal-nama { color: var(--color-tunas); }
+    .jurnal-item:hover :global(.jurnal-foto) { transform: scale(1.03); }
+  }
 
   /* Pill ajakan melayang (desktop, pola askmidnight) */
   .cta-apung {

@@ -65,3 +65,6 @@ Arahan Rama (screenshot askmidnight.com): bagian polos diberi latar suasana dari
 
 ## 022 · 2 November 2026 · Bumper pembuka "atap terangkat"
 Permintaan Rama: bumper keren & profesional (bukan loading screen) yang menyambung mulus ke hero. `src/components/Bumper.astro`: Λ tergambar (lime) → logo → Andal · Kualitas · Amanah · Lestari → layar terangkat dengan tepi bawah berbentuk Λ membuka hero; foto hero mendekat dan teks naik menyambung. ±2,6 dtk, sekali per sesi (sessionStorage), lewati dengan klik/tombol/scroll roda, pengaman 4 dtk. Tidak tampil tanpa JS, reduced-motion, atau kunjungan ulang — HTML hero tetap utuh untuk Google. Catatan: nama @keyframes wajib unik (prefiks bp-); nama `muncul` sempat bentrok dengan desktop.css dan membuat teks tak terlihat.
+
+## 023 · 2 November 2026 · Penutup + Panduan menyatu, footer gaya Andermatt
+Referensi Rama (situs "Are we a match?" + "From the Journal", dan footer andermatt-swissalps): penutup kini satu bagian gelap dengan foto kafe yang memudar (mask) ke latar dan berlanjut ke "Dari panduan" (3 artikel terbaru = tautan internal untuk SEO). Footer terang: tagline besar + satu ajakan di kiri, 6 kolom tautan bertajuk (Layanan, Biaya & garansi, Panduan, Area survey, Kontak, Atapura), baris identitas (logo, legal, pendiri), baris legal.

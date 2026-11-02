@@ -1,30 +1,89 @@
 ---
+// Footer pola Andermatt: tagline besar + satu ajakan di kiri, kolom tautan bertajuk di kanan,
+// baris identitas, lalu baris legal. Latar terang supaya kontras dengan penutup gelap.
+import { getCollection } from 'astro:content';
 import { bisnis, waLink } from '../data/bisnis';
 import Logo from './Logo.astro';
+
 const tahun = new Date().getFullYear();
+const panduan = (await getCollection('panduan')).sort((a, b) => b.data.diperbarui.getTime() - a.data.diperbarui.getTime()).slice(0, 3);
+const singkat = (j: string) => j.split(/[:?,]/)[0];
+
+const kolom: { judul: string; tautan: { label: string; href: string; luar?: boolean }[] }[] = [
+  {
+    judul: 'Layanan',
+    tautan: [
+      { label: 'Pasang atap baru', href: '/#layanan' },
+      { label: 'Ganti atap lama', href: '/#layanan' },
+      { label: 'Perbaikan atap bocor', href: '/#layanan' },
+      { label: 'Villa & kafe', href: '/#layanan' },
+      { label: 'Proyek perusahaan', href: '/#layanan-proyek' },
+    ],
+  },
+  {
+    judul: 'Biaya & garansi',
+    tautan: [
+      { label: 'Hitung AKAL', href: '/#hitung' },
+      { label: 'Pilih merek', href: '/#merek' },
+      { label: 'Termin pembayaran', href: '/#garansi' },
+      { label: `Garansi ${bisnis.garansiPemasanganTahun} tahun`, href: '/#garansi' },
+    ],
+  },
+  {
+    judul: 'Panduan',
+    tautan: [...panduan.map((p) => ({ label: singkat(p.data.judul), href: `/panduan/${p.id}` })), { label: 'Semua panduan', href: '/panduan' }],
+  },
+  {
+    judul: 'Area survey',
+    tautan: [
+      { label: 'DKI Jakarta', href: '/#area' },
+      { label: 'Bogor & Depok', href: '/#area' },
+      { label: 'Tangerang', href: '/#area' },
+      { label: 'Bekasi', href: '/#area' },
+    ],
+  },
+  {
+    judul: 'Kontak',
+    tautan: [
+      { label: 'WhatsApp', href: waLink('Halo Atapura, saya mau tanya soal atap bitumen.'), luar: true },
+      { label: 'Email', href: `mailto:${bisnis.email}` },
+      ...(bisnis.telepon ? [{ label: `+${bisnis.telepon}`, href: `tel:+${bisnis.telepon}` }] : []),
+    ],
+  },
+  {
+    judul: 'Atapura',
+    tautan: [
+      { label: 'Masuk AKAL', href: '/#akal' },
+      { label: 'Cara kerja', href: '/#cara-kerja' },
+      { label: 'Panduan brand', href: '/branding' },
+    ],
+  },
+];
 ---
 
 <footer class="kaki">
-  <div class="wrap kaki-grid">
-    <div>
-      <p class="kaki-nama"><Logo tinggi="1.45rem" /><span class="sr-only">Atapura</span></p>
-      <p class="kaki-teks">
-        Spesialis atap bitumen untuk Jabodetabek. {bisnis.namaLegal} ({bisnis.statusLegal}).
-        Didirikan oleh {bisnis.pendiri.join(' dan ')}.
-      </p>
+  <div class="wrap kaki-atas">
+    <div class="kaki-tagline">
+      <p class="kaki-besar">Atap yang masuk AKAL, untuk rumah di Jabodetabek.</p>
+      <a class="kaki-aksi" href="/#hitung">Hitung estimasi biaya</a>
     </div>
-    <div>
-      <p class="kaki-judul">Kontak</p>
-      <ul class="kaki-daftar">
-        <li><a href={waLink('Halo Atapura, saya mau tanya soal atap bitumen.')} target="_blank" rel="noopener" data-wa="footer">WhatsApp</a></li>
-        <li><a href={`mailto:${bisnis.email}`}>{bisnis.email}</a></li>
-        {bisnis.telepon && <li><a href={`tel:+${bisnis.telepon}`}>+{bisnis.telepon}</a></li>}
-      </ul>
-    </div>
-    <div>
-      <p class="kaki-judul">Area layanan</p>
-      <p class="kaki-teks">{bisnis.area.join(', ')}.</p>
-    </div>
+    <nav class="kaki-kolom" aria-label="Tautan footer">
+      {kolom.map((k) => (
+        <div>
+          <p class="kaki-judul">{k.judul}</p>
+          <ul>
+            {k.tautan.map((t) => (
+              <li><a href={t.href} {...(t.luar ? { target: '_blank', rel: 'noopener', 'data-wa': 'footer' } : {})}>{t.label}</a></li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </nav>
+  </div>
+  <div class="wrap kaki-identitas">
+    <span class="kaki-logo"><Logo tinggi="1.7rem" /><span class="sr-only">Atapura</span></span>
+    <p class="kaki-legal">{bisnis.namaLegal} ({bisnis.statusLegal}).<br />Didirikan oleh {bisnis.pendiri.join(' dan ')}.</p>
+    <p class="kaki-legal">Survey gratis di {bisnis.area.length} kota dan kabupaten Jabodetabek.</p>
   </div>
   <div class="wrap kaki-bawah">
     <p>© {tahun} Atapura</p>
@@ -33,18 +92,27 @@ const tahun = new Date().getFullYear();
 </footer>
 
 <style>
-  .kaki { background: var(--color-pinus); color: var(--color-embun); padding-top: 4rem; padding-bottom: 2.5rem; }
-  .kaki-grid { display: grid; gap: 2.5rem; grid-template-columns: minmax(0, 1fr); }
-  @media (min-width: 48rem) { .kaki-grid { grid-template-columns: 1.2fr 1fr 1.6fr; } }
-  .kaki-nama { margin-bottom: 0.9rem; }
-  .kaki-judul { font-weight: 500; margin-bottom: 0.6rem; }
-  .kaki-teks, .kaki-daftar { color: var(--embun-redup); font-size: 0.95rem; }
-  .kaki-daftar { display: grid; gap: 0.35rem; }
-  .kaki a { color: inherit; }
-  .kaki-daftar a { display: inline-block; padding-block: 0.35rem; }
+  .kaki { background: var(--color-embun); color: var(--color-tinta); padding-top: clamp(4rem, 7vw, 6rem); padding-bottom: 2rem; border-top: 1px solid var(--color-garis); }
+  .kaki-atas { display: grid; gap: 3rem 4rem; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 64rem) { .kaki-atas { grid-template-columns: minmax(0, 0.9fr) minmax(0, 2fr); } }
+  .kaki-besar { font-size: clamp(2rem, 1.3rem + 2.2vw, 3rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.05; max-width: 13ch; }
+  .kaki-aksi {
+    display: inline-block; margin-top: 1.5rem; padding-block: 0.4rem; font-weight: 500; color: var(--color-pinus);
+    text-decoration: underline; text-decoration-color: var(--color-tunas); text-decoration-thickness: 2px; text-underline-offset: 0.35em;
+  }
+  .kaki-kolom { display: grid; gap: 2.5rem 2rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (min-width: 48rem) { .kaki-kolom { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .kaki-judul { font-weight: 500; color: var(--color-pinus); margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.5rem; }
+  .kaki-judul::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--color-tunas); box-shadow: 0 0 0 1px rgb(16 35 30 / 0.25); }
+  .kaki-kolom ul { display: grid; gap: 0.1rem; }
+  .kaki-kolom a { display: inline-block; padding-block: 0.3rem; color: var(--color-lumut); text-decoration: none; transition: color 200ms; overflow-wrap: anywhere; }
+  .kaki-kolom a:hover { color: var(--color-pinus); }
+  .kaki-identitas { margin-top: clamp(3.5rem, 6vw, 5rem); display: grid; gap: 1.25rem 4rem; align-items: center; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 64rem) { .kaki-identitas { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr) minmax(0, 1fr); } }
+  .kaki-logo { color: var(--color-pinus); }
+  .kaki-legal { font-size: 0.9rem; color: var(--color-lumut); }
   .kaki-bawah {
-    margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgb(242 244 241 / 0.14);
-    display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; justify-content: space-between;
-    font-size: 0.8rem; color: rgb(242 244 241 / 0.6);
+    margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid var(--color-garis);
+    display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; justify-content: space-between; font-size: 0.82rem; color: var(--color-lumut);
   }
 </style>
