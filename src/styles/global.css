@@ -39,13 +39,16 @@ html {
 }
 
 body {
-  font-size: 1.0625rem; /* 17px di HP */
-  line-height: 1.6;
+  font-size: 1rem; /* 16px di HP: ukuran baca bawaan iOS/Android */
+  line-height: 1.55;
   font-feature-settings: "kern", "liga";
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
 
+@media (min-width: 48rem) {
+  body { font-size: 1.0625rem; line-height: 1.6; }
+}
 @media (min-width: 64rem) {
   body { font-size: 1.125rem; }
 }

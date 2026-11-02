@@ -145,7 +145,28 @@ const genteng = slab(260, 210, 200, 100, 10);
     });
     root.addEventListener('pointerleave', (e) => e.pointerType === 'mouse' && pilih(null));
 
-    // Tur otomatis: saat terlihat, lapis menyala bergiliran sampai pengunjung menyentuh/menyorot diagram.
+    // HP (gambar menempel di atas): lapis yang menyala mengikuti teks yang sedang dibaca saat menggulir,
+    // jadi gambar dan teks selalu sinkron. Garis baca = sedikit di bawah gambar yang menempel.
+    const hp = matchMedia('(max-width: 59.99rem)');
+    if (hp.matches) {
+      const gambar = root.querySelector<HTMLElement>('.lapisan-gambar')!;
+      const item = [...tombol];
+      let antre = 0;
+      const ikut = () => {
+        antre = 0;
+        const r = root.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > innerHeight) return;
+        const garis = gambar.getBoundingClientRect().bottom + (innerHeight - gambar.offsetHeight) * 0.3;
+        let pilihan = item[0];
+        for (const b of item) if (b.getBoundingClientRect().top <= garis) pilihan = b;
+        if (root.dataset.aktif !== pilihan.dataset.pilih) pilih(pilihan.dataset.pilih!);
+      };
+      addEventListener('scroll', () => { if (!antre) antre = requestAnimationFrame(ikut); }, { passive: true });
+      ikut();
+      continue;
+    }
+
+    // Desktop — tur otomatis: saat terlihat, lapis menyala bergiliran sampai pengunjung menyentuh/menyorot diagram.
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
       const urutan = [...tombol].map((b) => b.dataset.pilih!).reverse();
       let i = 0, id = 0, berhenti = false;
@@ -193,11 +214,16 @@ const genteng = slab(260, 210, 200, 100, 10);
   [data-aktif="nok"] .l-nok path { stroke: var(--color-tunas); }
   @media (max-width: 59.99rem) {
     .lapisan-gambar {
-      position: sticky; top: 0; z-index: 2; background: var(--color-embun);
-      height: 38svh; padding-block: 0.75rem; overflow: hidden;
-      box-shadow: 0 16px 16px -16px rgb(16 35 30 / 0.25);
+      position: sticky; top: 0; z-index: 2; height: 34svh; padding-block: 0.75rem 1.25rem; overflow: hidden;
+      max-width: none; margin-inline: calc(-1 * var(--gutter)); width: calc(100% + 2 * var(--gutter));
+      background: linear-gradient(var(--color-embun) 82%, rgb(242 244 241 / 0));
     }
     .lapisan-gambar svg { height: 100%; width: 100%; overflow: hidden; }
+    .lapisan-daftar { gap: 0.15rem; }
+    .lapis { padding: 0.85rem 0.85rem 0.85rem 0.5rem; gap: 0.85rem; grid-template-columns: 2rem minmax(0, 1fr); }
+    .lapis-no { width: 2rem; height: 2rem; font-size: 0.85rem; }
+    .lapis-nama { font-size: 1.02rem; }
+    .lapis-isi { font-size: 0.93rem; line-height: 1.5; }
   }
 
   .lapisan-daftar { display: grid; gap: 0.25rem; counter-reset: none; }

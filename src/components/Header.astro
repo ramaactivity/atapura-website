@@ -15,6 +15,18 @@ const menu = [
   { href: '/panduan', label: 'Panduan' },
   { href: '/#warna', label: 'Warna' },
 ];
+// Menu HP: daftar lebih lengkap karena tidak ada navigasi lain di layar kecil.
+const menuHp = [
+  { href: '/#hitung', label: 'Hitung biaya' },
+  { href: '/#layanan', label: 'Layanan' },
+  { href: '/#cara-kerja', label: 'Cara kerja' },
+  { href: '/#garansi', label: 'Bayar & garansi' },
+  { href: '/#merek', label: 'Pilih merek' },
+  { href: '/#warna', label: 'Warna' },
+  { href: '/#area', label: 'Area survey' },
+  { href: '/#tanya', label: 'Tanya jawab' },
+  { href: '/panduan', label: 'Panduan' },
+];
 ---
 
 <header class:list={["kepala no-print", { "kepala-terang": terang }]}>
@@ -27,8 +39,38 @@ const menu = [
     <a class="pill kepala-wa" href={waLink('Halo Atapura, saya mau tanya soal atap bitumen.')} target="_blank" rel="noopener" data-wa="header">
       Chat WhatsApp
     </a>
+    <button type="button" class="kepala-menu" aria-haspopup="dialog" aria-controls="menu-hp" data-buka-menu>
+      <span class="kepala-garis" aria-hidden="true"></span>Menu
+    </button>
   </div>
 </header>
+
+<dialog id="menu-hp" class="lembar-menu no-print" aria-label="Menu" data-menu-hp>
+  <div class="lembar-pegangan" aria-hidden="true"></div>
+  <nav aria-label="Menu HP">
+    <ul class="lembar-daftar">
+      {menuHp.map((m) => <li><a href={m.href} data-tutup-menu>{m.label}</a></li>)}
+    </ul>
+  </nav>
+  <div class="lembar-aksi">
+    <a class="pill pill-tunas" href="/#hitung" data-tutup-menu>Hitung estimasi biaya</a>
+    <a class="pill pill-garis" href="/#layanan-proyek" data-tutup-menu>Untuk perusahaan &amp; proyek</a>
+  </div>
+  <button type="button" class="lembar-tutup" data-tutup-menu aria-label="Tutup menu">Tutup</button>
+</dialog>
+
+<script>
+  const menu = document.querySelector<HTMLDialogElement>('[data-menu-hp]');
+  const buka = document.querySelector<HTMLButtonElement>('[data-buka-menu]');
+  if (menu && buka) {
+    buka.addEventListener('click', () => menu.showModal());
+    // Tutup lewat tautan, tombol, atau ketuk area gelap di luar lembar.
+    menu.addEventListener('click', (e) => {
+      const t = e.target as HTMLElement;
+      if (t === menu || t.closest('[data-tutup-menu]')) menu.close();
+    });
+  }
+</script>
 
 <style>
   .kepala { position: absolute; inset: 0 0 auto; z-index: 20; color: var(--color-putih); }
@@ -40,6 +82,43 @@ const menu = [
   .kepala-wa { margin-left: auto; min-height: 44px; padding-inline: 1.2rem; font-size: 0.92rem; background: var(--color-pinus); color: var(--color-putih); }
   .kepala-wa:hover { background: var(--color-pinus-2); }
   .kepala-perusahaan { display: none; min-height: 44px; padding-inline: 1.2rem; font-size: 0.92rem; border: 1px solid currentColor; color: inherit; }
+  .kepala-menu {
+    display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px; padding: 0 1rem; margin-left: -1.25rem;
+    border-radius: 999px; font-size: 0.9rem; font-weight: 500; color: inherit; cursor: pointer;
+    background: var(--color-embun); color: var(--color-pinus);
+  }
+  .kepala-garis, .kepala-garis::before { display: block; width: 14px; height: 1.5px; background: currentColor; border-radius: 2px; }
+  .kepala-garis { position: relative; transform: translateY(-2.5px); }
+  .kepala-garis::before { content: ''; position: absolute; top: 5px; }
+  @media (max-width: 47.99rem) {
+    .kepala-isi { min-height: 64px; gap: 1.25rem; }
+    .kepala-wa { min-height: 44px; padding-inline: 1rem; font-size: 0.85rem; }
+  }
+
+  /* Lembar menu dari bawah (pola aplikasi HP). */
+  .lembar-menu {
+    position: fixed; inset: auto 0 0 0; margin: 0; width: 100%; max-width: none; max-height: 88svh; overflow: auto;
+    border: 0; border-radius: 24px 24px 0 0; padding: 0.75rem 20px calc(1.25rem + env(safe-area-inset-bottom));
+    background: var(--color-embun); color: var(--color-tinta);
+    box-shadow: 0 -20px 40px -20px rgb(16 35 30 / 0.45);
+    translate: 0 100%; transition: translate 420ms var(--ease-out), overlay 420ms allow-discrete, display 420ms allow-discrete;
+  }
+  .lembar-menu[open] { translate: 0 0; }
+  @starting-style { .lembar-menu[open] { translate: 0 100%; } }
+  .lembar-menu::backdrop { background: rgb(11 23 20 / 0); transition: background-color 420ms, overlay 420ms allow-discrete, display 420ms allow-discrete; }
+  .lembar-menu[open]::backdrop { background: rgb(11 23 20 / 0.5); }
+  @starting-style { .lembar-menu[open]::backdrop { background: rgb(11 23 20 / 0); } }
+  .lembar-pegangan { width: 36px; height: 4px; border-radius: 2px; background: var(--color-garis); margin: 0 auto 0.75rem; }
+  .lembar-daftar { display: grid; }
+  .lembar-daftar a {
+    display: flex; align-items: center; min-height: 50px; font-size: 1.15rem; font-weight: 500; letter-spacing: -0.02em;
+    color: var(--color-tinta); text-decoration: none; border-bottom: 1px solid var(--color-garis);
+  }
+  .lembar-aksi { display: grid; gap: 0.5rem; margin-top: 1.25rem; }
+  .lembar-aksi .pill { min-height: 50px; }
+  .lembar-aksi .pill-garis { color: var(--color-pinus); }
+  .lembar-tutup { display: block; width: 100%; min-height: 44px; margin-top: 0.5rem; font-size: 0.95rem; color: var(--color-lumut); cursor: pointer; }
+  @media (prefers-reduced-motion: reduce) { .lembar-menu, .lembar-menu::backdrop { transition: none; } }
   .kepala-terang { color: var(--color-pinus); }
   .kepala-terang .merek-kata { filter: none; }
   @media (min-width: 64rem) {
@@ -48,5 +127,6 @@ const menu = [
     .kepala-nav { display: flex; }
     .kepala-wa { margin-left: 0; }
     .kepala-perusahaan { display: inline-flex; }
+    .kepala-menu { display: none; }
   }
 </style>

@@ -26,7 +26,7 @@
 .ha-slip .contoh { background: rgb(198 242 78 / 0.16); color: var(--color-tunas); }
 /* Angka harga: proporsional (bukan tabular), tipis, "Rp" dan satuan mengecil supaya angka yang bicara. */
 .hasil-angka {
-  font-size: clamp(3rem, 1.8rem + 3.6vw, 4.8rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1;
+  font-size: clamp(2.2rem, 1.2rem + 4vw, 4.8rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1;
   font-variant-numeric: proportional-nums lining-nums; white-space: nowrap; margin: 0.6rem 0 0.2rem;
 }
 .hasil-rp { font-size: 0.36em; letter-spacing: 0; vertical-align: 0.95em; margin-right: 0.18em; color: rgb(242 244 241 / 0.7); }

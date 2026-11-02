@@ -863,4 +863,37 @@ const faqSchema = {
   .wa-apung svg { width: 22px; height: 22px; fill: currentColor; }
   .wa-apung.tampil { opacity: 1; transform: none; pointer-events: auto; }
   @media (min-width: 64rem) { .wa-apung { display: none; } }
+  /* ── HP: skala & ritme khusus layar kecil (bukan desktop yang dikecilkan). ─────────────── */
+  @media (max-width: 47.99rem) {
+    .sek { padding-block: 3.5rem; }
+    .kepala, .anatomi-kepala, .cara-kepala, .merek-kepala { gap: 0.9rem; margin-bottom: 1.75rem; }
+    .judul-besar, .judul-2 { font-size: 1.875rem; line-height: 1.04; letter-spacing: -0.035em; max-width: 15ch; }
+    .lead { font-size: 1rem; line-height: 1.55; }
+
+    .hero { min-height: 92svh; }
+    .hero-judul { font-size: 2.6rem; line-height: 0.95; }
+    .hero-sub { font-size: 1rem; line-height: 1.5; max-width: 30ch; }
+    .hero-aksi { margin-top: 1.5rem; gap: 0.5rem; }
+    .hero-aksi .pill { min-height: 48px; padding-inline: 1.25rem; font-size: 0.95rem; }
+
+    .kartu { padding: 1.25rem; min-height: 0; border-radius: 16px; }
+    .kartu-isi { padding: 1.25rem; }
+    .kartu-judul { font-size: 1.15rem; }
+    .kartu .kartu-angka { font-size: 2.4rem; }
+
+    .ds-merek { font-size: 1.6rem; }
+    .merek-hp-harga { font-size: 1.25rem; }
+    .batas-judul { font-size: 1.35rem; }
+    .gb-judul { font-size: 1.1rem; margin-bottom: 1rem; }
+    .garansi-angka { font-size: 4rem; }
+    .cek-judul { font-size: 1.2rem; }
+    .lembar-judul { font-size: 1rem; }
+    .lembar-sudut { display: none; }
+    .lembar { margin-top: 2rem; }
+    .penutup-judul { font-size: 2.4rem; }
+    .jurnal-judul { font-size: 1.6rem; margin-bottom: 1.5rem; }
+
+    .wa-apung { min-height: 48px; padding: 0 1rem 0 0.85rem; font-size: 0.95rem; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); }
+    .wa-apung svg { width: 20px; height: 20px; }
+  }
 </style>
