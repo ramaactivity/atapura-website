@@ -38,3 +38,6 @@ Dari Rama. Disimpan di `src/data/bisnis.ts` (`6289611394867`), dipakai semua tom
 
 ## 013 · 2 November 2026 · Lapisan interaksi khusus desktop
 Rama: desktop terasa "boring dan basic"; teknologi boleh dibedakan dari HP. Ditambahkan lapisan progressive enhancement yang hanya aktif di layar ≥64rem + mouse + gerak tidak dikurangi: pembukaan hero, cahaya senja ikut kursor (pegas), efek baris tertindih saat scroll, diagram lapisan terurai, kata miring hidup, hover AKAL/tabel/FAQ/tombol. Semua CSS native (scroll-driven animation) + ±1 KB JS; tanpa library, tanpa scroll-jacking. HP tidak memuat efek apa pun (terverifikasi). Scroll roda mouse 2× sepanjang halaman: 0 frame >50 ms. Detail di DESIGN.md "Lapisan desktop".
+
+## 014 · 2 November 2026 · Berhenti iterasi di kode: foto Magnific + mockup disetujui dulu
+Rama menilai beranda masih "basic, murahan, tidak terasa amanah/profesional" setelah beberapa putaran perbaikan di kode. Diagnosa: (1) belum ada foto (hero hanya tekstur genteng), (2) belum ada bukti nyata (logo, proyek, tim, ulasan, legalitas), (3) alur 09-SKILL-WAJIB ("mockup disetujui dulu") dilompati. Rama memilih: buat 4 foto di Magnific (prompt 08-ASET-MAGNIFIC.md no. 1, 4, 5, 6) → Claude membuat mockup satu halaman → disetujui → baru dibangun. Kode beranda tidak dirombak lagi sebelum mockup disetujui. Patokan kualitas: daftar situs di HANDOVER.md.
