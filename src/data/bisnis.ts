@@ -33,6 +33,8 @@ export const bisnis = {
     'Kabupaten Bekasi',
   ],
   merek: ['Maxxi', 'CTI', 'Javabitumen'],
+  // Izin tampil publik dari Rama, 2 Nov 2026.
+  pendiri: ['Ramadan Saputra', 'Yusuf Nasution'],
 } as const;
 
 export function waLink(pesan: string): string {

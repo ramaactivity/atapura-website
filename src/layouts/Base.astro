@@ -31,6 +31,7 @@ const organisasi = {
     '@type': name.startsWith('Kabupaten') ? 'AdministrativeArea' : 'City',
     name: `${name}, Indonesia`,
   })),
+  founder: bisnis.pendiri.map((name) => ({ '@type': 'Person', name })),
   knowsAbout: ['atap bitumen', 'genteng aspal', 'asphalt shingle', ...bisnis.merek],
   inLanguage: 'id-ID',
 };
