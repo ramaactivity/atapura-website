@@ -28,7 +28,7 @@ Butuh data/aksi Rama: harga resmi, garansi (tahun), termin DP, foto proyek asli 
 Kalkulator: spek pendukung + kebutuhan material + harga terpasang/m²; cara bayar material lunas sebelum kirim + jasa 40/30/30; luar Jabodetabek dilayani (survey berbayar). Menunggu jawaban Bang Yusuf: flashing 0,4 m/m², harga GRC & Javabitumen, Flashing Z, biaya survey luar kota, boleh-tidaknya klaim pengalaman Papua dst. tampil publik.
 
 ## Status konsep
-Situs masih KONSEP untuk partner (DECISIONS 017): `bisnis.konsep = true` → noindex + robots Disallow. Ubah ke false setelah angka termin/garansi/harga final.
+Situs masih KONSEP untuk partner (DECISIONS 017): `bisnis.konsep = true` → noindex + robots Disallow. Ubah ke false setelah angka termin/garansi/harga final **dan rekening atas nama PT sudah ada** — seluruh copy menjanjikan "hanya ke rekening atas nama perusahaan"; rekening pribadi sementara (Rama punya) jangan pernah ditulis di situs/repo, hanya di kontrak/invoice.
 
 ## Menunggu dari Rama
 WhatsApp bisnis, harga resmi per merek, durasi garansi pemasangan, logo, foto proyek/Magnific, brosur Javabitumen, status agen resmi, NIB/NPWP setelah PT terbit.
