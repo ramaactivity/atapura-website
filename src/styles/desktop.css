@@ -113,3 +113,20 @@
     :where(html) .hujan-isi > *, :where(html) .penutup-isi > * { animation-timeline: view(); animation-range: entry 10% cover 35%; }
   }
 }
+
+/* Hero parallax saat scroll (HP & desktop): foto turun lebih lambat dari halaman, teks naik & memudar.
+   Dianimasikan di <picture> dan .hero-isi (transform, GPU) supaya tidak bentrok dengan scale/translate foto. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hero > picture { animation: hero-paralaks linear both; will-change: transform; }
+    @keyframes hero-paralaks { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(0, 28%, 0); } }
+    .hero-isi { animation: hero-isi-naik linear both; }
+    @keyframes hero-isi-naik { from { transform: translate3d(0, 0, 0); opacity: 1; } to { transform: translate3d(0, -14%, 0); opacity: 0.2; } }
+  }
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    :where(html) .hero > picture, :where(html) .hero-isi { animation-timeline: --hero; animation-range: exit 0% exit 100%; }
+    :where(html) .hero { view-timeline-name: --hero; }
+  }
+}
