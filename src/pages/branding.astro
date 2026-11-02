@@ -1,0 +1,737 @@
+---
+// Panduan brand + design system Atapura: logo & unduhan, warna, huruf, komponen, foto,
+// templat sosial media, penerapan di media cetak, dan suara tulisan. Sumber token: DESIGN.md.
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Footer from '../components/Footer.astro';
+import Logo from '../components/Logo.astro';
+import villa45 from '../../assets/gambar/magnific/segmen-villa-4x5.jpg';
+import hujanHp from '../../assets/gambar/magnific/hujan-hp.jpg';
+import hujanDesktop from '../../assets/gambar/magnific/hujan-desktop.jpg';
+import heroDesktop from '../../assets/gambar/magnific/hero-desktop.jpg';
+import tukang from '../../assets/gambar/magnific/tukang-4x5.jpg';
+import kafe from '../../assets/gambar/magnific/segmen-kafe-3x2.jpg';
+
+const menu = [
+  ['logo', 'Logo'],
+  ['warna', 'Warna'],
+  ['huruf', 'Huruf'],
+  ['komponen', 'Komponen'],
+  ['foto', 'Foto'],
+  ['sosmed', 'Sosial media'],
+  ['penerapan', 'Penerapan'],
+  ['tulisan', 'Tulisan'],
+  ['unduh', 'Unduh'],
+];
+
+const warna = [
+  { nama: 'Pinus', hex: '#10231E', rgb: '16 35 30', peran: 'Bidang gelap, logo di latar terang, teks besar.', gelap: true },
+  { nama: 'Pinus 2', hex: '#183129', rgb: '24 49 41', peran: 'Bidang gelap kedua, penutup halaman.', gelap: true },
+  { nama: 'Tinta', hex: '#151A18', rgb: '21 26 24', peran: 'Teks utama di latar terang.', gelap: true },
+  { nama: 'Lumut', hex: '#4C5E55', rgb: '76 94 85', peran: 'Teks sekunder, keterangan, label.', gelap: true },
+  { nama: 'Embun', hex: '#F2F4F1', rgb: '242 244 241', peran: 'Latar baca utama, logo di latar gelap.' },
+  { nama: 'Putih', hex: '#FFFFFF', rgb: '255 255 255', peran: 'Kartu, tabel, kertas penawaran.' },
+  { nama: 'Garis', hex: '#D9DED8', rgb: '217 222 216', peran: 'Semua garis 1 px di latar terang.' },
+  { nama: 'Tunas', hex: '#C6F24E', rgb: '198 242 78', peran: 'Satu-satunya aksen: tombol utama, satu chip atau satu kata di atas gelap.' },
+  { nama: 'Tunas pucat', hex: '#EAF8C4', rgb: '234 248 196', peran: 'Latar chip penanda di bidang terang.' },
+  { nama: 'Senja', hex: '#F2B66B', rgb: '242 182 107', peran: 'Hanya cahaya di foto. Bukan warna tombol atau teks.' },
+];
+
+const skala = [
+  { nama: 'Display', spek: '500 · 96 px · −0,04 em · baris 0,95', contoh: 'Hitung dulu,', redup: 'baru pasang.', kelas: 's-display' },
+  { nama: 'Headline', spek: '500 · 56 px · −0,035 em · baris 1,05', contoh: 'Tiga merek,', redup: 'satu standar pasang.', kelas: 's-headline' },
+  { nama: 'Title', spek: '400 · 28 px · −0,025 em', contoh: 'Underlayment menahan air yang lolos', kelas: 's-title' },
+  { nama: 'Lead', spek: '400 · 21 px · baris 1,5', contoh: 'Hitung estimasi biaya dalam satu menit, lihat standar pasangnya, lalu putuskan.', kelas: 's-lead' },
+  { nama: 'Body', spek: '400 · 17–18 px · baris 1,6', contoh: 'Setiap lapis difoto sebelum tertutup lapis berikutnya. Foto itu Anda terima, jadi bagian yang nanti tidak terlihat tetap bisa dicek.', kelas: 's-body' },
+  { nama: 'Label', spek: '500 · 15 px', contoh: 'Luas atap (m²)', kelas: 's-label' },
+  { nama: 'Caption', spek: '400 · 13 px · Lumut', contoh: 'Harga per 2 November 2026. Angka contoh untuk uji tampilan.', kelas: 's-caption' },
+];
+
+const unduhan = [
+  { file: 'atapura-logo.svg', label: 'Logo utama', ket: 'SVG · latar terang' },
+  { file: 'atapura-logo.png', label: 'Logo utama', ket: 'PNG 2400 px transparan' },
+  { file: 'atapura-logo-putih.svg', label: 'Logo putih', ket: 'SVG · latar gelap & foto' },
+  { file: 'atapura-logo-putih.png', label: 'Logo putih', ket: 'PNG 2400 px transparan' },
+  { file: 'atapura-simbol.svg', label: 'Simbol Λ', ket: 'SVG · latar terang' },
+  { file: 'atapura-simbol.png', label: 'Simbol Λ', ket: 'PNG 1024 px transparan' },
+  { file: 'atapura-simbol-putih.svg', label: 'Simbol Λ putih', ket: 'SVG · latar gelap' },
+  { file: 'atapura-simbol-putih.png', label: 'Simbol Λ putih', ket: 'PNG 1024 px transparan' },
+  { file: 'avatar-profil-1080.png', label: 'Foto profil', ket: 'PNG 1080 × 1080 · WA, IG, Google' },
+  { file: 'icon-512.png', label: 'Ikon aplikasi', ket: 'PNG 512 × 512' },
+  { file: 'apple-touch-icon.png', label: 'Ikon layar iPhone', ket: 'PNG 180 × 180' },
+  { file: 'favicon.svg', label: 'Favicon', ket: 'SVG · Λ tebal khusus ukuran kecil' },
+  { file: 'favicon.ico', label: 'Favicon', ket: 'ICO 16/32/48 px' },
+];
+
+const dilarang = ['solusi terbaik', 'terpercaya No.1', 'profesional dan berpengalaman', 'kualitas tak tertandingi', 'dengan harga terjangkau', 'hadir untuk Anda', 'wujudkan atap impian', 'di era modern ini', 'tak perlu khawatir lagi'];
+---
+
+<Base
+  title="Branding Atapura: logo, warna, huruf, dan templat"
+  description="Panduan brand Atapura: unduh logo, kode warna, kombinasi huruf, komponen, aturan foto, templat sosial media, dan penerapan di media cetak."
+>
+  <header class="b-kepala">
+    <div class="wrap b-kepala-isi">
+      <a href="/" class="b-logo" aria-label="Atapura, ke beranda"><Logo tinggi="1.3rem" /></a>
+      <span class="b-kepala-label">Panduan brand</span>
+      <a href="/brand/atapura-brand-kit.zip" class="pill pill-tunas b-kepala-unduh" download>Unduh semua logo</a>
+    </div>
+  </header>
+
+  <main class="b">
+    <section class="b-hero">
+      <div class="wrap">
+        <p class="eyebrow">Brand & design system · versi 2 November 2026</p>
+        <h1 class="b-judul">Atapnya sudah ada <span class="miring">di nama kami.</span></h1>
+        <p class="b-lead">Halaman ini patokan untuk semua yang membawa nama Atapura: website, sosial media, penawaran, spanduk, seragam. Ambil logonya di sini, salin kode warnanya, dan ikuti aturannya supaya orang yang melihat postingan lalu membuka website merasa ada di tempat yang sama.</p>
+        <nav class="b-menu" aria-label="Isi halaman">
+          {menu.map(([id, label]) => <a href={`#${id}`}>{label}</a>)}
+        </nav>
+      </div>
+    </section>
+
+    <!-- LOGO -->
+    <section id="logo" class="b-sek">
+      <div class="wrap">
+        <div class="b-sek-kepala">
+          <p class="eyebrow">01 · Logo</p>
+          <h2 class="b-h2">Λtapura. <span class="miring">Huruf A yang jadi atap.</span></h2>
+          <p class="b-teks">Huruf A pertama tanpa palang tengah menjadi atap pelana dengan puncak runcing seperti bubungan. Sisanya huruf kecil yang tenang. Hurufnya Public Sans Medium, sama dengan judul website, dan sudah diubah jadi garis vektor.</p>
+        </div>
+        <div class="b-dua">
+          <figure class="papan papan-terang"><Logo tinggi="clamp(3rem, 2rem + 4vw, 5.5rem)" /><figcaption>Logo utama · Pinus di latar terang</figcaption></figure>
+          <figure class="papan papan-gelap"><Logo tinggi="clamp(3rem, 2rem + 4vw, 5.5rem)" /><figcaption>Logo putih · Embun di latar gelap atau foto</figcaption></figure>
+        </div>
+        <div class="b-tiga">
+          <figure class="kartu">
+            <div class="aturan-ruang"><span class="ruang"><Logo tinggi="2.6rem" /></span></div>
+            <figcaption><b>Ruang kosong</b> di sekeliling logo minimal setinggi huruf "a". Jangan ada teks, tepi foto, atau elemen lain di dalamnya.</figcaption>
+          </figure>
+          <figure class="kartu">
+            <div class="aturan-ukuran">
+              <span><Logo tinggi="21px" /><small>80 px</small></span>
+              <span><img src="/brand/atapura-simbol.svg" alt="" width="24" height="24" /><small>di bawahnya: simbol</small></span>
+            </div>
+            <figcaption><b>Ukuran minimum</b> logo lengkap 80 px lebar di layar atau 20 mm di cetak. Lebih kecil dari itu, pakai simbol Λ saja.</figcaption>
+          </figure>
+          <figure class="kartu">
+            <div class="aturan-simbol">
+              <img src="/brand/avatar-profil-1080.png" alt="" width="72" height="72" class="bulat" />
+              <img src="/brand/favicon.svg" alt="" width="32" height="32" />
+              <img src="/brand/favicon.svg" alt="" width="16" height="16" />
+            </div>
+            <figcaption><b>Simbol Λ</b> untuk foto profil, ikon tab, stempel foto proyek. Ikon 16–48 px memakai Λ yang lebih tebal supaya tetap terbaca.</figcaption>
+          </figure>
+        </div>
+
+        <h3 class="b-h3">Jangan</h3>
+        <div class="jangan">
+          <figure><div class="jangan-kotak"><Logo tinggi="1.6rem" class="j-regang" /></div><figcaption>Meregangkan atau memampatkan</figcaption></figure>
+          <figure><div class="jangan-kotak"><Logo tinggi="1.6rem" class="j-lime" /></div><figcaption>Mengganti warna, termasuk lime</figcaption></figure>
+          <figure><div class="jangan-kotak"><Logo tinggi="1.6rem" class="j-bayang" /></div><figcaption>Bayangan, gradasi, atau garis tepi</figcaption></figure>
+          <figure><div class="jangan-kotak"><Logo tinggi="1.6rem" class="j-miring" /></div><figcaption>Memiringkan atau memutar</figcaption></figure>
+          <figure><div class="jangan-kotak"><span class="j-a">Atapura</span></div><figcaption>Mengetik ulang dengan A biasa</figcaption></figure>
+          <figure><div class="jangan-kotak jangan-foto"><Image src={kafe} alt="" width={480} class="jangan-img" /><Logo tinggi="1.6rem" class="j-pinus" /></div><figcaption>Logo Pinus di atas foto gelap</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- WARNA -->
+    <section id="warna" class="b-sek b-sek-putih">
+      <div class="wrap">
+        <div class="b-sek-kepala">
+          <p class="eyebrow">02 · Warna</p>
+          <h2 class="b-h2">Hijau pinus, <span class="miring">bukan hitam.</span></h2>
+          <p class="b-teks">Bidang gelap selalu Pinus, bukan hitam. Lime Tunas dipakai sangat hemat. Ketuk kotak warna untuk menyalin kode hex-nya.</p>
+        </div>
+        <div class="proporsi" aria-label="Proporsi warna">
+          <span style="flex: 70" class="pr-terang">Embun & Putih · 70%</span>
+          <span style="flex: 25" class="pr-gelap">Pinus & foto · 25%</span>
+          <span style="flex: 5" class="pr-tunas" title="Tunas ≤5%">≤5%</span>
+        </div>
+        <ul class="swatch-grid">
+          {warna.map((w) => (
+            <li class="swatch">
+              <button type="button" class:list={['swatch-warna', { 'swatch-gelap': w.gelap }]} style={`background:${w.hex}`} data-salin={w.hex} aria-label={`Salin ${w.nama} ${w.hex}`}>
+                <span class="swatch-status" aria-live="polite"></span>
+              </button>
+              <div class="swatch-info">
+                <p class="swatch-nama">{w.nama}</p>
+                <p class="swatch-kode angka">{w.hex} · RGB {w.rgb}</p>
+                <p class="swatch-peran">{w.peran}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+        <div class="pasangan">
+          <div class="psg" style="background:#F2F4F1;color:#151A18">Tinta di Embun <b>AAA</b></div>
+          <div class="psg" style="background:#10231E;color:#F2F4F1">Embun di Pinus <b>AAA</b></div>
+          <div class="psg" style="background:#10231E;color:#C6F24E">Tunas di Pinus <b>AAA</b></div>
+          <div class="psg" style="background:#C6F24E;color:#10231E">Pinus di Tunas <b>AAA</b></div>
+          <div class="psg psg-x" style="background:#F2F4F1;color:#C6F24E">Tunas di Embun <b>jangan</b></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HURUF -->
+    <section id="huruf" class="b-sek">
+      <div class="wrap">
+        <div class="b-sek-kepala">
+          <p class="eyebrow">03 · Huruf</p>
+          <h2 class="b-h2">Satu keluarga huruf: <span class="miring">Public Sans.</span></h2>
+          <p class="b-teks">Judul tebal 500 dengan jarak huruf rapat −0,04 em, isi 400. Tanpa huruf miring, tanpa font kedua, tanpa serif. Penekanan datang dari meredupkan sebagian kalimat, paling banyak satu frasa per judul.</p>
+          <div class="b-aksi">
+            <a class="pill pill-gelap" href="https://fonts.google.com/specimen/Public+Sans" target="_blank" rel="noopener">Unduh Public Sans (gratis)</a>
+          </div>
+        </div>
+        <div class="spesimen">
+          <p class="spesimen-besar" aria-hidden="true">Aa</p>
+          <div class="spesimen-info">
+            <p class="spesimen-nama">Public Sans</p>
+            <p class="b-teks">Lisensi SIL Open Font License, boleh dipakai komersial di website, Canva, Figma, dan cetak. Bobot yang dipakai: 400 Regular dan 500 Medium (tombol 600).</p>
+            <p class="spesimen-set angka">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br />abcdefghijklmnopqrstuvwxyz<br />0123456789 Rp m² · – — ( ) ?</p>
+          </div>
+        </div>
+        <ol class="skala">
+          {skala.map((s) => (
+            <li>
+              <div class="skala-spek"><p class="skala-nama">{s.nama}</p><p class="angka">{s.spek}</p></div>
+              <p class={s.kelas}>{s.contoh}{s.redup && <> <span class="miring">{s.redup}</span></>}</p>
+            </li>
+          ))}
+          <li>
+            <div class="skala-spek"><p class="skala-nama">Angka</p><p>tabular, rupiah tanpa desimal</p></div>
+            <p class="s-angka angka">Rp41.400.000 – Rp53.100.000</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- KOMPONEN -->
+    <section id="komponen" class="b-sek b-sek-putih">
+      <div class="wrap">
+        <div class="b-sek-kepala">
+          <p class="eyebrow">04 · Komponen</p>
+          <h2 class="b-h2">Yang bisa disentuh <span class="miring">selalu bulat.</span></h2>
+          <p class="b-teks">Tombol, chip, dan kontrol berbentuk pill dengan tinggi minimal 48 px. Wadah memakai sudut lembut. Bayangan selalu jatuh ke bawah, seperti matahari di atap.</p>
+        </div>
+        <div class="komp-grid">
+          <div class="komp komp-terang">
+            <p class="komp-label">Tombol di latar terang</p>
+            <div class="komp-baris"><a class="pill pill-tunas" href="#komponen">Hitung estimasi biaya</a><a class="pill pill-gelap" href="#komponen">Chat WhatsApp</a></div>
+            <p class="komp-ket">Utama: Tunas + teks Pinus, pendar Tunas di bawahnya. Kedua: Pinus + teks putih.</p>
+          </div>
+          <div class="komp komp-gelap">
+            <p class="komp-label">Tombol di latar gelap</p>
+            <div class="komp-baris"><a class="pill pill-tunas" href="#komponen">Hitung estimasi biaya</a><a class="pill pill-garis" href="#komponen">Jadwalkan survey</a></div>
+            <p class="komp-ket">Kedua: garis 1 px warna teks.</p>
+          </div>
+          <div class="komp komp-foto">
+            <Image src={heroDesktop} alt="" width={720} class="komp-foto-img" />
+            <div class="komp-foto-isi">
+              <p class="komp-label">Chip fakta di atas foto</p>
+              <div class="komp-baris"><span class="chip-fakta">Survey gratis</span><span class="chip-fakta">13 kota Jabodetabek</span><span class="chip-fakta chip-tunas">Garansi pasang 5 tahun</span></div>
+              <p class="komp-ket">Pinus 72% + garis tipis. Paling banyak satu chip Tunas per desain.</p>
+            </div>
+          </div>
+          <div class="komp komp-terang">
+            <p class="komp-label">Penanda angka belum resmi</p>
+            <div class="komp-baris"><span class="angka komp-harga">Rp135 rb–160 rb</span><span class="contoh">contoh</span></div>
+            <p class="komp-ket">Chip Tunas pucat menempel pada angka yang belum resmi, hilang begitu data asli masuk.</p>
+          </div>
+        </div>
+        <dl class="token">
+          <div><dt>Sudut</dt><dd>Pill 999 px untuk yang disentuh · 24 px wadah besar · 16 px kartu · 6 px kertas cetak</dd></div>
+          <div><dt>Bayangan</dt><dd class="angka">0 14px 30px −14px Pinus 60% · selalu jatuh ke bawah, tanpa bayangan keras</dd></div>
+          <div><dt>Jarak</dt><dd>Gutter 20–72 px mengikuti layar · jarak antarbagian 56–112 px · konten selebar halaman, sejajar judul</dd></div>
+          <div><dt>Gerak</dt><dd>Halus, satu warna, minimal 0,8 detik untuk efek besar; hanya transform & opacity; ikut setelan kurangi gerak</dd></div>
+          <div><dt>Chevron Λ</dt><dd>Garis tipis 1 px searah kemiringan atap, paling banyak satu per layar, sebagai supergrafis di atas foto</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- FOTO -->
+    <section id="foto" class="b-sek">
+      <div class="wrap">
+        <div class="b-sek-kepala">
+          <p class="eyebrow">05 · Foto</p>
+          <h2 class="b-h2">Hangat, tenang, <span class="miring">dan asli.</span></h2>
+          <p class="b-teks">Cahaya sore yang wajar, langit biru, daun blur di depan untuk kedalaman, atap selalu terlihat jelas. Foto proyek asli selalu menang. Gambar AI hanya untuk suasana dan selalu ditandai sebagai ilustrasi.</p>
+        </div>
+        <div class="foto-grid">
+          <figure><Image src={heroDesktop} alt="Contoh foto suasana: rumah tropis dengan atap bitumen di sore hari" width={900} /><figcaption><b>Ya.</b> Sore terang, rumah tropis Jabodetabek, atap jelas, daun blur di depan.</figcaption></figure>
+          <figure><Image src={hujanDesktop} alt="Contoh foto detail: hujan di atap bitumen saat senja" width={900} /><figcaption><b>Ya.</b> Detail material dengan cahaya hangat untuk cerita hujan.</figcaption></figure>
+          <figure><Image src={tukang} alt="Contoh foto pemasangan oleh tukang" width={600} /><figcaption><b>Sementara.</b> Foto tukang AI hanya sampai ada foto tim asli.</figcaption></figure>
+        </div>
+        <ul class="daftar-aturan">
+          <li><b>Selalu:</b> foto proyek asli di Rapor Proyek dan postingan bukti, dengan kota, merek, luas, dan lama pengerjaan.</li>
+          <li><b>Boleh dengan label:</b> gambar AI (Magnific) untuk suasana, tertulis "ilustrasi" di caption atau kaki halaman.</li>
+          <li><b>Jangan:</b> foto rumah stok, foto proyek dari galeri merek atau kota lain, ornamen Bali, rumah gaya Eropa, panel surya, langit jingga berlebihan, tulisan atau logo palsu di gambar.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SOSMED -->
+    <section id="sosmed" class="b-sek b-sek-pinus">
+      <div class="wrap">
+        <div class="b-sek-kepala">
+          <p class="eyebrow">06 · Sosial media</p>
+          <h2 class="b-h2">Struktur tetap, <span class="miring">isi berganti.</span></h2>
+          <p class="b-teks">Logo kecil di kiri atas, judul 2–3 baris, satu kalimat pendukung, foto penuh, paling banyak tiga chip fakta, dan bilah bawah yang posisinya selalu sama. Maksimal sekitar 25 kata per desain feed; detail pindah ke caption.</p>
+        </div>
+        <div class="sos-grid">
+          <figure class="sos">
+            <div class="feed">
+              <Image src={villa45} alt="" width={720} class="sos-img" />
+              <div class="feed-isi">
+                <span class="feed-logo"><Logo tinggi="0.9rem" /></span>
+                <p class="feed-judul">Atap villa yang <span class="miring">tenang saat kabut turun.</span></p>
+                <div class="feed-chip"><span class="chip-fakta">Puncak, Bogor</span><span class="chip-fakta chip-tunas">5 lapis</span></div>
+                <p class="feed-bilah"><span>WhatsApp</span><span>atapura.vercel.app</span><span>@atapura</span></p>
+              </div>
+            </div>
+            <figcaption><b>Feed IG/FB</b> · 1080 × 1350 (4:5)</figcaption>
+          </figure>
+          <figure class="sos">
+            <div class="story">
+              <Image src={hujanHp} alt="" width={540} class="sos-img" />
+              <span class="aman aman-atas">zona aman 250 px</span>
+              <div class="story-isi">
+                <span class="feed-logo"><Logo tinggi="0.75rem" /></span>
+                <p class="story-judul">Hujan deras seharusnya cuma jadi <span class="miring">suara.</span></p>
+                <span class="pill pill-tunas story-tombol">Hitung estimasi</span>
+              </div>
+              <span class="aman aman-bawah">zona aman 340 px</span>
+            </div>
+            <figcaption><b>Story, Reels, TikTok</b> · 1080 × 1920 (9:16)</figcaption>
+          </figure>
+          <figure class="sos">
+            <div class="carousel">
+              <span class="feed-logo carousel-logo"><Logo tinggi="0.8rem" /></span>
+              <p class="carousel-no angka">02 / 06</p>
+              <p class="carousel-tanya">Berapa berat atap bitumen dibanding genteng beton?</p>
+              <p class="carousel-angka angka">8,5–13 <small>kg/m²</small></p>
+              <p class="carousel-ket">Genteng beton 40–60 kg/m². Rangka jadi lebih ringan.</p>
+              <p class="carousel-sumber">Sumber: lembar data pabrik</p>
+            </div>
+            <figcaption><b>Carousel edukasi</b> · 1080 × 1350, 5–8 slide, latar Embun</figcaption>
+          </figure>
+          <figure class="sos sos-lebar">
+            <div class="yt">
+              <Image src={hujanDesktop} alt="" width={900} class="sos-img" />
+              <div class="yt-isi">
+                <span class="feed-logo"><Logo tinggi="0.85rem" /></span>
+                <p class="yt-judul">Uji suara hujan: <span class="miring">bitumen vs metal</span></p>
+              </div>
+            </div>
+            <figcaption><b>Thumbnail YouTube</b> · 1280 × 720 (16:9)</figcaption>
+          </figure>
+        </div>
+        <div class="sos-aturan">
+          <div>
+            <h3 class="b-h3">Pilar konten per bulan</h3>
+            <dl class="pilar">
+              <div><dt class="angka">40%</dt><dd><b>Bukti.</b> Rapor Proyek: sebelum/sesudah, foto per tahap, kota + merek + lama pengerjaan.</dd></div>
+              <div><dt class="angka">30%</dt><dd><b>Edukasi.</b> Carousel tanya-jawab dengan angka, tabel, dan kapan bitumen tidak cocok.</dd></div>
+              <div><dt class="angka">20%</dt><dd><b>Insight.</b> Visual suasana + kalimat insight, misalnya "Hujan deras seharusnya cuma jadi suara."</dd></div>
+              <div><dt class="angka">10%</dt><dd><b>Ajakan.</b> Hitung AKAL, survey gratis, jadwal bulan ini.</dd></div>
+            </dl>
+          </div>
+          <div>
+            <h3 class="b-h3">Caption</h3>
+            <ol class="caption-urut">
+              <li>Kalimat pembuka: insight atau pertanyaan.</li>
+              <li>2–4 kalimat fakta, berangka bila ada.</li>
+              <li>Ajakan + link (website atau WhatsApp).</li>
+              <li>Kota dan merek yang dipasang.</li>
+              <li>3–5 tagar: #atapbitumen #gentengaspal #atap[kota].</li>
+            </ol>
+            <p class="b-teks kecil">Sapaan "Anda", emoji paling banyak 1–2 dan tidak di judul. Bio semua akun sama: "Atapura — Spesialis Atap Bitumen Jabodetabek". Handle @atapura masih contoh sampai akunnya dibuat.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PENERAPAN -->
+    <section id="penerapan" class="b-sek">
+      <div class="wrap">
+        <div class="b-sek-kepala">
+          <p class="eyebrow">07 · Penerapan</p>
+          <h2 class="b-h2">Dari kartu nama <span class="miring">sampai lokasi proyek.</span></h2>
+        </div>
+        <div class="tr-grid">
+          <figure>
+            <div class="kartu-nama-pasang">
+              <div class="kn kn-depan"><Logo tinggi="1.15rem" /></div>
+              <div class="kn kn-belakang"><div class="kn-isi">
+                <p class="kn-nama">Nama Lengkap</p><p class="kn-jabatan">Jabatan</p>
+                <p class="kn-kontak angka">+62 8xx xxxx xxxx<br />halo@atapura.id</p>
+                <img src="/brand/atapura-simbol.svg" alt="" width="18" height="18" class="kn-simbol" />
+              </div></div>
+            </div>
+            <figcaption><b>Kartu nama</b> · 90 × 55 mm. Depan Pinus + logo putih, belakang putih + simbol kecil.</figcaption>
+          </figure>
+          <figure>
+            <div class="kop">
+              <div class="kop-atas"><Logo tinggi="1rem" /><p>PT Atapura Karya Lestari<br />Penawaran pemasangan</p></div>
+              <div class="kop-baris" style="width:62%"></div><div class="kop-baris"></div><div class="kop-baris" style="width:84%"></div><div class="kop-baris" style="width:40%"></div>
+            </div>
+            <figcaption><b>Kop penawaran & invoice</b> · A4. Logo Pinus kiri atas, nama PT kanan, angka tabular.</figcaption>
+          </figure>
+          <figure class="tr-lebar">
+            <div class="spanduk"><Logo tinggi="18%" /><p>Atap bitumen sedang dipasang oleh Atapura.<br /><b>Survey gratis</b> di 13 kota Jabodetabek.</p></div>
+            <figcaption><b>Spanduk lokasi proyek</b> · 3 × 1 m, latar Pinus, logo putih, satu kata Tunas.</figcaption>
+          </figure>
+          <figure>
+            <div class="watermark">
+              <Image src={tukang} alt="" width={600} class="sos-img" />
+              <div class="wm-label"><img src="/brand/atapura-simbol-putih.svg" alt="" width="16" height="16" /><span>Rapor Proyek · Kota · Merek · Tahap 3/5</span></div>
+            </div>
+            <figcaption><b>Stempel foto proyek</b> · simbol putih + keterangan di pojok kiri bawah, Pinus 72%.</figcaption>
+          </figure>
+          <figure>
+            <div class="seragam">
+              <div class="patch"><Logo tinggi="1.5rem" /></div>
+            </div>
+            <figcaption><b>Seragam</b> · patch bordir 8 × 3 cm di dada kiri polo Pinus, benang Embun; simbol Λ di lengan.</figcaption>
+          </figure>
+          <figure>
+            <div class="wa-prof">
+              <img src="/brand/avatar-profil-1080.png" alt="" width="56" height="56" class="bulat" />
+              <div><p class="wa-nama">Atapura</p><p class="wa-sub">Atapura — Spesialis Atap Bitumen Jabodetabek</p></div>
+            </div>
+            <figcaption><b>Profil WhatsApp, Instagram, Google</b> · foto profil sama di semua akun.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- TULISAN -->
+    <section id="tulisan" class="b-sek b-sek-putih">
+      <div class="wrap">
+        <div class="b-sek-kepala">
+          <p class="eyebrow">08 · Tulisan</p>
+          <h2 class="b-h2">Tenang, lugas, <span class="miring">berangka.</span></h2>
+          <p class="b-teks">Sapaan "Anda". Angka lebih dulu, penjelasan sesudahnya. Jujur soal batas, termasuk kapan bitumen tidak cocok. Tidak menjelekkan kompetitor dengan nama.</p>
+        </div>
+        <div class="tulis-grid">
+          <div class="tulis-kartu">
+            <p class="komp-label">Tagline</p>
+            <p class="tulis-tagline">Atap yang masuk <span class="tulis-akal">AKAL.</span></p>
+            <p class="komp-ket">AKAL = Andal, Kualitas, Amanah, Lestari. Setiap pilar wajib punya bukti yang bisa dicek.</p>
+          </div>
+          <div class="tulis-kartu">
+            <p class="komp-label">Kalimat insight</p>
+            <ul class="insight">
+              <li>Hujan deras seharusnya cuma jadi suara.</li>
+              <li>Atap yang baik itu yang tidak pernah Anda pikirkan lagi.</li>
+              <li>Hitung dulu, baru pasang.</li>
+              <li>Yang masuk akal itu yang bisa dibuktikan.</li>
+            </ul>
+          </div>
+          <div class="tulis-kartu">
+            <p class="komp-label">Tulis begini</p>
+            <p class="tulis-ya">"Rata-rata 4 hari kerja untuk atap 120 m²."</p>
+            <p class="komp-label">Bukan begini</p>
+            <p class="tulis-tidak">"Pengerjaan cepat dan profesional."</p>
+          </div>
+          <div class="tulis-kartu">
+            <p class="komp-label">Kata yang tidak dipakai</p>
+            <ul class="kata-larang">{dilarang.map((k) => <li>{k}</li>)}</ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- UNDUH -->
+    <section id="unduh" class="b-sek b-sek-pinus">
+      <div class="wrap">
+        <div class="b-sek-kepala">
+          <p class="eyebrow">09 · Unduh</p>
+          <h2 class="b-h2">Semua file logo, <span class="miring">satu tempat.</span></h2>
+          <p class="b-teks">SVG untuk desain dan cetak (bisa diperbesar tanpa pecah), PNG transparan untuk Canva, presentasi, dan dokumen.</p>
+          <div class="b-aksi"><a class="pill pill-tunas" href="/brand/atapura-brand-kit.zip" download>Unduh semua (ZIP, 210 KB)</a></div>
+        </div>
+        <ul class="unduh-daftar">
+          {unduhan.map((u) => (
+            <li>
+              <a href={`/brand/${u.file}`} download>
+                <span class:list={['unduh-pratinjau', { 'unduh-terang': !u.file.includes('putih') && !u.file.startsWith('avatar') && !u.file.startsWith('icon') && !u.file.startsWith('apple') && !u.file.startsWith('favicon') }]}>
+                  <img src={`/brand/${u.file === 'favicon.ico' ? 'favicon.svg' : u.file}`} alt="" loading="lazy" />
+                </span>
+                <span class="unduh-teks"><span class="unduh-label">{u.label}</span><span class="unduh-ket">{u.ket}</span></span>
+                <span class="unduh-format">{u.file.split('.').pop()?.toUpperCase()}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Base>
+
+<script>
+  // Salin kode hex saat kotak warna diketuk; status ditulis di dalam kotak (tanpa alert).
+  document.querySelectorAll<HTMLButtonElement>('[data-salin]').forEach((tombol) => {
+    const status = tombol.querySelector<HTMLElement>('.swatch-status');
+    let jeda: number | undefined;
+    tombol.addEventListener('click', async () => {
+      const hex = tombol.dataset.salin ?? '';
+      let pesan = 'Disalin';
+      try {
+        await navigator.clipboard.writeText(hex);
+      } catch {
+        pesan = hex;
+      }
+      if (status) status.textContent = pesan;
+      clearTimeout(jeda);
+      jeda = window.setTimeout(() => { if (status) status.textContent = ''; }, 1600);
+    });
+  });
+</script>
+
+<style>
+  .b { background: var(--color-embun); color: var(--color-tinta); }
+  .b-kepala { background: var(--color-embun); color: var(--color-pinus); border-bottom: 1px solid var(--color-garis); position: sticky; top: 0; z-index: 20; }
+  .b-kepala-isi { display: flex; align-items: center; gap: 1rem; min-height: 68px; }
+  .b-logo { display: inline-flex; align-items: center; min-height: 44px; color: inherit; }
+  .b-kepala-label { color: var(--color-lumut); font-size: 0.9rem; padding-left: 1rem; border-left: 1px solid var(--color-garis); }
+  .b-kepala-unduh { margin-left: auto; min-height: 44px; font-size: 0.9rem; padding-inline: 1.1rem; }
+  @media (max-width: 30rem) { .b-kepala-label { display: none; } }
+
+  .eyebrow { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-lumut); }
+  .b-hero { padding-block: clamp(48px, 8vw, 104px) clamp(32px, 5vw, 56px); }
+  .b-judul { margin-top: 1rem; font-size: clamp(2.6rem, 1.4rem + 5vw, 5.5rem); line-height: 0.96; letter-spacing: -0.04em; max-width: 14ch; }
+  .b-lead { margin-top: 1.5rem; max-width: 60ch; font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem); line-height: 1.5; color: var(--color-lumut); }
+  .b-menu { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .b-menu a { display: inline-flex; align-items: center; min-height: 40px; padding-inline: 1rem; border-radius: 999px; border: 1px solid var(--color-garis); background: var(--color-putih); color: var(--color-pinus); text-decoration: none; font-size: 0.92rem; font-weight: 500; transition: background-color 200ms, color 200ms; }
+  .b-menu a:hover { background: var(--color-pinus); color: var(--color-embun); }
+
+  .b-sek { padding-block: clamp(56px, 8vw, 112px); scroll-margin-top: 68px; }
+  .b-sek-putih { background: var(--color-putih); }
+  .b-sek-pinus { background: var(--color-pinus); color: var(--color-embun); }
+  .b-sek-pinus .eyebrow, .b-sek-pinus .b-teks { color: var(--embun-redup); }
+  .b-sek-kepala { display: grid; gap: 1rem; max-width: 62rem; margin-bottom: clamp(28px, 4vw, 48px); }
+  .b-h2 { font-size: clamp(2rem, 1.3rem + 2.6vw, 3.6rem); line-height: 1.04; letter-spacing: -0.04em; max-width: 20ch; }
+  .b-h3 { font-size: 1.35rem; letter-spacing: -0.025em; margin: 3rem 0 1rem; }
+  .b-teks { color: var(--color-lumut); max-width: 62ch; }
+  .b-teks.kecil { font-size: 0.92rem; margin-top: 1rem; }
+  .b-aksi { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.5rem; }
+
+  .b-dua { display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 52rem) { .b-dua { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .papan { margin: 0; border-radius: 24px; min-height: clamp(220px, 28vw, 340px); display: grid; place-items: center; position: relative; padding: 3rem 1.5rem; }
+  .papan figcaption { position: absolute; left: 1.25rem; bottom: 1rem; font-size: 0.8rem; }
+  .papan-terang { background: var(--color-putih); color: var(--color-pinus); box-shadow: inset 0 0 0 1px var(--color-garis); }
+  .papan-terang figcaption { color: var(--color-lumut); }
+  .papan-gelap { background: var(--color-pinus); color: var(--color-embun); }
+  .papan-gelap figcaption { color: var(--embun-redup); }
+
+  .b-tiga { margin-top: 12px; display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 52rem) { .b-tiga { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .kartu { margin: 0; background: var(--color-putih); border: 1px solid var(--color-garis); border-radius: 16px; padding: 1.25rem; display: grid; gap: 1rem; align-content: start; min-width: 0; }
+  .kartu figcaption { font-size: 0.92rem; color: var(--color-lumut); }
+  .kartu b { color: var(--color-tinta); font-weight: 500; }
+  .aturan-ruang { display: grid; place-items: center; min-height: 150px; color: var(--color-pinus); }
+  .ruang { padding: 1.52rem; outline: 1px dashed var(--color-lumut); outline-offset: -1px; background: repeating-linear-gradient(45deg, transparent 0 6px, rgb(76 94 85 / 0.07) 6px 7px); }
+  .ruang :global(.logo) { background-color: var(--color-pinus); display: block; }
+  .aturan-ukuran { display: flex; align-items: flex-end; justify-content: center; gap: 2.5rem; min-height: 150px; color: var(--color-pinus); }
+  .aturan-ukuran span { display: grid; gap: 0.5rem; justify-items: center; }
+  .aturan-ukuran small { font-size: 0.75rem; color: var(--color-lumut); }
+  .aturan-simbol { display: flex; align-items: center; justify-content: center; gap: 1.25rem; min-height: 150px; }
+  .bulat { border-radius: 50%; }
+
+  .jangan { display: grid; gap: 12px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (min-width: 52rem) { .jangan { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (min-width: 76rem) { .jangan { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+  .jangan figure { margin: 0; display: grid; gap: 0.6rem; min-width: 0; }
+  .jangan figcaption { font-size: 0.85rem; color: var(--color-lumut); }
+  .jangan-kotak { position: relative; overflow: hidden; border-radius: 16px; background: var(--color-putih); border: 1px solid var(--color-garis); min-height: 110px; display: grid; place-items: center; color: var(--color-pinus); }
+  .jangan-kotak::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top right, transparent calc(50% - 1px), rgb(21 26 24 / 0.55) 50%, transparent calc(50% + 1px)); pointer-events: none; }
+  .jangan :global(.j-regang) { transform: scaleX(1.45); }
+  .jangan :global(.j-lime) { background-color: var(--color-tunas) !important; }
+  .jangan :global(.j-bayang) { filter: drop-shadow(3px 3px 0 rgb(16 35 30 / 0.35)); background: linear-gradient(90deg, #10231e, #4c5e55) !important; }
+  .jangan :global(.j-miring) { transform: rotate(-12deg); }
+  .j-a { font-size: 1.85rem; font-weight: 500; letter-spacing: -0.04em; }
+  .jangan-foto { background: var(--color-pinus); }
+  .jangan-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.55); }
+  .jangan :global(.j-pinus) { position: relative; background-color: var(--color-pinus) !important; }
+
+  .proporsi { display: flex; height: 52px; border-radius: 999px; overflow: hidden; margin-bottom: 1.5rem; font-size: 0.8rem; font-weight: 500; box-shadow: inset 0 0 0 1px var(--color-garis); }
+  .proporsi span { display: flex; align-items: center; padding-inline: 1rem; white-space: nowrap; overflow: hidden; }
+  .pr-terang { background: var(--color-embun); color: var(--color-lumut); }
+  .pr-gelap { background: var(--color-pinus); color: var(--color-embun); }
+  .pr-tunas { background: var(--color-tunas); color: var(--color-pinus); justify-content: center; padding-inline: 0 !important; min-width: 3rem; }
+  .swatch-grid { display: grid; gap: 12px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (min-width: 48rem) { .swatch-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (min-width: 72rem) { .swatch-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+  .swatch { display: grid; gap: 0.75rem; align-content: start; min-width: 0; }
+  .swatch-warna { position: relative; height: 112px; border-radius: 16px; border: 1px solid var(--color-garis); cursor: copy; color: var(--color-pinus); transition: transform 160ms var(--ease-out); }
+  .swatch-warna:active { transform: scale(0.97); }
+  .swatch-gelap { color: var(--color-embun); border-color: transparent; }
+  .swatch-status { position: absolute; left: 0.85rem; bottom: 0.7rem; font-size: 0.8rem; font-weight: 500; }
+  .swatch-nama { font-weight: 500; }
+  .swatch-kode { font-size: 0.85rem; color: var(--color-lumut); }
+  .swatch-peran { font-size: 0.85rem; color: var(--color-lumut); margin-top: 0.25rem; line-height: 1.45; }
+  .pasangan { margin-top: 2rem; display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); }
+  .psg { border-radius: 999px; min-height: 48px; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; padding-inline: 1.1rem; font-size: 0.9rem; font-weight: 500; border: 1px solid var(--color-garis); }
+  .psg b { font-weight: 500; font-size: 0.75rem; opacity: 0.85; }
+  .psg-x { text-decoration: line-through; text-decoration-color: var(--color-lumut); }
+  .psg-x b { color: var(--color-lumut); }
+
+  .spesimen { display: grid; gap: 2rem; grid-template-columns: minmax(0, 1fr); align-items: center; padding: clamp(24px, 4vw, 48px); background: var(--color-putih); border: 1px solid var(--color-garis); border-radius: 24px; }
+  @media (min-width: 52rem) { .spesimen { grid-template-columns: auto minmax(0, 1fr); gap: 4rem; } }
+  .spesimen-besar { font-size: clamp(7rem, 4rem + 12vw, 13rem); font-weight: 500; letter-spacing: -0.05em; line-height: 0.8; color: var(--color-pinus); }
+  .spesimen-nama { font-size: 1.75rem; font-weight: 500; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+  .spesimen-set { margin-top: 1.25rem; font-size: clamp(1rem, 0.9rem + 0.5vw, 1.3rem); letter-spacing: 0.02em; line-height: 1.5; overflow-wrap: anywhere; }
+  .skala { margin-top: 2rem; display: grid; }
+  .skala li { display: grid; gap: 0.5rem 2rem; grid-template-columns: minmax(0, 1fr); padding-block: 1.5rem; border-top: 1px solid var(--color-garis); }
+  @media (min-width: 52rem) { .skala li { grid-template-columns: 14rem minmax(0, 1fr); align-items: baseline; } }
+  .skala-spek { font-size: 0.82rem; color: var(--color-lumut); }
+  .skala-nama { font-weight: 500; color: var(--color-tinta); font-size: 0.95rem; }
+  .skala li > p { min-width: 0; overflow-wrap: break-word; }
+  .s-display { font-size: clamp(2.6rem, 1.4rem + 5vw, 6rem); font-weight: 500; letter-spacing: -0.04em; line-height: 0.95; }
+  .s-headline { font-size: clamp(2rem, 1.3rem + 2.6vw, 3.5rem); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05; }
+  .s-title { font-size: clamp(1.35rem, 1.1rem + 0.8vw, 1.75rem); letter-spacing: -0.025em; line-height: 1.15; }
+  .s-lead { font-size: clamp(1.125rem, 1.05rem + 0.4vw, 1.3rem); line-height: 1.5; max-width: 42ch; }
+  .s-body { max-width: 62ch; }
+  .s-label { font-size: 0.95rem; font-weight: 500; }
+  .s-caption { font-size: 0.82rem; color: var(--color-lumut); }
+  .s-angka { font-size: clamp(1.9rem, 1.4rem + 2vw, 2.6rem); letter-spacing: -0.035em; }
+
+  .komp-grid { display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 52rem) { .komp-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .komp { border-radius: 24px; padding: 1.5rem; display: grid; gap: 1rem; align-content: start; min-width: 0; position: relative; overflow: hidden; }
+  .komp-terang { background: var(--color-embun); }
+  .komp-gelap { background: var(--color-pinus); color: var(--color-embun); }
+  .komp-foto { color: var(--color-embun); min-height: 240px; }
+  .komp-foto-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .komp-foto::before { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, rgb(16 35 30 / 0.78), rgb(16 35 30 / 0.2)); }
+  .komp-foto-isi { position: relative; z-index: 2; display: grid; gap: 1rem; }
+  .komp-label { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; opacity: 0.7; }
+  .komp-baris { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; }
+  .komp-ket { font-size: 0.88rem; opacity: 0.75; max-width: 46ch; }
+  .komp-harga { font-size: 1.6rem; letter-spacing: -0.03em; }
+  .chip-fakta { display: inline-flex; align-items: center; min-height: 36px; padding-inline: 0.9rem; border-radius: 999px; background: rgb(16 35 30 / 0.72); border: 1px solid rgb(242 244 241 / 0.16); color: var(--color-embun); font-size: 0.85rem; font-weight: 500; white-space: nowrap; }
+  .chip-tunas { background: var(--color-tunas); color: var(--color-pinus); border-color: transparent; }
+  .token { margin-top: 2rem; display: grid; }
+  .token div { display: grid; gap: 0.25rem 2rem; grid-template-columns: minmax(0, 1fr); padding-block: 1rem; border-top: 1px solid var(--color-garis); }
+  @media (min-width: 52rem) { .token div { grid-template-columns: 14rem minmax(0, 1fr); } }
+  .token dt { font-weight: 500; }
+  .token dd { color: var(--color-lumut); }
+
+  .foto-grid { display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 52rem) { .foto-grid { grid-template-columns: 1.3fr 1.3fr 0.8fr; } }
+  .foto-grid figure { margin: 0; display: grid; gap: 0.6rem; min-width: 0; }
+  .foto-grid img { width: 100%; height: clamp(220px, 24vw, 320px); object-fit: cover; border-radius: 16px; }
+  .foto-grid figcaption, .daftar-aturan { font-size: 0.92rem; color: var(--color-lumut); }
+  .foto-grid b, .daftar-aturan b { color: var(--color-tinta); font-weight: 500; }
+  .daftar-aturan { margin-top: 2rem; display: grid; gap: 0.75rem; max-width: 70ch; }
+
+  .sos-grid { display: grid; gap: 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+  @media (min-width: 64rem) { .sos-grid { grid-template-columns: 1fr 0.62fr 1fr 1.6fr; } }
+  .sos { margin: 0; display: grid; gap: 0.6rem; min-width: 0; container-type: inline-size; }
+  .sos figcaption { font-size: 0.85rem; color: var(--embun-redup); }
+  .sos b { color: var(--color-embun); font-weight: 500; }
+  .sos-lebar { grid-column: 1 / -1; }
+  @media (min-width: 64rem) { .sos-lebar { grid-column: auto; } }
+  .sos-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .feed, .story, .yt, .watermark { position: relative; overflow: hidden; border-radius: 10px; color: #fff; isolation: isolate; container-type: inline-size; }
+  .feed { aspect-ratio: 4 / 5; }
+  .story { aspect-ratio: 9 / 16; }
+  .yt { aspect-ratio: 16 / 9; }
+  .feed::before, .story::before, .yt::before { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgb(16 35 30 / 0.7), rgb(16 35 30 / 0.05) 45%, rgb(16 35 30 / 0.75)); }
+  .feed-isi, .story-isi, .yt-isi { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; padding: 7cqw; }
+  .feed-logo { color: #fff; line-height: 0; }
+  .feed-judul { margin-top: 5cqw; font-size: 9.5cqw; font-weight: 500; letter-spacing: -0.04em; line-height: 1; max-width: 12ch; }
+  .feed-chip { margin-top: auto; display: flex; flex-wrap: wrap; gap: 2cqw; }
+  .feed-chip .chip-fakta { min-height: 0; padding: 1.4cqw 3cqw; font-size: 3.4cqw; }
+  .feed-bilah { margin-top: 4cqw; padding-top: 3cqw; border-top: 1px solid rgb(255 255 255 / 0.3); display: flex; justify-content: space-between; gap: 2cqw; font-size: 3cqw; color: rgb(255 255 255 / 0.85); }
+  .story-isi { padding: 7cqw; padding-top: 16cqw; padding-bottom: 24cqw; }
+  .story-judul { margin-top: 6cqw; font-size: 11cqw; font-weight: 500; letter-spacing: -0.04em; line-height: 1; }
+  .story-tombol { margin-top: auto; align-self: flex-start; min-height: 0; padding: 3cqw 6cqw; font-size: 5cqw; }
+  .aman { position: absolute; left: 0; right: 0; z-index: 3; display: grid; place-items: center; font-size: 4cqw; color: rgb(255 255 255 / 0.8); background: repeating-linear-gradient(45deg, rgb(255 255 255 / 0.1) 0 4px, transparent 4px 9px); border-color: rgb(255 255 255 / 0.5); border-style: dashed; border-width: 0; }
+  .aman-atas { top: 0; height: 13%; border-bottom-width: 1px; }
+  .aman-bawah { bottom: 0; height: 17.7%; border-top-width: 1px; }
+  .carousel { aspect-ratio: 4 / 5; border-radius: 10px; background: var(--color-embun); color: var(--color-tinta); padding: 7cqw; display: flex; flex-direction: column; }
+  .carousel-logo { color: var(--color-pinus); }
+  .carousel-no { margin-top: 6cqw; font-size: 3.4cqw; color: var(--color-lumut); }
+  .carousel-tanya { margin-top: 2cqw; font-size: 7cqw; font-weight: 500; letter-spacing: -0.035em; line-height: 1.08; }
+  .carousel-angka { margin-top: auto; font-size: 16cqw; font-weight: 500; letter-spacing: -0.045em; line-height: 1; color: var(--color-pinus); }
+  .carousel-angka small { font-size: 5cqw; font-weight: 400; letter-spacing: -0.02em; color: var(--color-lumut); }
+  .carousel-ket { margin-top: 2cqw; font-size: 4.2cqw; color: var(--color-lumut); }
+  .carousel-sumber { margin-top: 4cqw; padding-top: 3cqw; border-top: 1px solid var(--color-garis); font-size: 3cqw; color: var(--color-lumut); }
+  .yt-isi { justify-content: flex-end; padding: 5cqw; }
+  .yt-isi .feed-logo { position: absolute; top: 5cqw; left: 5cqw; }
+  .yt-judul { font-size: 6.5cqw; font-weight: 500; letter-spacing: -0.04em; line-height: 1; max-width: 13ch; }
+  .sos-aturan { margin-top: 3rem; display: grid; gap: 2rem; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 60rem) { .sos-aturan { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4rem; } }
+  .sos-aturan .b-h3 { margin-top: 0; }
+  .pilar { display: grid; }
+  .pilar div { display: grid; grid-template-columns: 4.5rem minmax(0, 1fr); gap: 1rem; padding-block: 0.9rem; border-top: 1px solid rgb(242 244 241 / 0.14); }
+  .pilar dt { font-size: 1.6rem; font-weight: 500; letter-spacing: -0.03em; color: var(--color-tunas); line-height: 1.1; }
+  .pilar dd { color: var(--embun-redup); font-size: 0.95rem; }
+  .pilar b, .caption-urut b { color: var(--color-embun); font-weight: 500; }
+  .caption-urut { list-style: decimal; padding-left: 1.25rem; display: grid; gap: 0.4rem; color: var(--embun-redup); font-size: 0.95rem; }
+
+  .tr-grid { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 52rem) { .tr-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 72rem) { .tr-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .tr-grid figure { margin: 0; display: grid; gap: 0.6rem; align-content: start; min-width: 0; }
+  .tr-grid figcaption { font-size: 0.88rem; color: var(--color-lumut); }
+  .tr-grid b { color: var(--color-tinta); font-weight: 500; }
+  .tr-lebar { grid-column: 1 / -1; container-type: inline-size; }
+  .kartu-nama-pasang { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; padding: 1.5rem; background: #e6e9e5; border-radius: 16px; }
+  .kn { aspect-ratio: 90 / 55; border-radius: 4px; box-shadow: 0 14px 30px -14px rgb(16 35 30 / 0.5); container-type: inline-size; }
+  .kn-depan { background: var(--color-pinus); color: var(--color-embun); display: grid; place-items: center; }
+  .kn-belakang { background: var(--color-putih); color: var(--color-tinta); }
+  .kn-isi { position: relative; height: 100%; padding: 8cqw; }
+  .kn-nama { font-size: 7.5cqw; font-weight: 500; letter-spacing: -0.03em; line-height: 1.1; }
+  .kn-jabatan { font-size: 5cqw; color: var(--color-lumut); }
+  .kn-kontak { position: absolute; left: 8cqw; bottom: 7cqw; font-size: 4.6cqw; line-height: 1.45; }
+  .kn-simbol { position: absolute; right: 8cqw; bottom: 8cqw; width: 9cqw; height: auto; }
+  .kop { background: var(--color-putih); border: 1px solid var(--color-garis); border-radius: 6px; padding: 1.25rem; display: grid; gap: 0.6rem; aspect-ratio: 210 / 150; align-content: start; color: var(--color-pinus); }
+  .kop-atas { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; padding-bottom: 0.9rem; margin-bottom: 0.4rem; border-bottom: 1px solid var(--color-garis); }
+  .kop-atas p { font-size: 0.7rem; text-align: right; color: var(--color-lumut); line-height: 1.4; }
+  .kop-baris { height: 7px; border-radius: 4px; background: var(--color-embun); }
+  .spanduk { aspect-ratio: 3 / 1; border-radius: 6px; background: var(--color-pinus); color: var(--color-embun); display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 6cqw; padding-inline: 6cqw; }
+  .spanduk :global(.logo) { height: 9cqw; }
+  .spanduk p { font-size: 2.2cqw; line-height: 1.35; padding-left: 4cqw; border-left: 1px solid rgb(242 244 241 / 0.25); color: var(--embun-redup); }
+  .spanduk b { color: var(--color-tunas); font-weight: 500; }
+  .watermark { aspect-ratio: 4 / 5; }
+  .wm-label { position: absolute; left: 4cqw; bottom: 4cqw; z-index: 2; display: flex; align-items: center; gap: 2cqw; padding: 2cqw 3.5cqw; border-radius: 999px; background: rgb(16 35 30 / 0.72); font-size: 3.4cqw; }
+  .wm-label img { width: 4cqw; height: auto; }
+  .seragam { aspect-ratio: 4 / 5; border-radius: 16px; background: var(--color-pinus-2); display: grid; place-items: center; overflow: hidden; background-image: repeating-linear-gradient(135deg, rgb(255 255 255 / 0.025) 0 2px, transparent 2px 5px); }
+  .patch { padding: 1.1rem 1.4rem; border-radius: 12px; background: var(--color-pinus); color: var(--color-embun); outline: 1.5px dashed rgb(242 244 241 / 0.45); outline-offset: -6px; box-shadow: 0 10px 22px -12px rgb(0 0 0 / 0.7); }
+  .wa-prof { display: flex; align-items: center; gap: 0.9rem; padding: 1rem; border-radius: 16px; background: var(--color-putih); border: 1px solid var(--color-garis); }
+  .wa-nama { font-weight: 500; }
+  .wa-sub { font-size: 0.85rem; color: var(--color-lumut); }
+
+  .tulis-grid { display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 52rem) { .tulis-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .tulis-kartu { background: var(--color-embun); border-radius: 24px; padding: 1.5rem; display: grid; gap: 0.75rem; align-content: start; }
+  .tulis-tagline { font-size: clamp(2rem, 1.4rem + 2vw, 3rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1; color: var(--color-pinus); }
+  .tulis-akal { opacity: 0.55; }
+  .insight { display: grid; gap: 0.5rem; font-size: 1.1rem; letter-spacing: -0.01em; }
+  .tulis-ya { font-size: 1.1rem; color: var(--color-pinus); }
+  .tulis-tidak { font-size: 1.1rem; color: var(--color-lumut); text-decoration: line-through; text-decoration-thickness: 1px; }
+  .kata-larang { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .kata-larang li { padding: 0.3rem 0.8rem; border-radius: 999px; border: 1px solid var(--color-garis); background: var(--color-putih); font-size: 0.85rem; color: var(--color-lumut); text-decoration: line-through; }
+
+  .unduh-daftar { display: grid; gap: 8px; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 48rem) { .unduh-daftar { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 72rem) { .unduh-daftar { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .unduh-daftar a { display: flex; align-items: center; gap: 1rem; padding: 0.75rem; border-radius: 16px; background: var(--color-pinus-2); color: var(--color-embun); text-decoration: none; transition: background-color 200ms; min-height: 72px; }
+  .unduh-daftar a:hover { background: #20403a; }
+  .unduh-pratinjau { flex: none; width: 88px; height: 52px; border-radius: 10px; display: grid; place-items: center; background: rgb(242 244 241 / 0.06); }
+  .unduh-terang { background: var(--color-embun); }
+  .unduh-pratinjau img { max-width: 72px; max-height: 36px; width: auto; height: auto; }
+  .unduh-teks { display: grid; min-width: 0; }
+  .unduh-label { font-weight: 500; }
+  .unduh-ket { font-size: 0.82rem; color: var(--embun-redup); }
+  .unduh-format { margin-left: auto; font-size: 0.75rem; font-weight: 500; padding: 0.25rem 0.6rem; border-radius: 999px; border: 1px solid rgb(242 244 241 / 0.25); }
+
+  .b-sek-pinus .pill-garis { color: var(--color-embun); }
+</style>

@@ -1,5 +1,6 @@
 ---
 import { waLink } from '../data/bisnis';
+import Logo from './Logo.astro';
 
 const menu = [
   { href: '#hitung', label: 'Hitung biaya' },
@@ -12,7 +13,7 @@ const menu = [
 
 <header class="kepala no-print">
   <div class="wrap kepala-isi">
-    <a href="/" class="merek-kata" aria-label="Atapura, ke beranda">Atapura</a>
+    <a href="/" class="merek-kata" aria-label="Atapura, ke beranda"><Logo tinggi="1.3rem" /></a>
     <nav aria-label="Utama" class="kepala-nav">
       {menu.map((m) => <a href={m.href}>{m.label}</a>)}
     </nav>
@@ -26,7 +27,7 @@ const menu = [
 <style>
   .kepala { position: absolute; inset: 0 0 auto; z-index: 20; color: var(--color-putih); }
   .kepala-isi { display: flex; align-items: center; gap: 2rem; min-height: 80px; }
-  .merek-kata { font-weight: 500; font-size: 1.4rem; letter-spacing: -0.04em; text-decoration: none; color: inherit; text-shadow: 0 1px 10px rgb(0 0 0 / 0.3); }
+  .merek-kata { display: inline-flex; align-items: center; min-height: 44px; color: inherit; filter: drop-shadow(0 1px 8px rgb(0 0 0 / 0.3)); }
   .kepala-nav { display: none; gap: 1.75rem; margin-left: auto; font-size: 0.95rem; }
   .kepala-nav a { color: inherit; text-decoration: none; padding-block: 0.6rem; opacity: 0.8; transition: opacity 200ms; }
   .kepala-nav a:hover { opacity: 1; }
@@ -35,7 +36,7 @@ const menu = [
   .kepala-perusahaan { display: none; min-height: 44px; padding-inline: 1.2rem; font-size: 0.92rem; border: 1px solid currentColor; color: inherit; }
   @media (min-width: 64rem) {
     .kepala { color: var(--color-pinus); }
-    .merek-kata { text-shadow: none; }
+    .merek-kata { filter: none; }
     .kepala-nav { display: flex; }
     .kepala-wa { margin-left: 0; }
     .kepala-perusahaan { display: inline-flex; }

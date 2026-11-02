@@ -1,0 +1,24 @@
+---
+// Logo "Λtapura" dari /brand/atapura-logo.svg, diwarnai lewat currentColor (mask) supaya satu file
+// bisa tampil Pinus di bidang terang dan Embun di atas foto/gelap. Tinggi = cap + ekor "p".
+interface Props {
+  /** Tinggi logo (tinggi huruf kapital ≈ 0.82 × nilai ini). */
+  tinggi?: string;
+  class?: string;
+}
+const { tinggi = '1.25rem', class: kelas } = Astro.props;
+---
+
+<span class:list={['logo', kelas]} style={`--tinggi-logo: ${tinggi}`} aria-hidden="true"></span>
+
+<style>
+  .logo {
+    display: inline-block;
+    height: var(--tinggi-logo);
+    aspect-ratio: 6930 / 1768;
+    background: currentColor;
+    -webkit-mask: url('/brand/atapura-logo.svg') center / contain no-repeat;
+    mask: url('/brand/atapura-logo.svg') center / contain no-repeat;
+    vertical-align: middle;
+  }
+</style>

@@ -1,12 +1,13 @@
 ---
 import { bisnis, waLink } from '../data/bisnis';
+import Logo from './Logo.astro';
 const tahun = new Date().getFullYear();
 ---
 
 <footer class="kaki">
   <div class="wrap kaki-grid">
     <div>
-      <p class="kaki-nama">Atapura</p>
+      <p class="kaki-nama"><Logo tinggi="1.45rem" /><span class="sr-only">Atapura</span></p>
       <p class="kaki-teks">
         Spesialis atap bitumen untuk Jabodetabek. {bisnis.namaLegal} ({bisnis.statusLegal}).
         Didirikan oleh {bisnis.pendiri.join(' dan ')}.
@@ -35,7 +36,7 @@ const tahun = new Date().getFullYear();
   .kaki { background: var(--color-pinus); color: var(--color-embun); padding-top: 4rem; padding-bottom: 2.5rem; }
   .kaki-grid { display: grid; gap: 2.5rem; grid-template-columns: minmax(0, 1fr); }
   @media (min-width: 48rem) { .kaki-grid { grid-template-columns: 1.2fr 1fr 1.6fr; } }
-  .kaki-nama { font-weight: 500; font-size: 1.5rem; letter-spacing: -0.035em; margin-bottom: 0.5rem; }
+  .kaki-nama { margin-bottom: 0.9rem; }
   .kaki-judul { font-weight: 500; margin-bottom: 0.6rem; }
   .kaki-teks, .kaki-daftar { color: var(--embun-redup); font-size: 0.95rem; }
   .kaki-daftar { display: grid; gap: 0.35rem; }
