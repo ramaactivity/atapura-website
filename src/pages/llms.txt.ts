@@ -1,9 +1,11 @@
 import type { APIRoute } from 'astro';
 import { bisnis } from '../data/bisnis';
 import { harga } from '../data/harga';
+import { getCollection } from 'astro:content';
 
 // Dibangkitkan dari src/data supaya tidak pernah bertentangan dengan halaman.
-export const GET: APIRoute = ({ site }) => {
+export const GET: APIRoute = async ({ site }) => {
+  const panduan = await getCollection('panduan');
   const url = (p: string) => new URL(p, site).href;
   const isi = `# ${bisnis.nama}
 
@@ -22,6 +24,11 @@ ${bisnis.nama} adalah aplikator sekaligus supplier atap bitumen (genteng aspal, 
 ## Halaman utama
 
 - [Beranda dan kalkulator Hitung AKAL](${url('/')}): estimasi biaya total pasang atap bitumen, lima lapis pemasangan, perbandingan merek, area layanan, tanya jawab
+- [Panduan](${url('/panduan')}): artikel tanya-jawab atap bitumen
+
+## Panduan
+
+${panduan.map((p) => `- [${p.data.judul}](${url('/panduan/' + p.id)}): ${p.data.ringkasan}`).join('\n')}
 `;
   return new Response(isi, { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
 };

@@ -389,6 +389,7 @@ const faqSchema = {
     <section id="tanya" class="sek terang c-embun" aria-labelledby="judul-tanya">
       <div class="wrap tanya">
         <h2 id="judul-tanya" class="judul-2">Yang biasanya ditanyakan sebelum survey</h2>
+        <a class="tanya-panduan" href="/panduan">Baca panduan lengkap atap bitumen</a>
         <div class="tanya-daftar" data-tanya>
           {tanya.map((t, i) => (
             <details class="tanya-item" name="tanya" open={i === 0}>
@@ -676,6 +677,8 @@ const faqSchema = {
   }
   .tanya-daftar { display: grid; border-top: 1px solid var(--color-garis); interpolate-size: allow-keywords; }
   .tanya-item { border-bottom: 1px solid var(--color-garis); }
+  .tanya-panduan { display: inline-block; margin-top: 1.25rem; font-weight: 500; color: var(--color-pinus); text-decoration: underline; text-decoration-color: rgb(16 35 30 / 0.3); }
+  @media (min-width: 60rem) { .tanya-panduan { position: sticky; top: 14rem; } }
   .tanya-item summary {
     display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
     padding-block: 1.4rem; cursor: pointer; list-style: none;
