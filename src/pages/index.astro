@@ -7,6 +7,7 @@ import CaraKerja from '../components/CaraKerja.astro';
 import PetaArea from '../components/PetaArea.astro';
 import RaporContoh from '../components/RaporContoh.astro';
 import Warna from '../components/Warna.astro';
+import PilihMerek from '../components/PilihMerek.astro';
 import HitungAkal from '../islands/HitungAkal';
 import Foto from '../components/Foto.astro';
 import heroDesktop from '../../assets/gambar/magnific/hero-desktop.jpg';
@@ -109,8 +110,8 @@ const faqSchema = {
     <section id="layanan" class="sek c-embun" aria-labelledby="judul-layanan">
       <div class="wrap">
         <div class="kepala">
-          <h2 id="judul-layanan" class="judul-besar">Satu tim untuk <span class="miring">setiap jenis atap.</span></h2>
-          <p class="lead">Dari rumah baru sampai kafe yang tidak boleh lama tutup. Semua dipasang dengan Standar Pasang AKAL yang sama.</p>
+          <h2 id="judul-layanan" class="judul-besar">Apa pun atap Anda, <span class="miring">ada jalan keluarnya.</span></h2>
+          <p class="lead">Membangun rumah baru, mengganti genteng yang berat, menghentikan bocor, atau menyiapkan kafe yang tidak boleh lama tutup. Pilih yang paling dekat dengan kebutuhan Anda.</p>
         </div>
         <div class="bento">
           <article class="kartu foto k-tukang">
@@ -143,6 +144,31 @@ const faqSchema = {
             <a class="pill pill-tunas" href={waLink('Halo Atapura, saya dari perusahaan dan butuh penawaran resmi untuk proyek atap.')} target="_blank" rel="noopener" data-wa="proyek">Minta penawaran resmi</a>
           </article>
         </div>
+      </div>
+    </section>
+
+    <section id="akal" class="sek gelap c-pinus" aria-labelledby="judul-akal">
+      <div class="wrap">
+        <div class="kepala">
+          <h2 id="judul-akal" class="judul-besar">Pasang atap tanpa was-was. <span class="miring">Itu yang masuk AKAL.</span></h2>
+          <p class="lead">Empat hal yang paling sering membuat pemilik rumah ragu mengganti atap, dan apa yang Anda pegang untuk masing-masing. Semuanya bisa Anda cek di halaman ini.</p>
+        </div>
+        <ol class="akal">
+          {[
+            { h: 'A', nama: 'Andal', takut: 'Tukang datang seenaknya, kerjaan molor?', dapat: 'Anda tahu tanggal mulai dan perkiraan selesai sebelum membayar apa pun, tertulis.', bukti: '#cara-kerja', label: 'Lihat 7 tahap kerja' },
+            { h: 'K', nama: 'Kualitas', takut: 'Takut bocor lagi padahal sudah bayar mahal?', dapat: 'Anda bisa melihat bagian atap yang nanti tertutup: setiap lapis difoto dan dikirim ke Anda.', bukti: '#lapisan', label: 'Lihat kelima lapis' },
+            { h: 'A', nama: 'Amanah', takut: 'Takut harga membengkak atau tertipu?', dapat: 'Anda tahu kisaran biayanya sebelum bicara dengan siapa pun, lalu membayar bertahap mengikuti progres, hanya ke rekening perusahaan.', bukti: '#garansi', label: 'Lihat termin bayar' },
+            { h: 'L', nama: 'Lestari', takut: 'Ditinggal begitu lunas?', dapat: `Atap Anda tetap dijaga ${bisnis.garansiPemasanganTahun} tahun: bocor akibat pemasangan diperbaiki gratis, dan dicek lagi setelah musim hujan pertama.`, bukti: '#garansi', label: 'Lihat garansi' },
+          ].map((a) => (
+            <li class="akal-pilar">
+              <span class="akal-huruf" aria-hidden="true">{a.h}</span>
+              <p class="akal-takut">{a.takut}</p>
+              <h3 class="akal-nama">{a.nama}</h3>
+              <p class="akal-janji">{a.dapat}</p>
+              <a class="akal-bukti" href={a.bukti}>{a.label}</a>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
 
@@ -267,12 +293,12 @@ const faqSchema = {
     <section id="merek" class="sek terang c-putih" aria-labelledby="judul-merek">
       <div class="wrap">
         <div class="merek-kepala">
-          <h2 id="judul-merek" class="judul-besar">Tiga merek, <span class="miring">satu standar pasang.</span></h2>
-          <p class="lead">
-            Kami memasang tiga merek, jadi kami bisa jujur soal mana yang cocok untuk atap Anda.
-            Garansi pabrik kami tulis persis seperti dokumen resmi tiap merek.
-          </p>
+          <h2 id="judul-merek" class="judul-besar">Bingung pilih merek? <span class="miring">Mulai dari kebutuhan Anda.</span></h2>
+          <p class="lead">Ketiga merek yang kami pasang sama-sama atap bitumen yang baik. Bedanya ada di harga, asal produksi, dan lama garansi pabrik.</p>
         </div>
+        <PilihMerek />
+        <details class="spek">
+          <summary><span>Bandingkan spesifikasi lengkap ketiga merek</span><span class="spek-tanda" aria-hidden="true"></span></summary>
         <div class="datasheet" role="region" aria-label="Perbandingan merek" tabindex="0">
           <table class="ds">
             <caption class="sr-only">Perbandingan tiga merek atap bitumen yang dipasang Atapura</caption>
@@ -316,6 +342,7 @@ const faqSchema = {
           ))}
         </ol>
         <p class="tabel-catatan">Harga genteng per m² dan garansi pabrik mengacu harga pasar distributor Jabodetabek (November 2026). Spesifikasi diverifikasi ulang dengan dokumen resmi sebelum kontrak.</p>
+        </details>
         <div class="batas">
           <h3 class="batas-judul">Kapan kami menyarankan <span class="miring">pilihan lain</span></h3>
           <ol class="batas-daftar">
@@ -597,6 +624,14 @@ const faqSchema = {
   .merek-kepala { display: grid; gap: 1.5rem 4rem; grid-template-columns: minmax(0, 1fr); margin-bottom: clamp(2.5rem, 5vw, 4rem); }
   @media (min-width: 60rem) { .merek-kepala { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: end; } }
   .merek-kepala .lead { color: var(--color-lumut); }
+  .spek { margin-top: clamp(2.5rem, 5vw, 3.5rem); border-top: 1px solid var(--color-tinta); }
+  .spek summary { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.3rem 0; cursor: pointer; list-style: none; font-size: 1.1rem; font-weight: 500; }
+  .spek summary::-webkit-details-marker { display: none; }
+  .spek-tanda { position: relative; width: 14px; height: 14px; flex: none; }
+  .spek-tanda::before, .spek-tanda::after { content: ''; position: absolute; left: 0; top: 50%; width: 14px; height: 1px; background: currentColor; transition: transform 400ms var(--ease-out); }
+  .spek-tanda::after { transform: rotate(90deg); }
+  .spek[open] .spek-tanda::after { transform: rotate(0deg); }
+  .spek .datasheet { border-top: 0; }
   .datasheet { overflow-x: auto; border-top: 1px solid var(--color-tinta); }
   .ds { width: 100%; min-width: 44rem; border-collapse: collapse; }
   .ds th, .ds td { text-align: left; vertical-align: top; padding: 1.1rem 1.25rem 1.1rem 0; border-bottom: 1px solid var(--color-garis); }
@@ -715,6 +750,30 @@ const faqSchema = {
   }
   .cek-atap p { color: var(--color-lumut); max-width: 60ch; margin-top: 0.3rem; }
   .cek-judul { font-size: 1.4rem; font-weight: 500; letter-spacing: -0.03em; }
+
+  /* AKAL: empat pilar, tiap pilar menunjuk buktinya */
+  .akal { display: grid; grid-template-columns: minmax(0, 1fr); border-top: 1px solid rgb(242 244 241 / 0.18); }
+  .akal-pilar { display: grid; grid-template-columns: 4.5rem minmax(0, 1fr); grid-template-areas: 'huruf nama' 'huruf takut' 'huruf janji' 'huruf bukti'; gap: 0.4rem 1.25rem; padding: 1.75rem 0; border-bottom: 1px solid rgb(242 244 241 / 0.18); align-items: start; }
+  .akal-huruf { grid-area: huruf; } .akal-nama { grid-area: nama; } .akal-takut { grid-area: takut; } .akal-janji { grid-area: janji; } .akal-bukti { grid-area: bukti; }
+  .akal-huruf { font-size: 4.5rem; font-weight: 500; letter-spacing: -0.05em; line-height: 0.82; color: var(--color-tunas); }
+  .akal-nama { font-size: 1.5rem; font-weight: 500; letter-spacing: -0.03em; display: grid; }
+  .akal-takut { font-size: 1.12rem; font-weight: 500; letter-spacing: -0.02em; line-height: 1.3; color: var(--color-embun); }
+  .akal-nama { font-size: 0.9rem !important; font-weight: 500; letter-spacing: 0.01em !important; color: var(--color-tunas); }
+  .akal-janji { color: var(--embun-redup); font-size: 0.98rem; max-width: 46ch; }
+  .akal-bukti { justify-self: start; margin-top: 0.4rem; padding-block: 0.3rem; font-weight: 500; color: var(--color-embun); text-decoration: underline; text-decoration-color: rgb(242 244 241 / 0.35); transition: color 250ms, text-decoration-color 250ms; }
+  .akal-bukti:hover { color: var(--color-tunas); text-decoration-color: currentColor; }
+  @media (min-width: 64rem) {
+    .akal { grid-template-columns: repeat(4, minmax(0, 1fr)); border-bottom: 1px solid rgb(242 244 241 / 0.18); }
+    .akal-pilar .akal-nama { order: -1; }
+    .akal-pilar { display: flex; flex-direction: column; gap: 0.75rem; padding: 2rem 1.75rem 2.25rem; border-bottom: 0; border-left: 1px solid rgb(242 244 241 / 0.18); transition: background-color 400ms; }
+    .akal-pilar:first-child { border-left: 0; padding-left: 0; }
+    .akal-huruf { font-size: clamp(7rem, 2rem + 9vw, 12rem); margin: 0 0 1.25rem -0.05em; transition: transform 600ms var(--ease-out); }
+    .akal-bukti { margin-top: auto; padding-top: 1rem; }
+  }
+  @media (min-width: 64rem) and (hover: hover) and (pointer: fine) {
+    .akal-pilar:hover { background: rgb(242 244 241 / 0.035); }
+    .akal-pilar:hover .akal-huruf { transform: translateY(-8px); }
+  }
 
   /* Penutup: foto kafe + kalimat besar */
   .penutup { position: relative; min-height: 80svh; display: flex; align-items: flex-end; color: var(--color-putih); overflow: clip; isolation: isolate; }

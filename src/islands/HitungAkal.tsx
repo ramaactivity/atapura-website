@@ -89,8 +89,10 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda' }: { awal?: 
   // Kolom luas di hero mengirim angkanya ke sini.
   useEffect(() => {
     const dengar = (e: Event) => atur(Number((e as CustomEvent<number>).detail) || awal);
+    const dengarMerek = (e: Event) => { const m = (e as CustomEvent<string>).detail as Merek; if (MEREK.includes(m)) setMerek(m); };
     addEventListener('atapura:luas', dengar);
-    return () => removeEventListener('atapura:luas', dengar);
+    addEventListener('atapura:merek', dengarMerek);
+    return () => { removeEventListener('atapura:luas', dengar); removeEventListener('atapura:merek', dengarMerek); };
   }, []);
 
   const dariPointer = (clientX: number) => {

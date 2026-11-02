@@ -1,0 +1,121 @@
+---
+// Pemandu pilihan merek: mulai dari kebutuhan pembeli, bukan dari tabel spesifikasi.
+import { bagianRentang, harga } from '../data/harga';
+
+const pilihan = [
+  {
+    id: 'hemat',
+    tanya: 'Biaya paling hemat',
+    merek: 'Maxxi',
+    judul: 'Maxxi untuk rumah tinggal yang ingin hemat',
+    alasan: 'Harga genteng paling terjangkau di antara yang kami pasang, dengan garansi material 25 tahun dari pabrik. Cocok untuk rumah tinggal dan renovasi atap.',
+  },
+  {
+    id: 'proyek',
+    tanya: 'Proyek perlu TKDN atau produk lokal',
+    merek: 'CTI',
+    judul: 'CTI untuk proyek dan kebutuhan produk lokal',
+    alasan: 'Diproduksi di Indonesia dan bersertifikat TKDN, sehingga bisa diajukan untuk proyek pemerintah, BUMN, atau perusahaan yang mensyaratkan komponen dalam negeri.',
+  },
+  {
+    id: 'bingung',
+    tanya: 'Belum yakin, bantu pilihkan',
+    merek: null,
+    judul: 'Lihat langsung, baru putuskan',
+    alasan: 'Saat survey gratis, kami membawa sampel Maxxi, CTI, dan Javabitumen. Anda melihat warna dan teksturnya di bawah cahaya rumah sendiri, lalu kami jelaskan selisih biayanya untuk luas atap Anda.',
+  },
+] as const;
+
+const harga2 = (m: 'Maxxi' | 'CTI') => bagianRentang(harga.merek[m].genteng[0], harga.merek[m].genteng[1]);
+---
+
+<div class="pm" data-pilih-merek>
+  <div class="pm-tanya">
+    <p class="pm-label">Apa yang paling penting untuk Anda?</p>
+    <div class="pm-opsi" role="radiogroup" aria-label="Kebutuhan Anda">
+      {pilihan.map((p, i) => (
+        <button type="button" role="radio" class="pm-btn" data-opsi={p.id} aria-checked={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>
+          {p.tanya}
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <div class="pm-jawab">
+    {pilihan.map((p, i) => (
+      <article class="pm-kartu" data-jawab={p.id} hidden={i !== 0}>
+        <p class="pm-rekom">{p.merek ? 'Rekomendasi kami' : 'Saran kami'}</p>
+        <h3 class="pm-judul">{p.judul}</h3>
+        <p class="pm-alasan">{p.alasan}</p>
+        {p.merek && (
+          <dl class="pm-fakta">
+            <div>
+              <dt>Harga genteng</dt>
+              <dd data-nosnippet>
+                {(() => { const b = harga2(p.merek); return <>Rp{b.min}–{b.max} ribu <span>per m²</span></>; })()}
+              </dd>
+            </div>
+            <div><dt>Garansi pabrik</dt><dd>{harga.merek[p.merek].garansiPabrik}</dd></div>
+            <div><dt>Belum termasuk</dt><dd>alas, underlayment, aksesoris, jasa</dd></div>
+          </dl>
+        )}
+        <div class="pm-aksi">
+          {p.merek ? (
+            <a class="pill pill-gelap" href="#hitung" data-hitung-merek={p.merek}>Hitung biaya dengan {p.merek}</a>
+          ) : (
+            <a class="pill pill-gelap" href="#hitung">Hitung biaya dulu</a>
+          )}
+        </div>
+      </article>
+    ))}
+  </div>
+</div>
+
+<script>
+  for (const root of document.querySelectorAll<HTMLElement>('[data-pilih-merek]')) {
+    const tombol = [...root.querySelectorAll<HTMLButtonElement>('[data-opsi]')];
+    const kartu = root.querySelectorAll<HTMLElement>('[data-jawab]');
+    const pilih = (b: HTMLButtonElement, fokus = false) => {
+      tombol.forEach((t) => { const on = t === b; t.setAttribute('aria-checked', String(on)); t.tabIndex = on ? 0 : -1; });
+      kartu.forEach((k) => { k.hidden = k.dataset.jawab !== b.dataset.opsi; });
+      if (fokus) b.focus();
+    };
+    tombol.forEach((b, i) => {
+      b.addEventListener('click', () => pilih(b));
+      b.addEventListener('keydown', (e) => {
+        const arah = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0;
+        if (!arah) return;
+        e.preventDefault();
+        pilih(tombol[(i + arah + tombol.length) % tombol.length], true);
+      });
+    });
+    // "Hitung dengan merek ini" mengisi pilihan merek di Hitung AKAL.
+    root.querySelectorAll<HTMLAnchorElement>('[data-hitung-merek]').forEach((a) =>
+      a.addEventListener('click', () => setTimeout(() => dispatchEvent(new CustomEvent('atapura:merek', { detail: a.dataset.hitungMerek })), 450)),
+    );
+  }
+</script>
+
+<style>
+  .pm { display: grid; gap: 1.5rem 3rem; grid-template-columns: minmax(0, 1fr); align-items: start; }
+  @media (min-width: 64rem) { .pm { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); } }
+  .pm-label { font-size: 1.05rem; font-weight: 500; margin-bottom: 1rem; }
+  .pm-opsi { display: grid; gap: 0.6rem; }
+  .pm-btn {
+    text-align: left; min-height: 64px; padding: 1rem 1.25rem; border-radius: 14px; font-size: 1.08rem;
+    border: 1px solid var(--color-garis); background: var(--color-putih); cursor: pointer;
+    transition: border-color 250ms, background-color 250ms, color 250ms;
+  }
+  .pm-btn[aria-checked='true'] { background: var(--color-pinus); border-color: var(--color-pinus); color: var(--color-embun); }
+  @media (hover: hover) and (pointer: fine) { .pm-btn:hover { border-color: var(--color-lumut); } }
+  .pm-kartu { padding: clamp(1.5rem, 3vw, 2.5rem); border-radius: 16px; background: var(--color-embun); display: grid; gap: 0.9rem; }
+  .pm-rekom { font-size: 0.85rem; color: var(--color-lumut); }
+  .pm-judul { font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.3rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.1; }
+  .pm-alasan { color: var(--color-lumut); max-width: 52ch; }
+  .pm-fakta { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; border-top: 1px solid var(--color-garis); margin-top: 0.4rem; }
+  .pm-fakta > div { display: flex; justify-content: space-between; gap: 1rem; padding: 0.8rem 0; border-bottom: 1px solid var(--color-garis); }
+  .pm-fakta dt { color: var(--color-lumut); font-size: 0.93rem; }
+  .pm-fakta dd { text-align: right; font-weight: 500; }
+  .pm-fakta dd span { font-weight: 400; color: var(--color-lumut); font-size: 0.9rem; }
+  .pm-aksi { margin-top: 0.4rem; }
+</style>
