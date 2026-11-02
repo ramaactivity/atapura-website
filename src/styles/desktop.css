@@ -58,8 +58,6 @@
   .ds tbody tr { transition: background-color 240ms; }
   .ds tbody tr:hover { background: var(--color-embun); }
 
-  .tanya-item dt { transition: transform 400ms var(--ease-film); }
-  .tanya-item:hover dt { transform: translateX(6px); }
 
   .wilayah-kota li { transition: transform 300ms var(--ease-film), color 300ms; }
   .wilayah-kota li:hover { transform: translateX(4px); color: var(--color-tinta); }

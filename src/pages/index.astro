@@ -282,14 +282,14 @@ const faqSchema = {
     <section id="tanya" class="course terang c-embun" aria-labelledby="judul-tanya">
       <div class="wrap tanya">
         <h2 id="judul-tanya" class="judul-2">Yang biasanya ditanyakan sebelum survey</h2>
-        <dl class="tanya-daftar">
-          {tanya.map((t) => (
-            <div class="tanya-item">
-              <dt>{t.q}</dt>
-              <dd>{t.a}</dd>
-            </div>
+        <div class="tanya-daftar" data-tanya>
+          {tanya.map((t, i) => (
+            <details class="tanya-item" name="tanya" open={i === 0}>
+              <summary><span class="tanya-q">{t.q}</span><span class="tanya-tanda" aria-hidden="true"></span></summary>
+              <p class="tanya-a">{t.a}</p>
+            </details>
           ))}
-        </dl>
+        </div>
       </div>
     </section>
 
@@ -337,6 +337,12 @@ const faqSchema = {
     });
     jalan();
   }
+
+  // FAQ: di desktop, pertanyaan yang disorot mouse langsung terbuka (satu per satu, name="tanya" menutup yang lain).
+  const sorot = matchMedia('(hover: hover) and (pointer: fine)');
+  document.querySelectorAll<HTMLDetailsElement>('[data-tanya] details').forEach((d) => {
+    d.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse' && sorot.matches) d.open = true; });
+  });
 
   // Tombol WA melayang muncul di HP setelah slip Hitung AKAL lewat, supaya tidak dobel dengan tombol di slip.
   const apung = document.querySelector<HTMLElement>('.wa-apung');
@@ -566,11 +572,31 @@ const faqSchema = {
     .tanya { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); align-items: start; }
     .tanya .judul-2 { position: sticky; top: 2.5rem; }
   }
-  .tanya-daftar { display: grid; }
-  .tanya-item { padding-block: 1.5rem; border-top: 1px solid var(--color-garis); }
-  .tanya-item:first-child { border-top: 0; padding-top: 0; }
-  .tanya-item dt { font-weight: 500; font-size: 1.2rem; letter-spacing: -0.015em; margin-bottom: 0.5rem; }
-  .tanya-item dd { color: var(--color-lumut); max-width: 62ch; }
+  .tanya-daftar { display: grid; border-top: 1px solid var(--color-garis); interpolate-size: allow-keywords; }
+  .tanya-item { border-bottom: 1px solid var(--color-garis); }
+  .tanya-item summary {
+    display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+    padding-block: 1.4rem; cursor: pointer; list-style: none;
+  }
+  .tanya-item summary::-webkit-details-marker { display: none; }
+  .tanya-q { font-size: clamp(1.15rem, 1rem + 0.5vw, 1.45rem); font-weight: 300; letter-spacing: -0.02em; transition: transform 400ms var(--ease-out); }
+  .tanya-item[open] .tanya-q { font-variation-settings: "ital" 11; }
+  .tanya-tanda { position: relative; flex: none; width: 14px; height: 14px; }
+  .tanya-tanda::before, .tanya-tanda::after {
+    content: ''; position: absolute; left: 0; top: 50%; width: 14px; height: 1px; background: currentColor;
+    transition: transform 400ms var(--ease-out);
+  }
+  .tanya-tanda::after { transform: rotate(90deg); }
+  .tanya-item[open] .tanya-tanda::after { transform: rotate(0deg); }
+  .tanya-a { color: var(--color-lumut); max-width: 62ch; padding-bottom: 1.5rem; }
+  .tanya-item::details-content {
+    block-size: 0; overflow: clip;
+    transition: block-size 500ms var(--ease-out), content-visibility 500ms allow-discrete;
+  }
+  .tanya-item[open]::details-content { block-size: auto; }
+  @media (hover: hover) and (pointer: fine) {
+    .tanya-item:hover .tanya-q { transform: translateX(6px); }
+  }
 
   /* Penutup: satu kalimat selebar layar. */
   .penutup-isi { display: grid; gap: 1.75rem; justify-items: start; }
