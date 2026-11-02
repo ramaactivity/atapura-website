@@ -18,7 +18,7 @@ Review desain: Impeccable finish reviewer 2 putaran (fix → fix). Semua 8 temua
 WhatsApp bisnis, harga resmi per merek, durasi garansi pemasangan, logo, foto proyek/Magnific, brosur Javabitumen, status agen resmi, NIB/NPWP setelah PT terbit.
 
 ## Berikutnya (urutan wajib — DECISIONS 014)
-0. **Tunggu Rama:** 4 foto Magnific (08-ASET-MAGNIFIC.md no. 1 hero rumah golden hour, 4 hujan di atap, 5 tukang memasang, 6 villa/kafe) di `assets/gambar/magnific/`, dan pilihan 2–3 situs patokan dari daftar: tesla.com/solarroof, otovo.com, malarkeyroofing.com, velux.com, sunrun.com, enphase.com, bravarooftile.com.
+0. **Tunggu Rama:** 4 foto Magnific (08-ASET-MAGNIFIC.md no. 1 hero rumah golden hour, 4 hujan di atap, 5 tukang memasang, 6 villa/kafe) di `assets/gambar/magnific/`, . Situs patokan sudah dipilih: sunrun, otovo, enphase — pola di docs/desain/patokan-situs.md. Butuh juga dari Rama: nama, foto asli, satu paragraf & email untuk "pesan pendiri".
    Lalu buat MOCKUP satu halaman (artifact/HTML statis, desktop + HP) untuk disetujui. Jangan rombak kode beranda sebelum mockup disetujui.
 1. Rama cek https://atapura.vercel.app di HP.
 2. Verdict pass reviewer + documenter → DESIGN.md + `.impeccable/design.json`.
