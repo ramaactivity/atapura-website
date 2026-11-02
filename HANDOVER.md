@@ -21,8 +21,9 @@ WhatsApp bisnis, harga resmi per merek, durasi garansi pemasangan, logo, foto pr
 1. Rama cek https://atapura.vercel.app di HP.
 2. Verdict pass reviewer + documenter → DESIGN.md + `.impeccable/design.json`.
 3. Milestone 2 (mesin konten): content collections, template produk/proyek/area/artikel.
-4. Rapikan skala tipografi: 21 catatan advisory detektor (ukuran huruf di luar skala DESIGN.md) → satukan jadi token ukuran.
-5. Polesan: skill better-ui/better-typography/web-typography di slip & tabel; uji di iPhone Rama.
+4. Uji lapisan desktop di Safari & Firefox (efek scroll butuh dukungan animation-timeline; tanpa itu efeknya otomatis tidak muncul).
+5. Rapikan skala tipografi: 21 catatan advisory detektor (ukuran huruf di luar skala DESIGN.md) → satukan jadi token ukuran.
+6. Polesan: skill better-ui/better-typography/web-typography di slip & tabel; uji di iPhone Rama.
 
 ## Catatan teknis
 - Screenshot uji: skrip Playwright di scratchpad sesi; executable Chromium `~/Library/Caches/ms-playwright/chromium-1243/...` (versi Playwright global butuh 1246 yang belum terunduh).

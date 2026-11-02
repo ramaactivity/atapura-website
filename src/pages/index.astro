@@ -6,6 +6,7 @@ import Footer from '../components/Footer.astro';
 import Lapisan from '../components/Lapisan.astro';
 import HitungAkal from '../islands/HitungAkal';
 import gentengMakro from '../assets/genteng-makro.jpg';
+import '../styles/desktop.css';
 import { bisnis, waLink } from '../data/bisnis';
 import { harga, rupiahRingkas, tanggalPanjang } from '../data/harga';
 
@@ -69,11 +70,12 @@ const faqSchema = {
         loading="eager"
         fetchpriority="high"
       />
+      <div class="hero-cahaya" aria-hidden="true"></div>
       <div class="wrap hero-grid">
         <div class="hero-teks">
           <h1 id="judul" class="hero-judul">
-            <span class="hero-tipis">Atap yang masuk</span>
-            <span class="hero-tebal">AKAL.</span>
+            <span class="hero-tipis baris"><span>Atap yang masuk</span></span>
+            <span class="hero-tebal baris"><span>AKAL.</span></span>
           </h1>
           <p class="hero-sub">
             Atapura memasang atap bitumen Maxxi, CTI, dan Javabitumen untuk rumah, villa, dan kafe di Jabodetabek.
@@ -266,6 +268,31 @@ const faqSchema = {
 </Base>
 
 <script>
+  // Desktop: cahaya senja & foto mengikuti kursor dengan pegas (lerp), berhenti sendiri saat diam.
+  const desktop = matchMedia('(min-width: 64rem) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
+  const hero = document.querySelector<HTMLElement>('.hero');
+  const foto = hero?.querySelector<HTMLElement>('.hero-foto');
+  const cahaya = hero?.querySelector<HTMLElement>('.hero-cahaya');
+  if (desktop.matches && hero && foto && cahaya) {
+    let tx = 0.75, ty = 0.15, x = tx, y = ty, id = 0;
+    const jalan = () => {
+      x += (tx - x) * 0.07;
+      y += (ty - y) * 0.07;
+      const r = hero.getBoundingClientRect();
+      const d = cahaya.offsetWidth / 2;
+      foto.style.transform = `scale(1.06) translate(${((0.5 - x) * 16).toFixed(2)}px, ${((0.5 - y) * 10).toFixed(2)}px)`;
+      cahaya.style.transform = `translate(${(x * r.width - d).toFixed(1)}px, ${(y * r.height - d).toFixed(1)}px)`;
+      id = Math.abs(tx - x) + Math.abs(ty - y) > 0.0008 ? requestAnimationFrame(jalan) : 0;
+    };
+    hero.addEventListener('pointermove', (e) => {
+      const r = hero.getBoundingClientRect();
+      tx = (e.clientX - r.left) / r.width;
+      ty = (e.clientY - r.top) / r.height;
+      if (!id) id = requestAnimationFrame(jalan);
+    });
+    jalan();
+  }
+
   // Tombol WA melayang muncul di HP setelah slip Hitung AKAL lewat, supaya tidak dobel dengan tombol di slip.
   const apung = document.querySelector<HTMLElement>('.wa-apung');
   const slip = document.querySelector('#hitung');

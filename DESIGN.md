@@ -294,6 +294,19 @@ Siluet khas: tepi atas slip dipotong segitiga landai (`clip-path: polygon(0 28px
 ### Named Rules
 **The Satu Chevron Rule.** Satu chevron Λ per layar, selalu tipis 1px, selalu pada kemiringan atap yang sama dengan potongan slip.
 
+## Lapisan desktop (gerak & interaksi)
+
+Aktif hanya bila `(min-width: 64rem) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)` — kode di `src/styles/desktop.css` + skrip pegas di `src/pages/index.astro`. HP dan reduced-motion mendapat halaman statis yang sama tanpa aturan ini (HP tetap ringan).
+
+- **Pembukaan hero (sekali):** judul naik dari balik garis per baris (1100 ms, jeda 120 ms), sub & chip muncul 1000 ms, slip naik 1200 ms, garis atap tergambar dari puncak 1600 ms. Kurva `--ease-film` cubic-bezier(0.16, 1, 0.3, 1).
+- **Cahaya senja ikut kursor:** lingkaran radial Senja 26% + parallax foto ±8 px, digerakkan pegas (lerp 0,07 per frame), berhenti sendiri saat diam.
+- **Baris tertindih (scroll-driven):** bagian yang keluar layar mengecil ke 0,94 dan diredupkan 55% (`animation-timeline: view()`, rentang exit) — bagian berikutnya tampak menindih seperti baris genteng. Tidak ada scroll-jacking/sticky.
+- **Lapisan terurai:** kelima lapis mulai tertumpuk lalu terurai mengikuti scroll (`view-timeline --lapisan`, properti `translate` agar tidak bentrok dengan angkatan lapis aktif yang memakai `transform`).
+- **Kata miring hidup:** `.miring` di judul section bergerak dari ital 0 ke 11 saat masuk layar.
+- **Hover:** baris AKAL disapu latar (clip-path 520 ms) + huruf bergeser & jadi miring Tunas; baris tabel merek & FAQ bergeser halus; tombol Tunas terangkat 2 px.
+
+**The Timeline Terpisah Rule.** `animation-timeline` dan `animation-range` selalu ditulis di aturan terpisah (`:where(html) …`) dari shorthand `animation`. Lightning CSS menggabungkannya menjadi `animation: … view()` yang ditolak Chrome, dan efeknya hilang diam-diam.
+
 ## Components
 
 ### Buttons

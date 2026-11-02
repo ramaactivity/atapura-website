@@ -35,3 +35,6 @@ Rama: Switzer dengan bobot tebal masih "kurang profesional, generik, basic" diba
 
 ## 012 · 2 November 2026 · WhatsApp bisnis sementara 0896-1139-4867
 Dari Rama. Disimpan di `src/data/bisnis.ts` (`6289611394867`), dipakai semua tombol WA dan pesan Hitung AKAL. Belum dipakai sebagai `telephone` di JSON-LD sampai Rama mengonfirmasi nomor telepon resmi.
+
+## 013 · 2 November 2026 · Lapisan interaksi khusus desktop
+Rama: desktop terasa "boring dan basic"; teknologi boleh dibedakan dari HP. Ditambahkan lapisan progressive enhancement yang hanya aktif di layar ≥64rem + mouse + gerak tidak dikurangi: pembukaan hero, cahaya senja ikut kursor (pegas), efek baris tertindih saat scroll, diagram lapisan terurai, kata miring hidup, hover AKAL/tabel/FAQ/tombol. Semua CSS native (scroll-driven animation) + ±1 KB JS; tanpa library, tanpa scroll-jacking. HP tidak memuat efek apa pun (terverifikasi). Scroll roda mouse 2× sepanjang halaman: 0 frame >50 ms. Detail di DESIGN.md "Lapisan desktop".
