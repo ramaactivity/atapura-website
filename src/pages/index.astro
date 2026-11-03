@@ -107,6 +107,11 @@ const faqSchema = {
           <a href="#hitung" class="pill hero-utama">Hitung estimasi biaya</a>
           <a href="#layanan-proyek" class="pill pill-garis hero-kedua">Untuk perusahaan &amp; proyek</a>
         </div>
+        <ul class="hero-bukti" aria-label="Jaminan">
+          <li>Survey gratis</li>
+          <li>Garansi {bisnis.garansiPemasanganTahun} tahun</li>
+          <li>Kontrak tertulis</li>
+        </ul>
       </div>
       <p class="ilustrasi">Ilustrasi, bukan proyek Atapura</p>
     </section>
@@ -556,6 +561,7 @@ const faqSchema = {
   .hero-aksi { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.6rem; }
   .hero-aksi .pill { min-height: 54px; padding-inline: 1.6rem; font-size: 1rem; }
   .hero-utama { background: var(--color-tunas); color: var(--color-pinus); }
+  .hero-bukti { display: none; }
   .hero-kedua { color: var(--color-putih); border-color: rgb(255 255 255 / 0.6); }
   @media (min-width: 64rem) {
     .hero-utama { background: var(--color-pinus); color: var(--color-putih); }
@@ -892,12 +898,34 @@ const faqSchema = {
     .judul-besar, .judul-2 { font-size: var(--hp-t1); line-height: 1.08; letter-spacing: -0.03em; max-width: 18ch; }
     .lead { font-size: 1rem; line-height: 1.5; }
 
-    .hero { min-height: 92svh; }
-    .hero-judul { font-size: var(--hp-display); line-height: 0.98; }
-    .hero-h1-sub { font-size: 1rem; margin-top: 1rem; }
-    .hero-sub { font-size: 1rem; line-height: 1.5; max-width: 30ch; }
-    .hero-aksi { margin-top: 1.25rem; gap: 0.5rem; }
-    .hero-aksi .pill { min-height: var(--hp-tombol); padding-inline: 1.15rem; font-size: 0.9375rem; }
+    /* Hero HP: satu hierarki jelas — label kecil, judul besar rapat, satu kalimat, satu tombol utama,
+       bukti di dekat tombol (landing-page-design: social proof dekat CTA). Label tetap di dalam h1 (SEO),
+       dipindah ke atas lewat order. */
+    .hero { min-height: calc(100svh - 49px - env(safe-area-inset-bottom)); }
+    .hero::before {
+      background:
+        linear-gradient(180deg, rgb(10 20 16 / 0.35) 0%, transparent 16%),
+        linear-gradient(0deg, rgb(10 20 16 / 0.96) 0%, rgb(10 20 16 / 0.82) 34%, rgb(10 20 16 / 0.25) 60%, transparent 78%);
+    }
+    .hero-isi { padding-bottom: 2.25rem; }
+    .hero-judul { max-width: none; font-size: 2.875rem; line-height: 0.94; letter-spacing: -0.045em; }
+    .hero-judul .baris { max-width: 8ch; }
+    .hero-h1-sub {
+      order: -1; display: flex; align-items: flex-start; gap: 0.55rem; margin: 0 0 1rem; max-width: 34ch;
+      font-size: 0.8125rem; font-weight: 500; line-height: 1.35; letter-spacing: 0; color: rgb(255 255 255 / 0.82); text-wrap: balance;
+    }
+    .hero-h1-sub::before { content: ''; flex: none; margin-top: 0.45em; width: 6px; height: 6px; border-radius: 50%; background: var(--color-tunas); box-shadow: 0 0 0 4px rgb(198 242 78 / 0.18); }
+    .hero-sub { margin-top: 0.9rem; font-size: 0.9375rem; line-height: 1.5; max-width: 32ch; color: rgb(255 255 255 / 0.78); }
+    .hero-aksi { margin-top: 1.5rem; display: grid; gap: 0.25rem; }
+    .hero-aksi .pill { min-height: 50px; font-size: 1rem; }
+    .hero-utama { box-shadow: 0 10px 28px -12px rgb(198 242 78 / 0.7); }
+    .hero-utama::after { content: '→'; margin-left: 0.15rem; transition: transform 200ms var(--ease-out); }
+    .hero-utama:active::after { transform: translateX(3px); }
+    .hero-kedua { min-height: var(--hp-tombol) !important; border: 0; background: none; font-size: 0.875rem !important; font-weight: 500; color: rgb(255 255 255 / 0.85); text-decoration: underline; text-underline-offset: 0.3em; text-decoration-color: rgb(255 255 255 / 0.35); }
+    .hero-bukti { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.25rem 0.9rem; margin-top: 0.6rem; }
+    .hero-bukti li { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.75rem; font-weight: 500; color: rgb(255 255 255 / 0.8); white-space: nowrap; }
+    .hero-bukti li::before { content: '✓'; color: var(--color-tunas); }
+    .ilustrasi { bottom: auto; top: calc(64px + env(safe-area-inset-top)); right: var(--gutter); font-size: 0.6875rem; opacity: 0.7; }
 
     .kartu { padding: 1.1rem; min-height: 0; border-radius: 16px; }
     .kartu-isi { padding: 1.1rem; }
