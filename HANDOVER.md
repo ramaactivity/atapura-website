@@ -33,6 +33,10 @@ Kalkulator: spek pendukung + harga terpasang/m² (qty material hanya di `/intern
 - 15 halaman /area live (termasuk Depok, Kota/Kab Bekasi, Surabaya). Belum: curah hujan lokal Depok & Kab Bekasi (portal Open Data Jabar sedang mati 3 Nov — coba lagi); nama kecamatan (cocokkan ke Kemendagri dulu); spesifikasi Javabitumen (situs resmi suspended — minta datasheet ke distributor).
 - Efek SEO baru terasa setelah `bisnis.konsep = false` (sekarang robots Disallow + noindex) dan Search Console terpasang.
 
+## Tampilan HP seperti aplikasi native (DECISIONS 032) — 3 Nov 2026
+✅ Skala ukuran HP (token --hp-*), ✅ bilah tab bawah + bilah atas kaca buram, ✅ kartu geser layanan & AKAL, daftar panduan ringkas.
+⏳ Berikutnya: bagian jadi "layar" kartu membulat (referensi Aestheris), tinjau bukti sosial di atas lipatan, warna & area jadi geser.
+
 ## Status konsep
 Situs masih KONSEP untuk partner (DECISIONS 017): `bisnis.konsep = true` → noindex + robots Disallow. Ubah ke false setelah angka termin/garansi/harga final **dan rekening atas nama PT sudah ada** — seluruh copy menjanjikan "hanya ke rekening atas nama perusahaan"; rekening pribadi sementara (Rama punya) jangan pernah ditulis di situs/repo, hanya di kontrak/invoice.
 

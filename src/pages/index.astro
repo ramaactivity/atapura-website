@@ -903,6 +903,14 @@ const faqSchema = {
     .kartu-isi { padding: 1.1rem; }
     .kartu-judul { font-size: var(--hp-t4); }
     .kartu .kartu-angka { font-size: 2rem; }
+    /* Layanan: kartu geser ke samping (pola aplikasi), kartu berikutnya mengintip di tepi. */
+    .bento {
+      grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 80%; gap: 10px;
+      overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none;
+      margin-inline: calc(-1 * var(--gutter)); padding: 0 var(--gutter) 6px; scroll-padding-inline: var(--gutter);
+    }
+    .bento::-webkit-scrollbar { display: none; }
+    .bento .kartu { min-height: 22rem; scroll-snap-align: start; }
 
     .ds-merek { font-size: var(--hp-t2); }
     .merek-hp li { padding: 1.1rem 0; }
@@ -920,7 +928,13 @@ const faqSchema = {
     .penutup-teks { font-size: 1rem; }
     .pill-terang { min-height: 48px; }
     .jurnal-judul { font-size: var(--hp-t2); margin-bottom: 1.25rem; }
-    .jurnal-nama { font-size: var(--hp-t3); }
+    /* Panduan: daftar ringkas bergambar kecil (pola daftar aplikasi). */
+    .jurnal-item { grid-template-columns: 88px minmax(0, 1fr); gap: 0.9rem; padding-block: 0.9rem; align-items: center; }
+    .jurnal-item :global(.jurnal-foto) { aspect-ratio: 1; border-radius: 12px; }
+    .jurnal-teks { gap: 0.25rem; }
+    .jurnal-kat { font-size: 0.75rem; }
+    .jurnal-nama { font-size: 0.9375rem; line-height: 1.3; letter-spacing: -0.01em; }
+    .jurnal-ringkas { display: none; }
     .bukti-daftar b { font-size: 1.25rem; }
     .spek summary { font-size: 1rem; padding: 1rem 0; }
 
