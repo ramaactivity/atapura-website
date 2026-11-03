@@ -120,4 +120,9 @@ const ribu = (n: number) => (n / 1000).toLocaleString('id-ID');
   .pm-fakta dd { text-align: right; font-weight: 500; }
   .pm-fakta dd span { font-weight: 400; color: var(--color-lumut); font-size: 0.9rem; }
   .pm-aksi { margin-top: 0.4rem; }
+  @media (max-width: 47.99rem) {
+    .pm-btn { min-height: var(--hp-tombol); padding: 0.65rem 1rem; border-radius: 12px; font-size: 0.9375rem; }
+    .pm-kartu { padding: 1.25rem; }
+    .pm-judul { font-size: var(--hp-t3); }
+  }
 </style>

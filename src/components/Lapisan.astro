@@ -212,19 +212,6 @@ const genteng = slab(260, 210, 200, 100, 10);
   [data-aktif="flashing"] .l-flashing path,
   [data-aktif="genteng"] .l-genteng path,
   [data-aktif="nok"] .l-nok path { stroke: var(--color-tunas); }
-  @media (max-width: 59.99rem) {
-    .lapisan-gambar {
-      position: sticky; top: 0; z-index: 2; height: 34svh; padding-block: 0.75rem 1.25rem; overflow: hidden;
-      max-width: none; margin-inline: calc(-1 * var(--gutter)); width: calc(100% + 2 * var(--gutter));
-      background: linear-gradient(var(--color-embun) 82%, rgb(242 244 241 / 0));
-    }
-    .lapisan-gambar svg { height: 100%; width: 100%; overflow: hidden; }
-    .lapisan-daftar { gap: 0.15rem; }
-    .lapis { padding: 0.85rem 0.85rem 0.85rem 0.5rem; gap: 0.85rem; grid-template-columns: 2rem minmax(0, 1fr); }
-    .lapis-no { width: 2rem; height: 2rem; font-size: 0.85rem; }
-    .lapis-nama { font-size: 1.02rem; }
-    .lapis-isi { font-size: 0.93rem; line-height: 1.5; }
-  }
 
   .lapisan-daftar { display: grid; gap: 0.25rem; counter-reset: none; }
   .lapis {
@@ -271,5 +258,28 @@ const genteng = slab(260, 210, 200, 100, 10);
     .sisi-kiri::before { left: calc(100% + 6.5vw - 3px); }
     .sisi-kanan::before { right: calc(100% + 6.5vw - 3px); }
     .lapisan-daftar li:has([aria-pressed="true"])::after { opacity: 1; }
+  }
+  /* HP/tablet: ditaruh paling akhir supaya tidak tertimpa aturan dasar .lapis di atas.
+     Panel gambar menempel seperti bilah iOS: kaca buram tipis, garis kotak latar tetap tembus,
+     teks yang lewat di bawahnya terburamkan (bukan tumpang-tindih setengah pudar). */
+  @media (max-width: 59.99rem) {
+    .lapisan-gambar {
+      position: sticky; top: 0; z-index: 2; height: 30svh; padding-block: 0.75rem; overflow: hidden;
+      max-width: none; margin-inline: calc(-1 * var(--gutter)); width: calc(100% + 2 * var(--gutter));
+      /* Pola kotak yang sama dengan latar .anatomi (48 px, garis tegak sejajar karena panel selebar layar). */
+      background:
+        linear-gradient(rgb(76 94 85 / 0.07) 1px, transparent 1px) 0 -1px / 48px 48px,
+        linear-gradient(90deg, rgb(76 94 85 / 0.07) 1px, transparent 1px) -1px 0 / 48px 48px,
+        rgb(242 244 241 / 0.6);
+      -webkit-backdrop-filter: blur(14px) saturate(1.3); backdrop-filter: blur(14px) saturate(1.3);
+      box-shadow: 0 1px 0 rgb(16 35 30 / 0.08);
+    }
+    .lapisan-gambar svg { height: 100%; width: 100%; overflow: hidden; }
+    .lapisan-daftar { gap: 0.25rem; padding-top: 0.75rem; }
+    .lapis { padding: 0.8rem 0.9rem 0.85rem 0.6rem; gap: 0.75rem; grid-template-columns: 1.9rem minmax(0, 1fr); border-radius: 14px; }
+    .lapis[aria-pressed="true"] { box-shadow: 0 8px 24px -16px rgb(16 35 30 / 0.35); }
+    .lapis-no { width: 1.9rem; height: 1.9rem; font-size: 0.8125rem; }
+    .lapis-nama { font-size: var(--hp-t4); }
+    .lapis-isi { font-size: 0.9375rem; line-height: 1.5; }
   }
 </style>
