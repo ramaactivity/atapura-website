@@ -8,8 +8,8 @@ judul: 'Pasang atap bitumen di Batam'
 ringkasan: 'Batam mencatat 3.096 mm hujan dan 163 hari hujan pada 2025, di ketinggian hanya 6,5 m. Yang perlu diperhatikan pada atap di kota kepulauan dekat laut.'
 jawaban: 'Atapura melayani pemasangan atap bitumen di Batam dengan harga yang dihitung bersama admin, karena ada akomodasi tukang dan pengiriman material antarpulau. BPS mencatat 3.096 mm hujan dan 163 hari hujan di Batam pada 2025, dengan ketinggian kota hanya 6,5 m. Sebagai kota kepulauan, udara bergaram mempercepat karat pada logam berlapis seng, sehingga rangka, sekrup, dan flashing perlu dipilih dengan teliti.'
 diperbarui: 2026-11-03
-sampul: '../../../assets/gambar/magnific/faq-teras-hujan-16x9.jpg'
-sampulAlt: 'Ilustrasi teras rumah tropis saat hujan'
+sampul: '../../../assets/gambar/magnific/rumah-pesisir-3x2.jpg'
+sampulAlt: 'Ilustrasi permukiman pesisir tropis dengan rumah beratap genteng aspal'
 faq:
   - q: 'Apakah Atapura bisa memasang atap di Batam?'
     a: 'Bisa. Harga dihitung bersama admin karena ada akomodasi tukang dan pengiriman material antarpulau. Tiket dan ekspedisi bisa kami carikan atau Anda atur sendiri.'

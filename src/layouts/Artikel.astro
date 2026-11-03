@@ -71,6 +71,7 @@ const schema = [
           <p class="ar-jawab-label">Jawaban singkat</p>
           <p class="ar-jawab-isi">{jawaban}</p>
         </aside>
+        <div class="ar-utama">
         <div class="prosa"><slot /></div>
 
         {faq.length > 0 && (
@@ -95,6 +96,7 @@ const schema = [
             <a class="pill pill-garis" href={waLink(waPesan)} target="_blank" rel="noopener" data-wa={dataWa}>Tanya lewat WhatsApp</a>
           </div>
         </aside>
+        </div>
       </div>
     </article>
 
@@ -117,7 +119,16 @@ const schema = [
   .ar-meta { margin-top: 1.25rem; font-size: 0.92rem; color: var(--color-lumut); display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }
   .ar-pisah { width: 18px; height: 1px; background: currentColor; }
   .ar-sampul { width: 100%; max-height: 34rem; object-fit: cover; border-radius: 18px; }
-  .ar-badan { max-width: 46rem; margin-inline: auto; padding-top: 3rem; }
+  /* Lebar penuh sejajar judul (DESIGN.md: tanpa kolom sempit di tengah). Mulai 60rem dua kolom:
+     jawaban singkat menempel di kiri, isi di kanan dengan panjang baris tetap nyaman dibaca. */
+  .ar-badan { padding-top: 3rem; display: grid; gap: 2.5rem 4rem; grid-template-columns: minmax(0, 1fr); align-items: start; }
+  @media (min-width: 60rem) {
+    .ar-badan { grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); }
+    .ar-jawab { position: sticky; top: 6.5rem; }
+  }
+  .ar-utama { min-width: 0; }
+  .ar-utama > .prosa { margin-top: 0; }
+  .ar-utama > .prosa > :global(:first-child) { margin-top: 0; }
   .ar-jawab { padding: 1.5rem 1.75rem; border-radius: 14px; background: var(--color-pinus); color: var(--color-embun); }
   .ar-jawab-label { font-size: 0.82rem; font-weight: 500; color: var(--color-tunas); margin-bottom: 0.5rem; }
   .ar-jawab-isi { font-size: 1.15rem; line-height: 1.55; }
@@ -132,6 +143,7 @@ const schema = [
   .prosa :global(strong) { font-weight: 600; }
   .prosa :global(a) { color: var(--color-pinus); text-decoration: underline; }
   .prosa :global(table) { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; display: block; overflow-x: auto; }
+  @media (min-width: 48rem) { .prosa :global(table) { display: table; } }
   .prosa :global(th), .prosa :global(td) { text-align: left; vertical-align: top; padding: 0.75rem 1rem 0.75rem 0; border-bottom: 1px solid var(--color-garis); }
   .prosa :global(thead th) { font-weight: 500; color: var(--color-lumut); font-size: 0.85rem; border-bottom: 1px solid var(--color-tinta); }
 

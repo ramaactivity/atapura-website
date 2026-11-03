@@ -5,8 +5,8 @@ jawaban: 'Titik yang paling butuh perhatian di atap bitumen adalah tempat bidang
 kategori: 'Pemasangan'
 terbit: 2026-11-03
 diperbarui: 2026-11-03
-sampul: '../../../assets/gambar/magnific/faq-teras-hujan-16x9.jpg'
-sampulAlt: 'Ilustrasi air hujan mengalir dari tepi atap ke talang'
+sampul: '../../../assets/gambar/magnific/flashing-dinding-3x2.jpg'
+sampulAlt: 'Ilustrasi flashing logam di pertemuan atap genteng aspal dengan dinding'
 faq:
   - q: 'Apa itu nok genteng aspal?'
     a: 'Penutup di puncak atap (bubungan) dan di jurai. Panduan CTI membuat nok dari lembar genteng yang dipotong tiga, ditekuk di tengah, lalu dipaku di area yang nanti tertutup potongan berikutnya. Warnanya menyatu dengan atap. Di daerah berangin kencang, CTI menganjurkan sealant.'

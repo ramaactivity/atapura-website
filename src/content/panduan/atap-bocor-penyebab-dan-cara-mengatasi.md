@@ -5,8 +5,8 @@ jawaban: 'Mulailah mencari dari titik tempat bidang atap terputus: bubungan (nok
 kategori: 'Perawatan'
 terbit: 2026-11-03
 diperbarui: 2026-11-03
-sampul: '../../../assets/gambar/magnific/hujan-biru-3x2.jpg'
-sampulAlt: 'Ilustrasi hujan deras membasahi atap rumah'
+sampul: '../../../assets/gambar/magnific/atap-bocor-plafon-3x2.jpg'
+sampulAlt: 'Ilustrasi noda rembesan air di sudut plafon kamar saat hujan'
 faq:
   - q: 'Atap bocor ditambal pakai apa?'
     a: 'Retak kecil di genteng atau sambungan bisa ditutup sementara dengan sealant atau cat anti bocor saat atap kering. Talang yang bocor ditambal sesuai bahannya. Kalau air masuk dari bawah genteng atau dari flashing yang lepas, tambalan di permukaan hanya menunda masalah.'
