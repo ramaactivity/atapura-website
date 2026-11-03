@@ -21,7 +21,7 @@ Bisa dibangun tanpa data baru:
 1. Bagian "Pilih warna" (swatch dari foto sampel asli — tekstur Magnific hanya ilustrasi, wajib label "cek sampel fisik saat survey").
 2. Tabel termin bayar + "Cara klaim garansi" (isi persentase DP/termin menunggu Rama).
 3. "Cek Atap Gratis" setelah musim hujan + layanan perawatan sebagai kartu/bagian sendiri.
-4. Halaman /harga-atap-bitumen, /atap-bitumen, /tentang (2 pendiri), /cara-kerja, /garansi (multi-halaman = SEO).
+4. Halaman /harga-atap-bitumen, /atap-bitumen, /tentang (hanya Ramadan Saputra yang disebut — DECISIONS 027), /cara-kerja, /garansi (multi-halaman = SEO).
 Butuh data/aksi Rama: harga resmi, garansi (tahun), termin DP, foto proyek asli + ulasan Google, brosur/TDS (pusat unduhan), spesifikasi teknis per merek (kemiringan min., berat, angin), domain sendiri, Google Business Profile, Search Console, telepon resmi, logo (a2).
 
 ## Revisi Bang Yusuf (DECISIONS 024) — ✅ terpasang 2 Nov 2026

@@ -86,7 +86,8 @@ export const bisnis = {
   ],
   merek: ['Maxxi', 'CTI', 'Javabitumen'],
   // Izin tampil publik dari Rama, 2 Nov 2026.
-  pendiri: ['Ramadan Saputra', 'Yusuf Nasution'],
+  // Hanya Rama yang tercantum publik; partner pemilik sengaja tidak ditulis (hindari konflik dengan bekas tempat kerjanya). DECISIONS 027.
+  pendiri: ['Ramadan Saputra'],
 } as const;
 
 export function waLink(pesan: string): string {
