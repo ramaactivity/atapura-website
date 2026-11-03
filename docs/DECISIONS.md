@@ -82,3 +82,6 @@ Lanjutan (3 Nov): angka juta di kalkulator publik dibulatkan tanpa koma (Rp48 jt
 
 ## 027 · 3 November 2026 · Partner pemilik tidak dicantumkan di situs
 Permintaan Rama: situs hanya menyebut Ramadan Saputra sebagai pendiri. Partner (Bang Yusuf) tetap pemilik tapi tidak tercantum di mana pun yang publik — footer, JSON-LD `founder`, halaman /tentang nanti, panduan, maupun llms.txt — karena khawatir konflik dengan bekas tempat kerjanya. `bisnis.pendiri` = ['Ramadan Saputra']. Nama partner hanya boleh ada di dokumen internal repo (komentar kode, DECISIONS, HANDOVER), bukan di HTML/JS yang terbit.
+
+## 028 · 3 November 2026 · Situs tidak menyebut brand lain
+Perintah Rama: jangan sebut brand/toko/kontraktor lain di situs (contoh: Dokter Atap). Merek yang boleh tampil hanya yang dipasang Atapura: Maxxi, CTI, Javabitumen. Dihapus: sumber "toko Dokter Atap" + link dokteratap.co.id di dua panduan; Onduline/Onduvilla/CertainTeed diganti sebutan umum ("atap bitumen gelombang", "bukan jenis yang dipasang Atapura"). Harga satuan material pendukung tetap mengacu ke toko itu secara internal (komentar `harga.ts`), tidak ditulis publik. Cek sebelum terbit: `grep -rli "dokter\|onduline\|certainteed" dist` harus kosong.

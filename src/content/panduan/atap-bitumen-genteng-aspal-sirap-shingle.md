@@ -10,13 +10,10 @@ sampulAlt: 'Ilustrasi tekstur butiran genteng aspal warna hitam arang'
 faq:
   - q: 'Apakah genteng aspal sama dengan atap bitumen?'
     a: 'Ya. Genteng aspal adalah sebutan sehari-hari di toko bangunan, atap bitumen sebutan teknisnya. Keduanya merujuk ke lembaran beraspal dengan butiran batu di permukaan.'
-  - q: 'Apakah Onduline termasuk genteng aspal?'
-    a: 'Onduline juga berbahan bitumen, tapi bentuknya lembaran gelombang besar (sekitar 2 × 0,95 m dengan tinggi gelombang 38 mm), bukan lembaran kecil bersusun seperti shingle. Cara pasang dan tampilannya berbeda.'
+  - q: 'Apakah atap bitumen gelombang termasuk genteng aspal?'
+    a: 'Atap bitumen gelombang juga berbahan bitumen, tapi bentuknya lembaran gelombang besar (sekitar 2 × 0,95 m dengan tinggi gelombang 38 mm), bukan lembaran kecil bersusun seperti shingle. Cara pasang dan tampilannya berbeda.'
   - q: 'Merek apa yang dipasang Atapura?'
     a: 'Maxxi, CTI, dan Javabitumen. Ketiganya jenis shingle (lembaran kecil bersusun).'
-sumber:
-  - nama: 'Spesifikasi produk di toko Dokter Atap (Maxxi, CTI, Onduline, CertainTeed), November 2026'
-    url: 'https://dokteratap.co.id/'
 ---
 
 ## Kenapa satu produk punya banyak nama?
@@ -47,10 +44,10 @@ Karena lentur, genteng aspal dipaku di atas papan rata (multiplek atau GRC), buk
 | Jenis | Ciri | Contoh di pasar Indonesia |
 |---|---|---|
 | **3-tab** | Satu lapis, potongan tiga lidah, tampak rapi dan datar | Maxxi 3-tab, CTI CT3 |
-| **Laminasi (dimensional)** | Dua lapis direkatkan, bayangan lebih dalam, mirip kayu atau batu | CertainTeed Landmark, CTI CT5/CT6 |
-| **Gelombang bitumen** | Lembaran besar bergelombang, dipasang di reng | Onduline, Onduvilla |
+| **Laminasi (dimensional)** | Dua lapis direkatkan, bayangan lebih dalam, mirip kayu atau batu | CTI CT5/CT6 |
+| **Gelombang bitumen** | Lembaran besar bergelombang, dipasang di reng | Bukan jenis yang dipasang Atapura |
 
-Yang sering membuat bingung: Onduline juga "atap bitumen", tapi cara pasang dan tampilannya beda sama sekali dengan shingle.
+Yang sering membuat bingung: atap gelombang juga disebut "atap bitumen", tapi cara pasang dan tampilannya beda sama sekali dengan shingle.
 
 ## Mana yang cocok untuk rumah Anda?
 

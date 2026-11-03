@@ -14,9 +14,6 @@ faq:
     a: 'Multiplek (9–18 mm) lebih ringan dan mudah dipaku; GRC (8–12 mm) lebih tahan lembap. Pilihannya bergantung pada kondisi rangka dan kelembapan lokasi, dan dibahas saat survey.'
   - q: 'Bagaimana memastikan lapis yang tertutup dikerjakan benar?'
     a: 'Minta foto setiap lapis sebelum ditutup lapis berikutnya. Atapura mengirimkan foto ini dan menyimpannya di Rapor Proyek.'
-sumber:
-  - nama: 'Spesifikasi material di toko Dokter Atap (multiplek, GRC, underlayment self-adhesive, flashing, paku), November 2026'
-    url: 'https://dokteratap.co.id/'
 ---
 
 ## Kelima lapis, dari bawah ke atas
