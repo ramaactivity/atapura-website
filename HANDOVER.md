@@ -30,7 +30,7 @@ Kalkulator: spek pendukung + harga terpasang/m² (qty material hanya di `/intern
 ## Konten SEO/GEO (DECISIONS 029, 031) — ✅ live 3 Nov 2026
 - 13 artikel /panduan; semua klaim teknis bersumber (docs/riset/product-knowledge-atap-bitumen.md). Klaim baru wajib dicek ke dokumen itu atau sumber primer dulu.
 - 11 halaman /area (Jakarta, Kota/Kab Bogor, Kota/Kab Tangerang, Tangsel, Bandung, Bali, Batam, Palembang, Balikpapan) dari data BPS/BMKG (docs/riset/data-lokal-area.md).
-- Belum: halaman Depok, Kota/Kab Bekasi, Surabaya (cari curah hujan resmi BPS dulu); nama kecamatan (cocokkan ke Kemendagri dulu); spesifikasi Javabitumen (situs resmi suspended — minta datasheet ke distributor).
+- 15 halaman /area live (termasuk Depok, Kota/Kab Bekasi, Surabaya). Belum: curah hujan lokal Depok & Kab Bekasi (portal Open Data Jabar sedang mati 3 Nov — coba lagi); nama kecamatan (cocokkan ke Kemendagri dulu); spesifikasi Javabitumen (situs resmi suspended — minta datasheet ke distributor).
 - Efek SEO baru terasa setelah `bisnis.konsep = false` (sekarang robots Disallow + noindex) dan Search Console terpasang.
 
 ## Status konsep
