@@ -27,6 +27,12 @@ Butuh data/aksi Rama: harga resmi, garansi (tahun), termin DP, foto proyek asli 
 ## Revisi Bang Yusuf (DECISIONS 024) — ✅ terpasang 2 Nov 2026
 Kalkulator: spek pendukung + harga terpasang/m² (qty material hanya di `/internal/kalkulator`, DECISIONS 026); cara bayar material lunas sebelum kirim + jasa 40/30/30; luar Jabodetabek dilayani (survey berbayar). Menunggu jawaban Bang Yusuf: flashing 0,4 m/m², harga GRC & Javabitumen, Flashing Z, biaya survey luar kota, boleh-tidaknya klaim pengalaman Papua dst. tampil publik.
 
+## Konten SEO/GEO (DECISIONS 029, 031) — ✅ live 3 Nov 2026
+- 13 artikel /panduan; semua klaim teknis bersumber (docs/riset/product-knowledge-atap-bitumen.md). Klaim baru wajib dicek ke dokumen itu atau sumber primer dulu.
+- 11 halaman /area (Jakarta, Kota/Kab Bogor, Kota/Kab Tangerang, Tangsel, Bandung, Bali, Batam, Palembang, Balikpapan) dari data BPS/BMKG (docs/riset/data-lokal-area.md).
+- Belum: halaman Depok, Kota/Kab Bekasi, Surabaya (cari curah hujan resmi BPS dulu); nama kecamatan (cocokkan ke Kemendagri dulu); spesifikasi Javabitumen (situs resmi suspended — minta datasheet ke distributor).
+- Efek SEO baru terasa setelah `bisnis.konsep = false` (sekarang robots Disallow + noindex) dan Search Console terpasang.
+
 ## Status konsep
 Situs masih KONSEP untuk partner (DECISIONS 017): `bisnis.konsep = true` → noindex + robots Disallow. Ubah ke false setelah angka termin/garansi/harga final **dan rekening atas nama PT sudah ada** — seluruh copy menjanjikan "hanya ke rekening atas nama perusahaan"; rekening pribadi sementara (Rama punya) jangan pernah ditulis di situs/repo, hanya di kontrak/invoice.
 
