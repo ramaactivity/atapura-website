@@ -2,7 +2,7 @@
 // Harga Atapura dari Bang Yusuf (DECISIONS 025, 2 Nov 2026), berlaku Jabodetabek:
 //   genteng per m² (genteng saja): CTI 155 rb, Maxxi 145 rb, Javabitumen 145 rb.
 //   estimasi kasar terpasang per m²: CTI 400–450 rb, Maxxi & Javabitumen 380–430 rb (spek standar).
-//   rangka baja ringan 220 rb/m² (kanal C Taso 0,75, reng Taso 0,40).
+//   rangka baja ringan 220 rb/m² (kanal C 0,75, reng 0,40).
 // Material pendukung = harga satuan toko dokteratap.co.id. Jasa dikalibrasi supaya spek standar
 // (multiplek, underlayer, flashing U) jatuh di rentang terpasang Bang Yusuf — dijaga harga.test.ts.
 // Kebutuhan paku & skrup per m² dari contoh Bang Yusuf (100 m² → skrup 1.200, paku 2.000).
@@ -33,7 +33,7 @@ export const harga = {
   // Asumsi: panjang flashing ±0,4 m per m² atap (tepi, talang, pertemuan dinding) — final setelah survey.
   flashingMPerM2: 0.4,
   // Rangka baja ringan baru (opsional, untuk rumah baru atau rangka lama yang tidak layak).
-  rangka: { harga: 220_000, spek: 'Kanal C Taso 0,75 mm, reng Taso 0,40 mm' },
+  rangka: { harga: 220_000, spek: 'Kanal C 0,75 mm, reng 0,40 mm' },
   paku: { harga: 250, perM2: 20 },
   skrup: { harga: 150, perM2: 12 },
   jasa: [70_000, 120_000],
