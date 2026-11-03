@@ -5,7 +5,7 @@ jawaban: 'Untuk atap bitumen terpasang di Jabodetabek, perkiraannya: rumah tipe 
 kategori: 'Biaya'
 terbit: 2026-11-03
 diperbarui: 2026-11-03
-sampul: '../../../assets/gambar/magnific/rumah-cluster.jpg'
+sampul: '../../../assets/gambar/magnific/rumah-tipe-kecil-3x2.jpg'
 sampulAlt: 'Ilustrasi deretan rumah tipe kecil di perumahan dengan atap genteng aspal'
 faq:
   - q: 'Kenapa luas atap lebih besar dari luas lantai?'

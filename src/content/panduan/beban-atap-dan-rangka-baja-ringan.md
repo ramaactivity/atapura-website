@@ -5,8 +5,8 @@ jawaban: 'Genteng aspal Maxxi beratnya sekitar 9–12 kg per m², sedangkan pedo
 kategori: 'Teknis'
 terbit: 2026-11-03
 diperbarui: 2026-11-03
-sampul: '../../../assets/gambar/magnific/tukang-4x5.jpg'
-sampulAlt: 'Ilustrasi tukang memasang atap di atas rangka baja ringan'
+sampul: '../../../assets/gambar/magnific/rangka-baja-ringan-papan-3x2.jpg'
+sampulAlt: 'Ilustrasi papan multiplek disekrup ke rangka atap baja ringan'
 faq:
   - q: 'Berapa beban atap genteng per m²?'
     a: 'Pedoman Perencanaan Pembebanan untuk Rumah dan Gedung (PPURG 1987) menghitung penutup atap genteng dengan reng dan usuk/kaso sebesar 50 kg per m² bidang atap. Angka ini sudah termasuk reng dan usuk, bukan berat genteng saja.'

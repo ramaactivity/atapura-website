@@ -5,8 +5,8 @@ jawaban: 'Atap bitumen bisa dipasang di atas rangka baja ringan maupun kayu, kar
 kategori: 'Pemasangan'
 terbit: 2026-11-03
 diperbarui: 2026-11-03
-sampul: '../../../assets/gambar/magnific/tukang-1x1.jpg'
-sampulAlt: 'Ilustrasi tukang memasang papan alas di atas rangka atap'
+sampul: '../../../assets/gambar/magnific/rangka-baja-ringan-papan-3x2.jpg'
+sampulAlt: 'Ilustrasi papan multiplek disekrup ke rangka atap baja ringan'
 faq:
   - q: 'Atap bitumen pakai rangka apa?'
     a: 'Baja ringan paling umum untuk rumah baru. Rangka kayu lama juga bisa dipakai bila masih lurus, kering, dan bebas rayap. Di atas rangka dipasang papan rata sebagai alas genteng.'

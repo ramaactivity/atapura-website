@@ -5,8 +5,8 @@ jawaban: 'Studi berbasis data BPS mencatat 52,1% rumah di DKI Jakarta dan 21,2% 
 kategori: 'Perawatan'
 terbit: 2026-11-03
 diperbarui: 2026-11-03
-sampul: '../../../assets/gambar/magnific/garansi-cek-atap.jpg'
-sampulAlt: 'Ilustrasi pemeriksaan atap rumah lama sebelum diganti'
+sampul: '../../../assets/gambar/magnific/atap-asbes-lama-3x2.jpg'
+sampulAlt: 'Ilustrasi atap lembaran asbes lama yang berlumut di permukiman padat'
 faq:
   - q: 'Apakah atap asbes berbahaya untuk penghuni?'
     a: 'WHO menyatakan semua jenis asbes karsinogenik. Risiko terbesar muncul ketika serat terlepas, yaitu saat lembaran dipotong, dibor, pecah, lapuk, atau dibongkar. Lembaran utuh yang tidak diganggu risikonya lebih rendah. Kami tidak menyarankan panik, tetapi juga tidak menyarankan memotong atau memecah lembaran asbes sendiri.'

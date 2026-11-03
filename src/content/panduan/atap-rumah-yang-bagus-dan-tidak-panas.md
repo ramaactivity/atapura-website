@@ -5,8 +5,8 @@ jawaban: 'Tinjauan penelitian rumah tropis Asia Tenggara menyebut atap menyumban
 kategori: 'Dasar'
 terbit: 2026-11-03
 diperbarui: 2026-11-03
-sampul: '../../../assets/gambar/magnific/rumah-villa.jpg'
-sampulAlt: 'Ilustrasi rumah tropis beratap genteng aspal di siang hari'
+sampul: '../../../assets/gambar/magnific/loteng-ventilasi-3x2.jpg'
+sampulAlt: 'Ilustrasi ruang di bawah atap dengan rangka baja ringan, lapisan foil, dan ventilasi'
 faq:
   - q: 'Atap apa yang paling tidak panas?'
     a: 'Penelitian yang kami temukan lebih konsisten soal warna dan ventilasi daripada soal satu jenis bahan. Atap berwarna terang, ruang bawah atap yang berventilasi, dan plafon berlapis foil masing-masing terbukti menurunkan suhu. Kami belum menemukan penelitian di Indonesia yang mengukur genteng aspal secara khusus.'

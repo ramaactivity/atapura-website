@@ -8,8 +8,8 @@ judul: 'Pasang atap bitumen di Bandung'
 ringkasan: 'Kota Bandung berada di ketinggian sekitar 717 m dan mencatat 2.215 mm hujan pada 2024, dengan Juli yang hampir kering. Cara Atapura melayani proyek di Bandung.'
 jawaban: 'Atapura melayani pemasangan atap bitumen di Bandung; tim pemasang kami sudah pernah mengerjakan atap di sana. Stasiun Geofisika Bandung mencatat 2.215 mm hujan pada 2024, dengan November sebagai bulan terbasah (512 mm) dan Juli paling kering (30 mm). Karena di luar Jabodetabek, harga dihitung bersama admin termasuk akomodasi tukang dan pengiriman material.'
 diperbarui: 2026-11-03
-sampul: '../../../assets/gambar/magnific/segmen-villa-3x2.jpg'
-sampulAlt: 'Ilustrasi rumah beratap genteng aspal di kawasan perbukitan sejuk'
+sampul: '../../../assets/gambar/magnific/rumah-perbukitan-3x2.jpg'
+sampulAlt: 'Ilustrasi rumah beratap genteng aspal di perbukitan berkabut'
 faq:
   - q: 'Apakah Atapura bisa memasang atap di Bandung?'
     a: 'Bisa. Tim pemasang kami sudah pernah mengerjakan atap di Bandung. Harga dihitung bersama admin karena ada akomodasi tukang dan pengiriman material.'

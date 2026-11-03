@@ -8,8 +8,8 @@ judul: 'Pasang dan perbaikan atap bitumen di Depok'
 ringkasan: 'Angin puting beliung tercatat di 13 dari 63 kelurahan Depok (2023–2024), dan hampir separuh rumah beratap asbes. Yang perlu diperhatikan pada atap di Depok.'
 jawaban: 'Atapura memasang dan memperbaiki atap bitumen (genteng aspal) di Depok dengan survey gratis. Dua data resmi yang paling relevan untuk atap di Depok: angin puting beliung tercatat di 13 dari 63 kelurahan dalam periode Januari 2023 sampai April 2024, dan data BPS Jawa Barat 2019 mencatat hampir separuh rumah tangga di Depok beratap asbes. Atap di Depok perlu pemakuan yang kuat dan pemeriksaan rangka sebelum mengganti atap lama.'
 diperbarui: 2026-11-03
-sampul: '../../../assets/gambar/magnific/rumah-cluster.jpg'
-sampulAlt: 'Ilustrasi perumahan beratap genteng aspal di pinggir kota'
+sampul: '../../../assets/gambar/magnific/rumah-tipe-kecil-3x2.jpg'
+sampulAlt: 'Ilustrasi deretan rumah di perumahan pinggir kota dengan atap genteng aspal'
 faq:
   - q: 'Apakah survey di Depok gratis?'
     a: 'Ya. Depok termasuk wilayah survey gratis Atapura. Kami mengukur atap, memeriksa rangka, dan membawa sampel warna.'

@@ -5,8 +5,8 @@ jawaban: 'Untuk bangunan yang dipakai banyak orang, ada tiga hal yang terukur da
 kategori: 'Proyek'
 terbit: 2026-11-03
 diperbarui: 2026-11-03
-sampul: '../../../assets/gambar/magnific/cara-kerja-drone-16x9.jpg'
-sampulAlt: 'Ilustrasi bangunan dengan atap miring dilihat dari udara'
+sampul: '../../../assets/gambar/magnific/atap-sekolah-3x2.jpg'
+sampulAlt: 'Ilustrasi gedung sekolah satu lantai dengan atap miring panjang dan halaman'
 faq:
   - q: 'Kenapa masjid terasa panas setelah atapnya diganti?'
     a: 'Penelitian di sebuah masjid tua di Banda Aceh mencatat bangunan menjadi tidak nyaman setelah atap rumbia diganti atap logam dan bukaan ventilasi atapnya ditutup kaca mati. Ventilasi ikut menentukan, bukan hanya bahan atap.'

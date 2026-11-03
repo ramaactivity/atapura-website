@@ -5,8 +5,8 @@ jawaban: 'A review of tropical homes in Southeast Asia found the roof accounts f
 kategori: 'Comparison'
 terbit: 2026-11-03
 diperbarui: 2026-11-03
-sampul: '../../../assets/gambar/magnific/rumah-pesisir-3x2.jpg'
-sampulAlt: 'Illustration of a tropical coastal neighbourhood with dark asphalt shingle roofs'
+sampul: '../../../assets/gambar/magnific/loteng-ventilasi-3x2.jpg'
+sampulAlt: 'Illustration of a roof space with light steel trusses, foil insulation, and a louvred vent'
 padanan: 'atap-rumah-yang-bagus-dan-tidak-panas'
 faq:
   - q: 'Is metal roofing too hot for the tropics?'
