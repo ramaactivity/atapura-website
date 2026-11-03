@@ -164,4 +164,22 @@ const schema = [
   .ar-lain a { display: grid; gap: 0.4rem; padding: 1.25rem; border-radius: 14px; background: var(--color-putih); text-decoration: none; color: inherit; font-weight: 500; letter-spacing: -0.02em; transition: transform 400ms var(--ease-out); }
   .ar-lain a:hover { transform: translateY(-3px); }
   .ar-lain span { font-size: 0.8rem; color: var(--color-lumut); font-weight: 400; }
+
+  /* Skala HP (token --hp-* di global.css); harus setelah aturan dasar supaya tidak tertimpa. */
+  @media (max-width: 47.99rem) {
+    .ar { padding-top: 96px; }
+    .ar-judul { font-size: var(--hp-t1); line-height: 1.15; }
+    .ar-meta { font-size: 0.8125rem; }
+    .ar-jawab { padding: 1.25rem; }
+    .ar-jawab-isi { font-size: 1rem; }
+    .prosa { font-size: 1rem; line-height: 1.65; }
+    .prosa :global(h2) { font-size: var(--hp-t2); margin: 2.25rem 0 0.75rem; }
+    .prosa :global(h3) { font-size: var(--hp-t3); }
+    .prosa :global(table) { font-size: 0.9375rem; }
+    .ar-faq h2, .ar-sumber h2, .ar-lain h2 { font-size: var(--hp-t2); }
+    .ar-faq dt { font-size: var(--hp-t4); }
+    .ar-faq dd, .ar-sumber li { font-size: 0.9375rem; }
+    .ar-cta-judul { font-size: var(--hp-t2); }
+    .ar-lain a { font-size: var(--hp-t4); }
+  }
 </style>

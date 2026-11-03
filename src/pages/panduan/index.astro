@@ -73,4 +73,12 @@ const tgl = (d: Date) => d.toLocaleDateString('id-ID', { day: 'numeric', month: 
   .pd-utama .pd-kartu-judul { font-size: clamp(1.7rem, 1.2rem + 1.5vw, 2.5rem); }
   .pd-ringkas { color: var(--color-lumut); font-size: 0.95rem; }
   .pd-tgl { font-size: 0.82rem; color: var(--color-lumut); }
+
+  @media (max-width: 47.99rem) {
+    .pd { padding-top: 96px; }
+    .pd-judul { font-size: var(--hp-display); line-height: 1.05; }
+    .pd-lead { font-size: 1rem; }
+    .pd-kartu-judul, .pd-utama .pd-kartu-judul { font-size: var(--hp-t3); }
+    .pd-ringkas { font-size: 0.9375rem; }
+  }
 </style>
