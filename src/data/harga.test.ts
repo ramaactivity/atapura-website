@@ -27,5 +27,6 @@ assert.ok(grc.total[0] > e.total[0], 'GRC + membrane lebih mahal');
 assert.deepEqual(e.hari, [4, 5]);
 assert.equal(rupiahRingkas(31_250_000), 'Rp31,3 jt');
 assert.equal(rupiahRingkas(950_000), 'Rp950 rb');
+assert.equal(rupiahRingkas(47_600_000, 0), 'Rp48 jt');
 assert.deepEqual(bagianRentang(41_400_000, 53_100_000), { min: '41,4', max: '53,1', satuan: 'jt' });
 console.log('harga.test ok', e.perM2, e.total);

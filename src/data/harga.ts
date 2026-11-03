@@ -121,10 +121,11 @@ export function hitungEstimasi(luas: number, p: Pilihan = PILIHAN_AWAL): Estimas
   };
 }
 
-export function rupiahRingkas(n: number): string {
+/** desimal: angka di belakang koma untuk juta (publik 0 supaya mudah dibaca, internal 1). */
+export function rupiahRingkas(n: number, desimal = 1): string {
   if (n >= 1_000_000) {
     const jt = n / 1_000_000;
-    return `Rp${jt.toLocaleString('id-ID', { maximumFractionDigits: 1 })} jt`;
+    return `Rp${jt.toLocaleString('id-ID', { maximumFractionDigits: desimal })} jt`;
   }
   return `Rp${Math.round(n / 1000).toLocaleString('id-ID')} rb`;
 }

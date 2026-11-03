@@ -12,7 +12,7 @@ const LAPIS = Object.keys(harga.lapisKedap) as LapisKedap[];
 const FLASHING = Object.keys(harga.flashing) as Flashing[];
 const angka = (n: number) => n.toLocaleString('id-ID');
 // Rentang ringkas; satu angka saja kalau batas bawah dan atas sama (mis. harga material yang sudah pasti).
-const kisaran = ([a, b]: readonly [number, number]) => (a === b ? rupiahRingkas(a) : `${rupiahRingkas(a)}–${rupiahRingkas(b).replace('Rp', '')}`);
+const kisaran = ([a, b]: readonly [number, number], d = 1) => (a === b ? rupiahRingkas(a, d) : `${rupiahRingkas(a, d)}–${rupiahRingkas(b, d).replace('Rp', '')}`);
 const termin = bisnis.pembayaran.jasa.map((t) => t.persen).join('/');
 const PEKERJAAN = ['Pasang baru', 'Ganti atap lama', 'Perbaikan'] as const;
 const RANGKA = ['Sudah ada', 'Baja ringan baru'] as const;
@@ -126,7 +126,9 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
   };
 
   const persen = ((luas - MIN) / (MAX - MIN)) * 100;
-  const rentang = `${rupiahRingkas(est.total[0])} – ${rupiahRingkas(est.total[1])}`;
+  // Publik: juta dibulatkan tanpa koma supaya enak dibaca; internal tetap 1 desimal.
+  const d = internal ? 1 : 0;
+  const rentang = `${rupiahRingkas(est.total[0], d)} – ${rupiahRingkas(est.total[1], d)}`;
   const perM2 = `${rupiahRingkas(est.perM2[0])} – ${rupiahRingkas(est.perM2[1])} per m²`;
   const pesan = [
     'Halo Atapura, saya mau tanya pemasangan atap bitumen.',
@@ -268,8 +270,8 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
           <p class="ha-catatan">Untuk perbaikan, biaya bergantung pada sumber bocor yang ditemukan saat survey. Angka di atas adalah biaya penggantian penuh sebagai batas atas.</p>
         )}
         <dl class="ha-bayar">
-          <div><dt>Material</dt><dd><b class="angka">{kisaran(est.material)}</b> dibayar sebelum dikirim</dd></div>
-          <div><dt>Jasa pasang</dt><dd><b class="angka">{kisaran(est.jasa)}</b> termin {termin}</dd></div>
+          <div><dt>Material</dt><dd><b class="angka">{kisaran(est.material, d)}</b> dibayar sebelum dikirim</dd></div>
+          <div><dt>Jasa pasang</dt><dd><b class="angka">{kisaran(est.jasa, d)}</b> termin {termin}</dd></div>
         </dl>
         </>)}
         {internal && jabo !== false && <details class="ha-rinci">
