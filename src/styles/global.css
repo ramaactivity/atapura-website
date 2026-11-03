@@ -104,6 +104,9 @@ a { text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
 }
 @media (max-width: 47.99rem) {
   .pill { min-height: var(--hp-tombol); padding: 0 1.15rem; font-size: 0.9375rem; }
+  /* Ruang untuk bilah tab bawah (Header.astro) + bilah atas yang menempel. */
+  body { padding-bottom: calc(49px + env(safe-area-inset-bottom)); }
+  html { scroll-padding-top: calc(60px + env(safe-area-inset-top)); }
 }
 .pill-tunas { background: var(--color-tunas); color: var(--color-pinus); box-shadow: 0 6px 18px -8px rgb(198 242 78 / 0.6); }
 .pill-tunas:hover { background: #d3f76c; }
