@@ -11,9 +11,13 @@ interface Props {
   ogImage?: string;
   /** Halaman internal: jangan diindeks walau situs sudah keluar dari mode konsep. */
   noindex?: boolean;
+  /** Bahasa halaman. 'en' untuk artikel ekspat di /en/*. */
+  lang?: 'id' | 'en';
+  /** Versi bahasa lain dari halaman ini (hreflang). */
+  alternates?: { hreflang: string; href: string }[];
 }
 
-const { title, description, schema = [], ogImage = '/og/beranda.jpg', noindex = false } = Astro.props;
+const { title, description, schema = [], ogImage = '/og/beranda.jpg', noindex = false, lang = 'id', alternates = [] } = Astro.props;
 // build.format 'file' membuat pathname berakhiran .html; canonical selalu versi bersih tanpa .html / slash akhir.
 const bersih = Astro.url.pathname.replace(/(\/index)?\.html$/, '').replace(/\/$/, '');
 const canonical = new URL(bersih || '/', Astro.site).href;
@@ -47,20 +51,21 @@ const situs = {
   '@id': `${siteUrl}#situs`,
   name: bisnis.nama,
   url: siteUrl,
-  inLanguage: 'id-ID',
+  inLanguage: ['id-ID', 'en'],
   publisher: { '@id': `${siteUrl}#bisnis` },
 };
 const jsonLd = [organisasi, situs, ...schema];
 ---
 
 <!doctype html>
-<html lang="id">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {alternates.map((a) => <link rel="alternate" hreflang={a.hreflang} href={new URL(a.href, Astro.site).href} />)}
     {(bisnis.konsep || noindex) && <meta name="robots" content="noindex, nofollow" />}
     <link rel="preload" href="/fonts/PublicSans-Variable-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="sitemap" href="/sitemap-index.xml" />
@@ -69,7 +74,7 @@ const jsonLd = [organisasi, situs, ...schema];
     <link rel="icon" href="/brand/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="id_ID" />
+    <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'id_ID'} />
     <meta property="og:site_name" content={bisnis.nama} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />

@@ -50,3 +50,5 @@ Bali panas, lembap, dan basah di awal serta akhir tahun. Ketiganya berpengaruh l
 ## Harga dan cara kerja di luar Jabodetabek
 
 Untuk lokasi di luar Jabodetabek, harga dihitung langsung bersama admin. Ada akomodasi tukang dan pengiriman material sesuai lokasi; tiket dan ekspedisi bisa kami carikan atau Anda atur sendiri, dan kami tidak mengambil untung dari akomodasi. Sebagai gambaran, harga terpasang di Jabodetabek ada di [harga atap bitumen per m²](/panduan/harga-atap-bitumen-per-m2). Pembayaran hanya ke rekening atas nama perusahaan.
+
+For English readers: [roofing a Bali villa](/en/guides/bali-villa-roof).

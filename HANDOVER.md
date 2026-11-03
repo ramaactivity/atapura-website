@@ -31,6 +31,8 @@ Kalkulator: spek pendukung + harga terpasang/m² (qty material hanya di `/intern
 - 13 artikel /panduan; semua klaim teknis bersumber (docs/riset/product-knowledge-atap-bitumen.md). Klaim baru wajib dicek ke dokumen itu atau sumber primer dulu.
 - 11 halaman /area (Jakarta, Kota/Kab Bogor, Kota/Kab Tangerang, Tangsel, Bandung, Bali, Batam, Palembang, Balikpapan) dari data BPS/BMKG (docs/riset/data-lokal-area.md).
 - 15 halaman /area live (termasuk Depok, Kota/Kab Bekasi, Surabaya). Belum: curah hujan lokal Depok & Kab Bekasi (portal Open Data Jabar sedang mati 3 Nov — coba lagi); nama kecamatan (cocokkan ke Kemendagri dulu); spesifikasi Javabitumen (situs resmi suspended — minta datasheet ke distributor).
+- 21 artikel /panduan (8 per persona, DECISIONS 033) + 3 artikel Inggris /en/guides. Jurnal di docs/riset/jurnal-atap.md; klaim hukum PBG dari PP 16/2021.
+- Belum: header desktop & footer bahasa Inggris di /en; angka dB hujan untuk genteng aspal; nilai TKDN produk.
 - Efek SEO baru terasa setelah `bisnis.konsep = false` (sekarang robots Disallow + noindex) dan Search Console terpasang.
 
 ## Tampilan HP seperti aplikasi native (DECISIONS 032) — 3 Nov 2026

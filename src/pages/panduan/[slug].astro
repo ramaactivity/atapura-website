@@ -4,10 +4,12 @@ import Artikel from '../../layouts/Artikel.astro';
 
 export async function getStaticPaths() {
   const semua = await getCollection('panduan');
-  return semua.map((a) => ({ params: { slug: a.id }, props: { a, semua } }));
+  const guides = await getCollection('guides');
+  return semua.map((a) => ({ params: { slug: a.id }, props: { a, semua, inggris: guides.find((g) => g.data.padanan === a.id)?.id } }));
 }
 
-const { a, semua } = Astro.props;
+const { a, semua, inggris } = Astro.props;
+const alternates = inggris ? [{ hreflang: 'id', href: `/panduan/${a.id}` }, { hreflang: 'en', href: `/en/guides/${inggris}` }] : [];
 const { Content } = await render(a);
 const d = a.data;
 const url = new URL(`/panduan/${a.id}`, Astro.site).href;
@@ -32,7 +34,7 @@ const artikel = {
 <Artikel
   judul={d.judul} ringkasan={d.ringkasan} jawaban={d.jawaban} penulis={d.penulis} diperbarui={d.diperbarui}
   sampul={d.sampul} sampulAlt={d.sampulAlt} induk={{ nama: 'Panduan', href: '/panduan' }} label={d.kategori}
-  faq={d.faq} sumber={d.sumber} lain={lain} schema={[artikel]}
+  faq={d.faq} sumber={d.sumber} lain={lain} schema={[artikel]} alternates={alternates}
   waPesan={`Halo Atapura, saya baru membaca panduan "${d.judul}" dan mau bertanya.`} dataWa="artikel"
 >
   <Content />

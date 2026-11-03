@@ -2,15 +2,17 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
-// Artikel panduan: format "jawaban dulu" (ai-seo) — jawaban langsung, tabel, subjudul pertanyaan, FAQ, sumber.
-const panduan = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/panduan' }),
+// Artikel format "jawaban dulu" (ai-seo) — jawaban langsung, tabel, subjudul pertanyaan, FAQ, sumber.
+// Satu bentuk untuk /panduan (Indonesia) dan /en/guides (Inggris, untuk ekspat); hanya daftar kategorinya beda.
+const artikel = <K extends [string, ...string[]]>(base: string, kategori: K) =>
+  defineCollection({
+  loader: glob({ pattern: '**/*.md', base }),
   schema: ({ image }) =>
     z.object({
       judul: z.string().max(70),
       ringkasan: z.string().max(160), // meta description
       jawaban: z.string(), // 2–3 kalimat jawaban langsung, tampil paling atas
-      kategori: z.enum(['Dasar', 'Biaya', 'Perbandingan', 'Pemasangan', 'Perawatan']),
+      kategori: z.enum(kategori),
       terbit: z.coerce.date(),
       diperbarui: z.coerce.date(),
       penulis: z.string().default('Tim Atapura'),
@@ -18,8 +20,12 @@ const panduan = defineCollection({
       sampulAlt: z.string(),
       faq: z.array(z.object({ q: z.string(), a: z.string() })).default([]),
       sumber: z.array(z.object({ nama: z.string(), url: z.string().url().optional() })).default([]),
+      /** Slug artikel padanan di bahasa lain (untuk hreflang), bila ada. */
+      padanan: z.string().optional(),
     }),
-});
+  });
+const panduan = artikel('./src/content/panduan', ['Dasar', 'Biaya', 'Perbandingan', 'Pemasangan', 'Perawatan', 'Usaha', 'Proyek', 'Teknis']);
+const guides = artikel('./src/content/guides', ['Basics', 'Costs', 'Comparison', 'Installation', 'Care']);
 
 // Halaman per daerah (service-area SEO). Isi wajib unik per daerah dan bersumber (BPS/BMKG/pabrikan),
 // bukan nama kota yang ditukar — lihat docs/riset/data-lokal-area.md dan DECISIONS 030+.
@@ -43,4 +49,4 @@ const area = defineCollection({
     }),
 });
 
-export const collections = { panduan, area };
+export const collections = { panduan, area, guides };

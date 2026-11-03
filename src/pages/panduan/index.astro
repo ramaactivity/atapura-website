@@ -29,7 +29,7 @@ const tgl = (d: Date) => d.toLocaleDateString('id-ID', { day: 'numeric', month: 
       <nav class="remah" aria-label="Remah roti"><a href="/">Beranda</a><span aria-hidden="true">/</span><span>Panduan</span></nav>
       <div class="pd-kepala">
         <h1 class="pd-judul">Panduan atap bitumen, <span class="redup">dijawab langsung.</span></h1>
-        <p class="pd-lead">Pertanyaan yang biasa muncul sebelum mengganti atap: istilah, beban, cara pasang, biaya, dan perawatan. Setiap artikel dibuka dengan jawaban singkat.</p>
+        <p class="pd-lead">Pertanyaan yang biasa muncul sebelum mengganti atap: istilah, beban, cara pasang, biaya, dan perawatan. Setiap artikel dibuka dengan jawaban singkat. <a href="/en/guides" class="pd-en" hreflang="en" lang="en">Guides in English</a></p>
       </div>
       <ul class="pd-daftar">
         {artikel.map((a, i) => (
@@ -60,6 +60,7 @@ const tgl = (d: Date) => d.toLocaleDateString('id-ID', { day: 'numeric', month: 
   .pd-judul { font-size: clamp(2.6rem, 1.3rem + 4.6vw, 5.4rem); font-weight: 500; letter-spacing: -0.04em; line-height: 0.98; max-width: 14ch; }
   .redup { opacity: 0.55; }
   .pd-lead { font-size: 1.15rem; color: var(--color-lumut); max-width: 40ch; }
+  .pd-en { color: var(--color-pinus); text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
   .pd-daftar { display: grid; gap: 1.25rem; grid-template-columns: minmax(0, 1fr); }
   @media (min-width: 64rem) { .pd-daftar { grid-template-columns: repeat(3, minmax(0, 1fr)); } .pd-utama { grid-column: span 3; } }
   .pd-tautan { display: grid; height: 100%; background: var(--color-putih); border-radius: 16px; overflow: hidden; text-decoration: none; color: inherit; transition: transform 500ms var(--ease-out), box-shadow 500ms var(--ease-out); }

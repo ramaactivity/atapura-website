@@ -1,0 +1,44 @@
+---
+import { getCollection, render } from 'astro:content';
+import Artikel from '../../../layouts/Artikel.astro';
+
+export async function getStaticPaths() {
+  const semua = await getCollection('guides');
+  return semua.map((a) => ({ params: { slug: a.id }, props: { a, semua } }));
+}
+
+const { a, semua } = Astro.props;
+const { Content } = await render(a);
+const d = a.data;
+const url = new URL(`/en/guides/${a.id}`, Astro.site).href;
+const situs = new URL('/', Astro.site).href;
+const lain = semua.filter((x) => x.id !== a.id).slice(0, 3).map((x) => ({ href: `/en/guides/${x.id}`, label: x.data.kategori, judul: x.data.judul }));
+const alternates = d.padanan
+  ? [{ hreflang: 'en', href: `/en/guides/${a.id}` }, { hreflang: 'id', href: `/panduan/${d.padanan}` }]
+  : [];
+
+const artikel = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: d.judul,
+  description: d.ringkasan,
+  datePublished: d.terbit.toISOString(),
+  dateModified: d.diperbarui.toISOString(),
+  inLanguage: 'en',
+  author: { '@type': 'Organization', name: d.penulis, url: situs },
+  publisher: { '@id': `${situs}#bisnis` },
+  mainEntityOfPage: url,
+  ...(d.sumber.length && { citation: d.sumber.map((s) => (s.url ? { '@type': 'CreativeWork', name: s.nama, url: s.url } : s.nama)) }),
+};
+---
+
+<Artikel
+  lang="en" alternates={alternates}
+  judul={d.judul} ringkasan={d.ringkasan} jawaban={d.jawaban} penulis={d.penulis === 'Tim Atapura' ? 'Atapura team' : d.penulis} diperbarui={d.diperbarui}
+  sampul={d.sampul} sampulAlt={d.sampulAlt} induk={{ nama: 'Guides', href: '/en/guides' }} label={d.kategori}
+  faq={d.faq} sumber={d.sumber} lain={lain} schema={[artikel]}
+  cta="We install Maxxi, CTI, and Javabitumen asphalt shingles. Free site survey in Greater Jakarta; outside it, we quote travel and shipping with you directly. English is fine on WhatsApp."
+  waPesan={`Hi Atapura, I just read "${d.judul}" and have a question about my roof.`} dataWa="artikel-en"
+>
+  <Content />
+</Artikel>
