@@ -37,7 +37,8 @@ Kalkulator: spek pendukung + harga terpasang/m² (qty material hanya di `/intern
 
 ## Tampilan HP seperti aplikasi native (DECISIONS 032) — 3 Nov 2026
 ✅ Skala ukuran HP (token --hp-*), ✅ bilah tab bawah + bilah atas kaca buram, ✅ kartu geser layanan & AKAL, daftar panduan ringkas.
-⏳ Berikutnya: bagian jadi "layar" kartu membulat (referensi Aestheris), tinjau bukti sosial di atas lipatan, warna & area jadi geser.
+✅ Hero HP ringkas (label, judul, satu tombol, bukti), ✅ 7 tahap Cara kerja kartu bertumpuk, ✅ fakta 2×2 menghitung naik, ✅ kalimat menebal ikut gulir, ✅ tombol panah dalam bulatan, ✅ warna kartu geser, ✅ tiap bagian kartu membulat di latar #dde2dc.
+⏳ Berikutnya bila diminta: daftar area jadi geser, testimoni setelah ada ulasan asli.
 
 ## Status konsep
 Situs masih KONSEP untuk partner (DECISIONS 017): `bisnis.konsep = true` → noindex + robots Disallow. Ubah ke false setelah angka termin/garansi/harga final **dan rekening atas nama PT sudah ada** — seluruh copy menjanjikan "hanya ke rekening atas nama perusahaan"; rekening pribadi sementara (Rama punya) jangan pernah ditulis di situs/repo, hanya di kontrak/invoice.
