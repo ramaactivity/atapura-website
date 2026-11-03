@@ -15,7 +15,7 @@ export const harga = {
   susut: 0.1,
   merek: {
     Javabitumen: { kelas: 'Ekonomis', genteng: 145_000, terpasang: [380_000, 430_000], m2PerBundel: 3.0, garansiPabrik: 'Menunggu dokumen resmi' },
-    CTI: { kelas: 'Menengah', genteng: 155_000, terpasang: [400_000, 450_000], m2PerBundel: 3.0, garansiPabrik: '20 tahun (material)' },
+    CTI: { kelas: 'Menengah', genteng: 155_000, terpasang: [400_000, 450_000], m2PerBundel: 3.0, garansiPabrik: '30 tahun (produk)' },
     Maxxi: { kelas: 'Ekonomis', genteng: 145_000, terpasang: [380_000, 430_000], m2PerBundel: 3.1, garansiPabrik: '25 tahun (material)' },
   },
   alas: {
