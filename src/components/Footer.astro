@@ -13,9 +13,17 @@ import ikonTokopedia from '../assets/ikon/tokopedia.svg?raw';
 import ikonWhatsapp from '../assets/ikon/whatsapp.svg?raw';
 import ikonEmail from '../assets/ikon/email.svg?raw';
 
+interface Props {
+  /** Bahasa footer: 'en' untuk halaman /en (ekspat). */
+  lang?: 'id' | 'en';
+}
+const { lang = 'id' } = Astro.props;
+const en = lang === 'en';
+const waPesan = en ? 'Hi Atapura, I have a question about an asphalt shingle roof.' : 'Halo Atapura, saya mau tanya soal atap bitumen.';
+
 const ikon: Record<string, string> = { instagram: ikonInstagram, tiktok: ikonTiktok, threads: ikonThreads, x: ikonX, shopee: ikonShopee, tokopedia: ikonTokopedia };
 const sosial = [
-  { nama: 'WhatsApp', url: waLink('Halo Atapura, saya mau tanya soal atap bitumen.'), svg: ikonWhatsapp, luar: true },
+  { nama: 'WhatsApp', url: waLink(waPesan), svg: ikonWhatsapp, luar: true },
   { nama: 'Email', url: `mailto:${bisnis.email}`, svg: ikonEmail, luar: false },
   ...bisnis.sosial.map((x) => ({ nama: x.nama, url: x.url, svg: ikon[x.id], luar: true })),
 ];
@@ -24,7 +32,14 @@ const tahun = new Date().getFullYear();
 const panduan = (await getCollection('panduan')).sort((a, b) => b.data.diperbarui.getTime() - a.data.diperbarui.getTime()).slice(0, 3);
 const singkat = (j: string) => j.split(/[:?,]/)[0];
 
-const kolom: { judul: string; tautan: { label: string; href: string; luar?: boolean }[] }[] = [
+type Kolom = { judul: string; tautan: { label: string; href: string; luar?: boolean }[] }[];
+const guides = en ? (await getCollection('guides')).sort((a, b) => b.data.diperbarui.getTime() - a.data.diperbarui.getTime()).slice(0, 3) : [];
+const kolomEn: Kolom = [
+  { judul: 'Guides', tautan: [...guides.map((g) => ({ label: singkat(g.data.judul), href: `/en/guides/${g.id}` })), { label: 'All guides', href: '/en/guides' }] },
+  { judul: 'Indonesian site', tautan: [{ label: 'Home', href: '/' }, { label: 'Cost estimator', href: '/#hitung' }, { label: 'Guides (Indonesian)', href: '/panduan' }, { label: 'Service areas', href: '/area' }] },
+  { judul: 'Contact', tautan: [{ label: 'WhatsApp', href: waLink(waPesan), luar: true }, { label: 'Email', href: `mailto:${bisnis.email}` }] },
+];
+const kolomId: Kolom = [
   {
     judul: 'Layanan',
     tautan: [
@@ -59,7 +74,7 @@ const kolom: { judul: string; tautan: { label: string; href: string; luar?: bool
   {
     judul: 'Kontak',
     tautan: [
-      { label: 'WhatsApp', href: waLink('Halo Atapura, saya mau tanya soal atap bitumen.'), luar: true },
+      { label: 'WhatsApp', href: waLink(waPesan), luar: true },
       { label: 'Email', href: `mailto:${bisnis.email}` },
       ...(bisnis.telepon ? [{ label: `+${bisnis.telepon}`, href: `tel:+${bisnis.telepon}` }] : []),
     ],
@@ -73,15 +88,16 @@ const kolom: { judul: string; tautan: { label: string; href: string; luar?: bool
     ],
   },
 ];
+const kolom = en ? kolomEn : kolomId;
 ---
 
 <footer class="kaki">
   <div class="wrap kaki-atas">
     <div class="kaki-tagline">
-      <p class="kaki-besar">Atap yang masuk AKAL, untuk rumah di Jabodetabek.</p>
-      <a class="kaki-aksi" href="/#hitung">Hitung estimasi biaya</a>
+      <p class="kaki-besar">{en ? 'Asphalt shingle roofs, installed right, from Jakarta.' : 'Atap yang masuk AKAL, untuk rumah di Jabodetabek.'}</p>
+      <a class="kaki-aksi" href={en ? '/en/guides' : '/#hitung'}>{en ? 'Read the guides' : 'Hitung estimasi biaya'}</a>
     </div>
-    <nav class="kaki-kolom" aria-label="Tautan footer">
+    <nav class="kaki-kolom" aria-label={en ? 'Footer links' : 'Tautan footer'}>
       {kolom.map((k) => (
         <div>
           <p class="kaki-judul">{k.judul}</p>
@@ -97,14 +113,18 @@ const kolom: { judul: string; tautan: { label: string; href: string; luar?: bool
   <div class="wrap kaki-identitas">
     <span class="kaki-logo"><Logo tinggi="1.7rem" /><span class="sr-only">Atapura</span></span>
     <div class="kaki-legal-grup">
-      <p class="kaki-legal kaki-legal-pt">{bisnis.namaLegal} ({bisnis.statusLegal}).<br />Didirikan oleh {bisnis.pendiri.join(' dan ')}. Survey gratis di {bisnis.area.length} kota dan kabupaten Jabodetabek.</p>
-      <ul class="kaki-sosial" aria-label="Kontak dan media sosial">
+      {en ? (
+        <p class="kaki-legal kaki-legal-pt">{bisnis.namaLegal} (being incorporated).<br />Founded by {bisnis.pendiri.join(' and ')}. Free site survey in {bisnis.area.length} cities and regencies of Greater Jakarta.</p>
+      ) : (
+        <p class="kaki-legal kaki-legal-pt">{bisnis.namaLegal} ({bisnis.statusLegal}).<br />Didirikan oleh {bisnis.pendiri.join(' dan ')}. Survey gratis di {bisnis.area.length} kota dan kabupaten Jabodetabek.</p>
+      )}
+      <ul class="kaki-sosial" aria-label={en ? 'Contact and social media' : 'Kontak dan media sosial'}>
         {sosial.map((x) => (
           <li>
             {x.url ? (
               <a href={x.url} aria-label={x.nama} title={x.nama} {...(x.luar ? { target: '_blank', rel: 'noopener' } : {})} set:html={x.svg} />
             ) : (
-              <span class="kaki-sosial-segera" aria-label={`${x.nama} (segera hadir)`} title={`${x.nama} — segera hadir`} set:html={x.svg} />
+              <span class="kaki-sosial-segera" aria-label={en ? `${x.nama} (coming soon)` : `${x.nama} (segera hadir)`} title={en ? `${x.nama}, coming soon` : `${x.nama} — segera hadir`} set:html={x.svg} />
             )}
           </li>
         ))}
@@ -113,7 +133,7 @@ const kolom: { judul: string; tautan: { label: string; href: string; luar?: bool
   </div>
   <div class="wrap kaki-bawah">
     <p>© {tahun} Atapura</p>
-    <p>Foto rumah, villa, kafe, hujan, dan tukang adalah ilustrasi buatan AI, bukan proyek Atapura. Ikon: Simple Icons (CC0), Arcticons (CC BY-SA 4.0).</p>
+    <p>{en ? 'Photos of houses, villas, cafés, rain, and workers are AI-generated illustrations, not Atapura projects. Icons: Simple Icons (CC0), Arcticons (CC BY-SA 4.0).' : 'Foto rumah, villa, kafe, hujan, dan tukang adalah ilustrasi buatan AI, bukan proyek Atapura. Ikon: Simple Icons (CC0), Arcticons (CC BY-SA 4.0).'}</p>
   </div>
 </footer>
 

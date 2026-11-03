@@ -14,15 +14,27 @@ const label = lang === 'en'
   ? { beranda: 'Home', hitung: 'Estimate', chat: 'Chat', merek: 'Brands', garansi: 'Warranty' }
   : { beranda: 'Beranda', hitung: 'Hitung', chat: 'Chat', merek: 'Merek', garansi: 'Garansi' };
 
-const menu = [
+// Halaman /en: menu menunjuk ke panduan Inggris; bagian lain situs masih berbahasa Indonesia.
+const menuEn = [
+  { href: '/en/guides', label: 'Guides' },
+  { href: '/en/guides/asphalt-shingles-indonesia', label: 'Costs & brands' },
+  { href: '/en/guides/best-roof-tropical-climate', label: 'Tropical climate' },
+  { href: '/en/guides/bali-villa-roof', label: 'Bali villas' },
+  { href: '/', label: 'Indonesian site' },
+];
+const t = lang === 'en'
+  ? { perusahaan: 'For businesses', wa: 'Chat on WhatsApp', waPesan: 'Hi Atapura, I have a question about an asphalt shingle roof.', menu: 'Menu', tutup: 'Close', tutupLabel: 'Close menu', hitung: 'Cost estimator (Indonesian)', proyek: 'For businesses & projects', beranda: 'Atapura, home' }
+  : { perusahaan: 'Untuk perusahaan', wa: 'Chat WhatsApp', waPesan: 'Halo Atapura, saya mau tanya soal atap bitumen.', menu: 'Menu', tutup: 'Tutup', tutupLabel: 'Tutup menu', hitung: 'Hitung estimasi biaya', proyek: 'Untuk perusahaan & proyek', beranda: 'Atapura, ke beranda' };
+const menuId = [
   { href: '/#hitung', label: 'Hitung biaya' },
   { href: '/#layanan', label: 'Layanan' },
   { href: '/#garansi', label: 'Garansi' },
   { href: '/panduan', label: 'Panduan' },
   { href: '/#warna', label: 'Warna' },
 ];
+const menu = lang === 'en' ? menuEn : menuId;
 // Menu HP: daftar lebih lengkap karena tidak ada navigasi lain di layar kecil.
-const menuHp = [
+const menuHpId = [
   { href: '/#hitung', label: 'Hitung biaya' },
   { href: '/#layanan', label: 'Layanan' },
   { href: '/#cara-kerja', label: 'Cara kerja' },
@@ -33,20 +45,21 @@ const menuHp = [
   { href: '/#tanya', label: 'Tanya jawab' },
   { href: '/panduan', label: 'Panduan' },
 ];
+const menuHp = lang === 'en' ? menuEn : menuHpId;
 ---
 
 <header class:list={["kepala no-print", { "kepala-terang": terang }]}>
   <div class="wrap kepala-isi">
-    <a href="/" class="merek-kata" aria-label="Atapura, ke beranda"><Logo tinggi="1.3rem" /></a>
+    <a href="/" class="merek-kata" aria-label={t.beranda}><Logo tinggi="1.3rem" /></a>
     <nav aria-label="Utama" class="kepala-nav">
       {menu.map((m) => <a href={m.href}>{m.label}</a>)}
     </nav>
-    <a class="pill kepala-perusahaan" href="/#layanan-proyek">Untuk perusahaan</a>
-    <a class="pill kepala-wa" href={waLink('Halo Atapura, saya mau tanya soal atap bitumen.')} target="_blank" rel="noopener" data-wa="header">
-      Chat WhatsApp
+    <a class="pill kepala-perusahaan" href="/#layanan-proyek">{t.perusahaan}</a>
+    <a class="pill kepala-wa" href={waLink(t.waPesan)} target="_blank" rel="noopener" data-wa="header">
+      {t.wa}
     </a>
     <button type="button" class="kepala-menu" aria-haspopup="dialog" aria-controls="menu-hp" data-buka-menu>
-      <span class="kepala-garis" aria-hidden="true"></span>Menu
+      <span class="kepala-garis" aria-hidden="true"></span>{t.menu}
     </button>
   </div>
 </header>
@@ -59,10 +72,10 @@ const menuHp = [
     </ul>
   </nav>
   <div class="lembar-aksi">
-    <a class="pill pill-tunas" href="/#hitung" data-tutup-menu>Hitung estimasi biaya</a>
-    <a class="pill pill-garis" href="/#layanan-proyek" data-tutup-menu>Untuk perusahaan &amp; proyek</a>
+    <a class="pill pill-tunas" href="/#hitung" data-tutup-menu>{t.hitung}</a>
+    <a class="pill pill-garis" href="/#layanan-proyek" data-tutup-menu>{t.proyek}</a>
   </div>
-  <button type="button" class="lembar-tutup" data-tutup-menu aria-label="Tutup menu">Tutup</button>
+  <button type="button" class="lembar-tutup" data-tutup-menu aria-label={t.tutupLabel}>{t.tutup}</button>
 </dialog>
 
 <!-- Bilah tab bawah (HP saja): pola aplikasi native, jangkauan jempol. Chat di tengah sebagai aksi utama. -->
@@ -75,7 +88,7 @@ const menuHp = [
     <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="3" /><path d="M8.5 7.5h7M9 12h.01M12 12h.01M15 12h.01M9 15.5h.01M12 15.5h.01M15 15.5h.01" /></svg>
     <span>{label.hitung}</span>
   </a>
-  <a class="tab tab-chat" href={waLink('Halo Atapura, saya mau tanya soal atap bitumen.')} target="_blank" rel="noopener" data-wa="tabbar">
+  <a class="tab tab-chat" href={waLink(t.waPesan)} target="_blank" rel="noopener" data-wa="tabbar">
     <span class="tab-bulat" set:html={ikonWhatsapp} />
     <span>{label.chat}</span>
   </a>
