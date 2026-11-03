@@ -21,4 +21,26 @@ const panduan = defineCollection({
     }),
 });
 
-export const collections = { panduan };
+// Halaman per daerah (service-area SEO). Isi wajib unik per daerah dan bersumber (BPS/BMKG/pabrikan),
+// bukan nama kota yang ditukar — lihat docs/riset/data-lokal-area.md dan DECISIONS 030+.
+const area = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/area' }),
+  schema: ({ image }) =>
+    z.object({
+      nama: z.string(), // nama daerah di judul, mis. 'Jakarta'
+      // Nama wilayah (sama persis dengan bisnis.area untuk Jabodetabek) yang dicakup halaman ini.
+      cakupan: z.array(z.object({ nama: z.string(), jenis: z.enum(['City', 'AdministrativeArea']) })).min(1),
+      wilayah: z.enum(['Jabodetabek', 'Luar Jabodetabek']),
+      judul: z.string().max(70),
+      ringkasan: z.string().max(160),
+      jawaban: z.string(),
+      diperbarui: z.coerce.date(),
+      sampul: image(),
+      sampulAlt: z.string(),
+      urut: z.number().default(99),
+      faq: z.array(z.object({ q: z.string(), a: z.string() })).default([]),
+      sumber: z.array(z.object({ nama: z.string(), url: z.string().url().optional() })).default([]),
+    }),
+});
+
+export const collections = { panduan, area };

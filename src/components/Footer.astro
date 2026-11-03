@@ -49,12 +49,11 @@ const kolom: { judul: string; tautan: { label: string; href: string; luar?: bool
     tautan: [...panduan.map((p) => ({ label: singkat(p.data.judul), href: `/panduan/${p.id}` })), { label: 'Semua panduan', href: '/panduan' }],
   },
   {
-    judul: 'Area survey',
+    judul: 'Area layanan',
     tautan: [
-      { label: 'DKI Jakarta', href: '/#area' },
-      { label: 'Bogor & Depok', href: '/#area' },
-      { label: 'Tangerang', href: '/#area' },
-      { label: 'Bekasi', href: '/#area' },
+      { label: 'Jabodetabek', href: '/area#jabodetabek' },
+      { label: 'Luar Jabodetabek', href: '/area#luar-jabodetabek' },
+      { label: 'Semua area', href: '/area' },
     ],
   },
   {

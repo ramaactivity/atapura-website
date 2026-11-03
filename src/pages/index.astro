@@ -10,10 +10,10 @@ import RaporContoh from '../components/RaporContoh.astro';
 import Warna from '../components/Warna.astro';
 import PilihMerek from '../components/PilihMerek.astro';
 import AkalCerita from '../components/AkalCerita.astro';
+import { getCollection } from 'astro:content';
 import HitungAkal from '../islands/HitungAkal';
 import Foto from '../components/Foto.astro';
 import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
 import Bumper from '../components/Bumper.astro';
 import heroDesktop from '../../assets/gambar/magnific/hero-desktop.jpg';
 import heroHp from '../../assets/gambar/magnific/hero-hp.jpg';
@@ -64,6 +64,8 @@ const tanya = [
   },
 ];
 
+// Kota yang sudah punya halaman /area/* jadi tautan (SEO internal); yang belum tetap teks biasa.
+const halamanArea = new Map((await getCollection('area')).flatMap((a) => a.data.cakupan.map((c) => [c.nama, `/area/${a.id}`] as const)));
 const wilayah = [
   { nama: 'DKI Jakarta', kota: bisnis.area.filter((a) => a.startsWith('Jakarta')) },
   { nama: 'Jawa Barat', kota: bisnis.area.filter((a) => /Bogor|Depok|Bekasi/.test(a)) },
@@ -377,12 +379,12 @@ const faqSchema = {
       <div class="wrap area">
         <div class="area-teks">
           <h2 id="judul-area" class="judul-besar">Survey gratis di <span class="miring">{bisnis.area.length} kota dan kabupaten.</span></h2>
-          <p class="lead">Tim kami datang mengukur atap, memeriksa rangka, dan mencocokkan warna di bawah cahaya asli rumah Anda. Di luar Jabodetabek? Tetap bisa: chat admin, biaya akomodasi dan pengiriman dihitung sesuai lokasi.</p>
+          <p class="lead">Tim kami datang mengukur atap, memeriksa rangka, dan mencocokkan warna di bawah cahaya asli rumah Anda. Di luar Jabodetabek? Tetap bisa: chat admin, biaya akomodasi dan pengiriman dihitung sesuai lokasi. <a href="/area" class="area-tautan">Lihat kondisi atap per daerah</a>.</p>
           <div class="wilayah">
             {wilayah.map((w) => (
               <div>
                 <h3 class="wilayah-nama">{w.nama}</h3>
-                <ul class="wilayah-kota">{w.kota.map((k) => <li>{k}</li>)}</ul>
+                <ul class="wilayah-kota">{w.kota.map((k) => <li>{halamanArea.has(k) ? <a href={halamanArea.get(k)}>{k}</a> : k}</li>)}</ul>
               </div>
             ))}
           </div>
@@ -719,6 +721,8 @@ const faqSchema = {
   .wilayah { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); margin-top: 2.5rem; }
   .wilayah-nama { font-weight: 500; font-size: 0.9rem; padding-bottom: 0.5rem; margin-bottom: 0.5rem; border-bottom: 1px solid var(--color-garis); }
   .wilayah-kota { display: grid; gap: 0.2rem; color: var(--color-lumut); font-size: 0.92rem; }
+  .area-tautan { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+  .wilayah-kota a { color: inherit; text-decoration: underline; text-decoration-color: var(--color-garis); text-underline-offset: 3px; }
 
   /* Rapor */
   .rapor-blok { display: grid; gap: 3rem 4rem; grid-template-columns: minmax(0, 1fr); align-items: center; }

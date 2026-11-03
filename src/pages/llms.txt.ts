@@ -6,6 +6,7 @@ import { getCollection } from 'astro:content';
 // Dibangkitkan dari src/data supaya tidak pernah bertentangan dengan halaman.
 export const GET: APIRoute = async ({ site }) => {
   const panduan = await getCollection('panduan');
+  const area = (await getCollection('area')).sort((a, b) => a.data.urut - b.data.urut);
   const url = (p: string) => new URL(p, site).href;
   const isi = `# ${bisnis.nama}
 
@@ -25,10 +26,11 @@ ${bisnis.nama} adalah aplikator sekaligus supplier atap bitumen (genteng aspal, 
 
 - [Beranda dan kalkulator Hitung AKAL](${url('/')}): estimasi biaya total pasang atap bitumen, lima lapis pemasangan, perbandingan merek, area layanan, tanya jawab
 - [Panduan](${url('/panduan')}): artikel tanya-jawab atap bitumen
+- [Area layanan](${url('/area')}): kondisi iklim dan atap per daerah, Jabodetabek dan luar Jabodetabek
 
 ## Panduan
 
 ${panduan.map((p) => `- [${p.data.judul}](${url('/panduan/' + p.id)}): ${p.data.ringkasan}`).join('\n')}
-`;
+${area.length ? `\n## Area layanan\n\n${area.map((a) => `- [${a.data.judul}](${url('/area/' + a.id)}): ${a.data.ringkasan}`).join('\n')}\n` : ''}`;
   return new Response(isi, { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
 };

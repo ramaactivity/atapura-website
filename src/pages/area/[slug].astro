@@ -1,0 +1,45 @@
+---
+import { getCollection, render } from 'astro:content';
+import Artikel from '../../layouts/Artikel.astro';
+import { bisnis } from '../../data/bisnis';
+
+export async function getStaticPaths() {
+  const semua = (await getCollection('area')).sort((x, y) => x.data.urut - y.data.urut);
+  return semua.map((a) => ({ params: { slug: a.id }, props: { a, semua } }));
+}
+
+const { a, semua } = Astro.props;
+const { Content } = await render(a);
+const d = a.data;
+const situs = new URL('/', Astro.site).href;
+const url = new URL(`/area/${a.id}`, Astro.site).href;
+// Tetangga dulu (wilayah sama), lalu sisanya: tautan antar-daerah tanpa halaman yatim.
+const lain = [...semua.filter((x) => x.id !== a.id && x.data.wilayah === d.wilayah), ...semua.filter((x) => x.data.wilayah !== d.wilayah)]
+  .slice(0, 3)
+  .map((x) => ({ href: `/area/${x.id}`, label: x.data.wilayah, judul: x.data.judul }));
+
+const layanan = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `${url}#layanan`,
+  name: d.judul,
+  serviceType: 'Pemasangan dan perbaikan atap bitumen (genteng aspal)',
+  description: d.ringkasan,
+  provider: { '@id': `${situs}#bisnis` },
+  areaServed: d.cakupan.map((c) => ({ '@type': c.jenis, name: `${c.nama}, Indonesia` })),
+  url,
+  ...(d.sumber.length && { subjectOf: d.sumber.filter((s) => s.url).map((s) => ({ '@type': 'CreativeWork', name: s.nama, url: s.url })) }),
+};
+const cta = d.wilayah === 'Jabodetabek'
+  ? `Masukkan luas dan merek, estimasinya langsung terlihat. Survey gratis untuk lokasi di ${d.nama}.`
+  : `${bisnis.survey.luar}. Ceritakan lokasi dan luas atap Anda lewat WhatsApp.`;
+---
+
+<Artikel
+  judul={d.judul} ringkasan={d.ringkasan} jawaban={d.jawaban} penulis="Tim Atapura" diperbarui={d.diperbarui}
+  sampul={d.sampul} sampulAlt={d.sampulAlt} induk={{ nama: 'Area layanan', href: '/area' }} label={d.wilayah}
+  faq={d.faq} sumber={d.sumber} lain={lain} lainJudul="Area lain" schema={[layanan]} cta={cta}
+  waPesan={`Halo Atapura, saya di ${d.nama} dan mau tanya soal atap.`} dataWa="area"
+>
+  <Content />
+</Artikel>
