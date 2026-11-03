@@ -1,0 +1,155 @@
+---
+// Kerangka halaman berformat "jawaban dulu" (ai-seo): dipakai /panduan/* dan /area/*.
+// Sumber ditampilkan dan ikut ke schema `citation` supaya klaim bisa dilacak manusia maupun mesin.
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import Base from './Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { bisnis, waLink } from '../data/bisnis';
+
+interface Props {
+  judul: string;
+  ringkasan: string;
+  jawaban: string;
+  penulis: string;
+  diperbarui: Date;
+  sampul: ImageMetadata;
+  sampulAlt: string;
+  induk: { nama: string; href: string };
+  label: string;
+  faq: { q: string; a: string }[];
+  sumber: { nama: string; url?: string }[];
+  cta?: string;
+  waPesan: string;
+  dataWa: string;
+  lainJudul?: string;
+  lain: { href: string; label: string; judul: string }[];
+  /** Schema khusus halaman (Article/Service, dst.); Breadcrumb & FAQPage dibuat di sini. */
+  schema: object[];
+}
+
+const {
+  judul, ringkasan, jawaban, penulis, diperbarui, sampul, sampulAlt, induk, label, faq, sumber, waPesan, dataWa, lain,
+  cta = `Masukkan luas dan merek, estimasinya langsung terlihat. Survey gratis di ${bisnis.area.length} kota dan kabupaten Jabodetabek.`,
+  lainJudul = 'Baca juga',
+} = Astro.props;
+const situs = new URL('/', Astro.site).href;
+const url = new URL(Astro.url.pathname.replace(/\.html$/, ''), Astro.site).href;
+const tgl = (x: Date) => x.toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Asia/Jakarta' });
+const schema = [
+  ...Astro.props.schema,
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Beranda', item: situs },
+      { '@type': 'ListItem', position: 2, name: induk.nama, item: new URL(induk.href, Astro.site).href },
+      { '@type': 'ListItem', position: 3, name: judul, item: url },
+    ],
+  },
+  ...(faq.length
+    ? [{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) }]
+    : []),
+];
+---
+
+<Base title={`${judul} | Atapura`} description={ringkasan} schema={schema}>
+  <Header terang />
+  <main class="ar">
+    <article>
+      <header class="wrap ar-kepala">
+        <nav class="remah" aria-label="Remah roti"><a href="/">Beranda</a><span aria-hidden="true">/</span><a href={induk.href}>{induk.nama}</a><span aria-hidden="true">/</span><span>{label}</span></nav>
+        <h1 class="ar-judul">{judul}</h1>
+        <p class="ar-meta">Oleh {penulis}<span class="ar-pisah" aria-hidden="true"></span>Diperbarui <time datetime={diperbarui.toISOString()}>{tgl(diperbarui)}</time></p>
+      </header>
+      <div class="wrap">
+        <Image src={sampul} alt={sampulAlt} widths={[640, 1024, 1600]} sizes="(min-width: 64rem) 1200px, 100vw" class="ar-sampul" loading="eager" />
+      </div>
+      <div class="wrap ar-badan">
+        <aside class="ar-jawab" aria-label="Jawaban singkat">
+          <p class="ar-jawab-label">Jawaban singkat</p>
+          <p class="ar-jawab-isi">{jawaban}</p>
+        </aside>
+        <div class="prosa"><slot /></div>
+
+        {faq.length > 0 && (
+          <section class="ar-faq" aria-labelledby="faq-judul">
+            <h2 id="faq-judul">Pertanyaan terkait</h2>
+            <dl>{faq.map((f) => <div><dt>{f.q}</dt><dd>{f.a}</dd></div>)}</dl>
+          </section>
+        )}
+
+        {sumber.length > 0 && (
+          <section class="ar-sumber" aria-labelledby="sumber-judul">
+            <h2 id="sumber-judul">Sumber angka</h2>
+            <ul>{sumber.map((s) => <li>{s.url ? <a href={s.url} rel="noopener" target="_blank">{s.nama}</a> : s.nama}</li>)}</ul>
+          </section>
+        )}
+
+        <aside class="ar-cta">
+          <p class="ar-cta-judul">Hitung biaya untuk atap Anda.</p>
+          <p>{cta}</p>
+          <div class="ar-cta-aksi">
+            <a class="pill pill-tunas" href="/#hitung">Buka Hitung AKAL</a>
+            <a class="pill pill-garis" href={waLink(waPesan)} target="_blank" rel="noopener" data-wa={dataWa}>Tanya lewat WhatsApp</a>
+          </div>
+        </aside>
+      </div>
+    </article>
+
+    {lain.length > 0 && (
+      <section class="wrap ar-lain" aria-labelledby="lain-judul">
+        <h2 id="lain-judul">{lainJudul}</h2>
+        <ul>{lain.map((x) => <li><a href={x.href}><span>{x.label}</span>{x.judul}</a></li>)}</ul>
+      </section>
+    )}
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .ar { background: var(--color-embun); color: var(--color-tinta); padding: 120px 0 6rem; }
+  .remah { display: flex; flex-wrap: wrap; gap: 0.5rem; font-size: 0.88rem; color: var(--color-lumut); }
+  .remah a { color: inherit; }
+  .ar-kepala { padding-bottom: 2rem; }
+  .ar-judul { margin-top: 1.5rem; font-size: clamp(2.2rem, 1.2rem + 3.6vw, 4.4rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.02; max-width: 20ch; }
+  .ar-meta { margin-top: 1.25rem; font-size: 0.92rem; color: var(--color-lumut); display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }
+  .ar-pisah { width: 18px; height: 1px; background: currentColor; }
+  .ar-sampul { width: 100%; max-height: 34rem; object-fit: cover; border-radius: 18px; }
+  .ar-badan { max-width: 46rem; margin-inline: auto; padding-top: 3rem; }
+  .ar-jawab { padding: 1.5rem 1.75rem; border-radius: 14px; background: var(--color-pinus); color: var(--color-embun); }
+  .ar-jawab-label { font-size: 0.82rem; font-weight: 500; color: var(--color-tunas); margin-bottom: 0.5rem; }
+  .ar-jawab-isi { font-size: 1.15rem; line-height: 1.55; }
+
+  .prosa { margin-top: 2.5rem; font-size: 1.08rem; line-height: 1.7; }
+  .prosa :global(h2) { font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2.2rem); font-weight: 500; letter-spacing: -0.035em; line-height: 1.15; margin: 3rem 0 1rem; }
+  .prosa :global(p) { margin: 1rem 0; }
+  .prosa :global(ul), .prosa :global(ol) { margin: 1rem 0; padding-left: 1.4rem; }
+  .prosa :global(ul) { list-style: disc; }
+  .prosa :global(ol) { list-style: decimal; }
+  .prosa :global(li) { margin: 0.45rem 0; padding-left: 0.2rem; }
+  .prosa :global(strong) { font-weight: 600; }
+  .prosa :global(a) { color: var(--color-pinus); text-decoration: underline; }
+  .prosa :global(table) { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; display: block; overflow-x: auto; }
+  .prosa :global(th), .prosa :global(td) { text-align: left; vertical-align: top; padding: 0.75rem 1rem 0.75rem 0; border-bottom: 1px solid var(--color-garis); }
+  .prosa :global(thead th) { font-weight: 500; color: var(--color-lumut); font-size: 0.85rem; border-bottom: 1px solid var(--color-tinta); }
+
+  .ar-faq, .ar-sumber { margin-top: 3.5rem; }
+  .ar-faq h2, .ar-sumber h2, .ar-lain h2 { font-size: 1.5rem; font-weight: 500; letter-spacing: -0.03em; margin-bottom: 1rem; }
+  .ar-faq dl > div { padding: 1.1rem 0; border-top: 1px solid var(--color-garis); }
+  .ar-faq dt { font-weight: 500; font-size: 1.08rem; }
+  .ar-faq dd { margin-top: 0.35rem; color: var(--color-lumut); }
+  .ar-sumber li { color: var(--color-lumut); font-size: 0.92rem; margin: 0.4rem 0; }
+  .ar-sumber a { color: inherit; }
+  .ar-cta { margin-top: 3.5rem; padding: clamp(1.5rem, 3vw, 2.25rem); border-radius: 16px; background: var(--color-pinus); color: var(--color-embun); }
+  .ar-cta-judul { font-size: 1.6rem; font-weight: 500; letter-spacing: -0.03em; }
+  .ar-cta p:not(.ar-cta-judul) { margin-top: 0.4rem; color: var(--embun-redup); }
+  .ar-cta-aksi { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.25rem; }
+  .ar-lain { margin-top: 5rem; }
+  .ar-lain ul { display: grid; gap: 0.75rem; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 48rem) { .ar-lain ul { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .ar-lain a { display: grid; gap: 0.4rem; padding: 1.25rem; border-radius: 14px; background: var(--color-putih); text-decoration: none; color: inherit; font-weight: 500; letter-spacing: -0.02em; transition: transform 400ms var(--ease-out); }
+  .ar-lain a:hover { transform: translateY(-3px); }
+  .ar-lain span { font-size: 0.8rem; color: var(--color-lumut); font-weight: 400; }
+</style>

@@ -4,16 +4,23 @@ ringkasan: 'Atap bitumen, genteng aspal, sirap aspal, dan shingle adalah produk 
 jawaban: 'Atap bitumen, genteng aspal, sirap aspal, dan asphalt shingle adalah sebutan untuk produk yang sama: lembaran tipis berbahan aspal dengan butiran batu di permukaannya. Yang benar-benar berbeda adalah bentuk lembarannya: 3-tab (datar), laminasi (berlapis, bertekstur), atau gelombang. Bentuk inilah yang menentukan tampilan, cara pasang, dan harga.'
 kategori: 'Dasar'
 terbit: 2026-11-02
-diperbarui: 2026-11-02
+diperbarui: 2026-11-03
 sampul: '../../../assets/gambar/magnific/tekstur-charcoal.jpg'
 sampulAlt: 'Ilustrasi tekstur butiran genteng aspal warna hitam arang'
 faq:
   - q: 'Apakah genteng aspal sama dengan atap bitumen?'
     a: 'Ya. Genteng aspal adalah sebutan sehari-hari di toko bangunan, atap bitumen sebutan teknisnya. Keduanya merujuk ke lembaran beraspal dengan butiran batu di permukaan.'
   - q: 'Apakah atap bitumen gelombang termasuk genteng aspal?'
-    a: 'Atap bitumen gelombang juga berbahan bitumen, tapi bentuknya lembaran gelombang besar (sekitar 2 × 0,95 m dengan tinggi gelombang 38 mm), bukan lembaran kecil bersusun seperti shingle. Cara pasang dan tampilannya berbeda.'
+    a: 'Atap bitumen gelombang juga berbahan bitumen, tapi bentuknya lembaran besar bergelombang yang dipasang di reng, bukan lembaran kecil bersusun di atas papan seperti shingle. Cara pasang dan tampilannya berbeda.'
   - q: 'Merek apa yang dipasang Atapura?'
     a: 'Maxxi, CTI, dan Javabitumen. Ketiganya jenis shingle (lembaran kecil bersusun).'
+sumber:
+  - nama: 'Maxxiroof dan Promaxxi, halaman produk (3-tab dan laminasi), dicek 3 November 2026'
+    url: 'https://maxxiroof.com/produk/'
+  - nama: 'CTI, halaman produk CT3, CT5, CT6 (aspal SBS, fiberglass, butiran batu berwarna), dicek 3 November 2026'
+    url: 'https://www.ct-i.co.kr/portfolio-item/ct3-3-tab-asphalt-roofing-shingle-2/'
+  - nama: 'ARMA, tanya jawab: butiran = batu pecah berwarna berlapis keramik'
+    url: 'https://www.asphaltroofing.org/frequently-asked-questions/'
 ---
 
 ## Kenapa satu produk punya banyak nama?
@@ -35,7 +42,7 @@ Selembar shingle terdiri dari tiga bagian:
 
 1. **Lembaran inti** dari serat kaca (fiberglass) yang membuatnya lentur dan tidak mudah sobek.
 2. **Lapisan aspal** yang membuatnya kedap air.
-3. **Butiran batu** di permukaan yang memberi warna dan melindungi aspal dari sinar matahari.
+3. **Butiran batu berlapis keramik** di permukaan yang memberi warna dan melindungi aspal dari sinar UV.
 
 Karena lentur, genteng aspal dipaku di atas papan rata (multiplek atau GRC), bukan digantung di reng seperti genteng beton.
 
@@ -43,14 +50,16 @@ Karena lentur, genteng aspal dipaku di atas papan rata (multiplek atau GRC), buk
 
 | Jenis | Ciri | Contoh di pasar Indonesia |
 |---|---|---|
-| **3-tab** | Satu lapis, potongan tiga lidah, tampak rapi dan datar | Maxxi 3-tab, CTI CT3 |
-| **Laminasi (dimensional)** | Dua lapis direkatkan, bayangan lebih dalam, mirip kayu atau batu | CTI CT5/CT6 |
+| **3-tab** | Satu lapis, potongan tiga lidah, tampak rapi dan datar | Maxxiroof (tebal 2,66 mm), CTI CT3 |
+| **Laminasi (dimensional)** | Dua lapis direkatkan, lebih tebal, bayangan lebih dalam | Promaxxi (tebal 5,2 mm) |
+| **Bentuk khusus** | Potongan tidak beraturan atau segi enam | CTI CT5, CTI CT6 |
 | **Gelombang bitumen** | Lembaran besar bergelombang, dipasang di reng | Bukan jenis yang dipasang Atapura |
 
 Yang sering membuat bingung: atap gelombang juga disebut "atap bitumen", tapi cara pasang dan tampilannya beda sama sekali dengan shingle.
 
 ## Mana yang cocok untuk rumah Anda?
 
-- **Ingin hemat dan rapi:** 3-tab, misalnya Maxxi.
-- **Ingin tampilan bertekstur atau proyek perlu produk lokal:** CTI.
+- **Ingin hemat dan rapi:** 3-tab, misalnya Maxxiroof atau CTI CT3.
+- **Ingin tampilan lebih tebal dan berbayang:** laminasi seperti Promaxxi.
+- **Ingin pola yang berbeda:** CTI CT5 atau CT6. CTI juga mencantumkan sertifikat TKDN di situsnya, berguna untuk proyek yang mensyaratkan produk dalam negeri.
 - **Belum yakin:** lihat sampel fisiknya di rumah sendiri. Warna dan tekstur terlihat berbeda di bawah cahaya siang dan saat mendung.
