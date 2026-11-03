@@ -6,8 +6,13 @@ import ikonWhatsapp from '../assets/ikon/whatsapp.svg?raw';
 interface Props {
   /** Halaman berlatar terang (artikel): teks & logo gelap di semua ukuran layar. */
   terang?: boolean;
+  /** Bahasa label bilah tab HP (halaman /en untuk ekspat). */
+  lang?: 'id' | 'en';
 }
-const { terang = false } = Astro.props;
+const { terang = false, lang = 'id' } = Astro.props;
+const label = lang === 'en'
+  ? { beranda: 'Home', hitung: 'Estimate', chat: 'Chat', merek: 'Brands', garansi: 'Warranty' }
+  : { beranda: 'Beranda', hitung: 'Hitung', chat: 'Chat', merek: 'Merek', garansi: 'Garansi' };
 
 const menu = [
   { href: '/#hitung', label: 'Hitung biaya' },
@@ -61,26 +66,26 @@ const menuHp = [
 </dialog>
 
 <!-- Bilah tab bawah (HP saja): pola aplikasi native, jangkauan jempol. Chat di tengah sebagai aksi utama. -->
-<nav class="tabbar no-print" aria-label="Navigasi cepat" data-tabbar>
+<nav class="tabbar no-print" aria-label={lang === 'en' ? 'Quick navigation' : 'Navigasi cepat'} data-tabbar>
   <a class="tab" href="/" data-tab="beranda">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.4 12 4l8 6.4V19a1.5 1.5 0 0 1-1.5 1.5H15v-5.5H9v5.5H5.5A1.5 1.5 0 0 1 4 19z" /></svg>
-    <span>Beranda</span>
+    <span>{label.beranda}</span>
   </a>
   <a class="tab" href="/#hitung" data-tab="hitung">
     <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="3" /><path d="M8.5 7.5h7M9 12h.01M12 12h.01M15 12h.01M9 15.5h.01M12 15.5h.01M15 15.5h.01" /></svg>
-    <span>Hitung</span>
+    <span>{label.hitung}</span>
   </a>
   <a class="tab tab-chat" href={waLink('Halo Atapura, saya mau tanya soal atap bitumen.')} target="_blank" rel="noopener" data-wa="tabbar">
     <span class="tab-bulat" set:html={ikonWhatsapp} />
-    <span>Chat</span>
+    <span>{label.chat}</span>
   </a>
   <a class="tab" href="/#merek" data-tab="merek">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 12.2V4.5a1 1 0 0 1 1-1h7.7l8.3 8.3a1.5 1.5 0 0 1 0 2.1l-6.6 6.6a1.5 1.5 0 0 1-2.1 0z" /><circle cx="8" cy="8" r="1.4" /></svg>
-    <span>Merek</span>
+    <span>{label.merek}</span>
   </a>
   <a class="tab" href="/#garansi" data-tab="garansi">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 5.8v5.6c0 4.3 2.9 7.9 7 9.6 4.1-1.7 7-5.3 7-9.6V5.8z" /><path d="m9 12 2.1 2.1L15.2 10" /></svg>
-    <span>Garansi</span>
+    <span>{label.garansi}</span>
   </a>
 </nav>
 
