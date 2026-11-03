@@ -5,8 +5,8 @@ jawaban: 'Menurut PP 16/2021, mengganti bagian bangunan atau bahan bangunan agar
 kategori: 'Pemasangan'
 terbit: 2026-11-03
 diperbarui: 2026-11-03
-sampul: '../../../assets/gambar/magnific/garansi-cek-atap.jpg'
-sampulAlt: 'Ilustrasi tukang memeriksa atap rumah sebelum diganti'
+sampul: '../../../assets/gambar/magnific/ganti-atap-per-bagian-3x2.jpg'
+sampulAlt: 'Ilustrasi atap rumah dua lantai yang diganti per bagian, tukang memakai helm dan tali pengaman, jemuran tetap di balkon'
 faq:
   - q: 'Apakah ganti atap rumah perlu IMB?'
     a: 'IMB sudah diganti PBG lewat PP 16/2021. Pasal 262 ayat (3) menyebut PBG perubahan tidak diperlukan untuk pekerjaan pemeliharaan dan perawatan, dan perawatan didefinisikan sebagai memperbaiki atau mengganti bagian bangunan agar tetap laik fungsi. Perubahan tampak bangunan atau spesifikasi komponen yang memengaruhi keselamatan termasuk lingkup PBG perubahan.'
