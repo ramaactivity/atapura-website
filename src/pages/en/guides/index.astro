@@ -28,10 +28,12 @@ const schema = [
   <Header terang lang="en" />
   <main class="eg">
     <div class="wrap">
+      <div class="kartu-buka">
       <nav class="remah" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Guides</span></nav>
       <div class="eg-kepala">
         <h1 class="eg-judul">Roofing in Indonesia, <span class="redup">explained in English.</span></h1>
         <p class="eg-lead">For expats, villa owners, and investors building or renovating in Indonesia. Our main site is in Indonesian; these guides cover what you need to decide and ask.</p>
+      </div>
       </div>
       <ul class="eg-daftar">
         {semua.map((a) => (
@@ -64,5 +66,9 @@ const schema = [
     .eg-lead { font-size: 1rem; }
     .eg-daftar b { font-size: var(--hp-t4); }
     .eg-daftar em { font-size: 0.9375rem; }
+    /* Pola kartu HP sama dengan beranda. */
+    .eg { background: #dde2dc; }
+    .kartu-buka { margin: 0 calc(8px - var(--gutter)) 1.25rem; padding: 1.5rem var(--gutter) 0.25rem; border-radius: 28px; background: var(--color-embun); }
+    .kartu-buka .eg-kepala { margin-bottom: 1.5rem; }
   }
 </style>

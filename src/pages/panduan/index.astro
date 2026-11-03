@@ -26,10 +26,12 @@ const tgl = (d: Date) => d.toLocaleDateString('id-ID', { day: 'numeric', month: 
   <Header terang />
   <main class="pd">
     <div class="wrap">
+      <div class="kartu-buka">
       <nav class="remah" aria-label="Remah roti"><a href="/">Beranda</a><span aria-hidden="true">/</span><span>Panduan</span></nav>
       <div class="pd-kepala">
         <h1 class="pd-judul">Panduan atap bitumen, <span class="redup">dijawab langsung.</span></h1>
         <p class="pd-lead">Pertanyaan yang biasa muncul sebelum mengganti atap: istilah, beban, cara pasang, biaya, dan perawatan. Setiap artikel dibuka dengan jawaban singkat. <a href="/en/guides" class="pd-en" hreflang="en" lang="en">Guides in English</a></p>
+      </div>
       </div>
       <ul class="pd-daftar">
         {artikel.map((a, i) => (
@@ -81,5 +83,9 @@ const tgl = (d: Date) => d.toLocaleDateString('id-ID', { day: 'numeric', month: 
     .pd-lead { font-size: 1rem; }
     .pd-kartu-judul, .pd-utama .pd-kartu-judul { font-size: var(--hp-t3); }
     .pd-ringkas { font-size: 0.9375rem; }
+    /* Pola kartu HP sama dengan beranda. */
+    .pd { background: #dde2dc; }
+    .kartu-buka { margin: 0 calc(8px - var(--gutter)) 1.25rem; padding: 1.5rem var(--gutter) 0.25rem; border-radius: 28px; background: var(--color-embun); }
+    .kartu-buka .pd-kepala { margin-bottom: 1.5rem; }
   }
 </style>

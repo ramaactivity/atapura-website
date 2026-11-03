@@ -33,10 +33,12 @@ const schema = [
   <Header terang />
   <main class="ae">
     <div class="wrap">
+      <div class="kartu-buka">
       <nav class="remah" aria-label="Remah roti"><a href="/">Beranda</a><span aria-hidden="true">/</span><span>Area layanan</span></nav>
       <div class="ae-kepala">
         <h1 class="ae-judul">Atap di daerah Anda, <span class="redup">dengan hujan dan udaranya sendiri.</span></h1>
         <p class="ae-lead">Curah hujan, ketinggian, dan jarak ke laut berbeda tiap daerah, begitu juga yang perlu diperhatikan pada atapnya. Survey gratis di Jabodetabek; di luar itu harga dihitung bersama admin.</p>
+      </div>
       </div>
       {kelompok.filter((k) => k.isi.length).map((k) => (
         <section class="ae-grup" id={k.w.toLowerCase().replace(/ /g, '-')} aria-label={k.w}>
@@ -77,5 +79,9 @@ const schema = [
     .ae-grup-judul { font-size: var(--hp-t2); }
     .ae-daftar b { font-size: var(--hp-t4); }
     .ae-daftar span { font-size: 0.9375rem; }
+    /* Pola kartu HP sama dengan beranda. */
+    .ae { background: #dde2dc; }
+    .kartu-buka { margin: 0 calc(8px - var(--gutter)) 1.25rem; padding: 1.5rem var(--gutter) 0.25rem; border-radius: 28px; background: var(--color-embun); }
+    .kartu-buka .ae-kepala { margin-bottom: 1.5rem; }
   }
 </style>
