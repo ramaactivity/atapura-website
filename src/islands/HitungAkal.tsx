@@ -220,7 +220,7 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
               <div class="ha-spek-baris"><span class="ha-spek-nama">Lapis kedap air</span><Pilihan label="Lapis kedap air" opsi={LAPIS} nilai={lapis} ubah={setLapis} /></div>
               <div class="ha-spek-baris"><span class="ha-spek-nama">Flashing</span><Pilihan label="Flashing" opsi={FLASHING} nilai={flashing} ubah={setFlashing} /></div>
               <div class="ha-spek-baris"><span class="ha-spek-nama">Rangka</span><Pilihan label="Rangka atap" opsi={RANGKA} nilai={rangka} ubah={setRangka} /></div>
-              {rangka === 'Baja ringan baru' && <p class="ha-bantu">{harga.rangka.spek}, Rp{angka(harga.rangka.harga / 1000)} rb per m².</p>}
+              {rangka === 'Baja ringan baru' && <p class="ha-bantu">{harga.rangka.spek}, Rp{angka(harga.rangka.harga / 1000)} rb per m² terpasang (material + jasa).</p>}
             </div>
           </div>
         </li>
@@ -290,7 +290,10 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
             </div>
             <div>
               <p class="ha-label-kecil">Belum termasuk</p>
-              <ul class="ha-cakup-tidak">{harga.tidakTermasuk.map((t) => <li>{t}</li>)}</ul>
+              <ul class="ha-cakup-tidak">
+                <li>Rangka baja ringan baru, bila perlu: Rp{angka(harga.rangka.harga / 1000)} rb per m² terpasang</li>
+                {harga.tidakTermasuk.map((t) => <li>{t}</li>)}
+              </ul>
             </div>
             <p class="ha-cakup-bayar">Material dibayar sebelum dikirim, jasa pasang bertahap {termin}.</p>
           </div>

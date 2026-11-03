@@ -33,6 +33,7 @@ export const harga = {
   // Asumsi: panjang flashing ±0,4 m per m² atap (tepi, talang, pertemuan dinding) — final setelah survey.
   flashingMPerM2: 0.4,
   // Rangka baja ringan baru (opsional, untuk rumah baru atau rangka lama yang tidak layak).
+  // Harga TERPASANG (material + jasa), bukan material saja — Bang Yusuf 3 Nov 2026. Merek baja tidak ditulis (DECISIONS 028).
   rangka: { harga: 220_000, spek: 'Kanal C 0,75 mm, reng 0,40 mm' },
   paku: { harga: 250, perM2: 20 },
   skrup: { harga: 150, perM2: 12 },
