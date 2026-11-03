@@ -25,7 +25,7 @@ Bisa dibangun tanpa data baru:
 Butuh data/aksi Rama: harga resmi, garansi (tahun), termin DP, foto proyek asli + ulasan Google, brosur/TDS (pusat unduhan), spesifikasi teknis per merek (kemiringan min., berat, angin), domain sendiri, Google Business Profile, Search Console, telepon resmi, logo (a2).
 
 ## Revisi Bang Yusuf (DECISIONS 024) — ✅ terpasang 2 Nov 2026
-Kalkulator: spek pendukung + kebutuhan material + harga terpasang/m²; cara bayar material lunas sebelum kirim + jasa 40/30/30; luar Jabodetabek dilayani (survey berbayar). Menunggu jawaban Bang Yusuf: flashing 0,4 m/m², harga GRC & Javabitumen, Flashing Z, biaya survey luar kota, boleh-tidaknya klaim pengalaman Papua dst. tampil publik.
+Kalkulator: spek pendukung + harga terpasang/m² (qty material hanya di `/internal/kalkulator`, DECISIONS 026); cara bayar material lunas sebelum kirim + jasa 40/30/30; luar Jabodetabek dilayani (survey berbayar). Menunggu jawaban Bang Yusuf: flashing 0,4 m/m², harga GRC & Javabitumen, Flashing Z, biaya survey luar kota, boleh-tidaknya klaim pengalaman Papua dst. tampil publik.
 
 ## Status konsep
 Situs masih KONSEP untuk partner (DECISIONS 017): `bisnis.konsep = true` → noindex + robots Disallow. Ubah ke false setelah angka termin/garansi/harga final **dan rekening atas nama PT sudah ada** — seluruh copy menjanjikan "hanya ke rekening atas nama perusahaan"; rekening pribadi sementara (Rama punya) jangan pernah ditulis di situs/repo, hanya di kontrak/invoice.

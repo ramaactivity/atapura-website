@@ -1,0 +1,29 @@
+---
+// Kerangka halaman internal tim (/internal/*): tidak diindeks, tidak masuk sitemap.
+// Bukan pengaman: siapa pun yang tahu link bisa membuka. Jangan taruh data rahasia di sini.
+import Base from './Base.astro';
+import Logo from '../components/Logo.astro';
+
+interface Props { title: string; label: string }
+const { title, label } = Astro.props;
+---
+
+<Base title={title} description="Alat internal tim Atapura." noindex>
+  <header class="i-kepala">
+    <div class="wrap i-kepala-isi">
+      <a href="/internal" class="i-logo" aria-label="Alat internal Atapura"><Logo tinggi="1.3rem" /></a>
+      <span class="i-label">{label}</span>
+    </div>
+  </header>
+  <main class="i"><div class="wrap"><slot /></div></main>
+</Base>
+
+<style>
+  .i-kepala { background: var(--color-embun); color: var(--color-pinus); border-bottom: 1px solid var(--color-garis); }
+  .i-kepala-isi { display: flex; align-items: center; gap: 1rem; min-height: 68px; }
+  .i-logo { display: inline-flex; align-items: center; min-height: 44px; color: inherit; }
+  .i-label { color: var(--color-lumut); font-size: 0.9rem; padding-left: 1rem; border-left: 1px solid var(--color-garis); }
+  .i { background: var(--color-putih); color: var(--color-tinta); padding-block: clamp(2.5rem, 6vw, 5rem); min-height: 80vh; }
+  .i :global(h1) { font-size: clamp(2rem, 1.2rem + 3vw, 3.6rem); letter-spacing: -0.04em; line-height: 1; max-width: 18ch; }
+  .i :global(.i-lead) { margin-top: 1rem; max-width: 52ch; color: var(--color-lumut); font-size: 1.05rem; line-height: 1.5; }
+</style>

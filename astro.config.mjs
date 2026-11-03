@@ -17,5 +17,5 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  integrations: [preact(), sitemap()]
+  integrations: [preact(), sitemap({ filter: (url) => !url.includes('/internal') })]
 });

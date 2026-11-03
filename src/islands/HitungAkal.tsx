@@ -76,7 +76,9 @@ function Pilihan<T extends string>({ label, opsi, nilai, ubah }: { label: string
   );
 }
 
-export default function HitungAkal({ awal = 100, sumber = 'beranda' }: { awal?: number; sumber?: string }) {
+// internal: tampilkan jumlah material & rincian per item (hanya halaman /internal).
+// Publik sengaja tanpa qty: kata Bang Yusuf, qty dijadikan patokan beli ke orang lain.
+export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = false }: { awal?: number; sumber?: string; internal?: boolean }) {
   const [luas, setLuas] = useState(awal);
   const [teksLuas, setTeksLuas] = useState(String(awal));
   const [merek, setMerek] = useState<Merek>('CTI');
@@ -131,7 +133,7 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda' }: { awal?: 
     `Pekerjaan: ${pekerjaan}`,
     `Luas atap: ${luas} m²`,
     `Spek: ${merek}, ${alas}, ${harga.lapisKedap[lapis].nama}, ${flashing}, rangka ${rangka.toLowerCase()}`,
-    `Kebutuhan: ${est.kebutuhan.map((k) => `${k.nama} ${angka(k.jumlah)} ${k.satuan}`).join('; ')}`,
+    ...(internal ? [`Kebutuhan: ${est.kebutuhan.map((k) => `${k.nama} ${angka(k.jumlah)} ${k.satuan}`).join('; ')}`] : []),
     `Lokasi: ${kota.trim() || '(belum diisi)'}`,
     jabo === false
       ? 'Lokasi di luar Jabodetabek: mohon dihitung termasuk akomodasi tukang dan pengiriman material.'
@@ -233,23 +235,23 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda' }: { awal?: 
 
       <div class="ha-slip" data-nosnippet>
         <div class="ha-slip-kepala">
-          <p class="ha-label-kecil">Kebutuhan material untuk {luas} m²</p>
+          <p class="ha-label-kecil">{internal ? 'Kebutuhan material' : jabo === false ? 'Harga' : 'Estimasi harga terpasang'} untuk {luas} m²</p>
           {harga.contoh && <span class="contoh">Harga acuan</span>}
         </div>
-        <ul class="ha-butuh">
+        {internal && <ul class="ha-butuh">
           {est.kebutuhan.map((k) => (
             <li><span>{k.nama}</span><b class="angka">{angka(k.jumlah)} <small>{k.satuan}</small></b></li>
           ))}
-        </ul>
+        </ul>}
 
         {jabo === false ? (
           <div class="ha-luar-kotak" aria-live="polite">
-            <p class="ha-label-kecil ha-label-harga">Harga untuk lokasi Anda</p>
+            {internal && <p class="ha-label-kecil ha-label-harga">Harga untuk lokasi Anda</p>}
             <p class="ha-luar-judul">Dihitung langsung bersama admin</p>
             <p class="ha-luar-isi">Di luar Jabodetabek ada akomodasi tukang dan pengiriman material, misalnya tiket pesawat atau ekspedisi antarpulau. Tiket dan ekspedisi bisa kami carikan atau Anda atur sendiri. Kami tidak mengambil untung dari akomodasi.</p>
           </div>
         ) : (<>
-        <p class="ha-label-kecil ha-label-harga">Estimasi harga terpasang</p>
+        {internal && <p class="ha-label-kecil ha-label-harga">Estimasi harga terpasang</p>}
         <p class="hasil-angka" aria-live="polite" aria-atomic="true">
           <span class="sr-only">{perM2}</span>
           {(() => {
@@ -270,7 +272,7 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda' }: { awal?: 
           <div><dt>Jasa pasang</dt><dd><b class="angka">{kisaran(est.jasa)}</b> termin {termin}</dd></div>
         </dl>
         </>)}
-        {jabo !== false && <details class="ha-rinci">
+        {internal && jabo !== false && <details class="ha-rinci">
           <summary>Rincian biaya per item</summary>
           <dl class="rincian">
             {est.baris.map((b) => (

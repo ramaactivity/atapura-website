@@ -9,9 +9,11 @@ interface Props {
   schema?: object[];
   /** Gambar pratinjau share (relatif dari root). */
   ogImage?: string;
+  /** Halaman internal: jangan diindeks walau situs sudah keluar dari mode konsep. */
+  noindex?: boolean;
 }
 
-const { title, description, schema = [], ogImage = '/og/beranda.jpg' } = Astro.props;
+const { title, description, schema = [], ogImage = '/og/beranda.jpg', noindex = false } = Astro.props;
 // build.format 'file' membuat pathname berakhiran .html; canonical selalu versi bersih tanpa .html / slash akhir.
 const bersih = Astro.url.pathname.replace(/(\/index)?\.html$/, '').replace(/\/$/, '');
 const canonical = new URL(bersih || '/', Astro.site).href;
@@ -59,7 +61,7 @@ const jsonLd = [organisasi, situs, ...schema];
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    {bisnis.konsep && <meta name="robots" content="noindex, nofollow" />}
+    {(bisnis.konsep || noindex) && <meta name="robots" content="noindex, nofollow" />}
     <link rel="preload" href="/fonts/PublicSans-Variable-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="theme-color" content="#10231e" />

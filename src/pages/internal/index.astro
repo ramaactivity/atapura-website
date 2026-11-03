@@ -1,0 +1,26 @@
+---
+import Internal from '../../layouts/Internal.astro';
+
+const alat = [
+  { href: '/internal/kalkulator', judul: 'Kalkulator lengkap', isi: 'Hitung AKAL dengan jumlah material (bundel, lembar, roll, batang, paku, skrup) dan rincian biaya per item. Versi publik di beranda hanya menampilkan harga terpasang.' },
+  { href: '/branding', judul: 'Panduan brand', isi: 'Logo, warna, huruf, komponen, aturan foto, templat sosial media, dan suara tulisan.' },
+];
+---
+
+<Internal title="Alat internal Atapura" label="Internal tim">
+  <h1>Alat internal <span class="miring">tim Atapura.</span></h1>
+  <p class="i-lead">Khusus tim. Halaman ini tidak muncul di Google, tapi siapa pun yang punya linknya bisa membuka, jadi jangan disebar ke pelanggan.</p>
+  <ul class="alat">
+    {alat.map((a) => (
+      <li><a href={a.href}><b>{a.judul}</b><span>{a.isi}</span></a></li>
+    ))}
+  </ul>
+</Internal>
+
+<style>
+  .alat { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); margin-top: 2.5rem; }
+  .alat a { display: grid; gap: 0.5rem; height: 100%; padding: 1.5rem; border-radius: 1rem; background: var(--color-embun); border: 1px solid var(--color-garis); color: inherit; text-decoration: none; transition: border-color 200ms; }
+  .alat a:hover { border-color: var(--color-pinus); }
+  .alat b { font-size: 1.25rem; font-weight: 500; letter-spacing: -0.02em; }
+  .alat span { color: var(--color-lumut); line-height: 1.5; }
+</style>

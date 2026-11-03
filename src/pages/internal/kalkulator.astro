@@ -1,0 +1,14 @@
+---
+import Internal from '../../layouts/Internal.astro';
+import HitungAkal from '../../islands/HitungAkal';
+---
+
+<Internal title="Kalkulator lengkap · internal Atapura" label="Kalkulator lengkap">
+  <h1>Kalkulator lengkap <span class="miring">dengan jumlah material.</span></h1>
+  <p class="i-lead">Sama dengan Hitung AKAL di beranda, ditambah kebutuhan material dan rincian biaya per item. Jangan kirim tangkapan layar halaman ini ke pelanggan atau mandor.</p>
+  <div class="i-kalk"><HitungAkal client:load awal={120} sumber="kalkulator internal" internal /></div>
+</Internal>
+
+<style>
+  .i-kalk { margin-top: 2.5rem; }
+</style>
