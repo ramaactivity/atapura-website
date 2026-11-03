@@ -102,3 +102,15 @@
 .ha-luar-kotak { display: grid; gap: 0.35rem; padding-block: 0.25rem 0.5rem; }
 .ha-luar-judul { font-size: clamp(1.4rem, 1.1rem + 1.2vw, 1.9rem); font-weight: 500; letter-spacing: -0.035em; line-height: 1.1; }
 .ha-luar-isi { font-size: 0.93rem; line-height: 1.55; opacity: 0.8; max-width: 46ch; }
+
+/* Publik: cakupan harga — yang sudah dan belum termasuk (pengganti pilihan spek). */
+.ha-cakup { display: grid; gap: 1rem 1.5rem; grid-template-columns: minmax(0, 1fr); margin-top: 1.1rem; padding: 1rem 1.1rem; border-radius: 12px; background: rgb(242 244 241 / 0.06); }
+@media (min-width: 40rem) { .ha-cakup { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+.ha-cakup ul { display: grid; gap: 0.35rem; margin-top: 0.5rem; font-size: 0.9rem; line-height: 1.4; }
+.ha-cakup li { position: relative; padding-left: 1.3rem; }
+.ha-cakup li::before { position: absolute; left: 0; }
+.ha-cakup-ya li { color: var(--color-embun); }
+.ha-cakup-ya li::before { content: '✓'; color: var(--color-tunas); }
+.ha-cakup-tidak li { color: rgb(242 244 241 / 0.62); }
+.ha-cakup-tidak li::before { content: '–'; color: rgb(242 244 241 / 0.45); }
+.ha-cakup-bayar { grid-column: 1 / -1; padding-top: 0.8rem; border-top: 1px solid rgb(242 244 241 / 0.1); font-size: 0.85rem; color: rgb(242 244 241 / 0.62); }

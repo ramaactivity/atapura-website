@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
-import { bagianRentang, harga, hitungEstimasi, rupiahRingkas, type Alas, type Flashing, type LapisKedap, type Merek } from '../data/harga';
+import { bagianRentang, estimasiPublik, harga, hitungEstimasi, rupiahRingkas, type Alas, type Flashing, type LapisKedap, type Merek } from '../data/harga';
 import { bisnis, dalamJabodetabek, waLink } from '../data/bisnis';
 import './hitung-akal.css';
 
@@ -76,8 +76,9 @@ function Pilihan<T extends string>({ label, opsi, nilai, ubah }: { label: string
   );
 }
 
-// internal: tampilkan jumlah material & rincian per item (hanya halaman /internal).
-// Publik sengaja tanpa qty: kata Bang Yusuf, qty dijadikan patokan beli ke orang lain.
+// internal: semua pilihan spek, jumlah material & rincian per item (hanya halaman /internal).
+// Publik: cukup luas + merek; harga dari patokan terpasang per m², spek pendukung jadi daftar
+// "sudah / belum termasuk" (DECISIONS 030). Tanpa qty: dijadikan patokan beli ke orang lain.
 export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = false }: { awal?: number; sumber?: string; internal?: boolean }) {
   const [luas, setLuas] = useState(awal);
   const [teksLuas, setTeksLuas] = useState(String(awal));
@@ -91,7 +92,8 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
   const [membuka, setMembuka] = useState(false);
   const track = useRef<HTMLDivElement>(null);
 
-  const est = hitungEstimasi(luas, { merek, alas, lapis, flashing, rangka: rangka === 'Baja ringan baru' });
+  const rinci = hitungEstimasi(luas, { merek, alas, lapis, flashing, rangka: rangka === 'Baja ringan baru' });
+  const est = internal ? rinci : { ...rinci, ...estimasiPublik(luas, merek) };
   const minTampil = useGulir(est.perM2[0]);
   const maxTampil = useGulir(est.perM2[1]);
   const jabo = dalamJabodetabek(kota);
@@ -132,11 +134,15 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
   const perM2 = `${rupiahRingkas(est.perM2[0])} – ${rupiahRingkas(est.perM2[1])} per m²`;
   const pesan = [
     'Halo Atapura, saya mau tanya pemasangan atap bitumen.',
-    `Pekerjaan: ${pekerjaan}`,
     `Luas atap: ${luas} m²`,
-    `Spek: ${merek}, ${alas}, ${harga.lapisKedap[lapis].nama}, ${flashing}, rangka ${rangka.toLowerCase()}`,
-    ...(internal ? [`Kebutuhan: ${est.kebutuhan.map((k) => `${k.nama} ${angka(k.jumlah)} ${k.satuan}`).join('; ')}`] : []),
-    `Lokasi: ${kota.trim() || '(belum diisi)'}`,
+    ...(internal
+      ? [
+          `Pekerjaan: ${pekerjaan}`,
+          `Spek: ${merek}, ${alas}, ${harga.lapisKedap[lapis].nama}, ${flashing}, rangka ${rangka.toLowerCase()}`,
+          `Kebutuhan: ${est.kebutuhan.map((k) => `${k.nama} ${angka(k.jumlah)} ${k.satuan}`).join('; ')}`,
+          `Lokasi: ${kota.trim() || '(belum diisi)'}`,
+        ]
+      : [`Merek: ${merek}`, 'Lokasi: ']),
     jabo === false
       ? 'Lokasi di luar Jabodetabek: mohon dihitung termasuk akomodasi tukang dan pengiriman material.'
       : `Estimasi terpasang: ${perM2} (total ${rentang})${harga.contoh ? ', harga acuan' : ''}, final setelah survey`,
@@ -204,6 +210,7 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
             <Pilihan label="Merek" opsi={MEREK} nilai={merek} ubah={setMerek} />
           </div>
         </li>
+        {internal && <>
         <li>
           <span class="ha-no angka">03</span>
           <div class="ha-isi">
@@ -233,6 +240,7 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
             {jabo === false && <p class="ha-bantu ha-luar">Di luar Jabodetabek: {bisnis.survey.luar.charAt(0).toLowerCase() + bisnis.survey.luar.slice(1)}.</p>}
           </div>
         </li>
+        </>}
       </ol>
 
       <div class="ha-slip" data-nosnippet>
@@ -269,10 +277,24 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
         {pekerjaan === 'Perbaikan' && (
           <p class="ha-catatan">Untuk perbaikan, biaya bergantung pada sumber bocor yang ditemukan saat survey. Angka di atas adalah biaya penggantian penuh sebagai batas atas.</p>
         )}
-        <dl class="ha-bayar">
-          <div><dt>Material</dt><dd><b class="angka">{kisaran(est.material, d)}</b> dibayar sebelum dikirim</dd></div>
-          <div><dt>Jasa pasang</dt><dd><b class="angka">{kisaran(est.jasa, d)}</b> termin {termin}</dd></div>
-        </dl>
+        {internal ? (
+          <dl class="ha-bayar">
+            <div><dt>Material</dt><dd><b class="angka">{kisaran(est.material, d)}</b> dibayar sebelum dikirim</dd></div>
+            <div><dt>Jasa pasang</dt><dd><b class="angka">{kisaran(est.jasa, d)}</b> termin {termin}</dd></div>
+          </dl>
+        ) : (
+          <div class="ha-cakup">
+            <div>
+              <p class="ha-label-kecil">Sudah termasuk</p>
+              <ul class="ha-cakup-ya">{harga.termasuk.map((t) => <li>{t}</li>)}</ul>
+            </div>
+            <div>
+              <p class="ha-label-kecil">Belum termasuk</p>
+              <ul class="ha-cakup-tidak">{harga.tidakTermasuk.map((t) => <li>{t}</li>)}</ul>
+            </div>
+            <p class="ha-cakup-bayar">Material dibayar sebelum dikirim, jasa pasang bertahap {termin}.</p>
+          </div>
+        )}
         </>)}
         {internal && jabo !== false && <details class="ha-rinci">
           <summary>Rincian biaya per item</summary>

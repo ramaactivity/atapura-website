@@ -39,6 +39,14 @@ export const harga = {
   jasa: [70_000, 120_000],
   // Produktivitas tim per hari (m²), untuk perkiraan durasi.
   m2PerHari: [30, 45],
+  // Kalkulator publik (revisi 3 Nov): pelanggan hanya isi luas + merek; spek pendukung jadi keterangan, tanpa nominal ongkir.
+  termasuk: ['Multiplek 12\u00a0mm / GRC 9\u00a0mm', 'Underlayment / membrane torching', 'Flashing U', 'Skrup & paku bitumen', 'Jasa pemasangan', 'Ongkos kirim material Jabodetabek'],
+  tidakTermasuk: [
+    'Transport tukang (bila di luar Jabodetabek)',
+    'Tempat tinggal tukang (bila tidak bisa menginap di proyek atau tidak ada mess)',
+    'Ongkos kirim material di luar Jabodetabek',
+    'Scaffolding',
+  ],
 } as const;
 
 export type Merek = keyof typeof harga.merek;
@@ -118,6 +126,16 @@ export function hitungEstimasi(luas: number, p: Pilihan = PILIHAN_AWAL): Estimas
     total,
     perM2,
     hari,
+  };
+}
+
+/** Estimasi publik: harga terpasang per m² merek × luas (spek standar, termasuk ongkir Jabodetabek). */
+export function estimasiPublik(luas: number, merek: Merek): Pick<Estimasi, 'perM2' | 'total' | 'hari'> {
+  const perM2 = harga.merek[merek].terpasang;
+  return {
+    perM2: [perM2[0], perM2[1]],
+    total: [bulat(luas * perM2[0], 50_000), bulat(luas * perM2[1], 50_000)],
+    hari: [ceil(luas / harga.m2PerHari[1]) + 1, ceil(luas / harga.m2PerHari[0]) + 1],
   };
 }
 

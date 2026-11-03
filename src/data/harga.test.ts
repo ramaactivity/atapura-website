@@ -1,6 +1,6 @@
 // Jalankan: node --experimental-strip-types src/data/harga.test.ts
 import assert from 'node:assert/strict';
-import { bagianRentang, harga, hitungEstimasi, rupiahRingkas } from './harga.ts';
+import { bagianRentang, estimasiPublik, harga, hitungEstimasi, rupiahRingkas } from './harga.ts';
 
 const e = hitungEstimasi(100);
 // Contoh Bang Yusuf: atap 100 m² → skrup 1.200 pcs, paku bitumen 2.000 pcs.
@@ -25,6 +25,10 @@ assert.equal(e.material[0] + e.jasa[0], e.baris.reduce((s, b) => s + b.rentang[0
 const grc = hitungEstimasi(100, { merek: 'CTI', alas: 'GRC 9 mm', lapis: 'Membrane', flashing: 'Flashing U' });
 assert.ok(grc.total[0] > e.total[0], 'GRC + membrane lebih mahal');
 assert.deepEqual(e.hari, [4, 5]);
+const pub = estimasiPublik(100, 'Maxxi');
+assert.deepEqual(pub.perM2, [380_000, 430_000]);
+assert.deepEqual(pub.total, [38_000_000, 43_000_000]);
+assert.deepEqual(estimasiPublik(100, 'CTI').hari, e.hari, 'durasi publik = internal');
 assert.equal(rupiahRingkas(31_250_000), 'Rp31,3 jt');
 assert.equal(rupiahRingkas(950_000), 'Rp950 rb');
 assert.equal(rupiahRingkas(47_600_000, 0), 'Rp48 jt');
