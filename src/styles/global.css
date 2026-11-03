@@ -129,3 +129,30 @@ a { text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
   background: var(--color-tunas-pucat); color: var(--color-pinus); font-size: 0.75rem; font-weight: 500;
 }
 .contoh-kecil { margin-left: 0.4rem; padding: 0.05rem 0.5rem; font-size: 0.7rem; }
+
+/* Garis denah (acuan Lupitor): bingkai gambar kerja tipis dengan tanda "+" di keempat sudut.
+   Garis datar selebar layar, garis tegak di luar tepi konten (konten tetap sejajar section lain).
+   Desktop saja; di HP section sudah berupa kartu membulat. */
+@media (min-width: 64rem) {
+  .denah {
+    --denah: rgb(76 94 85 / 0.2);
+    --denah-x: calc(var(--gutter) - 1.5rem);
+    --plus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13'%3E%3Cpath d='M6.5 0v13M0 6.5h13' stroke='%234c5e55' stroke-opacity='.7'/%3E%3C/svg%3E");
+    position: relative; padding-block: clamp(2.25rem, 4vw, 3.5rem);
+  }
+  .denah::before, .denah::after { content: ''; position: absolute; pointer-events: none; }
+  .denah::before {
+    top: 0; bottom: 0; left: calc(50% - 50vw); width: 100vw;
+    background:
+      linear-gradient(var(--denah), var(--denah)) 0 0 / 100% 1px no-repeat,
+      linear-gradient(var(--denah), var(--denah)) 0 100% / 100% 1px no-repeat;
+  }
+  .denah::after {
+    top: -6px; bottom: -6px; left: calc(var(--denah-x) - 6px); right: calc(var(--denah-x) - 6px);
+    background:
+      var(--plus) 0 0 no-repeat, var(--plus) 100% 0 no-repeat, var(--plus) 0 100% no-repeat, var(--plus) 100% 100% no-repeat,
+      linear-gradient(var(--denah), var(--denah)) 6px 6px / 1px calc(100% - 12px) no-repeat,
+      linear-gradient(var(--denah), var(--denah)) calc(100% - 6px) 6px / 1px calc(100% - 12px) no-repeat;
+  }
+  .sek:has(> .denah) { overflow-x: clip; padding-block: clamp(3rem, 5vw, 4.5rem); }
+}

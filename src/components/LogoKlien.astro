@@ -1,0 +1,53 @@
+---
+// Deretan logo klien (pola strip media Lockeroom). Tidak merender apa pun selama src/data/klien.ts kosong.
+// ≥ 5 logo: berjalan pelan tanpa henti (salinan kedua aria-hidden); kurang dari itu: baris diam.
+import { klien } from '../data/klien';
+const jalan = klien.length >= 5;
+---
+
+{klien.length > 0 && (
+  <section class="klien" aria-labelledby="judul-klien">
+    <div class="wrap klien-isi">
+      <h2 id="judul-klien" class="klien-judul">Dipercaya oleh</h2>
+      <div class:list={['klien-jalur', { jalan }]}>
+        {(jalan ? [0, 1] : [0]).map((salinan) => (
+          <ul class="klien-daftar" aria-hidden={salinan === 1 ? 'true' : undefined}>
+            {klien.map((k) => <li><img src={k.logo} alt={salinan === 1 ? '' : k.nama} loading="lazy" decoding="async" /></li>)}
+          </ul>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .klien { background: var(--color-putih); border-bottom: 1px solid var(--color-garis); }
+  .klien-isi { display: grid; gap: 1rem 3rem; padding-block: 1.75rem; align-items: center; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 64rem) { .klien-isi { grid-template-columns: 11rem minmax(0, 1fr); } }
+  .klien-judul { font-size: 0.95rem; font-weight: 500; color: var(--color-lumut); letter-spacing: 0; }
+  .klien-jalur { overflow: hidden; }
+  .klien-jalur.jalan {
+    display: flex;
+    -webkit-mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .klien-jalur.jalan > .klien-daftar { flex: none; animation: klien-geser 40s linear infinite; }
+  .klien-jalur.jalan:hover > .klien-daftar { animation-play-state: paused; }
+  @keyframes klien-geser { to { transform: translateX(-100%); } }
+  .klien-daftar { display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem 3rem; }
+  .jalan .klien-daftar { flex-wrap: nowrap; padding-right: 3rem; }
+  .klien-daftar img {
+    display: block; height: 2.25rem; width: auto; max-width: 9rem; object-fit: contain;
+    filter: grayscale(1); opacity: 0.6;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .klien-jalur.jalan > .klien-daftar { animation: none; }
+    .klien-jalur.jalan > .klien-daftar[aria-hidden] { display: none; }
+    .jalan .klien-daftar { flex-wrap: wrap; }
+  }
+  @media (max-width: 47.99rem) {
+    .klien { margin: 8px; border-radius: 28px; border-bottom: 0; }
+    .klien-isi { padding-block: 1.25rem; }
+    .klien-daftar img { height: 1.9rem; }
+  }
+</style>

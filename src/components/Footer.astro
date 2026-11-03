@@ -111,7 +111,6 @@ const kolom = en ? kolomEn : kolomId;
     </nav>
   </div>
   <div class="wrap kaki-identitas">
-    <span class="kaki-logo"><Logo tinggi="1.7rem" /><span class="sr-only">Atapura</span></span>
     <div class="kaki-legal-grup">
       {en ? (
         <p class="kaki-legal kaki-legal-pt">{bisnis.namaLegal} (being incorporated).<br />Founded by {bisnis.pendiri.join(' and ')}. Free site survey in {bisnis.area.length} cities and regencies of Greater Jakarta.</p>
@@ -135,6 +134,7 @@ const kolom = en ? kolomEn : kolomId;
     <p>© {tahun} Atapura</p>
     <p>{en ? 'Photos of houses, villas, cafés, rain, and workers are AI-generated illustrations, not Atapura projects. Icons: Simple Icons (CC0), Arcticons (CC BY-SA 4.0).' : 'Foto rumah, villa, kafe, hujan, dan tukang adalah ilustrasi buatan AI, bukan proyek Atapura. Ikon: Simple Icons (CC0), Arcticons (CC BY-SA 4.0).'}</p>
   </div>
+  <div class="wrap kaki-merek"><Logo tinggi="auto" /><span class="sr-only">Atapura</span></div>
 </footer>
 
 <style>
@@ -171,7 +171,10 @@ const kolom = en ? kolomEn : kolomId;
   /* Legal mengikuti grid kolom tautan di atasnya: PT selebar 2 kolom, area di kolom ke-3. */
   .kaki-legal-grup { display: grid; gap: 1rem 2rem; grid-template-columns: minmax(0, 1fr); }
   @media (min-width: 48rem) { .kaki-legal-grup { grid-template-columns: repeat(3, minmax(0, 1fr)); } .kaki-legal-pt { grid-column: span 2; } }
-  .kaki-logo { color: var(--color-embun); padding-top: 0.15rem; }
+  @media (min-width: 64rem) { .kaki-legal-grup { grid-column: 2; } }
+  /* Wordmark raksasa selebar konten (acuan Harper Ave.), logo resmi lewat komponen Logo. */
+  .kaki-merek { margin-top: clamp(2.5rem, 5vw, 4rem); color: var(--color-embun); }
+  .kaki-merek :global(.logo) { display: block; width: 100%; height: auto; }
   .kaki-legal { font-size: 0.875rem; line-height: 1.6; color: rgb(242 244 241 / 0.6); }
   .kaki-sosial { display: flex; flex-wrap: wrap; gap: 0.35rem; }
   .kaki-sosial a, .kaki-sosial-segera {

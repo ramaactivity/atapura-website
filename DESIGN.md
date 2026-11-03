@@ -345,6 +345,18 @@ Daftar `dt`/`dd`: nama pos Lumut di kiri, angka berat 600 di kanan, dihubungkan 
 ### Penampang lima lapis (signature)
 Diagram SVG lapisan atap + daftar tombol bernomor. Memilih satu lapis mengangkat lapis itu 22px dan memberinya garis Tunas, lapis lain meredup ke 15%. Nomor lapis: lingkaran 2.25rem bergaris Garis; aktif = Pinus dengan angka Tunas; baris aktif berlatar Putih radius 1rem.
 
+### Bento bukti (desktop)
+Grid 4 kolom × 2 baris (`garansi merek kota rekening / garansi kontrak survey rekening`), kotak Embun radius 1.25rem, garansi di Pinus. Tiap kotak membawa gambaran kecil dari isinya (bukan ikon): kertas kontrak, pill merek, daftar kota, pita meteran, ruas tahun garansi, kartu rekening. Ruas & meteran terisi sekali saat terlihat (hanya bila gerak tidak dikurangi; bawaan = sudah terisi). HP tetap 2×2 angka.
+
+### Garis denah
+`.denah` (global.css, ≥64rem): garis 1px Lumut 20% selebar layar di atas/bawah konten, garis tegak 1.5rem di luar tepi konten, tanda "+" 13px di keempat sudut. Hanya untuk bidang terang yang berisi data (Merek, Rapor). Lapisan punya bahasa gambar teknik sendiri.
+
+### Kartu contoh Hitung AKAL (hero desktop)
+Slip putih kecil bertepi chevron di kanan bawah hero, tiga contoh dari `estimasiPublik` bergantian 12 dtk (fade + blur 4px), menaut ke #hitung. Diam di contoh pertama bila gerak dikurangi.
+
+### Wordmark footer & logo klien
+Footer ditutup logo resmi selebar konten (komponen Logo, Embun). Deretan "Dipercaya oleh" (LogoKlien) hanya tampil bila `src/data/klien.ts` berisi logo asli; logo abu 60%, ≥5 logo berjalan 40 dtk.
+
 ### Tombol WA melayang
 Pill Tunas 52px di kanan bawah (16px + safe area), hanya di bawah 64rem, muncul setelah hero lewat dengan naik 24px + fade (400 sampai 500ms ease-out).
 

@@ -30,6 +30,17 @@
   .hero-sub, .hitung-bar, .hero-alt { animation: muncul 1000ms var(--ease-film) 380ms both; }
   @keyframes muncul { from { opacity: 0; transform: translateY(14px); } }
 
+  /* Kartu contoh Hitung AKAL: masuk setelah judul, lalu tiga contoh bergantian pelan (12 dtk per putaran). */
+  .hero-kartu { animation: muncul 1100ms var(--ease-film) 900ms both; }
+  .hk-item { animation: hk-putar 12s var(--ease-film) infinite both; }
+  .hk-item:nth-child(2) { animation-delay: 4s; }
+  .hk-item:nth-child(3) { animation-delay: 8s; }
+  @keyframes hk-putar {
+    0% { opacity: 0; transform: translateY(10px); filter: blur(4px); }
+    6%, 30% { opacity: 1; transform: none; filter: none; }
+    36%, 100% { opacity: 0; transform: translateY(-10px); filter: blur(4px); }
+  }
+
 
 
   /* 5. Hover yang menjawab. */
@@ -134,8 +145,10 @@
 }
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    :where(html) .hero > picture { animation-timeline: --hero; animation-range: exit 0% exit 100%; }
-    :where(html) .hero { view-timeline-name: --hero; }
+    /* Patokan = posisi scroll halaman (hero selalu paling atas), bukan view-timeline: view-timeline ikut
+       scroll-padding-top header (60–80px), sehingga foto sudah turun ±14px sebelum digulir dan celah
+       latar abu terlihat di atas foto HP. */
+    :where(html) .hero > picture { animation-timeline: scroll(root); animation-range: 0px 100vh; }
   }
 }
 
@@ -146,6 +159,6 @@
 }
 @supports (animation-timeline: view()) {
   @media (min-width: 48rem) and (prefers-reduced-motion: no-preference) {
-    :where(html) .hero-isi { animation-timeline: --hero; animation-range: exit 0% exit 100%; }
+    :where(html) .hero-isi { animation-timeline: scroll(root); animation-range: 0px 100vh; }
   }
 }

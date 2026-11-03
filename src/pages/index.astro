@@ -29,7 +29,14 @@ import cekAtap from '../../assets/gambar/magnific/garansi-cek-atap.jpg';
 import terasHujan from '../../assets/gambar/magnific/faq-teras-hujan-16x9.jpg';
 import '../styles/desktop.css';
 import { bisnis, waLink } from '../data/bisnis';
-import { bagianRentang, harga, tanggalPanjang } from '../data/harga';
+import { bagianRentang, estimasiPublik, harga, tanggalPanjang, type Merek } from '../data/harga';
+import LogoKlien from '../components/LogoKlien.astro';
+
+// Kartu contoh hitungan di hero desktop: angka dihitung dari rumus yang sama dengan kalkulator (satu sumber).
+const contohHitung = ([['Rumah satu lantai', 90, 'Maxxi'], ['Rumah dua lantai', 120, 'CTI'], ['Villa', 180, 'Javabitumen']] as const).map(([jenis, luas, merek]) => {
+  const e = estimasiPublik(luas, merek as Merek);
+  return { jenis, luas, merek, rp: bagianRentang(e.total[0], e.total[1]), hari: e.hari };
+});
 
 const panduanTerbaru = (await getCollection('panduan')).sort((a, b) => b.data.diperbarui.getTime() - a.data.diperbarui.getTime()).slice(0, 3);
 
@@ -113,21 +120,63 @@ const faqSchema = {
           <li>Kontrak tertulis</li>
         </ul>
       </div>
+      <a class="hero-kartu" href="#hitung" aria-label="Contoh hasil Hitung AKAL. Hitung biaya atap Anda">
+        <span class="hk-label">Contoh Hitung AKAL</span>
+        <span class="hk-putar">
+          {contohHitung.map((c) => (
+            <span class="hk-item">
+              <span class="hk-jenis">{c.jenis} · <span class="angka">{c.luas}</span> m² · {c.merek}</span>
+              <span class="hk-angka angka">Rp{c.rp.min}–{c.rp.max}<small> {c.rp.satuan}</small></span>
+              <span class="hk-hari">±<span class="angka">{c.hari[0]}–{c.hari[1]}</span> hari kerja, terpasang</span>
+            </span>
+          ))}
+        </span>
+        <span class="hk-aksi">Hitung atap Anda <span aria-hidden="true">→</span></span>
+      </a>
       <p class="ilustrasi">Ilustrasi, bukan proyek Atapura</p>
     </section>
 
     <section class="bukti" aria-label="Fakta Atapura">
       <div class="wrap">
+        <!-- HP: 2×2 angka (li 2–5). Desktop ≥64rem: bento, tiap kotak membawa gambaran kecil (.bv) dari isinya. -->
         <ul class="bukti-daftar">
-          <li><b>Kontrak</b><span>tertulis sebelum pembayaran</span></li>
-          <li><b>{bisnis.merek.length} merek</b><span>{bisnis.merek.join(', ')}</span></li>
-          <li><b>{bisnis.area.length} kota</b><span>dan kabupaten Jabodetabek</span></li>
-          <li><b>Gratis</b><span>survey &amp; ukur di lokasi</span></li>
-          <li><b>{bisnis.garansiPemasanganTahun} tahun</b><span>garansi pemasangan tertulis</span></li>
-          <li><b>Rekening resmi</b><span>atas nama perusahaan, bukan pribadi</span></li>
+          <li class="bk-kontrak">
+            <b>Kontrak</b><span>tertulis sebelum pembayaran</span>
+            <span class="bv bv-kontrak" aria-hidden="true"><i></i><i></i><i></i><i></i><svg viewBox="0 0 80 22"><path d="M2 16c6-10 10-12 12-6s-2 8 2 5 8-12 11-6 0 9 5 5 9-9 12-4 4 4 8 1 6-4 9-3" /></svg></span>
+          </li>
+          <li class="bk-merek">
+            <b>{bisnis.merek.length} merek</b><span class="bk-hp">{bisnis.merek.join(', ')}</span><span class="bk-desktop">yang kami pasang, saran tanpa memihak</span>
+            <span class="bv bv-merek" aria-hidden="true">{bisnis.merek.map((m) => <em>{m}</em>)}</span>
+          </li>
+          <li class="bk-kota">
+            <b>{bisnis.area.length} kota</b><span>dan kabupaten Jabodetabek</span>
+            <span class="bv bv-kota" aria-hidden="true">{bisnis.area.map((a) => <em>{a}</em>)}</span>
+          </li>
+          <li class="bk-survey">
+            <b>Gratis</b><span>survey &amp; ukur di lokasi</span>
+            <span class="bv bv-meteran" aria-hidden="true"><i></i></span>
+          </li>
+          <li class="bk-garansi">
+            <b>{bisnis.garansiPemasanganTahun} tahun</b><span>garansi pemasangan tertulis<span class="bk-tambah">, terpisah dari garansi pabrik</span></span>
+            <span class="bv bv-tahun" aria-hidden="true">
+              {Array.from({ length: bisnis.garansiPemasanganTahun ?? 0 }, (_, i) => <i><em>Th {i + 1}</em></i>)}
+              <small>Dihitung sejak serah terima</small>
+            </span>
+          </li>
+          <li class="bk-rekening">
+            <b>Rekening resmi</b><span>atas nama perusahaan, bukan pribadi</span>
+            <span class="bv bv-rekening" aria-hidden="true">
+              <small>Rekening tujuan</small>
+              <strong>{bisnis.namaLegal}</strong>
+              <small>Nomor tertulis di kontrak &amp; invoice</small>
+            </span>
+            <span class="bv bv-tolak" aria-hidden="true"><s>Rekening pribadi</s><small>tidak dipakai untuk pembayaran apa pun</small></span>
+          </li>
         </ul>
       </div>
     </section>
+
+    <LogoKlien />
 
     <section id="layanan" class="sek c-embun" aria-labelledby="judul-layanan">
       <div class="wrap">
@@ -298,7 +347,7 @@ const faqSchema = {
     </section>
 
     <section id="merek" class="sek terang c-putih" aria-labelledby="judul-merek">
-      <div class="wrap">
+      <div class="wrap denah">
         <div class="merek-kepala">
           <h2 id="judul-merek" class="judul-besar">Bingung pilih merek? <span class="miring">Mulai dari kebutuhan Anda.</span></h2>
           <p class="lead">Ketiga merek yang kami pasang sama-sama atap bitumen yang baik. Bedanya ada di harga, asal produksi, dan lama garansi pabrik.</p>
@@ -399,7 +448,7 @@ const faqSchema = {
     </section>
 
     <section id="rapor" class="sek terang c-putih" aria-labelledby="judul-rapor">
-      <div class="wrap rapor-blok">
+      <div class="wrap rapor-blok denah">
         <div class="rapor-teks">
           <h2 id="judul-rapor" class="judul-besar">Bukti yang bisa Anda <span class="miring">simpan.</span></h2>
           <p class="lead">
@@ -550,6 +599,18 @@ const faqSchema = {
     document.querySelectorAll('.bukti-daftar b').forEach((b) => io.observe(b));
   }
 
+  // Bento bukti desktop: ruas garansi & pita meteran terisi sekali saat kotaknya terlihat.
+  {
+    const ul = document.querySelector('.bukti-daftar');
+    if (ul && matchMedia('(min-width: 64rem) and (prefers-reduced-motion: no-preference)').matches) {
+      ul.classList.add('bukti-gerak');
+      const io = new IntersectionObserver((es) => es.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add('tampak'); io.unobserve(e.target); }
+      }), { threshold: 0.5 });
+      ul.querySelectorAll('.bk-garansi, .bk-survey').forEach((li) => io.observe(li));
+    }
+  }
+
   // Kalimat pernyataan menebal kata demi kata mengikuti gulir (referensi Framer "Perform").
   for (const p of document.querySelectorAll<HTMLElement>('[data-ungkap]')) {
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) break;
@@ -625,10 +686,106 @@ const faqSchema = {
   .bukti-daftar li:nth-child(-n+2) { border-top: 0; }
   .bukti-daftar b { display: block; font-weight: 500; font-size: 1.6rem; letter-spacing: -0.04em; line-height: 1.05; }
   .bukti-daftar span { font-size: 0.85rem; color: var(--color-lumut); line-height: 1.4; display: block; margin-top: 0.2rem; }
+  .bukti-daftar .bk-desktop, .bukti-daftar .bv, .bukti-daftar .bk-tambah { display: none; }
+  /* Desktop: bento (acuan Lockeroom) — tiap kotak membawa gambaran kecil dari isinya, bukan ikon. */
   @media (min-width: 64rem) {
-    .bukti-daftar { grid-template-columns: repeat(6, minmax(0, 1fr)); }
-    .bukti-daftar li { border-top: 0; border-left: 1px solid var(--color-garis); padding: 1.8rem 1.25rem; }
-    .bukti-daftar li:first-child { border-left: 0; padding-left: 0; }
+    .bukti { padding-block: clamp(1.5rem, 3vw, 2.5rem); border-bottom: 0; }
+    .bukti-daftar {
+      gap: 12px; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.15fr);
+      grid-template-areas: 'garansi merek kota rekening' 'garansi kontrak survey rekening';
+    }
+    .bukti-daftar li { display: flex; flex-direction: column; border: 0; border-radius: 1.25rem; padding: 1.5rem; background: var(--color-embun); min-height: 12.5rem; }
+    .bukti-daftar b { font-size: 2rem; }
+    .bukti-daftar .bk-hp { display: none; }
+    .bukti-daftar .bk-desktop { display: block; }
+    .bukti-daftar .bk-tambah { display: inline; }
+    .bukti-daftar .bv { display: flex; margin-top: auto; padding-top: 1.25rem; }
+    .bk-kontrak { grid-area: kontrak; } .bk-merek { grid-area: merek; } .bk-kota { grid-area: kota; }
+    .bk-survey { grid-area: survey; } .bk-rekening { grid-area: rekening; }
+    .bukti-daftar .bk-garansi { grid-area: garansi; background: var(--color-pinus); color: var(--color-embun); }
+    .bk-garansi b { font-size: clamp(4rem, 2rem + 3vw, 5.5rem); line-height: 0.95; letter-spacing: -0.05em; }
+    .bukti-daftar .bk-garansi > span:not(.bv) { color: var(--embun-redup); max-width: 22ch; }
+
+    /* Kontrak: secarik kertas bertanda tangan */
+    .bukti-daftar .bv-kontrak {
+      flex-direction: column; gap: 6px; padding: 0.85rem 1rem; margin-top: auto; background: var(--color-putih);
+      border-radius: 0.5rem; box-shadow: 0 12px 24px -16px rgb(16 35 30 / 0.4); transform: rotate(-1.2deg);
+    }
+    .bv-kontrak i { display: block; height: 4px; border-radius: 2px; background: var(--color-garis); }
+    .bv-kontrak i:nth-child(2) { width: 72%; } .bv-kontrak i:nth-child(3) { width: 86%; } .bv-kontrak i:nth-child(4) { width: 44%; }
+    .bv-kontrak svg { width: 76px; height: 22px; margin-top: 2px; fill: none; stroke: var(--color-pinus); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* Merek: tiga nama sebagai pill */
+    .bukti-daftar .bv-merek { flex-wrap: wrap; gap: 6px; }
+    .bv-merek em { font-style: normal; font-size: 0.9rem; font-weight: 500; padding: 0.35rem 0.85rem; border-radius: 999px; background: var(--color-putih); box-shadow: inset 0 0 0 1px var(--color-garis); }
+
+    /* Kota: semua nama, dipisah titik tengah */
+    .bukti-daftar .bv-kota { display: block; font-size: 0.8rem; line-height: 1.55; color: var(--color-lumut); }
+    .bv-kota em { font-style: normal; }
+    .bv-kota em:not(:last-child)::after { content: ' · '; opacity: 0.6; }
+
+    /* Survey: pita meteran */
+    .bukti-daftar .bv-meteran {
+      position: relative; height: 36px; border-radius: 6px; background-color: var(--color-putih); box-shadow: inset 0 0 0 1px var(--color-garis);
+      background-image:
+        repeating-linear-gradient(90deg, var(--color-lumut) 0 1px, transparent 1px 40px),
+        repeating-linear-gradient(90deg, var(--color-garis) 0 1px, transparent 1px 8px);
+      background-size: 100% 55%, 100% 30%; background-repeat: no-repeat; background-position: 8px 0, 8px 0;
+    }
+    .bv-meteran i { position: absolute; left: 8px; bottom: 6px; height: 3px; width: 64%; border-radius: 2px; background: var(--color-pinus); transform-origin: left; transition: transform 1200ms var(--ease-out); }
+
+    /* Garansi: lima tahun sebagai lima ruas */
+    .bukti-daftar .bv-tahun { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; }
+    .bv-tahun i { position: relative; display: block; height: 3.25rem; border-radius: 0.5rem; background: rgb(242 244 241 / 0.07); overflow: hidden; }
+    .bv-tahun i::before { content: ''; position: absolute; inset: 0; background: rgb(242 244 241 / 0.16); transform-origin: bottom; transition: transform 700ms var(--ease-out); }
+    .bv-tahun i:nth-child(2)::before { transition-delay: 120ms; } .bv-tahun i:nth-child(3)::before { transition-delay: 240ms; }
+    .bv-tahun i:nth-child(4)::before { transition-delay: 360ms; } .bv-tahun i:nth-child(5)::before { transition-delay: 480ms; }
+    .bv-tahun em { position: absolute; left: 0.55rem; bottom: 0.45rem; font-style: normal; font-size: 0.75rem; color: var(--embun-redup); }
+    .bv-tahun small { grid-column: 1 / -1; margin-top: 0.5rem; font-size: 0.8rem; color: rgb(242 244 241 / 0.6); }
+
+    /* Rekening: kartu transfer */
+    .bukti-daftar .bv-rekening {
+      flex-direction: column; gap: 0.2rem; padding: 1rem 1.1rem; border-radius: 0.75rem; background: var(--color-putih);
+      box-shadow: 0 14px 30px -18px rgb(16 35 30 / 0.45);
+    }
+    .bv-rekening small { font-size: 0.75rem; color: var(--color-lumut); }
+    .bukti-daftar .bv-tolak { flex-direction: column; gap: 0.2rem; margin-top: 0.6rem; padding: 0.9rem 1.1rem 0; }
+    .bv-tolak s { font-size: 0.95rem; color: var(--color-lumut); text-decoration-thickness: 1.5px; }
+    .bv-tolak small { font-size: 0.75rem; color: var(--color-lumut); }
+    .bv-rekening strong { font-size: 1.05rem; font-weight: 600; letter-spacing: -0.015em; margin-bottom: 0.35rem; }
+
+    /* Gerak (dipasang skrip hanya bila gerak tidak dikurangi): ruas & meteran terisi saat kotak terlihat. */
+    .bukti-gerak li:not(.tampak) .bv-tahun i::before { transform: scaleY(0); }
+    .bukti-gerak li:not(.tampak) .bv-meteran i { transform: scaleX(0); }
+  }
+
+  /* Kartu contoh Hitung AKAL di hero desktop (acuan Lupitor: kartu produk di atas foto). */
+  .hero-kartu { display: none; }
+  @media (min-width: 64rem) {
+    .hero-kartu {
+      position: absolute; right: var(--gutter); bottom: clamp(3rem, 9vh, 6rem); z-index: 2; isolation: isolate;
+      display: grid; gap: 0.3rem; width: 19.5rem; padding: 2.2rem 1.4rem 1.2rem; color: var(--color-tinta); text-decoration: none;
+      filter: drop-shadow(0 26px 30px rgb(0 0 0 / 0.32)) drop-shadow(0 6px 10px rgb(0 0 0 / 0.16));
+    }
+    .hero-kartu::before {
+      content: ''; position: absolute; inset: 0; z-index: -1; background: var(--color-putih); border-radius: 0 0 1.25rem 1.25rem;
+      clip-path: polygon(0 18px, 50% 0, 100% 18px, 100% 100%, 0 100%);
+    }
+    .hk-label { font-size: 0.8rem; font-weight: 500; color: var(--color-lumut); }
+    .hk-putar { display: grid; }
+    .hk-item { grid-area: 1 / 1; display: grid; gap: 0.15rem; }
+    .hk-item + .hk-item { opacity: 0; }
+    .hk-jenis { font-size: 0.95rem; font-weight: 500; }
+    .hk-angka { font-size: 2.1rem; font-weight: 500; letter-spacing: -0.035em; line-height: 1.1; }
+    .hk-angka small { font-size: 1rem; color: var(--color-lumut); letter-spacing: 0; }
+    .hk-hari { font-size: 0.85rem; color: var(--color-lumut); }
+    .hk-aksi {
+      display: flex; justify-content: space-between; margin-top: 0.8rem; padding-top: 0.8rem;
+      border-top: 1px dotted var(--color-garis); font-size: 0.95rem; font-weight: 500; color: var(--color-pinus);
+    }
+    .hk-aksi span { transition: transform 300ms var(--ease-out); }
+    .hero-kartu:hover .hk-aksi span { transform: translateX(4px); }
+    .hero-kartu:focus-visible { outline: 2px solid var(--color-tunas); outline-offset: 4px; }
   }
 
   /* Layanan: bento campur foto, angka, ajakan */
