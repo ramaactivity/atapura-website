@@ -93,7 +93,7 @@ export const bisnis = {
     'Kota Bekasi',
     'Kabupaten Bekasi',
   ],
-  // Tegola & Victory ditambahkan Rama 4 Nov 2026; harga menunggu Bang Yusuf (belum ada di harga.ts).
+  // Tegola & Victory ditambahkan Rama 4 Nov 2026; harga Victory dari Rama 5 Nov (harga.ts), Tegola menunggu Bang Yusuf.
   merek: ['Maxxi', 'CTI', 'Javabitumen', 'Tegola', 'Victory'],
   // Izin tampil publik dari Rama, 2 Nov 2026.
   // Hanya Rama yang tercantum publik; partner pemilik sengaja tidak ditulis (hindari konflik dengan bekas tempat kerjanya). DECISIONS 027.

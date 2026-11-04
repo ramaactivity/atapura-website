@@ -21,3 +21,6 @@ Total 4 Nov: 520 kredit. Saldo setelahnya: ±17.841.
 | 5 Nov 2026 | Edit penerapan ×6 jadi atap rectangular | Nano Banana 2.1, 2K, 3:2 | 6 × 65 | ✅ semua dipakai (gazebo, kafe, Maxxiroof, Promaxxi, villa Tegola, lereng Tegola) | Foto lama + potongan katalog sebagai acuan |
 
 Total 5 Nov: 890 kredit. Saldo setelahnya: ±16.951. Contoh warna (60) dibuat dari foto seri lewat skrip, 0 kredit.
+| 5 Nov 2026 | Victory: foto seri Standar & Two Tone + penerapan rumah 2 lantai & guesthouse | Nano Banana 2.1 (seri 1K 16:9, penerapan 2K 3:2) | 2 × 50 + 2 × 65 | ✅ semua dipakai | Potongan katalog sebagai acuan warna/bentuk |
+
+Total 5 Nov setelah Victory: 1.120 kredit. Saldo setelahnya: ±16.721.

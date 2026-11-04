@@ -10,6 +10,8 @@ import cti2 from '../../assets/gambar/magnific/penerapan-cti-ct3-kafe-3x2.jpg';
 import maxxi2 from '../../assets/gambar/magnific/penerapan-maxxi-maxxiroof-rumah-3x2.jpg';
 import tegola1 from '../../assets/gambar/magnific/penerapan-tegola-rectangular-villa-3x2.jpg';
 import tegola2 from '../../assets/gambar/magnific/penerapan-tegola-rectangular-lereng-3x2.jpg';
+import victory1 from '../../assets/gambar/magnific/penerapan-victory-standar-rumah-3x2.jpg';
+import victory2 from '../../assets/gambar/magnific/penerapan-victory-two-tone-guesthouse-3x2.jpg';
 
 // Foto close-up tiap seri (Magnific, bentuk potongan dicocokkan ke katalog resmi). Nama file = kunci `foto`.
 const fotoSeri = import.meta.glob<ImageMetadata>('../../assets/gambar/seri/*.jpg', { eager: true, import: 'default' });
@@ -290,20 +292,48 @@ export const produk: Produk[] = [
   {
     slug: 'victory',
     nama: 'Victory',
-    judul: 'Atap bitumen Victory',
-    ringkas: 'Genteng aspal Victory. Spesifikasi, warna, dan garansi menunggu dokumen resmi dari pemasok.',
+    harga: 'Victory',
+    judul: 'Atap bitumen Victory: Standar dan Two Tone',
+    ringkas: 'Genteng aspal 3-tab Victory dalam dua seri: Standar satu warna dan Two Tone dua nada. Garansi pabrik menunggu dokumen resmi.',
     tentang: [
-      'Victory baru masuk daftar merek yang kami pasang. Kami belum menemukan dokumen resmi pabrikannya, jadi spesifikasi, daftar warna, dan garansinya belum kami tulis di sini.',
-      'Harga dan sampel fisik bisa Anda tanyakan langsung lewat WhatsApp.',
+      'Victory adalah genteng aspal model 3-tab. Satu bundel berisi 21 lembar untuk 3 m² atap.',
+      'Seri Standar berwarna rata, seri Two Tone memadukan dua nada warna di tiap lidah sehingga atap tampak berbayang. Spesifikasi teknis dan syarat garansi pabrik kami tulis setelah dokumen resmi dari pemasok masuk.',
     ],
     fakta: [
-      { label: 'Terpasang, Jabodetabek', nilai: 'Tanya admin' },
-      { label: 'Spesifikasi & garansi', nilai: 'Menunggu dokumen resmi' },
+      { label: 'Jenis', nilai: '3-tab, seri Standar dan Two Tone' },
+      { label: 'Isi per bundel', nilai: '21 lembar (3 m²)' },
+      { label: 'Terpasang, Jabodetabek', nilai: hargaTerpasang('Victory') },
+      { label: 'Garansi pabrik', nilai: 'Menunggu dokumen resmi' },
     ],
-    seri: [],
-    warna: [],
+    seri: [
+      {
+        nama: 'Standar',
+        foto: seriFoto('victory-standar'),
+        ringkas: 'Model 3-tab dengan satu warna rata. Tampilan rapi dan bersih untuk rumah tinggal.',
+        spek: [
+          { label: 'Isi per bundel', nilai: '21 lembar (3 m²)' },
+          { label: 'Genteng saja', nilai: 'Rp220 ribu per m²' },
+        ],
+      },
+      {
+        nama: 'Two Tone',
+        foto: seriFoto('victory-two-tone'),
+        ringkas: 'Model 3-tab dengan perpaduan dua nada warna di tiap lidah, sehingga atap tampak lebih berdimensi.',
+        spek: [
+          { label: 'Isi per bundel', nilai: '21 lembar (3 m²)' },
+          { label: 'Genteng saja', nilai: 'Rp260 ribu per m²' },
+        ],
+      },
+    ],
+    warna: [
+      { tekstur: 'victory-standar', judul: 'Standar', daftar: [{ nama: 'Cedar', hex: '#A8622E' }, { nama: 'Black', hex: '#2A2A2C' }, { nama: 'Dark Brown', hex: '#3A2E2A' }, { nama: 'Green', hex: '#2E5A3A' }, { nama: 'Grey', hex: '#555A60' }, { nama: 'Red', hex: '#B0332A' }] },
+      { tekstur: 'victory-two-tone', judul: 'Two Tone', catatan: 'Ketersediaan warna kami pastikan ke pemasok saat survey.', daftar: [{ nama: 'Garnet Red', hex: '#8E2A24' }, { nama: 'Sapphire Blue', hex: '#2F7E9A' }, { nama: 'Shadow Black', hex: '#2E3034' }, { nama: 'Sienna Brown', hex: '#8A5530' }, { nama: 'Hickory Brown', hex: '#4E3A30' }, { nama: 'Antique Grey', hex: '#4E5E5A' }] },
+    ],
     aksesori: [],
-    penerapan: [],
+    penerapan: [
+      { gambar: victory1, alt: 'Ilustrasi rumah dua lantai di perumahan beratap pelana genteng aspal 3-tab abu satu warna', keterangan: 'Seri Standar, abu, pada rumah dua lantai di perumahan' },
+      { gambar: victory2, alt: 'Ilustrasi guesthouse di dataran tinggi beratap limas genteng aspal 3-tab dua nada coklat', keterangan: 'Seri Two Tone, coklat, pada guesthouse di dataran tinggi' },
+    ],
     garansi: 'Syarat garansi pabrik menunggu dokumen resmi. Pemasangan Atapura dilindungi garansi pemasangan tertulis 5 tahun.',
     terverifikasi: false,
     sumber: [],

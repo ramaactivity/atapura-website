@@ -3,6 +3,8 @@
 //   genteng per m² (genteng saja): CTI 155 rb, Maxxi 145 rb, Javabitumen 145 rb.
 //   estimasi kasar terpasang per m²: CTI 400–450 rb, Maxxi & Javabitumen 380–430 rb (spek standar).
 //   rangka baja ringan 220 rb/m² (kanal C 0,75, reng 0,40).
+// Victory (Rama, 5 Nov 2026): genteng Standar 220 rb, Two Tone 260 rb per m²; terpasang 500–550 rb per m²
+//   (spek pendukung sama dengan merek lain). Kalkulator memakai harga Standar; Two Tone ditulis di halaman produk.
 // Material pendukung = harga satuan toko dokteratap.co.id. Jasa dikalibrasi supaya spek standar
 // (multiplek, underlayer, flashing U) jatuh di rentang terpasang Bang Yusuf — dijaga harga.test.ts.
 // Kebutuhan paku & skrup per m² dari contoh Bang Yusuf (100 m² → skrup 1.200, paku 2.000).
@@ -17,6 +19,7 @@ export const harga = {
     Javabitumen: { kelas: 'Ekonomis', genteng: 145_000, terpasang: [380_000, 430_000], m2PerBundel: 3.0, garansiPabrik: 'Menunggu dokumen resmi' },
     CTI: { kelas: 'Menengah', genteng: 155_000, terpasang: [400_000, 450_000], m2PerBundel: 3.0, garansiPabrik: '30 tahun (produk)' },
     Maxxi: { kelas: 'Ekonomis', genteng: 145_000, terpasang: [380_000, 430_000], m2PerBundel: 3.1, garansiPabrik: '25 tahun (material)' },
+    Victory: { kelas: 'Atas', genteng: 220_000, terpasang: [500_000, 550_000], m2PerBundel: 3.0, garansiPabrik: 'Menunggu dokumen resmi' },
   },
   alas: {
     'Multiplek 12 mm': { harga: 179_500, m2: 1.22 * 2.44, satuan: 'lembar' },

@@ -29,6 +29,8 @@ const pub = estimasiPublik(100, 'Maxxi');
 assert.deepEqual(pub.perM2, [380_000, 430_000]);
 assert.deepEqual(pub.total, [38_000_000, 43_000_000]);
 assert.deepEqual(estimasiPublik(100, 'CTI').hari, e.hari, 'durasi publik = internal');
+// Victory: angka terpasang dari Rama (5 Nov), tidak dikalibrasi ke rumus internal.
+assert.deepEqual(estimasiPublik(100, 'Victory').perM2, [500_000, 550_000]);
 assert.equal(rupiahRingkas(31_250_000), 'Rp31,3 jt');
 assert.equal(rupiahRingkas(950_000), 'Rp950 rb');
 assert.equal(rupiahRingkas(47_600_000, 0), 'Rp48 jt');

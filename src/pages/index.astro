@@ -50,7 +50,7 @@ const tanya = [
   },
   {
     q: 'Berapa biaya pasang atap bitumen per meter persegi?',
-    a: `Di Jabodetabek, estimasi terpasang per m² (genteng, alas, underlayment, aksesoris, dan jasa pasang): CTI Rp${harga.merek.CTI.terpasang.map((n) => n / 1000).join('–')} ribu, Maxxi dan Javabitumen Rp${harga.merek.Maxxi.terpasang.map((n) => n / 1000).join('–')} ribu. Harga genteng saja: CTI Rp${harga.merek.CTI.genteng / 1000} ribu, Maxxi dan Javabitumen Rp${harga.merek.Maxxi.genteng / 1000} ribu per m². Rangka baja ringan baru, bila perlu, Rp${harga.rangka.harga / 1000} ribu per m² terpasang (material dan jasa). Harga final kami tulis setelah survey gratis dan opname luas.`,
+    a: `Di Jabodetabek, estimasi terpasang per m² (genteng, alas, underlayment, aksesoris, dan jasa pasang): CTI Rp${harga.merek.CTI.terpasang.map((n) => n / 1000).join('–')} ribu, Maxxi dan Javabitumen Rp${harga.merek.Maxxi.terpasang.map((n) => n / 1000).join('–')} ribu, Victory Rp${harga.merek.Victory.terpasang.map((n) => n / 1000).join('–')} ribu. Harga genteng saja: CTI Rp${harga.merek.CTI.genteng / 1000} ribu, Maxxi dan Javabitumen Rp${harga.merek.Maxxi.genteng / 1000} ribu, Victory Rp${harga.merek.Victory.genteng / 1000} ribu (Standar) per m². Rangka baja ringan baru, bila perlu, Rp${harga.rangka.harga / 1000} ribu per m² terpasang (material dan jasa). Harga final kami tulis setelah survey gratis dan opname luas.`,
   },
   {
     q: 'Apakah atap bitumen cocok untuk rumah saya?',
@@ -82,9 +82,9 @@ const merekTabel = [
   { nama: 'Maxxi', kelas: harga.merek.Maxxi.kelas, pasti: 'Model 3-tab, 1000 × 333 mm, tebal 2,66 mm, 3,10 m² per bundel', r: harga.merek.Maxxi.terpasang, g: harga.merek.Maxxi.genteng, garansi: harga.merek.Maxxi.garansiPabrik },
   { nama: 'CTI', kelas: harga.merek.CTI.kelas, pasti: 'Seri CT3 (1000 × 333 mm), CT5, dan CT6 (1000 × 317,5 mm), 3,00 m² per bundel', r: harga.merek.CTI.terpasang, g: harga.merek.CTI.genteng, garansi: harga.merek.CTI.garansiPabrik },
   { nama: 'Javabitumen', kelas: harga.merek.Javabitumen.kelas, pasti: 'Spesifikasi menunggu brosur resmi dari produsen', r: harga.merek.Javabitumen.terpasang, g: harga.merek.Javabitumen.genteng, garansi: harga.merek.Javabitumen.garansiPabrik },
-  // Harga Tegola & Victory belum ada (menunggu Bang Yusuf): tampil "Tanya admin", tidak dihitung kalkulator.
+  // Harga Tegola belum ada (menunggu Bang Yusuf): tampil "Tanya admin", tidak dihitung kalkulator.
   { nama: 'Tegola', kelas: 'Belum ditetapkan', pasti: 'Pabrikan Tegola Canadese, Italia. Seri satu lapis Premium (1000 × 340 mm, ±10,7 kg/m²) dan dua lapis Master (±12,3 kg/m²); paku biasa mulai 14° (Master 19°)', r: null, g: null, garansi: 'Garansi terbatas terdaftar hingga 40 tahun, bertahap; syarat pasang sesuai manual pabrik' },
-  { nama: 'Victory', kelas: 'Belum ditetapkan', pasti: 'Spesifikasi menunggu dokumen resmi dari pemasok', r: null, g: null, garansi: 'Menunggu dokumen resmi' },
+  { nama: 'Victory', kelas: harga.merek.Victory.kelas, pasti: 'Model 3-tab, seri Standar dan Two Tone, 21 lembar (3 m²) per bundel', r: harga.merek.Victory.terpasang, g: harga.merek.Victory.genteng, garansi: harga.merek.Victory.garansiPabrik },
 ] as { nama: string; kelas: string; pasti: string; r: readonly [number, number] | null; g: number | null; garansi: string }[];
 
 const faqSchema = {
