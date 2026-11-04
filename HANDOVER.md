@@ -20,7 +20,7 @@ Sumber: docs/riset/kompetitor-website-2026-11-02.md, docs/riset/audit-seo-geo-20
 Bisa dibangun tanpa data baru:
 1. Bagian "Pilih warna" (swatch dari foto sampel asli — tekstur Magnific hanya ilustrasi, wajib label "cek sampel fisik saat survey").
 2. Tabel termin bayar + "Cara klaim garansi" (isi persentase DP/termin menunggu Rama).
-3. "Cek Atap Gratis" setelah musim hujan + layanan perawatan sebagai kartu/bagian sendiri.
+3. ~~"Cek Atap Gratis"~~ dibatalkan Rama 4 Nov 2026: perawatan lewat laporan WhatsApp, tim hanya datang bila ada kebocoran/kerusakan (DECISIONS 035).
 4. Halaman /harga-atap-bitumen, /atap-bitumen, /tentang (hanya Ramadan Saputra yang disebut — DECISIONS 027), /cara-kerja, /garansi (multi-halaman = SEO).
 Butuh data/aksi Rama: harga resmi, garansi (tahun), termin DP, foto proyek asli + ulasan Google, brosur/TDS (pusat unduhan), spesifikasi teknis per merek (kemiringan min., berat, angin), domain sendiri, Google Business Profile, Search Console, telepon resmi, logo (a2).
 

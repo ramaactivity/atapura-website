@@ -65,4 +65,4 @@ Pabrikan CTI menyebut perawatannya cukup dibersihkan atau disapu dari debu dan d
 
 ## Garansi pemasangan Atapura
 
-Selain garansi pabrik, Atapura memberi garansi pemasangan tertulis 5 tahun untuk kebocoran dan kesalahan pasang. Kalau muncul rembesan, baca dulu [penyebab atap bocor](/panduan/atap-bocor-penyebab-dan-cara-mengatasi), lalu hubungi kami untuk dicek. Masih menimbang? Baca [kelebihan dan kekurangan atap bitumen](/panduan/kelebihan-dan-kekurangan-atap-bitumen).
+Selain garansi pabrik, Atapura memberi garansi pemasangan tertulis 5 tahun untuk kebocoran dan kesalahan pasang. Kalau muncul rembesan, baca dulu [penyebab atap bocor](/panduan/atap-bocor-penyebab-dan-cara-mengatasi), lalu kirim foto atau videonya lewat WhatsApp. Perawatan rutin kami layani dari laporan itu; tim datang ke lokasi bila ada kebocoran atau kerusakan. Masih menimbang? Baca [kelebihan dan kekurangan atap bitumen](/panduan/kelebihan-dan-kekurangan-atap-bitumen).

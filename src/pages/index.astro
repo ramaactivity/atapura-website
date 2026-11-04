@@ -25,7 +25,6 @@ import villaHp from '../../assets/gambar/magnific/segmen-villa-4x5.jpg';
 import kafe from '../../assets/gambar/magnific/segmen-kafe-3x2.jpg';
 import kafeHp from '../../assets/gambar/magnific/segmen-kafe-4x5.jpg';
 import drone from '../../assets/gambar/magnific/cara-kerja-drone-16x9.jpg';
-import cekAtap from '../../assets/gambar/magnific/garansi-cek-atap.jpg';
 import terasHujan from '../../assets/gambar/magnific/faq-teras-hujan-16x9.jpg';
 import '../styles/desktop.css';
 import { bisnis, waLink } from '../data/bisnis';
@@ -322,14 +321,6 @@ const faqSchema = {
           </div>
         </div>
         <KlaimGaransi />
-        <aside class="cek-atap">
-          <div class="cek-foto"><Foto desktop={cekAtap} alt="Ilustrasi teknisi memeriksa talang dan flashing setelah hujan" sizes="(min-width: 64rem) 30vw, 100vw" /></div>
-          <div class="cek-teks">
-            <h3 class="cek-judul">Cek Atap Gratis</h3>
-            <p>Setelah musim hujan pertama, tim kami datang memeriksa flashing, talang, dan nok tanpa biaya. Atap yang baik dirawat sebelum bermasalah.</p>
-            <a class="pill pill-gelap" href={waLink('Halo Atapura, saya mau tanya soal garansi dan Cek Atap Gratis.')} target="_blank" rel="noopener" data-wa="garansi">Tanya soal garansi</a>
-          </div>
-        </aside>
       </div>
     </section>
 
@@ -979,18 +970,9 @@ const faqSchema = {
   .garansi-daftar li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 0.6rem; height: 0.35rem; border-left: 1.5px solid var(--color-tunas); border-bottom: 1.5px solid var(--color-tunas); transform: rotate(-45deg); }
   .garansi-tidak li { color: var(--embun-redup); }
   .garansi-tidak li::before { width: 0.6rem; height: 0; border-left: 0; border-bottom: 1.5px solid rgb(242 244 241 / 0.45); transform: none; top: 0.7em; }
-  .cek-atap {
     margin-top: clamp(2.5rem, 5vw, 4rem); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem;
     padding: clamp(1.5rem, 3vw, 2.25rem); border-radius: 16px; border: 1px solid rgb(242 244 241 / 0.25); background: rgb(10 16 13 / 0.35);
   }
-  .kabut .cek-atap .pill-gelap { background: var(--color-tunas); color: var(--color-pinus); }
-  .cek-atap p { color: var(--embun-redup); max-width: 60ch; margin-top: 0.3rem; }
-  .cek-atap { display: grid !important; grid-template-columns: minmax(0, 1fr); gap: 1.5rem !important; align-items: center; }
-  @media (min-width: 64rem) { .cek-atap { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); } }
-  .cek-foto { border-radius: 12px; overflow: hidden; aspect-ratio: 4 / 3; }
-  .cek-foto :global(img) { width: 100%; height: 100%; object-fit: cover; }
-  .cek-teks { display: grid; gap: 0.6rem; justify-items: start; }
-  .cek-judul { font-size: 1.4rem; font-weight: 500; letter-spacing: -0.03em; }
 
   /* Penutup + panduan: satu latar gelap, foto memudar ke latar dan menyambung dua bagian (pola "Are we a match?"). */
   .penutup { position: relative; isolation: isolate; overflow: clip; background: #0c1a16; color: var(--color-embun); }
@@ -1112,7 +1094,6 @@ const faqSchema = {
     .gb-judul { font-size: var(--hp-t4); margin-bottom: 0.9rem; }
     .termin-persen { font-size: var(--hp-angka); }
     .garansi-angka { font-size: var(--hp-angka-besar); }
-    .cek-judul { font-size: var(--hp-t3); }
     .lembar-judul { font-size: 1rem; }
     .lembar-sudut { display: none; }
     .lembar { margin-top: 2rem; }

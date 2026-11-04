@@ -35,7 +35,7 @@ export const bisnis = {
     ],
     klaim: [
       { nama: 'Kirim foto atau video', isi: 'Lewat WhatsApp, sertakan nomor kontrak atau nama pemilik.' },
-      { nama: 'Pengecekan', isi: 'Tim datang memeriksa paling lambat 3 hari kerja.' },
+      { nama: 'Pengecekan', isi: 'Kami nilai dari foto atau video. Bila ada kebocoran atau kerusakan, tim datang ke lokasi paling lambat 3 hari kerja.' },
       { nama: 'Perbaikan', isi: 'Bila tercakup garansi, diperbaiki tanpa biaya dan dijadwalkan tertulis.' },
       { nama: 'Laporan', isi: 'Foto sebelum dan sesudah dikirim, dicatat di Rapor Proyek.' },
     ],
