@@ -87,7 +87,11 @@ export const produk: Produk[] = [
         nama: 'CT5',
         bentuk: 'zigzag',
         ringkas: 'Potongan tidak beraturan yang membuat atap tampak berlapis dan bertekstur setelah terpasang.',
-        spek: [{ label: 'Bahan', nilai: 'Aspal modifikasi SBS, serat kaca' }],
+        spek: [
+          { label: 'Ukuran per lembar', nilai: '1.000 × 317,5 mm' },
+          { label: 'Isi per bundel', nilai: '22 lembar' },
+          { label: 'Bahan', nilai: 'Aspal modifikasi SBS, serat kaca' },
+        ],
       },
       {
         nama: 'CT6',
@@ -100,7 +104,11 @@ export const produk: Produk[] = [
         ],
       },
     ],
-    warna: [],
+    warna: [
+      { judul: 'CT3 · warna solid', daftar: [{ nama: 'Black', kode: 'BK', hex: '#1E1F21' }, { nama: 'Dark Grey', kode: 'DG', hex: '#6B6D70' }, { nama: 'Dark Brown', kode: 'DB', hex: '#2E2A2B' }, { nama: 'Red', kode: 'RD', hex: '#9B2F2E' }, { nama: 'Green', kode: 'GN', hex: '#2F5A3C' }, { nama: 'Gold', kode: 'GD', hex: '#9C7347' }] },
+      { judul: 'CT3 · warna gradasi', daftar: [{ nama: 'Midnight Black', kode: 'MIB', hex: '#2A2B2D' }, { nama: 'Charcoal Grey', kode: 'CHG', hex: '#45474A' }, { nama: 'Coffee Brown', kode: 'COB', hex: '#5A5552' }, { nama: 'Sunset Red', kode: 'SUR', hex: '#8E3A3E' }, { nama: 'Forest Green', kode: 'FOG', hex: '#2F4A33' }, { nama: 'Tuscany Gold', kode: 'TUG', hex: '#6E5A45' }] },
+      { judul: 'CT5 dan CT6', catatan: 'Warna khusus (custom) bisa dipesan; tanyakan ketersediaannya lewat WhatsApp.', daftar: [{ nama: 'Black', kode: 'BK', hex: '#1E1F21' }, { nama: 'Dark Grey', kode: 'DG', hex: '#6B6D70' }, { nama: 'Dark Brown', kode: 'DB', hex: '#2E2A2B' }, { nama: 'Red', kode: 'RD', hex: '#9B2F2E' }, { nama: 'Green', kode: 'GN', hex: '#2F5A3C' }, { nama: 'Gold', kode: 'GD', hex: '#9C7347' }] },
+    ],
     aksesori: [
       { nama: 'UnderMaster', isi: 'Lapisan bawah (underlayer) gulungan 1 × 10 m yang dipasang di atas papan alas, sebelum genteng.' },
       { nama: 'BaseMaster', isi: 'Membran bitumen yang dipasang dengan cara dibakar (torching) untuk dak atau atap di bawah 15°.' },
@@ -155,7 +163,10 @@ export const produk: Produk[] = [
         ],
       },
     ],
-    warna: [],
+    warna: [
+      { judul: 'Maxxiroof', daftar: [{ nama: 'Slate', hex: '#8A8F8A' }, { nama: 'Cedar', hex: '#C9A574' }, { nama: 'Ash Brown', hex: '#9A5A43' }, { nama: 'Sierra Gray 1 Tone', hex: '#8C8F8D' }, { nama: 'Sierra Gray 2 Tone', hex: '#8E928E' }, { nama: 'Bark Brown', hex: '#4E3330' }, { nama: 'Dark Black', hex: '#2B2928' }, { nama: 'Charcoal', hex: '#3A3836' }, { nama: 'Dark Brown', hex: '#4A3A36' }] },
+      { judul: 'Promaxxi', catatan: 'Warna Promaxxi lain bisa ditanyakan lewat WhatsApp.', daftar: [{ nama: 'Charcoal', hex: '#4A4A48' }, { nama: 'Mix Spanish Red', hex: '#B0574A' }, { nama: 'Lime Gray', hex: '#9DA3AA' }] },
+    ],
     aksesori: [],
     penerapan: [{ gambar: maxxi1, alt: 'Ilustrasi rumah dua lantai beratap limas genteng aspal laminasi coklat tua', keterangan: 'Genteng laminasi coklat tua pada rumah dua lantai' }],
     garansi: 'Garansi produk dari pabrik: 25 tahun untuk Maxxiroof dan 30 tahun untuk Promaxxi, dengan syarat sesuai dokumen garansi pabrik. Pemasangan Atapura dilindungi garansi pemasangan tertulis 5 tahun.',
@@ -221,7 +232,9 @@ export const produk: Produk[] = [
         ],
       },
     ],
-    warna: [],
+    warna: [
+      { judul: 'Premium Rectangular', catatan: 'Warna seri Tegola lain (Traditional, Mosaik, Master) bisa ditanyakan lewat WhatsApp.', daftar: [{ nama: 'Black', kode: '060', hex: '#2B2C2E' }, { nama: 'Slate Grey', kode: '061', hex: '#6A6E73' }, { nama: 'Light Grey', kode: '053', hex: '#A3A5A6' }, { nama: 'Dark Grey', kode: '550', hex: '#8A8A8C' }, { nama: 'Tone Green', kode: '070', hex: '#5A7A55' }, { nama: 'Coppery Red', kode: '503', hex: '#8E3B33' }, { nama: 'Tone Red', kode: '002', hex: '#8A3E35' }, { nama: 'Autumn Red', kode: '506', hex: '#8E5040' }, { nama: 'Dark Brown', kode: '521', hex: '#4A3530' }, { nama: 'Wood', kode: '547', hex: '#5A3E36' }] },
+    ],
     aksesori: [
       { nama: 'Startbar', isi: 'Membran lapisan bawah yang diwajibkan pabrik untuk pemasangan dengan paku pada kemiringan 14° ke atas.' },
     ],
@@ -242,9 +255,9 @@ export const produk: Produk[] = [
     nama: 'Javabitumen',
     harga: 'Javabitumen',
     judul: 'Atap bitumen Javabitumen',
-    ringkas: 'Genteng aspal Javabitumen di kelas ekonomis. Spesifikasi lengkap menunggu dokumen resmi dari produsen.',
+    ringkas: 'Genteng aspal Javabitumen di kelas ekonomis, dengan pilihan warna solid dan gradasi. Spesifikasi teknis menunggu dokumen resmi.',
     tentang: [
-      'Javabitumen kami pasang di kelas harga ekonomis. Situs resmi produsennya belum bisa diakses saat kami cek, jadi spesifikasi teknis, daftar warna, dan syarat garansinya belum kami tulis di sini.',
+      'Javabitumen kami pasang di kelas harga ekonomis. Situs distributornya mencantumkan pilihan warna, tetapi belum memuat ukuran, berat, kemiringan, maupun syarat garansi, jadi angka-angka itu belum kami tulis di sini.',
       'Saat survey, kami membawa sampel fisik dan dokumen dari pemasok supaya Anda bisa menilai langsung.',
     ],
     fakta: [
@@ -253,12 +266,15 @@ export const produk: Produk[] = [
       { label: 'Spesifikasi & garansi', nilai: 'Menunggu dokumen resmi' },
     ],
     seri: [],
-    warna: [],
+    warna: [
+      { judul: 'Warna solid', daftar: [{ nama: 'Hitam', hex: '#2E3136' }, { nama: 'Abu-abu gelap', hex: '#4A5058' }, { nama: 'Abu-abu', hex: '#6E7275' }, { nama: 'Abu-abu terang', hex: '#8C9196' }, { nama: 'Biru', hex: '#3E5378' }, { nama: 'Biru terang', hex: '#4A7BC4' }, { nama: 'Hijau', hex: '#4E6450' }, { nama: 'Hijau muda', hex: '#5E8A63' }, { nama: 'Coklat', hex: '#5E5148' }, { nama: 'Coklat gelap', hex: '#5A4A3C' }, { nama: 'Coklat terang', hex: '#B5765B' }, { nama: 'Coklat emas', hex: '#B59A72' }, { nama: 'Merah', hex: '#A9584A' }, { nama: 'Merah gelap', hex: '#8A5550' }, { nama: 'Merah terang', hex: '#C9614E' }] },
+      { judul: 'Seri gradasi', catatan: 'Nama warna gradasi dikonfirmasi ulang ke pemasok saat survey.', daftar: [{ nama: 'Gradasi abu-abu', hex: '#55585C' }, { nama: 'Gradasi coklat', hex: '#6E4038' }, { nama: 'Gradasi hijau tua', hex: '#3E4E44' }, { nama: 'Gradasi hitam', hex: '#3A3F45' }, { nama: 'Gradasi merah', hex: '#9E4A3C' }] },
+    ],
     aksesori: [],
     penerapan: [],
     garansi: 'Syarat garansi pabrik menunggu dokumen resmi. Pemasangan Atapura dilindungi garansi pemasangan tertulis 5 tahun.',
     terverifikasi: false,
-    sumber: [],
+    sumber: [{ nama: 'Javabitumen, halaman produk di situs distributor (warna), dicek 4 November 2026', url: 'https://javabitumen.co.id/' }],
   },
   {
     slug: 'victory',
