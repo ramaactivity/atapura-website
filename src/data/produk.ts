@@ -2,7 +2,12 @@
 // Aturan isi (DECISIONS 038–039): fakta dari dokumen resmi pabrik bila ada; data dari katalog pihak ketiga hanya
 // dipakai setelah dicocokkan dan tidak pernah disebut sebagai sumber publik. Tanpa klaim TKDN/produk lokal.
 // Harga hanya dari harga.ts (Bang Yusuf); merek tanpa harga tampil "Tanya admin".
+import type { ImageMetadata } from 'astro';
 import { harga, type Merek } from './harga';
+import cti1 from '../../assets/gambar/magnific/penerapan-cti-ct3-gazebo-3x2.jpg';
+import maxxi1 from '../../assets/gambar/magnific/penerapan-maxxi-promaxxi-rumah-3x2.jpg';
+import tegola1 from '../../assets/gambar/magnific/penerapan-tegola-traditional-villa-3x2.jpg';
+import tegola2 from '../../assets/gambar/magnific/penerapan-tegola-master-lereng-3x2.jpg';
 
 /** Bentuk potongan lembar, untuk gambar SVG di halaman seri. */
 export type Bentuk = 'tab3' | 'zigzag' | 'heksagonal' | 'laminasi' | 'persegi' | 'sisik' | 'mosaik';
@@ -36,6 +41,8 @@ export interface Produk {
   /** Warna per kelompok (mis. per seri). Kosong = menunggu data resmi. */
   warna: { judul: string; catatan?: string; daftar: Warna[] }[];
   aksesori: { nama: string; isi: string }[];
+  /** Ilustrasi penerapan (Magnific), selalu berlabel ilustrasi, bukan proyek Atapura. */
+  penerapan: { gambar: ImageMetadata; alt: string; keterangan: string }[];
   garansi: string;
   /** Sudah ada data resmi yang cukup? false = halaman menyatakan terus terang data menunggu dokumen. */
   terverifikasi: boolean;
@@ -98,6 +105,7 @@ export const produk: Produk[] = [
       { nama: 'UnderMaster', isi: 'Lapisan bawah (underlayer) gulungan 1 × 10 m yang dipasang di atas papan alas, sebelum genteng.' },
       { nama: 'BaseMaster', isi: 'Membran bitumen yang dipasang dengan cara dibakar (torching) untuk dak atau atap di bawah 15°.' },
     ],
+    penerapan: [{ gambar: cti1, alt: 'Ilustrasi gazebo resort tepi kolam beratap limas genteng aspal 3-tab abu tua', keterangan: 'Seri 3-tab, warna abu tua, pada gazebo resort' }],
     garansi: 'Garansi produk 30 tahun dari pabrik CTI. Garansi pemasangan dari pabrik berlaku untuk pemasangan oleh CTI; pemasangan Atapura dilindungi garansi pemasangan tertulis 5 tahun dari Atapura.',
     terverifikasi: true,
     sumber: [
@@ -149,6 +157,7 @@ export const produk: Produk[] = [
     ],
     warna: [],
     aksesori: [],
+    penerapan: [{ gambar: maxxi1, alt: 'Ilustrasi rumah dua lantai beratap limas genteng aspal laminasi coklat tua', keterangan: 'Genteng laminasi coklat tua pada rumah dua lantai' }],
     garansi: 'Garansi produk dari pabrik: 25 tahun untuk Maxxiroof dan 30 tahun untuk Promaxxi, dengan syarat sesuai dokumen garansi pabrik. Pemasangan Atapura dilindungi garansi pemasangan tertulis 5 tahun.',
     terverifikasi: true,
     sumber: [
@@ -216,6 +225,10 @@ export const produk: Produk[] = [
     aksesori: [
       { nama: 'Startbar', isi: 'Membran lapisan bawah yang diwajibkan pabrik untuk pemasangan dengan paku pada kemiringan 14° ke atas.' },
     ],
+    penerapan: [
+      { gambar: tegola1, alt: 'Ilustrasi villa klasik beratap limas genteng aspal potongan sisik merah antik', keterangan: 'Potongan sisik, merah antik, pada villa bertaman' },
+      { gambar: tegola2, alt: 'Ilustrasi villa di lereng berkabut beratap genteng aspal dua lapis abu batu', keterangan: 'Genteng dua lapis abu batu pada villa dataran tinggi' },
+    ],
     garansi: 'Garansi terbatas terdaftar hingga 40 tahun dari pabrik, berlaku bertahap: 5–10 tahun pertama penggantian lembar cacat dan bantuan biaya pasang, setelahnya potongan harga material baru. Syaratnya pemasangan sesuai manual pabrik dan aksesori asli. Pemasangan Atapura dilindungi garansi pemasangan tertulis 5 tahun.',
     terverifikasi: true,
     sumber: [
@@ -242,6 +255,7 @@ export const produk: Produk[] = [
     seri: [],
     warna: [],
     aksesori: [],
+    penerapan: [],
     garansi: 'Syarat garansi pabrik menunggu dokumen resmi. Pemasangan Atapura dilindungi garansi pemasangan tertulis 5 tahun.',
     terverifikasi: false,
     sumber: [],
@@ -262,6 +276,7 @@ export const produk: Produk[] = [
     seri: [],
     warna: [],
     aksesori: [],
+    penerapan: [],
     garansi: 'Syarat garansi pabrik menunggu dokumen resmi. Pemasangan Atapura dilindungi garansi pemasangan tertulis 5 tahun.',
     terverifikasi: false,
     sumber: [],

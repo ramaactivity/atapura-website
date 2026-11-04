@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import BentukGenteng from '../../components/BentukGenteng.astro';
+import { Image } from 'astro:assets';
 import { produk, type Produk } from '../../data/produk';
 import { bisnis, waLink } from '../../data/bisnis';
 
@@ -118,7 +119,20 @@ const schema = [
     <section class="pr-sek pr-gelap" aria-labelledby="judul-penerapan">
       <div class="wrap">
         <h2 id="judul-penerapan" class="pr-h2">Penerapan di lapangan</h2>
-        <p class="slot slot-gelap">Ilustrasi penerapan {p.nama} di rumah, villa, dan bangunan usaha sedang kami siapkan. Ilustrasi akan diberi label jelas dan tidak kami klaim sebagai proyek Atapura.</p>
+        {p.penerapan.length > 0 ? (
+          <ul class:list={['penerapan', { 'penerapan-satu': p.penerapan.length === 1 }]}>
+            {p.penerapan.map((g) => (
+              <li>
+                <figure>
+                  <Image src={g.gambar} alt={g.alt} widths={[640, 1024, 1600]} sizes={p.penerapan.length === 1 ? '(min-width: 64rem) 80vw, 100vw' : '(min-width: 60rem) 45vw, 100vw'} class="penerapan-foto" />
+                  <figcaption>{g.keterangan}. <span>Ilustrasi, bukan proyek Atapura.</span></figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="slot slot-gelap">Ilustrasi penerapan {p.nama} kami tampilkan setelah spesifikasi resminya masuk, supaya gambarnya sesuai produk aslinya.</p>
+        )}
       </div>
     </section>
 
@@ -214,6 +228,11 @@ const schema = [
   .warna-nama { font-size: 0.92rem; font-weight: 500; line-height: 1.3; }
   .warna-kode { font-size: 0.8rem; color: var(--color-lumut); font-variant-numeric: tabular-nums; }
 
+  .penerapan { display: grid; gap: 1.25rem; grid-template-columns: minmax(0, 1fr); margin-top: 2rem; }
+  @media (min-width: 60rem) { .penerapan:not(.penerapan-satu) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .penerapan-foto { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 18px; display: block; }
+  .penerapan figcaption { margin-top: 0.7rem; font-size: 0.9rem; color: var(--color-embun); line-height: 1.45; }
+  .penerapan figcaption span { color: var(--embun-redup); }
   .slot { margin-top: 1.5rem; padding: 1.75rem; border: 1px dashed var(--color-lumut); border-radius: 1.5rem; color: var(--color-lumut); max-width: 60ch; line-height: 1.6; }
   .slot-gelap { border-color: rgb(242 244 241 / 0.35); color: var(--embun-redup); }
 
