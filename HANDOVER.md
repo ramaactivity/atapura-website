@@ -45,10 +45,11 @@ Kalkulator: spek pendukung + harga terpasang/m² (qty material hanya di `/intern
 ⏳ Kandidat berikutnya dari daftar 17 (bila diminta): foto "untuk siapa" yang melebar saat disentuh, kartu proses dengan mini-UI, kuis 1 klik masalah atap, swatch warna berkode + foto tekstur (butuh foto & kode katalog), cerita proyek editorial "Proyek Vol.1", testimoni video, unduhan lembar spesifikasi/RKS — yang butuh data asli menunggu proyek pertama.
 
 ## Produk & layanan (DECISIONS 036–041) — ✅ live 4 Nov 2026
-- 5 merek: Maxxi, CTI, Javabitumen, Tegola, Victory. `/produk` + `/produk/[slug]` dari `src/data/produk.ts`; harga hanya dari `harga.ts` (Tegola & Victory "tanya admin" — tunggu harga Bang Yusuf).
+- 5 merek: Maxxi, CTI, Javabitumen, Tegola, Victory. `/produk` + `/produk/[slug]` dari `src/data/produk.ts`; harga hanya dari `harga.ts` (Tegola "tanya admin" — tunggu harga Bang Yusuf; Victory sudah ada, DECISIONS 043).
+- Seri tampil sebagai foto close-up (`assets/gambar/seri/`), contoh warna = foto seri diwarnai ulang (`assets/gambar/warna/`, skrip di DECISIONS 042), penerapan semua beratap rectangular/3-tab.
 - Warna hanya dari daftar resmi (riset `docs/riset/produk-per-merek.md`); warna yang hanya ada di katalog pihak ketiga ditahan.
 - Ilustrasi penerapan via Magnific MCP (`.mcp.json`, login OAuth Rama). Aturan kredit DECISIONS 039, log `docs/magnific-log.md`. Generate hanya setelah "ok" Rama.
-- Belum: dokumen resmi Javabitumen (spek) & Victory (semua), harga Tegola/Victory, konfirmasi stok warna tambahan CTI.
+- Belum: dokumen resmi Javabitumen (spek) & Victory (pabrikan, ukuran, garansi), harga Tegola, konfirmasi stok warna tambahan CTI.
 
 ## Status konsep
 Situs masih KONSEP untuk partner (DECISIONS 017): `bisnis.konsep = true` → noindex + robots Disallow. Ubah ke false setelah angka termin/garansi/harga final. Penyebutan rekening dihapus dari seluruh situs (permintaan Rama 4 Nov 2026); nomor rekening jangan pernah ditulis di situs/repo, cukup di penawaran/invoice lewat WA.
