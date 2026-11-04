@@ -1,0 +1,250 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import BentukGenteng from '../../components/BentukGenteng.astro';
+import { produk, type Produk } from '../../data/produk';
+import { bisnis, waLink } from '../../data/bisnis';
+
+export function getStaticPaths() {
+  return produk.map((p) => ({ params: { slug: p.slug }, props: { p } }));
+}
+
+const { p } = Astro.props as { p: Produk };
+const situs = new URL('/', Astro.site).href;
+const url = new URL(`/produk/${p.slug}`, Astro.site).href;
+const lain = produk.filter((x) => x.slug !== p.slug);
+const pesan = `Halo Atapura, saya mau tanya atap bitumen ${p.nama}.`;
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    '@id': `${url}#produk`,
+    name: `Atap bitumen ${p.nama}`,
+    brand: { '@type': 'Brand', name: p.nama },
+    description: p.ringkas,
+    category: 'Genteng aspal (asphalt shingle)',
+    url,
+    ...(p.seri.length && { model: p.seri.map((s) => s.nama).join(', ') }),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Beranda', item: situs },
+      { '@type': 'ListItem', position: 2, name: 'Produk & layanan', item: new URL('/produk', Astro.site).href },
+      { '@type': 'ListItem', position: 3, name: p.nama, item: url },
+    ],
+  },
+];
+---
+
+<Base title={`${p.judul} | Atapura`} description={p.ringkas} schema={schema}>
+  <Header terang />
+  <main class="pr">
+    <section class="pr-buka">
+      <div class="wrap pr-buka-isi">
+        <div class="pr-teks">
+          <nav class="remah" aria-label="Remah roti"><a href="/">Beranda</a><span aria-hidden="true">/</span><a href="/produk">Produk &amp; layanan</a><span aria-hidden="true">/</span><span>{p.nama}</span></nav>
+          <h1 class="pr-judul">Atap bitumen <span class="redup">{p.nama}</span></h1>
+          <p class="pr-lead">{p.ringkas}</p>
+          {p.tentang.map((t) => <p class="pr-tentang">{t}</p>)}
+        </div>
+        <aside class="slip" aria-label={`Ringkasan ${p.nama}`}>
+          <dl class="slip-daftar">
+            {p.fakta.map((f) => <div><dt>{f.label}</dt><dd>{f.nilai}</dd></div>)}
+          </dl>
+          <div class="slip-aksi">
+            {p.harga && <a class="pill pill-tunas" href="/#hitung">Hitung biaya dengan {p.nama}</a>}
+            <a class:list={['pill', p.harga ? 'pill-garis' : 'pill-tunas']} href={waLink(pesan)} target="_blank" rel="noopener" data-wa="produk">Tanya {p.nama} lewat WhatsApp</a>
+          </div>
+          {!p.terverifikasi && <p class="slip-kaki">Spesifikasi dan garansi pabrik akan kami tulis setelah dokumen resmi masuk.</p>}
+        </aside>
+      </div>
+    </section>
+
+    {p.seri.length > 0 && (
+      <section class="pr-sek pr-putih" aria-labelledby="judul-seri">
+        <div class="wrap">
+          <h2 id="judul-seri" class="pr-h2">Pilihan seri <span class="redup">{p.nama}</span></h2>
+          <ul class="seri">
+            {p.seri.map((s) => (
+              <li class="seri-baris">
+                <div class="seri-gambar"><BentukGenteng bentuk={s.bentuk} label={`Bentuk potongan lembar ${s.nama}`} /></div>
+                <div class="seri-teks">
+                  <h3 class="seri-nama">{s.nama}</h3>
+                  <p class="seri-ringkas">{s.ringkas}</p>
+                </div>
+                <dl class="rinci">
+                  {s.spek.map((k) => <div><dt>{k.label}</dt><dd>{k.nilai}</dd></div>)}
+                </dl>
+              </li>
+            ))}
+          </ul>
+          <p class="pr-catatan">Gambar di atas adalah diagram bentuk potongan satu lembar, bukan foto produk.</p>
+        </div>
+      </section>
+    )}
+
+    <section class="pr-sek" aria-labelledby="judul-warna">
+      <div class="wrap">
+        <h2 id="judul-warna" class="pr-h2">Pilihan warna</h2>
+        {p.warna.length > 0 ? (
+          <>
+            {p.warna.map((g) => (
+              <div class="warna-grup">
+                <h3 class="warna-judul">{g.judul}</h3>
+                {g.catatan && <p class="pr-catatan">{g.catatan}</p>}
+                <ul class="warna">
+                  {g.daftar.map((w) => (
+                    <li>
+                      <span class="contoh-warna" style={`--w: ${w.hex}`} aria-hidden="true"></span>
+                      <span class="warna-nama">{w.nama}</span>
+                      {w.kode && <span class="warna-kode">{w.kode}</span>}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+            <p class="pr-catatan">Warna di layar adalah perkiraan dan bisa berbeda dari aslinya. Saat survey kami membawa sampel fisik supaya Anda bisa melihatnya di bawah cahaya rumah sendiri.</p>
+          </>
+        ) : (
+          <p class="slot">Daftar warna {p.nama} akan kami tampilkan setelah katalog resmi masuk. Sampel fisik bisa Anda lihat saat survey.</p>
+        )}
+      </div>
+    </section>
+
+    <section class="pr-sek pr-gelap" aria-labelledby="judul-penerapan">
+      <div class="wrap">
+        <h2 id="judul-penerapan" class="pr-h2">Penerapan di lapangan</h2>
+        <p class="slot slot-gelap">Ilustrasi penerapan {p.nama} di rumah, villa, dan bangunan usaha sedang kami siapkan. Ilustrasi akan diberi label jelas dan tidak kami klaim sebagai proyek Atapura.</p>
+      </div>
+    </section>
+
+    <section class="pr-sek pr-putih" aria-labelledby="judul-garansi">
+      <div class="wrap pr-dua">
+        <div>
+          <h2 id="judul-garansi" class="pr-h2">Garansi</h2>
+          <p class="pr-isi">{p.garansi}</p>
+        </div>
+        {p.aksesori.length > 0 && (
+          <div>
+            <h2 class="pr-h2">Aksesori pendukung</h2>
+            <dl class="aksesori">
+              {p.aksesori.map((a) => <div><dt>{a.nama}</dt><dd>{a.isi}</dd></div>)}
+            </dl>
+          </div>
+        )}
+      </div>
+    </section>
+
+    <section class="pr-sek" aria-labelledby="judul-lain">
+      <div class="wrap">
+        <h2 id="judul-lain" class="pr-h2">Merek lain yang kami pasang</h2>
+        <ul class="lain">
+          {lain.map((x) => <li><a href={`/produk/${x.slug}`}><b>{x.nama}</b><span>{x.ringkas}</span></a></li>)}
+        </ul>
+        {p.sumber.length > 0 && (
+          <div class="sumber">
+            <h2 class="sumber-judul">Sumber data</h2>
+            <ul>{p.sumber.map((s) => <li>{s.url ? <a href={s.url} rel="noopener" target="_blank">{s.nama}</a> : s.nama}</li>)}</ul>
+          </div>
+        )}
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .pr { background: var(--color-embun); color: var(--color-tinta); }
+  .remah { display: flex; flex-wrap: wrap; gap: 0.5rem; font-size: 0.88rem; color: var(--color-lumut); }
+  .remah a { color: inherit; }
+  .redup { opacity: 0.55; }
+
+  .pr-buka { padding: 120px 0 clamp(3rem, 6vw, 5rem); }
+  .pr-buka-isi { display: grid; gap: 2.5rem 4rem; grid-template-columns: minmax(0, 1fr); align-items: start; }
+  @media (min-width: 60rem) { .pr-buka-isi { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); } }
+  .pr-judul { margin-top: 1.5rem; font-size: clamp(2.4rem, 1.3rem + 4vw, 4.8rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1; }
+  .pr-lead { margin-top: 1.25rem; font-size: clamp(1.125rem, 1rem + 0.4vw, 1.35rem); line-height: 1.5; max-width: 40ch; }
+  .pr-tentang { margin-top: 1rem; color: var(--color-lumut); line-height: 1.65; max-width: 62ch; }
+
+  .slip {
+    position: relative; padding: 2.4rem 1.6rem 1.6rem; background: var(--color-putih); border-radius: 0 0 1.25rem 1.25rem;
+    filter: drop-shadow(0 26px 30px rgb(16 35 30 / 0.16)) drop-shadow(0 6px 10px rgb(16 35 30 / 0.08));
+    clip-path: polygon(0 22px, 50% 0, 100% 22px, 100% 100%, 0 100%);
+  }
+  .slip-daftar > div { display: flex; align-items: baseline; gap: 0.6rem; padding: 0.7rem 0; }
+  .slip-daftar dt { color: var(--color-lumut); font-size: 0.92rem; white-space: nowrap; display: flex; align-items: baseline; gap: 0.6rem; flex: 1; }
+  .slip-daftar dt::after { content: ''; flex: 1; border-bottom: 1px dotted var(--color-garis); transform: translateY(-0.25rem); }
+  .slip-daftar dd { font-weight: 500; text-align: right; max-width: 60%; font-variant-numeric: tabular-nums; }
+  .slip-aksi { display: grid; gap: 0.6rem; margin-top: 1.4rem; }
+  .slip-aksi .pill { justify-content: center; }
+  .slip-kaki { margin-top: 1rem; font-size: 0.85rem; color: var(--color-lumut); line-height: 1.45; }
+
+  .pr-sek { padding-block: clamp(3.5rem, 7vw, 6rem); }
+  .pr-putih { background: var(--color-putih); }
+  .pr-gelap { background: var(--color-pinus); color: var(--color-embun); }
+  .pr-h2 { font-size: clamp(1.75rem, 1.2rem + 1.8vw, 2.8rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.08; max-width: 22ch; }
+  .pr-catatan { margin-top: 1.25rem; font-size: 0.85rem; color: var(--color-lumut); max-width: 70ch; }
+  .pr-isi { margin-top: 1rem; line-height: 1.65; max-width: 62ch; }
+
+  .seri { margin-top: 2.25rem; border-top: 1px solid var(--color-tinta); }
+  .seri-baris { display: grid; gap: 1.25rem 3rem; grid-template-columns: minmax(0, 1fr); padding: 1.75rem 0; border-bottom: 1px solid var(--color-garis); align-items: start; }
+  @media (min-width: 60rem) { .seri-baris { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr) minmax(0, 1fr); } }
+  .seri-gambar { max-width: 20rem; }
+  .seri-nama { font-size: clamp(1.35rem, 1.1rem + 0.8vw, 1.75rem); font-weight: 500; letter-spacing: -0.03em; }
+  .seri-ringkas { margin-top: 0.4rem; color: var(--color-lumut); line-height: 1.6; max-width: 46ch; }
+  .rinci > div { display: flex; align-items: baseline; gap: 0.6rem; padding: 0.45rem 0; font-size: 0.95rem; }
+  .rinci dt { color: var(--color-lumut); display: flex; align-items: baseline; gap: 0.6rem; flex: 1; white-space: nowrap; }
+  .rinci dt::after { content: ''; flex: 1; border-bottom: 1px dotted var(--color-garis); transform: translateY(-0.25rem); }
+  .rinci dd { font-weight: 500; text-align: right; font-variant-numeric: tabular-nums lining-nums; }
+
+  .warna-grup { margin-top: 2rem; }
+  .warna-judul { font-size: 1.1rem; font-weight: 500; letter-spacing: -0.02em; }
+  .warna { display: grid; gap: 1.25rem 1rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 7.5rem), 1fr)); margin-top: 1rem; }
+  .warna li { display: grid; gap: 0.3rem; }
+  /* Contoh warna bertekstur butiran (perkiraan): warna dasar + derau SVG. */
+  .contoh-warna {
+    display: block; aspect-ratio: 4 / 3; border-radius: 0.75rem; background-color: var(--w);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='90'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-blend-mode: soft-light; box-shadow: inset 0 0 0 1px rgb(16 35 30 / 0.1), 0 10px 18px -14px rgb(16 35 30 / 0.5);
+  }
+  .warna-nama { font-size: 0.92rem; font-weight: 500; line-height: 1.3; }
+  .warna-kode { font-size: 0.8rem; color: var(--color-lumut); font-variant-numeric: tabular-nums; }
+
+  .slot { margin-top: 1.5rem; padding: 1.75rem; border: 1px dashed var(--color-lumut); border-radius: 1.5rem; color: var(--color-lumut); max-width: 60ch; line-height: 1.6; }
+  .slot-gelap { border-color: rgb(242 244 241 / 0.35); color: var(--embun-redup); }
+
+  .pr-dua { display: grid; gap: 3rem 4rem; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 60rem) { .pr-dua { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .aksesori { margin-top: 1rem; }
+  .aksesori > div { padding: 1rem 0; border-top: 1px solid var(--color-garis); }
+  .aksesori dt { font-weight: 500; }
+  .aksesori dd { margin-top: 0.3rem; color: var(--color-lumut); line-height: 1.6; }
+
+  .lain { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr)); margin-top: 1.75rem; }
+  .lain a { display: grid; gap: 0.4rem; height: 100%; padding: 1.25rem 1.4rem; border-radius: 16px; background: var(--color-putih); color: inherit; text-decoration: none; transition: transform 400ms var(--ease-out), box-shadow 400ms var(--ease-out); }
+  .lain a:hover { transform: translateY(-3px); box-shadow: 0 20px 36px -24px rgb(16 35 30 / 0.35); }
+  .lain b { font-size: 1.2rem; font-weight: 500; letter-spacing: -0.02em; }
+  .lain span { color: var(--color-lumut); font-size: 0.92rem; line-height: 1.45; }
+  .sumber { margin-top: 3rem; }
+  .sumber-judul { font-size: 1.1rem; font-weight: 500; }
+  .sumber li { margin-top: 0.4rem; font-size: 0.9rem; color: var(--color-lumut); }
+  .sumber a { color: inherit; text-underline-offset: 3px; }
+
+  @media (max-width: 47.99rem) {
+    .pr-buka { padding-top: 96px; }
+    .pr-judul { font-size: var(--hp-display); line-height: 1.05; }
+    .pr-lead { font-size: 1rem; }
+    .pr-tentang { font-size: 0.9375rem; }
+    .pr-h2 { font-size: var(--hp-t1); }
+    .seri-nama { font-size: var(--hp-t2); }
+    .slip-daftar dd { font-size: 0.9375rem; }
+    .pr { background: #dde2dc; }
+    .pr-buka, .pr-sek { margin: 8px; border-radius: 28px; }
+    .pr-buka { background: var(--color-embun); margin-top: 0; padding-top: 96px; border-top-left-radius: 0; border-top-right-radius: 0; }
+    .pr-sek:not(.pr-putih):not(.pr-gelap) { background: var(--color-embun); }
+  }
+</style>

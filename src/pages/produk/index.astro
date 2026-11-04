@@ -1,0 +1,132 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { produk, layanan } from '../../data/produk';
+import { harga } from '../../data/harga';
+import { bagianRentang } from '../../data/harga';
+import { waLink } from '../../data/bisnis';
+
+const situs = new URL('/', Astro.site).href;
+const hargaTampil = (m?: keyof typeof harga.merek) => {
+  if (!m) return null;
+  const b = bagianRentang(harga.merek[m].terpasang[0], harga.merek[m].terpasang[1]);
+  return `Rp${b.min}–${b.max} ${b.satuan === 'jt' ? 'juta' : 'ribu'}/m²`;
+};
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Beranda', item: situs },
+      { '@type': 'ListItem', position: 2, name: 'Produk & layanan', item: new URL('/produk', Astro.site).href },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: produk.map((p, i) => ({ '@type': 'ListItem', position: i + 1, name: `Atap bitumen ${p.nama}`, url: new URL(`/produk/${p.slug}`, Astro.site).href })),
+  },
+];
+---
+
+<Base
+  title="Produk & layanan atap bitumen: Maxxi, CTI, Javabitumen, Tegola, Victory | Atapura"
+  description="Merek genteng aspal yang kami pasang beserta seri, warna, dan garansinya, plus layanan pasang baru, ganti atap, dan perbaikan bocor di Jabodetabek."
+  schema={schema}
+>
+  <Header terang />
+  <main class="pk">
+    <div class="wrap">
+      <div class="kartu-buka">
+        <nav class="remah" aria-label="Remah roti"><a href="/">Beranda</a><span aria-hidden="true">/</span><span>Produk &amp; layanan</span></nav>
+        <div class="pk-kepala">
+          <h1 class="pk-judul">Lima merek, <span class="redup">satu standar pasang.</span></h1>
+          <p class="pk-lead">Pilih merek dari kebutuhan dan anggaran Anda. Apa pun mereknya, cara pasang dan garansi pemasangannya sama.</p>
+        </div>
+      </div>
+
+      <section aria-labelledby="judul-merek">
+        <h2 id="judul-merek" class="pk-h2">Merek genteng aspal</h2>
+        <ul class="merek">
+          {produk.map((p) => (
+            <li>
+              <a href={`/produk/${p.slug}`} class="merek-baris">
+                <span class="merek-nama">{p.nama}</span>
+                <span class="merek-ringkas">{p.ringkas}</span>
+                <span class="merek-seri">{p.seri.length ? p.seri.map((s) => s.nama).join(' · ') : 'Spesifikasi menunggu dokumen resmi'}</span>
+                <span class="merek-harga">{hargaTampil(p.harga) ?? 'Harga: tanya admin'}</span>
+                <span class="merek-panah" aria-hidden="true">→</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <p class="pk-catatan">Harga terpasang untuk Jabodetabek dengan spek standar, belum termasuk rangka baru.</p>
+      </section>
+
+      <section aria-labelledby="judul-layanan" class="pk-layanan">
+        <h2 id="judul-layanan" class="pk-h2">Layanan</h2>
+        <ul class="layanan">
+          {layanan.map((l) => (
+            <li><a href={l.href}><b>{l.nama}</b><span>{l.isi}</span></a></li>
+          ))}
+        </ul>
+        <a class="pill pill-tunas pk-wa" href={waLink('Halo Atapura, saya mau tanya soal atap bitumen.')} target="_blank" rel="noopener" data-wa="produk-indeks">Tanya lewat WhatsApp</a>
+      </section>
+    </div>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .pk { background: var(--color-embun); color: var(--color-tinta); padding: 120px 0 6rem; }
+  .remah { display: flex; gap: 0.5rem; font-size: 0.88rem; color: var(--color-lumut); }
+  .remah a { color: inherit; }
+  .redup { opacity: 0.55; }
+  .pk-kepala { margin: 2rem 0 3.5rem; display: grid; gap: 1.25rem 4rem; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 60rem) { .pk-kepala { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); align-items: end; } }
+  .pk-judul { font-size: clamp(2.4rem, 1.3rem + 4vw, 4.8rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1; max-width: 14ch; }
+  .pk-lead { font-size: 1.1rem; color: var(--color-lumut); max-width: 42ch; line-height: 1.5; }
+  .pk-h2 { font-size: clamp(1.5rem, 1.2rem + 1vw, 2.1rem); font-weight: 500; letter-spacing: -0.035em; }
+  .pk-catatan { margin-top: 1rem; font-size: 0.85rem; color: var(--color-lumut); }
+
+  .merek { margin-top: 1.25rem; border-top: 1px solid var(--color-tinta); }
+  .merek-baris {
+    display: grid; gap: 0.35rem 1.5rem; grid-template-columns: minmax(0, 1fr) auto; padding: 1.4rem 0;
+    border-bottom: 1px solid var(--color-garis); color: inherit; text-decoration: none;
+  }
+  .merek-nama { grid-column: 1; grid-row: 1; font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.6rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.05; }
+  .merek-panah { grid-column: 2; grid-row: 1; align-self: center; font-size: 1.3rem; color: var(--color-pinus); transition: transform 300ms var(--ease-out); }
+  .merek-ringkas { grid-column: 1 / -1; color: var(--color-lumut); line-height: 1.55; }
+  .merek-seri { grid-column: 1 / -1; font-size: 0.88rem; color: var(--color-lumut); }
+  .merek-harga { grid-column: 1 / -1; font-weight: 500; font-variant-numeric: tabular-nums lining-nums; }
+  @media (min-width: 60rem) {
+    .merek-baris { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.6fr) minmax(0, 0.8fr) auto; column-gap: 2.5rem; align-items: baseline; padding: 1.75rem 0; }
+    .merek-nama { grid-row: 1 / span 2; }
+    .merek-ringkas { grid-column: 2; grid-row: 1; }
+    .merek-seri { grid-column: 2; grid-row: 2; }
+    .merek-harga { grid-column: 3; grid-row: 1; }
+    .merek-panah { grid-column: 4; grid-row: 1; align-self: baseline; }
+  }
+  .merek-baris:hover .merek-panah { transform: translateX(4px); }
+  .merek-baris:hover .merek-nama { opacity: 0.8; }
+  .merek-baris:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 4px; border-radius: 4px; }
+
+  .pk-layanan { margin-top: 4.5rem; }
+  .layanan { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr)); margin-top: 1.25rem; }
+  .layanan a { display: grid; gap: 0.45rem; height: 100%; padding: 1.4rem; border-radius: 16px; background: var(--color-putih); color: inherit; text-decoration: none; transition: transform 400ms var(--ease-out), box-shadow 400ms var(--ease-out); }
+  .layanan a:hover { transform: translateY(-3px); box-shadow: 0 20px 36px -24px rgb(16 35 30 / 0.35); }
+  .layanan b { font-size: 1.15rem; font-weight: 500; letter-spacing: -0.02em; }
+  .layanan span { color: var(--color-lumut); font-size: 0.93rem; line-height: 1.5; }
+  .pk-wa { margin-top: 1.75rem; }
+
+  @media (max-width: 47.99rem) {
+    .pk { background: #dde2dc; padding-top: 96px; }
+    .kartu-buka { margin: 0 calc(8px - var(--gutter)) 1.25rem; padding: 1.5rem var(--gutter) 0.25rem; border-radius: 28px; background: var(--color-embun); }
+    .kartu-buka .pk-kepala { margin-bottom: 1.5rem; }
+    .pk-judul { font-size: var(--hp-display); line-height: 1.05; }
+    .pk-lead { font-size: 1rem; }
+    .pk-h2 { font-size: var(--hp-t1); }
+    .merek-nama { font-size: var(--hp-t2); }
+  }
+</style>
