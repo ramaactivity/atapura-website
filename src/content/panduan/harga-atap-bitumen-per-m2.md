@@ -55,7 +55,7 @@ Atap bitumen tersusun dari [lima lapis](/panduan/lima-lapis-pemasangan-atap-bitu
 
 ## Cara bayarnya
 
-Material dibayar lunas sebelum dikirim. Jasa pasang dibayar bertahap 40/30/30: saat mulai kerja, saat genteng terpasang sekitar separuh, dan saat serah terima. Pembayaran hanya ke rekening atas nama perusahaan.
+Material dibayar lunas sebelum dikirim. Jasa pasang dibayar bertahap 40/30/30: saat mulai kerja, saat genteng terpasang sekitar separuh, dan saat serah terima.
 
 ## Hitung untuk atap Anda
 

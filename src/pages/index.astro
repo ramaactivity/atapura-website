@@ -66,7 +66,7 @@ const tanya = [
   },
   {
     q: 'Bagaimana cara bayarnya?',
-    a: `Survey (gratis di Jabodetabek), lalu penawaran tertulis. Detail kesepakatan kami bahas bersama lewat WhatsApp. Material dibayar lunas sebelum dikirim ke lokasi. Jasa pasang dibayar bertahap ${bisnis.pembayaran.jasa.map((t) => `${t.persen}%`).join(', ')}: ${bisnis.pembayaran.jasa.map((t) => t.saat.toLowerCase()).join('; ')}. Semua pembayaran hanya ke rekening atas nama perusahaan, tidak pernah ke rekening pribadi.`,
+    a: `Survey (gratis di Jabodetabek), lalu penawaran tertulis. Detail kesepakatan kami bahas bersama lewat WhatsApp. Material dibayar lunas sebelum dikirim ke lokasi. Jasa pasang dibayar bertahap ${bisnis.pembayaran.jasa.map((t) => `${t.persen}%`).join(', ')}: ${bisnis.pembayaran.jasa.map((t) => t.saat.toLowerCase()).join('; ')}.`,
   },
 ];
 
@@ -305,7 +305,7 @@ const faqSchema = {
                 </li>
               ))}
             </ol>
-            <p class="gb-catatan">Semua pembayaran ke rekening atas nama perusahaan, disertai kuitansi. Setiap termin jasa disertai foto progres.</p>
+            <p class="gb-catatan">Setiap termin jasa disertai foto progres.</p>
           </div>
           <div class="gb-garansi">
             <p class="garansi-angka">{bisnis.garansiPemasanganTahun}<span>tahun</span></p>

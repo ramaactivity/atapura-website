@@ -16,7 +16,7 @@ faq:
   - q: 'Do I need a building permit to replace a roof?'
     a: 'Indonesia''s building regulation (PP 16/2021) classes repairing or replacing building parts to keep a building fit for use as maintenance, which does not need an amended building approval (PBG). Changing the roof shape, the building''s appearance, or safety-related components can. Check with the local office through SIMBG.'
   - q: 'How do I pay?'
-    a: 'Materials are paid in full before delivery; labour is paid in three stages of 40/30/30 percent. Payments go only to the company''s bank account.'
+    a: 'Materials are paid in full before delivery; labour is paid in three stages of 40/30/30 percent.'
 sumber:
   - nama: 'Atapura price list for Greater Jakarta, valid from 2 November 2026'
   - nama: 'Maxxiroof and Promaxxi product pages (size, thickness, warranty, slope), checked 3 November 2026'

@@ -19,7 +19,6 @@ ${bisnis.nama} adalah aplikator sekaligus supplier atap bitumen (genteng aspal, 
 - Area layanan (${bisnis.area.length} kota & kabupaten): ${bisnis.area.join(', ')}
 - Survey: gratis, sebelum harga final
 - Garansi: garansi pemasangan tertulis dari Atapura, terpisah dari garansi pabrik tiap merek
-- Pembayaran: hanya ke rekening atas nama perusahaan
 - Harga: ${harga.contoh ? 'daftar harga resmi belum diterbitkan; gunakan kalkulator di beranda untuk estimasi' : `rentang per m² berlaku sejak ${harga.berlakuSejak}`}
 - Kontak: ${bisnis.email}
 - Alamat: ${alamatLengkap}

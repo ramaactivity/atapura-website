@@ -54,4 +54,4 @@ Sebagai pembanding, pada periode yang sama tidak ada satu pun kelurahan di Kota 
 
 ## Harga dan survey di Depok
 
-Harga terpasang sama dengan wilayah Jabodetabek lain: CTI Rp400–450 ribu per m², Maxxi dan Javabitumen Rp380–430 ribu per m², spek standar. Bongkar atap lama dan perbaikan rangka, bila perlu, ditulis terpisah setelah survey. Rinciannya ada di [harga atap bitumen per m²](/panduan/harga-atap-bitumen-per-m2). Survey gratis, dan pembayaran hanya ke rekening atas nama perusahaan.
+Harga terpasang sama dengan wilayah Jabodetabek lain: CTI Rp400–450 ribu per m², Maxxi dan Javabitumen Rp380–430 ribu per m², spek standar. Bongkar atap lama dan perbaikan rangka, bila perlu, ditulis terpisah setelah survey. Rinciannya ada di [harga atap bitumen per m²](/panduan/harga-atap-bitumen-per-m2). Survey gratis.

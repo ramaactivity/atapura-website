@@ -46,4 +46,4 @@ Tiga stasiun BMKG di Tangerang Raya pada 2024: Stasiun Geofisika Tangerang 2.139
 
 ## Harga dan survey di Kabupaten Tangerang
 
-Harga terpasang: CTI Rp400–450 ribu per m², Maxxi dan Javabitumen Rp380–430 ribu per m², spek standar. Rinciannya ada di [harga atap bitumen per m²](/panduan/harga-atap-bitumen-per-m2). Survey gratis, dan pembayaran hanya ke rekening atas nama perusahaan. Wilayah tetangga: [Kota Tangerang](/area/kota-tangerang) dan [Tangerang Selatan](/area/tangerang-selatan).
+Harga terpasang: CTI Rp400–450 ribu per m², Maxxi dan Javabitumen Rp380–430 ribu per m², spek standar. Rinciannya ada di [harga atap bitumen per m²](/panduan/harga-atap-bitumen-per-m2). Survey gratis. Wilayah tetangga: [Kota Tangerang](/area/kota-tangerang) dan [Tangerang Selatan](/area/tangerang-selatan).

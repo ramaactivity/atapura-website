@@ -47,4 +47,4 @@ Total tahunan kami jumlahkan dari angka bulanan di tabel BPS. Ketinggian Kota Be
 
 ## Harga dan survey di Kota Bekasi
 
-Harga terpasang: CTI Rp400–450 ribu per m², Maxxi dan Javabitumen Rp380–430 ribu per m², spek standar. Rinciannya ada di [harga atap bitumen per m²](/panduan/harga-atap-bitumen-per-m2). Survey gratis, dan pembayaran hanya ke rekening atas nama perusahaan. Atap sudah merembes? Mulai dari [cara menemukan titik bocornya](/panduan/atap-bocor-penyebab-dan-cara-mengatasi).
+Harga terpasang: CTI Rp400–450 ribu per m², Maxxi dan Javabitumen Rp380–430 ribu per m², spek standar. Rinciannya ada di [harga atap bitumen per m²](/panduan/harga-atap-bitumen-per-m2). Survey gratis. Atap sudah merembes? Mulai dari [cara menemukan titik bocornya](/panduan/atap-bocor-penyebab-dan-cara-mengatasi).

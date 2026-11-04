@@ -55,4 +55,4 @@ Angka Podes menghitung desa yang terkena, bukan jumlah kejadian.
 
 ## Harga dan survey di Kabupaten Bekasi
 
-Harga terpasang sama dengan wilayah Jabodetabek lain: CTI Rp400–450 ribu per m², Maxxi dan Javabitumen Rp380–430 ribu per m², spek standar. Rinciannya ada di [harga atap bitumen per m²](/panduan/harga-atap-bitumen-per-m2). Survey gratis, dan pembayaran hanya ke rekening atas nama perusahaan.
+Harga terpasang sama dengan wilayah Jabodetabek lain: CTI Rp400–450 ribu per m², Maxxi dan Javabitumen Rp380–430 ribu per m², spek standar. Rinciannya ada di [harga atap bitumen per m²](/panduan/harga-atap-bitumen-per-m2). Survey gratis.

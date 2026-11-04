@@ -51,7 +51,7 @@ Kalkulator: spek pendukung + harga terpasang/m² (qty material hanya di `/intern
 - Belum: dokumen resmi Javabitumen (spek) & Victory (semua), harga Tegola/Victory, konfirmasi stok warna tambahan CTI.
 
 ## Status konsep
-Situs masih KONSEP untuk partner (DECISIONS 017): `bisnis.konsep = true` → noindex + robots Disallow. Ubah ke false setelah angka termin/garansi/harga final **dan rekening atas nama PT sudah ada** — seluruh copy menjanjikan "hanya ke rekening atas nama perusahaan"; rekening pribadi sementara (Rama punya) jangan pernah ditulis di situs/repo, hanya di kontrak/invoice.
+Situs masih KONSEP untuk partner (DECISIONS 017): `bisnis.konsep = true` → noindex + robots Disallow. Ubah ke false setelah angka termin/garansi/harga final. Penyebutan rekening dihapus dari seluruh situs (permintaan Rama 4 Nov 2026); nomor rekening jangan pernah ditulis di situs/repo, cukup di penawaran/invoice lewat WA.
 
 ## Menunggu dari Rama
 WhatsApp bisnis, harga resmi per merek, durasi garansi pemasangan, logo, foto proyek/Magnific, brosur Javabitumen, status agen resmi, NIB/NPWP setelah PT terbit.
