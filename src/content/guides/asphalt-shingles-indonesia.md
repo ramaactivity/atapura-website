@@ -1,7 +1,7 @@
 ---
 judul: 'Asphalt shingles in Indonesia: prices, brands, and what to check'
 ringkasan: 'What asphalt shingle roofs cost in Greater Jakarta, the brands installed locally, their warranties and slope limits, and the questions to ask an installer.'
-jawaban: 'In Greater Jakarta (Jabodetabek), an installed asphalt shingle roof costs about IDR 380,000–450,000 per m² with a standard specification: 12 mm plywood deck, waterproof underlayment, flashing, nails, and labour. The shingles alone are IDR 145,000–155,000 per m². Locally installed brands include Maxxi and CTI (25–30 year product warranties, each with its own conditions) and Javabitumen. Outside Jakarta, travel and shipping are quoted separately.'
+jawaban: 'In Greater Jakarta (Jabodetabek), an installed asphalt shingle roof costs about IDR 380,000–450,000 per m² with a standard specification: 12 mm plywood deck, waterproof underlayment, flashing, nails, and labour. The shingles alone are IDR 145,000–155,000 per m². We install Maxxi and CTI (25–30 year product warranties, each with its own conditions), Javabitumen, Tegola, and Victory. Outside Jakarta, travel and shipping are quoted separately.'
 kategori: 'Costs'
 terbit: 2026-11-03
 diperbarui: 2026-11-03
@@ -48,7 +48,7 @@ As a rough example, a roof of about 100 m² with CTI shingles comes to roughly I
 | Product warranty | 25 years (Maxxiroof), 30 years (Promaxxi) | 30 years, plus 1 year on installation by CTI | No official document found yet |
 | Conditions | Per brand documentation | CTI states its warranty does not apply to installation errors outside CTI | — |
 | Minimum pitch | 15° | 10–15° with wider underlayment overlap | — |
-| Notes | Promaxxi listed for winds up to 130 km/h | Lists TKDN (local content) certification and Fire Resistance Class A | Official website was suspended when checked |
+| Notes | Promaxxi listed for winds up to 130 km/h | Lists Fire Resistance Class A | Official website was suspended when checked |
 
 Read the warranty conditions of the brand you choose. A product warranty covers defects in the shingles; leaks caused by poor installation are covered, if at all, by the installer. Atapura gives a written 5-year installation warranty for leaks and installation errors.
 

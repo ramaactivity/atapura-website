@@ -13,7 +13,7 @@ faq:
   - q: 'Apakah atap bitumen gelombang termasuk genteng aspal?'
     a: 'Atap bitumen gelombang juga berbahan bitumen, tapi bentuknya lembaran besar bergelombang yang dipasang di reng, bukan lembaran kecil bersusun di atas papan seperti shingle. Cara pasang dan tampilannya berbeda.'
   - q: 'Merek apa yang dipasang Atapura?'
-    a: 'Maxxi, CTI, dan Javabitumen. Ketiganya jenis shingle (lembaran kecil bersusun).'
+    a: 'Maxxi, CTI, Javabitumen, Tegola, dan Victory. Semuanya jenis shingle (lembaran kecil bersusun).'
 sumber:
   - nama: 'Maxxiroof dan Promaxxi, halaman produk (3-tab dan laminasi), dicek 3 November 2026'
     url: 'https://maxxiroof.com/produk/'
@@ -61,5 +61,5 @@ Yang sering membuat bingung: atap gelombang juga disebut "atap bitumen", tapi ca
 
 - **Ingin hemat dan rapi:** 3-tab, misalnya Maxxiroof atau CTI CT3.
 - **Ingin tampilan lebih tebal dan berbayang:** laminasi seperti Promaxxi.
-- **Ingin pola yang berbeda:** CTI CT5 atau CT6. CTI juga mencantumkan sertifikat TKDN di situsnya, berguna untuk proyek yang mensyaratkan produk dalam negeri.
+- **Ingin pola yang berbeda:** CTI CT5 atau CT6.
 - **Belum yakin:** lihat sampel fisiknya di rumah sendiri. Warna dan tekstur terlihat berbeda di bawah cahaya siang dan saat mendung.

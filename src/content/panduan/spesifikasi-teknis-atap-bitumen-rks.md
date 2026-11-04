@@ -1,7 +1,7 @@
 ---
 judul: 'Spesifikasi teknis atap bitumen untuk RKS, pengadaan, dan tugas kuliah'
 ringkasan: 'Contoh uraian spesifikasi teknis atap bitumen: rangka, reng, papan alas, underlayment, genteng, paku, nok, dan jurai, dari panduan pemasangan pabrikan.'
-jawaban: 'Spesifikasi teknis atap bitumen mencakup rangka (CTI memakai kuda-kuda baja ringan berjarak 800–1.200 mm), papan alas multiplek 12 mm dengan reng berjarak 60,5 cm dan sekrup tiap 300 mm, underlayment dengan sambungan 100 mm (150 mm untuk atap 10–15°), genteng aspal dengan tumpukan baris 190 mm dan 4 paku 2,5 cm per lembar (6 atau lebih di daerah berangin), serta nok dan jurai dari potongan genteng. Untuk pengadaan pemerintah, cek nilai TKDN produk di inventaris resmi Kemenperin.'
+jawaban: 'Spesifikasi teknis atap bitumen mencakup rangka (CTI memakai kuda-kuda baja ringan berjarak 800–1.200 mm), papan alas multiplek 12 mm dengan reng berjarak 60,5 cm dan sekrup tiap 300 mm, underlayment dengan sambungan 100 mm (150 mm untuk atap 10–15°), genteng aspal dengan tumpukan baris 190 mm dan 4 paku 2,5 cm per lembar (6 atau lebih di daerah berangin), serta nok dan jurai dari potongan genteng. Untuk pengadaan yang mensyaratkan TKDN, nilai produknya dicek di inventaris resmi Kemenperin.'
 kategori: 'Teknis'
 terbit: 2026-11-03
 diperbarui: 2026-11-03
@@ -9,7 +9,7 @@ sampul: '../../../assets/gambar/magnific/tukang-1x1.jpg'
 sampulAlt: 'Ilustrasi tukang memasang papan alas dan genteng aspal di atas rangka'
 faq:
   - q: 'Di mana mencari nilai TKDN atap bitumen?'
-    a: 'Di inventaris barang dan jasa dalam negeri Kemenperin (tkdn.kemenperin.go.id), dengan mencari nama produk atau produsennya. CTI mencantumkan bahwa produknya tersertifikasi TKDN, tetapi kami tidak menulis nilainya sebelum dicek di inventaris resmi.'
+    a: 'Di inventaris barang dan jasa dalam negeri Kemenperin (tkdn.kemenperin.go.id), dengan mencari nama produk atau produsennya. Cek di sana sebelum mencantumkannya di dokumen pengadaan.'
   - q: 'Apakah ada SNI untuk genteng aspal shingle?'
     a: 'Kami belum menemukan SNI khusus untuk genteng aspal jenis shingle. Spesifikasi yang lazim dirujuk adalah dokumen teknis pabrikan dan standar uji internasional seperti ASTM D3462 untuk genteng aspal bertulang serat kaca.'
   - q: 'Apakah ada gambar detail atau file CAD?'
@@ -53,7 +53,7 @@ Asosiasi pabrikan atap aspal AS (ARMA) merangkum standar yang dipakai industri: 
 
 ## Untuk pengadaan pemerintah
 
-Produk dengan nilai TKDN ditambah Bobot Manfaat Perusahaan minimal 40% wajib diutamakan dalam pengadaan barang/jasa pemerintah. Nilai TKDN produk dicek langsung di [inventaris resmi Kemenperin](https://tkdn.kemenperin.go.id). CTI mencantumkan bahwa produknya tersertifikasi TKDN; nilainya kami sarankan dicek di inventaris tersebut sebelum dicantumkan di dokumen.
+Bila dokumen pengadaan mensyaratkan nilai TKDN, cek produknya langsung di [inventaris resmi Kemenperin](https://tkdn.kemenperin.go.id) sebelum dicantumkan. Kami tidak mencantumkan nilai TKDN produk di situs ini.
 
 ## Untuk mahasiswa
 

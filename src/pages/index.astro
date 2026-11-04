@@ -80,9 +80,12 @@ const wilayah = [
 
 const merekTabel = [
   { nama: 'Maxxi', kelas: harga.merek.Maxxi.kelas, pasti: 'Model 3-tab, 1000 × 333 mm, tebal 2,66 mm, 3,10 m² per bundel', r: harga.merek.Maxxi.terpasang, g: harga.merek.Maxxi.genteng, garansi: harga.merek.Maxxi.garansiPabrik },
-  { nama: 'CTI', kelas: harga.merek.CTI.kelas, pasti: 'Produksi Indonesia, bersertifikat TKDN; seri CT3 (1000 × 333 mm), CT5, dan CT6 (1000 × 317,5 mm), 3,00 m² per bundel', r: harga.merek.CTI.terpasang, g: harga.merek.CTI.genteng, garansi: harga.merek.CTI.garansiPabrik },
+  { nama: 'CTI', kelas: harga.merek.CTI.kelas, pasti: 'Seri CT3 (1000 × 333 mm), CT5, dan CT6 (1000 × 317,5 mm), 3,00 m² per bundel', r: harga.merek.CTI.terpasang, g: harga.merek.CTI.genteng, garansi: harga.merek.CTI.garansiPabrik },
   { nama: 'Javabitumen', kelas: harga.merek.Javabitumen.kelas, pasti: 'Spesifikasi menunggu brosur resmi dari produsen', r: harga.merek.Javabitumen.terpasang, g: harga.merek.Javabitumen.genteng, garansi: harga.merek.Javabitumen.garansiPabrik },
-];
+  // Harga Tegola & Victory belum ada (menunggu Bang Yusuf): tampil "Tanya admin", tidak dihitung kalkulator.
+  { nama: 'Tegola', kelas: 'Belum ditetapkan', pasti: 'Spesifikasi sedang diverifikasi dari dokumen resmi', r: null, g: null, garansi: 'Menunggu dokumen resmi' },
+  { nama: 'Victory', kelas: 'Belum ditetapkan', pasti: 'Spesifikasi sedang diverifikasi dari dokumen resmi', r: null, g: null, garansi: 'Menunggu dokumen resmi' },
+] as { nama: string; kelas: string; pasti: string; r: readonly [number, number] | null; g: number | null; garansi: string }[];
 
 const faqSchema = {
   '@context': 'https://schema.org',
@@ -93,7 +96,7 @@ const faqSchema = {
 
 <Base
   title="Atap Bitumen Jabodetabek: Hitung Biaya Pasang | Atapura"
-  description="Pasang atap bitumen Maxxi, CTI, dan Javabitumen di Jabodetabek. Hitung estimasi biaya total dalam satu menit, lihat cara pasang per lapis, survey gratis."
+  description="Pasang atap bitumen Maxxi, CTI, Javabitumen, Tegola, dan Victory di Jabodetabek. Hitung estimasi biaya total dalam satu menit, lihat cara pasang per lapis, survey gratis."
   schema={[faqSchema]}
 >
   <Bumper />
@@ -108,7 +111,7 @@ const faqSchema = {
           <span class="baris miring-hero"><span>AKAL.</span></span>
           <span class="hero-h1-sub">Jasa pasang atap bitumen (genteng aspal) di Jabodetabek.</span>
         </h1>
-        <p class="hero-sub">Maxxi, CTI, dan Javabitumen. Harga terbuka sebelum Anda bicara dengan siapa pun.</p>
+        <p class="hero-sub">Maxxi, CTI, Javabitumen, Tegola, dan Victory. Harga terbuka sebelum Anda bicara dengan siapa pun.</p>
         <div class="hero-aksi">
           <a href="#hitung" class="pill hero-utama">Hitung estimasi biaya</a>
           <a href="#layanan-proyek" class="pill pill-garis hero-kedua">Untuk perusahaan &amp; proyek</a>
@@ -197,7 +200,7 @@ const faqSchema = {
           <article id="layanan-proyek" class="kartu gelap k-proyek">
             <p class="kartu-label">Untuk perusahaan</p>
             <h3 class="kartu-judul">Proyek perumahan &amp; komersial</h3>
-            <p>TDS, TKDN, faktur, termin, dan penawaran resmi berkop untuk diajukan ke atasan atau klien.</p>
+            <p>TDS, faktur, termin, dan penawaran resmi berkop untuk diajukan ke atasan atau klien.</p>
             <a class="pill pill-tunas" href={waLink('Halo Atapura, saya dari perusahaan dan butuh penawaran resmi untuk proyek atap.')} target="_blank" rel="noopener" data-wa="proyek">Minta penawaran resmi</a>
           </article>
         </div>
@@ -328,14 +331,14 @@ const faqSchema = {
       <div class="wrap denah">
         <div class="merek-kepala">
           <h2 id="judul-merek" class="judul-besar">Bingung pilih merek? <span class="miring">Mulai dari kebutuhan Anda.</span></h2>
-          <p class="lead">Ketiga merek yang kami pasang sama-sama atap bitumen yang baik. Bedanya ada di harga, asal produksi, dan lama garansi pabrik.</p>
+          <p class="lead">Semua merek yang kami pasang sama-sama atap bitumen yang baik. Bedanya ada di harga, asal produksi, dan lama garansi pabrik.</p>
         </div>
         <PilihMerek />
         <details class="spek">
-          <summary><span>Bandingkan spesifikasi lengkap ketiga merek</span><span class="spek-tanda" aria-hidden="true"></span></summary>
+          <summary><span>Bandingkan spesifikasi lengkap {merekTabel.length} merek</span><span class="spek-tanda" aria-hidden="true"></span></summary>
         <div class="datasheet" role="region" aria-label="Perbandingan merek" tabindex="0">
           <table class="ds">
-            <caption class="sr-only">Perbandingan tiga merek atap bitumen yang dipasang Atapura</caption>
+            <caption class="sr-only">Perbandingan merek atap bitumen yang dipasang Atapura</caption>
             <thead>
               <tr>
                 <td></td>
@@ -347,11 +350,11 @@ const faqSchema = {
             <tbody>
               <tr class="ds-harga" data-nosnippet>
                 <th scope="row">Terpasang per m²<span class="ds-ket">Jabodetabek, spek standar</span></th>
-                {merekTabel.map((m) => { const b = bagianRentang(m.r[0], m.r[1]); return <td><span class="harga-rp">Rp</span>{b.min}<span class="ds-sd">–</span>{b.max}<span class="harga-sat">{b.satuan} / m²</span></td>; })}
+                {merekTabel.map((m) => { if (!m.r) return <td class="ds-tunggu">Tanya admin</td>; const b = bagianRentang(m.r[0], m.r[1]); return <td><span class="harga-rp">Rp</span>{b.min}<span class="ds-sd">–</span>{b.max}<span class="harga-sat">{b.satuan} / m²</span></td>; })}
               </tr>
               <tr data-nosnippet>
                 <th scope="row">Genteng saja per m²</th>
-                {merekTabel.map((m) => <td class="angka">Rp{(m.g / 1000).toLocaleString('id-ID')} rb</td>)}
+                {merekTabel.map((m) => (m.g ? <td class="angka">Rp{(m.g / 1000).toLocaleString('id-ID')} rb</td> : <td class="ds-tunggu">Tanya admin</td>))}
               </tr>
               <tr>
                 <th scope="row">Kelas harga</th>
@@ -374,7 +377,7 @@ const faqSchema = {
               <p class="ds-no">{String(i + 1).padStart(2, '0')}</p>
               <p class="ds-merek">{m.nama}</p>
               <p class="merek-hp-kelas">{m.kelas}</p>
-              <p class="merek-hp-harga" data-nosnippet>{(() => { const b = bagianRentang(m.r[0], m.r[1]); return <><span class="harga-rp">Rp</span>{b.min}<span class="ds-sd">–</span>{b.max}<span class="harga-sat">{b.satuan} / m² terpasang</span></>; })()}{harga.contoh && <span class="contoh contoh-kecil">acuan</span>}</p>
+              <p class="merek-hp-harga" data-nosnippet>{(() => { if (!m.r) return <span class="ds-tunggu">Harga: tanya admin</span>; const b = bagianRentang(m.r[0], m.r[1]); return <><span class="harga-rp">Rp</span>{b.min}<span class="ds-sd">–</span>{b.max}<span class="harga-sat">{b.satuan} / m² terpasang</span></>; })()}{harga.contoh && <span class="contoh contoh-kecil">acuan</span>}</p>
               <p class="merek-hp-pasti">{m.pasti}</p>
             </li>
           ))}
@@ -385,7 +388,7 @@ const faqSchema = {
           <h3 class="batas-judul">Kapan kami menyarankan <span class="miring">pilihan lain</span></h3>
           <ol class="batas-daftar">
             <li>
-              <strong>Atap terlalu landai.</strong> Kemiringan minimal yang kami pasang 5 derajat. Di bawah batas itu,
+              <strong>Atap terlalu landai.</strong> Batas kemiringan mengikuti pabrik: Maxxi mulai 15 derajat, CTI mulai 10 derajat dengan cara pasang khusus. Di bawah batas itu,
               air hujan mengalir terlalu pelan dan bisa merembes ke sambungan. Untuk dak atau atap nyaris datar, kami jelaskan alternatifnya saat survey.
             </li>
             <li>
@@ -854,6 +857,7 @@ const faqSchema = {
   .ds-sd { color: var(--color-lumut); }
   .ds-pasti { font-size: 0.95rem; color: var(--color-lumut) !important; }
   .ds-tunggu { font-size: 0.95rem; color: var(--color-lumut) !important; }
+  .ds-harga td.ds-tunggu { font-size: 0.95rem; letter-spacing: 0; line-height: 1.4; }
   .merek-hp { display: none; }
   @media (max-width: 47.99rem) {
     .datasheet { display: none; }

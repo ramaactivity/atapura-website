@@ -11,7 +11,7 @@ export const bisnis = {
   statusLegal: 'dalam proses pendirian',
   tagline: 'Atap yang masuk AKAL.',
   deskripsi:
-    'Aplikator dan supplier atap bitumen (genteng aspal) Maxxi, CTI, dan Javabitumen untuk rumah, villa, kafe, dan proyek. Berbasis di Jabodetabek, melayani proyek di luar Jabodetabek.',
+    'Aplikator dan supplier atap bitumen (genteng aspal) Maxxi, CTI, Javabitumen, Tegola, dan Victory untuk rumah, villa, kafe, dan proyek. Berbasis di Jabodetabek, melayani proyek di luar Jabodetabek.',
   // Format internasional tanpa "+" untuk wa.me. null = belum ada; tombol WA tetap tampil tapi diarahkan ke halaman kontak WA umum.
   whatsapp: '6289611394867' as string | null, // sementara, dari Rama 2 Nov 2026
   telepon: null as string | null,
@@ -84,7 +84,8 @@ export const bisnis = {
     'Kota Bekasi',
     'Kabupaten Bekasi',
   ],
-  merek: ['Maxxi', 'CTI', 'Javabitumen'],
+  // Tegola & Victory ditambahkan Rama 4 Nov 2026; harga menunggu Bang Yusuf (belum ada di harga.ts).
+  merek: ['Maxxi', 'CTI', 'Javabitumen', 'Tegola', 'Victory'],
   // Izin tampil publik dari Rama, 2 Nov 2026.
   // Hanya Rama yang tercantum publik; partner pemilik sengaja tidak ditulis (hindari konflik dengan bekas tempat kerjanya). DECISIONS 027.
   pendiri: ['Ramadan Saputra'],
