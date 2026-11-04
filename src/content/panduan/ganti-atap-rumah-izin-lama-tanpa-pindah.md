@@ -40,7 +40,7 @@ Artinya, mengganti penutup atap yang rusak dengan bentuk atap yang sama termasuk
 
 | Tahap | Perkiraan |
 |---|---|
-| Survey dan penawaran tertulis | Sebelum pekerjaan, survey gratis di Jabodetabek |
+| Survey dan rincian biaya | Sebelum pekerjaan, survey gratis di Jabodetabek |
 | Pengiriman material | Setelah material dibayar |
 | Bongkar dan pasang | Sekitar 30–45 m² per hari |
 | Contoh atap 70 m² (rumah 6 × 9) | 3–4 hari kerja pemasangan, ditambah bongkar dan hari hujan |
@@ -55,4 +55,4 @@ Yang perlu Anda siapkan: kosongkan atau tutup barang di kamar yang atapnya sedan
 
 ## Sebelum mulai
 
-Minta penawaran tertulis yang memisahkan bongkar, rangka, dan atap baru, lalu minta foto setiap lapis sebelum ditutup. Penjelasan lapisannya ada di [lima lapis pemasangan](/panduan/lima-lapis-pemasangan-atap-bitumen). Kalau penggantian dipicu kebocoran, baca juga [penyebab atap bocor](/panduan/atap-bocor-penyebab-dan-cara-mengatasi).
+Minta rincian biaya yang memisahkan bongkar, rangka, dan atap baru, lalu minta foto setiap lapis sebelum ditutup. Penjelasan lapisannya ada di [lima lapis pemasangan](/panduan/lima-lapis-pemasangan-atap-bitumen). Kalau penggantian dipicu kebocoran, baca juga [penyebab atap bocor](/panduan/atap-bocor-penyebab-dan-cara-mengatasi).

@@ -66,7 +66,7 @@ const tanya = [
   },
   {
     q: 'Bagaimana cara bayarnya?',
-    a: `Survey (gratis di Jabodetabek), lalu penawaran tertulis. Detail kesepakatan kami bahas bersama lewat WhatsApp. Material dibayar lunas sebelum dikirim ke lokasi. Jasa pasang dibayar bertahap ${bisnis.pembayaran.jasa.map((t) => `${t.persen}%`).join(', ')}: ${bisnis.pembayaran.jasa.map((t) => t.saat.toLowerCase()).join('; ')}.`,
+    a: `Survey gratis di Jabodetabek. Detail kesepakatan kami bahas bersama lewat WhatsApp. Material dibayar lunas sebelum dikirim ke lokasi. Jasa pasang dibayar bertahap ${bisnis.pembayaran.jasa.map((t) => `${t.persen}%`).join(', ')}: ${bisnis.pembayaran.jasa.map((t) => t.saat.toLowerCase()).join('; ')}.`,
   },
 ];
 
@@ -199,7 +199,7 @@ const faqSchema = {
           <article id="layanan-proyek" class="kartu gelap k-proyek">
             <p class="kartu-label">Untuk perusahaan</p>
             <h3 class="kartu-judul">Proyek perumahan &amp; komersial</h3>
-            <p>TDS, faktur, termin, dan penawaran resmi berkop untuk diajukan ke atasan atau klien.</p>
+            <p>TDS, faktur, dan termin untuk diajukan ke atasan atau klien.</p>
             <a class="pill pill-tunas" href={waLink('Halo Atapura, saya dari perusahaan dan butuh penawaran resmi untuk proyek atap.')} target="_blank" rel="noopener" data-wa="proyek">Minta penawaran resmi</a>
           </article>
         </div>
@@ -277,7 +277,7 @@ const faqSchema = {
       <div class="wrap">
         <div class="cara-kepala">
           <h2 id="judul-cara" class="judul-besar">Uang Anda baru berpindah <span class="miring">di tahap tiga.</span></h2>
-          <p class="lead">Enam tahap dari survey sampai pelunasan. Sebelum membayar apa pun, Anda sudah memegang hasil survey dan penawaran tertulis.</p>
+          <p class="lead">Enam tahap dari survey sampai pelunasan. Sebelum membayar apa pun, Anda sudah tahu hasil survey dan rincian biayanya.</p>
         </div>
         <CaraKerja />
       </div>
@@ -309,7 +309,7 @@ const faqSchema = {
           </div>
           <div class="gb-garansi">
             <p class="garansi-angka">{bisnis.garansiPemasanganTahun}<span>tahun</span></p>
-            <p class="garansi-sub">Garansi pemasangan, berlaku sejak berita acara serah terima.</p>
+            <p class="garansi-sub">Garansi pemasangan, berlaku sejak serah terima.</p>
             <div class="garansi-dua">
               <div>
                 <h3 class="gb-label">Yang ditanggung</h3>

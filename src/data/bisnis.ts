@@ -56,7 +56,7 @@ export const bisnis = {
     jasa: [
       { tahap: 'Termin 1', saat: 'Saat tim mulai bekerja di lokasi', persen: 40 },
       { tahap: 'Termin 2', saat: 'Saat genteng mulai terpasang (progres ±50%)', persen: 30 },
-      { tahap: 'Pelunasan', saat: 'Setelah serah terima dan berita acara', persen: 30 },
+      { tahap: 'Pelunasan', saat: 'Setelah serah terima', persen: 30 },
     ],
   },
   // Revisi Bang Yusuf: survey gratis di Jabodetabek; di luar itu ada biaya survey (besaran menunggu ketetapan).
