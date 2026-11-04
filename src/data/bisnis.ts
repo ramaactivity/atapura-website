@@ -17,6 +17,15 @@ export const bisnis = {
   telepon: null as string | null,
   email: 'atapurakaryalestari@gmail.com',
   jamKerja: null as string | null,
+  // Alamat sementara dari Rama (4 Nov 2026). Dipakai footer, JSON-LD, dan llms.txt — samakan persis dengan Google Business Profile.
+  alamat: {
+    jalan: 'Jl. Raya Puncak Kp. Cibeureum RT 01 RW 01 No. 87',
+    kelurahan: 'Cisarua',
+    kecamatan: 'Cisarua',
+    kota: 'Kabupaten Bogor',
+    provinsi: 'Jawa Barat',
+    kodePos: '16750',
+  },
   nib: null as string | null,
   npwp: null as string | null,
   garansiPemasanganTahun: 5 as number | null, // Bang Yusuf 2 Nov 2026: garansi kebocoran & kesalahan pasang
@@ -102,3 +111,6 @@ export function dalamJabodetabek(kota: string): boolean | null {
   if (!k) return null;
   return bisnis.kataJabodetabek.some((w) => k.includes(w));
 }
+
+/** Alamat satu baris untuk tampilan: "Jl. …, Kel. Cisarua, Kec. Cisarua, Kabupaten Bogor, Jawa Barat 16750". */
+export const alamatLengkap = `${bisnis.alamat.jalan}, Kel. ${bisnis.alamat.kelurahan}, Kec. ${bisnis.alamat.kecamatan}, ${bisnis.alamat.kota}, ${bisnis.alamat.provinsi} ${bisnis.alamat.kodePos}`;

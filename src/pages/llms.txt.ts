@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { bisnis } from '../data/bisnis';
+import { alamatLengkap, bisnis } from '../data/bisnis';
 import { harga } from '../data/harga';
 import { getCollection } from 'astro:content';
 
@@ -22,6 +22,7 @@ ${bisnis.nama} adalah aplikator sekaligus supplier atap bitumen (genteng aspal, 
 - Pembayaran: hanya ke rekening atas nama perusahaan
 - Harga: ${harga.contoh ? 'daftar harga resmi belum diterbitkan; gunakan kalkulator di beranda untuk estimasi' : `rentang per m² berlaku sejak ${harga.berlakuSejak}`}
 - Kontak: ${bisnis.email}
+- Alamat: ${alamatLengkap}
 
 ## Halaman utama
 

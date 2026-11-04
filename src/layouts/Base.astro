@@ -24,7 +24,7 @@ const canonical = new URL(bersih || '/', Astro.site).href;
 const siteUrl = new URL('/', Astro.site).href;
 const gambar = new URL(ogImage, Astro.site).href;
 
-// Bisnis tanpa toko: tanpa address, area layanan eksplisit. Field yang belum ada datanya tidak ditulis.
+// Alamat kantor (sementara) + area layanan eksplisit. Field yang belum ada datanya tidak ditulis.
 const organisasi = {
   '@context': 'https://schema.org',
   '@type': 'RoofingContractor',
@@ -34,6 +34,14 @@ const organisasi = {
   slogan: bisnis.tagline,
   url: siteUrl,
   email: bisnis.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: bisnis.alamat.jalan,
+    addressLocality: `${bisnis.alamat.kecamatan}, ${bisnis.alamat.kota}`,
+    addressRegion: bisnis.alamat.provinsi,
+    postalCode: bisnis.alamat.kodePos,
+    addressCountry: 'ID',
+  },
   ...(bisnis.telepon && { telephone: `+${bisnis.telepon}` }),
   ...(bisnis.sosmed.length && { sameAs: bisnis.sosmed }),
   areaServed: bisnis.area.map((name) => ({

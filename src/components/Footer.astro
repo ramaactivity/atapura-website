@@ -2,7 +2,7 @@
 // Footer pola Andermatt: tagline besar + satu ajakan di kiri, kolom tautan bertajuk di kanan,
 // baris identitas, lalu baris legal. Latar gradasi gelap (pilihan Rama).
 import { getCollection } from 'astro:content';
-import { bisnis, waLink } from '../data/bisnis';
+import { alamatLengkap, bisnis, waLink } from '../data/bisnis';
 import Logo from './Logo.astro';
 import ikonInstagram from '../assets/ikon/instagram.svg?raw';
 import ikonTiktok from '../assets/ikon/tiktok.svg?raw';
@@ -114,9 +114,9 @@ const kolom = en ? kolomEn : kolomId;
   <div class="wrap kaki-identitas">
     <div class="kaki-legal-grup">
       {en ? (
-        <p class="kaki-legal kaki-legal-pt">{bisnis.namaLegal} (being incorporated).<br />Founded by {bisnis.pendiri.join(' and ')}. Free site survey in {bisnis.area.length} cities and regencies of Greater Jakarta.</p>
+        <p class="kaki-legal kaki-legal-pt">{bisnis.namaLegal} (being incorporated).<br />Founded by {bisnis.pendiri.join(' and ')}. Free site survey in {bisnis.area.length} cities and regencies of Greater Jakarta.<br />{alamatLengkap}</p>
       ) : (
-        <p class="kaki-legal kaki-legal-pt">{bisnis.namaLegal} ({bisnis.statusLegal}).<br />Didirikan oleh {bisnis.pendiri.join(' dan ')}. Survey gratis di {bisnis.area.length} kota dan kabupaten Jabodetabek.</p>
+        <p class="kaki-legal kaki-legal-pt">{bisnis.namaLegal} ({bisnis.statusLegal}).<br />Didirikan oleh {bisnis.pendiri.join(' dan ')}. Survey gratis di {bisnis.area.length} kota dan kabupaten Jabodetabek.<br />{alamatLengkap}</p>
       )}
       <ul class="kaki-sosial" aria-label={en ? 'Contact and social media' : 'Kontak dan media sosial'}>
         {sosial.map((x) => (
