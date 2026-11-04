@@ -66,7 +66,7 @@ const tanya = [
   },
   {
     q: 'Bagaimana cara bayarnya?',
-    a: `Survey (gratis di Jabodetabek), lalu penawaran tertulis dan kontrak. Material dibayar lunas sebelum dikirim ke lokasi. Jasa pasang dibayar bertahap ${bisnis.pembayaran.jasa.map((t) => `${t.persen}%`).join(', ')}: ${bisnis.pembayaran.jasa.map((t) => t.saat.toLowerCase()).join('; ')}. Semua pembayaran hanya ke rekening atas nama perusahaan, tidak pernah ke rekening pribadi.`,
+    a: `Survey (gratis di Jabodetabek), lalu penawaran tertulis. Detail kesepakatan kami bahas bersama lewat WhatsApp. Material dibayar lunas sebelum dikirim ke lokasi. Jasa pasang dibayar bertahap ${bisnis.pembayaran.jasa.map((t) => `${t.persen}%`).join(', ')}: ${bisnis.pembayaran.jasa.map((t) => t.saat.toLowerCase()).join('; ')}. Semua pembayaran hanya ke rekening atas nama perusahaan, tidak pernah ke rekening pribadi.`,
   },
 ];
 
@@ -119,7 +119,6 @@ const faqSchema = {
         <ul class="hero-bukti" aria-label="Jaminan">
           <li>Survey gratis</li>
           <li>Garansi {bisnis.garansiPemasanganTahun} tahun</li>
-          <li>Kontrak tertulis</li>
         </ul>
       </div>
       <a class="hero-kartu" href="#hitung" aria-label="Contoh hasil Hitung AKAL. Hitung biaya atap Anda">
@@ -277,8 +276,8 @@ const faqSchema = {
       <Foto desktop={drone} alt="" class="latar-img" sizes="100vw" />
       <div class="wrap">
         <div class="cara-kepala">
-          <h2 id="judul-cara" class="judul-besar">Uang Anda baru berpindah <span class="miring">di tahap empat.</span></h2>
-          <p class="lead">Tujuh tahap, semuanya tertulis. Sebelum membayar apa pun, Anda sudah memegang hasil survey, penawaran berkop, dan kontrak.</p>
+          <h2 id="judul-cara" class="judul-besar">Uang Anda baru berpindah <span class="miring">di tahap tiga.</span></h2>
+          <p class="lead">Enam tahap dari survey sampai pelunasan. Sebelum membayar apa pun, Anda sudah memegang hasil survey dan penawaran tertulis.</p>
         </div>
         <CaraKerja />
       </div>
@@ -382,7 +381,7 @@ const faqSchema = {
             </li>
           ))}
         </ol>
-        <p class="tabel-catatan">Harga terpasang = estimasi kasar untuk Jabodetabek dengan spek standar (alas multiplek, underlayer, flashing), belum termasuk rangka baru (baja ringan Rp220 rb/m²). Genteng kami ambil langsung dari pabrikan. Garansi pabrik dan spesifikasi diverifikasi ulang dengan dokumen resmi sebelum kontrak.</p>
+        <p class="tabel-catatan">Harga terpasang = estimasi kasar untuk Jabodetabek dengan spek standar (alas multiplek, underlayer, flashing), belum termasuk rangka baru (baja ringan Rp220 rb/m²). Genteng kami ambil langsung dari pabrikan. Garansi pabrik dan spesifikasi diverifikasi ulang dengan dokumen resmi sebelum pemesanan.</p>
         </details>
         <div class="batas">
           <h3 class="batas-judul">Kapan kami menyarankan <span class="miring">pilihan lain</span></h3>
