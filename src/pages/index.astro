@@ -83,8 +83,8 @@ const merekTabel = [
   { nama: 'CTI', kelas: harga.merek.CTI.kelas, pasti: 'Seri CT3 (1000 × 333 mm), CT5, dan CT6 (1000 × 317,5 mm), 3,00 m² per bundel', r: harga.merek.CTI.terpasang, g: harga.merek.CTI.genteng, garansi: harga.merek.CTI.garansiPabrik },
   { nama: 'Javabitumen', kelas: harga.merek.Javabitumen.kelas, pasti: 'Spesifikasi menunggu brosur resmi dari produsen', r: harga.merek.Javabitumen.terpasang, g: harga.merek.Javabitumen.genteng, garansi: harga.merek.Javabitumen.garansiPabrik },
   // Harga Tegola & Victory belum ada (menunggu Bang Yusuf): tampil "Tanya admin", tidak dihitung kalkulator.
-  { nama: 'Tegola', kelas: 'Belum ditetapkan', pasti: 'Spesifikasi sedang diverifikasi dari dokumen resmi', r: null, g: null, garansi: 'Menunggu dokumen resmi' },
-  { nama: 'Victory', kelas: 'Belum ditetapkan', pasti: 'Spesifikasi sedang diverifikasi dari dokumen resmi', r: null, g: null, garansi: 'Menunggu dokumen resmi' },
+  { nama: 'Tegola', kelas: 'Belum ditetapkan', pasti: 'Pabrikan Tegola Canadese, Italia. Seri satu lapis Premium (1000 × 340 mm, ±10,7 kg/m²) dan dua lapis Master (±12,3 kg/m²); paku biasa mulai 14° (Master 19°)', r: null, g: null, garansi: 'Garansi terbatas terdaftar hingga 40 tahun, bertahap; syarat pasang sesuai manual pabrik' },
+  { nama: 'Victory', kelas: 'Belum ditetapkan', pasti: 'Spesifikasi menunggu dokumen resmi dari pemasok', r: null, g: null, garansi: 'Menunggu dokumen resmi' },
 ] as { nama: string; kelas: string; pasti: string; r: readonly [number, number] | null; g: number | null; garansi: string }[];
 
 const faqSchema = {
@@ -387,7 +387,7 @@ const faqSchema = {
           <h3 class="batas-judul">Kapan kami menyarankan <span class="miring">pilihan lain</span></h3>
           <ol class="batas-daftar">
             <li>
-              <strong>Atap terlalu landai.</strong> Batas kemiringan mengikuti pabrik: Maxxi mulai 15 derajat, CTI mulai 10 derajat dengan cara pasang khusus. Di bawah batas itu,
+              <strong>Atap terlalu landai.</strong> Batas kemiringan mengikuti pabrik: Maxxi mulai 15 derajat, Tegola 14 derajat untuk pemasangan paku biasa, CTI mulai 10 derajat dengan cara pasang khusus. Di bawah batas itu,
               air hujan mengalir terlalu pelan dan bisa merembes ke sambungan. Untuk dak atau atap nyaris datar, kami jelaskan alternatifnya saat survey.
             </li>
             <li>
