@@ -2,7 +2,6 @@
 import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import BentukGenteng from '../../components/BentukGenteng.astro';
 import { Image } from 'astro:assets';
 import { produk, type Produk } from '../../data/produk';
 import { bisnis, waLink } from '../../data/bisnis';
@@ -16,6 +15,10 @@ const situs = new URL('/', Astro.site).href;
 const url = new URL(`/produk/${p.slug}`, Astro.site).href;
 const lain = produk.filter((x) => x.slug !== p.slug);
 const pesan = `Halo Atapura, saya mau tanya atap bitumen ${p.nama}.`;
+// Contoh warna: foto tekstur seri yang diwarnai ulang per warna (dibuat skrip, lihat DECISIONS 042).
+const contohWarna = import.meta.glob<ImageMetadata>('../../../assets/gambar/warna/*.jpg', { eager: true, import: 'default' });
+const slugNama = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const fotoWarna = (tekstur: string, nama: string) => contohWarna[`../../../assets/gambar/warna/${tekstur}-${slugNama(nama)}.jpg`];
 
 const schema = [
   {
@@ -72,7 +75,7 @@ const schema = [
           <ul class="seri">
             {p.seri.map((s) => (
               <li class="seri-baris">
-                <div class="seri-gambar"><BentukGenteng bentuk={s.bentuk} label={`Bentuk potongan lembar ${s.nama}`} /></div>
+                <Image src={s.foto} alt={`Close-up genteng aspal ${p.nama} ${s.nama} terpasang, memperlihatkan bentuk potongannya`} widths={[480, 800, 1200]} sizes="(min-width: 60rem) 30vw, 100vw" class="seri-foto" />
                 <div class="seri-teks">
                   <h3 class="seri-nama">{s.nama}</h3>
                   <p class="seri-ringkas">{s.ringkas}</p>
@@ -83,7 +86,7 @@ const schema = [
               </li>
             ))}
           </ul>
-          <p class="pr-catatan">Gambar di atas adalah diagram bentuk potongan satu lembar, bukan foto produk.</p>
+          <p class="pr-catatan">Foto di atas adalah ilustrasi bentuk potongan setelah terpasang, bukan foto proyek Atapura. Sampel fisik kami bawa saat survey.</p>
         </div>
       </section>
     )}
@@ -100,7 +103,9 @@ const schema = [
                 <ul class="warna">
                   {g.daftar.map((w) => (
                     <li>
-                      <span class="contoh-warna" style={`--w: ${w.hex}`} aria-hidden="true"></span>
+                      {fotoWarna(g.tekstur, w.nama)
+                        ? <Image src={fotoWarna(g.tekstur, w.nama)} alt="" widths={[240, 480]} sizes="10rem" class="contoh-warna" />
+                        : <span class="contoh-warna" style={`--w: ${w.hex}`} aria-hidden="true"></span>}
                       <span class="warna-nama">{w.nama}</span>
                       {w.kode && <span class="warna-kode">{w.kode}</span>}
                     </li>
@@ -207,7 +212,7 @@ const schema = [
   .seri { margin-top: 2.25rem; border-top: 1px solid var(--color-tinta); }
   .seri-baris { display: grid; gap: 1.25rem 3rem; grid-template-columns: minmax(0, 1fr); padding: 1.75rem 0; border-bottom: 1px solid var(--color-garis); align-items: start; }
   @media (min-width: 60rem) { .seri-baris { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr) minmax(0, 1fr); } }
-  .seri-gambar { max-width: 20rem; }
+  .seri-foto { width: 100%; max-width: 26rem; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 14px; display: block; }
   .seri-nama { font-size: clamp(1.35rem, 1.1rem + 0.8vw, 1.75rem); font-weight: 500; letter-spacing: -0.03em; }
   .seri-ringkas { margin-top: 0.4rem; color: var(--color-lumut); line-height: 1.6; max-width: 46ch; }
   .rinci > div { display: flex; align-items: baseline; gap: 0.6rem; padding: 0.45rem 0; font-size: 0.95rem; }
@@ -221,7 +226,7 @@ const schema = [
   .warna li { display: grid; gap: 0.3rem; }
   /* Contoh warna bertekstur butiran (perkiraan): warna dasar + derau SVG. */
   .contoh-warna {
-    display: block; aspect-ratio: 4 / 3; border-radius: 0.75rem; background-color: var(--w);
+    display: block; width: 100%; height: auto; object-fit: cover; aspect-ratio: 4 / 3; border-radius: 0.75rem; background-color: var(--w);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='90'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     background-blend-mode: soft-light; box-shadow: inset 0 0 0 1px rgb(16 35 30 / 0.1), 0 10px 18px -14px rgb(16 35 30 / 0.5);
   }

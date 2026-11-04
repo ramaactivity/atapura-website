@@ -16,3 +16,8 @@ Total 4 Nov: 390 kredit. Saldo sebelum: 18.361.
 | 4 Nov 2026 | Ulang penerapan Maxxiroof | Nano Banana 2.1, 2K, 3:2 | 65 | ✅ `penerapan-maxxi-maxxiroof-rumah-3x2.jpg` | Prompt dipertegas: clean dry roof, uniform matte colour, no streaks/stains |
 
 Total 4 Nov: 520 kredit. Saldo setelahnya: ±17.841.
+
+| 5 Nov 2026 | Foto seri ×9 (CT3, CT5, CT6 ×2, Maxxiroof, Promaxxi, Tegola Rectangular/Traditional/Mosaik/Master) | Nano Banana 2.1, 1K, 16:9 | 10 × 50 | ✅ 9 dipakai di `assets/gambar/seri/`; CT6 pertama ❌ (celah trapesium hilang, diulang) | Close-up lurus, acuan potongan katalog |
+| 5 Nov 2026 | Edit penerapan ×6 jadi atap rectangular | Nano Banana 2.1, 2K, 3:2 | 6 × 65 | ✅ semua dipakai (gazebo, kafe, Maxxiroof, Promaxxi, villa Tegola, lereng Tegola) | Foto lama + potongan katalog sebagai acuan |
+
+Total 5 Nov: 890 kredit. Saldo setelahnya: ±16.951. Contoh warna (60) dibuat dari foto seri lewat skrip, 0 kredit.

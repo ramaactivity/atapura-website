@@ -6,17 +6,19 @@ import type { ImageMetadata } from 'astro';
 import { harga, type Merek } from './harga';
 import cti1 from '../../assets/gambar/magnific/penerapan-cti-ct3-gazebo-3x2.jpg';
 import maxxi1 from '../../assets/gambar/magnific/penerapan-maxxi-promaxxi-rumah-3x2.jpg';
-import cti2 from '../../assets/gambar/magnific/penerapan-cti-ct6-kafe-3x2.jpg';
+import cti2 from '../../assets/gambar/magnific/penerapan-cti-ct3-kafe-3x2.jpg';
 import maxxi2 from '../../assets/gambar/magnific/penerapan-maxxi-maxxiroof-rumah-3x2.jpg';
-import tegola1 from '../../assets/gambar/magnific/penerapan-tegola-traditional-villa-3x2.jpg';
-import tegola2 from '../../assets/gambar/magnific/penerapan-tegola-master-lereng-3x2.jpg';
+import tegola1 from '../../assets/gambar/magnific/penerapan-tegola-rectangular-villa-3x2.jpg';
+import tegola2 from '../../assets/gambar/magnific/penerapan-tegola-rectangular-lereng-3x2.jpg';
 
-/** Bentuk potongan lembar, untuk gambar SVG di halaman seri. */
-export type Bentuk = 'tab3' | 'zigzag' | 'heksagonal' | 'laminasi' | 'persegi' | 'sisik' | 'mosaik';
+// Foto close-up tiap seri (Magnific, bentuk potongan dicocokkan ke katalog resmi). Nama file = kunci `foto`.
+const fotoSeri = import.meta.glob<ImageMetadata>('../../assets/gambar/seri/*.jpg', { eager: true, import: 'default' });
+const seriFoto = (kunci: string) => fotoSeri[`../../assets/gambar/seri/${kunci}.jpg`];
 
 export interface Seri {
   nama: string;
-  bentuk: Bentuk;
+  /** Foto close-up genteng terpasang (ilustrasi Magnific). */
+  foto: ImageMetadata;
   ringkas: string;
   spek: { label: string; nilai: string }[];
 }
@@ -41,7 +43,8 @@ export interface Produk {
   fakta: { label: string; nilai: string }[];
   seri: Seri[];
   /** Warna per kelompok (mis. per seri). Kosong = menunggu data resmi. */
-  warna: { judul: string; catatan?: string; daftar: Warna[] }[];
+  /** `tekstur` = kunci foto seri yang diwarnai ulang jadi contoh warna (assets/gambar/warna/<tekstur>-<nama>.jpg). */
+  warna: { tekstur: string; judul: string; catatan?: string; daftar: Warna[] }[];
   aksesori: { nama: string; isi: string }[];
   /** Ilustrasi penerapan (Magnific), selalu berlabel ilustrasi, bukan proyek Atapura. */
   penerapan: { gambar: ImageMetadata; alt: string; keterangan: string }[];
@@ -77,7 +80,7 @@ export const produk: Produk[] = [
     seri: [
       {
         nama: 'CT3',
-        bentuk: 'tab3',
+        foto: seriFoto('cti-ct3'),
         ringkas: 'Model 3-tab, tiga lidah rata. Tampilan paling rapi dan paling umum dipakai di rumah tinggal.',
         spek: [
           { label: 'Ukuran per lembar', nilai: '1.000 × 333 mm' },
@@ -87,7 +90,7 @@ export const produk: Produk[] = [
       },
       {
         nama: 'CT5',
-        bentuk: 'zigzag',
+        foto: seriFoto('cti-ct5'),
         ringkas: 'Potongan tidak beraturan yang membuat atap tampak berlapis dan bertekstur setelah terpasang.',
         spek: [
           { label: 'Ukuran per lembar', nilai: '1.000 × 317,5 mm' },
@@ -97,7 +100,7 @@ export const produk: Produk[] = [
       },
       {
         nama: 'CT6',
-        bentuk: 'heksagonal',
+        foto: seriFoto('cti-ct6'),
         ringkas: 'Potongan segi enam untuk atap yang ingin tampil beda, sering dipilih untuk bangunan berarsitektur khusus.',
         spek: [
           { label: 'Ukuran per lembar', nilai: '1.000 × 317,5 mm' },
@@ -107,9 +110,9 @@ export const produk: Produk[] = [
       },
     ],
     warna: [
-      { judul: 'CT3 · warna solid', daftar: [{ nama: 'Black', kode: 'BK', hex: '#1E1F21' }, { nama: 'Dark Grey', kode: 'DG', hex: '#6B6D70' }, { nama: 'Dark Brown', kode: 'DB', hex: '#2E2A2B' }, { nama: 'Red', kode: 'RD', hex: '#9B2F2E' }, { nama: 'Green', kode: 'GN', hex: '#2F5A3C' }, { nama: 'Gold', kode: 'GD', hex: '#9C7347' }] },
-      { judul: 'CT3 · warna gradasi', daftar: [{ nama: 'Midnight Black', kode: 'MIB', hex: '#2A2B2D' }, { nama: 'Charcoal Grey', kode: 'CHG', hex: '#45474A' }, { nama: 'Coffee Brown', kode: 'COB', hex: '#5A5552' }, { nama: 'Sunset Red', kode: 'SUR', hex: '#8E3A3E' }, { nama: 'Forest Green', kode: 'FOG', hex: '#2F4A33' }, { nama: 'Tuscany Gold', kode: 'TUG', hex: '#6E5A45' }] },
-      { judul: 'CT5 dan CT6', catatan: 'Warna khusus (custom) bisa dipesan; tanyakan ketersediaannya lewat WhatsApp.', daftar: [{ nama: 'Black', kode: 'BK', hex: '#1E1F21' }, { nama: 'Dark Grey', kode: 'DG', hex: '#6B6D70' }, { nama: 'Dark Brown', kode: 'DB', hex: '#2E2A2B' }, { nama: 'Red', kode: 'RD', hex: '#9B2F2E' }, { nama: 'Green', kode: 'GN', hex: '#2F5A3C' }, { nama: 'Gold', kode: 'GD', hex: '#9C7347' }] },
+      { tekstur: 'cti-ct3', judul: 'CT3 · warna solid', daftar: [{ nama: 'Black', kode: 'BK', hex: '#1E1F21' }, { nama: 'Dark Grey', kode: 'DG', hex: '#6B6D70' }, { nama: 'Dark Brown', kode: 'DB', hex: '#2E2A2B' }, { nama: 'Red', kode: 'RD', hex: '#9B2F2E' }, { nama: 'Green', kode: 'GN', hex: '#2F5A3C' }, { nama: 'Gold', kode: 'GD', hex: '#9C7347' }] },
+      { tekstur: 'cti-ct3', judul: 'CT3 · warna gradasi', daftar: [{ nama: 'Midnight Black', kode: 'MIB', hex: '#2A2B2D' }, { nama: 'Charcoal Grey', kode: 'CHG', hex: '#45474A' }, { nama: 'Coffee Brown', kode: 'COB', hex: '#5A5552' }, { nama: 'Sunset Red', kode: 'SUR', hex: '#8E3A3E' }, { nama: 'Forest Green', kode: 'FOG', hex: '#2F4A33' }, { nama: 'Tuscany Gold', kode: 'TUG', hex: '#6E5A45' }] },
+      { tekstur: 'cti-ct6', judul: 'CT5 dan CT6', catatan: 'Warna khusus (custom) bisa dipesan; tanyakan ketersediaannya lewat WhatsApp.', daftar: [{ nama: 'Black', kode: 'BK', hex: '#1E1F21' }, { nama: 'Dark Grey', kode: 'DG', hex: '#6B6D70' }, { nama: 'Dark Brown', kode: 'DB', hex: '#2E2A2B' }, { nama: 'Red', kode: 'RD', hex: '#9B2F2E' }, { nama: 'Green', kode: 'GN', hex: '#2F5A3C' }, { nama: 'Gold', kode: 'GD', hex: '#9C7347' }] },
     ],
     aksesori: [
       { nama: 'UnderMaster', isi: 'Lapisan bawah (underlayer) gulungan 1 × 10 m yang dipasang di atas papan alas, sebelum genteng.' },
@@ -117,7 +120,7 @@ export const produk: Produk[] = [
     ],
     penerapan: [
       { gambar: cti1, alt: 'Ilustrasi gazebo resort tepi kolam beratap limas genteng aspal 3-tab abu tua', keterangan: 'Potongan 3-tab, abu tua, pada gazebo resort' },
-      { gambar: cti2, alt: 'Ilustrasi kafe modern beratap pelana curam genteng aspal berpotongan segi enam', keterangan: 'Potongan segi enam pada kafe beratap pelana curam' },
+      { gambar: cti2, alt: 'Ilustrasi kafe modern beratap pelana curam genteng aspal 3-tab abu tua', keterangan: 'Potongan 3-tab, abu tua, pada kafe beratap pelana curam' },
     ],
     garansi: 'Garansi produk 30 tahun dari pabrik CTI. Garansi pemasangan dari pabrik berlaku untuk pemasangan oleh CTI; pemasangan Atapura dilindungi garansi pemasangan tertulis 5 tahun dari Atapura.',
     terverifikasi: true,
@@ -146,7 +149,7 @@ export const produk: Produk[] = [
     seri: [
       {
         nama: 'Maxxiroof',
-        bentuk: 'tab3',
+        foto: seriFoto('maxxi-maxxiroof'),
         ringkas: 'Genteng aspal 3-tab satu lapis. Pilihan paling hemat untuk rumah tinggal dan renovasi.',
         spek: [
           { label: 'Ukuran per lembar', nilai: '1.000 × 333 mm' },
@@ -157,7 +160,7 @@ export const produk: Produk[] = [
       },
       {
         nama: 'Promaxxi',
-        bentuk: 'laminasi',
+        foto: seriFoto('maxxi-promaxxi'),
         ringkas: 'Genteng aspal laminasi dua lapis. Lebih tebal, bayangannya lebih dalam, dan tercantum tahan angin 130 km/jam.',
         spek: [
           { label: 'Ukuran per lembar', nilai: '1.000 × 333 mm' },
@@ -169,12 +172,12 @@ export const produk: Produk[] = [
       },
     ],
     warna: [
-      { judul: 'Maxxiroof', daftar: [{ nama: 'Slate', hex: '#8A8F8A' }, { nama: 'Cedar', hex: '#C9A574' }, { nama: 'Ash Brown', hex: '#9A5A43' }, { nama: 'Sierra Gray 1 Tone', hex: '#8C8F8D' }, { nama: 'Sierra Gray 2 Tone', hex: '#8E928E' }, { nama: 'Bark Brown', hex: '#4E3330' }, { nama: 'Dark Black', hex: '#2B2928' }, { nama: 'Charcoal', hex: '#3A3836' }, { nama: 'Dark Brown', hex: '#4A3A36' }] },
-      { judul: 'Promaxxi', catatan: 'Warna Promaxxi lain bisa ditanyakan lewat WhatsApp.', daftar: [{ nama: 'Charcoal', hex: '#4A4A48' }, { nama: 'Mix Spanish Red', hex: '#B0574A' }, { nama: 'Lime Gray', hex: '#9DA3AA' }] },
+      { tekstur: 'maxxi-maxxiroof', judul: 'Maxxiroof', daftar: [{ nama: 'Slate', hex: '#8A8F8A' }, { nama: 'Cedar', hex: '#C9A574' }, { nama: 'Ash Brown', hex: '#9A5A43' }, { nama: 'Sierra Gray 1 Tone', hex: '#8C8F8D' }, { nama: 'Sierra Gray 2 Tone', hex: '#8E928E' }, { nama: 'Bark Brown', hex: '#4E3330' }, { nama: 'Dark Black', hex: '#2B2928' }, { nama: 'Charcoal', hex: '#3A3836' }, { nama: 'Dark Brown', hex: '#4A3A36' }] },
+      { tekstur: 'maxxi-promaxxi', judul: 'Promaxxi', catatan: 'Warna Promaxxi lain bisa ditanyakan lewat WhatsApp.', daftar: [{ nama: 'Charcoal', hex: '#4A4A48' }, { nama: 'Mix Spanish Red', hex: '#B0574A' }, { nama: 'Lime Gray', hex: '#9DA3AA' }] },
     ],
     aksesori: [],
     penerapan: [
-      { gambar: maxxi2, alt: 'Ilustrasi rumah satu lantai di perumahan beratap pelana genteng aspal 3-tab hitam', keterangan: 'Potongan 3-tab hitam pada rumah satu lantai di perumahan' },
+      { gambar: maxxi2, alt: 'Ilustrasi rumah satu lantai di perumahan beratap pelana genteng aspal 3-tab abu', keterangan: 'Potongan 3-tab abu pada rumah satu lantai di perumahan' },
       { gambar: maxxi1, alt: 'Ilustrasi rumah dua lantai beratap limas genteng aspal laminasi coklat tua', keterangan: 'Genteng laminasi coklat tua pada rumah dua lantai' },
     ],
     garansi: 'Garansi produk dari pabrik: 25 tahun untuk Maxxiroof dan 30 tahun untuk Promaxxi, dengan syarat sesuai dokumen garansi pabrik. Pemasangan Atapura dilindungi garansi pemasangan tertulis 5 tahun.',
@@ -203,7 +206,7 @@ export const produk: Produk[] = [
     seri: [
       {
         nama: 'Premium Rectangular',
-        bentuk: 'persegi',
+        foto: seriFoto('tegola-premium-rectangular'),
         ringkas: 'Satu lapis dengan potongan persegi, tampilan rapi mirip 3-tab.',
         spek: [
           { label: 'Ukuran per lembar', nilai: '1.000 × 340 mm' },
@@ -213,7 +216,7 @@ export const produk: Produk[] = [
       },
       {
         nama: 'Premium Traditional',
-        bentuk: 'sisik',
+        foto: seriFoto('tegola-premium-traditional'),
         ringkas: 'Satu lapis dengan potongan membulat seperti sisik, untuk rumah bergaya klasik.',
         spek: [
           { label: 'Ukuran per lembar', nilai: '1.000 × 340 mm' },
@@ -222,7 +225,7 @@ export const produk: Produk[] = [
       },
       {
         nama: 'Premium Mosaik',
-        bentuk: 'mosaik',
+        foto: seriFoto('tegola-premium-mosaik'),
         ringkas: 'Satu lapis dengan potongan mosaik yang memberi pola acak di bidang atap.',
         spek: [
           { label: 'Ukuran per lembar', nilai: '1.000 × 337 mm' },
@@ -231,7 +234,7 @@ export const produk: Produk[] = [
       },
       {
         nama: 'Master',
-        bentuk: 'laminasi',
+        foto: seriFoto('tegola-master'),
         ringkas: 'Dua lapis, lebih berat dan bertekstur dalam. Pemasangan dengan paku biasa mulai kemiringan 19°.',
         spek: [
           { label: 'Ukuran per lembar', nilai: '998 × 337 mm' },
@@ -241,14 +244,14 @@ export const produk: Produk[] = [
       },
     ],
     warna: [
-      { judul: 'Premium Rectangular', catatan: 'Warna seri Tegola lain (Traditional, Mosaik, Master) bisa ditanyakan lewat WhatsApp.', daftar: [{ nama: 'Black', kode: '060', hex: '#2B2C2E' }, { nama: 'Slate Grey', kode: '061', hex: '#6A6E73' }, { nama: 'Light Grey', kode: '053', hex: '#A3A5A6' }, { nama: 'Dark Grey', kode: '550', hex: '#8A8A8C' }, { nama: 'Tone Green', kode: '070', hex: '#5A7A55' }, { nama: 'Coppery Red', kode: '503', hex: '#8E3B33' }, { nama: 'Tone Red', kode: '002', hex: '#8A3E35' }, { nama: 'Autumn Red', kode: '506', hex: '#8E5040' }, { nama: 'Dark Brown', kode: '521', hex: '#4A3530' }, { nama: 'Wood', kode: '547', hex: '#5A3E36' }] },
+      { tekstur: 'tegola-premium-rectangular', judul: 'Premium Rectangular', catatan: 'Warna seri Tegola lain (Traditional, Mosaik, Master) bisa ditanyakan lewat WhatsApp.', daftar: [{ nama: 'Black', kode: '060', hex: '#2B2C2E' }, { nama: 'Slate Grey', kode: '061', hex: '#6A6E73' }, { nama: 'Light Grey', kode: '053', hex: '#A3A5A6' }, { nama: 'Dark Grey', kode: '550', hex: '#8A8A8C' }, { nama: 'Tone Green', kode: '070', hex: '#5A7A55' }, { nama: 'Coppery Red', kode: '503', hex: '#8E3B33' }, { nama: 'Tone Red', kode: '002', hex: '#8A3E35' }, { nama: 'Autumn Red', kode: '506', hex: '#8E5040' }, { nama: 'Dark Brown', kode: '521', hex: '#4A3530' }, { nama: 'Wood', kode: '547', hex: '#5A3E36' }] },
     ],
     aksesori: [
       { nama: 'Startbar', isi: 'Membran lapisan bawah yang diwajibkan pabrik untuk pemasangan dengan paku pada kemiringan 14° ke atas.' },
     ],
     penerapan: [
-      { gambar: tegola1, alt: 'Ilustrasi villa klasik beratap limas genteng aspal potongan sisik merah antik', keterangan: 'Potongan sisik, merah antik, pada villa bertaman' },
-      { gambar: tegola2, alt: 'Ilustrasi villa di lereng berkabut beratap genteng aspal dua lapis abu batu', keterangan: 'Genteng dua lapis abu batu pada villa dataran tinggi' },
+      { gambar: tegola1, alt: 'Ilustrasi villa klasik beratap limas genteng aspal potongan persegi merah tua', keterangan: 'Potongan persegi (Rectangular), merah tua, pada villa bertaman' },
+      { gambar: tegola2, alt: 'Ilustrasi villa di lereng berkabut beratap genteng aspal potongan persegi abu tua', keterangan: 'Potongan persegi (Rectangular), abu tua, pada villa dataran tinggi' },
     ],
     garansi: 'Garansi terbatas terdaftar hingga 40 tahun dari pabrik, berlaku bertahap: 5–10 tahun pertama penggantian lembar cacat dan bantuan biaya pasang, setelahnya potongan harga material baru. Syaratnya pemasangan sesuai manual pabrik dan aksesori asli. Pemasangan Atapura dilindungi garansi pemasangan tertulis 5 tahun.',
     terverifikasi: true,
@@ -275,8 +278,8 @@ export const produk: Produk[] = [
     ],
     seri: [],
     warna: [
-      { judul: 'Warna solid', daftar: [{ nama: 'Hitam', hex: '#2E3136' }, { nama: 'Abu-abu gelap', hex: '#4A5058' }, { nama: 'Abu-abu', hex: '#6E7275' }, { nama: 'Abu-abu terang', hex: '#8C9196' }, { nama: 'Biru', hex: '#3E5378' }, { nama: 'Biru terang', hex: '#4A7BC4' }, { nama: 'Hijau', hex: '#4E6450' }, { nama: 'Hijau muda', hex: '#5E8A63' }, { nama: 'Coklat', hex: '#5E5148' }, { nama: 'Coklat gelap', hex: '#5A4A3C' }, { nama: 'Coklat terang', hex: '#B5765B' }, { nama: 'Coklat emas', hex: '#B59A72' }, { nama: 'Merah', hex: '#A9584A' }, { nama: 'Merah gelap', hex: '#8A5550' }, { nama: 'Merah terang', hex: '#C9614E' }] },
-      { judul: 'Seri gradasi', catatan: 'Nama warna gradasi dikonfirmasi ulang ke pemasok saat survey.', daftar: [{ nama: 'Gradasi abu-abu', hex: '#55585C' }, { nama: 'Gradasi coklat', hex: '#6E4038' }, { nama: 'Gradasi hijau tua', hex: '#3E4E44' }, { nama: 'Gradasi hitam', hex: '#3A3F45' }, { nama: 'Gradasi merah', hex: '#9E4A3C' }] },
+      { tekstur: 'cti-ct3', judul: 'Warna solid', daftar: [{ nama: 'Hitam', hex: '#2E3136' }, { nama: 'Abu-abu gelap', hex: '#4A5058' }, { nama: 'Abu-abu', hex: '#6E7275' }, { nama: 'Abu-abu terang', hex: '#8C9196' }, { nama: 'Biru', hex: '#3E5378' }, { nama: 'Biru terang', hex: '#4A7BC4' }, { nama: 'Hijau', hex: '#4E6450' }, { nama: 'Hijau muda', hex: '#5E8A63' }, { nama: 'Coklat', hex: '#5E5148' }, { nama: 'Coklat gelap', hex: '#5A4A3C' }, { nama: 'Coklat terang', hex: '#B5765B' }, { nama: 'Coklat emas', hex: '#B59A72' }, { nama: 'Merah', hex: '#A9584A' }, { nama: 'Merah gelap', hex: '#8A5550' }, { nama: 'Merah terang', hex: '#C9614E' }] },
+      { tekstur: 'cti-ct3', judul: 'Seri gradasi', catatan: 'Nama warna gradasi dikonfirmasi ulang ke pemasok saat survey.', daftar: [{ nama: 'Gradasi abu-abu', hex: '#55585C' }, { nama: 'Gradasi coklat', hex: '#6E4038' }, { nama: 'Gradasi hijau tua', hex: '#3E4E44' }, { nama: 'Gradasi hitam', hex: '#3A3F45' }, { nama: 'Gradasi merah', hex: '#9E4A3C' }] },
     ],
     aksesori: [],
     penerapan: [],
