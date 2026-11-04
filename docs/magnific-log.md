@@ -12,3 +12,7 @@ Aturan: DECISIONS 039. Saldo dicek sebelum generate; generate hanya setelah "ok"
 | 4 Nov 2026 | Penerapan Tegola Master | Nano Banana 2.1, 2K, 3:2 | 65 | ✅ `penerapan-tegola-master-lereng-3x2.jpg` | Villa lereng berkabut, atap dua lapis slate grey, kebun teh |
 
 Total 4 Nov: 390 kredit. Saldo sebelum: 18.361.
+| 4 Nov 2026 | Ulang penerapan CTI CT6 | Nano Banana 2.1, 2K, 3:2 | 65 | ✅ `penerapan-cti-ct6-kafe-3x2.jpg` (potongan segi enam tegas; warna tampak abu kecoklatan karena cahaya sore, keterangan tanpa nama warna) | Prompt dipertegas: sharp hexagons, straight edges, not rounded scallops |
+| 4 Nov 2026 | Ulang penerapan Maxxiroof | Nano Banana 2.1, 2K, 3:2 | 65 | ✅ `penerapan-maxxi-maxxiroof-rumah-3x2.jpg` | Prompt dipertegas: clean dry roof, uniform matte colour, no streaks/stains |
+
+Total 4 Nov: 520 kredit. Saldo setelahnya: ±17.841.

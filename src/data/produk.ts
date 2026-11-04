@@ -6,6 +6,8 @@ import type { ImageMetadata } from 'astro';
 import { harga, type Merek } from './harga';
 import cti1 from '../../assets/gambar/magnific/penerapan-cti-ct3-gazebo-3x2.jpg';
 import maxxi1 from '../../assets/gambar/magnific/penerapan-maxxi-promaxxi-rumah-3x2.jpg';
+import cti2 from '../../assets/gambar/magnific/penerapan-cti-ct6-kafe-3x2.jpg';
+import maxxi2 from '../../assets/gambar/magnific/penerapan-maxxi-maxxiroof-rumah-3x2.jpg';
 import tegola1 from '../../assets/gambar/magnific/penerapan-tegola-traditional-villa-3x2.jpg';
 import tegola2 from '../../assets/gambar/magnific/penerapan-tegola-master-lereng-3x2.jpg';
 
@@ -113,7 +115,10 @@ export const produk: Produk[] = [
       { nama: 'UnderMaster', isi: 'Lapisan bawah (underlayer) gulungan 1 × 10 m yang dipasang di atas papan alas, sebelum genteng.' },
       { nama: 'BaseMaster', isi: 'Membran bitumen yang dipasang dengan cara dibakar (torching) untuk dak atau atap di bawah 15°.' },
     ],
-    penerapan: [{ gambar: cti1, alt: 'Ilustrasi gazebo resort tepi kolam beratap limas genteng aspal 3-tab abu tua', keterangan: 'Seri 3-tab, warna abu tua, pada gazebo resort' }],
+    penerapan: [
+      { gambar: cti1, alt: 'Ilustrasi gazebo resort tepi kolam beratap limas genteng aspal 3-tab abu tua', keterangan: 'Potongan 3-tab, abu tua, pada gazebo resort' },
+      { gambar: cti2, alt: 'Ilustrasi kafe modern beratap pelana curam genteng aspal berpotongan segi enam', keterangan: 'Potongan segi enam pada kafe beratap pelana curam' },
+    ],
     garansi: 'Garansi produk 30 tahun dari pabrik CTI. Garansi pemasangan dari pabrik berlaku untuk pemasangan oleh CTI; pemasangan Atapura dilindungi garansi pemasangan tertulis 5 tahun dari Atapura.',
     terverifikasi: true,
     sumber: [
@@ -168,7 +173,10 @@ export const produk: Produk[] = [
       { judul: 'Promaxxi', catatan: 'Warna Promaxxi lain bisa ditanyakan lewat WhatsApp.', daftar: [{ nama: 'Charcoal', hex: '#4A4A48' }, { nama: 'Mix Spanish Red', hex: '#B0574A' }, { nama: 'Lime Gray', hex: '#9DA3AA' }] },
     ],
     aksesori: [],
-    penerapan: [{ gambar: maxxi1, alt: 'Ilustrasi rumah dua lantai beratap limas genteng aspal laminasi coklat tua', keterangan: 'Genteng laminasi coklat tua pada rumah dua lantai' }],
+    penerapan: [
+      { gambar: maxxi2, alt: 'Ilustrasi rumah satu lantai di perumahan beratap pelana genteng aspal 3-tab hitam', keterangan: 'Potongan 3-tab hitam pada rumah satu lantai di perumahan' },
+      { gambar: maxxi1, alt: 'Ilustrasi rumah dua lantai beratap limas genteng aspal laminasi coklat tua', keterangan: 'Genteng laminasi coklat tua pada rumah dua lantai' },
+    ],
     garansi: 'Garansi produk dari pabrik: 25 tahun untuk Maxxiroof dan 30 tahun untuk Promaxxi, dengan syarat sesuai dokumen garansi pabrik. Pemasangan Atapura dilindungi garansi pemasangan tertulis 5 tahun.',
     terverifikasi: true,
     sumber: [
