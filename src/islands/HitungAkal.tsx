@@ -97,11 +97,11 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
   const [membuka, setMembuka] = useState(false);
   const track = useRef<HTMLDivElement>(null);
 
-  // Plafon belum punya resep material: internal & publik sama-sama memakai harga terpasang × luas, tanpa durasi.
+  // Plafon belum punya resep material: internal & publik sama-sama memakai harga terpasang × luas.
   const plafon = lini === 'Plafon';
   const rinciAtap = internal && !plafon;
   const atap = hitungEstimasi(luas, { merek, alas, lapis, flashing, rangka: rangka === 'Sudah ada' ? undefined : rangka });
-  const est = plafon ? { ...atap, ...estimasiPlafon(luas, merekPlafon), hari: null } : internal ? atap : { ...atap, ...estimasiPublik(luas, merek) };
+  const est = plafon ? { ...atap, ...estimasiPlafon(luas, merekPlafon) } : internal ? atap : { ...atap, ...estimasiPublik(luas, merek) };
   const namaLuas = plafon ? 'Luas plafon' : 'Luas atap';
   const minTampil = useGulir(est.perM2[0]);
   const maxTampil = useGulir(est.perM2[1]);

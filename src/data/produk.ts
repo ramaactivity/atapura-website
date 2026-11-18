@@ -81,6 +81,9 @@ export interface Produk {
   sumber: { nama: string; url?: string }[];
 }
 
+/** "Rp150–230 ribu per m²" dari rentang rupiah. */
+const rbPerM2 = ([a, b]: readonly [number, number]) => `Rp${a / 1000}–${b / 1000} ribu per m²`;
+
 const hargaTerpasang = (m: Merek) => {
   const [a, b] = harga.merek[m].terpasang;
   return `Rp${a / 1000}–${b / 1000} ribu per m²`;
@@ -389,14 +392,14 @@ export const produk: Produk[] = [
       { label: 'Lebar panel', nilai: '20, 25, 30 cm' },
       { label: 'Motif', nilai: '40 motif' },
       { label: 'Terpasang, Jabodetabek', nilai: `Rp${harga.plafon.merek.Shunda.terpasang[0] / 1000}–${harga.plafon.merek.Shunda.terpasang[1] / 1000} ribu per m²` },
-      { label: 'Barang saja', nilai: 'Tanya admin' },
+      { label: 'Barang saja', nilai: rbPerM2(harga.plafon.merek.Shunda.barang) },
     ],
     seri: [
       {
         nama: 'Lebar 20 cm',
         foto: seriFoto('plafon-shunda-20'),
         ringkas: 'Pilihan motif terbanyak, termasuk putih polos glossy dan doff serta motif kayu.',
-        spek: [{ label: 'Lebar', nilai: '200 mm' }, { label: 'Tebal', nilai: '8 mm (putih polos juga 10 mm)' }, { label: 'Panjang', nilai: '3–6 m' }],
+        spek: [{ label: 'Lebar', nilai: '200 mm' }, { label: 'Tebal', nilai: '8 mm (putih polos juga 10 mm)' }, { label: 'Panjang', nilai: '3–6 m' }, { label: 'Barang saja', nilai: '±Rp150–170 ribu per m²' }],
       },
       {
         nama: 'Lebar 25 cm',
@@ -408,7 +411,7 @@ export const produk: Produk[] = [
         nama: 'Lebar 30 cm',
         foto: seriFoto('plafon-shunda-30'),
         ringkas: 'Satu motif paling lebar: Special Brazilian Walnut Wood.',
-        spek: [{ label: 'Lebar', nilai: '300 mm' }, { label: 'Tebal', nilai: '9 mm' }, { label: 'Panjang', nilai: '3–6 m' }],
+        spek: [{ label: 'Lebar', nilai: '300 mm' }, { label: 'Tebal', nilai: '9 mm' }, { label: 'Panjang', nilai: '3–6 m' }, { label: 'Barang saja', nilai: '±Rp225 ribu per m²' }],
       },
     ],
     warna: [
@@ -424,7 +427,8 @@ export const produk: Produk[] = [
       { gambar: shunda1, alt: 'Ilustrasi ruang keluarga dengan plafon PVC bermotif kayu jati', keterangan: 'Plafon motif kayu pada ruang keluarga' },
       { gambar: shunda2, alt: 'Ilustrasi teras rumah dengan plafon PVC putih glossy', keterangan: 'Plafon putih polos glossy pada teras' },
     ],
-    garansi: 'Garansi material 10 tahun sesuai ketentuan produsen. Pemasangan plafon oleh Atapura bergaransi 1 tahun.',
+    // SEMENTARA: angka garansi material belum ada bukti tertulis pabrik (riset 18 Nov); dikoreksi Kamis 19 Nov.
+    garansi: 'Pemasangan plafon oleh Atapura bergaransi 1 tahun. Garansi material mengikuti ketentuan pabrik; detailnya kami jelaskan saat penawaran.',
     terverifikasi: true,
     sumber: [
       { nama: 'Shunda, kategori produk Shunda Plafon (dicek 18 November 2026)', url: 'https://sd.co.id/eng/product-category/shunda-plafon/45' },
@@ -450,26 +454,26 @@ export const produk: Produk[] = [
       { label: 'Lebar panel', nilai: '20 cm (Ultra juga 12 cm)' },
       { label: 'Motif', nilai: '75 motif' },
       { label: 'Terpasang, Jabodetabek', nilai: `Rp${harga.plafon.merek.Javafon.terpasang[0] / 1000}–${harga.plafon.merek.Javafon.terpasang[1] / 1000} ribu per m²` },
-      { label: 'Barang saja', nilai: 'Tanya admin' },
+      { label: 'Barang saja', nilai: rbPerM2(harga.plafon.merek.Javafon.barang) },
     ],
     seri: [
       {
         nama: 'Ultra',
         foto: seriFoto('plafon-javafon-ultra'),
         ringkas: 'Delapan motif serat kayu, tersedia lebar 20 cm dan versi Compact 12 cm.',
-        spek: [{ label: 'Lebar', nilai: '20 cm dan 12 cm' }, { label: 'Tebal', nilai: '8 dan 9 mm' }, { label: 'Panjang', nilai: '3, 4, 5, 6 m' }],
+        spek: [{ label: 'Lebar', nilai: '20 cm dan 12 cm' }, { label: 'Tebal', nilai: '8 dan 9 mm' }, { label: 'Panjang', nilai: '3, 4, 5, 6 m' }, { label: 'Barang saja', nilai: '±Rp215 ribu per m²' }],
       },
       {
         nama: 'Laminated',
         foto: seriFoto('plafon-javafon-laminated'),
         ringkas: 'Dua belas motif, dari serat kayu gelap sampai putih.',
-        spek: [{ label: 'Lebar', nilai: '20 cm' }, { label: 'Tebal', nilai: '8 mm' }, { label: 'Panjang', nilai: '3, 4, 5, 6 m' }],
+        spek: [{ label: 'Lebar', nilai: '20 cm' }, { label: 'Tebal', nilai: '8 mm' }, { label: 'Panjang', nilai: '3, 4, 5, 6 m' }, { label: 'Barang saja', nilai: '±Rp170 ribu per m²' }],
       },
       {
         nama: 'Glossy & Matte',
         foto: seriFoto('plafon-javafon-glossy-matte'),
         ringkas: 'Pilihan terbanyak: 55 motif polos, serat kayu, marmer, dan pola.',
-        spek: [{ label: 'Lebar', nilai: '20 cm' }, { label: 'Tebal', nilai: '8 mm' }, { label: 'Panjang', nilai: '3, 4, 5, 6 m' }],
+        spek: [{ label: 'Lebar', nilai: '20 cm' }, { label: 'Tebal', nilai: '8 mm' }, { label: 'Panjang', nilai: '3, 4, 5, 6 m' }, { label: 'Barang saja', nilai: '±Rp165 ribu per m²' }],
       },
     ],
     warna: [
@@ -485,7 +489,8 @@ export const produk: Produk[] = [
       { gambar: javafon1, alt: 'Ilustrasi kafe di ruko dengan plafon PVC bermotif kayu gelap', keterangan: 'Plafon motif kayu gelap pada kafe di ruko' },
       { gambar: javafon2, alt: 'Ilustrasi dapur dan ruang makan dengan plafon PVC bermotif kayu oak terang', keterangan: 'Plafon motif kayu terang pada dapur' },
     ],
-    garansi: 'Garansi material 10 tahun sesuai ketentuan produsen. Pemasangan plafon oleh Atapura bergaransi 1 tahun.',
+    // SEMENTARA: angka garansi material belum ada bukti tertulis pabrik (riset 18 Nov); dikoreksi Kamis 19 Nov.
+    garansi: 'Pemasangan plafon oleh Atapura bergaransi 1 tahun. Garansi material mengikuti ketentuan pabrik; detailnya kami jelaskan saat penawaran.',
     terverifikasi: true,
     sumber: [
       { nama: 'Javafon, situs resmi dan halaman produk plafon (dicek 18 November 2026)', url: 'https://javafonupvc.com/' },

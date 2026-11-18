@@ -35,6 +35,8 @@ assert.deepEqual(estimasiPublik(100, 'Victory').perM2, [500_000, 550_000]);
 // Plafon: 40 m² Shunda 300–370 rb → 12–14,8 jt (dibulatkan 50 rb).
 assert.deepEqual(estimasiPlafon(40, 'Shunda').total, [12_000_000, 14_800_000]);
 assert.deepEqual(estimasiPlafon(33, 'Javafon').total, [6_600_000, 8_600_000]);
+// Plafon 40 m² dengan 15–25 m²/hari → 2–3 hari kerja.
+assert.deepEqual(estimasiPlafon(40, 'Shunda').hari, [2, 3]);
 assert.equal(rupiahRingkas(31_250_000), 'Rp31,3 jt');
 assert.equal(rupiahRingkas(950_000), 'Rp950 rb');
 assert.equal(rupiahRingkas(47_600_000, 0), 'Rp48 jt');
