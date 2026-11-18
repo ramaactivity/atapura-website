@@ -13,10 +13,20 @@ import tegola2 from '../../assets/gambar/magnific/penerapan-tegola-rectangular-l
 import victory1 from '../../assets/gambar/magnific/penerapan-victory-standar-rumah-3x2.jpg';
 import victory2 from '../../assets/gambar/magnific/penerapan-victory-two-tone-guesthouse-3x2.jpg';
 import rangka1 from '../../assets/gambar/magnific/rangka-baja-ringan-papan-3x2.jpg';
+import rangka2 from '../../assets/gambar/magnific/penerapan-rangka-rumah-baru-3x2.jpg';
+import shunda1 from '../../assets/gambar/magnific/penerapan-plafon-shunda-ruang-keluarga-3x2.jpg';
+import shunda2 from '../../assets/gambar/magnific/penerapan-plafon-shunda-teras-3x2.jpg';
+import javafon1 from '../../assets/gambar/magnific/penerapan-plafon-javafon-kafe-3x2.jpg';
+import javafon2 from '../../assets/gambar/magnific/penerapan-plafon-javafon-dapur-3x2.jpg';
+import javabitumen1 from '../../assets/gambar/magnific/penerapan-javabitumen-rumah-3x2.jpg';
 
 // Foto close-up tiap seri (Magnific, bentuk potongan dicocokkan ke katalog resmi). Nama file = kunci `foto`.
 const fotoSeri = import.meta.glob<ImageMetadata>('../../assets/gambar/seri/*.jpg', { eager: true, import: 'default' });
 const seriFoto = (kunci: string) => fotoSeri[`../../assets/gambar/seri/${kunci}.jpg`];
+// Contoh warna: foto tekstur seri yang diwarnai ulang per warna (dibuat skrip, DECISIONS 042).
+const contohWarna = import.meta.glob<ImageMetadata>('../../assets/gambar/warna/*.jpg', { eager: true, import: 'default' });
+const slugNama = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+export const fotoWarna = (tekstur: string, nama: string) => contohWarna[`../../assets/gambar/warna/${tekstur}-${slugNama(nama)}.jpg`];
 
 /** Lini produk Atapura. Halaman /produk dikelompokkan per lini; label & kategori schema dari LINI. */
 export type Lini = 'atap' | 'plafon' | 'rangka';
@@ -39,8 +49,8 @@ export interface Warna {
   nama: string;
   /** Kode warna pabrik bila ada, mis. "BK". */
   kode?: string;
-  /** Perkiraan warna di layar (bukan warna resmi). */
-  hex: string;
+  /** Perkiraan warna di layar (bukan warna resmi). Kosong = motif ditampilkan sebagai nama saja. */
+  hex?: string;
   grup?: string;
 }
 
@@ -48,6 +58,8 @@ export interface Produk {
   slug: string;
   nama: string;
   lini: Lini;
+  /** Teks pendek di kartu katalog; default daftar nama seri. */
+  atribut?: string;
   /** Rentang harga terpasang per m² untuk lini selain atap (atap memakai `harga`). */
   rentang?: readonly [number, number];
   /** Kunci di harga.ts bila harga Atapura sudah ada. */
@@ -282,6 +294,7 @@ export const produk: Produk[] = [
   {
     slug: 'javabitumen',
     lini: 'atap',
+    atribut: 'Warna solid dan gradasi',
     nama: 'Javabitumen',
     harga: 'Javabitumen',
     judul: 'Atap bitumen Javabitumen',
@@ -301,7 +314,9 @@ export const produk: Produk[] = [
       { tekstur: 'cti-ct3', judul: 'Seri gradasi', catatan: 'Nama warna gradasi dikonfirmasi ulang ke pemasok saat survey.', daftar: [{ nama: 'Gradasi abu-abu', hex: '#55585C' }, { nama: 'Gradasi coklat', hex: '#6E4038' }, { nama: 'Gradasi hijau tua', hex: '#3E4E44' }, { nama: 'Gradasi hitam', hex: '#3A3F45' }, { nama: 'Gradasi merah', hex: '#9E4A3C' }] },
     ],
     aksesori: [],
-    penerapan: [],
+    penerapan: [
+      { gambar: javabitumen1, alt: 'Ilustrasi rumah satu lantai di perumahan beratap pelana genteng aspal 3-tab coklat gradasi', keterangan: 'Potongan 3-tab, coklat gradasi, pada rumah satu lantai di perumahan' },
+    ],
     garansi: 'Syarat garansi pabrik menunggu dokumen resmi. Pemasangan Atapura dilindungi garansi pemasangan tertulis 5 tahun.',
     terverifikasi: false,
     sumber: [{ nama: 'Javabitumen, halaman produk di situs distributor (warna), dicek 4 November 2026', url: 'https://javabitumen.co.id/' }],
@@ -357,6 +372,127 @@ export const produk: Produk[] = [
     sumber: [],
   },
   {
+    slug: 'shunda',
+    nama: 'Shunda',
+    atribut: '40 motif · lebar 20, 25, 30 cm',
+    lini: 'plafon',
+    rentang: harga.plafon.merek.Shunda.terpasang,
+    judul: 'Plafon PVC Shunda: 40 motif, terpasang dengan rangka hollow',
+    ringkas: 'Plafon PVC buatan PT Shunda Sucai Indonesia, lebar 20, 25, dan 30 cm dengan 40 motif dari putih polos sampai serat kayu.',
+    tentang: [
+      'Shunda dibuat PT Shunda Sucai Indonesia, produsen plafon PVC sejak 2007 dengan pabrik di Tangerang dan Pekanbaru. Panelnya panjang dan sempit, disambung dengan sistem knock-down.',
+      'Kami pasang di atas rangka hollow, lengkap dengan jasa pasang. Menurut petunjuk pabrik, panel cukup dibersihkan dengan kain basah dan sedikit deterjen.',
+    ],
+    fakta: [
+      { label: 'Produsen', nilai: 'PT Shunda Sucai Indonesia' },
+      { label: 'Bahan', nilai: 'PVC' },
+      { label: 'Lebar panel', nilai: '20, 25, 30 cm' },
+      { label: 'Motif', nilai: '40 motif' },
+      { label: 'Terpasang, Jabodetabek', nilai: `Rp${harga.plafon.merek.Shunda.terpasang[0] / 1000}–${harga.plafon.merek.Shunda.terpasang[1] / 1000} ribu per m²` },
+      { label: 'Barang saja', nilai: 'Tanya admin' },
+    ],
+    seri: [
+      {
+        nama: 'Lebar 20 cm',
+        foto: seriFoto('plafon-shunda-20'),
+        ringkas: 'Pilihan motif terbanyak, termasuk putih polos glossy dan doff serta motif kayu.',
+        spek: [{ label: 'Lebar', nilai: '200 mm' }, { label: 'Tebal', nilai: '8 mm (putih polos juga 10 mm)' }, { label: 'Panjang', nilai: '3–6 m' }],
+      },
+      {
+        nama: 'Lebar 25 cm',
+        foto: seriFoto('plafon-shunda-25'),
+        ringkas: 'Panel lebih lebar sehingga sambungan di plafon lebih sedikit. Motif kayu, mozaik, keramik, dan batik.',
+        spek: [{ label: 'Lebar', nilai: '250 mm' }, { label: 'Tebal', nilai: '8 mm (beberapa motif 9 mm)' }, { label: 'Panjang', nilai: '3–6 m' }],
+      },
+      {
+        nama: 'Lebar 30 cm',
+        foto: seriFoto('plafon-shunda-30'),
+        ringkas: 'Satu motif paling lebar: Special Brazilian Walnut Wood.',
+        spek: [{ label: 'Lebar', nilai: '300 mm' }, { label: 'Tebal', nilai: '9 mm' }, { label: 'Panjang', nilai: '3–6 m' }],
+      },
+    ],
+    warna: [
+      { tekstur: 'plafon-shunda', judul: 'Putih polos', daftar: [{ nama: 'Pure White with Drain (Glossy)', kode: 'PL 08.001' }, { nama: 'Pure White with Drain', kode: 'PL 08.002' }, { nama: 'Pure White (Glossy)', kode: 'PL 08.003' }, { nama: 'Pure White (Doff)', kode: 'PL 08.004' }] },
+      { tekstur: 'plafon-shunda', judul: 'Serat kayu', daftar: [{ nama: 'Brown Wood with Gold Drain', kode: 'PL 08.005' }, { nama: 'Cedar Wood', kode: 'PL 08.009' }, { nama: 'Modern White Woods', kode: 'PL 08.016' }, { nama: 'Brown Maple Wood Grain', kode: 'PL 08.019' }, { nama: 'Sienna Walnut Wood', kode: 'PL 08.029' }, { nama: 'Abstract Wood Pattern', kode: 'KK 20074' }, { nama: 'Acacia Wood', kode: 'KA 20069' }, { nama: 'Brown Mahogany', kode: 'MK 20053' }, { nama: 'White Woods', kode: 'PL 2514' }, { nama: 'Apple Tree Wood', kode: 'PL 2517' }, { nama: 'Maple Wood', kode: 'PL 2518' }, { nama: 'Natural Beech Wood', kode: 'PL 2519' }, { nama: 'Red Cedar Wood', kode: 'PL 2520' }, { nama: 'Modern Teak Wood', kode: 'PL 2522' }, { nama: 'Special Red Oak Wood', kode: 'PL 2566-1' }, { nama: 'Special Brown Oak Wood', kode: 'PL 2566-2' }, { nama: 'Adler Wood', kode: 'MK 25054' }, { nama: 'White Ash Wood', kode: 'MK 25077' }, { nama: 'Special Brazilian Walnut Wood', kode: 'PL 3077-1' }] },
+      { tekstur: 'plafon-shunda', judul: 'Motif lain', catatan: 'Garis, mozaik, keramik, batik, dan motif hias.', daftar: [{ nama: 'Sky Blue with Silver Lines', kode: 'PL 08.006' }, { nama: 'Silver Wood Linears', kode: 'KK 20072' }, { nama: 'Silver and White', kode: 'PL 08.007' }, { nama: 'Fireflies in Forest', kode: 'KK 20083' }, { nama: 'Fireflies', kode: 'PL 2523' }, { nama: 'Fireworks', kode: 'PL 2509' }, { nama: 'Romantic Pink', kode: 'MK 20078' }, { nama: 'Sea Waves', kode: 'PL 2525' }, { nama: 'Glowing Starry Sky Mozaic', kode: 'PL 2506' }, { nama: 'Light Sky Blue with Silver Mozaic', kode: 'PL 2512' }, { nama: 'Silver Woven Pattern', kode: 'PL 2515' }, { nama: 'Labyrinth', kode: 'PL 2521' }, { nama: 'Brown Square Ceramic', kode: 'PL 2511' }, { nama: 'Ivory Four Spades Design', kode: 'PL 2513' }, { nama: 'Square Ceramic with Flowers Border', kode: 'PL 2528' }, { nama: 'Brown Batik with Double Silver Drain', kode: 'PL 2508' }, { nama: 'Silver Gold Flower', kode: 'PL 2516' }] },
+    ],
+    aksesori: [
+      { nama: 'Lis plafon', isi: 'Lis PVC di pertemuan plafon dan dinding, dipotong 45° di sudut. Lis belum termasuk harga terpasang.' },
+      { nama: 'Rangka hollow', isi: 'Rangka besi hollow tempat panel disekrup. Sudah termasuk harga terpasang.' },
+    ],
+    penerapan: [
+      { gambar: shunda1, alt: 'Ilustrasi ruang keluarga dengan plafon PVC bermotif kayu jati', keterangan: 'Plafon motif kayu pada ruang keluarga' },
+      { gambar: shunda2, alt: 'Ilustrasi teras rumah dengan plafon PVC putih glossy', keterangan: 'Plafon putih polos glossy pada teras' },
+    ],
+    garansi: 'Garansi material 10 tahun sesuai ketentuan produsen. Pemasangan plafon oleh Atapura bergaransi 1 tahun.',
+    terverifikasi: true,
+    sumber: [
+      { nama: 'Shunda, kategori produk Shunda Plafon (dicek 18 November 2026)', url: 'https://sd.co.id/eng/product-category/shunda-plafon/45' },
+      { nama: 'Shunda, sejarah perusahaan', url: 'https://sd.co.id/eng/company-history' },
+      { nama: 'Shunda, petunjuk pemasangan plafon', url: 'https://sd.co.id/eng/news-detail/shunda-plafon-installation/113' },
+    ],
+  },
+  {
+    slug: 'javafon',
+    nama: 'Javafon',
+    atribut: '75 motif · Ultra, Laminated, Glossy & Matte',
+    lini: 'plafon',
+    rentang: harga.plafon.merek.Javafon.terpasang,
+    judul: 'Plafon PVC Javafon: seri Ultra, Laminated, Glossy & Matte',
+    ringkas: 'Plafon PVC Javafon dalam tiga seri dengan 75 motif, lebar 20 cm dan panjang 3 sampai 6 m.',
+    tentang: [
+      'Javafon adalah merek plafon PVC dari grup Javaco yang beralamat di Cikande, Kabupaten Serang. Katalog resminya memuat tiga seri: Ultra, Laminated, serta Glossy & Matte.',
+      'Kami pasang di atas rangka hollow, lengkap dengan jasa pasang. Panjang panel 3, 4, 5, atau 6 m dipilih sesuai ukuran ruangan supaya sambungan sesedikit mungkin.',
+    ],
+    fakta: [
+      { label: 'Merek', nilai: 'Javafon (grup Javaco)' },
+      { label: 'Bahan', nilai: 'PVC' },
+      { label: 'Lebar panel', nilai: '20 cm (Ultra juga 12 cm)' },
+      { label: 'Motif', nilai: '75 motif' },
+      { label: 'Terpasang, Jabodetabek', nilai: `Rp${harga.plafon.merek.Javafon.terpasang[0] / 1000}–${harga.plafon.merek.Javafon.terpasang[1] / 1000} ribu per m²` },
+      { label: 'Barang saja', nilai: 'Tanya admin' },
+    ],
+    seri: [
+      {
+        nama: 'Ultra',
+        foto: seriFoto('plafon-javafon-ultra'),
+        ringkas: 'Delapan motif serat kayu, tersedia lebar 20 cm dan versi Compact 12 cm.',
+        spek: [{ label: 'Lebar', nilai: '20 cm dan 12 cm' }, { label: 'Tebal', nilai: '8 dan 9 mm' }, { label: 'Panjang', nilai: '3, 4, 5, 6 m' }],
+      },
+      {
+        nama: 'Laminated',
+        foto: seriFoto('plafon-javafon-laminated'),
+        ringkas: 'Dua belas motif, dari serat kayu gelap sampai putih.',
+        spek: [{ label: 'Lebar', nilai: '20 cm' }, { label: 'Tebal', nilai: '8 mm' }, { label: 'Panjang', nilai: '3, 4, 5, 6 m' }],
+      },
+      {
+        nama: 'Glossy & Matte',
+        foto: seriFoto('plafon-javafon-glossy-matte'),
+        ringkas: 'Pilihan terbanyak: 55 motif polos, serat kayu, marmer, dan pola.',
+        spek: [{ label: 'Lebar', nilai: '20 cm' }, { label: 'Tebal', nilai: '8 mm' }, { label: 'Panjang', nilai: '3, 4, 5, 6 m' }],
+      },
+    ],
+    warna: [
+      { tekstur: 'plafon-javafon', judul: 'Ultra', daftar: [{ nama: 'Midnight Maple', kode: 'JVU 301' }, { nama: 'Cedar Charcoal', kode: 'JVU 302' }, { nama: 'Bourbon Basswood', kode: 'JVU 303' }, { nama: 'Tinted Truffle', kode: 'JVU 304' }, { nama: 'Rustic Rosewood', kode: 'JVU 305' }, { nama: 'Ashbrown Acacia', kode: 'JVU 306' }, { nama: 'Pitch Pine', kode: 'JVU 307' }, { nama: 'Onirique Oak', kode: 'JVU 308' }] },
+      { tekstur: 'plafon-javafon', judul: 'Laminated', daftar: [{ nama: 'Rustic Chestnut', kode: 'JVL 208' }, { nama: 'Frosted Oak', kode: 'JVL 209' }, { nama: 'Golden Acacia', kode: 'JVL 210' }, { nama: 'Honey Cedar', kode: 'JVL 211' }, { nama: 'Deep Mahogany', kode: 'JVL 212' }, { nama: 'Smoked Ashwood', kode: 'JVL 223' }, { nama: 'Dark Walnut', kode: 'JVL 224' }, { nama: 'Vintage Cherry', kode: 'JVL 225' }, { nama: 'Choco Teak', kode: 'JVL 226' }, { nama: 'Black Ebony', kode: 'JVL 227' }, { nama: 'Flow White', kode: 'JVL 228' }, { nama: 'Snow White', kode: 'JVL 231' }] },
+      { tekstur: 'plafon-javafon', judul: 'Glossy & Matte', daftar: [{ nama: 'Honey Beam', kode: 'JV 002 NAT' }, { nama: 'Sunwood Glow', kode: 'JV 004' }, { nama: 'Gloss Cedar', kode: 'JV 005 NAT' }, { nama: 'Silken Pine', kode: 'JV 006' }, { nama: 'Smoky Wood', kode: 'JV 007' }, { nama: 'Gilded Marble', kode: 'JV 008' }, { nama: 'Red Starlit', kode: 'JV 009' }, { nama: 'Icy Stripes', kode: 'JV 010' }, { nama: 'Dualite Gloss', kode: 'JV 011' }, { nama: 'White Starlit', kode: 'JV 012' }, { nama: 'Sleek Pattern', kode: 'JV 013' }, { nama: 'Verdant Trail', kode: 'JV 014' }, { nama: 'Cotton Streaks', kode: 'JV 015' }, { nama: 'Misty Alba', kode: 'JV 016 NAT' }, { nama: 'Milky Pearl', kode: 'JV 017 NAT' }, { nama: 'Snow White', kode: 'JV 018' }, { nama: 'Lush Oak', kode: 'JV 020 NAT' }, { nama: 'Classic Luxe', kode: 'JV 023' }, { nama: 'Ink Surge', kode: 'JV 028' }, { nama: 'Mono Checkered', kode: 'JV 029' }, { nama: 'Sugar Lines', kode: 'JV 030' }, { nama: 'Vanta Strings', kode: 'JV 031' }, { nama: 'Twilight Teak', kode: 'JV 032 NAT' }, { nama: 'Kitty Charm', kode: 'JV 033' }, { nama: 'Smoky Sheen', kode: 'JV 034 NAT' }, { nama: 'Mosaic Check', kode: 'JV 035' }, { nama: 'Pixel Grid', kode: 'JV 037' }, { nama: 'Butter Sash', kode: 'JV 039' }, { nama: 'Magma Stone', kode: 'JV 040' }, { nama: 'Sterling Stone', kode: 'JV 041' }, { nama: 'Maple Gleam', kode: 'JV 043 NAT' }, { nama: 'Burnt Grain', kode: 'JV 044' }, { nama: 'Pearly Stream', kode: 'JV 045' }, { nama: 'Moonlit Wisp', kode: 'JV 048' }, { nama: 'Silver Vein', kode: 'JV 051' }, { nama: 'Opal Timber', kode: 'JV 052' }, { nama: 'Green Stardust', kode: 'JV 053' }, { nama: 'Dusty Marble', kode: 'JV 054' }, { nama: 'Noir Glow', kode: 'JV 055' }, { nama: 'Chrome Braid', kode: 'JV 056' }, { nama: 'Winter Strokes', kode: 'JV 057' }, { nama: 'Shadow Bark', kode: 'JV 058 NAT' }, { nama: 'Golden Birch', kode: 'JV 058' }, { nama: 'Vintage Sangria', kode: 'JV 059' }, { nama: 'Glazed Strands', kode: 'JV 060' }, { nama: 'Blossom Breeze', kode: 'JV 100' }, { nama: 'Dreamy Cloud', kode: 'JV 102' }, { nama: 'Radiant Halo', kode: 'JV 104' }, { nama: 'Block Motion', kode: 'JV 105' }, { nama: 'Gilded Flow', kode: 'JV 134' }, { nama: 'Stream Wave', kode: 'JV 136' }, { nama: 'Red Heritage', kode: 'JV 153' }, { nama: 'Blue Heritage', kode: 'JV 154' }, { nama: 'Matra Weave', kode: 'JV 156 NAT' }, { nama: 'Toasted Umber', kode: 'JV 158 NAT' }] },
+    ],
+    aksesori: [
+      { nama: 'Lis plafon', isi: 'Lis PVC panjang 4 m dalam beberapa bentuk dan warna yang serasi dengan seri plafonnya. Lis belum termasuk harga terpasang.' },
+      { nama: 'Rangka hollow', isi: 'Rangka besi hollow tempat panel disekrup. Sudah termasuk harga terpasang.' },
+    ],
+    penerapan: [
+      { gambar: javafon1, alt: 'Ilustrasi kafe di ruko dengan plafon PVC bermotif kayu gelap', keterangan: 'Plafon motif kayu gelap pada kafe di ruko' },
+      { gambar: javafon2, alt: 'Ilustrasi dapur dan ruang makan dengan plafon PVC bermotif kayu oak terang', keterangan: 'Plafon motif kayu terang pada dapur' },
+    ],
+    garansi: 'Garansi material 10 tahun sesuai ketentuan produsen. Pemasangan plafon oleh Atapura bergaransi 1 tahun.',
+    terverifikasi: true,
+    sumber: [
+      { nama: 'Javafon, situs resmi dan halaman produk plafon (dicek 18 November 2026)', url: 'https://javafonupvc.com/' },
+      { nama: 'Javafon, e-katalog April 2026', url: 'https://drive.google.com/file/d/1y1n6VTdIs9oHMypgp7taqN9q6cK4LoLx/view' },
+    ],
+  },
+  {
     slug: 'rangka-baja-ringan',
     nama: 'Rangka baja ringan',
     lini: 'rangka',
@@ -397,6 +533,7 @@ export const produk: Produk[] = [
       { nama: 'Dynabolt', isi: 'Baut angkur untuk mengikat rangka ke balok beton.' },
     ],
     penerapan: [
+      { gambar: rangka2, alt: 'Ilustrasi rumah baru satu lantai dengan rangka atap baja ringan terpasang sebelum ditutup atap', keterangan: 'Rangka baja ringan terpasang di atas balok beton rumah baru' },
       { gambar: rangka1, alt: 'Ilustrasi papan multiplek disekrup ke rangka atap baja ringan', keterangan: 'Papan alas atap bitumen di atas rangka baja ringan' },
     ],
     garansi: 'Ketentuan garansi pabrik tiap merek dan garansi pemasangan rangka kami jelaskan saat penawaran.',
@@ -408,10 +545,28 @@ export const produk: Produk[] = [
   },
 ];
 
+/** Nama lengkap untuk kartu & judul: "Atap bitumen CTI", "Plafon Shunda"; rangka cukup namanya. */
+export const namaLengkap = (p: Produk) => (p.lini === 'rangka' ? p.nama : `${LINI[p.lini].nama} ${p.nama}`);
+
+/** Rentang harga terpasang per m², atau null bila belum ada (tampil "tanya admin"). */
+export const rentangProduk = (p: Produk) => (p.harga ? harga.merek[p.harga].terpasang : (p.rentang ?? null));
+
+/** Foto sampul kartu katalog: ilustrasi penerapan → foto seri → contoh warna pertama. */
+export function sampulProduk(p: Produk): { src: ImageMetadata; alt: string } | undefined {
+  if (p.penerapan[0]) return { src: p.penerapan[0].gambar, alt: p.penerapan[0].alt };
+  const seri = p.seri.find((s) => s.foto);
+  if (seri?.foto) return { src: seri.foto, alt: `Close-up ${namaLengkap(p).toLowerCase()} ${seri.nama} terpasang` };
+  const g = p.warna[0];
+  const w = g?.daftar.map((x) => ({ x, f: fotoWarna(g.tekstur, x.nama) })).find((y) => y.f);
+  if (w?.f) return { src: w.f, alt: `Contoh tekstur ${namaLengkap(p).toLowerCase()} warna ${w.x.nama}` };
+}
+
 /** Layanan yang ditampilkan di /produk (isi singkat, tanpa janji prosedural baru). */
 export const layanan = [
-  { nama: 'Pasang atap baru', isi: 'Untuk rumah baru atau rangka baru: alas, lapis kedap, flashing, genteng, dan nok dipasang berurutan.', href: '/panduan/lima-lapis-pemasangan-atap-bitumen' },
-  { nama: 'Ganti atap lama', isi: 'Mengganti genteng berat atau asbes dengan genteng aspal, dikerjakan per bagian supaya rumah tetap bisa ditinggali.', href: '/panduan/ganti-atap-rumah-izin-lama-tanpa-pindah' },
-  { nama: 'Perbaikan atap bocor', isi: 'Kirim foto atau video lewat WhatsApp; bila ada kebocoran atau kerusakan, tim datang memeriksa.', href: '/panduan/atap-bocor-penyebab-dan-cara-mengatasi' },
-  { nama: 'Villa, kafe, dan proyek', isi: 'Atap untuk tempat usaha dan proyek, dengan jadwal kerja per bagian.', href: '/panduan/atap-ruko-kafe-kos' },
-];
+  { nama: 'Pasang atap baru', ikon: 'atap-baru', isi: 'Rumah atau rangka baru, dipasang lima lapis.', href: '/panduan/lima-lapis-pemasangan-atap-bitumen' },
+  { nama: 'Ganti atap lama', ikon: 'ganti-atap', isi: 'Genteng berat atau asbes diganti genteng aspal.', href: '/panduan/ganti-atap-rumah-izin-lama-tanpa-pindah' },
+  { nama: 'Perbaikan atap bocor', ikon: 'bocor', isi: 'Kirim foto lewat WhatsApp, tim datang bila perlu.', href: '/panduan/atap-bocor-penyebab-dan-cara-mengatasi' },
+  { nama: 'Pasang plafon', ikon: 'plafon', isi: 'Plafon PVC Shunda atau Javafon, sudah dengan pasang.', href: '/produk#judul-plafon' },
+  { nama: 'Rangka baja ringan', ikon: 'rangka', isi: 'Taso, Hi-Steel, atau K-Steel, sudah dengan pasang.', href: '/produk/rangka-baja-ringan' },
+  { nama: 'Villa, kafe, dan proyek', ikon: 'proyek', isi: 'Atap dan plafon dengan jadwal kerja per bagian.', href: '/panduan/atap-ruko-kafe-kos' },
+] as const;

@@ -24,3 +24,11 @@ Total 5 Nov: 890 kredit. Saldo setelahnya: ±16.951. Contoh warna (60) dibuat da
 | 5 Nov 2026 | Victory: foto seri Standar & Two Tone + penerapan rumah 2 lantai & guesthouse | Nano Banana 2.1 (seri 1K 16:9, penerapan 2K 3:2) | 2 × 50 + 2 × 65 | ✅ semua dipakai | Potongan katalog sebagai acuan warna/bentuk |
 
 Total 5 Nov setelah Victory: 1.120 kredit. Saldo setelahnya: ±16.721.
+
+| 18 Nov 2026 | Penerapan rangka baja ringan (rumah baru, rangka terpasang tanpa atap) | Nano Banana 2.1, 2K, 3:2 | 65 | ✅ `penerapan-rangka-rumah-baru-3x2.jpg` | Rangka C + reng di atas balok beton, tanpa orang & merek |
+
+Saldo sebelum: 1.831 (paket kini Plus; sisa kredit turun dari ±16.721 sejak 5 Nov karena pemakaian di luar proyek ini). Setelahnya: ±1.766.
+| 18 Nov 2026 | Foto seri plafon ×6 (Shunda 20/25/30 cm, Javafon Ultra/Laminated/Glossy & Matte) | Nano Banana 2.1, 1K, 16:9 | 6 × 50 | ✅ semua dipakai `assets/gambar/seri/plafon-*.jpg` | Close-up plafon PVC terpasang dari bawah, tanpa merek |
+| 18 Nov 2026 | Penerapan plafon ×4 (Shunda ruang keluarga & teras, Javafon kafe & dapur) + Javabitumen rumah | Nano Banana 2.1, 2K, 3:2 | 5 × 65 | ✅ semua dipakai | Tanpa orang, teks, logo |
+
+Total 18 Nov: 690 kredit. Saldo setelahnya: ±1.141.

@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { alamatLengkap, bisnis } from '../data/bisnis';
 import { harga } from '../data/harga';
+import { LINI, namaLengkap, produk, rentangProduk } from '../data/produk';
 import { getCollection } from 'astro:content';
 
 // Dibangkitkan dari src/data supaya tidak pernah bertentangan dengan halaman.
@@ -15,7 +16,8 @@ export const GET: APIRoute = async ({ site }) => {
 
 ${bisnis.nama} adalah aplikator sekaligus supplier atap bitumen (genteng aspal, sirap aspal, asphalt shingle). Kami menjual dan memasang dalam satu paket: alas, underlayment, flashing, genteng bitumen, dan nok. Badan usaha: ${bisnis.namaLegal} (${bisnis.statusLegal}).
 
-- Merek: ${bisnis.merek.join(', ')}
+- Merek atap: ${bisnis.merek.join(', ')}
+- Juga: plafon PVC (Shunda, Javafon) dan rangka atap baja ringan (Taso, Hi-Steel, K-Steel), masing-masing dengan jasa pasang
 - Area layanan (${bisnis.area.length} kota & kabupaten): ${bisnis.area.join(', ')}
 - Survey: gratis, sebelum harga final
 - Garansi: garansi pemasangan tertulis dari Atapura, terpisah dari garansi pabrik tiap merek
@@ -26,9 +28,14 @@ ${bisnis.nama} adalah aplikator sekaligus supplier atap bitumen (genteng aspal, 
 ## Halaman utama
 
 - [Beranda dan kalkulator Hitung AKAL](${url('/')}): estimasi biaya total pasang atap bitumen, lima lapis pemasangan, perbandingan merek, area layanan, tanya jawab
+- [Produk & layanan](${url('/produk')}): katalog atap bitumen, plafon PVC, dan rangka baja ringan dengan harga terpasang per m²
 - [Panduan](${url('/panduan')}): artikel tanya-jawab atap bitumen
 - [Area layanan](${url('/area')}): kondisi iklim dan atap per daerah, Jabodetabek dan luar Jabodetabek
 - [Guides in English](${url('/en/guides')}): asphalt shingle roofing in Indonesia for expats and villa owners
+
+## Produk
+
+${produk.map((p) => { const r = rentangProduk(p); return `- [${namaLengkap(p)}](${url('/produk/' + p.slug)}) (${LINI[p.lini].nama.toLowerCase()}): ${p.ringkas}${r ? ` Terpasang Rp${r[0] / 1000}–${r[1] / 1000} ribu per m² di Jabodetabek.` : ''}`; }).join('\n')}
 
 ## Panduan
 

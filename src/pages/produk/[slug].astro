@@ -3,7 +3,8 @@ import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { Image } from 'astro:assets';
-import { LINI, produk, type Produk } from '../../data/produk';
+import { LINI, fotoWarna, produk, type Produk } from '../../data/produk';
+import KartuProduk from '../../components/KartuProduk.astro';
 import { bisnis, waLink } from '../../data/bisnis';
 
 export function getStaticPaths() {
@@ -19,10 +20,9 @@ const [judulA, judulB] = p.lini === 'rangka' ? ['Rangka', 'baja ringan'] : [L.na
 const namaPanjang = p.lini === 'rangka' ? p.nama.toLowerCase() : `${L.nama.toLowerCase()} ${p.nama}`;
 const lain = produk.filter((x) => x.slug !== p.slug && x.lini === p.lini);
 const pesan = `Halo Atapura, saya mau tanya ${namaPanjang}.`;
-// Contoh warna: foto tekstur seri yang diwarnai ulang per warna (dibuat skrip, lihat DECISIONS 042).
-const contohWarna = import.meta.glob<ImageMetadata>('../../../assets/gambar/warna/*.jpg', { eager: true, import: 'default' });
-const slugNama = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-const fotoWarna = (tekstur: string, nama: string) => contohWarna[`../../../assets/gambar/warna/${tekstur}-${slugNama(nama)}.jpg`];
+// Kalkulator beranda menerima ?merek= (atap atau plafon) dan langsung memilihnya.
+const bisaDihitung = Boolean(p.harga) || p.lini === 'plafon';
+const namaSaja = (g: Produk['warna'][number]) => g.daftar.every((w) => !w.hex && !fotoWarna(g.tekstur, w.nama));
 
 const schema = [
   {
@@ -64,8 +64,8 @@ const schema = [
             {p.fakta.map((f) => <div><dt>{f.label}</dt><dd>{f.nilai}</dd></div>)}
           </dl>
           <div class="slip-aksi">
-            {p.harga && <a class="pill pill-tunas" href="/#hitung">Hitung biaya dengan {p.nama}</a>}
-            <a class:list={['pill', p.harga ? 'pill-garis' : 'pill-tunas']} href={waLink(pesan)} target="_blank" rel="noopener" data-wa="produk">Tanya {p.lini === 'rangka' ? namaPanjang : p.nama} lewat WhatsApp</a>
+            {bisaDihitung && <a class="pill pill-tunas" href={`/?merek=${encodeURIComponent(p.nama)}#hitung`}>Hitung biaya dengan {p.nama}</a>}
+            <a class:list={['pill', bisaDihitung ? 'pill-garis' : 'pill-tunas']} href={waLink(pesan)} target="_blank" rel="noopener" data-wa="produk">Tanya {p.lini === 'rangka' ? namaPanjang : p.nama} lewat WhatsApp</a>
           </div>
           {!p.terverifikasi && <p class="slip-kaki">Spesifikasi dan garansi pabrik akan kami tulis setelah dokumen resmi masuk.</p>}
         </aside>
@@ -100,24 +100,37 @@ const schema = [
         <h2 id="judul-warna" class="pr-h2">Pilihan {L.corak}</h2>
         {p.warna.length > 0 ? (
           <>
-            {p.warna.map((g) => (
-              <div class="warna-grup">
-                <h3 class="warna-judul">{g.judul}</h3>
+            {p.warna.map((g, gi) => {
+              const isi = (<>
                 {g.catatan && <p class="pr-catatan">{g.catatan}</p>}
-                <ul class="warna">
+                <ul class:list={['warna', { 'warna-nama-saja': namaSaja(g) }]}>
                   {g.daftar.map((w) => (
                     <li>
                       {fotoWarna(g.tekstur, w.nama)
                         ? <Image src={fotoWarna(g.tekstur, w.nama)} alt="" widths={[240, 480]} sizes="10rem" class="contoh-warna" />
-                        : <span class="contoh-warna" style={`--w: ${w.hex}`} aria-hidden="true"></span>}
+                        : w.hex && <span class="contoh-warna" style={`--w: ${w.hex}`} aria-hidden="true"></span>}
                       <span class="warna-nama">{w.nama}</span>
                       {w.kode && <span class="warna-kode">{w.kode}</span>}
                     </li>
                   ))}
                 </ul>
-              </div>
-            ))}
-            <p class="pr-catatan">{L.corak === 'motif' ? 'Motif' : 'Warna'} di layar adalah perkiraan dan bisa berbeda dari aslinya. Saat survey kami membawa sampel fisik supaya Anda bisa melihatnya di bawah cahaya rumah sendiri.</p>
+              </>);
+              // Daftar motif tanpa foto (plafon) dilipat per kelompok supaya halaman HP tidak memanjang; kelompok pertama terbuka.
+              return namaSaja(g) ? (
+                <details class="warna-grup motif-grup" open={gi === 0}>
+                  <summary><span class="warna-judul">{g.judul}</span><span class="motif-jumlah">{g.daftar.length} motif</span><svg class="motif-tanda" viewBox="0 0 20 20" aria-hidden="true"><path d="m5.5 8 4.5 4.5L14.5 8" /></svg></summary>
+                  {isi}
+                </details>
+              ) : (
+                <div class="warna-grup">
+                  <h3 class="warna-judul">{g.judul}</h3>
+                  {isi}
+                </div>
+              );
+            })}
+            {L.corak === 'motif'
+              ? <p class="pr-catatan">Nama dan kode motif dari katalog resmi pabrik. Foto motif asli kami kirim lewat WhatsApp, dan sampel fisiknya kami bawa saat survey.</p>
+              : <p class="pr-catatan">Warna di layar adalah perkiraan dan bisa berbeda dari aslinya. Saat survey kami membawa sampel fisik supaya Anda bisa melihatnya di bawah cahaya rumah sendiri.</p>}
           </>
         ) : (
           <p class="slot">Daftar {L.corak} {p.nama} akan kami tampilkan setelah katalog resmi masuk. Sampel fisik bisa Anda lihat saat survey.</p>
@@ -166,7 +179,7 @@ const schema = [
       <div class="wrap">
         <h2 id="judul-lain" class="pr-h2">{lain.length ? `Merek ${L.nama.toLowerCase()} lain yang kami pasang` : 'Produk lain'}</h2>
         <ul class="lain">
-          {(lain.length ? lain : produk.filter((x) => x.lini !== p.lini)).map((x) => <li><a href={`/produk/${x.slug}`}><b>{x.lini === 'rangka' ? x.nama : `${LINI[x.lini].nama} ${x.nama}`}</b><span>{x.ringkas}</span></a></li>)}
+          {(lain.length ? lain : produk.filter((x) => x.lini !== p.lini)).map((x) => <li><KartuProduk p={x} lengkap /></li>)}
         </ul>
         {p.sumber.length > 0 && (
           <div class="sumber">
@@ -229,6 +242,19 @@ const schema = [
   .warna-judul { font-size: 1.1rem; font-weight: 500; letter-spacing: -0.02em; }
   .warna { display: grid; gap: 1.25rem 1rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 6.25rem), 1fr)); margin-top: 1rem; }
   .warna li { display: grid; gap: 0.3rem; }
+  /* Motif tanpa foto: daftar nama + kode yang rapat, bukan petak kosong. */
+  .warna-nama-saja { gap: 0; grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr)); column-gap: 2rem; border-top: 1px solid var(--color-garis); }
+  .warna-nama-saja li { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 0.6rem 0; border-bottom: 1px solid var(--color-garis); }
+  .warna-nama-saja .warna-nama { font-weight: 400; }
+  .warna-nama-saja .warna-kode { white-space: nowrap; }
+  .motif-grup summary { display: flex; align-items: center; gap: 0.75rem; padding: 0.85rem 0; cursor: pointer; list-style: none; border-bottom: 1px solid var(--color-garis); }
+  .motif-grup summary::-webkit-details-marker { display: none; }
+  .motif-grup[open] summary { border-bottom-color: transparent; }
+  .motif-jumlah { font-size: 0.85rem; color: var(--color-lumut); font-variant-numeric: tabular-nums; }
+  .motif-tanda { margin-left: auto; width: 1.2rem; height: 1.2rem; fill: none; stroke: var(--color-pinus); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; transition: rotate 300ms var(--ease-out); }
+  .motif-grup[open] .motif-tanda { rotate: 180deg; }
+  .motif-grup summary:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 2px; border-radius: 6px; }
+  .motif-grup + .motif-grup { margin-top: 0; }
   /* Contoh warna bertekstur butiran (perkiraan): warna dasar + derau SVG. */
   .contoh-warna {
     display: block; width: 100%; height: auto; object-fit: cover; aspect-ratio: 4 / 3; border-radius: 0.75rem; background-color: var(--w);
@@ -253,11 +279,8 @@ const schema = [
   .aksesori dt { font-weight: 500; }
   .aksesori dd { margin-top: 0.3rem; color: var(--color-lumut); line-height: 1.6; }
 
-  .lain { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr)); margin-top: 1.75rem; }
-  .lain a { display: grid; gap: 0.4rem; height: 100%; padding: 1.25rem 1.4rem; border-radius: 16px; background: var(--color-putih); color: inherit; text-decoration: none; transition: transform 400ms var(--ease-out), box-shadow 400ms var(--ease-out); }
-  .lain a:hover { transform: translateY(-3px); box-shadow: 0 20px 36px -24px rgb(16 35 30 / 0.35); }
-  .lain b { font-size: 1.2rem; font-weight: 500; letter-spacing: -0.02em; }
-  .lain span { color: var(--color-lumut); font-size: 0.92rem; line-height: 1.45; }
+  .lain { display: grid; gap: 0.85rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr)); margin-top: 1.75rem; }
+  @media (max-width: 47.99rem) { .lain { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; } }
   .sumber { margin-top: 3rem; }
   .sumber-judul { font-size: 1.1rem; font-weight: 500; }
   .sumber li { margin-top: 0.4rem; font-size: 0.9rem; color: var(--color-lumut); }

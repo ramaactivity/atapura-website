@@ -1,0 +1,80 @@
+---
+// Kartu katalog produk (gaya toko online): foto, nama, atribut singkat, harga terpasang, penanda bisa diklik.
+// Seluruh kartu satu tautan; panah di pojok = penanda klik yang terlihat juga di HP (tanpa hover).
+import { Image } from 'astro:assets';
+import { bagianRentang } from '../data/harga';
+import { namaLengkap, rentangProduk, sampulProduk, type Produk } from '../data/produk';
+
+interface Props {
+  p: Produk;
+  /** Nama lengkap dengan lini ("Atap bitumen CTI"); default nama merek saja (di bawah judul lini). */
+  lengkap?: boolean;
+}
+const { p, lengkap = false } = Astro.props;
+const foto = sampulProduk(p);
+const r = rentangProduk(p);
+const b = r && bagianRentang(r[0], r[1]);
+const atribut = p.atribut ?? (p.seri.length ? p.seri.map((s) => s.nama).join(' · ') : 'Spesifikasi menunggu dokumen resmi');
+---
+
+<a class="kp" href={`/produk/${p.slug}`}>
+  <div class="kp-foto">
+    {foto && <Image src={foto.src} alt={foto.alt} widths={[360, 640, 900]} sizes="(min-width: 64rem) 22vw, (min-width: 48rem) 33vw, 50vw" />}
+  </div>
+  <div class="kp-isi">
+    <h3 class="kp-nama">{lengkap ? namaLengkap(p) : p.nama}</h3>
+    <p class="kp-atribut">{atribut}</p>
+    <div class="kp-kaki">
+      <p class="kp-harga">
+        {b ? <><span class="kp-rp">Rp</span>{b.min}–{b.max} <span class="kp-satuan">{b.satuan === 'jt' ? 'juta' : 'ribu'}/m²</span></> : <span class="kp-tanya">Harga tanya admin</span>}
+      </p>
+      <span class="kp-panah" aria-hidden="true">
+        <svg viewBox="0 0 20 20"><path d="M6 14 14 6M7.5 6H14v6.5" /></svg>
+      </span>
+    </div>
+  </div>
+</a>
+
+<style>
+  .kp {
+    display: grid; grid-template-rows: auto 1fr; height: 100%; overflow: hidden; border-radius: 18px;
+    background: var(--color-putih); color: inherit; text-decoration: none;
+    box-shadow: 0 1px 2px rgb(16 35 30 / 0.06), 0 10px 24px -18px rgb(16 35 30 / 0.3);
+    transition: transform 420ms var(--ease-out), box-shadow 420ms var(--ease-out);
+  }
+  .kp:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 3px; }
+  .kp:active { transform: scale(0.98); }
+  .kp-foto { aspect-ratio: 4 / 3; background: var(--color-embun); overflow: hidden; }
+  .kp-foto :global(img) { display: block; width: 100%; height: 100%; object-fit: cover; transition: scale 700ms var(--ease-out); }
+  .kp-isi { display: grid; grid-template-rows: auto auto 1fr; gap: 0.3rem; padding: 0.95rem 1.05rem 1rem; }
+  .kp-nama { font-size: 1.125rem; font-weight: 500; letter-spacing: -0.025em; line-height: 1.2; }
+  .kp-atribut { font-size: 0.85rem; color: var(--color-lumut); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .kp-kaki { display: flex; align-items: flex-end; justify-content: space-between; gap: 0.75rem; margin-top: 0.55rem; }
+  .kp-harga { font-weight: 500; font-variant-numeric: tabular-nums lining-nums; line-height: 1.25; }
+  .kp-rp { font-size: 0.72em; opacity: 0.6; margin-right: 0.08em; }
+  .kp-satuan { font-size: 0.8em; font-weight: 400; color: var(--color-lumut); white-space: nowrap; }
+  .kp-tanya { font-size: 0.9rem; color: var(--color-lumut); font-weight: 400; }
+  .kp-panah {
+    flex: none; display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border-radius: 999px;
+    background: var(--color-embun); color: var(--color-pinus); transition: background-color 300ms, color 300ms, transform 420ms var(--ease-out);
+  }
+  .kp-panah svg { width: 1.05rem; height: 1.05rem; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+  @media (hover: hover) and (pointer: fine) {
+    .kp:hover { transform: translateY(-3px); box-shadow: 0 1px 2px rgb(16 35 30 / 0.06), 0 22px 40px -24px rgb(16 35 30 / 0.45); }
+    .kp:hover .kp-foto :global(img) { scale: 1.04; }
+    .kp:hover .kp-panah { background: var(--color-pinus); color: var(--color-tunas); }
+    .kp:active { transform: translateY(-1px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .kp, .kp-foto :global(img), .kp-panah { transition: none; }
+  }
+  @media (max-width: 47.99rem) {
+    .kp { border-radius: 16px; }
+    .kp-isi { padding: 0.75rem 0.8rem 0.85rem; }
+    .kp-nama { font-size: 0.9375rem; }
+    .kp-atribut { font-size: 0.78rem; }
+    .kp-harga { font-size: 0.875rem; }
+    .kp-panah { width: 2rem; height: 2rem; }
+  }
+</style>

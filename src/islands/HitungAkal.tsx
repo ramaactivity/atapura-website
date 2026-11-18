@@ -1,12 +1,15 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
-import { bagianRentang, estimasiPublik, harga, hitungEstimasi, rentangRangka, rupiahRingkas, type Alas, type Flashing, type LapisKedap, type Merek, type MerekRangka } from '../data/harga';
+import { bagianRentang, estimasiPlafon, estimasiPublik, harga, hitungEstimasi, rentangRangka, rupiahRingkas, type Alas, type Flashing, type LapisKedap, type Merek, type MerekPlafon, type MerekRangka } from '../data/harga';
 import { bisnis, dalamJabodetabek, waLink } from '../data/bisnis';
 import './hitung-akal.css';
 
-const MIN = 20;
+const MIN = 10;
 const MAX = 400;
 const LANGKAH = 5;
 const MEREK = Object.keys(harga.merek) as Merek[];
+const MEREK_PLAFON = Object.keys(harga.plafon.merek) as MerekPlafon[];
+const LINI = ['Atap', 'Plafon'] as const;
+type Lini = (typeof LINI)[number];
 const ALAS = Object.keys(harga.alas) as Alas[];
 const LAPIS = Object.keys(harga.lapisKedap) as LapisKedap[];
 const FLASHING = Object.keys(harga.flashing) as Flashing[];
@@ -80,6 +83,8 @@ function Pilihan<T extends string>({ label, opsi, nilai, ubah }: { label: string
 // Publik: cukup luas + merek; harga dari patokan terpasang per m², spek pendukung jadi daftar
 // "sudah / belum termasuk" (DECISIONS 030). Tanpa qty: dijadikan patokan beli ke orang lain.
 export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = false }: { awal?: number; sumber?: string; internal?: boolean }) {
+  const [lini, setLini] = useState<Lini>('Atap');
+  const [merekPlafon, setMerekPlafon] = useState<MerekPlafon>(MEREK_PLAFON[0]);
   const [luas, setLuas] = useState(awal);
   const [teksLuas, setTeksLuas] = useState(String(awal));
   const [merek, setMerek] = useState<Merek>('CTI');
@@ -92,8 +97,12 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
   const [membuka, setMembuka] = useState(false);
   const track = useRef<HTMLDivElement>(null);
 
-  const rinci = hitungEstimasi(luas, { merek, alas, lapis, flashing, rangka: rangka === 'Sudah ada' ? undefined : rangka });
-  const est = internal ? rinci : { ...rinci, ...estimasiPublik(luas, merek) };
+  // Plafon belum punya resep material: internal & publik sama-sama memakai harga terpasang × luas, tanpa durasi.
+  const plafon = lini === 'Plafon';
+  const rinciAtap = internal && !plafon;
+  const atap = hitungEstimasi(luas, { merek, alas, lapis, flashing, rangka: rangka === 'Sudah ada' ? undefined : rangka });
+  const est = plafon ? { ...atap, ...estimasiPlafon(luas, merekPlafon), hari: null } : internal ? atap : { ...atap, ...estimasiPublik(luas, merek) };
+  const namaLuas = plafon ? 'Luas plafon' : 'Luas atap';
   const minTampil = useGulir(est.perM2[0]);
   const maxTampil = useGulir(est.perM2[1]);
   const jabo = dalamJabodetabek(kota);
@@ -103,6 +112,13 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
     setLuas(v);
     setTeksLuas(String(v));
   };
+
+  // Tautan "Hitung biaya dengan X" dari halaman produk: /?merek=X#hitung.
+  useEffect(() => {
+    const m = new URLSearchParams(location.search).get('merek');
+    if (m && MEREK.includes(m as Merek)) setMerek(m as Merek);
+    if (m && MEREK_PLAFON.includes(m as MerekPlafon)) { setLini('Plafon'); setMerekPlafon(m as MerekPlafon); }
+  }, []);
 
   // Kolom luas di hero mengirim angkanya ke sini.
   useEffect(() => {
@@ -133,9 +149,11 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
   const rentang = `${rupiahRingkas(est.total[0], d)} – ${rupiahRingkas(est.total[1], d)}`;
   const perM2 = `${rupiahRingkas(est.perM2[0])} – ${rupiahRingkas(est.perM2[1])} per m²`;
   const pesan = [
-    'Halo Atapura, saya mau tanya pemasangan atap bitumen.',
-    `Luas atap: ${luas} m²`,
-    ...(internal
+    `Halo Atapura, saya mau tanya pemasangan ${plafon ? 'plafon' : 'atap bitumen'}.`,
+    `${namaLuas}: ${luas} m²`,
+    ...(plafon
+      ? [`Merek: ${merekPlafon}`, `Lokasi: ${internal ? kota.trim() || '(belum diisi)' : ''}`]
+      : rinciAtap
       ? [
           `Pekerjaan: ${pekerjaan}`,
           `Spek: ${merek}, ${alas}, ${harga.lapisKedap[lapis].nama}, ${flashing}, rangka ${rangka === 'Sudah ada' ? 'sudah ada' : `baja ringan ${rangka} baru`}`,
@@ -149,14 +167,25 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
     `(dari ${sumber})`,
   ].join('\n');
 
+  // Nomor langkah dihitung saat render karena jumlah langkah bergantung pada lini & mode internal.
+  let langkah = 0;
+  const no = () => String(++langkah).padStart(2, '0');
+
   return (
     <div class="ha">
       <ol class="ha-langkah">
         <li>
-          <span class="ha-no angka">01</span>
+          <span class="ha-no angka">{no()}</span>
+          <div class="ha-isi">
+            <p class="ha-label">Yang dihitung</p>
+            <Pilihan label="Yang dihitung" opsi={LINI} nilai={lini} ubah={setLini} />
+          </div>
+        </li>
+        <li>
+          <span class="ha-no angka">{no()}</span>
           <div class="ha-isi">
             <div class="ha-baris">
-              <label for="luas-teks" class="ha-label">Luas atap</label>
+              <label for="luas-teks" class="ha-label">{namaLuas}</label>
               <div class="stepper">
                 <button type="button" class="stepper-btn" aria-label="Kurangi 5 m²" onClick={() => atur(luas - LANGKAH)} disabled={luas <= MIN}>
                   <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10" /></svg>
@@ -187,7 +216,7 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
               class="slider"
               role="slider"
               tabIndex={0}
-              aria-label="Luas atap dalam meter persegi"
+              aria-label={`${namaLuas} dalam meter persegi`}
               aria-valuemin={MIN}
               aria-valuemax={MAX}
               aria-valuenow={luas}
@@ -200,19 +229,21 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
               <span class="slider-isi" />
               <span class="slider-jempol" />
             </div>
-            <p class="ha-bantu">Belum tahu luasnya? Untuk atap miring, kira-kira luas lantai teratas × 1,3.</p>
+            <p class="ha-bantu">{plafon ? 'Belum tahu luasnya? Luas plafon kira-kira sama dengan luas lantai ruangan: panjang × lebar.' : 'Belum tahu luasnya? Untuk atap miring, kira-kira luas lantai teratas × 1,3.'}</p>
           </div>
         </li>
         <li>
-          <span class="ha-no angka">02</span>
+          <span class="ha-no angka">{no()}</span>
           <div class="ha-isi">
             <p class="ha-label">Merek</p>
-            <Pilihan label="Merek" opsi={MEREK} nilai={merek} ubah={setMerek} />
+            {plafon
+              ? <Pilihan label="Merek plafon" opsi={MEREK_PLAFON} nilai={merekPlafon} ubah={setMerekPlafon} />
+              : <Pilihan label="Merek" opsi={MEREK} nilai={merek} ubah={setMerek} />}
           </div>
         </li>
-        {internal && <>
+        {rinciAtap && <>
         <li>
-          <span class="ha-no angka">03</span>
+          <span class="ha-no angka">{no()}</span>
           <div class="ha-isi">
             <p class="ha-label">Spek pendukung</p>
             <div class="ha-spek">
@@ -225,30 +256,30 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
           </div>
         </li>
         <li>
-          <span class="ha-no angka">04</span>
+          <span class="ha-no angka">{no()}</span>
           <div class="ha-isi">
             <p class="ha-label">Pekerjaan</p>
             <Pilihan label="Jenis pekerjaan" opsi={PEKERJAAN} nilai={pekerjaan} ubah={setPekerjaan} />
           </div>
         </li>
-        <li>
-          <span class="ha-no angka">05</span>
+        </>}
+        {internal && <li>
+          <span class="ha-no angka">{no()}</span>
           <div class="ha-isi">
             <label for="ha-kota" class="ha-label">Kota</label>
             <input id="ha-kota" class="ha-teks" placeholder="Contoh: Tangerang Selatan" autoComplete="address-level2" value={kota} onInput={(e) => setKota((e.currentTarget as HTMLInputElement).value)} />
             {jabo === true && <p class="ha-bantu">Survey gratis untuk lokasi di Jabodetabek.</p>}
             {jabo === false && <p class="ha-bantu ha-luar">Di luar Jabodetabek: {bisnis.survey.luar.charAt(0).toLowerCase() + bisnis.survey.luar.slice(1)}.</p>}
           </div>
-        </li>
-        </>}
+        </li>}
       </ol>
 
       <div class="ha-slip" data-nosnippet>
         <div class="ha-slip-kepala">
-          <p class="ha-label-kecil">{internal ? 'Kebutuhan material' : jabo === false ? 'Harga' : 'Estimasi harga terpasang'} untuk {luas} m²</p>
+          <p class="ha-label-kecil">{rinciAtap ? 'Kebutuhan material' : jabo === false ? 'Harga' : 'Estimasi harga terpasang'} untuk {luas} m²</p>
           {harga.contoh && <span class="contoh">Harga acuan</span>}
         </div>
-        {internal && <ul class="ha-butuh">
+        {rinciAtap && <ul class="ha-butuh">
           {est.kebutuhan.map((k) => (
             <li><span>{k.nama}</span><b class="angka">{angka(k.jumlah)} <small>{k.satuan}</small></b></li>
           ))}
@@ -256,12 +287,12 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
 
         {jabo === false ? (
           <div class="ha-luar-kotak" aria-live="polite">
-            {internal && <p class="ha-label-kecil ha-label-harga">Harga untuk lokasi Anda</p>}
+            {rinciAtap && <p class="ha-label-kecil ha-label-harga">Harga untuk lokasi Anda</p>}
             <p class="ha-luar-judul">Dihitung langsung bersama admin</p>
             <p class="ha-luar-isi">Di luar Jabodetabek ada akomodasi tukang dan pengiriman material, misalnya tiket pesawat atau ekspedisi antarpulau. Tiket dan ekspedisi bisa kami carikan atau Anda atur sendiri. Kami tidak mengambil untung dari akomodasi.</p>
           </div>
         ) : (<>
-        {internal && <p class="ha-label-kecil ha-label-harga">Estimasi harga terpasang</p>}
+        {rinciAtap && <p class="ha-label-kecil ha-label-harga">Estimasi harga terpasang</p>}
         <p class="hasil-angka" aria-live="polite" aria-atomic="true">
           <span class="sr-only">{perM2}</span>
           {(() => {
@@ -273,11 +304,11 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
             );
           })()}
         </p>
-        <p class="hasil-durasi angka">Total {rentang} · {est.hari[0]}–{est.hari[1]} hari kerja</p>
-        {pekerjaan === 'Perbaikan' && (
+        <p class="hasil-durasi angka">Total {rentang}{est.hari && ` · ${est.hari[0]}–${est.hari[1]} hari kerja`}</p>
+        {rinciAtap && pekerjaan === 'Perbaikan' && (
           <p class="ha-catatan">Untuk perbaikan, biaya bergantung pada sumber bocor yang ditemukan saat survey. Angka di atas adalah biaya penggantian penuh sebagai batas atas.</p>
         )}
-        {internal ? (
+        {rinciAtap ? (
           <dl class="ha-bayar">
             <div><dt>Material</dt><dd><b class="angka">{kisaran(est.material, d)}</b> dibayar sebelum dikirim</dd></div>
             <div><dt>Jasa pasang</dt><dd><b class="angka">{kisaran(est.jasa, d)}</b> termin {termin}</dd></div>
@@ -286,20 +317,21 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
           <div class="ha-cakup">
             <div>
               <p class="ha-label-kecil">Sudah termasuk</p>
-              <ul class="ha-cakup-ya">{harga.termasuk.map((t) => <li>{t}</li>)}</ul>
+              <ul class="ha-cakup-ya">{(plafon ? [`Plafon ${merekPlafon}`, ...harga.plafon.termasuk] : harga.termasuk).map((t) => <li>{t}</li>)}</ul>
             </div>
             <div>
               <p class="ha-label-kecil">Belum termasuk</p>
               <ul class="ha-cakup-tidak">
+                {plafon ? harga.plafon.tidakTermasuk.map((t) => <li>{t}</li>) : <>
                 <li>Rangka baja ringan baru, bila perlu: Rp{angka(rentangRangka[0] / 1000)}–{angka(rentangRangka[1] / 1000)} rb per m² terpasang, tergantung merek</li>
-                {harga.tidakTermasuk.map((t) => <li>{t}</li>)}
+                {harga.tidakTermasuk.map((t) => <li>{t}</li>)}</>}
               </ul>
             </div>
-            <p class="ha-cakup-bayar">Material dibayar sebelum dikirim, jasa pasang bertahap {termin}.</p>
+            {!plafon && <p class="ha-cakup-bayar">Material dibayar sebelum dikirim, jasa pasang bertahap {termin}.</p>}
           </div>
         )}
         </>)}
-        {internal && jabo !== false && <details class="ha-rinci">
+        {rinciAtap && jabo !== false && <details class="ha-rinci">
           <summary>Rincian biaya per item</summary>
           <dl class="rincian">
             {est.baris.map((b) => (

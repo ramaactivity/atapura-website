@@ -12,7 +12,7 @@
 // `contoh: true` = angka acuan, belum harga Atapura; UI menandai "Harga acuan".
 export const harga = {
   contoh: false,
-  berlakuSejak: '2026-11-02',
+  berlakuSejak: '2026-11-18',
   // Tambahan material untuk potongan & sambungan.
   susut: 0.1,
   merek: {
@@ -35,6 +35,17 @@ export const harga = {
   },
   // Asumsi: panjang flashing ±0,4 m per m² atap (tepi, talang, pertemuan dinding) — final setelah survey.
   flashingMPerM2: 0.4,
+  // Plafon terpasang per m² (Bang Yusuf 18 Nov 2026): plafon + rangka hollow + jasa pasang.
+  // Harga barang saja belum ada → "tanya admin". Durasi kerja belum ada → tidak ditampilkan.
+  // "Java Plafon" dari Bang Yusuf = JAVAFON (dikonfirmasi Rama 18 Nov). Garansi: material 10 th sesuai produsen, pasang 1 th.
+  plafon: {
+    merek: {
+      Shunda: { terpasang: [300_000, 370_000] },
+      Javafon: { terpasang: [200_000, 260_000] },
+    },
+    termasuk: ['Rangka hollow', 'Jasa pemasangan'],
+    tidakTermasuk: ['Lis plafon', 'Variasi drop ceiling', 'Instalasi listrik dan lampu', 'Bongkar plafon lama'],
+  },
   // Rangka baja ringan baru (opsional, untuk rumah baru atau rangka lama yang tidak layak).
   // Harga TERPASANG per m²: material + aksesori (screw + dynabolt) + jasa pasang — Bang Yusuf 18 Nov 2026.
   // Merek boleh tampil sejak 18 Nov (Rama), menggantikan aturan lama DECISIONS 028 untuk baja.
@@ -68,6 +79,13 @@ export type Alas = keyof typeof harga.alas;
 export type LapisKedap = keyof typeof harga.lapisKedap;
 export type Flashing = keyof typeof harga.flashing;
 export type MerekRangka = keyof typeof harga.rangka.merek;
+export type MerekPlafon = keyof typeof harga.plafon.merek;
+
+/** Estimasi plafon: harga terpasang per m² × luas (belum ada resep material & durasi). */
+export function estimasiPlafon(luas: number, merek: MerekPlafon): Pick<Estimasi, 'perM2' | 'total'> {
+  const [a, b] = harga.plafon.merek[merek].terpasang;
+  return { perM2: [a, b], total: [bulat(luas * a, 50_000), bulat(luas * b, 50_000)] };
+}
 /** Rentang harga rangka terpasang semua merek, untuk teks "bila perlu: Rp… per m²". */
 export const rentangRangka = ((h) => [Math.min(...h), Math.max(...h)] as const)(Object.values(harga.rangka.merek).map((m) => m.harga));
 export type Rentang = [number, number];
