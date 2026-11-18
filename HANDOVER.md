@@ -58,7 +58,7 @@ Kalkulator: spek pendukung + harga terpasang/m² (qty material hanya di `/intern
 - Font: Public Sans (judul & teks besar) + Inter (teks kecil), sama di semua perangkat. SF Pro dilarang lisensi. Daftar teks besar non-judul di `global.css` (`--font-merek`).
 - Magnific: saldo ±1.141 kredit (paket Plus) — hemat; log di `docs/magnific-log.md`.
 - **Atapura Ops perlu menyalin**: rangka per merek (ganti 220 rb di resep), lini Plafon (Shunda/Javafon, harga terpasang, termasuk/tidak termasuk, garansi 10 th/1 th), `pekerjaan` lead tambah plafon. Prompt pembuka untuk sesi Ops ada di laporan 18 Nov.
-- Nilai SEMENTARA hasil riset (DECISIONS 047, dikoreksi Bang Yusuf Kamis 19 Nov): harga plafon barang saja, m²/hari plafon & rangka, survey gratis plafon & rangka, garansi rangka (pasang 5 th, Taso 10 th tahan karat). Daftar pertanyaan Kamis ada di DECISIONS 047.
+- Nilai SEMENTARA hasil riset (DECISIONS 047, dikoreksi Bang Yusuf Kamis 19 Nov): harga Tegola (genteng ±420 rb, terpasang 700–750 rb, masuk kalkulator), harga plafon barang saja, m²/hari plafon & rangka, survey gratis plafon & rangka, garansi rangka (pasang 5 th, Taso 10 th tahan karat). Daftar pertanyaan Kamis ada di DECISIONS 047.
 
 ## Status konsep
 Situs masih KONSEP untuk partner (DECISIONS 017): `bisnis.konsep = true` → noindex + robots Disallow. Ubah ke false setelah angka termin/garansi/harga final. Penyebutan rekening dihapus dari seluruh situs (permintaan Rama 4 Nov 2026); nomor rekening jangan pernah ditulis di situs/repo, cukup di penawaran/invoice lewat WA.
