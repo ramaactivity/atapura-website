@@ -6,6 +6,7 @@ import { Image } from 'astro:assets';
 import { LINI, fotoWarna, produk, rentangProduk, sampulProduk, type Produk } from '../../data/produk';
 import { bagianRentang } from '../../data/harga';
 import KartuProduk from '../../components/KartuProduk.astro';
+import GaleriProduk from '../../components/GaleriProduk.astro';
 import { bisnis, waLink } from '../../data/bisnis';
 
 export function getStaticPaths() {
@@ -33,6 +34,11 @@ const jaminan: Record<Produk['lini'], string[]> = {
   rangka: [],
 };
 const sampul = sampulProduk(p);
+// Galeri atas: ilustrasi penerapan dulu (konteks), lalu close-up tiap seri (detail produk).
+const galeri = [
+  ...p.penerapan.map((g) => ({ src: g.gambar, alt: g.alt })),
+  ...p.seri.flatMap((x) => (x.foto ? [{ src: x.foto, alt: `Close-up ${namaPanjang} ${x.nama} terpasang` }] : [])),
+];
 const kelompokUrl = new URL(`/produk#judul-${p.lini}`, Astro.site).href;
 const namaSaja = (g: Produk['warna'][number]) => g.daftar.every((w) => !w.hex && !fotoWarna(g.tekstur, w.nama));
 
@@ -73,8 +79,8 @@ const schema = [
         <div class="pr-teks">
           <nav class="remah" aria-label="Remah roti"><a href="/">Beranda</a><span aria-hidden="true">/</span><a href="/produk">Produk &amp; layanan</a><span aria-hidden="true">/</span>{p.lini === 'rangka' ? <span>{L.nama}</span> : <><a href={`/produk#judul-${p.lini}`}>{L.nama}</a><span aria-hidden="true">/</span><span>{p.nama}</span></>}</nav>
           <h1 class="pr-judul">{judulA} <span class="redup">{judulB}</span></h1>
+          <GaleriProduk foto={galeri} />
           <p class="pr-lead">{p.ringkas}</p>
-          {p.tentang.map((t) => <p class="pr-tentang">{t}</p>)}
         </div>
         <aside class="slip" aria-label={`Ringkasan ${p.nama}`}>
           <dl class="slip-daftar">
@@ -92,6 +98,9 @@ const schema = [
           )}
           {!p.terverifikasi && <p class="slip-kaki">Spesifikasi dan garansi pabrik akan kami tulis setelah dokumen resmi masuk.</p>}
         </aside>
+        <div class="pr-tentang-blok">
+          {p.tentang.map((t) => <p class="pr-tentang">{t}</p>)}
+        </div>
       </div>
     </section>
 
@@ -251,7 +260,14 @@ const schema = [
 
   .pr-buka { padding: 120px 0 clamp(3rem, 6vw, 5rem); }
   .pr-buka-isi { display: grid; gap: 2.5rem 4rem; grid-template-columns: minmax(0, 1fr); align-items: start; }
-  @media (min-width: 60rem) { .pr-buka-isi { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); } }
+  /* Laptop: kiri judul + galeri + penjelasan, kanan slip harga. HP: urutan DOM (judul, galeri,
+     ringkasan, slip harga & tombol, baru penjelasan) supaya harga & tombol terlihat sebelum banyak menggulir. */
+  @media (min-width: 60rem) {
+    .pr-buka-isi { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); row-gap: 0; }
+    .pr-teks { grid-column: 1; grid-row: 1; }
+    .pr-tentang-blok { grid-column: 1; grid-row: 2; }
+    .slip { grid-column: 2; grid-row: 1 / span 2; align-self: start; }
+  }
   .pr-judul { margin-top: 1.5rem; font-size: clamp(2.4rem, 1.3rem + 4vw, 4.8rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1; }
   .pr-lead { margin-top: 1.25rem; font-size: clamp(1.125rem, 1rem + 0.4vw, 1.35rem); line-height: 1.5; max-width: 40ch; }
   .pr-tentang { margin-top: 1rem; color: var(--color-lumut); line-height: 1.65; max-width: 62ch; }

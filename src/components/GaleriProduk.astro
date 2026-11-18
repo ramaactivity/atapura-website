@@ -1,0 +1,79 @@
+---
+// Galeri foto di atas halaman merek (pola halaman produk toko online): laptop = satu foto besar + gambar kecil
+// yang bisa diklik, HP = foto geser (scroll-snap) dengan penanda urutan. Semua foto ilustrasi → label wajib.
+import { Image } from 'astro:assets';
+
+interface Props {
+  foto: { src: ImageMetadata; alt: string }[];
+}
+const { foto } = Astro.props;
+---
+
+{foto.length > 0 && (
+  <figure class="galeri" data-galeri>
+    <div class="galeri-utama" tabindex="0" aria-label="Foto produk, geser untuk melihat lainnya">
+      {foto.map((f, i) => (
+        <div class="galeri-slide" data-slide={i}>
+          <Image src={f.src} alt={f.alt} widths={[480, 800, 1200]} sizes="(min-width: 60rem) 52vw, 100vw" loading={i === 0 ? 'eager' : 'lazy'} />
+        </div>
+      ))}
+    </div>
+    {foto.length > 1 && (
+      <div class="galeri-kecil" role="group" aria-label="Pilih foto">
+        {foto.map((f, i) => (
+          <button type="button" class="galeri-thumb" aria-pressed={i === 0 ? 'true' : 'false'} aria-label={`Foto ${i + 1}: ${f.alt}`} data-ke={i}>
+            <Image src={f.src} alt="" width={160} height={107} />
+          </button>
+        ))}
+      </div>
+    )}
+    <figcaption class="galeri-kaki"><span data-urutan>1</span>/{foto.length} · Ilustrasi, bukan proyek Atapura.</figcaption>
+  </figure>
+)}
+
+<script>
+  // Klik gambar kecil = geser foto utama ke slide itu; geser di HP = penanda urutan & gambar kecil ikut.
+  document.querySelectorAll<HTMLElement>('[data-galeri]').forEach((g) => {
+    const utama = g.querySelector<HTMLElement>('.galeri-utama')!;
+    const thumbs = [...g.querySelectorAll<HTMLButtonElement>('.galeri-thumb')];
+    const urutan = g.querySelector<HTMLElement>('[data-urutan]')!;
+    const tandai = (i: number) => {
+      thumbs.forEach((t, j) => t.setAttribute('aria-pressed', String(i === j)));
+      urutan.textContent = String(i + 1);
+    };
+    thumbs.forEach((t, i) => t.addEventListener('click', () => {
+      utama.scrollTo({ left: i * utama.clientWidth, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      tandai(i);
+    }));
+    let tunda = 0;
+    utama.addEventListener('scroll', () => {
+      clearTimeout(tunda);
+      tunda = window.setTimeout(() => tandai(Math.round(utama.scrollLeft / utama.clientWidth)), 80);
+    }, { passive: true });
+  });
+</script>
+
+<style>
+  .galeri { margin-top: 1.75rem; }
+  .galeri-utama {
+    display: grid; grid-auto-flow: column; grid-auto-columns: 100%; overflow-x: auto; scroll-snap-type: x mandatory;
+    border-radius: 18px; scrollbar-width: none; overscroll-behavior-x: contain;
+  }
+  .galeri-utama::-webkit-scrollbar { display: none; }
+  .galeri-utama:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 3px; }
+  .galeri-slide { scroll-snap-align: start; aspect-ratio: 3 / 2; background: var(--color-garis); }
+  .galeri-slide :global(img) { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .galeri-kecil { display: flex; gap: 0.5rem; margin-top: 0.6rem; }
+  .galeri-thumb { flex: 0 0 auto; width: 4.75rem; aspect-ratio: 3 / 2; padding: 0; border: 0; border-radius: 10px; overflow: hidden; cursor: pointer; background: var(--color-garis); opacity: 0.6; transition: opacity 250ms, box-shadow 250ms; }
+  .galeri-thumb :global(img) { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .galeri-thumb[aria-pressed="true"] { opacity: 1; box-shadow: 0 0 0 2px var(--color-embun), 0 0 0 4px var(--color-pinus); }
+  .galeri-thumb:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 3px; }
+  @media (hover: hover) and (pointer: fine) { .galeri-thumb:hover { opacity: 1; } }
+  .galeri-kaki { margin-top: 0.55rem; font-size: 0.8rem; color: var(--color-lumut); font-variant-numeric: tabular-nums; }
+  /* HP: gambar kecil disembunyikan, cukup geser; penanda urutan tetap terlihat. */
+  @media (max-width: 47.99rem) {
+    .galeri { margin-top: 1.25rem; }
+    .galeri-utama { border-radius: 16px; }
+    .galeri-kecil { display: none; }
+  }
+</style>
