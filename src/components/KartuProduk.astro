@@ -3,7 +3,7 @@
 // Seluruh kartu satu tautan; panah di pojok = penanda klik yang terlihat juga di HP (tanpa hover).
 import { Image } from 'astro:assets';
 import { bagianRentang } from '../data/harga';
-import { namaLengkap, rentangProduk, sampulProduk, type Produk } from '../data/produk';
+import { fotoWarna, namaLengkap, rentangProduk, sampulProduk, type Produk } from '../data/produk';
 
 interface Props {
   p: Produk;
@@ -15,6 +15,9 @@ const foto = sampulProduk(p);
 const r = rentangProduk(p);
 const b = r && bagianRentang(r[0], r[1]);
 const atribut = p.atribut ?? (p.seri.length ? p.seri.map((s) => s.nama).join(' Â· ') : 'Spesifikasi menunggu dokumen resmi');
+// Contoh warna mini (pola toko online): warna yang punya foto contoh, unik per nama, 5 pertama + sisa.
+const warna = [...new Map(p.warna.flatMap((g) => g.daftar.map((w) => [w.nama, { nama: w.nama, foto: fotoWarna(g.tekstur, w.nama) }] as const)).filter(([, w]) => w.foto)).values()];
+const MAKS = 5;
 ---
 
 <a class="kp" href={`/produk/${p.slug}`}>
@@ -24,6 +27,12 @@ const atribut = p.atribut ?? (p.seri.length ? p.seri.map((s) => s.nama).join(' Â
   <div class="kp-isi">
     <h3 class="kp-nama">{lengkap ? namaLengkap(p) : p.nama}</h3>
     <p class="kp-atribut">{atribut}</p>
+    {warna.length > 0 && (
+      <p class="kp-warna" aria-label={`${warna.length} pilihan warna`}>
+        {warna.slice(0, MAKS).map((w) => <Image src={w.foto!} alt="" width={48} height={48} class="kp-bulat" title={w.nama} />)}
+        {warna.length > MAKS && <span class="kp-sisa">+{warna.length - MAKS}</span>}
+      </p>
+    )}
     <div class="kp-kaki">
       <p class="kp-harga">
         {b ? <><span class="kp-rp">Rp</span>{b.min}â€“{b.max} <span class="kp-satuan">{b.satuan === 'jt' ? 'juta' : 'ribu'}/mÂ²</span></> : <span class="kp-tanya">Harga tanya admin</span>}
@@ -46,7 +55,11 @@ const atribut = p.atribut ?? (p.seri.length ? p.seri.map((s) => s.nama).join(' Â
   .kp:active { transform: scale(0.98); }
   .kp-foto { aspect-ratio: 4 / 3; background: var(--color-embun); overflow: hidden; }
   .kp-foto :global(img) { display: block; width: 100%; height: 100%; object-fit: cover; transition: scale 700ms var(--ease-out); }
-  .kp-isi { display: grid; grid-template-rows: auto auto 1fr; gap: 0.3rem; padding: 0.95rem 1.05rem 1rem; }
+  .kp-isi { display: grid; grid-template-rows: auto auto auto 1fr; gap: 0.3rem; padding: 0.95rem 1.05rem 1rem; }
+  .kp-warna { display: flex; align-items: center; margin-top: 0.3rem; }
+  .kp-bulat { width: 1.375rem; height: 1.375rem; border-radius: 999px; object-fit: cover; box-shadow: 0 0 0 2px var(--color-putih), inset 0 0 0 1px rgb(16 35 30 / 0.12); }
+  .kp-bulat + .kp-bulat { margin-left: -0.3rem; }
+  .kp-sisa { margin-left: 0.45rem; font-size: 0.78rem; color: var(--color-lumut); font-variant-numeric: tabular-nums; }
   .kp-nama { font-size: 1.125rem; font-weight: 500; letter-spacing: -0.025em; line-height: 1.2; }
   .kp-atribut { font-size: 0.85rem; color: var(--color-lumut); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
   .kp-kaki { display: flex; align-items: flex-end; justify-content: space-between; gap: 0.75rem; margin-top: 0.55rem; }
@@ -75,6 +88,7 @@ const atribut = p.atribut ?? (p.seri.length ? p.seri.map((s) => s.nama).join(' Â
     .kp-nama { font-size: 0.9375rem; }
     .kp-atribut { font-size: 0.78rem; }
     .kp-harga { font-size: 0.875rem; }
+    .kp-bulat { width: 1.2rem; height: 1.2rem; }
     .kp-panah { width: 2rem; height: 2rem; }
   }
 </style>
