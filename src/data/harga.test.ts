@@ -1,6 +1,6 @@
 // Jalankan: node --experimental-strip-types src/data/harga.test.ts
 import assert from 'node:assert/strict';
-import { bagianRentang, estimasiPublik, harga, hitungEstimasi, rupiahRingkas } from './harga.ts';
+import { bagianRentang, estimasiPublik, harga, hitungEstimasi, rentangRangka, rupiahRingkas } from './harga.ts';
 
 const e = hitungEstimasi(100);
 // Contoh Bang Yusuf: atap 100 m² → skrup 1.200 pcs, paku bitumen 2.000 pcs.
@@ -19,8 +19,9 @@ for (const merek of ['CTI', 'Maxxi', 'Javabitumen'] as const) {
     assert.ok(x.perM2[0] >= lo - 15_000 && x.perM2[1] <= hi + 15_000, `${merek} ${luas} m²: ${x.perM2} vs ${lo}–${hi}`);
   }
 }
-const rangka = hitungEstimasi(100, { merek: 'CTI', alas: 'Multiplek 12 mm', lapis: 'Underlayer', flashing: 'Flashing U', rangka: true });
-assert.equal(rangka.total[0] - e.total[0], 22_000_000, 'rangka 220 rb/m² × 100 m²');
+const rangka = hitungEstimasi(100, { merek: 'CTI', alas: 'Multiplek 12 mm', lapis: 'Underlayer', flashing: 'Flashing U', rangka: 'Hi-Steel' });
+assert.equal(rangka.total[0] - e.total[0], 20_000_000, 'rangka Hi-Steel 200 rb/m² × 100 m²');
+assert.deepEqual(rentangRangka, [195_000, 230_000], 'rentang rangka K-Steel–Taso');
 assert.equal(e.material[0] + e.jasa[0], e.baris.reduce((s, b) => s + b.rentang[0], 0), 'material + jasa = semua baris');
 const grc = hitungEstimasi(100, { merek: 'CTI', alas: 'GRC 9 mm', lapis: 'Membrane', flashing: 'Flashing U' });
 assert.ok(grc.total[0] > e.total[0], 'GRC + membrane lebih mahal');

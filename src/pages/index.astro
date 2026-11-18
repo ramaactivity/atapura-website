@@ -28,7 +28,7 @@ import drone from '../../assets/gambar/magnific/cara-kerja-drone-16x9.jpg';
 import terasHujan from '../../assets/gambar/magnific/faq-teras-hujan-16x9.jpg';
 import '../styles/desktop.css';
 import { bisnis, waLink } from '../data/bisnis';
-import { bagianRentang, estimasiPublik, harga, tanggalPanjang, type Merek } from '../data/harga';
+import { bagianRentang, estimasiPublik, harga, rentangRangka, tanggalPanjang, type Merek } from '../data/harga';
 import LogoKlien from '../components/LogoKlien.astro';
 
 // Kartu contoh hitungan di hero desktop: angka dihitung dari rumus yang sama dengan kalkulator (satu sumber).
@@ -50,7 +50,7 @@ const tanya = [
   },
   {
     q: 'Berapa biaya pasang atap bitumen per meter persegi?',
-    a: `Di Jabodetabek, estimasi terpasang per m² (genteng, alas, underlayment, aksesoris, dan jasa pasang): CTI Rp${harga.merek.CTI.terpasang.map((n) => n / 1000).join('–')} ribu, Maxxi dan Javabitumen Rp${harga.merek.Maxxi.terpasang.map((n) => n / 1000).join('–')} ribu, Victory Rp${harga.merek.Victory.terpasang.map((n) => n / 1000).join('–')} ribu. Harga genteng saja: CTI Rp${harga.merek.CTI.genteng / 1000} ribu, Maxxi dan Javabitumen Rp${harga.merek.Maxxi.genteng / 1000} ribu, Victory Rp${harga.merek.Victory.genteng / 1000} ribu (Standar) per m². Rangka baja ringan baru, bila perlu, Rp${harga.rangka.harga / 1000} ribu per m² terpasang (material dan jasa). Harga final kami tulis setelah survey gratis dan opname luas.`,
+    a: `Di Jabodetabek, estimasi terpasang per m² (genteng, alas, underlayment, aksesoris, dan jasa pasang): CTI Rp${harga.merek.CTI.terpasang.map((n) => n / 1000).join('–')} ribu, Maxxi dan Javabitumen Rp${harga.merek.Maxxi.terpasang.map((n) => n / 1000).join('–')} ribu, Victory Rp${harga.merek.Victory.terpasang.map((n) => n / 1000).join('–')} ribu. Harga genteng saja: CTI Rp${harga.merek.CTI.genteng / 1000} ribu, Maxxi dan Javabitumen Rp${harga.merek.Maxxi.genteng / 1000} ribu, Victory Rp${harga.merek.Victory.genteng / 1000} ribu (Standar) per m². Rangka baja ringan baru, bila perlu, Rp${rentangRangka[0] / 1000}–${rentangRangka[1] / 1000} ribu per m² terpasang (material, aksesori, dan jasa), tergantung merek: K-Steel, Hi-Steel, atau Taso. Harga final kami tulis setelah survey gratis dan opname luas.`,
   },
   {
     q: 'Apakah atap bitumen cocok untuk rumah saya?',
@@ -381,7 +381,7 @@ const faqSchema = {
             </li>
           ))}
         </ol>
-        <p class="tabel-catatan">Harga terpasang = estimasi kasar untuk Jabodetabek dengan spek standar (alas multiplek, underlayer, flashing), belum termasuk rangka baru (baja ringan Rp220 rb/m²). Genteng kami ambil langsung dari pabrikan. Garansi pabrik dan spesifikasi diverifikasi ulang dengan dokumen resmi sebelum pemesanan.</p>
+        <p class="tabel-catatan">Harga terpasang = estimasi kasar untuk Jabodetabek dengan spek standar (alas multiplek, underlayer, flashing), belum termasuk rangka baru (baja ringan Rp{rentangRangka[0] / 1000}–{rentangRangka[1] / 1000} rb/m², tergantung merek). Genteng kami ambil langsung dari pabrikan. Garansi pabrik dan spesifikasi diverifikasi ulang dengan dokumen resmi sebelum pemesanan.</p>
         </details>
         <div class="batas">
           <h3 class="batas-judul">Kapan kami menyarankan <span class="miring">pilihan lain</span></h3>

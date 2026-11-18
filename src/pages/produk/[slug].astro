@@ -3,7 +3,7 @@ import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { Image } from 'astro:assets';
-import { produk, type Produk } from '../../data/produk';
+import { LINI, produk, type Produk } from '../../data/produk';
 import { bisnis, waLink } from '../../data/bisnis';
 
 export function getStaticPaths() {
@@ -13,8 +13,12 @@ export function getStaticPaths() {
 const { p } = Astro.props as { p: Produk };
 const situs = new URL('/', Astro.site).href;
 const url = new URL(`/produk/${p.slug}`, Astro.site).href;
-const lain = produk.filter((x) => x.slug !== p.slug);
-const pesan = `Halo Atapura, saya mau tanya atap bitumen ${p.nama}.`;
+const L = LINI[p.lini];
+// Judul: "Atap bitumen CTI", "Plafon Shunda"; rangka cukup nama lininya.
+const [judulA, judulB] = p.lini === 'rangka' ? ['Rangka', 'baja ringan'] : [L.nama, p.nama];
+const namaPanjang = p.lini === 'rangka' ? p.nama.toLowerCase() : `${L.nama.toLowerCase()} ${p.nama}`;
+const lain = produk.filter((x) => x.slug !== p.slug && x.lini === p.lini);
+const pesan = `Halo Atapura, saya mau tanya ${namaPanjang}.`;
 // Contoh warna: foto tekstur seri yang diwarnai ulang per warna (dibuat skrip, lihat DECISIONS 042).
 const contohWarna = import.meta.glob<ImageMetadata>('../../../assets/gambar/warna/*.jpg', { eager: true, import: 'default' });
 const slugNama = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
@@ -25,10 +29,10 @@ const schema = [
     '@context': 'https://schema.org',
     '@type': 'Product',
     '@id': `${url}#produk`,
-    name: `Atap bitumen ${p.nama}`,
-    brand: { '@type': 'Brand', name: p.nama },
+    name: `${judulA} ${judulB}`,
+    ...(p.lini !== 'rangka' && { brand: { '@type': 'Brand', name: p.nama } }),
     description: p.ringkas,
-    category: 'Genteng aspal (asphalt shingle)',
+    category: L.kategori,
     url,
     ...(p.seri.length && { model: p.seri.map((s) => s.nama).join(', ') }),
   },
@@ -51,7 +55,7 @@ const schema = [
       <div class="wrap pr-buka-isi">
         <div class="pr-teks">
           <nav class="remah" aria-label="Remah roti"><a href="/">Beranda</a><span aria-hidden="true">/</span><a href="/produk">Produk &amp; layanan</a><span aria-hidden="true">/</span><span>{p.nama}</span></nav>
-          <h1 class="pr-judul">Atap bitumen <span class="redup">{p.nama}</span></h1>
+          <h1 class="pr-judul">{judulA} <span class="redup">{judulB}</span></h1>
           <p class="pr-lead">{p.ringkas}</p>
           {p.tentang.map((t) => <p class="pr-tentang">{t}</p>)}
         </div>
@@ -61,7 +65,7 @@ const schema = [
           </dl>
           <div class="slip-aksi">
             {p.harga && <a class="pill pill-tunas" href="/#hitung">Hitung biaya dengan {p.nama}</a>}
-            <a class:list={['pill', p.harga ? 'pill-garis' : 'pill-tunas']} href={waLink(pesan)} target="_blank" rel="noopener" data-wa="produk">Tanya {p.nama} lewat WhatsApp</a>
+            <a class:list={['pill', p.harga ? 'pill-garis' : 'pill-tunas']} href={waLink(pesan)} target="_blank" rel="noopener" data-wa="produk">Tanya {p.lini === 'rangka' ? namaPanjang : p.nama} lewat WhatsApp</a>
           </div>
           {!p.terverifikasi && <p class="slip-kaki">Spesifikasi dan garansi pabrik akan kami tulis setelah dokumen resmi masuk.</p>}
         </aside>
@@ -71,11 +75,11 @@ const schema = [
     {p.seri.length > 0 && (
       <section class="pr-sek pr-putih" aria-labelledby="judul-seri">
         <div class="wrap">
-          <h2 id="judul-seri" class="pr-h2">Pilihan seri <span class="redup">{p.nama}</span></h2>
+          <h2 id="judul-seri" class="pr-h2">Pilihan {L.pilihan}{p.lini !== 'rangka' && <> <span class="redup">{p.nama}</span></>}</h2>
           <ul class="seri">
             {p.seri.map((s) => (
-              <li class="seri-baris">
-                <Image src={s.foto} alt={`Close-up genteng aspal ${p.nama} ${s.nama} terpasang, memperlihatkan bentuk potongannya`} widths={[480, 800, 1200]} sizes="(min-width: 60rem) 30vw, 100vw" class="seri-foto" />
+              <li class:list={['seri-baris', { 'seri-tanpa-foto': !s.foto }]}>
+                {s.foto && <Image src={s.foto} alt={`Close-up ${namaPanjang} ${s.nama} terpasang, memperlihatkan bentuknya`} widths={[480, 800, 1200]} sizes="(min-width: 60rem) 30vw, 100vw" class="seri-foto" />}
                 <div class="seri-teks">
                   <h3 class="seri-nama">{s.nama}</h3>
                   <p class="seri-ringkas">{s.ringkas}</p>
@@ -86,14 +90,14 @@ const schema = [
               </li>
             ))}
           </ul>
-          <p class="pr-catatan">Foto di atas adalah ilustrasi bentuk potongan setelah terpasang, bukan foto proyek Atapura. Sampel fisik kami bawa saat survey.</p>
+          {p.seri.some((s) => s.foto) && <p class="pr-catatan">Foto di atas adalah ilustrasi bentuk setelah terpasang, bukan foto proyek Atapura. Sampel fisik kami bawa saat survey.</p>}
         </div>
       </section>
     )}
 
-    <section class="pr-sek" aria-labelledby="judul-warna">
+    {p.lini !== 'rangka' && <section class="pr-sek" aria-labelledby="judul-warna">
       <div class="wrap">
-        <h2 id="judul-warna" class="pr-h2">Pilihan warna</h2>
+        <h2 id="judul-warna" class="pr-h2">Pilihan {L.corak}</h2>
         {p.warna.length > 0 ? (
           <>
             {p.warna.map((g) => (
@@ -113,13 +117,13 @@ const schema = [
                 </ul>
               </div>
             ))}
-            <p class="pr-catatan">Warna di layar adalah perkiraan dan bisa berbeda dari aslinya. Saat survey kami membawa sampel fisik supaya Anda bisa melihatnya di bawah cahaya rumah sendiri.</p>
+            <p class="pr-catatan">{L.corak === 'motif' ? 'Motif' : 'Warna'} di layar adalah perkiraan dan bisa berbeda dari aslinya. Saat survey kami membawa sampel fisik supaya Anda bisa melihatnya di bawah cahaya rumah sendiri.</p>
           </>
         ) : (
-          <p class="slot">Daftar warna {p.nama} akan kami tampilkan setelah katalog resmi masuk. Sampel fisik bisa Anda lihat saat survey.</p>
+          <p class="slot">Daftar {L.corak} {p.nama} akan kami tampilkan setelah katalog resmi masuk. Sampel fisik bisa Anda lihat saat survey.</p>
         )}
       </div>
-    </section>
+    </section>}
 
     <section class="pr-sek pr-gelap" aria-labelledby="judul-penerapan">
       <div class="wrap">
@@ -160,9 +164,9 @@ const schema = [
 
     <section class="pr-sek" aria-labelledby="judul-lain">
       <div class="wrap">
-        <h2 id="judul-lain" class="pr-h2">Merek lain yang kami pasang</h2>
+        <h2 id="judul-lain" class="pr-h2">{lain.length ? `Merek ${L.nama.toLowerCase()} lain yang kami pasang` : 'Produk lain'}</h2>
         <ul class="lain">
-          {lain.map((x) => <li><a href={`/produk/${x.slug}`}><b>{x.nama}</b><span>{x.ringkas}</span></a></li>)}
+          {(lain.length ? lain : produk.filter((x) => x.lini !== p.lini)).map((x) => <li><a href={`/produk/${x.slug}`}><b>{x.lini === 'rangka' ? x.nama : `${LINI[x.lini].nama} ${x.nama}`}</b><span>{x.ringkas}</span></a></li>)}
         </ul>
         {p.sumber.length > 0 && (
           <div class="sumber">
@@ -212,6 +216,7 @@ const schema = [
   .seri { margin-top: 2.25rem; border-top: 1px solid var(--color-tinta); }
   .seri-baris { display: grid; gap: 1.25rem 3rem; grid-template-columns: minmax(0, 1fr); padding: 1.75rem 0; border-bottom: 1px solid var(--color-garis); align-items: start; }
   @media (min-width: 60rem) { .seri-baris { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr) minmax(0, 1fr); } }
+  @media (min-width: 60rem) { .seri-tanpa-foto { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); } }
   .seri-foto { width: 100%; max-width: 26rem; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 14px; display: block; }
   .seri-nama { font-size: clamp(1.35rem, 1.1rem + 0.8vw, 1.75rem); font-weight: 500; letter-spacing: -0.03em; }
   .seri-ringkas { margin-top: 0.4rem; color: var(--color-lumut); line-height: 1.6; max-width: 46ch; }

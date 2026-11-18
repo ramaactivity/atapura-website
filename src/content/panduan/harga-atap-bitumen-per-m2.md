@@ -13,7 +13,7 @@ faq:
   - q: 'Apakah atap bitumen mahal?'
     a: 'Atap bitumen punya komponen tambahan berupa papan alas dan lapis kedap air, jadi jangan bandingkan dari harga per lembar. Di sisi lain, bebannya ringan, sehingga pada renovasi sering bisa dipasang di atas rangka lama. Bandingkan total biaya proyek.'
   - q: 'Apakah harga sudah termasuk rangka?'
-    a: 'Belum. Kisaran terpasang di atas memakai rangka yang sudah ada. Rangka baja ringan baru dihitung terpisah, sekitar Rp220 ribu per m².'
+    a: 'Belum. Kisaran terpasang di atas memakai rangka yang sudah ada. Rangka baja ringan baru dihitung terpisah, Rp195–230 ribu per m² terpasang tergantung merek (K-Steel, Hi-Steel, atau Taso).'
   - q: 'Bagaimana dengan lokasi di luar Jabodetabek?'
     a: 'Harga dihitung langsung bersama admin karena ada akomodasi tukang dan pengiriman material.'
 sumber:

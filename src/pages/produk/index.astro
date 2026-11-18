@@ -2,17 +2,25 @@
 import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import { produk, layanan } from '../../data/produk';
+import { LINI, produk, layanan, type Lini, type Produk } from '../../data/produk';
 import { harga } from '../../data/harga';
 import { bagianRentang } from '../../data/harga';
 import { waLink } from '../../data/bisnis';
 
 const situs = new URL('/', Astro.site).href;
-const hargaTampil = (m?: keyof typeof harga.merek) => {
-  if (!m) return null;
-  const b = bagianRentang(harga.merek[m].terpasang[0], harga.merek[m].terpasang[1]);
+const hargaTampil = (p: Produk) => {
+  const r = p.harga ? harga.merek[p.harga].terpasang : p.rentang;
+  if (!r) return null;
+  const b = bagianRentang(r[0], r[1]);
   return `Rp${b.min}–${b.max} ${b.satuan === 'jt' ? 'juta' : 'ribu'}/m²`;
 };
+// Catatan harga di bawah tiap kelompok lini.
+const catatanLini: Record<Lini, string> = {
+  atap: 'Harga terpasang untuk Jabodetabek dengan spek standar, belum termasuk rangka baru.',
+  plafon: 'Harga terpasang untuk Jabodetabek, termasuk rangka hollow dan jasa pasang.',
+  rangka: 'Harga terpasang termasuk material, aksesori, dan jasa pasang.',
+};
+const kelompok = (Object.keys(LINI) as Lini[]).map((l) => ({ l, daftar: produk.filter((p) => p.lini === l) })).filter((k) => k.daftar.length);
 const schema = [
   {
     '@context': 'https://schema.org',
@@ -25,7 +33,7 @@ const schema = [
   {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    itemListElement: produk.map((p, i) => ({ '@type': 'ListItem', position: i + 1, name: `Atap bitumen ${p.nama}`, url: new URL(`/produk/${p.slug}`, Astro.site).href })),
+    itemListElement: produk.map((p, i) => ({ '@type': 'ListItem', position: i + 1, name: p.lini === 'rangka' ? p.nama : `${LINI[p.lini].nama} ${p.nama}`, url: new URL(`/produk/${p.slug}`, Astro.site).href })),
   },
 ];
 ---
@@ -46,23 +54,25 @@ const schema = [
         </div>
       </div>
 
-      <section aria-labelledby="judul-merek">
-        <h2 id="judul-merek" class="pk-h2">Merek genteng aspal</h2>
+      {kelompok.map(({ l, daftar }) => (
+      <section aria-labelledby={`judul-${l}`} class="pk-lini">
+        <h2 id={`judul-${l}`} class="pk-h2">{LINI[l].nama}</h2>
         <ul class="merek">
-          {produk.map((p) => (
+          {daftar.map((p) => (
             <li>
               <a href={`/produk/${p.slug}`} class="merek-baris">
                 <span class="merek-nama">{p.nama}</span>
                 <span class="merek-ringkas">{p.ringkas}</span>
                 <span class="merek-seri">{p.seri.length ? p.seri.map((s) => s.nama).join(' · ') : 'Spesifikasi menunggu dokumen resmi'}</span>
-                <span class="merek-harga">{hargaTampil(p.harga) ?? 'Harga: tanya admin'}</span>
+                <span class="merek-harga">{hargaTampil(p) ?? 'Harga: tanya admin'}</span>
                 <span class="merek-panah" aria-hidden="true">→</span>
               </a>
             </li>
           ))}
         </ul>
-        <p class="pk-catatan">Harga terpasang untuk Jabodetabek dengan spek standar, belum termasuk rangka baru.</p>
+        <p class="pk-catatan">{catatanLini[l]}</p>
       </section>
+      ))}
 
       <section aria-labelledby="judul-layanan" class="pk-layanan">
         <h2 id="judul-layanan" class="pk-h2">Layanan</h2>
@@ -88,6 +98,7 @@ const schema = [
   .pk-judul { font-size: clamp(2.4rem, 1.3rem + 4vw, 4.8rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1; max-width: 14ch; }
   .pk-lead { font-size: 1.1rem; color: var(--color-lumut); max-width: 42ch; line-height: 1.5; }
   .pk-h2 { font-size: clamp(1.5rem, 1.2rem + 1vw, 2.1rem); font-weight: 500; letter-spacing: -0.035em; }
+  .pk-lini + .pk-lini { margin-top: 4rem; }
   .pk-catatan { margin-top: 1rem; font-size: 0.85rem; color: var(--color-lumut); }
 
   .merek { margin-top: 1.25rem; border-top: 1px solid var(--color-tinta); }

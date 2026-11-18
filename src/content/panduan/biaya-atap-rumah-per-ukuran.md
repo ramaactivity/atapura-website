@@ -1,7 +1,7 @@
 ---
 judul: 'Biaya atap rumah per ukuran: tipe 36, 6x9, 6x12, sampai 10x10'
 ringkasan: 'Perkiraan biaya atap bitumen terpasang untuk rumah tipe 36, 6x9, 6x10, 6x12, dan 10x10 di Jabodetabek, cara menghitung luas atap, dan yang belum termasuk.'
-jawaban: 'Untuk atap bitumen terpasang di Jabodetabek, perkiraannya: rumah tipe 36 sekitar Rp18–21 juta, 6x9 meter sekitar Rp27–32 juta, 6x12 meter sekitar Rp36–42 juta, dan 10x10 meter sekitar Rp49–59 juta. Angka ini memakai luas atap kira-kira 1,3 kali luas lantai dan rangka yang sudah ada; rangka baja ringan baru menambah sekitar Rp220 ribu per m².'
+jawaban: 'Untuk atap bitumen terpasang di Jabodetabek, perkiraannya: rumah tipe 36 sekitar Rp18–21 juta, 6x9 meter sekitar Rp27–32 juta, 6x12 meter sekitar Rp36–42 juta, dan 10x10 meter sekitar Rp49–59 juta. Angka ini memakai luas atap kira-kira 1,3 kali luas lantai dan rangka yang sudah ada; rangka baja ringan baru menambah sekitar Rp195–230 ribu per m², tergantung merek.'
 kategori: 'Biaya'
 terbit: 2026-11-03
 diperbarui: 2026-11-03
@@ -38,7 +38,7 @@ Dihitung dari harga terpasang per m² di Jabodetabek (CTI Rp400–450 ribu, Maxx
 
 | Pekerjaan | Perkiraan |
 |---|---|
-| Rangka baja ringan baru | ±Rp220 ribu per m² atap (tipe 36: ±Rp10 jt; 6 × 12: ±Rp21 jt) |
+| Rangka baja ringan baru | Rp195–230 ribu per m² atap, tergantung merek (tipe 36: ±Rp9–11 jt; 6 × 12: ±Rp18–22 jt). Lihat [pilihan merek rangka](/produk/rangka-baja-ringan) |
 | Bongkar atap lama | Ditulis setelah survey |
 | Talang, plafon, dan perbaikan dinding | Di luar pekerjaan atap |
 | Lokasi di luar Jabodetabek | Akomodasi tukang dan pengiriman material, dihitung bersama admin |

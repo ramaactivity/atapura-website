@@ -2,7 +2,7 @@
 // Harga Atapura dari Bang Yusuf (DECISIONS 025, 2 Nov 2026), berlaku Jabodetabek:
 //   genteng per m² (genteng saja): CTI 155 rb, Maxxi 145 rb, Javabitumen 145 rb.
 //   estimasi kasar terpasang per m²: CTI 400–450 rb, Maxxi & Javabitumen 380–430 rb (spek standar).
-//   rangka baja ringan 220 rb/m² (kanal C 0,75, reng 0,40).
+//   rangka baja ringan: sejak 18 Nov 2026 per merek (Bang Yusuf via Rama), lihat `rangka` di bawah.
 // Victory (Rama, 5 Nov 2026): genteng Standar 220 rb, Two Tone 260 rb per m²; terpasang 500–550 rb per m²
 //   (spek pendukung sama dengan merek lain). Kalkulator memakai harga Standar; Two Tone ditulis di halaman produk.
 // Material pendukung = harga satuan toko dokteratap.co.id. Jasa dikalibrasi supaya spek standar
@@ -36,8 +36,18 @@ export const harga = {
   // Asumsi: panjang flashing ±0,4 m per m² atap (tepi, talang, pertemuan dinding) — final setelah survey.
   flashingMPerM2: 0.4,
   // Rangka baja ringan baru (opsional, untuk rumah baru atau rangka lama yang tidak layak).
-  // Harga TERPASANG (material + jasa), bukan material saja — Bang Yusuf 3 Nov 2026. Merek baja tidak ditulis (DECISIONS 028).
-  rangka: { harga: 220_000, spek: 'Kanal C 0,75 mm, reng 0,40 mm' },
+  // Harga TERPASANG per m²: material + aksesori (screw + dynabolt) + jasa pasang — Bang Yusuf 18 Nov 2026.
+  // Merek boleh tampil sejak 18 Nov (Rama), menggantikan aturan lama DECISIONS 028 untuk baja.
+  rangka: {
+    merek: {
+      Taso: { harga: 230_000, spek: 'C-Truss 0,75 mm, reng 0,45 mm' },
+      'Hi-Steel': { harga: 200_000, spek: 'C-Truss 0,75 mm, reng 0,40 mm' },
+      'K-Steel': { harga: 195_000, spek: 'C-Truss 0,75 mm, reng 0,40 mm' },
+    },
+    termasuk: 'Material, aksesori screw dan dynabolt, serta jasa pasang',
+    // Jasa pasang rangka saja, material dari pemilik rumah.
+    jasaSaja: 55_000,
+  },
   paku: { harga: 250, perM2: 20 },
   skrup: { harga: 150, perM2: 12 },
   jasa: [70_000, 120_000],
@@ -57,6 +67,9 @@ export type Merek = keyof typeof harga.merek;
 export type Alas = keyof typeof harga.alas;
 export type LapisKedap = keyof typeof harga.lapisKedap;
 export type Flashing = keyof typeof harga.flashing;
+export type MerekRangka = keyof typeof harga.rangka.merek;
+/** Rentang harga rangka terpasang semua merek, untuk teks "bila perlu: Rp… per m²". */
+export const rentangRangka = ((h) => [Math.min(...h), Math.max(...h)] as const)(Object.values(harga.rangka.merek).map((m) => m.harga));
 export type Rentang = [number, number];
 
 export interface Pilihan {
@@ -64,8 +77,8 @@ export interface Pilihan {
   alas: Alas;
   lapis: LapisKedap;
   flashing: Flashing;
-  /** Pasang rangka baja ringan baru. */
-  rangka?: boolean;
+  /** Pasang rangka baja ringan baru dengan merek ini. */
+  rangka?: MerekRangka;
 }
 
 export interface Estimasi {
@@ -104,7 +117,7 @@ export function hitungEstimasi(luas: number, p: Pilihan = PILIHAN_AWAL): Estimas
     { label: lapis.nama, rentang: tetap(roll * lapis.harga) },
     { label: p.flashing, rentang: tetap(batang * fl.harga) },
     { label: 'Paku & skrup', rentang: tetap(paku * harga.paku.harga + skrup * harga.skrup.harga) },
-    ...(p.rangka ? [{ label: 'Rangka baja ringan', rentang: tetap(luas * harga.rangka.harga) as Rentang }] : []),
+    ...(p.rangka ? [{ label: `Rangka baja ringan ${p.rangka}`, rentang: tetap(luas * harga.rangka.merek[p.rangka].harga) as Rentang }] : []),
     { label: 'Jasa pasang', rentang: [luas * harga.jasa[0], luas * harga.jasa[1]] },
   ];
   const jumlah = (b: Estimasi['baris'], i: 0 | 1) => b.reduce((s, x) => s + x.rentang[i], 0);

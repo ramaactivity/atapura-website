@@ -3,7 +3,7 @@
 // dipakai setelah dicocokkan dan tidak pernah disebut sebagai sumber publik. Tanpa klaim TKDN/produk lokal.
 // Harga hanya dari harga.ts (Bang Yusuf); merek tanpa harga tampil "Tanya admin".
 import type { ImageMetadata } from 'astro';
-import { harga, type Merek } from './harga';
+import { harga, rentangRangka, type Merek } from './harga';
 import cti1 from '../../assets/gambar/magnific/penerapan-cti-ct3-gazebo-3x2.jpg';
 import maxxi1 from '../../assets/gambar/magnific/penerapan-maxxi-promaxxi-rumah-3x2.jpg';
 import cti2 from '../../assets/gambar/magnific/penerapan-cti-ct3-kafe-3x2.jpg';
@@ -12,15 +12,25 @@ import tegola1 from '../../assets/gambar/magnific/penerapan-tegola-rectangular-v
 import tegola2 from '../../assets/gambar/magnific/penerapan-tegola-rectangular-lereng-3x2.jpg';
 import victory1 from '../../assets/gambar/magnific/penerapan-victory-standar-rumah-3x2.jpg';
 import victory2 from '../../assets/gambar/magnific/penerapan-victory-two-tone-guesthouse-3x2.jpg';
+import rangka1 from '../../assets/gambar/magnific/rangka-baja-ringan-papan-3x2.jpg';
 
 // Foto close-up tiap seri (Magnific, bentuk potongan dicocokkan ke katalog resmi). Nama file = kunci `foto`.
 const fotoSeri = import.meta.glob<ImageMetadata>('../../assets/gambar/seri/*.jpg', { eager: true, import: 'default' });
 const seriFoto = (kunci: string) => fotoSeri[`../../assets/gambar/seri/${kunci}.jpg`];
 
+/** Lini produk Atapura. Halaman /produk dikelompokkan per lini; label & kategori schema dari LINI. */
+export type Lini = 'atap' | 'plafon' | 'rangka';
+// `pilihan` = sebutan baris di bagian pilihan (seri/merek), `corak` = sebutan bagian warna.
+export const LINI: Record<Lini, { nama: string; kategori: string; pilihan: string; corak: string }> = {
+  atap: { nama: 'Atap bitumen', kategori: 'Genteng aspal (asphalt shingle)', pilihan: 'seri', corak: 'warna' },
+  plafon: { nama: 'Plafon', kategori: 'Plafon PVC', pilihan: 'seri', corak: 'motif' },
+  rangka: { nama: 'Rangka baja ringan', kategori: 'Rangka atap baja ringan', pilihan: 'merek', corak: 'warna' },
+};
+
 export interface Seri {
   nama: string;
-  /** Foto close-up genteng terpasang (ilustrasi Magnific). */
-  foto: ImageMetadata;
+  /** Foto close-up produk terpasang (ilustrasi Magnific). Kosong = baris tanpa foto. */
+  foto?: ImageMetadata;
   ringkas: string;
   spek: { label: string; nilai: string }[];
 }
@@ -37,6 +47,9 @@ export interface Warna {
 export interface Produk {
   slug: string;
   nama: string;
+  lini: Lini;
+  /** Rentang harga terpasang per m² untuk lini selain atap (atap memakai `harga`). */
+  rentang?: readonly [number, number];
   /** Kunci di harga.ts bila harga Atapura sudah ada. */
   harga?: Merek;
   judul: string;
@@ -64,6 +77,7 @@ const hargaTerpasang = (m: Merek) => {
 export const produk: Produk[] = [
   {
     slug: 'cti',
+    lini: 'atap',
     nama: 'CTI',
     harga: 'CTI',
     judul: 'Atap bitumen CTI: CT3, CT5, dan CT6',
@@ -134,6 +148,7 @@ export const produk: Produk[] = [
   },
   {
     slug: 'maxxi',
+    lini: 'atap',
     nama: 'Maxxi',
     harga: 'Maxxi',
     judul: 'Atap bitumen Maxxi: Maxxiroof dan Promaxxi',
@@ -191,6 +206,7 @@ export const produk: Produk[] = [
   },
   {
     slug: 'tegola',
+    lini: 'atap',
     nama: 'Tegola',
     judul: 'Atap bitumen Tegola: Premium dan Master',
     ringkas: 'Genteng aspal buatan Tegola Canadese, Italia. Seri satu lapis Premium dengan beberapa bentuk potongan, dan seri dua lapis Master.',
@@ -265,6 +281,7 @@ export const produk: Produk[] = [
   },
   {
     slug: 'javabitumen',
+    lini: 'atap',
     nama: 'Javabitumen',
     harga: 'Javabitumen',
     judul: 'Atap bitumen Javabitumen',
@@ -291,6 +308,7 @@ export const produk: Produk[] = [
   },
   {
     slug: 'victory',
+    lini: 'atap',
     nama: 'Victory',
     harga: 'Victory',
     judul: 'Atap bitumen Victory: Standar dan Two Tone',
@@ -337,6 +355,56 @@ export const produk: Produk[] = [
     garansi: 'Syarat garansi pabrik menunggu dokumen resmi. Pemasangan Atapura dilindungi garansi pemasangan tertulis 5 tahun.',
     terverifikasi: false,
     sumber: [],
+  },
+  {
+    slug: 'rangka-baja-ringan',
+    nama: 'Rangka baja ringan',
+    lini: 'rangka',
+    rentang: rentangRangka,
+    judul: 'Rangka atap baja ringan Taso, Hi-Steel, K-Steel terpasang',
+    ringkas: 'Rangka atap baja ringan terpasang untuk rumah baru atau pengganti rangka lama, dengan tiga pilihan merek. Harga sudah termasuk aksesori dan jasa pasang.',
+    tentang: [
+      'Rangka baja ringan dipakai untuk rumah baru, atau saat rangka kayu lama sudah lapuk, dimakan rayap, atau melendut. Di atasnya kami pasang papan alas lalu atap bitumen.',
+      'Harga per m² sudah termasuk material, aksesori (screw dan dynabolt), dan jasa pasang. Kalau materialnya sudah Anda sediakan, jasa pasang rangka saja Rp55 ribu per m².',
+    ],
+    fakta: [
+      { label: 'Pilihan merek', nilai: 'K-Steel, Hi-Steel, Taso' },
+      { label: 'Kanal C', nilai: '0,75 mm' },
+      { label: 'Terpasang', nilai: `Rp${rentangRangka[0] / 1000}–${rentangRangka[1] / 1000} ribu per m²` },
+      { label: 'Jasa pasang saja', nilai: `Rp${harga.rangka.jasaSaja / 1000} ribu per m²` },
+    ],
+    seri: (['K-Steel', 'Hi-Steel', 'Taso'] as const).map((m) => {
+      const r = harga.rangka.merek[m];
+      const [kanal, reng] = r.spek.split(', ');
+      const ringkas = {
+        'K-Steel': 'Pilihan dengan harga terpasang paling rendah dari tiga merek yang kami pasang.',
+        'Hi-Steel': 'Baja G550 berlapis Zincalume AZ70, menurut pemilik merek.',
+        Taso: 'Buatan PT Tatalogam Lestari. Baja G550, profil sesuai SNI 8399:2017, dan reng lebih tebal dari dua merek lainnya.',
+      }[m];
+      return {
+        nama: m,
+        ringkas,
+        spek: [
+          { label: 'Kanal C', nilai: kanal.replace('C-Truss ', '') },
+          { label: 'Reng', nilai: reng.replace('reng ', '') },
+          { label: 'Terpasang', nilai: `Rp${r.harga / 1000} ribu per m²` },
+        ],
+      };
+    }),
+    warna: [],
+    aksesori: [
+      { nama: 'Screw', isi: 'Sekrup baja untuk menyambung kanal C dan reng.' },
+      { nama: 'Dynabolt', isi: 'Baut angkur untuk mengikat rangka ke balok beton.' },
+    ],
+    penerapan: [
+      { gambar: rangka1, alt: 'Ilustrasi papan multiplek disekrup ke rangka atap baja ringan', keterangan: 'Papan alas atap bitumen di atas rangka baja ringan' },
+    ],
+    garansi: 'Ketentuan garansi pabrik tiap merek dan garansi pemasangan rangka kami jelaskan saat penawaran.',
+    terverifikasi: false,
+    sumber: [
+      { nama: 'Tatalogam, halaman produk Taso (dicek 18 November 2026)', url: 'https://tatalogam.com/portfolio/taso/' },
+      { nama: 'Hi-Steel, halaman kanal C dan reng baja ringan (dicek 18 November 2026)', url: 'https://histeel.co.id/baja-ringan/jual-kanal-c-baja-ringan/' },
+    ],
   },
 ];
 

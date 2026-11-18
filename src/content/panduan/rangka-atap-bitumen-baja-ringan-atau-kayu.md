@@ -13,7 +13,7 @@ faq:
   - q: 'Apakah rangka kayu lama harus diganti?'
     a: 'Tidak selalu. Saat survey kami cek kayu yang lapuk, dimakan rayap, atau melendut. Bagian yang rusak diperbaiki; kalau kerusakannya menyebar, rangka baru lebih aman dan sering lebih murah dari tambal sulam.'
   - q: 'Berapa biaya rangka baja ringan baru?'
-    a: 'Di Atapura sekitar Rp220 ribu per m², dengan kanal C 0,75 mm dan reng 0,40 mm. Biaya ini terpisah dari harga atap terpasang.'
+    a: 'Di Atapura Rp195–230 ribu per m² terpasang, termasuk aksesori dan jasa pasang: K-Steel Rp195 ribu, Hi-Steel Rp200 ribu, dan Taso Rp230 ribu. Semuanya kanal C 0,75 mm. Biaya ini terpisah dari harga atap terpasang.'
 sumber:
   - nama: 'CTI, halaman tanya jawab (rangka dan jarak reng), dicek 3 November 2026'
     url: 'https://www.ct-i.co.kr/tanya-jawab/'
