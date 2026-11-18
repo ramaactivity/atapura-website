@@ -508,6 +508,8 @@ export const produk: Produk[] = [
       { label: 'Kanal C', nilai: '0,75 mm' },
       { label: 'Terpasang', nilai: `Rp${rentangRangka[0] / 1000}–${rentangRangka[1] / 1000} ribu per m²` },
       { label: 'Jasa pasang saja', nilai: `Rp${harga.rangka.jasaSaja / 1000} ribu per m²` },
+      // SEMENTARA (riset 18 Nov, docs/riset/jawaban-yusuf-rangka.md; dikoreksi Bang Yusuf Kamis 19 Nov).
+      { label: 'Lama pasang', nilai: '±20–30 m² per hari' },
     ],
     seri: (['K-Steel', 'Hi-Steel', 'Taso'] as const).map((m) => {
       const r = harga.rangka.merek[m];
@@ -515,7 +517,7 @@ export const produk: Produk[] = [
       const ringkas = {
         'K-Steel': 'Pilihan dengan harga terpasang paling rendah dari tiga merek yang kami pasang.',
         'Hi-Steel': 'Baja G550 berlapis Zincalume AZ70, menurut pemilik merek.',
-        Taso: 'Buatan PT Tatalogam Lestari. Baja G550, profil sesuai SNI 8399:2017, dan reng lebih tebal dari dua merek lainnya.',
+        Taso: 'Buatan PT Tatalogam Lestari. Baja G550, profil sesuai SNI 8399:2017, reng lebih tebal dari dua merek lainnya, dan bergaransi tahan karat 10 tahun dari pabrik.',
       }[m];
       return {
         nama: m,
@@ -536,10 +538,12 @@ export const produk: Produk[] = [
       { gambar: rangka2, alt: 'Ilustrasi rumah baru satu lantai dengan rangka atap baja ringan terpasang sebelum ditutup atap', keterangan: 'Rangka baja ringan terpasang di atas balok beton rumah baru' },
       { gambar: rangka1, alt: 'Ilustrasi papan multiplek disekrup ke rangka atap baja ringan', keterangan: 'Papan alas atap bitumen di atas rangka baja ringan' },
     ],
-    garansi: 'Ketentuan garansi pabrik tiap merek dan garansi pemasangan rangka kami jelaskan saat penawaran.',
+    // SEMENTARA (riset 18 Nov; dikoreksi Bang Yusuf Kamis 19 Nov): garansi pasang 5 th disamakan dengan atap.
+    garansi: 'Pemasangan rangka oleh Atapura bergaransi 5 tahun untuk rangka yang melendut atau bergeser akibat kesalahan pemasangan. Taso bergaransi tahan karat 10 tahun dari Tatalogam, berlaku sesuai syarat pabrik (screw dan aksesori Taso, kanal dan reng sama-sama Taso, bukan lokasi tepi pantai atau kawasan industri). Hi-Steel dan K-Steel tidak menyertakan garansi pabrik tertulis.',
     terverifikasi: false,
     sumber: [
       { nama: 'Tatalogam, halaman produk Taso (dicek 18 November 2026)', url: 'https://tatalogam.com/portfolio/taso/' },
+      { nama: 'Tatalogam, garansi tahan karat Taso (artikel resmi, Maret 2025)', url: 'https://tatalogam.com/inovasi-material-bangunan-11-alasan-kenapa-harus-memilih-taso-kaso-metal/' },
       { nama: 'Hi-Steel, halaman kanal C dan reng baja ringan (dicek 18 November 2026)', url: 'https://histeel.co.id/baja-ringan/jual-kanal-c-baja-ringan/' },
     ],
   },

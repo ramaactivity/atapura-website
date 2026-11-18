@@ -27,11 +27,11 @@ const bisaDihitung = Boolean(p.harga) || p.lini === 'plafon';
 const rentang = rentangProduk(p);
 // Contoh total untuk 100 m² supaya angka per m² langsung terbayang (riset UX katalog: perkiraan total dekat tombol).
 const contoh = rentang && bagianRentang(rentang[0] * 100, rentang[1] * 100);
-// Jaminan yang sudah pasti per lini (rangka belum: garansi rangka masih ditanyakan ke Bang Yusuf).
+// Jaminan per lini (rangka & survey plafon: nilai sementara hasil riset 18 Nov, dikoreksi Bang Yusuf Kamis 19 Nov).
 const jaminan: Record<Produk['lini'], string[]> = {
   atap: [`Garansi pemasangan ${bisnis.garansiPemasanganTahun} tahun`, 'Survey gratis di Jabodetabek'],
   plafon: ['Garansi pemasangan 1 tahun', 'Garansi material 10 tahun sesuai produsen'],
-  rangka: [],
+  rangka: ['Garansi pemasangan 5 tahun', 'Survey gratis di Jabodetabek'], // SEMENTARA, koreksi Kamis 19 Nov
 };
 const sampul = sampulProduk(p);
 // Galeri atas: ilustrasi penerapan dulu (konteks), lalu close-up tiap seri (detail produk).
