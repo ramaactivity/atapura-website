@@ -72,7 +72,7 @@ const schema = [
 ---
 
 <Base title={`${p.judul} | Atapura`} description={p.ringkas} schema={schema}>
-  <Header terang />
+  <Header terang hitungHref={bisaDihitung ? `/?merek=${encodeURIComponent(p.nama)}#hitung` : undefined} pesanWa={pesan} />
   <main class="pr">
     <section class="pr-buka">
       <div class="wrap pr-buka-isi">

@@ -8,8 +8,11 @@ interface Props {
   terang?: boolean;
   /** Bahasa label bilah tab HP (halaman /en untuk ekspat). */
   lang?: 'id' | 'en';
+  /** Halaman produk: tab "Hitung" membuka kalkulator dengan merek ini, tab "Chat" membawa pesan merek ini. */
+  hitungHref?: string;
+  pesanWa?: string;
 }
-const { terang = false, lang = 'id' } = Astro.props;
+const { terang = false, lang = 'id', hitungHref, pesanWa } = Astro.props;
 const label = lang === 'en'
   ? { beranda: 'Home', hitung: 'Estimate', chat: 'Chat', merek: 'Brands', garansi: 'Warranty' }
   : { beranda: 'Beranda', hitung: 'Hitung', chat: 'Chat', merek: 'Merek', garansi: 'Garansi' };
@@ -84,11 +87,11 @@ const menuHp = lang === 'en' ? menuEn : menuHpId;
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.4 12 4l8 6.4V19a1.5 1.5 0 0 1-1.5 1.5H15v-5.5H9v5.5H5.5A1.5 1.5 0 0 1 4 19z" /></svg>
     <span>{label.beranda}</span>
   </a>
-  <a class="tab" href="/#hitung" data-tab="hitung">
+  <a class="tab" href={hitungHref ?? '/#hitung'} data-tab="hitung">
     <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="3" /><path d="M8.5 7.5h7M9 12h.01M12 12h.01M15 12h.01M9 15.5h.01M12 15.5h.01M15 15.5h.01" /></svg>
     <span>{label.hitung}</span>
   </a>
-  <a class="tab tab-chat" href={waLink(t.waPesan)} target="_blank" rel="noopener" data-wa="tabbar">
+  <a class="tab tab-chat" href={waLink(pesanWa ?? t.waPesan)} target="_blank" rel="noopener" data-wa="tabbar">
     <span class="tab-bulat" set:html={ikonWhatsapp} />
     <span>{label.chat}</span>
   </a>
@@ -128,6 +131,8 @@ const menuHp = lang === 'en' ? menuEn : menuHpId;
       bagian.forEach((b) => io.observe(b));
       // Beranda diketuk saat sudah di beranda: kembali ke atas.
       tab[0].addEventListener('click', (e) => { e.preventDefault(); scrollTo({ top: 0, behavior: 'smooth' }); });
+    } else if (location.pathname.startsWith('/produk')) {
+      aktif('merek');
     }
   }
 
