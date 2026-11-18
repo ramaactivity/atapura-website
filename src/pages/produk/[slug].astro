@@ -3,7 +3,8 @@ import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { Image } from 'astro:assets';
-import { LINI, fotoWarna, produk, type Produk } from '../../data/produk';
+import { LINI, fotoWarna, produk, rentangProduk, sampulProduk, type Produk } from '../../data/produk';
+import { bagianRentang } from '../../data/harga';
 import KartuProduk from '../../components/KartuProduk.astro';
 import { bisnis, waLink } from '../../data/bisnis';
 
@@ -22,6 +23,17 @@ const lain = produk.filter((x) => x.slug !== p.slug && x.lini === p.lini);
 const pesan = `Halo Atapura, saya mau tanya ${namaPanjang}.`;
 // Kalkulator beranda menerima ?merek= (atap atau plafon) dan langsung memilihnya.
 const bisaDihitung = Boolean(p.harga) || p.lini === 'plafon';
+const rentang = rentangProduk(p);
+// Contoh total untuk 100 m² supaya angka per m² langsung terbayang (riset UX katalog: perkiraan total dekat tombol).
+const contoh = rentang && bagianRentang(rentang[0] * 100, rentang[1] * 100);
+// Jaminan yang sudah pasti per lini (rangka belum: garansi rangka masih ditanyakan ke Bang Yusuf).
+const jaminan: Record<Produk['lini'], string[]> = {
+  atap: [`Garansi pemasangan ${bisnis.garansiPemasanganTahun} tahun`, 'Survey gratis di Jabodetabek'],
+  plafon: ['Garansi pemasangan 1 tahun', 'Garansi material 10 tahun sesuai produsen'],
+  rangka: [],
+};
+const sampul = sampulProduk(p);
+const kelompokUrl = new URL(`/produk#judul-${p.lini}`, Astro.site).href;
 const namaSaja = (g: Produk['warna'][number]) => g.daftar.every((w) => !w.hex && !fotoWarna(g.tekstur, w.nama));
 
 const schema = [
@@ -33,6 +45,10 @@ const schema = [
     ...(p.lini !== 'rangka' && { brand: { '@type': 'Brand', name: p.nama } }),
     description: p.ringkas,
     category: L.kategori,
+    ...(sampul && { image: new URL(sampul.src.src, Astro.site).href }),
+    ...(rentang && {
+      offers: { '@type': 'AggregateOffer', priceCurrency: 'IDR', lowPrice: rentang[0], highPrice: rentang[1], description: 'Harga terpasang per m² di Jabodetabek' },
+    }),
     url,
     ...(p.seri.length && { model: p.seri.map((s) => s.nama).join(', ') }),
   },
@@ -42,7 +58,8 @@ const schema = [
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Beranda', item: situs },
       { '@type': 'ListItem', position: 2, name: 'Produk & layanan', item: new URL('/produk', Astro.site).href },
-      { '@type': 'ListItem', position: 3, name: p.nama, item: url },
+      { '@type': 'ListItem', position: 3, name: L.nama, item: kelompokUrl },
+      ...(p.lini !== 'rangka' ? [{ '@type': 'ListItem', position: 4, name: p.nama, item: url }] : []),
     ],
   },
 ];
@@ -54,7 +71,7 @@ const schema = [
     <section class="pr-buka">
       <div class="wrap pr-buka-isi">
         <div class="pr-teks">
-          <nav class="remah" aria-label="Remah roti"><a href="/">Beranda</a><span aria-hidden="true">/</span><a href="/produk">Produk &amp; layanan</a><span aria-hidden="true">/</span><span>{p.nama}</span></nav>
+          <nav class="remah" aria-label="Remah roti"><a href="/">Beranda</a><span aria-hidden="true">/</span><a href="/produk">Produk &amp; layanan</a><span aria-hidden="true">/</span>{p.lini === 'rangka' ? <span>{L.nama}</span> : <><a href={`/produk#judul-${p.lini}`}>{L.nama}</a><span aria-hidden="true">/</span><span>{p.nama}</span></>}</nav>
           <h1 class="pr-judul">{judulA} <span class="redup">{judulB}</span></h1>
           <p class="pr-lead">{p.ringkas}</p>
           {p.tentang.map((t) => <p class="pr-tentang">{t}</p>)}
@@ -63,10 +80,16 @@ const schema = [
           <dl class="slip-daftar">
             {p.fakta.map((f) => <div><dt>{f.label}</dt><dd>{f.nilai}</dd></div>)}
           </dl>
+          {contoh && <p class="slip-contoh">Contoh 100 m²: <b>±Rp{contoh.min}–{contoh.max} {contoh.satuan === 'jt' ? 'juta' : 'ribu'}</b> terpasang</p>}
           <div class="slip-aksi">
             {bisaDihitung && <a class="pill pill-tunas" href={`/?merek=${encodeURIComponent(p.nama)}#hitung`}>Hitung biaya dengan {p.nama}</a>}
             <a class:list={['pill', bisaDihitung ? 'pill-garis' : 'pill-tunas']} href={waLink(pesan)} target="_blank" rel="noopener" data-wa="produk">Tanya {p.lini === 'rangka' ? namaPanjang : p.nama} lewat WhatsApp</a>
           </div>
+          {jaminan[p.lini].length > 0 && (
+            <ul class="slip-jaminan">
+              {jaminan[p.lini].map((j) => <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" /></svg>{j}</li>)}
+            </ul>
+          )}
           {!p.terverifikasi && <p class="slip-kaki">Spesifikasi dan garansi pabrik akan kami tulis setelah dokumen resmi masuk.</p>}
         </aside>
       </div>
@@ -217,6 +240,11 @@ const schema = [
   .slip-daftar dd { font-weight: 500; text-align: right; max-width: 60%; font-variant-numeric: tabular-nums; }
   .slip-aksi { display: grid; gap: 0.6rem; margin-top: 1.4rem; }
   .slip-aksi .pill { justify-content: center; }
+  .slip-contoh { margin-top: 0.75rem; padding: 0.7rem 0.85rem; border-radius: 12px; background: var(--color-embun); font-size: 0.9rem; color: var(--color-lumut); font-variant-numeric: tabular-nums; }
+  .slip-contoh b { color: var(--color-tinta); font-weight: 500; }
+  .slip-jaminan { display: grid; gap: 0.4rem; margin-top: 1rem; }
+  .slip-jaminan li { display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; color: var(--color-lumut); }
+  .slip-jaminan svg { flex: none; width: 1.05rem; height: 1.05rem; fill: none; stroke: var(--color-pinus); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   .slip-kaki { margin-top: 1rem; font-size: 0.85rem; color: var(--color-lumut); line-height: 1.45; }
 
   .pr-sek { padding-block: clamp(3.5rem, 7vw, 6rem); }
