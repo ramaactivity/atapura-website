@@ -38,13 +38,13 @@ const warna = [
 ];
 
 const skala = [
-  { nama: 'Display', spek: '500 · 96 px · −0,04 em · baris 0,95', contoh: 'Hitung dulu,', redup: 'baru pasang.', kelas: 's-display' },
-  { nama: 'Headline', spek: '500 · 56 px · −0,035 em · baris 1,05', contoh: 'Tiga merek,', redup: 'satu standar pasang.', kelas: 's-headline' },
-  { nama: 'Title', spek: '400 · 28 px · −0,025 em', contoh: 'Underlayment menahan air yang lolos', kelas: 's-title' },
-  { nama: 'Lead', spek: '400 · 21 px · baris 1,5', contoh: 'Hitung estimasi biaya dalam satu menit, lihat standar pasangnya, lalu putuskan.', kelas: 's-lead' },
-  { nama: 'Body', spek: '400 · 17–18 px · baris 1,6', contoh: 'Setiap lapis difoto sebelum tertutup lapis berikutnya. Foto itu Anda terima, jadi bagian yang nanti tidak terlihat tetap bisa dicek.', kelas: 's-body' },
-  { nama: 'Label', spek: '500 · 15 px', contoh: 'Luas atap (m²)', kelas: 's-label' },
-  { nama: 'Caption', spek: '400 · 13 px · Lumut', contoh: 'Harga per 2 November 2026. Angka contoh untuk uji tampilan.', kelas: 's-caption' },
+  { nama: 'Display', spek: 'Public Sans 500 · 96 px · −0,04 em · baris 0,95', contoh: 'Hitung dulu,', redup: 'baru pasang.', kelas: 's-display' },
+  { nama: 'Headline', spek: 'Public Sans 500 · 56 px · −0,035 em · baris 1,05', contoh: 'Tiga merek,', redup: 'satu standar pasang.', kelas: 's-headline' },
+  { nama: 'Title', spek: 'Public Sans 400 · 28 px · −0,025 em', contoh: 'Underlayment menahan air yang lolos', kelas: 's-title' },
+  { nama: 'Lead', spek: 'Inter 400 · 21 px · baris 1,5', contoh: 'Hitung estimasi biaya dalam satu menit, lihat standar pasangnya, lalu putuskan.', kelas: 's-lead' },
+  { nama: 'Body', spek: 'Inter 400 · 17–18 px · baris 1,6', contoh: 'Setiap lapis difoto sebelum tertutup lapis berikutnya. Foto itu Anda terima, jadi bagian yang nanti tidak terlihat tetap bisa dicek.', kelas: 's-body' },
+  { nama: 'Label', spek: 'Inter 500 · 15 px', contoh: 'Luas atap (m²)', kelas: 's-label' },
+  { nama: 'Caption', spek: 'Inter 400 · 13 px · Lumut', contoh: 'Harga per 2 November 2026. Angka contoh untuk uji tampilan.', kelas: 's-caption' },
 ];
 
 const unduhan = [
@@ -178,17 +178,26 @@ const dilarang = ['solusi terbaik', 'terpercaya No.1', 'profesional dan berpenga
       <div class="wrap">
         <div class="b-sek-kepala">
           <p class="eyebrow">03 · Huruf</p>
-          <h2 class="b-h2">Satu keluarga huruf: <span class="miring">Public Sans.</span></h2>
-          <p class="b-teks">Judul tebal 500 dengan jarak huruf rapat −0,04 em, isi 400. Tanpa huruf miring, tanpa font kedua, tanpa serif. Penekanan datang dari meredupkan sebagian kalimat, paling banyak satu frasa per judul.</p>
+          <h2 class="b-h2">Dua huruf, <span class="miring">satu suara.</span></h2>
+          <p class="b-teks">Public Sans untuk logo, judul, dan angka besar: bobot 500, jarak huruf rapat −0,04 em. Inter untuk teks isi, label, harga kecil, dan tombol, karena lebih jelas dibaca di ukuran kecil dan tampil sama di semua perangkat. Tanpa huruf miring, tanpa serif. Penekanan datang dari meredupkan sebagian kalimat, paling banyak satu frasa per judul.</p>
           <div class="b-aksi">
             <a class="pill pill-gelap" href="https://fonts.google.com/specimen/Public+Sans" target="_blank" rel="noopener">Unduh Public Sans (gratis)</a>
+            <a class="pill pill-gelap" href="https://fonts.google.com/specimen/Inter" target="_blank" rel="noopener">Unduh Inter (gratis)</a>
+          </div>
+        </div>
+        <div class="spesimen">
+          <p class="spesimen-besar spesimen-merek" aria-hidden="true">Aa</p>
+          <div class="spesimen-info">
+            <p class="spesimen-nama spesimen-merek">Public Sans · judul & angka besar</p>
+            <p class="b-teks">Lisensi SIL Open Font License, boleh dipakai komersial di website, Canva, Figma, dan cetak. Bobot yang dipakai: 400 Regular dan 500 Medium.</p>
+            <p class="spesimen-set angka spesimen-merek">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br />abcdefghijklmnopqrstuvwxyz<br />0123456789 Rp m² · – — ( ) ?</p>
           </div>
         </div>
         <div class="spesimen">
           <p class="spesimen-besar" aria-hidden="true">Aa</p>
           <div class="spesimen-info">
-            <p class="spesimen-nama">Public Sans</p>
-            <p class="b-teks">Lisensi SIL Open Font License, boleh dipakai komersial di website, Canva, Figma, dan cetak. Bobot yang dipakai: 400 Regular dan 500 Medium (tombol 600).</p>
+            <p class="spesimen-nama">Inter · teks isi, label, tombol</p>
+            <p class="b-teks">Lisensi SIL Open Font License, bebas dipakai komersial. Bobot 400 untuk isi, 500 untuk label dan tombol. Di HP ukurannya 13–16 px.</p>
             <p class="spesimen-set angka">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br />abcdefghijklmnopqrstuvwxyz<br />0123456789 Rp m² · – — ( ) ?</p>
           </div>
         </div>

@@ -47,27 +47,27 @@ typography:
     letterSpacing: "-0.035em"
     fontFeature: "tnum, lnum"
   lead:
-    fontFamily: "Public Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontFamily: "Inter, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
     fontSize: "clamp(1.125rem, 1.05rem + 0.4vw, 1.35rem)"
     fontWeight: 400
     lineHeight: 1.5
   body:
-    fontFamily: "Public Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontFamily: "Inter, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
     fontSize: "1.0625rem"
     fontWeight: 400
     lineHeight: 1.6
   body-desktop:
-    fontFamily: "Public Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontFamily: "Inter, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
     fontSize: "1.125rem"
     fontWeight: 400
     lineHeight: 1.6
   label:
-    fontFamily: "Public Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontFamily: "Inter, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
     fontSize: "0.95rem"
     fontWeight: 500
     lineHeight: 1.45
   caption:
-    fontFamily: "Public Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontFamily: "Inter, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
     fontSize: "0.85rem"
     fontWeight: 400
     lineHeight: 1.45
@@ -226,8 +226,10 @@ Palet hijau hutan yang tenang dengan latar terang sedikit kehijauan, ditusuk sat
 
 ## Typography
 
-**Display Font:** Public Sans variable (USWDS, SIL OFL 1.1, subset Latin, self-host `/public/fonts/PublicSans-Variable-latin.woff2`, 27 KB), wght 100–900, tanpa italic. Cadangan Helvetica Neue, Helvetica, Arial
-**Body Font:** Public Sans (sama)
+**Display Font:** Public Sans variable (USWDS, SIL OFL 1.1, subset Latin, self-host `/public/fonts/PublicSans-Variable-latin.woff2`, 27 KB), wght 100–900, tanpa italic. Token `--font-merek`. Dipakai untuk logo, h1–h3, dan teks besar yang bukan elemen judul (daftar selektor di `global.css`).
+**Body Font:** Inter variable (rsms, SIL OFL 1.1, self-host `/public/fonts/Inter-Variable-latin.woff2`, 47 KB). Token `--font-sans` (bawaan `html`). Teks isi, lead, label, tombol, harga kecil, remah. Ritme ala Apple: baris 1,5, tracking -0,011 em (DECISIONS 046, Rama 18 Nov 2026: "font besar dan utama tetap ciri khas Atapura, teks kecil boleh font lain yang lebih enak dibaca", sama di semua perangkat).
+
+**Larangan:** SF Pro tidak boleh dipasang sebagai font web (lisensi Apple: hanya untuk mock-up aplikasi di platform Apple, dilarang untuk "website content" dan embed). Jangan menambah font ketiga.
 
 **Character:** Gaya askmidnight.com: judul bobot 500 dengan tracking -0.04em, isi 400, label/nama 500. Tanpa italic; penekanan bagian kalimat lewat warna diredupkan (`.miring` = opacity 0.55), atau Tunas untuk "AKAL." di hero HP. Angka di kolom harga tabular; angka besar kalkulator proporsional dengan "Rp" & satuan mengecil.
 
@@ -244,7 +246,9 @@ Palet hijau hutan yang tenang dengan latar terang sedikit kehijauan, ditusuk sat
 ### Named Rules
 **The Satu Frasa Rule.** Paling banyak satu frasa diredupkan per judul; tidak pernah untuk paragraf.
 
-**The Redup Sebagai Aksen Rule.** Penekanan judul datang dari meredupkan sebagian kalimat (opacity 0.55) di judul berbobot 500 — bukan italic, bukan warna-warni, bukan font kedua.
+**The Redup Sebagai Aksen Rule.** Penekanan judul datang dari meredupkan sebagian kalimat (opacity 0.55) di judul berbobot 500 — bukan italic, bukan warna-warni, bukan mengganti font di tengah judul.
+
+**The Dua Huruf Rule.** Besar & utama = Public Sans; kecil & dibaca = Inter. Teks besar baru (angka sorotan, judul kartu besar) yang bukan h1–h3 wajib ditambahkan ke daftar `--font-merek` di `global.css`.
 
 **The Angka Tabular Rule.** Setiap angka yang dibandingkan atau berubah (estimasi, luas, harga di tabel, durasi) memakai `tabular-nums lining-nums`. Rupiah ditulis tanpa desimal.
 

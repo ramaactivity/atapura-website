@@ -6,9 +6,16 @@
   font-family: "Public Sans"; font-style: normal; font-weight: 100 900; font-display: swap;
   src: url("/fonts/PublicSans-Variable-latin.woff2") format("woff2");
 }
+/* Inter (rsms, SIL OFL 1.1 — docs/lisensi/Inter-OFL.txt), variable, subset Latin. Teks kecil: isi, label,
+   harga kecil, tombol. Sama di semua perangkat (SF Pro tidak boleh dipasang di web). DECISIONS 046. */
+@font-face {
+  font-family: "Inter"; font-style: normal; font-weight: 100 900; font-display: swap;
+  src: url("/fonts/Inter-Variable-latin.woff2") format("woff2");
+}
 
 @theme {
-  --font-sans: "Public Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-merek: "Public Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --color-pinus: #10231e;
   --color-pinus-2: #183129;
   --color-tinta: #151a18;
@@ -38,9 +45,22 @@ html {
   scroll-padding-top: 80px;
 }
 
+/* Tipografi hibrida (Rama 18 Nov 2026, DECISIONS 046): teks besar & utama = Public Sans (ciri Atapura),
+   teks kecil = Inter. Judul h1–h3 otomatis; teks besar yang bukan elemen judul didaftar di sini. */
+:where(h1, h2, h3,
+  .hero-judul, .judul-besar, .judul-2, .penutup-judul, .jurnal-judul, .jurnal-nama, .batas-judul, .tanya-q,
+  .bukti-daftar b, .bk-garansi b, .hk-angka, .kartu-angka, .ds-merek, .ds-harga td, .merek-hp-harga,
+  .termin-persen, .garansi-angka, .babak-nama, .babak-takut, .kaki-besar, .ck-judul, .ck-pegang, .pm-judul,
+  .hilang-judul, .rapor-judul, .klaim-judul, .ar-cta-judul, .hasil-angka, .teks-ungkap,
+  .b-judul, .s-display, .s-headline, .s-title, .s-angka, .j-a, .komp-harga, .pilar dt, .tulis-tagline, .spesimen-merek) {
+  font-family: var(--font-merek);
+}
+
 body {
   font-size: 1rem; /* 16px di HP: ukuran baca bawaan iOS/Android */
-  line-height: 1.55;
+  /* Ritme teks ala Apple (isi 17 px, baris 1,47, sedikit dirapatkan), disesuaikan untuk Inter: baris 1,5, -0,011 em. */
+  line-height: 1.5;
+  letter-spacing: -0.011em;
   font-feature-settings: "kern", "liga";
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
