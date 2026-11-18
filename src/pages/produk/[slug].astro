@@ -128,13 +128,13 @@ const schema = [
                 {g.catatan && <p class="pr-catatan">{g.catatan}</p>}
                 <ul class:list={['warna', { 'warna-nama-saja': namaSaja(g) }]}>
                   {g.daftar.map((w) => (
-                    <li>
+                    <li><button type="button" class="warna-pilih" aria-pressed="false" data-pilih={`${w.nama}${w.kode ? ` (${w.kode})` : ''}`}>
                       {fotoWarna(g.tekstur, w.nama)
                         ? <Image src={fotoWarna(g.tekstur, w.nama)} alt="" widths={[240, 480]} sizes="10rem" class="contoh-warna" />
                         : w.hex && <span class="contoh-warna" style={`--w: ${w.hex}`} aria-hidden="true"></span>}
                       <span class="warna-nama">{w.nama}</span>
                       {w.kode && <span class="warna-kode">{w.kode}</span>}
-                    </li>
+                    </button></li>
                   ))}
                 </ul>
               </>);
@@ -154,6 +154,11 @@ const schema = [
             {L.corak === 'motif'
               ? <p class="pr-catatan">Nama dan kode motif dari katalog resmi pabrik. Foto motif asli kami kirim lewat WhatsApp, dan sampel fisiknya kami bawa saat survey.</p>
               : <p class="pr-catatan">Warna di layar adalah perkiraan dan bisa berbeda dari aslinya. Saat survey kami membawa sampel fisik supaya Anda bisa melihatnya di bawah cahaya rumah sendiri.</p>}
+            {/* Pilihan warna/motif yang diketuk masuk ke pesan WhatsApp (diatur skrip di bawah). */}
+            <div class="pilihan-wa" data-pilihan-wa hidden>
+              <p class="pilihan-teks" aria-live="polite">{L.corak === 'motif' ? 'Motif' : 'Warna'} dipilih: <b data-pilihan-nama></b></p>
+              <a class="pill pill-tunas" href={waLink(pesan)} target="_blank" rel="noopener" data-wa="produk-warna" data-pesan={pesan} data-corak={L.corak}>Tanya {L.corak} ini lewat WhatsApp</a>
+            </div>
           </>
         ) : (
           <p class="slot">Daftar {L.corak} {p.nama} akan kami tampilkan setelah katalog resmi masuk. Sampel fisik bisa Anda lihat saat survey.</p>
@@ -216,6 +221,28 @@ const schema = [
   <Footer />
 </Base>
 
+<script>
+  // Ketuk contoh warna/motif: tandai terpilih (satu saja), tampilkan tombol WA berisi pilihan itu.
+  const kotak = document.querySelector<HTMLElement>('[data-pilihan-wa]');
+  const tautan = kotak?.querySelector<HTMLAnchorElement>('a');
+  const nama = kotak?.querySelector<HTMLElement>('[data-pilihan-nama]');
+  document.querySelectorAll<HTMLButtonElement>('.warna-pilih').forEach((b) => {
+    b.addEventListener('click', () => {
+      const aktif = b.getAttribute('aria-pressed') !== 'true';
+      document.querySelectorAll('.warna-pilih[aria-pressed="true"]').forEach((x) => x.setAttribute('aria-pressed', 'false'));
+      b.setAttribute('aria-pressed', String(aktif));
+      if (!kotak || !tautan || !nama) return;
+      kotak.hidden = !aktif;
+      if (!aktif) return;
+      const pilih = b.dataset.pilih ?? '';
+      nama.textContent = pilih;
+      const url = new URL(tautan.href);
+      url.searchParams.set('text', `${tautan.dataset.pesan?.replace(/\.$/, '')}, ${tautan.dataset.corak} ${pilih}.`);
+      tautan.href = url.toString();
+    });
+  });
+</script>
+
 <style>
   .pr { background: var(--color-embun); color: var(--color-tinta); }
   .remah { display: flex; flex-wrap: wrap; gap: 0.5rem; font-size: 0.88rem; color: var(--color-lumut); }
@@ -269,10 +296,23 @@ const schema = [
   .warna-grup { margin-top: 2rem; }
   .warna-judul { font-size: 1.1rem; font-weight: 500; letter-spacing: -0.02em; }
   .warna { display: grid; gap: 1.25rem 1rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 6.25rem), 1fr)); margin-top: 1rem; }
-  .warna li { display: grid; gap: 0.3rem; }
+  .warna li { display: grid; }
+  .warna-pilih { display: grid; gap: 0.3rem; width: 100%; padding: 0; border: 0; background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; border-radius: 0.85rem; }
+  .warna-pilih:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 3px; }
+  .warna-pilih[aria-pressed="true"] .contoh-warna { box-shadow: 0 0 0 2px var(--color-embun), 0 0 0 4px var(--color-pinus); }
+  .warna-pilih[aria-pressed="true"] .warna-nama { color: var(--color-pinus); font-weight: 600; }
+  .warna-pilih:active .contoh-warna { transform: scale(0.97); }
+  .pilihan-wa { position: sticky; bottom: calc(env(safe-area-inset-bottom) + 0.75rem); z-index: 2; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.6rem 1rem; margin-top: 1.5rem; padding: 0.75rem 0.75rem 0.75rem 1.1rem; border-radius: 999px; background: var(--color-putih); box-shadow: 0 12px 30px -16px rgb(16 35 30 / 0.45), inset 0 0 0 1px var(--color-garis); }
+  .pilihan-wa[hidden] { display: none; }
+  /* HP: di atas tab bar bawah (49 px + area aman). */
+  @media (max-width: 47.99rem) { .pilihan-wa { bottom: calc(49px + env(safe-area-inset-bottom) + 0.6rem); border-radius: 22px; } }
+  .pilihan-teks { font-size: 0.92rem; color: var(--color-lumut); }
+  .pilihan-teks b { color: var(--color-tinta); font-weight: 500; }
   /* Motif tanpa foto: daftar nama + kode yang rapat, bukan petak kosong. */
   .warna-nama-saja { gap: 0; grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr)); column-gap: 2rem; border-top: 1px solid var(--color-garis); }
-  .warna-nama-saja li { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 0.6rem 0; border-bottom: 1px solid var(--color-garis); }
+  .warna-nama-saja li { border-bottom: 1px solid var(--color-garis); }
+  .warna-nama-saja .warna-pilih { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 0.6rem 0.25rem; border-radius: 8px; }
+  .warna-nama-saja .warna-pilih[aria-pressed="true"] { background: var(--color-tunas-pucat); }
   .warna-nama-saja .warna-nama { font-weight: 400; }
   .warna-nama-saja .warna-kode { white-space: nowrap; }
   .motif-grup summary { display: flex; align-items: center; gap: 0.75rem; padding: 0.85rem 0; cursor: pointer; list-style: none; border-bottom: 1px solid var(--color-garis); }
