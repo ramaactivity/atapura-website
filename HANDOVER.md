@@ -51,6 +51,15 @@ Kalkulator: spek pendukung + harga terpasang/m² (qty material hanya di `/intern
 - Ilustrasi penerapan via Magnific MCP (`.mcp.json`, login OAuth Rama). Aturan kredit DECISIONS 039, log `docs/magnific-log.md`. Generate hanya setelah "ok" Rama.
 - Belum: dokumen resmi Javabitumen (spek) & Victory (pabrikan, ukuran, garansi), harga Tegola, konfirmasi stok warna tambahan CTI.
 
+## Lini plafon & rangka, katalog ala toko online, tipografi hibrida (DECISIONS 044–046) — ✅ live 18 Nov 2026
+- Rangka baja ringan per merek (Taso Rp230 rb, Hi-Steel Rp200 rb, K-Steel Rp195 rb per m² terpasang; jasa saja Rp55 rb) — `/produk/rangka-baja-ringan`, kalkulator internal pilih merek, publik "Rp195–230 rb".
+- Plafon PVC Shunda (Rp300–370 rb/m²) & Javafon (= "Java Plafon", Rp200–260 rb/m²) — `/produk/shunda`, `/produk/javafon`; motif = nama + kode resmi (dilipat), garansi material 10 th sesuai produsen + pasang 1 th. Kalkulator punya langkah Atap/Plafon; `/?merek=X#hitung` memilih merek.
+- `produk.ts`: `lini` (atap/plafon/rangka), `LINI`, `atribut`, helper `sampulProduk`/`rentangProduk`/`namaLengkap`/`fotoWarna`. Komponen `KartuProduk` (katalog berfoto) & `IkonLayanan`. Riset: `docs/riset/plafon-merek-kompetitor.md`, `rangka-baja-ringan.md`, `ux-ecommerce-katalog.md` (saran 2, 4, 6, 11, 12 belum dikerjakan: galeri di hero merek, tab bar HP sadar halaman, swatch mini di kartu, swatch bisa diketuk, tabel spek seragam).
+- Font: Public Sans (judul & teks besar) + Inter (teks kecil), sama di semua perangkat. SF Pro dilarang lisensi. Daftar teks besar non-judul di `global.css` (`--font-merek`).
+- Magnific: saldo ±1.141 kredit (paket Plus) — hemat; log di `docs/magnific-log.md`.
+- **Atapura Ops perlu menyalin**: rangka per merek (ganti 220 rb di resep), lini Plafon (Shunda/Javafon, harga terpasang, termasuk/tidak termasuk, garansi 10 th/1 th), `pekerjaan` lead tambah plafon. Prompt pembuka untuk sesi Ops ada di laporan 18 Nov.
+- Menunggu Bang Yusuf: harga plafon barang saja; m²/hari pasang plafon; survey gratis berlaku untuk plafon?; garansi rangka & pemasangan rangka; reng K-Steel 0,40 mm (spesifikasi resmi CBM ≥ 0,45) dan K-Steel buatan siapa; isi per dus Javafon (12 atau 15).
+
 ## Status konsep
 Situs masih KONSEP untuk partner (DECISIONS 017): `bisnis.konsep = true` → noindex + robots Disallow. Ubah ke false setelah angka termin/garansi/harga final. Penyebutan rekening dihapus dari seluruh situs (permintaan Rama 4 Nov 2026); nomor rekening jangan pernah ditulis di situs/repo, cukup di penawaran/invoice lewat WA.
 
