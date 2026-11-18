@@ -20,6 +20,9 @@ export const harga = {
     CTI: { kelas: 'Menengah', genteng: 155_000, terpasang: [400_000, 450_000], m2PerBundel: 3.0, garansiPabrik: '30 tahun (produk)' },
     Maxxi: { kelas: 'Ekonomis', genteng: 145_000, terpasang: [380_000, 430_000], m2PerBundel: 3.1, garansiPabrik: '25 tahun (material)' },
     Victory: { kelas: 'Atas', genteng: 220_000, terpasang: [500_000, 550_000], m2PerBundel: 3.0, garansiPabrik: 'Menunggu dokumen resmi' },
+    // SEMENTARA (riset pasar 18 Nov, docs/riset/harga-tegola.md; dikoreksi Bang Yusuf Kamis 19 Nov): genteng = median 5 toko
+    // Premium Rectangular (3,05 m²/bundel TDS); terpasang dari rumus hitungEstimasi spek standar, dibulatkan 10 rb.
+    Tegola: { kelas: 'Premium', genteng: 420_000, terpasang: [700_000, 750_000], m2PerBundel: 3.05, garansiPabrik: 'Terbatas terdaftar hingga 40 tahun, bertahap' },
   },
   alas: {
     'Multiplek 12 mm': { harga: 179_500, m2: 1.22 * 2.44, satuan: 'lembar' },

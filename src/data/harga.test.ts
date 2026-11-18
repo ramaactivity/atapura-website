@@ -12,7 +12,7 @@ assert.equal(e.kebutuhan[1].jumlah, 36);
 assert.equal(e.kebutuhan[2].jumlah, 11);
 assert.ok(e.total[0] < e.total[1], 'min < max');
 // Spek standar harus jatuh di estimasi kasar terpasang Bang Yusuf (toleransi ±15 rb untuk pembulatan bundel).
-for (const merek of ['CTI', 'Maxxi', 'Javabitumen'] as const) {
+for (const merek of ['CTI', 'Maxxi', 'Javabitumen', 'Tegola'] as const) {
   for (const luas of [60, 100, 120, 200]) {
     const x = hitungEstimasi(luas, { merek, alas: 'Multiplek 12 mm', lapis: 'Underlayer', flashing: 'Flashing U' });
     const [lo, hi] = harga.merek[merek].terpasang;

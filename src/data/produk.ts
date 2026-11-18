@@ -222,6 +222,7 @@ export const produk: Produk[] = [
   {
     slug: 'tegola',
     lini: 'atap',
+    harga: 'Tegola',
     nama: 'Tegola',
     judul: 'Atap bitumen Tegola: Premium dan Master',
     ringkas: 'Genteng aspal buatan Tegola Canadese, Italia. Seri satu lapis Premium dengan beberapa bentuk potongan, dan seri dua lapis Master.',
@@ -234,7 +235,7 @@ export const produk: Produk[] = [
       { label: 'Jenis', nilai: 'Satu lapis dan dua lapis' },
       { label: 'Garansi', nilai: 'Terbatas, terdaftar, hingga 40 tahun bertahap' },
       { label: 'Kemiringan paku biasa', nilai: 'Mulai 14° (Master 19°)' },
-      { label: 'Terpasang, Jabodetabek', nilai: 'Tanya admin' },
+      { label: 'Terpasang, Jabodetabek', nilai: hargaTerpasang('Tegola') },
     ],
     seri: [
       {
@@ -245,6 +246,7 @@ export const produk: Produk[] = [
           { label: 'Ukuran per lembar', nilai: '1.000 × 340 mm' },
           { label: 'Berat', nilai: '±10,7 kg/m²' },
           { label: 'Isi per bundel', nilai: '21 lembar' },
+          { label: 'Genteng saja', nilai: '±Rp420 ribu per m²' },
         ],
       },
       {
@@ -273,6 +275,7 @@ export const produk: Produk[] = [
           { label: 'Ukuran per lembar', nilai: '998 × 337 mm' },
           { label: 'Berat', nilai: '±12,3 kg/m²' },
           { label: 'Paku per lembar', nilai: '4 (6 untuk kemiringan 60–85°)' },
+          { label: 'Genteng saja', nilai: '±Rp550 ribu per m²' },
         ],
       },
     ],
