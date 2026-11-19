@@ -1,7 +1,8 @@
 # Handover
 
 ## Terbaru (20 November 2026)
-- **Pricelist v4** (DECISIONS 053) meniru referensi Rama, 21 halaman, `npm run pricelist`. Tunggu penilaian Rama atas PDF penuh.
+- **Pricelist v4** (DECISIONS 053) meniru referensi Rama, 26 halaman, `npm run pricelist`: halaman mitra (hal. 2), motif & warna per seri
+  dengan foto di tiap halaman. Logo resmi belum ada untuk Javabitumen, Victory, K-Steel, Alphaproof, Bitumax (minta ke pemasok).
   Cek paginasi: `pw/hal.cjs` (scratchpad sesi) mencetak LUBER/SISA per halaman warna.
 - Harga sheet Vendor masuk (Victory 200/220 rb, multiplek 12 mm 179 rb, flashing U 40 rb). Legend 270 rb belum di situs.
 - **atapura.com** ditempel ke Vercel + jadi `site` default. **Rama beli domain 21 Nov** → isi DNS di registrar:
