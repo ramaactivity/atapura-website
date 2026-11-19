@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { bisnis } from '../data/bisnis';
+import { bisnis, TAMPIL_PLAFON } from '../data/bisnis';
 
 interface Props {
   title: string;
@@ -49,7 +49,7 @@ const organisasi = {
     name: `${name}, Indonesia`,
   })),
   founder: bisnis.pendiri.map((name) => ({ '@type': 'Person', name })),
-  knowsAbout: ['atap bitumen', 'genteng aspal', 'asphalt shingle', ...bisnis.merek, 'plafon PVC', 'Shunda', 'Javafon', 'rangka atap baja ringan', 'Taso', 'Hi-Steel', 'K-Steel'],
+  knowsAbout: ['atap bitumen', 'genteng aspal', 'asphalt shingle', ...bisnis.merek, ...(TAMPIL_PLAFON ? ['plafon PVC', 'Shunda', 'Javafon'] : []), 'rangka atap baja ringan', 'Taso', 'Hi-Steel', 'K-Steel'],
   image: gambar,
   logo: new URL('/brand/icon-512.png', Astro.site).href,
 };

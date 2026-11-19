@@ -9,7 +9,7 @@ cetak ulang. Halaman sumbernya `src/pages/internal/pricelist.astro`, bisa diliha
 npm run pricelist
 ```
 
-Hasilnya `docs/pricelist/pricelist-atapura.pdf`, 12 halaman, ±9 MB. File PDF tidak di-commit (lihat `.gitignore`), cukup
+Hasilnya `docs/pricelist/pricelist-atapura.pdf`, 16 halaman, ±13 MB. File PDF tidak di-commit (lihat `.gitignore`), cukup
 dicetak ulang kapan saja. Perintah ini butuh Google Chrome di Mac.
 
 ## Mengubah isi
@@ -20,12 +20,14 @@ dicetak ulang kapan saja. Perintah ini butuh Google Chrome di Mac.
 | Seri, deskripsi, contoh warna per merek | `src/data/produk.ts` | Halaman produk website |
 | Aksesoris (nama, spek, harga, foto) | `src/data/aksesoris.ts` | `/produk/aksesoris` |
 | WhatsApp, alamat, termin bayar, garansi pemasangan | `src/data/bisnis.ts` | Seluruh situs |
-| Urutan merek, foto, atau kalimat suasana per halaman merek | `ATAP` di bagian atas `pricelist.astro` | Hanya pricelist |
+| Urutan merek, negara asal, foto, kalimat suasana, foto suasana kedua (`hero2`), motif tambahan | `ATAP` di bagian atas `pricelist.astro` | Hanya pricelist |
+| Tampilkan / sembunyikan plafon | `TAMPIL_PLAFON` di `src/data/bisnis.ts` | Seluruh situs + pricelist |
 
 Harga di `harga.ts` wajib sama dengan Katalog Atapura Ops (database). Kalau harga diubah di Ops, ubah juga di sini.
 
 Hal yang perlu diingat saat menambah isi:
-- **Merek atap baru**: tambahkan ke `harga.merek` dan `produk`, lalu ke `ATAP` dengan foto baru. Satu merek = satu halaman.
+- **Merek atap baru**: tambahkan ke `harga.merek` dan `produk`, lalu ke `ATAP` dengan foto baru. Satu merek = dua halaman (merek, lalu motif & warna).
+- **Motif/warna baru**: tambahkan seri atau warna di `produk.ts`. Halaman motif & warna ikut otomatis. Close-up motif di `assets/gambar/seri/`. Kalau halamannya jadi penuh, foto suasana bawah otomatis mengecil; kalau terlalu tipis, hapus `hero2` merek itu.
 - **Aksesoris baru**: cukup tambahkan ke `aksesoris.ts`. Grid aksesoris muat 10 kartu. Kalau lebih, kartunya perlu dikecilkan.
 - **Foto baru**: buat di Magnific dengan gaya yang sama (sinematik, cahaya senja atau biru, suasana Jabodetabek/Puncak,
   tanpa teks/logo). Pakai foto close-up seri sebagai acuan supaya bentuk genteng benar. Simpan sebagai

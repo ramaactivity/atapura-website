@@ -4,6 +4,7 @@
 // Harga hanya dari harga.ts (Bang Yusuf); merek tanpa harga tampil "Tanya admin".
 import type { ImageMetadata } from 'astro';
 import { harga, rentangRangka, type Merek } from './harga';
+import { TAMPIL_PLAFON } from './bisnis';
 import cti1 from '../../assets/gambar/magnific/penerapan-cti-ct3-gazebo-3x2.jpg';
 import maxxi1 from '../../assets/gambar/magnific/penerapan-maxxi-promaxxi-rumah-3x2.jpg';
 import cti2 from '../../assets/gambar/magnific/penerapan-cti-ct3-kafe-3x2.jpg';
@@ -89,7 +90,7 @@ const hargaTerpasang = (m: Merek) => {
   return `Rp${a / 1000}–${b / 1000} ribu per m²`;
 };
 
-export const produk: Produk[] = [
+const semuaProduk: Produk[] = [
   {
     slug: 'cti',
     lini: 'atap',
@@ -224,8 +225,8 @@ export const produk: Produk[] = [
     lini: 'atap',
     harga: 'Tegola',
     nama: 'Tegola',
-    judul: 'Atap bitumen Tegola: Premium dan Master',
-    ringkas: 'Genteng aspal buatan Tegola Canadese, Italia. Seri satu lapis Premium dengan beberapa bentuk potongan, dan seri dua lapis Master.',
+    judul: 'Atap bitumen Tegola: Eco Roof, Top Shingles, Premium, dan Master',
+    ringkas: 'Genteng aspal buatan Tegola Canadese, Italia, dalam empat seri: Eco Roof dan Top Shingles yang lebih hemat, Premium satu lapis dengan beberapa bentuk potongan, dan Master dua lapis.',
     tentang: [
       'Tegola diproduksi Tegola Canadese di Vittorio Veneto, Italia. Lembarannya memakai aspal oksidasi, tulangan serat kaca, dan butiran basal berlapis keramik.',
       'Seri Premium tersedia dalam beberapa bentuk potongan, dari persegi sampai sisik dan mosaik. Seri Master adalah genteng dua lapis yang lebih berat dan bertekstur.',
@@ -237,7 +238,36 @@ export const produk: Produk[] = [
       { label: 'Kemiringan paku biasa', nilai: 'Mulai 14° (Master 19°)' },
       { label: 'Terpasang, Jabodetabek', nilai: hargaTerpasang('Tegola') },
     ],
+    // Eco Roof & Top Shingles (Rama 19 Nov 2026, DECISIONS 052): spek dicocokkan dengan katalog distributor; harga
+    // SEMENTARA = ±10% di bawah brosur Dokter Atap 2025 (pola yang sama dengan Premium), dikoreksi Bang Yusuf.
     seri: [
+      {
+        nama: 'Eco Roof',
+        foto: seriFoto('tegola-eco-roof-rectangular'),
+        ringkas: 'Seri paling hemat dari Tegola, satu lapis dengan tiga bentuk potongan dan warna campuran (mixed).',
+        spek: [
+          { label: 'Motif', nilai: 'Rectangular, Traditional, Hexagonal' },
+          { label: 'Ukuran per lembar', nilai: '1.000 × 340 mm (Hexagonal 337 mm)' },
+          { label: 'Berat', nilai: '±8,5 kg/m²' },
+          { label: 'Isi per bundel', nilai: '2,32 m² (Hexagonal 2,30 m²)' },
+          { label: 'Garansi pabrik', nilai: '20 tahun' },
+          { label: 'Genteng saja', nilai: '±Rp315–350 ribu per m²' },
+          { label: 'Per motif', nilai: 'Rectangular ±Rp315 rb · Traditional ±Rp330 rb · Hexagonal ±Rp350 rb' },
+        ],
+      },
+      {
+        nama: 'Top Shingles',
+        foto: seriFoto('tegola-top-shingles-rectangular'),
+        ringkas: 'Satu lapis potongan persegi dengan lapisan aspal lebih tebal dari Eco Roof, garansi lebih panjang.',
+        spek: [
+          { label: 'Motif', nilai: 'Rectangular' },
+          { label: 'Ukuran per lembar', nilai: '1.000 × 340 mm' },
+          { label: 'Berat', nilai: '±9,4 kg/m²' },
+          { label: 'Isi per bundel', nilai: '3,5 m²' },
+          { label: 'Garansi pabrik', nilai: '30 tahun' },
+          { label: 'Genteng saja', nilai: '±Rp360 ribu per m²' },
+        ],
+      },
       {
         nama: 'Premium Rectangular',
         foto: seriFoto('tegola-premium-rectangular'),
@@ -280,7 +310,10 @@ export const produk: Produk[] = [
       },
     ],
     warna: [
-      { tekstur: 'tegola-premium-rectangular', judul: 'Premium Rectangular', catatan: 'Warna seri Tegola lain (Traditional, Mosaik, Master) bisa ditanyakan lewat WhatsApp.', daftar: [{ nama: 'Black', kode: '060', hex: '#2B2C2E' }, { nama: 'Slate Grey', kode: '061', hex: '#6A6E73' }, { nama: 'Light Grey', kode: '053', hex: '#A3A5A6' }, { nama: 'Dark Grey', kode: '550', hex: '#8A8A8C' }, { nama: 'Tone Green', kode: '070', hex: '#5A7A55' }, { nama: 'Coppery Red', kode: '503', hex: '#8E3B33' }, { nama: 'Tone Red', kode: '002', hex: '#8A3E35' }, { nama: 'Autumn Red', kode: '506', hex: '#8E5040' }, { nama: 'Dark Brown', kode: '521', hex: '#4A3530' }, { nama: 'Wood', kode: '547', hex: '#5A3E36' }] },
+      { tekstur: 'tegola-premium-rectangular', judul: 'Premium Rectangular', catatan: 'Warna Premium Traditional, Mosaik, dan Master bisa ditanyakan lewat WhatsApp.', daftar: [{ nama: 'Black', kode: '060', hex: '#2B2C2E' }, { nama: 'Slate Grey', kode: '061', hex: '#6A6E73' }, { nama: 'Light Grey', kode: '053', hex: '#A3A5A6' }, { nama: 'Dark Grey', kode: '550', hex: '#8A8A8C' }, { nama: 'Tone Green', kode: '070', hex: '#5A7A55' }, { nama: 'Coppery Red', kode: '503', hex: '#8E3B33' }, { nama: 'Tone Red', kode: '002', hex: '#8A3E35' }, { nama: 'Autumn Red', kode: '506', hex: '#8E5040' }, { nama: 'Dark Brown', kode: '521', hex: '#4A3530' }, { nama: 'Wood', kode: '547', hex: '#5A3E36' }] },
+      // Warna di bawah: perkiraan warna layar (hex), belum ada foto contoh warna; nama & kode dari brosur Dokter Atap Apr 2025.
+      { tekstur: 'tegola-eco-roof', judul: 'Eco Roof (Rectangular, Traditional, Hexagonal)', daftar: [{ nama: 'Mixed Grey', hex: '#6E7074' }, { nama: 'Mixed Green', hex: '#4F6A4A' }, { nama: 'Mixed Brown', hex: '#5E4636' }, { nama: 'Mixed Red', hex: '#8A4034' }] },
+      { tekstur: 'tegola-top-shingles', judul: 'Top Shingles Rectangular', daftar: [{ nama: 'Black', hex: '#2B2C2E' }, { nama: 'Red', kode: '001', hex: '#9A3A30' }, { nama: 'Shaded Red', kode: '002', hex: '#8A3C33' }, { nama: 'Shaded Brown', kode: '020', hex: '#5A4033' }, { nama: 'Slate Grey', kode: '061', hex: '#6A6E73' }, { nama: 'Shaded Green', kode: '053', hex: '#4E6B4C' }] },
     ],
     aksesori: [
       { nama: 'Startbar', isi: 'Membran lapisan bawah yang diwajibkan pabrik untuk pemasangan dengan paku pada kemiringan 14° ke atas.' },
@@ -557,6 +590,9 @@ export const produk: Produk[] = [
   },
 ];
 
+/** Produk yang tampil di situs; lini plafon disembunyikan selama TAMPIL_PLAFON false (datanya tetap di atas). */
+export const produk = semuaProduk.filter((p) => TAMPIL_PLAFON || p.lini !== 'plafon');
+
 /** Nama lengkap untuk kartu & judul: "Atap bitumen CTI", "Plafon Shunda"; rangka cukup namanya. */
 export const namaLengkap = (p: Produk) => (p.lini === 'rangka' ? p.nama : `${LINI[p.lini].nama} ${p.nama}`);
 
@@ -574,11 +610,12 @@ export function sampulProduk(p: Produk): { src: ImageMetadata; alt: string } | u
 }
 
 /** Layanan yang ditampilkan di /produk (isi singkat, tanpa janji prosedural baru). */
-export const layanan = [
+const semuaLayanan = [
   { nama: 'Pasang atap baru', ikon: 'atap-baru', isi: 'Rumah atau rangka baru, dipasang lima lapis.', href: '/panduan/lima-lapis-pemasangan-atap-bitumen' },
   { nama: 'Ganti atap lama', ikon: 'ganti-atap', isi: 'Genteng berat atau asbes diganti genteng aspal.', href: '/panduan/ganti-atap-rumah-izin-lama-tanpa-pindah' },
   { nama: 'Perbaikan atap bocor', ikon: 'bocor', isi: 'Kirim foto lewat WhatsApp, tim datang bila perlu.', href: '/panduan/atap-bocor-penyebab-dan-cara-mengatasi' },
   { nama: 'Pasang plafon', ikon: 'plafon', isi: 'Plafon PVC Shunda atau Javafon, sudah dengan pasang.', href: '/produk#judul-plafon' },
   { nama: 'Rangka baja ringan', ikon: 'rangka', isi: 'Taso, Hi-Steel, atau K-Steel, sudah dengan pasang.', href: '/produk/rangka-baja-ringan' },
-  { nama: 'Villa, kafe, dan proyek', ikon: 'proyek', isi: 'Atap dan plafon dengan jadwal kerja per bagian.', href: '/panduan/atap-ruko-kafe-kos' },
+  { nama: 'Villa, kafe, dan proyek', ikon: 'proyek', isi: TAMPIL_PLAFON ? 'Atap dan plafon dengan jadwal kerja per bagian.' : 'Atap dan rangka dengan jadwal kerja per bagian.', href: '/panduan/atap-ruko-kafe-kos' },
 ] as const;
+export const layanan = semuaLayanan.filter((l) => TAMPIL_PLAFON || l.ikon !== 'plafon');

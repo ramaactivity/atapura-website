@@ -5,7 +5,7 @@ import Footer from '../../components/Footer.astro';
 import { LINI, produk, layanan, type Lini } from '../../data/produk';
 import KartuProduk from '../../components/KartuProduk.astro';
 import IkonLayanan from '../../components/IkonLayanan.astro';
-import { waLink } from '../../data/bisnis';
+import { TAMPIL_PLAFON, waLink } from '../../data/bisnis';
 import { aksesoris, rupiah } from '../../data/aksesoris';
 
 const situs = new URL('/', Astro.site).href;
@@ -34,8 +34,10 @@ const schema = [
 ---
 
 <Base
-  title="Produk & layanan: atap bitumen, plafon PVC, rangka baja ringan | Atapura"
-  description="Atap bitumen 5 merek, plafon PVC Shunda dan Javafon, serta rangka baja ringan Taso, Hi-Steel, K-Steel, lengkap dengan harga terpasang per m² di Jabodetabek."
+  title={TAMPIL_PLAFON ? 'Produk & layanan: atap bitumen, plafon PVC, rangka baja ringan | Atapura' : 'Produk & layanan: atap bitumen, rangka baja ringan, aksesoris | Atapura'}
+  description={TAMPIL_PLAFON
+    ? 'Atap bitumen 5 merek, plafon PVC Shunda dan Javafon, serta rangka baja ringan Taso, Hi-Steel, K-Steel, lengkap dengan harga terpasang per m² di Jabodetabek.'
+    : 'Atap bitumen 5 merek, rangka baja ringan Taso, Hi-Steel, K-Steel, dan aksesoris atap, lengkap dengan harga terpasang per m² di Jabodetabek.'}
   schema={schema}
 >
   <Header terang />
@@ -44,8 +46,8 @@ const schema = [
       <div class="kartu-buka">
         <nav class="remah" aria-label="Remah roti"><a href="/">Beranda</a><span aria-hidden="true">/</span><span>Produk &amp; layanan</span></nav>
         <div class="pk-kepala">
-          <h1 class="pk-judul">Dari rangka sampai plafon, <span class="redup">satu tim yang pasang.</span></h1>
-          <p class="pk-lead">Atap bitumen, plafon PVC, dan rangka baja ringan dari merek yang kami pasang sendiri. Harga terpasang per m² tertulis di tiap produk.</p>
+          <h1 class="pk-judul">{TAMPIL_PLAFON ? 'Dari rangka sampai plafon,' : 'Dari rangka sampai genteng,'} <span class="redup">satu tim yang pasang.</span></h1>
+          <p class="pk-lead">{TAMPIL_PLAFON ? 'Atap bitumen, plafon PVC, dan rangka baja ringan' : 'Atap bitumen dan rangka baja ringan'} dari merek yang kami pasang sendiri. Harga terpasang per m² tertulis di tiap produk.</p>
         </div>
         <nav class="pk-lompat" aria-label="Lompat ke jenis produk">
           {kelompok.map(({ l, daftar }) => <a href={`#judul-${l}`}>{LINI[l].nama}<span>{daftar.length}</span></a>)}
@@ -88,7 +90,7 @@ const schema = [
             </a></li>
           ))}
         </ul>
-        <a class="pill pill-tunas pk-wa" href={waLink('Halo Atapura, saya mau tanya soal atap, plafon, atau rangka baja ringan.')} target="_blank" rel="noopener" data-wa="produk-indeks">Tanya lewat WhatsApp</a>
+        <a class="pill pill-tunas pk-wa" href={waLink(TAMPIL_PLAFON ? 'Halo Atapura, saya mau tanya soal atap, plafon, atau rangka baja ringan.' : 'Halo Atapura, saya mau tanya soal atap atau rangka baja ringan.')} target="_blank" rel="noopener" data-wa="produk-indeks">Tanya lewat WhatsApp</a>
       </section>
     </div>
   </main>

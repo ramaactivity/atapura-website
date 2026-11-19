@@ -5,10 +5,11 @@
 import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import Logo from '../../components/Logo.astro';
+import Bulat from '../../components/BulatWarna.astro';
 import { harga, type Merek } from '../../data/harga';
 import { produk, fotoWarna } from '../../data/produk';
 import { aksesoris } from '../../data/aksesoris';
-import { bisnis } from '../../data/bisnis';
+import { bisnis, TAMPIL_PLAFON } from '../../data/bisnis';
 import qr from '../../../assets/gambar/pricelist-qr-wa.svg?raw';
 import fSampul from '../../../assets/gambar/magnific/pricelist-sampul.jpg';
 import fJavabitumen from '../../../assets/gambar/magnific/pricelist-javabitumen.jpg';
@@ -19,6 +20,14 @@ import fTegola from '../../../assets/gambar/magnific/pricelist-tegola.jpg';
 import fShunda from '../../../assets/gambar/magnific/pricelist-plafon-shunda.jpg';
 import fJavafon from '../../../assets/gambar/magnific/pricelist-plafon-javafon.jpg';
 import fRangka from '../../../assets/gambar/magnific/pricelist-rangka.jpg';
+import h2Java from '../../../assets/gambar/magnific/penerapan-javabitumen-rumah-3x2.jpg';
+import h2Maxxi from '../../../assets/gambar/magnific/penerapan-maxxi-maxxiroof-rumah-3x2.jpg';
+import h2Cti from '../../../assets/gambar/magnific/penerapan-cti-ct3-kafe-3x2.jpg';
+import h2Victory from '../../../assets/gambar/magnific/penerapan-victory-standar-rumah-3x2.jpg';
+import mEcoRect from '../../../assets/gambar/seri/tegola-eco-roof-rectangular.jpg';
+import mEcoTrad from '../../../assets/gambar/seri/tegola-eco-roof-traditional.jpg';
+import mEcoHex from '../../../assets/gambar/seri/tegola-eco-roof-hexagonal.jpg';
+import mTop from '../../../assets/gambar/seri/tegola-top-shingles-rectangular.jpg';
 
 const rp = (n: number) => `Rp${n.toLocaleString('id-ID')}`;
 const rentang = ([a, b]: readonly [number, number]) => (a === b ? rp(a) : `${rp(a)}–${b.toLocaleString('id-ID')}`);
@@ -28,20 +37,38 @@ const tanggal = new Date(`${harga.berlakuSejak}T00:00:00+07:00`).toLocaleDateStr
 const waTampil = bisnis.whatsapp ? `+${bisnis.whatsapp.slice(0, 2)} ${bisnis.whatsapp.slice(2, 5)}-${bisnis.whatsapp.slice(5, 9)}-${bisnis.whatsapp.slice(9)}` : '';
 
 // Urut dari harga genteng terendah; foto & kalimat pembuka per merek.
-const ATAP: { merek: Merek; slug: string; foto: ImageMetadata; suasana: string }[] = [
-  { merek: 'Javabitumen', slug: 'javabitumen', foto: fJavabitumen, suasana: 'Rumah tinggal di perumahan, sore hari' },
-  { merek: 'Maxxi', slug: 'maxxi', foto: fMaxxi, suasana: 'Rumah keluarga selepas hujan' },
-  { merek: 'CTI', slug: 'cti', foto: fCti, suasana: 'Rumah satu lantai, cahaya sore' },
-  { merek: 'Victory', slug: 'victory', foto: fVictory, suasana: 'Penginapan di dataran tinggi' },
-  { merek: 'Tegola', slug: 'tegola', foto: fTegola, suasana: 'Villa di perbukitan Puncak' },
+// Pricelist menyebut negara asal, bukan kelas harga (Rama, 19 Nov 2026). `deskripsi` mengganti ringkas produk.ts
+// bila kalimatnya memuat narasi kelas. `acuan` = seri yang dipakai untuk harga terpasang merek itu.
+// `motif` = close-up motif tambahan yang tidak punya baris seri sendiri (mis. tiga potongan Eco Roof).
+const ATAP: { merek: Merek; slug: string; foto: ImageMetadata; suasana: string; asal: string; deskripsi?: string; acuan?: string; hero2?: { foto: ImageMetadata; ket: string }; motif?: { nama: string; foto: ImageMetadata }[] }[] = [
+  { merek: 'Javabitumen', slug: 'javabitumen', foto: fJavabitumen, suasana: 'Rumah tinggal di perumahan, sore hari', asal: 'Tiongkok', hero2: { foto: h2Java, ket: 'Rumah tinggal beratap Javabitumen' }, deskripsi: 'Genteng aspal Javabitumen buatan Tiongkok, dengan pilihan warna solid dan gradasi yang paling banyak di antara merek kami.' },
+  { merek: 'Maxxi', slug: 'maxxi', foto: fMaxxi, suasana: 'Rumah keluarga selepas hujan', asal: 'Tiongkok', hero2: { foto: h2Maxxi, ket: 'Maxxiroof pada rumah satu lantai' } },
+  { merek: 'CTI', slug: 'cti', foto: fCti, suasana: 'Rumah satu lantai, cahaya sore', asal: 'Indonesia', hero2: { foto: h2Cti, ket: 'CT3 pada kafe modern' } },
+  { merek: 'Victory', slug: 'victory', foto: fVictory, suasana: 'Penginapan di dataran tinggi', asal: 'USA', hero2: { foto: h2Victory, ket: 'Victory Standar pada rumah dua lantai' } },
+  { merek: 'Tegola', slug: 'tegola', foto: fTegola, suasana: 'Villa di perbukitan Puncak', asal: 'Italia', acuan: 'Premium Rectangular', motif: [
+    { nama: 'Eco Roof Rectangular', foto: mEcoRect },
+    { nama: 'Eco Roof Traditional', foto: mEcoTrad },
+    { nama: 'Eco Roof Hexagonal', foto: mEcoHex },
+    { nama: 'Top Shingles Rectangular', foto: mTop },
+  ] },
 ];
+/** "±Rp315–350 ribu per m²" → teks rupiah lengkap + angka terendah. */
+const hargaSeri = (t?: string) => {
+  if (!t) return null;
+  const n = [...t.matchAll(/(\d+) ribu|(\d+)–/g)].map((m) => Number(m[1] ?? m[2]) * 1000);
+  return { teks: t.replace(/(\d+)–(\d+) ribu per m²/, '$1.000–$2.000 / m²').replace(/(\d+) ribu per m²/, '$1.000 / m²'), min: Math.min(...n) };
+};
 const halamanAtap = ATAP.map((a) => {
   const p = produk.find((x) => x.slug === a.slug)!;
   const m = harga.merek[a.merek];
-  const warna = [...new Map(p.warna.flatMap((g) => g.daftar.map((w) => [w.nama, { nama: w.nama, foto: fotoWarna(g.tekstur, w.nama) }] as const)).filter(([, w]) => w.foto)).values()];
-  const totalWarna = new Set(p.warna.flatMap((g) => g.daftar.map((w) => w.nama))).size;
-  const seri = p.seri.map((s) => ({ nama: s.nama, ringkas: s.ringkas, genteng: s.spek.find((k) => k.label === 'Genteng saja')?.nilai }));
-  return { ...a, p, m, warna, totalWarna, seri };
+  // Semua warna per kelompok seri, lengkap (contoh foto bila ada, kalau tidak bulatan warna perkiraan layar).
+  const warna = p.warna.map((g) => ({ judul: g.judul, catatan: g.catatan, daftar: g.daftar.map((w) => ({ ...w, foto: fotoWarna(g.tekstur, w.nama) })) }));
+  const totalWarna = warna.reduce((n, g) => n + g.daftar.length, 0);
+  const seri = p.seri.map((s) => ({ nama: s.nama, ringkas: s.ringkas, harga: hargaSeri(s.spek.find((k) => k.label === 'Genteng saja')?.nilai), motif: s.spek.find((k) => k.label === 'Motif')?.nilai }));
+  const mulai = Math.min(m.genteng, ...seri.map((x) => x.harga?.min ?? Infinity));
+  // Motif: close-up tiap seri yang punya foto, lalu motif tambahan dari ATAP.
+  const motif = [...(a.motif ?? []), ...p.seri.filter((x) => x.foto && !(a.motif ?? []).some((m) => m.foto.src === x.foto!.src)).map((x) => ({ nama: x.nama, foto: x.foto! }))];
+  return { ...a, p, m, warna, totalWarna, seri, mulai, motif };
 });
 const plafon = (['Shunda', 'Javafon'] as const).map((nama) => ({
   nama,
@@ -49,6 +76,12 @@ const plafon = (['Shunda', 'Javafon'] as const).map((nama) => ({
   h: harga.plafon.merek[nama],
   foto: nama === 'Shunda' ? fShunda : fJavafon,
 }));
+// Nomor halaman: plafon ikut sakelar TAMPIL_PLAFON (DECISIONS 052), jadi nomor sesudahnya bergeser otomatis.
+const dua = (n: number) => String(n).padStart(2, '0');
+// Tiap merek dua halaman: halaman merek lalu halaman motif & warnanya (Rama: jangan dipisah dari produknya).
+const noMerek = (i: number) => 3 + i * 2;
+const noPlafon = 3 + halamanAtap.length * 2;
+const noRangka = noPlafon + (TAMPIL_PLAFON ? 1 : 0);
 const rangka = Object.entries(harga.rangka.merek).map(([nama, r]) => ({ nama, ...r }));
 const hargaAks = (a: (typeof aksesoris)[number]) => (a.harga ? `${a.harga.catatan === 'mulai' ? 'mulai ' : ''}${rp(a.harga.nilai)}` : 'Tanya admin');
 const satuanAks = (a: (typeof aksesoris)[number]) => (a.harga ? `/ ${a.harga.satuan}${a.harga.catatan && a.harga.catatan !== 'mulai' ? ` · ${a.harga.catatan}` : ''}` : '');
@@ -59,14 +92,14 @@ const satuanAks = (a: (typeof aksesoris)[number]) => (a.harga ? `/ ${a.harga.sat
 
   <!-- 1 · Sampul -->
   <section class="hal sampul">
-    <Image src={fSampul} alt="" widths={[1800]} sizes="210mm" class="latar" loading="eager" />
+    <Image src={fSampul} alt="" widths={[1600]} sizes="210mm" class="latar" loading="eager" />
     <div class="sampul-redup"></div>
     <header class="sampul-atas">
       <Logo tinggi="9mm" class="logo-terang" />
       <span class="label-terang">Pricelist · Jabodetabek</span>
     </header>
     <div class="sampul-bawah">
-      <p class="label-terang">Atap bitumen · Plafon PVC · Rangka baja ringan</p>
+      <p class="label-terang">{TAMPIL_PLAFON ? 'Atap bitumen · Plafon PVC · Rangka baja ringan' : 'Atap bitumen · Rangka baja ringan · Aksesoris'}</p>
       <h1 class="sampul-judul">Atap yang<br />masuk AKAL.</h1>
       <p class="sampul-sub">Daftar harga lengkap, dari genteng sampai paku. Berlaku sejak {tanggal}.</p>
     </div>
@@ -81,19 +114,21 @@ const satuanAks = (a: (typeof aksesoris)[number]) => (a.harga ? `/ ${a.harga.sat
       <p class="pengantar">Harga <b>genteng saja</b> untuk pembelian material. Harga <b>terpasang</b> sudah termasuk papan alas, lapis kedap, flashing, paku, skrup, jasa pasang, dan ongkos kirim di Jabodetabek.</p>
 
       <table class="tabel">
-        <thead><tr><th>Atap bitumen</th><th>Kelas</th><th class="kanan">Genteng saja / m²</th><th class="kanan">Terpasang / m²</th><th class="kanan">Isi bundel</th></tr></thead>
+        <thead><tr><th>Atap bitumen</th><th>Asal</th><th class="kanan">Genteng saja / m²</th><th class="kanan">Terpasang / m²</th><th class="kanan">Isi bundel</th></tr></thead>
         <tbody>
           {halamanAtap.map((a) => (
-            <tr><td class="merek">{a.merek}</td><td>{a.m.kelas}</td><td class="kanan angka">{rp(a.m.genteng)}</td><td class="kanan angka kuat">{rentang(a.m.terpasang)}</td><td class="kanan angka">{m2(a.m.m2PerBundel)}</td></tr>
+            <tr><td class="merek">{a.merek}</td><td>{a.asal}</td><td class="kanan angka">{a.mulai < a.m.genteng ? `mulai ${rp(a.mulai)}` : rp(a.m.genteng)}</td><td class="kanan angka kuat">{rentang(a.m.terpasang)}</td><td class="kanan angka">{m2(a.m.m2PerBundel)}</td></tr>
           ))}
         </tbody>
       </table>
 
-      <div class="dua">
+      <div class:list={[{ dua: TAMPIL_PLAFON }]}>
+        {TAMPIL_PLAFON && (
         <table class="tabel">
           <thead><tr><th>Plafon PVC</th><th class="kanan">Terpasang / m²</th></tr></thead>
           <tbody>{plafon.map((x) => <tr><td class="merek">{x.nama}</td><td class="kanan angka kuat">{rentang(x.h.terpasang)}</td></tr>)}</tbody>
         </table>
+        )}
         <table class="tabel">
           <thead><tr><th>Rangka baja ringan</th><th class="kanan">Terpasang / m²</th></tr></thead>
           <tbody>
@@ -109,7 +144,7 @@ const satuanAks = (a: (typeof aksesoris)[number]) => (a.harga ? `/ ${a.harga.sat
           <tr><td class="merek">Jasa pasang rangka baja ringan</td><td class="kanan angka kuat">{rp(harga.rangka.jasaSaja)}</td></tr>
         </tbody>
       </table>
-      <p class="catatan">Harga untuk Jabodetabek. Rentang terpasang bergantung pada bentuk atap dan pilihan material pendukung. Angka pasti tertulis di penawaran setelah survey gratis.</p>
+      <p class="catatan">Harga untuk Jabodetabek. Rentang terpasang bergantung pada bentuk atap dan pilihan material pendukung{halamanAtap.filter((a) => a.acuan).map((a) => `; terpasang ${a.merek} dihitung untuk seri ${a.acuan}`).join('')}. Angka pasti tertulis di penawaran setelah survey gratis.</p>
     </div>
     <footer class="kaki"><span>Atapura · Pricelist {tanggal}</span><span>02</span></footer>
   </section>
@@ -118,55 +153,81 @@ const satuanAks = (a: (typeof aksesoris)[number]) => (a.harga ? `/ ${a.harga.sat
   {halamanAtap.map((a, i) => (
     <section class="hal kertas">
       <div class="foto-atas">
-        <Image loading="eager" format="jpg" quality={82} src={a.foto} alt={`Ilustrasi atap bitumen ${a.merek} terpasang: ${a.suasana.toLowerCase()}`} widths={[1800]} sizes="210mm" class="latar" />
+        <Image loading="eager" format="jpg" quality={78} src={a.foto} alt={`Ilustrasi atap bitumen ${a.merek} terpasang: ${a.suasana.toLowerCase()}`} widths={[1600]} sizes="210mm" class="latar" />
         <div class="foto-redup"></div>
         <div class="foto-teks">
-          <p class="label-terang">Atap bitumen · {a.m.kelas}</p>
+          <p class="label-terang">Atap bitumen · Buatan {a.asal}</p>
           <h2 class="merek-besar">{a.merek}</h2>
         </div>
         <p class="ilustrasi ilustrasi-terang">{a.suasana}. Ilustrasi, bukan proyek Atapura.</p>
       </div>
       <div class="isi merek-isi">
         <div class="merek-kiri">
-          <p class="ringkas">{a.p.ringkas}</p>
+          <p class="ringkas">{a.deskripsi ?? a.p.ringkas}</p>
           {a.seri.length > 0 && (
             <ul class:list={["seri", { "seri-padat": a.seri.length >= 4 }]}>
               {a.seri.map((s) => (
-                <li><b>{s.nama}</b>{s.genteng && <span class="seri-harga">{s.genteng.replace(' ribu per m²', '.000 / m²').replace('Rp', 'Rp')}</span>}<span class="seri-ringkas">{s.ringkas}</span></li>
+                <li><b>{s.nama}</b>{s.harga && <span class="seri-harga">{s.harga.teks}</span>}<span class="seri-ringkas">{s.motif ? `Motif ${s.motif}. ` : ''}{s.ringkas}</span></li>
               ))}
             </ul>
           )}
-          {a.warna.length > 0 && (
-            <div class="warna">
-              <p class="label">{a.totalWarna} pilihan warna</p>
-              <ul>
-                {a.warna.slice(0, a.seri.length >= 3 ? 6 : 12).map((w) => <li><Image loading="eager" format="jpg" quality={82} src={w.foto!} alt="" width={96} height={96} class="bulat" /><span>{w.nama}</span></li>)}
-              </ul>
-            </div>
-          )}
+          {a.totalWarna > 0 && <p class="label warna-lanjut">{a.motif.length > 0 ? `${a.motif.length} motif · ` : ''}{a.totalWarna} pilihan warna · di halaman berikutnya</p>}
         </div>
         <aside class="slip">
-          <p class="slip-label">Genteng saja</p>
-          <p class="slip-harga"><span class="rp">Rp</span>{a.m.genteng.toLocaleString('id-ID')}<span class="per">/ m²</span></p>
+          <p class="slip-label">Genteng saja{a.mulai < a.m.genteng && ', mulai'}</p>
+          <p class="slip-harga"><span class="rp">Rp</span>{a.mulai.toLocaleString('id-ID')}<span class="per">/ m²</span></p>
           <dl>
-            <div><dt>Terpasang, spek standar</dt><dd>{rentang(a.m.terpasang)} / m²</dd></div>
+            <div><dt>Terpasang, spek standar{a.acuan && ` · ${a.acuan}`}</dt><dd>{rentang(a.m.terpasang)} / m²</dd></div>
             <div><dt>Contoh atap 100 m²</dt><dd>±Rp{juta(a.m.terpasang[0] * 100)}–{juta(a.m.terpasang[1] * 100)} juta</dd></div>
-            <div><dt>Isi per bundel</dt><dd>{m2(a.m.m2PerBundel)}</dd></div>
+            <div><dt>Isi per bundel{a.acuan && ` · ${a.acuan}`}</dt><dd>{m2(a.m.m2PerBundel)}</dd></div>
             <div><dt>Garansi pabrik</dt><dd>{a.m.garansiPabrik}</dd></div>
             <div><dt>Garansi pemasangan</dt><dd>{bisnis.garansiPemasanganTahun} tahun dari Atapura</dd></div>
           </dl>
         </aside>
       </div>
-      <footer class="kaki"><span>Atap bitumen {a.merek}</span><span>{String(i + 3).padStart(2, '0')}</span></footer>
+      <footer class="kaki"><span>Atap bitumen {a.merek}</span><span>{dua(noMerek(i))}</span></footer>
+    </section>
+    <section class:list={['hal kertas', { padat: a.motif.length >= 4 }]}>
+      <div class="isi isi-penuh">
+        <p class="label">Atap bitumen {a.merek} · Buatan {a.asal}</p>
+        <h2 class="judul">Motif &amp; warna<br /><span class="redup">{a.merek}.</span></h2>
+        {a.motif.length > 0 && (
+          <div class="kat-grup">
+            <p class="label">Motif</p>
+            <ul class:list={['motif', { 'motif-4': a.motif.length >= 4 }]}>
+              {a.motif.map((x) => <li><Image loading="eager" format="jpg" quality={85} src={x.foto} alt={`Close-up motif ${a.merek} ${x.nama}`} widths={[640]} sizes="45mm" class="motif-foto" /><span>{x.nama}</span></li>)}
+            </ul>
+          </div>
+        )}
+        <div class="kat">
+          {a.warna.map((g) => (
+            <div class="kat-grup">
+              <p class="label">{g.judul}</p>
+              {g.catatan && <p class="kat-catatan">{g.catatan}</p>}
+              <ul class="kat-warna">
+                {g.daftar.map((w) => <li><Bulat w={w} besar /><span>{w.nama}{w.kode && <em>{w.kode}</em>}</span></li>)}
+              </ul>
+            </div>
+          ))}
+        </div>
+        <p class="catatan">Warna di layar dan kertas adalah perkiraan. Saat survey kami membawa sampel fisik supaya Anda bisa melihatnya di bawah cahaya rumah sendiri. Foto motif adalah ilustrasi bentuk setelah terpasang.</p>
+        {a.hero2 && (
+          <figure class="hero-bawah">
+            <Image loading="eager" format="jpg" quality={78} src={a.hero2.foto} alt={`Ilustrasi ${a.hero2.ket.toLowerCase()}`} widths={[1400]} sizes="180mm" class="latar" />
+            <figcaption>{a.hero2.ket}. Ilustrasi, bukan proyek Atapura.</figcaption>
+          </figure>
+        )}
+      </div>
+      <footer class="kaki"><span>Motif &amp; warna {a.merek}</span><span>{dua(noMerek(i) + 1)}</span></footer>
     </section>
   ))}
 
-  <!-- 8 · Plafon -->
-  <section class="hal kertas">
+  <!-- Plafon (disembunyikan selama TAMPIL_PLAFON false) -->
+  {TAMPIL_PLAFON && <section class="hal kertas">
     {plafon.map((x) => (
       <div class="plafon">
         <div class="plafon-foto">
-          <Image loading="eager" format="jpg" quality={82} src={x.foto} alt={`Ilustrasi plafon PVC ${x.nama} terpasang`} widths={[1600]} sizes="210mm" class="latar" />
+          <Image loading="eager" format="jpg" quality={78} src={x.foto} alt={`Ilustrasi plafon PVC ${x.nama} terpasang`} widths={[1600]} sizes="210mm" class="latar" />
           <div class="foto-redup"></div>
           <div class="foto-teks"><p class="label-terang">Plafon PVC</p><h2 class="merek-sedang">{x.nama}</h2></div>
         </div>
@@ -180,13 +241,13 @@ const satuanAks = (a: (typeof aksesoris)[number]) => (a.harga ? `/ ${a.harga.sat
       </div>
     ))}
     <p class="ilustrasi">Foto adalah ilustrasi, bukan proyek Atapura. Garansi pemasangan plafon 1 tahun.</p>
-    <footer class="kaki"><span>Plafon PVC</span><span>08</span></footer>
-  </section>
+    <footer class="kaki"><span>Plafon PVC</span><span>{dua(noPlafon)}</span></footer>
+  </section>}
 
   <!-- 9 · Rangka -->
   <section class="hal kertas">
     <div class="foto-atas foto-atas-pendek">
-      <Image loading="eager" format="jpg" quality={82} src={fRangka} alt="Ilustrasi rangka atap baja ringan terpasang pada rumah baru" widths={[1800]} sizes="210mm" class="latar" />
+      <Image loading="eager" format="jpg" quality={78} src={fRangka} alt="Ilustrasi rangka atap baja ringan terpasang pada rumah baru" widths={[1600]} sizes="210mm" class="latar" />
       <div class="foto-redup"></div>
       <div class="foto-teks"><p class="label-terang">Sudah dengan pasang</p><h2 class="merek-besar">Rangka baja ringan</h2></div>
       <p class="ilustrasi ilustrasi-terang">Ilustrasi, bukan proyek Atapura.</p>
@@ -205,7 +266,7 @@ const satuanAks = (a: (typeof aksesoris)[number]) => (a.harga ? `/ ${a.harga.sat
         </tbody>
       </table>
     </div>
-    <footer class="kaki"><span>Rangka baja ringan</span><span>09</span></footer>
+    <footer class="kaki"><span>Rangka baja ringan</span><span>{dua(noRangka)}</span></footer>
   </section>
 
   <!-- 10 · Aksesoris -->
@@ -216,7 +277,7 @@ const satuanAks = (a: (typeof aksesoris)[number]) => (a.harga ? `/ ${a.harga.sat
       <ul class="aks">
         {aksesoris.map((a) => (
           <li>
-            {a.foto && <Image loading="eager" format="jpg" quality={82} src={a.foto.src} alt="" widths={[480]} sizes="40mm" class="aks-foto" />}
+            {a.foto && <Image loading="eager" format="jpg" quality={78} src={a.foto.src} alt="" widths={[480]} sizes="40mm" class="aks-foto" />}
             <div class="aks-teks"><b>{a.nama}</b><span>{a.spek[0].label} {a.spek[0].nilai}</span></div>
             <p class="aks-harga"><span class="angka">{hargaAks(a)}</span><span class="per">{satuanAks(a)}</span></p>
           </li>
@@ -224,7 +285,7 @@ const satuanAks = (a: (typeof aksesoris)[number]) => (a.harga ? `/ ${a.harga.sat
       </ul>
       <p class="catatan">Papan alas, lapis kedap, flashing, paku, dan skrup sudah termasuk di harga terpasang atap. Harga di atas untuk pembelian material saja, belum termasuk ongkos kirim.</p>
     </div>
-    <footer class="kaki"><span>Aksesoris</span><span>10</span></footer>
+    <footer class="kaki"><span>Aksesoris</span><span>{dua(noRangka + 1)}</span></footer>
   </section>
 
   <!-- 11 · Yang termasuk, pembayaran, garansi -->
@@ -258,14 +319,14 @@ const satuanAks = (a: (typeof aksesoris)[number]) => (a.harga ? `/ ${a.harga.sat
         </div>
       </div>
     </div>
-    <footer class="kaki"><span>Ketentuan</span><span>11</span></footer>
+    <footer class="kaki"><span>Ketentuan</span><span>{dua(noRangka + 2)}</span></footer>
   </section>
 
   <!-- 12 · Sampul belakang -->
   <section class="hal belakang">
     <div class="belakang-isi">
       <Logo tinggi="14mm" class="logo-terang" />
-      <p class="belakang-judul">Kirim foto atap Anda,<br /><span class="redup-terang">kami hitung hari itu juga.</span></p>
+      <p class="belakang-judul">Kirim foto atap Anda,<br /><span class="redup-terang">kami estimasikan segera.</span></p>
       <div class="kontak">
         <div class="qr" set:html={qr} aria-label="Kode QR WhatsApp Atapura"></div>
         <dl>
@@ -332,8 +393,8 @@ const satuanAks = (a: (typeof aksesoris)[number]) => (a.harga ? `/ ${a.harga.sat
   .dua-atas { margin-top: 2mm; }
 
   /* Halaman merek */
-  .foto-atas { position: relative; height: 165mm; background: var(--color-pinus); color: var(--color-embun); }
-  .foto-atas-pendek { height: 155mm; }
+  .foto-atas { position: relative; height: 150mm; background: var(--color-pinus); color: var(--color-embun); }
+  .foto-atas-pendek { height: 150mm; }
   .foto-redup { position: absolute; inset: 0; background: linear-gradient(180deg, rgb(16 35 30 / 0) 45%, rgb(16 35 30 / 0.82) 100%); }
   .foto-teks { position: absolute; left: 16mm; right: 16mm; bottom: 12mm; }
   .merek-besar { margin-top: 1mm; font-family: var(--font-merek); font-weight: 500; font-size: 44pt; line-height: 1; letter-spacing: -0.045em; }
@@ -348,10 +409,33 @@ const satuanAks = (a: (typeof aksesoris)[number]) => (a.harga ? `/ ${a.harga.sat
   .seri-padat { gap: 2mm; }
   .seri-padat .seri-ringkas { -webkit-line-clamp: 1; }
   .warna { margin-top: 5mm; }
-  .warna ul { margin-top: 2.5mm; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2.5mm 2mm; }
-  .warna li { display: grid; justify-items: center; gap: 1mm; text-align: center; }
-  .bulat { width: 9mm; height: 9mm; border-radius: 999px; object-fit: cover; box-shadow: inset 0 0 0 0.5pt rgb(0 0 0 / 0.15); }
-  .warna span { font-size: 6pt; color: var(--color-lumut); line-height: 1.2; }
+  .warna ul { margin-top: 3mm; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 3.5mm 3mm; }
+  .warna li { display: grid; justify-items: center; gap: 1.4mm; text-align: center; }
+  .kat :global(.bulat) { display: block; width: 100%; height: 22mm; border-radius: 2.5mm; object-fit: cover; box-shadow: inset 0 0 0 0.5pt rgb(0 0 0 / 0.15), 0 0.6mm 1.6mm rgb(16 35 30 / 0.14); }
+  .warna :global(.bulat) { display: block; width: 14mm; height: 14mm; border-radius: 999px; object-fit: cover; box-shadow: inset 0 0 0 0.5pt rgb(0 0 0 / 0.15), 0 0.6mm 1.6mm rgb(16 35 30 / 0.14); }
+  .kat :global(.bulat-kosong) { display: grid; place-items: center; background: var(--color-putih); color: var(--color-lumut); font-size: 9pt; }
+  .kat { margin-top: 1mm; }
+  .warna-lanjut { margin-top: 5mm; }
+  .motif { margin-top: 2.5mm; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3.5mm 3mm; }
+  .motif-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .motif li { display: grid; gap: 1.4mm; }
+  .motif-foto { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 2.5mm; box-shadow: 0 0.6mm 1.6mm rgb(16 35 30 / 0.14); }
+  .motif span { font-size: 8pt; font-weight: 500; }
+  /* Halaman motif & warna yang penuh (Tegola): ubin sedikit lebih pendek supaya catatan tidak menabrak kaki. */
+  .padat .motif-foto { aspect-ratio: 16 / 8.5; }
+  /* Sisa ruang halaman motif & warna diisi foto suasana yang memanjang sampai garis kaki. */
+  .isi-penuh { display: flex; flex-direction: column; height: calc(297mm - 22mm); }
+  .hero-bawah { position: relative; flex: 1 1 auto; min-height: 0; margin-top: 6mm; border-radius: 3mm; overflow: hidden; background: var(--color-pinus); }
+  .hero-bawah figcaption { position: absolute; left: 4mm; bottom: 3mm; font-size: 6.5pt; color: rgb(242 244 241 / 0.85); text-shadow: 0 0 2mm rgb(0 0 0 / 0.4); }
+  .padat .kat :global(.bulat) { height: 18mm; }
+  .padat .kat-grup { margin-top: 2.8mm; }
+  .kat-grup { margin-top: 3.5mm; }
+  .kat-catatan { margin-top: 0.8mm; font-size: 7.5pt; color: var(--color-lumut); }
+  .kat-warna { margin-top: 2.5mm; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 3.5mm 3mm; }
+  .kat-warna li { display: grid; gap: 1.4mm; }
+  .kat-warna span { font-size: 8pt; font-weight: 500; line-height: 1.25; color: var(--color-tinta); }
+  .kat-warna em { display: block; font-style: normal; color: var(--color-lumut); font-size: 6.5pt; font-variant-numeric: tabular-nums; }
+  .warna span { font-size: 7.5pt; color: var(--color-tinta); line-height: 1.2; }
 
   .slip { align-self: start; background: var(--color-pinus); color: var(--color-embun); border-radius: 4mm; padding: 6mm 6.5mm 4mm; }
   .slip-label { font-size: 7.5pt; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-tunas); font-weight: 500; }

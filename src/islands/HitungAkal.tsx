@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { bagianRentang, estimasiPlafon, estimasiPublik, harga, hitungEstimasi, rentangRangka, rupiahRingkas, type Alas, type Flashing, type LapisKedap, type Merek, type MerekPlafon, type MerekRangka } from '../data/harga';
-import { bisnis, dalamJabodetabek, waLink } from '../data/bisnis';
+import { bisnis, dalamJabodetabek, TAMPIL_PLAFON, waLink } from '../data/bisnis';
 import './hitung-akal.css';
 
 const MIN = 10;
@@ -8,8 +8,9 @@ const MAX = 400;
 const LANGKAH = 5;
 const MEREK = Object.keys(harga.merek) as Merek[];
 const MEREK_PLAFON = Object.keys(harga.plafon.merek) as MerekPlafon[];
-const LINI = ['Atap', 'Plafon'] as const;
-type Lini = (typeof LINI)[number];
+type Lini = 'Atap' | 'Plafon';
+// Plafon disembunyikan selama TAMPIL_PLAFON false (DECISIONS 052); langkah "Yang dihitung" ikut hilang.
+const LINI: readonly Lini[] = TAMPIL_PLAFON ? ['Atap', 'Plafon'] : ['Atap'];
 const ALAS = Object.keys(harga.alas) as Alas[];
 const LAPIS = Object.keys(harga.lapisKedap) as LapisKedap[];
 const FLASHING = Object.keys(harga.flashing) as Flashing[];
@@ -117,7 +118,7 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
   useEffect(() => {
     const m = new URLSearchParams(location.search).get('merek');
     if (m && MEREK.includes(m as Merek)) setMerek(m as Merek);
-    if (m && MEREK_PLAFON.includes(m as MerekPlafon)) { setLini('Plafon'); setMerekPlafon(m as MerekPlafon); }
+    if (TAMPIL_PLAFON && m && MEREK_PLAFON.includes(m as MerekPlafon)) { setLini('Plafon'); setMerekPlafon(m as MerekPlafon); }
   }, []);
 
   // Kolom luas di hero mengirim angkanya ke sini.
@@ -174,6 +175,7 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
   return (
     <div class="ha">
       <ol class="ha-langkah">
+        {LINI.length > 1 && (
         <li>
           <span class="ha-no angka">{no()}</span>
           <div class="ha-isi">
@@ -181,6 +183,7 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
             <Pilihan label="Yang dihitung" opsi={LINI} nilai={lini} ubah={setLini} />
           </div>
         </li>
+        )}
         <li>
           <span class="ha-no angka">{no()}</span>
           <div class="ha-isi">

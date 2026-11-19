@@ -2,6 +2,7 @@
 
 ## Terbaru (19 November 2026)
 - **Pricelist PDF** (DECISIONS 051): template `src/pages/internal/pricelist.astro`, cetak `npm run pricelist` → `docs/pricelist/pricelist-atapura.pdf` (tidak di-commit). Cara revisi: `docs/pricelist/README.md`.
+- **Plafon disembunyikan** lewat `TAMPIL_PLAFON` (bisnis.ts), Tegola Eco Roof & Top Shingles masuk (harga SEMENTARA), pricelist 16 halaman dengan halaman motif & warna per merek. DECISIONS 052.
 - Halaman **/produk/aksesoris** + kelompok Aksesoris di /produk, menu atas "Panduan" → **"Artikel"** (`/artikel`, `/blog` dialihkan ke `/panduan`). DECISIONS 050.
 - 6 gambar aksesoris sudah dibuat lewat MCP Magnific (log di `docs/magnific-log.md`). **Menunggu Bang Yusuf**: GRC 9 mm atau 12 mm, harga aluminium foil & ukuran lain.
 

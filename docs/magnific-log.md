@@ -42,3 +42,6 @@ Total 19 Nov: 520 kredit. Saldo sebelum: 45.000 (paket Plus, baru reset). Setela
 | 19 Nov 2026 | Ulang Javabitumen | Nano Banana 2.1, 2K, 3:2 | 65 | ✅ dipakai | Matahari sore samping, lampu rumah menyala |
 
 Total pricelist: 650 kredit. Saldo setelahnya: ±43.830.
+| 19 Nov 2026 | Close-up motif Tegola: Eco Roof Rectangular/Traditional/Hexagonal + Top Shingles Rectangular (acuan close-up Premium & CT6) | Nano Banana 2.1, 1K, 16:9 | 4 × 50 | ✅ semua dipakai `assets/gambar/seri/tegola-*.jpg` | Close-up lurus, warna mixed/shaded |
+
+Total 19 Nov (aksesoris 520 + pricelist 650 + motif 200): 1.370 kredit. Saldo setelahnya: ±43.630.
