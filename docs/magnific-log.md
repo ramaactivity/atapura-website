@@ -49,3 +49,7 @@ Total 19 Nov (aksesoris 520 + pricelist 650 + motif 200): 1.370 kredit. Saldo se
 | 19 Nov 2026 | Halaman perumahan: drone cluster berbukit, atap seragam (1700×2400) | Nano Banana 2.1, 2K custom | 65 | ✅ `pricelist-perumahan.jpg` | Golden hour, kabut, langit untuk judul |
 
 Total 19 Nov: 1.695 kredit. Saldo setelahnya: ±43.305.
+| 20 Nov 2026 | Pricelist v4: foto suasana Tegola Eco Roof (bungalow tropis berkabut) & Master (villa perbukitan golden hour), 3:2 | Nano Banana 2.1, 2K | 2 × 65 | ✅ `pricelist-tegola-eco-roof.jpg`, `pricelist-tegola-master.jpg` | Atap utuh, tanpa teks/logo |
+| 20 Nov 2026 | Halaman mitra & material lengkap: flat lay genteng, multiplek, GRC, membran, underlayer, rangka, flashing, paku, aluminium foil (2400×1320) | Nano Banana 2.1, 2K custom | 65 | ✅ `pricelist-material-lengkap.jpg` | Tanpa logo/merek di gambar |
+
+Total 20 Nov: 195 kredit.

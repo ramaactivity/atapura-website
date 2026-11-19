@@ -13,6 +13,12 @@ import { produk, fotoWarna } from '../../data/produk';
 import { aksesoris } from '../../data/aksesoris';
 import { bisnis, TAMPIL_PLAFON } from '../../data/bisnis';
 import qr from '../../../assets/gambar/pricelist-qr-wa.svg?raw';
+import fMaterial from '../../../assets/gambar/magnific/pricelist-material-lengkap.jpg';
+import lMaxxi from '../../../assets/mitra/maxxi-logo.png';
+import lCti from '../../../assets/mitra/cti-logo.png';
+import lTegola from '../../../assets/mitra/tegola-logo.png';
+import lHisteel from '../../../assets/mitra/histeel-logo.jpg';
+import lTatalogam from '../../../assets/mitra/tatalogam-logo.png';
 import fSampul from '../../../assets/gambar/magnific/pricelist-sampul.jpg';
 import fJavabitumen from '../../../assets/gambar/magnific/pricelist-javabitumen.jpg';
 import fMaxxi from '../../../assets/gambar/magnific/pricelist-maxxi.jpg';
@@ -32,6 +38,8 @@ import mEcoRect from '../../../assets/gambar/seri/tegola-eco-roof-rectangular.jp
 import mEcoTrad from '../../../assets/gambar/seri/tegola-eco-roof-traditional.jpg';
 import mEcoHex from '../../../assets/gambar/seri/tegola-eco-roof-hexagonal.jpg';
 import mTop from '../../../assets/gambar/seri/tegola-top-shingles-rectangular.jpg';
+import sTegolaEco from '../../../assets/gambar/magnific/pricelist-tegola-eco-roof.jpg';
+import sTegolaMaster from '../../../assets/gambar/magnific/pricelist-tegola-master.jpg';
 
 const rp = (n: number) => `Rp${n.toLocaleString('id-ID')}`;
 const ribu = (n: number) => (n / 1000).toLocaleString('id-ID');
@@ -45,12 +53,15 @@ const src = async (f: ImageMetadata, width = 1600, quality = 80) => (await getIm
 
 // Urut dari harga genteng terendah. Negara asal, bukan kelas harga (Rama 19 Nov). `deskripsi` ditulis di sini supaya
 // tanpa klaim/disclaimer. `acuan` = seri yang dipakai untuk harga terpasang. `motif` = close-up tambahan tanpa baris seri.
-const ATAP: { merek: Merek; slug: string; foto: ImageMetadata; asal: string; deskripsi: string; acuan?: string; hero2?: { foto: ImageMetadata; judul: string; sub: string }; motif?: { nama: string; foto: ImageMetadata }[] }[] = [
+const ATAP: { merek: Merek; slug: string; foto: ImageMetadata; asal: string; deskripsi: string; acuan?: string; hero2?: { foto: ImageMetadata; judul: string; sub: string }; suasana?: { foto: ImageMetadata; judul: string; sub?: string }[]; motif?: { nama: string; foto: ImageMetadata }[] }[] = [
   { merek: 'Javabitumen', slug: 'javabitumen', foto: fJavabitumen, asal: 'Tiongkok', deskripsi: 'Genteng aspal dengan pilihan warna solid dan gradasi, untuk rumah tinggal dan renovasi.', hero2: { foto: h2Java, judul: 'Solid dan gradasi.', sub: 'Pilih warna yang menyatu dengan rumah Anda.' } },
   { merek: 'Maxxi', slug: 'maxxi', foto: fMaxxi, asal: 'Tiongkok', deskripsi: 'Maxxiroof 3-tab satu lapis untuk yang ingin hemat, Promaxxi laminasi dua lapis yang lebih tebal.', hero2: { foto: h2Maxxi, judul: 'Tebal, berbayang.', sub: 'Promaxxi laminasi dua lapis.' } },
   { merek: 'CTI', slug: 'cti', foto: fCti, asal: 'Indonesia', deskripsi: 'Genteng aspal buatan dalam negeri dengan potongan 3-tab, tidak beraturan, dan segi enam.', hero2: { foto: h2Cti, judul: 'Buatan Indonesia.', sub: '3-tab, tidak beraturan, atau segi enam.' } },
   { merek: 'Victory', slug: 'victory', foto: fVictory, asal: 'USA', deskripsi: 'Seri Standar berwarna rata dan Two Tone yang memadukan dua nada warna di tiap lidah genteng.', hero2: { foto: h2Victory, judul: 'Dua nada.', sub: 'Two Tone memberi dimensi di tiap lidah genteng.' } },
-  { merek: 'Tegola', slug: 'tegola', foto: fTegola, asal: 'Italia', acuan: 'Premium Rectangular', deskripsi: 'Genteng aspal Tegola Canadese: Eco Roof dan Top Shingles, Premium satu lapis, dan Master dua lapis.', motif: [
+  { merek: 'Tegola', slug: 'tegola', foto: fTegola, asal: 'Italia', acuan: 'Premium Rectangular', suasana: [
+    { foto: sTegolaEco, judul: 'Eco Roof Hexagonal', sub: 'Hijau campuran pada bungalow di dataran tinggi.' },
+    { foto: sTegolaMaster, judul: 'Master', sub: 'Laminasi dua lapis abu gelap pada villa di perbukitan.' },
+  ], deskripsi: 'Genteng aspal Tegola Canadese: Eco Roof dan Top Shingles, Premium satu lapis, dan Master dua lapis.', motif: [
     { nama: 'Eco Roof Rectangular', foto: mEcoRect },
     { nama: 'Eco Roof Traditional', foto: mEcoTrad },
     { nama: 'Eco Roof Hexagonal', foto: mEcoHex },
@@ -87,7 +98,11 @@ const halamanAtap = await Promise.all(
       pabrik: garansiPendek(m.garansiPabrik),
       fotoSrc: await src(a.foto, 1400),
       teksturSrc: await src(tekstur, 900, 82),
-      hero2Src: a.hero2 ? await src(a.hero2.foto, 1800) : null,
+      fotoSuasana: [
+        ...(a.hero2 ? [{ src: await src(a.hero2.foto, 1800), rasio: a.hero2.foto.width / a.hero2.foto.height, judul: a.hero2.judul, sub: a.hero2.sub }] : []),
+        ...(await Promise.all((a.suasana ?? []).map(async (x) => ({ src: await src(x.foto, 1400), rasio: x.foto.width / x.foto.height, judul: x.judul, sub: x.sub })))),
+        ...(await Promise.all(p.penerapan.map(async (x) => ({ src: await src(x.gambar, 1400), rasio: x.gambar.width / x.gambar.height, judul: x.keterangan })))),
+      ] as Foto[],
     };
   }),
 );
@@ -99,50 +114,143 @@ const rangka = Object.entries(harga.rangka.merek).map(([nama, r]) => ({ nama, ..
 const rangkaMulai = Math.min(...rangka.map((r) => r.harga));
 const plafon = (['Shunda', 'Javafon'] as const).map((nama) => ({ nama, h: harga.plafon.merek[nama], foto: nama === 'Shunda' ? fShunda : fJavafon }));
 const sampulSrc = await src(fSampul, 1700);
+const materialSrc = await src(fMaterial, 2000);
+// Halaman mitra (Rama 20 Nov): merek yang dipasok & dipasang, per kelompok material. Logo hanya file resmi (assets/mitra);
+// merek yang belum punya file resmi ditulis namanya saja — logo tidak pernah dibuat ulang.
+const LOGO: Record<string, ImageMetadata> = { Maxxi: lMaxxi, CTI: lCti, Tegola: lTegola, 'Hi-Steel': lHisteel, Taso: lTatalogam };
+const logoSrc = Object.fromEntries(await Promise.all(Object.entries(LOGO).map(async ([k, f]) => [k, (await getImage({ src: f, format: 'png', width: Math.min(500, f.width) })).src])));
+const MITRA: { kelompok: string; isi: string[] }[] = [
+  { kelompok: 'Genteng bitumen', isi: Object.keys(harga.merek) },
+  { kelompok: 'Alas atap', isi: ['Multiplek', 'GRC board'] },
+  { kelompok: 'Lapis kedap', isi: ['CTI', 'Alphaproof', 'Bitumax', 'Non-woven'] },
+  { kelompok: 'Rangka baja ringan', isi: Object.keys(harga.rangka.merek) },
+  { kelompok: 'Flashing & aksesoris', isi: ['Flashing U & Z', 'Paku & skrup', 'Aluminium foil'] },
+];
 const perumahanSrc = await src(fPerumahan, 1700);
 const rangkaSrc = await src(fRangka, 1600);
 
 // ── Motif & warna: dipaginasi dengan perkiraan tinggi (mm) yang sama dengan CSS di bawah; tinggi area isi 232 mm.
 // Diukur di Chrome (20 Nov): baris warna 37,1 mm (dengan kode), motif 54,4 mm, judul 7,8 mm, catatan satu baris 7,2 mm.
-const TINGGI = 232, CELAH = 7, MOTIF_KOLOM = 3, WARNA_KOLOM = 5, MOTIF_BARIS = 55, WARNA_BARIS = 38, JUDUL = 8;
+const TINGGI = 232, CELAH = 7, MOTIF_KOLOM = 3, WARNA_KOLOM = 5, JUDUL = 8;
 const tinggiCatatan = (c?: string) => (c ? (c.length > 110 ? 13 : 8) : 0);
-type Blok = { jenis: 'motif'; judul: string; catatan?: undefined; lanjut: boolean; isi: { nama: string; foto: ImageMetadata; harga?: string }[] } | { jenis: 'warna'; judul: string; catatan?: string; lanjut: boolean; isi: { nama: string; kode?: string; hex?: string; foto?: ImageMetadata }[] };
+type Motif = { nama: string; foto: ImageMetadata; harga?: string };
+type Warna = { nama: string; kode?: string; hex?: string; foto?: ImageMetadata };
+type Blok =
+  | { jenis: 'bagian'; judul: string; lanjut: boolean; catatan?: undefined; isi: [] }
+  | { jenis: 'motif'; judul: string; lanjut: boolean; catatan?: undefined; isi: Motif[] }
+  | { jenis: 'warna'; judul: string; lanjut: boolean; catatan?: string; isi: Warna[] }
+  | { jenis: 'samping'; judul: string; lanjut: boolean; catatan?: undefined; isi: Motif[]; warna: { judul: string; catatan?: string; daftar: Warna[] }[] };
+type Foto = { src: string; rasio: number; judul: string; sub?: string };
+const BAGIAN = 12;
+/** Motif & warna dikelompokkan per seri (Rama: "jangan bercampur"): kunci = kata pertama nama motif; grup warna ikut seri
+ *  yang namanya disebut di judulnya ("CT5 dan CT6" menyatukan CT5 + CT6). Grup tanpa motif (Javabitumen) tetap berdiri. */
+const kelompokSeri = (motif: Motif[], warna: { judul: string; catatan?: string; daftar: Warna[] }[]) => {
+  const kunci = (n: string) => n.split(' ')[0];
+  const seri: { kunci: string[]; motif: Motif[]; warna: typeof warna; judul?: string }[] = [];
+  for (const m of motif) {
+    const s = seri.find((x) => x.kunci.includes(kunci(m.nama)));
+    if (s) s.motif.push(m);
+    else seri.push({ kunci: [kunci(m.nama)], motif: [m], warna: [] });
+  }
+  for (const g of warna) {
+    const kata = g.judul.split(/[\s(),·]+/);
+    const cocok = seri.filter((x) => x.kunci.some((k) => kata.includes(k)));
+    if (!cocok.length) { seri.push({ kunci: [], motif: [], warna: [g] }); continue; }
+    const [utama, ...lain] = cocok;
+    for (const x of lain) { utama.motif.push(...x.motif); utama.kunci.push(...x.kunci); utama.warna.push(...x.warna); seri.splice(seri.indexOf(x), 1); }
+    utama.warna.push(g);
+  }
+  for (const s of seri) {
+    if (!s.motif.length) continue;
+    const kata = s.motif.map((m) => m.nama.split(' '));
+    const awal: string[] = [];
+    for (let i = 0; kata.every((k) => k[i] && k[i] === kata[0][i]); i++) awal.push(kata[0][i]);
+    s.judul = awal.length ? awal.join(' ') : s.motif.map((m) => m.nama).join(' dan ');
+  }
+  return seri;
+};
+const labelWarna = (judulSeri: string | undefined, g: string) => {
+  if (!judulSeri || !g.startsWith(judulSeri)) return g;
+  const sisa = g.slice(judulSeri.length).replace(/^[\s·]+/, '');
+  if (!sisa || sisa.startsWith('(')) return 'Warna';
+  return /warna/i.test(sisa) ? sisa[0].toUpperCase() + sisa.slice(1) : `Warna ${sisa}`;
+};
 const halamanDetail = (a: (typeof halamanAtap)[number]) => {
   const hargaMotif = new Map(a.seri.map((s) => [s.nama, s.harga?.teks]));
-  // Motif banyak (Tegola) → 4 kolom supaya tidak memakan dua halaman.
-  const motifKolom = a.motif.length > 6 ? 4 : MOTIF_KOLOM;
-  const motifBaris = motifKolom === 4 ? 43 : MOTIF_BARIS;
-  const potong: (Blok & { total: number; kolom: number })[] = [];
-  for (let i = 0; i < a.motif.length; i += motifKolom) potong.push({ jenis: 'motif', judul: 'Motif', lanjut: i > 0, total: a.motif.length, kolom: motifKolom, isi: a.motif.slice(i, i + motifKolom).map((x) => ({ ...x, harga: hargaMotif.get(x.nama) })) });
-  for (const g of a.warna) for (let i = 0; i < g.daftar.length; i += WARNA_KOLOM) potong.push({ jenis: 'warna', judul: g.judul, catatan: g.catatan, lanjut: i > 0, total: g.daftar.length, kolom: WARNA_KOLOM, isi: g.daftar.slice(i, i + WARNA_KOLOM) });
-  const hal: { blok: Blok[]; pakai: number }[] = [];
-  for (const b of potong) {
-    const baris = b.jenis === 'motif' ? motifBaris : WARNA_BARIS;
-    const kepala = JUDUL + (b.lanjut ? 0 : tinggiCatatan(b.catatan));
-    const akhir = hal.at(-1);
-    const sebelum = akhir?.blok.at(-1);
-    const sambung = !!akhir && !!sebelum && sebelum.jenis === b.jenis && sebelum.judul === b.judul;
-    const tambah = sambung ? baris + 4 : CELAH + kepala + baris;
-    // Jangan tinggalkan 1–2 ubin sendirian di halaman berikutnya: kelompok seperti itu pindah utuh.
-    let yatim = false;
-    if (akhir && !b.lanjut) {
-      const muat = Math.floor((TINGGI - akhir.pakai - CELAH - kepala + 4) / (baris + 4));
-      const sisa = b.total - muat * b.kolom;
-      yatim = muat >= 1 && sisa > 0 && sisa <= 2;
+  const potong: (Blok & { total: number; kolom: number; seri?: string })[] = [];
+  for (const s of kelompokSeri(a.motif.map((x) => ({ ...x, harga: hargaMotif.get(x.nama) })), a.warna)) {
+    if (s.judul) potong.push({ jenis: 'bagian', judul: s.judul, lanjut: false, isi: [], total: 0, kolom: 1, seri: s.judul });
+    // Seri bermotif satu dengan warna sedikit: motif di kiri, warnanya di kanan (ringkas, tetap terpisah per seri).
+    const jumlahWarna = s.warna.reduce((n, g) => n + g.daftar.length, 0);
+    if (s.motif.length === 1 && jumlahWarna > 0 && jumlahWarna <= 9) {
+      potong.push({ jenis: 'samping', judul: 'Motif', lanjut: false, isi: s.motif, total: 0, kolom: 1, seri: s.judul, warna: s.warna.map((g) => ({ ...g, judul: labelWarna(s.judul, g.judul) })) });
+      continue;
     }
-    if (akhir && !yatim && akhir.pakai + tambah <= TINGGI) {
-      if (sambung) (sebelum!.isi as unknown[]).push(...b.isi);
-      else akhir.blok.push({ ...b });
-      akhir.pakai += tambah;
-    } else {
-      hal.push({ blok: [{ ...b }], pakai: kepala + baris });
+    for (let i = 0; i < s.motif.length; i += MOTIF_KOLOM) potong.push({ jenis: 'motif', judul: 'Motif', lanjut: i > 0, total: s.motif.length, kolom: MOTIF_KOLOM, seri: s.judul, isi: s.motif.slice(i, i + MOTIF_KOLOM) });
+    for (const g of s.warna) {
+      const judul = labelWarna(s.judul, g.judul);
+      for (let i = 0; i < g.daftar.length; i += WARNA_KOLOM) potong.push({ jenis: 'warna', judul, catatan: g.catatan, lanjut: i > 0, total: g.daftar.length, kolom: WARNA_KOLOM, seri: s.judul, isi: g.daftar.slice(i, i + WARNA_KOLOM) });
     }
   }
-  // Foto suasana kedua di sisa halaman terakhir, pada rasio asli (lebar 182 mm).
-  const akhir = hal.at(-1)!;
-  const tinggiHero = a.hero2 ? (182 * a.hero2.foto.height) / a.hero2.foto.width : 0;
-  const hero = a.hero2 && akhir.pakai + CELAH + 11 + tinggiHero <= TINGGI ? { ...a.hero2, src: a.hero2Src!, tinggi: tinggiHero } : null;
-  return hal.map((h, j) => ({ blok: h.blok, hero: j === hal.length - 1 ? hero : null }));
+  // Tinggi baris diukur di Chrome: motif 50,1 mm (54,4 bila ada harga), warna 32,8 mm (37,1 bila ada kode).
+  const tinggiBaris = (b: Blok) => (b.jenis === 'motif' ? (b.isi.some((x) => x.harga) ? 54.5 : 50.5) : b.jenis === 'warna' ? (b.isi.some((x) => x.kode) ? 37.5 : 33) : 0);
+  // Samping: kanan 3 kolom (ubin ±36 mm, baris ±38 mm dengan kode / ±34 tanpa), kiri satu motif.
+  const tinggiSamping = (b: Extract<Blok, { jenis: 'samping' }>) =>
+    Math.max(JUDUL + tinggiBaris({ jenis: 'motif', judul: '', lanjut: false, isi: b.isi }),
+      b.warna.reduce((n, g, k) => { const r = Math.ceil(g.daftar.length / 3); return n + (k ? 5 : 0) + JUDUL + tinggiCatatan(g.catatan) + r * (g.daftar.some((w) => w.kode) ? 38.5 : 34) + (r - 1) * 4; }, 0));
+  const tinggi = (b: Blok) => (b.jenis === 'samping' ? tinggiSamping(b) : b.jenis === 'bagian' ? BAGIAN : JUDUL + (b.lanjut ? 0 : tinggiCatatan(b.catatan)) + tinggiBaris(b));
+  const hal: { blok: Blok[]; pakai: number }[] = [];
+  const halamanBaru = (b: (typeof potong)[number]) => {
+    const blok: Blok[] = [];
+    let pakai = 0;
+    // Seri yang berlanjut ke halaman baru: judul serinya diulang dengan "lanjutan".
+    if (b.jenis !== 'bagian' && b.seri) { blok.push({ jenis: 'bagian', judul: b.seri, lanjut: true, isi: [] }); pakai = BAGIAN + CELAH; }
+    blok.push({ ...b } as Blok);
+    hal.push({ blok, pakai: pakai + tinggi(b) });
+  };
+  // Halaman yang masih kebagian foto menyisakan ±62 mm untuknya (Rama: halaman lanjutan juga bergambar).
+  const batas = (i: number) => (i < a.fotoSuasana.length ? TINGGI - 62 : TINGGI);
+  potong.forEach((b, idx) => {
+    const baris = tinggiBaris(b);
+    const akhir = hal.at(-1);
+    const sebelum = akhir?.blok.at(-1);
+    const sambung = !!akhir && !!sebelum && sebelum.jenis === b.jenis && b.jenis !== 'bagian' && b.jenis !== 'samping' && sebelum.judul === b.judul;
+    let tambah = sambung ? baris + 4 : CELAH + tinggi(b);
+    // Judul seri tidak boleh sendirian di bawah halaman: harus muat bersama baris pertama sesudahnya.
+    if (b.jenis === 'bagian' && potong[idx + 1]) tambah += CELAH + tinggi(potong[idx + 1]);
+    // Jangan tinggalkan 1–2 ubin sendirian di halaman berikutnya: kelompok seperti itu pindah utuh.
+    let yatim = false;
+    if (akhir && b.jenis !== 'bagian' && b.jenis !== 'samping' && !b.lanjut) {
+      const muat = Math.floor((batas(hal.length - 1) - akhir.pakai - CELAH - (tinggi(b) - baris) + 4) / (baris + 4));
+      const sisa = b.total - muat * b.kolom;
+      // ...kecuali halaman ini baru terisi kurang dari separuh: lebih baik dipecah daripada halaman kosong.
+      yatim = muat >= 1 && sisa > 0 && sisa <= 2 && akhir.pakai > TINGGI / 2;
+    }
+    // Sisa 1–2 ubin terakhir sebuah kelompok boleh memakai ruang foto daripada pindah sendirian ke halaman baru.
+    const ekor = sambung && b.jenis === 'warna' && b.isi.length <= 2 && !potong[idx + 1]?.lanjut;
+    if (akhir && !yatim && akhir.pakai + tambah <= (ekor ? TINGGI : batas(hal.length - 1))) {
+      if (sambung) (sebelum!.isi as unknown[]).push(...b.isi);
+      else akhir.blok.push({ ...b } as Blok);
+      akhir.pakai += sambung ? baris + 4 : CELAH + tinggi(b);
+    } else halamanBaru(b);
+  });
+  // Foto suasana mengisi sisa tiap halaman (Rama: halaman lanjutan juga bergambar), pada rasio asli — tidak dipotong.
+  // Sisa lebar ≥ 150 mm + tinggi cukup → selebar halaman dengan teks di atas; kalau tidak → foto di kiri, teks di kanan.
+  // Foto dipasangkan dengan seri di halamannya (teks foto menyebut nama seri); foto milik seri lain tidak dipakai di sini.
+  const kolam = [...a.fotoSuasana];
+  const seriHal = hal.map((h) => h.blok.filter((b) => b.jenis === 'bagian').map((b) => b.judul));
+  const sebut = (f: Foto, nama: string[]) => nama.some((n) => `${f.judul} ${f.sub ?? ''}`.includes(n));
+  return hal.map((h, j) => {
+    const L = TINGGI - h.pakai - CELAH;
+    if (L < 40 || !kolam.length) return { blok: h.blok, foto: null };
+    const lain = seriHal.filter((_, k) => k !== j).flat().filter((n) => !seriHal[j].includes(n));
+    const f = kolam.find((x) => sebut(x, seriHal[j])) ?? kolam.find((x) => !sebut(x, lain)) ?? kolam[0];
+    kolam.splice(kolam.indexOf(f), 1);
+    const tinggiPenuh = 182 / f.rasio;
+    if (L >= tinggiPenuh + 11) return { blok: h.blok, foto: { ...f, mode: 'penuh' as const, w: 182, h: tinggiPenuh } };
+    const w = Math.min(122, L * f.rasio);
+    return { blok: h.blok, foto: { ...f, mode: 'samping' as const, w, h: w / f.rasio } };
+  });
 };
 const detail = halamanAtap.map(halamanDetail);
 
@@ -155,7 +263,7 @@ const hargaAks = (a: (typeof aksesoris)[number]) => (a.harga ? `${a.harga.catata
 const satuanAks = (a: (typeof aksesoris)[number]) => (a.harga ? `per ${a.harga.satuan}` : '');
 
 // Nomor halaman dari susunan sebenarnya (plafon ikut sakelar TAMPIL_PLAFON, DECISIONS 052).
-const urut: string[] = ['sampul', 'katalog'];
+const urut: string[] = ['sampul', 'mitra', 'katalog'];
 halamanAtap.forEach((_, i) => { urut.push(`merek-${i}`); detail[i].forEach((_, j) => urut.push(`detail-${i}-${j}`)); });
 urut.push('perumahan');
 if (TAMPIL_PLAFON) urut.push('plafon');
@@ -195,6 +303,22 @@ const IK = {
       <span><svg viewBox="0 0 24 24" class="ik" set:html={IK.telepon} />{waTampil}</span>
       <span><svg viewBox="0 0 24 24" class="ik" set:html={IK.situs} />{situs}</span>
     </div>
+  </section>
+
+  <!-- Mitra & material lengkap -->
+  <section class="hal s10">
+    <h2 class="abs s10-judul">Satu pintu, <span class="redup">dari genteng sampai rangka.</span></h2>
+    <p class="abs s10-sub">Material dari merek yang kami pasok dan pasang sendiri, lengkap dengan aksesorisnya.</p>
+    <img src={materialSrc} alt="" class="abs s10-foto" />
+    <div class="abs s10-daftar">
+      {MITRA.map((m) => (
+        <div class="s10-baris">
+          <h3>{m.kelompok}</h3>
+          <ul>{m.isi.map((n) => <li>{logoSrc[n] ? <img src={logoSrc[n]} alt={n} /> : <span>{n}</span>}</li>)}</ul>
+        </div>
+      ))}
+    </div>
+    <div class="bilah bilah-garis"><span>Merek mitra</span><span>{no('mitra')}</span></div>
   </section>
 
   <!-- 2. Katalog ringkas (pola 19): kepala Pinus, daftar merek, satu merek sorotan -->
@@ -272,12 +396,30 @@ const IK = {
         <section class="hal s4">
           <h2 class="abs s4-judul">{a.merek} <span class="redup">motif dan warna{j > 0 ? ', lanjutan' : ''}</span></h2>
           <div class="abs s4-isi">
-            {h.blok.map((b) => (
+            {h.blok.map((b) => b.jenis === 'bagian' ? (
+              <h3 class="s4-bagian">{b.judul}{b.lanjut && <span class="redup">, lanjutan</span>}</h3>
+            ) : b.jenis === 'samping' ? (
+              <div class="s4-samping">
+                <div class="s4-blok">
+                  <h3>Motif</h3>
+                  <ul class="s4-motif s4-motif-1">{b.isi.map((x) => <li><Bulat w={{ nama: x.nama, foto: x.foto }} besar /><p class="s4-nama">{x.nama}</p>{x.harga && <p class="s4-sub">{x.harga}</p>}</li>)}</ul>
+                </div>
+                <div class="s4-kanan">
+                  {b.warna.map((g) => (
+                    <div class="s4-blok">
+                      <h3>{g.judul}</h3>
+                      {g.catatan && <p class="s4-catatan">{g.catatan}</p>}
+                      <ul class="s4-warna s4-warna-3">{g.daftar.map((w) => <li><Bulat w={w} besar /><p class="s4-nama">{w.nama}</p>{w.kode && <p class="s4-sub">{w.kode}</p>}</li>)}</ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
               <div class="s4-blok">
                 <h3>{b.judul}{b.lanjut && <span class="redup">, lanjutan</span>}</h3>
                 {b.catatan && !b.lanjut && <p class="s4-catatan">{b.catatan}</p>}
                 {b.jenis === 'motif' ? (
-                  <ul class:list={['s4-motif', { 's4-motif-4': a.motif.length > 6 }]}>
+                  <ul class="s4-motif">
                     {b.isi.map((x) => (
                       <li><Bulat w={{ nama: x.nama, foto: x.foto }} besar /><p class="s4-nama">{x.nama}</p>{x.harga && <p class="s4-sub">{x.harga}</p>}</li>
                     ))}
@@ -289,10 +431,10 @@ const IK = {
                 )}
               </div>
             ))}
-            {h.hero && (
-              <div class="s4-hero">
-                <p><b>{h.hero.judul}</b> <span>{h.hero.sub}</span></p>
-                <img src={h.hero.src} alt="" style={`height:${h.hero.tinggi.toFixed(1)}mm`} />
+            {h.foto && (
+              <div class:list={['s4-foto', `s4-foto-${h.foto.mode}`]}>
+                <img src={h.foto.src} alt="" style={`width:${h.foto.w.toFixed(1)}mm;height:${h.foto.h.toFixed(1)}mm`} />
+                <p><b>{h.foto.judul}</b>{h.foto.sub && <span>{h.foto.sub}</span>}</p>
               </div>
             )}
           </div>
@@ -517,8 +659,11 @@ const IK = {
   .s4-catatan { font-size: 10.5pt; color: var(--lumut); margin: -1mm 0 3mm !important; }
   .s4-motif, .s4-warna { list-style: none; display: grid; }
   .s4-motif { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5mm; }
-  .s4-motif-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4mm; }
   .s4-warna { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4mm; }
+  .s4-samping { display: grid; grid-template-columns: 57.3mm minmax(0, 1fr); gap: 6mm; align-items: start; }
+  .s4-motif-1 { grid-template-columns: minmax(0, 1fr); }
+  .s4-kanan { display: grid; gap: 5mm; }
+  .s4-warna-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .s4-motif :global(.bulat), .s4-warna :global(.bulat) { display: block; width: 100%; height: auto; aspect-ratio: 5 / 4; object-fit: cover; border-radius: 3.5mm; }
   .s4-motif :global(.bulat) { aspect-ratio: 4 / 3; border-radius: 4.5mm; }
   .s4-warna :global(.bulat-hex) { border: 0.5pt solid rgb(0 0 0 / 0.08); }
@@ -526,11 +671,18 @@ const IK = {
   .s4-nama { margin-top: 1.6mm !important; font-size: 10.5pt; font-weight: 500; line-height: 1.25; }
   .s4-motif .s4-nama { font-size: 11.5pt; margin-top: 2mm !important; }
   .s4-sub { font-size: 9.5pt; color: var(--lumut); line-height: 1.3; }
-  .s4-hero { margin-top: auto; flex: none; }
-  .s4-hero p { display: flex; align-items: baseline; justify-content: space-between; gap: 6mm; margin-bottom: 3mm !important; }
-  .s4-hero b { font-family: var(--font-merek); font-weight: 500; font-size: 18pt; letter-spacing: -0.03em; }
-  .s4-hero span { font-size: 10.5pt; color: var(--lumut); text-align: right; }
-  .s4-hero img { display: block; width: 100%; object-fit: cover; border-radius: 10mm; }
+  .s4-bagian { font-size: 18pt; letter-spacing: -0.02em; padding-top: 4mm; border-top: 0.6pt solid var(--garis); height: 12mm; }
+  .s4-isi > .s4-bagian:first-child { border-top: 0; padding-top: 0; height: 8mm; }
+  .s4-foto { margin-top: auto; flex: none; display: flex; gap: 6mm; }
+  .s4-foto img { display: block; object-fit: cover; border-radius: 8mm; flex: none; }
+  .s4-foto b { display: block; font-family: var(--font-merek); font-weight: 500; font-size: 16pt; letter-spacing: -0.02em; line-height: 1.15; }
+  .s4-foto span { display: block; margin-top: 1.5mm; font-size: 10.5pt; color: var(--lumut); }
+  .s4-foto-penuh { flex-direction: column-reverse; gap: 3mm; }
+  .s4-foto-penuh p { display: flex; justify-content: space-between; align-items: baseline; gap: 6mm; }
+  .s4-foto-penuh b { font-size: 18pt; }
+  .s4-foto-penuh span { margin: 0; text-align: right; }
+  .s4-foto-samping { align-items: flex-end; }
+  .s4-foto-samping p { padding-bottom: 2mm; }
 
   /* 5. Perumahan */
   .s5-judul { left: 14mm; top: 18mm; width: 120mm; font-size: 30pt; }
@@ -572,6 +724,18 @@ const IK = {
   .s8-termin span, .s8-klaim span { font-weight: 500; }
   .s8-termin small, .s8-klaim small { font-size: 10pt; color: var(--lumut); line-height: 1.35; }
   .s8-survey { margin-top: 3mm !important; width: 150mm; color: var(--lumut); }
+
+  /* Mitra */
+  .s10-judul { left: 14mm; top: 16mm; width: 110mm; font-size: 26pt; }
+  .s10-sub { right: 14mm; top: 18mm; width: 62mm; color: var(--lumut); }
+  .s10-foto { left: 14mm; top: 46mm; width: 182mm; height: 100mm; object-fit: cover; border-radius: 10mm; }
+  .s10-daftar { left: 14mm; right: 14mm; top: 156mm; display: grid; gap: 5mm; }
+  .s10-baris { display: grid; grid-template-columns: 38mm minmax(0, 1fr); gap: 4mm; align-items: center; padding-bottom: 5mm; border-bottom: 0.6pt solid var(--garis); }
+  .s10-baris:last-child { border-bottom: 0; padding-bottom: 0; }
+  .s10-baris ul { list-style: none; display: flex; flex-wrap: wrap; gap: 3mm; }
+  .s10-baris li { width: 25mm; height: 14mm; border-radius: 3.5mm; background: #fff; border: 0.6pt solid var(--garis); display: grid; place-items: center; padding: 2mm 2.5mm; }
+  .s10-baris li img { max-width: 20mm; max-height: 10mm; width: auto; height: auto; object-fit: contain; display: block; }
+  .s10-baris li span { font-family: var(--font-merek); font-weight: 500; font-size: 10pt; letter-spacing: -0.01em; text-align: center; line-height: 1.1; }
 
   /* 9. Sampul belakang */
   .s9 { background: var(--pinus); color: var(--embun); }

@@ -227,3 +227,10 @@ Masukan Rama pada pricelist (DECISIONS 051), 19 Nov malam:
   179 rb, Flashing U 40 rb. Legend 270 rb baru ada di Ops (belum ada foto/warna untuk situs).
 - **Domain atapura.com** (Rama: "langsung dipasang saja", dibeli 21 Nov): ditempel ke proyek Vercel + `www` 308 ke apex; `site`
   default di astro.config jadi atapura.com. Sampai DNS diisi di registrar, situs tetap terbuka di atapura.vercel.app.
+- **Lanjutan 20 Nov (Rama)**: (1) motif & warna dikelompokkan per seri ("jangan bercampur") — kunci = kata pertama nama
+  motif, grup warna ikut seri yang disebut di judulnya; seri bermotif satu dengan ≤ 9 warna tampil motif kiri, warna kanan.
+  (2) Tiap halaman motif & warna, termasuk lanjutan, diberi foto suasana (rasio asli, tidak dipotong): halaman menyisakan
+  ±62 mm selama stok foto merek masih ada; foto dicocokkan ke seri yang disebut teksnya. Dua foto Tegola baru dari Magnific.
+  (3) Halaman 2 **"Satu pintu, dari genteng sampai rangka"**: foto material lengkap (Magnific, tanpa logo) + daftar merek per
+  kelompok material. Logo hanya file resmi (`assets/mitra`: Maxxi, CTI, Tegola, Hi-Steel, Tatalogam untuk Taso); merek tanpa
+  file resmi (Javabitumen, Victory, K-Steel, Alphaproof, Bitumax) ditulis namanya, logo tidak dibuat ulang.
