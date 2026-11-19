@@ -1,6 +1,9 @@
 # Handover
 
 ## Terbaru (20 November 2026)
+- **Product knowledge** `/internal/product-knowledge` (DECISIONS 054): cheatsheet sales + teks siap salin; PDF `npm run cheatsheet`
+  → `public/unduh/product-knowledge-atapura.pdf` (buat ulang saat data berubah, sama seperti pricelist).
+- Logo mitra transparan & tajam di `/branding` (unduh per logo + ZIP); `src/data/mitra.ts` = sumber logo & negara asal merek.
 - **Pricelist v4** (DECISIONS 053) meniru referensi Rama, 26 halaman, `npm run pricelist`: halaman mitra (hal. 2), motif & warna per seri
   dengan foto di tiap halaman. Logo resmi belum ada untuk Javabitumen, Victory, K-Steel, Alphaproof, Bitumax (minta ke pemasok).
   Cek paginasi: `pw/hal.cjs` (scratchpad sesi) mencetak LUBER/SISA per halaman warna.
