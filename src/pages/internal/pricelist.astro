@@ -14,13 +14,7 @@ import { aksesoris } from '../../data/aksesoris';
 import { bisnis, TAMPIL_PLAFON } from '../../data/bisnis';
 import qr from '../../../assets/gambar/pricelist-qr-wa.svg?raw';
 import fMaterial from '../../../assets/gambar/magnific/pricelist-material-lengkap.jpg';
-import lMaxxi from '../../../assets/mitra/maxxi-logo.png';
-import lCti from '../../../assets/mitra/cti-logo.png';
-import lTegola from '../../../assets/mitra/tegola-logo.png';
-import lHisteel from '../../../assets/mitra/histeel-logo.jpg';
-import lTatalogam from '../../../assets/mitra/tatalogam-logo.png';
-import lJavabitumen from '../../../assets/mitra/javabitumen-logo-putih.png';
-import lVictory from '../../../assets/mitra/victory-logo.png';
+import { logoMitra } from '../../data/mitra';
 import fSampul from '../../../assets/gambar/magnific/pricelist-sampul.jpg';
 import fJavabitumen from '../../../assets/gambar/magnific/pricelist-javabitumen.jpg';
 import fMaxxi from '../../../assets/gambar/magnific/pricelist-maxxi.jpg';
@@ -119,10 +113,8 @@ const sampulSrc = await src(fSampul, 1700);
 const materialSrc = await src(fMaterial, 2000);
 // Halaman mitra (Rama 20 Nov): merek yang dipasok & dipasang, per kelompok material. Logo hanya file resmi (assets/mitra);
 // merek yang belum punya file resmi ditulis namanya saja — logo tidak pernah dibuat ulang.
-const LOGO: Record<string, ImageMetadata> = { Javabitumen: lJavabitumen, Maxxi: lMaxxi, CTI: lCti, Victory: lVictory, Tegola: lTegola, 'Hi-Steel': lHisteel, Taso: lTatalogam };
-// Logo resmi yang hanya ada versi putih tampil di ubin gelap (tidak diwarnai ulang).
-const LOGO_GELAP = new Set(['Javabitumen']);
-const logoSrc = Object.fromEntries(await Promise.all(Object.entries(LOGO).map(async ([k, f]) => [k, (await getImage({ src: f, format: 'png', width: Math.min(500, f.width) })).src])));
+const LOGO_GELAP = new Set(logoMitra.filter((l) => l.gelap).map((l) => l.merek));
+const logoSrc: Record<string, string> = Object.fromEntries(await Promise.all(logoMitra.map(async (l) => [l.merek, (await getImage({ src: l.file, format: 'png', width: Math.min(500, l.file.width) })).src])));
 const MITRA: { kelompok: string; isi: string[] }[] = [
   { kelompok: 'Genteng bitumen', isi: Object.keys(harga.merek) },
   { kelompok: 'Alas atap', isi: ['Multiplek', 'GRC board'] },

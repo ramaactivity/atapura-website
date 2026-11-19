@@ -11,6 +11,8 @@ import hujanDesktop from '../../assets/gambar/magnific/hujan-desktop.jpg';
 import heroDesktop from '../../assets/gambar/magnific/hero-desktop.jpg';
 import tukang from '../../assets/gambar/magnific/tukang-4x5.jpg';
 import kafe from '../../assets/gambar/magnific/segmen-kafe-3x2.jpg';
+import { getImage } from 'astro:assets';
+import { logoMitra } from '../data/mitra';
 
 const menu = [
   ['logo', 'Logo'],
@@ -62,6 +64,9 @@ const unduhan = [
   { file: 'favicon.svg', label: 'Favicon', ket: 'SVG · Λ tebal khusus ukuran kecil' },
   { file: 'favicon.ico', label: 'Favicon', ket: 'ICO 16/32/48 px' },
 ];
+
+// Logo merek mitra untuk desain konten (file resmi, tidak diubah warna atau digabung).
+const unduhMitra = await Promise.all(logoMitra.map(async (l) => ({ ...l, src: (await getImage({ src: l.file, format: 'png', width: l.file.width })).src })));
 
 const dilarang = ['solusi terbaik', 'terpercaya No.1', 'profesional dan berpengalaman', 'kualitas tak tertandingi', 'dengan harga terjangkau', 'hadir untuk Anda', 'wujudkan atap impian', 'di era modern ini', 'tak perlu khawatir lagi'];
 ---
@@ -474,6 +479,21 @@ const dilarang = ['solusi terbaik', 'terpercaya No.1', 'profesional dan berpenga
             </li>
           ))}
         </ul>
+        <div class="b-sek-kepala mitra-kepala">
+          <h3 class="b-h3">Logo merek mitra</h3>
+          <p class="b-teks">File resmi dari pabrik atau pemasok, untuk konten dan katalog. Pakai apa adanya: jangan diwarnai ulang, dipotong, atau digabung dengan logo Atapura.</p>
+        </div>
+        <ul class="unduh-daftar">
+          {unduhMitra.map((l) => (
+            <li>
+              <a href={l.src} download={l.nama}>
+                <span class:list={['unduh-pratinjau', { 'unduh-terang': !l.gelap }]}><img src={l.src} alt="" loading="lazy" /></span>
+                <span class="unduh-teks"><span class="unduh-label">{l.label}</span><span class="unduh-ket">PNG {l.file.width} px{l.gelap ? ' · versi putih, latar gelap' : ''}</span></span>
+                <span class="unduh-format">PNG</span>
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   </main>
@@ -740,6 +760,7 @@ const dilarang = ['solusi terbaik', 'terpercaya No.1', 'profesional dan berpenga
   .unduh-teks { display: grid; min-width: 0; }
   .unduh-label { font-weight: 500; }
   .unduh-ket { font-size: 0.82rem; color: var(--embun-redup); }
+  .mitra-kepala { margin-top: 3rem; }
   .unduh-format { margin-left: auto; font-size: 0.75rem; font-weight: 500; padding: 0.25rem 0.6rem; border-radius: 999px; border: 1px solid rgb(242 244 241 / 0.25); }
 
   .b-sek-pinus .pill-garis { color: var(--color-embun); }

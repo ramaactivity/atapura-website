@@ -1,6 +1,8 @@
 # Logo merek mitra
 
-Diunduh 2 November 2026 dari situs resmi masing-masing merek, tidak diubah selain dipotong tepinya:
+Diunduh dari situs resmi masing-masing merek (2 & 20 Nov 2026). Semua PNG transparan siap pakai di desain.
+20 Nov: Victory, Hi-Steel, Tatalogam, Tegola ditajamkan di Magnific Precision 4× (bentuk & warna tidak berubah, dicek
+berdampingan); latar putih Maxxi dihapus di Magnific. Hi-Steel memang berbentuk kotak hitam (bagian dari logonya).
 - `maxxi-logo.png` — maxxiroof.com (CV Jaya Raya Makmur), `wp-content/uploads/2026/02/X3.webp`. Latar putih asli.
 - `cti-logo.png` — ct-i.co.kr (PT Bitutek / CT Korea), `wp-content/uploads/2015/12/logo_resmi.png`. Latar transparan.
 - `tegola-logo.png` — tegolacanadese.com, `wp-content/uploads/2021/11/logo-Blu.png` (20 Nov 2026). Latar transparan.
