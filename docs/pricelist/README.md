@@ -9,7 +9,7 @@ cetak ulang. Halaman sumbernya `src/pages/internal/pricelist.astro`, bisa diliha
 npm run pricelist
 ```
 
-Hasilnya `docs/pricelist/pricelist-atapura.pdf`, 16 halaman, ±13 MB. File PDF tidak di-commit (lihat `.gitignore`), cukup
+Hasilnya `docs/pricelist/pricelist-atapura.pdf`, 17 halaman, ±13 MB. File PDF tidak di-commit (lihat `.gitignore`), cukup
 dicetak ulang kapan saja. Perintah ini butuh Google Chrome di Mac.
 
 ## Mengubah isi
@@ -27,7 +27,7 @@ Harga di `harga.ts` wajib sama dengan Katalog Atapura Ops (database). Kalau harg
 
 Hal yang perlu diingat saat menambah isi:
 - **Merek atap baru**: tambahkan ke `harga.merek` dan `produk`, lalu ke `ATAP` dengan foto baru. Satu merek = dua halaman (merek, lalu motif & warna).
-- **Motif/warna baru**: tambahkan seri atau warna di `produk.ts`. Halaman motif & warna ikut otomatis. Close-up motif di `assets/gambar/seri/`. Kalau halamannya jadi penuh, foto suasana bawah otomatis mengecil; kalau terlalu tipis, hapus `hero2` merek itu.
+- **Motif/warna baru**: tambahkan seri atau warna di `produk.ts`. Halaman motif & warna ikut otomatis. Close-up motif di `assets/gambar/seri/`. Foto suasana bawah (`hero2`) mengisi sisa ruang dan dibuat dengan rasio persis ruang itu supaya atap tidak terpotong. Kalau isi halaman berubah, ukur ulang ruangnya (lebar × tinggi kotak `.hero2`), lalu buat foto baru di Magnific dengan ukuran kustom yang sama. Kalau ruangnya terlalu tipis, hapus `hero2` merek itu. Teks besar di foto (`judul`, `sub`, `posisi`) ditaruh di langit atau area gelap, jangan di atas atap.
 - **Aksesoris baru**: cukup tambahkan ke `aksesoris.ts`. Grid aksesoris muat 10 kartu. Kalau lebih, kartunya perlu dikecilkan.
 - **Foto baru**: buat di Magnific dengan gaya yang sama (sinematik, cahaya senja atau biru, suasana Jabodetabek/Puncak,
   tanpa teks/logo). Pakai foto close-up seri sebagai acuan supaya bentuk genteng benar. Simpan sebagai

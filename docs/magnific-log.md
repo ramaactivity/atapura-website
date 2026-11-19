@@ -45,3 +45,7 @@ Total pricelist: 650 kredit. Saldo setelahnya: ±43.830.
 | 19 Nov 2026 | Close-up motif Tegola: Eco Roof Rectangular/Traditional/Hexagonal + Top Shingles Rectangular (acuan close-up Premium & CT6) | Nano Banana 2.1, 1K, 16:9 | 4 × 50 | ✅ semua dipakai `assets/gambar/seri/tegola-*.jpg` | Close-up lurus, warna mixed/shaded |
 
 Total 19 Nov (aksesoris 520 + pricelist 650 + motif 200): 1.370 kredit. Saldo setelahnya: ±43.630.
+| 19 Nov 2026 | Foto suasana halaman motif & warna, ukuran custom sesuai ruang kosong agar atap tidak terpotong: Javabitumen 2400×964, Maxxi 2400×682, CTI 2400×480, Victory 2400×1090 | Nano Banana 2.1, 2K custom | 4 × 65 | ✅ semua dipakai `pricelist-hero2-*.jpg` | Bangunan di tengah, ruang langit di atas bubungan |
+| 19 Nov 2026 | Halaman perumahan: drone cluster berbukit, atap seragam (1700×2400) | Nano Banana 2.1, 2K custom | 65 | ✅ `pricelist-perumahan.jpg` | Golden hour, kabut, langit untuk judul |
+
+Total 19 Nov: 1.695 kredit. Saldo setelahnya: ±43.305.

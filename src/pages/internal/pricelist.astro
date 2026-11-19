@@ -20,10 +20,12 @@ import fTegola from '../../../assets/gambar/magnific/pricelist-tegola.jpg';
 import fShunda from '../../../assets/gambar/magnific/pricelist-plafon-shunda.jpg';
 import fJavafon from '../../../assets/gambar/magnific/pricelist-plafon-javafon.jpg';
 import fRangka from '../../../assets/gambar/magnific/pricelist-rangka.jpg';
-import h2Java from '../../../assets/gambar/magnific/penerapan-javabitumen-rumah-3x2.jpg';
-import h2Maxxi from '../../../assets/gambar/magnific/penerapan-maxxi-maxxiroof-rumah-3x2.jpg';
-import h2Cti from '../../../assets/gambar/magnific/penerapan-cti-ct3-kafe-3x2.jpg';
-import h2Victory from '../../../assets/gambar/magnific/penerapan-victory-standar-rumah-3x2.jpg';
+import fPerumahan from '../../../assets/gambar/magnific/pricelist-perumahan.jpg';
+// Foto suasana kedua dibuat sesuai rasio ruang kosong halaman motif & warna, supaya atap tidak terpotong (Rama).
+import h2Java from '../../../assets/gambar/magnific/pricelist-hero2-javabitumen.jpg';
+import h2Maxxi from '../../../assets/gambar/magnific/pricelist-hero2-maxxi.jpg';
+import h2Cti from '../../../assets/gambar/magnific/pricelist-hero2-cti.jpg';
+import h2Victory from '../../../assets/gambar/magnific/pricelist-hero2-victory.jpg';
 import mEcoRect from '../../../assets/gambar/seri/tegola-eco-roof-rectangular.jpg';
 import mEcoTrad from '../../../assets/gambar/seri/tegola-eco-roof-traditional.jpg';
 import mEcoHex from '../../../assets/gambar/seri/tegola-eco-roof-hexagonal.jpg';
@@ -40,11 +42,11 @@ const waTampil = bisnis.whatsapp ? `+${bisnis.whatsapp.slice(0, 2)} ${bisnis.wha
 // Pricelist menyebut negara asal, bukan kelas harga (Rama, 19 Nov 2026). `deskripsi` mengganti ringkas produk.ts
 // bila kalimatnya memuat narasi kelas. `acuan` = seri yang dipakai untuk harga terpasang merek itu.
 // `motif` = close-up motif tambahan yang tidak punya baris seri sendiri (mis. tiga potongan Eco Roof).
-const ATAP: { merek: Merek; slug: string; foto: ImageMetadata; suasana: string; asal: string; deskripsi?: string; acuan?: string; hero2?: { foto: ImageMetadata; ket: string }; motif?: { nama: string; foto: ImageMetadata }[] }[] = [
-  { merek: 'Javabitumen', slug: 'javabitumen', foto: fJavabitumen, suasana: 'Rumah tinggal di perumahan, sore hari', asal: 'Tiongkok', hero2: { foto: h2Java, ket: 'Rumah tinggal beratap Javabitumen' }, deskripsi: 'Genteng aspal Javabitumen buatan Tiongkok, dengan pilihan warna solid dan gradasi yang paling banyak di antara merek kami.' },
-  { merek: 'Maxxi', slug: 'maxxi', foto: fMaxxi, suasana: 'Rumah keluarga selepas hujan', asal: 'Tiongkok', hero2: { foto: h2Maxxi, ket: 'Maxxiroof pada rumah satu lantai' } },
-  { merek: 'CTI', slug: 'cti', foto: fCti, suasana: 'Rumah satu lantai, cahaya sore', asal: 'Indonesia', hero2: { foto: h2Cti, ket: 'CT3 pada kafe modern' } },
-  { merek: 'Victory', slug: 'victory', foto: fVictory, suasana: 'Penginapan di dataran tinggi', asal: 'USA', hero2: { foto: h2Victory, ket: 'Victory Standar pada rumah dua lantai' } },
+const ATAP: { merek: Merek; slug: string; foto: ImageMetadata; suasana: string; asal: string; deskripsi?: string; acuan?: string; hero2?: { foto: ImageMetadata; ket: string; judul: string; sub: string; posisi: 'atas' | 'bawah' | 'tengah' }; motif?: { nama: string; foto: ImageMetadata }[] }[] = [
+  { merek: 'Javabitumen', slug: 'javabitumen', foto: fJavabitumen, suasana: 'Rumah tinggal di perumahan, sore hari', asal: 'Tiongkok', hero2: { foto: h2Java, ket: 'Rumah tinggal beratap Javabitumen', judul: '20 warna.', sub: 'Pilihan paling banyak di antara merek kami.', posisi: 'atas' }, deskripsi: 'Genteng aspal Javabitumen buatan Tiongkok, dengan pilihan warna solid dan gradasi yang paling banyak di antara merek kami.' },
+  { merek: 'Maxxi', slug: 'maxxi', foto: fMaxxi, suasana: 'Rumah keluarga selepas hujan', asal: 'Tiongkok', hero2: { foto: h2Maxxi, ket: 'Maxxi pada rumah satu lantai', judul: 'Sampai 30 tahun.', sub: 'Garansi pabrik Promaxxi, 25 tahun untuk Maxxiroof.', posisi: 'bawah' } },
+  { merek: 'CTI', slug: 'cti', foto: fCti, suasana: 'Rumah satu lantai, cahaya sore', asal: 'Indonesia', hero2: { foto: h2Cti, ket: 'CT3 pada kafe', judul: 'Buatan Indonesia.', sub: '3-tab, tak beraturan, atau segi enam.', posisi: 'tengah' } },
+  { merek: 'Victory', slug: 'victory', foto: fVictory, suasana: 'Penginapan di dataran tinggi', asal: 'USA', hero2: { foto: h2Victory, ket: 'Victory Two Tone pada rumah dua lantai', judul: 'Dua nada.', sub: 'Two Tone memberi dimensi di tiap lidah genteng.', posisi: 'atas' } },
   { merek: 'Tegola', slug: 'tegola', foto: fTegola, suasana: 'Villa di perbukitan Puncak', asal: 'Italia', acuan: 'Premium Rectangular', motif: [
     { nama: 'Eco Roof Rectangular', foto: mEcoRect },
     { nama: 'Eco Roof Traditional', foto: mEcoTrad },
@@ -80,7 +82,8 @@ const plafon = (['Shunda', 'Javafon'] as const).map((nama) => ({
 const dua = (n: number) => String(n).padStart(2, '0');
 // Tiap merek dua halaman: halaman merek lalu halaman motif & warnanya (Rama: jangan dipisah dari produknya).
 const noMerek = (i: number) => 3 + i * 2;
-const noPlafon = 3 + halamanAtap.length * 2;
+const noPerumahan = 3 + halamanAtap.length * 2;
+const noPlafon = noPerumahan + 1;
 const noRangka = noPlafon + (TAMPIL_PLAFON ? 1 : 0);
 const rangka = Object.entries(harga.rangka.merek).map(([nama, r]) => ({ nama, ...r }));
 const hargaAks = (a: (typeof aksesoris)[number]) => (a.harga ? `${a.harga.catatan === 'mulai' ? 'mulai ' : ''}${rp(a.harga.nilai)}` : 'Tanya admin');
@@ -212,8 +215,9 @@ const satuanAks = (a: (typeof aksesoris)[number]) => (a.harga ? `/ ${a.harga.sat
         </div>
         <p class="catatan">Warna di layar dan kertas adalah perkiraan. Saat survey kami membawa sampel fisik supaya Anda bisa melihatnya di bawah cahaya rumah sendiri. Foto motif adalah ilustrasi bentuk setelah terpasang.</p>
         {a.hero2 && (
-          <figure class="hero-bawah">
-            <Image loading="eager" format="jpg" quality={78} src={a.hero2.foto} alt={`Ilustrasi ${a.hero2.ket.toLowerCase()}`} widths={[1400]} sizes="180mm" class="latar" />
+          <figure class:list={['hero2', `hero-${a.hero2.posisi}`]}>
+            <Image loading="eager" format="jpg" quality={80} src={a.hero2.foto} alt={`Ilustrasi ${a.hero2.ket.toLowerCase()}`} widths={[1600]} sizes="180mm" class="latar" />
+            <div class="hero-teks"><p class="hero-judul">{a.hero2.judul}</p><p class="hero-sub">{a.hero2.sub}</p></div>
             <figcaption>{a.hero2.ket}. Ilustrasi, bukan proyek Atapura.</figcaption>
           </figure>
         )}
@@ -221,6 +225,19 @@ const satuanAks = (a: (typeof aksesoris)[number]) => (a.harga ? `/ ${a.harga.sat
       <footer class="kaki"><span>Motif &amp; warna {a.merek}</span><span>{dua(noMerek(i) + 1)}</span></footer>
     </section>
   ))}
+
+  <!-- Perumahan & proyek: foto drone satu kawasan beratap sama -->
+  <section class="hal sampul perumahan">
+    <Image loading="eager" format="jpg" quality={80} src={fPerumahan} alt="Ilustrasi foto drone perumahan di perbukitan dengan deretan rumah beratap bitumen yang sama" widths={[1600]} sizes="210mm" class="latar" />
+    <div class="perumahan-redup"></div>
+    <div class="perumahan-teks">
+      <p class="label-terang">Perumahan · Cluster · Proyek</p>
+      <h2 class="perumahan-judul">Satu kawasan,<br />satu atap.</h2>
+      <p class="sampul-sub">Untuk developer, cluster, dan proyek, kami pasang per bagian dengan jadwal kerja tertulis. Harga untuk volume besar kami hitung bersama Anda.</p>
+    </div>
+    <p class="ilustrasi ilustrasi-terang">Ilustrasi suasana, bukan proyek Atapura.</p>
+    <footer class="kaki kaki-terang"><span>Perumahan &amp; proyek</span><span>{dua(noPerumahan)}</span></footer>
+  </section>
 
   <!-- Plafon (disembunyikan selama TAMPIL_PLAFON false) -->
   {TAMPIL_PLAFON && <section class="hal kertas">
@@ -392,6 +409,13 @@ const satuanAks = (a: (typeof aksesoris)[number]) => (a.harga ? `/ ${a.harga.sat
   .dua { display: grid; grid-template-columns: 1fr 1fr; gap: 0 10mm; align-items: start; }
   .dua-atas { margin-top: 2mm; }
 
+  /* Perumahan */
+  .perumahan-redup { position: absolute; inset: 0; background: linear-gradient(180deg, rgb(16 35 30 / 0.5) 0%, rgb(16 35 30 / 0.15) 30%, rgb(16 35 30 / 0) 45%); }
+  .perumahan-teks { position: absolute; top: 18mm; left: 16mm; right: 16mm; }
+  .perumahan-judul { margin-top: 4mm; font-family: var(--font-merek); font-weight: 500; font-size: 44pt; line-height: 0.98; letter-spacing: -0.045em; }
+  .kaki-terang { color: rgb(242 244 241 / 0.7); border-top-color: rgb(242 244 241 / 0.25); }
+  .perumahan .ilustrasi-terang { bottom: 15mm; right: 16mm; }
+
   /* Halaman merek */
   .foto-atas { position: relative; height: 150mm; background: var(--color-pinus); color: var(--color-embun); }
   .foto-atas-pendek { height: 150mm; }
@@ -425,8 +449,20 @@ const satuanAks = (a: (typeof aksesoris)[number]) => (a.harga ? `/ ${a.harga.sat
   .padat .motif-foto { aspect-ratio: 16 / 8.5; }
   /* Sisa ruang halaman motif & warna diisi foto suasana yang memanjang sampai garis kaki. */
   .isi-penuh { display: flex; flex-direction: column; height: calc(297mm - 22mm); }
-  .hero-bawah { position: relative; flex: 1 1 auto; min-height: 0; margin-top: 6mm; border-radius: 3mm; overflow: hidden; background: var(--color-pinus); }
-  .hero-bawah figcaption { position: absolute; left: 4mm; bottom: 3mm; font-size: 6.5pt; color: rgb(242 244 241 / 0.85); text-shadow: 0 0 2mm rgb(0 0 0 / 0.4); }
+  .hero2 { position: relative; flex: 1 1 auto; min-height: 0; margin-top: 6mm; border-radius: 3mm; overflow: hidden; background: var(--color-pinus); }
+  /* Teks besar ala Apple di area foto yang tidak menutupi atap; bayangan lembut menjaga keterbacaan. */
+  .hero2::before { content: ''; position: absolute; inset: 0; z-index: 1; }
+  .hero-atas::before { background: linear-gradient(105deg, rgb(16 35 30 / 0.62) 0%, rgb(16 35 30 / 0.25) 30%, rgb(16 35 30 / 0) 50%); }
+  .hero-teks { position: absolute; z-index: 2; left: 6mm; max-width: 46mm; color: var(--color-embun); text-shadow: 0 0.4mm 3mm rgb(0 0 0 / 0.35); }
+  .hero-atas .hero-teks { top: 5mm; }
+  .hero-tengah .hero-teks { top: 50%; transform: translateY(-50%); }
+  .hero-tengah::before { background: linear-gradient(90deg, rgb(16 35 30 / 0.6) 0%, rgb(16 35 30 / 0) 40%); }
+  .hero-bawah .hero-teks { bottom: 7mm; }
+  .hero-bawah::before { background: linear-gradient(0deg, rgb(16 35 30 / 0.6) 0%, rgb(16 35 30 / 0) 50%); }
+  .hero-judul { font-family: var(--font-merek); font-weight: 600; font-size: 24pt; line-height: 1; letter-spacing: -0.045em; }
+  .hero-sub { margin-top: 1.5mm; font-size: 8.5pt; line-height: 1.35; color: rgb(242 244 241 / 0.92); }
+  .hero-tengah .hero-judul { font-size: 18pt; }
+  .hero2 figcaption { z-index: 2; right: 4mm; left: auto; text-align: right; position: absolute; bottom: 3mm; font-size: 6.5pt; color: rgb(242 244 241 / 0.85); text-shadow: 0 0 2mm rgb(0 0 0 / 0.4); }
   .padat .kat :global(.bulat) { height: 18mm; }
   .padat .kat-grup { margin-top: 2.8mm; }
   .kat-grup { margin-top: 3.5mm; }
