@@ -1,6 +1,13 @@
 # Handover
 
-## Terbaru (19 November 2026)
+## Terbaru (20 November 2026)
+- **Pricelist v4** (DECISIONS 053) meniru referensi Rama, 21 halaman, `npm run pricelist`. Tunggu penilaian Rama atas PDF penuh.
+  Cek paginasi: `pw/hal.cjs` (scratchpad sesi) mencetak LUBER/SISA per halaman warna.
+- Harga sheet Vendor masuk (Victory 200/220 rb, multiplek 12 mm 179 rb, flashing U 40 rb). Legend 270 rb belum di situs.
+- **atapura.com** ditempel ke Vercel + jadi `site` default. **Rama beli domain 21 Nov** → isi DNS di registrar:
+  A `@` 216.198.79.1, CNAME `www` cname.vercel-dns.com; lalu cek `https://atapura.com` 200.
+
+## Sebelumnya (19 November 2026)
 - **Pricelist PDF** (DECISIONS 051): template `src/pages/internal/pricelist.astro`, cetak `npm run pricelist` → `docs/pricelist/pricelist-atapura.pdf` (tidak di-commit). Cara revisi: `docs/pricelist/README.md`.
 - **Plafon disembunyikan** lewat `TAMPIL_PLAFON` (bisnis.ts), Tegola Eco Roof & Top Shingles masuk (harga SEMENTARA), pricelist 16 halaman dengan halaman motif & warna per merek. DECISIONS 052.
 - Halaman **/produk/aksesoris** + kelompok Aksesoris di /produk, menu atas "Panduan" → **"Artikel"** (`/artikel`, `/blog` dialihkan ke `/panduan`). DECISIONS 050.
