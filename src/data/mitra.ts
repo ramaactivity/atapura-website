@@ -20,3 +20,6 @@ export const logoMitra: LogoMitra[] = [
   { merek: 'Hi-Steel', label: 'Hi-Steel', file: histeel, nama: 'logo-hi-steel.png' },
   { merek: 'Taso', label: 'Tatalogam Lestari (Taso)', file: tatalogam, nama: 'logo-tatalogam-taso.png' },
 ];
+
+/** Negara asal per merek genteng (Rama 19 Nov 2026) — dipakai pricelist & product knowledge, bukan kelas harga. */
+export const asalMerek: Record<string, string> = { Javabitumen: 'Tiongkok', Maxxi: 'Tiongkok', CTI: 'Indonesia', Victory: 'USA', Tegola: 'Italia' };

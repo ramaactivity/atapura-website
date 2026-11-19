@@ -234,3 +234,13 @@ Masukan Rama pada pricelist (DECISIONS 051), 19 Nov malam:
   (3) Halaman 2 **"Satu pintu, dari genteng sampai rangka"**: foto material lengkap (Magnific, tanpa logo) + daftar merek per
   kelompok material. Logo hanya file resmi (`assets/mitra`: Maxxi, CTI, Tegola, Hi-Steel, Tatalogam untuk Taso); merek tanpa
   file resmi (Javabitumen, Victory, K-Steel, Alphaproof, Bitumax) ditulis namanya, logo tidak dibuat ulang.
+
+## 054 · 20 November 2026 · Product knowledge untuk sales & konten
+Rama: "halaman cheatsheet buat para sales … bisa didownload pdfnya … product knowledge tentang atapura, produk dan jasanya,
+spesifikasi … buat konten atau masukin produk ke e-commerce tinggal copy paste … terpusat di satu sumber."
+`/internal/product-knowledge` (noindex, tautan dari /internal): profil Atapura, layanan & ketentuan (termasuk/belum termasuk, cara
+bayar, garansi, klaim), lalu per merek: harga genteng & terpasang, fakta, seri + spesifikasi, warna + kode, garansi, aksesori, dan
+**teks siap pakai** per seri (judul + deskripsi + spesifikasi + warna + penjual) dengan tombol Salin; aksesoris dengan harga.
+Semua dibaca dari src/data (satu sumber dengan website & pricelist); tanpa harga modal. Negara asal merek pindah ke
+`data/mitra.ts` (`asalMerek`). PDF A4: `npm run cheatsheet` → `public/unduh/product-knowledge-atapura.pdf` (tombol "Unduh PDF";
+"Cetak versi terbaru" mencetak halaman langsung). Buat ulang PDF setiap data produk/harga berubah.

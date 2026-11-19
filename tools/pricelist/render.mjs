@@ -1,4 +1,5 @@
-// Cetak /internal/pricelist ke PDF A4 (DECISIONS 051). Pakai: npm run pricelist  (= astro build + skrip ini)
+// Cetak halaman internal ke PDF A4 (DECISIONS 051). Pakai: npm run pricelist / npm run cheatsheet (= astro build + skrip ini).
+// Argumen: [berkas keluaran] [jalur halaman, bawaan /internal/pricelist].
 // Butuh Google Chrome terpasang (CHROME=... untuk path lain). Harga dibaca dari src/data saat build, jadi
 // setelah harga/katalog berubah cukup jalankan ulang. Server file kecil di bawah melayani dist/ (tanpa astro preview,
 // yang hanya boleh satu per mesin).
@@ -26,7 +27,7 @@ const server = createServer(async (req, res) => {
 });
 await new Promise((ok) => server.listen(0, '127.0.0.1', ok));
 try {
-  const url = `http://127.0.0.1:${server.address().port}/internal/pricelist`;
+  const url = `http://127.0.0.1:${server.address().port}${process.argv[3] ?? '/internal/pricelist'}`;
   // Async: Chrome harus jalan terpisah supaya server di proses ini tetap bisa menjawab permintaannya.
   await promisify(execFile)(chrome, ['--headless=new', '--disable-gpu', '--no-pdf-header-footer', '--virtual-time-budget=20000', `--print-to-pdf=${keluar}`, url]);
   console.log(`PDF: ${keluar}`);

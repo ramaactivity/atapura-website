@@ -1,0 +1,279 @@
+---
+// Product knowledge untuk sales & tim konten (Rama 20 Nov 2026): semua info Atapura, produk, jasa, dan spesifikasi dalam satu
+// halaman, siap salin untuk konten & e-commerce, dan bisa disimpan sebagai PDF A4. Semua isi DIBACA dari src/data (produk,
+// harga, aksesoris, bisnis, mitra) — jangan ketik data di sini, supaya selalu sama dengan website & pricelist.
+// Tidak memuat harga modal/HPP (rahasia bisnis hanya di Atapura Ops). PDF: `npm run cheatsheet`.
+import Internal from '../../layouts/Internal.astro';
+import { harga } from '../../data/harga';
+import { produk, LINI, namaLengkap, rentangProduk } from '../../data/produk';
+import { aksesoris } from '../../data/aksesoris';
+import { bisnis } from '../../data/bisnis';
+import { asalMerek } from '../../data/mitra';
+
+const rp = (n: number) => `Rp${n.toLocaleString('id-ID')}`;
+const rentang = (r: readonly [number, number] | null) => (r ? `Rp${(r[0] / 1000).toLocaleString('id-ID')}–${(r[1] / 1000).toLocaleString('id-ID')} ribu per m²` : '—');
+const tanggal = new Date(`${harga.berlakuSejak}T00:00:00+07:00`).toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Asia/Jakarta' });
+const wa = bisnis.whatsapp ? `0${bisnis.whatsapp.slice(2, 5)}-${bisnis.whatsapp.slice(5, 9)}-${bisnis.whatsapp.slice(9)}` : '';
+const alamat = `${bisnis.alamat.jalan}, ${bisnis.alamat.kecamatan}, ${bisnis.alamat.kota}, ${bisnis.alamat.provinsi} ${bisnis.alamat.kodePos}`;
+const garansiPasang = bisnis.garansiPemasanganTahun ? `${bisnis.garansiPemasanganTahun} tahun` : null;
+const bersih = (t: string) => t.replace(/\s*Spesifikasi teknis menunggu dokumen resmi\.?/g, '').replace(/\s*Syarat garansi pabrik menunggu dokumen resmi\.?/g, '').trim();
+
+// Teks e-commerce per seri: judul + deskripsi + spesifikasi + warna + harga + penjual. Satu blok = satu tombol Salin.
+const teksJual = (p: (typeof produk)[number], s: (typeof produk)[number]['seri'][number]) => {
+  const asal = asalMerek[p.nama];
+  const warna = p.warna.filter((g) => g.judul.includes(s.nama) || p.warna.length === 1 || g.judul === s.nama).flatMap((g) => g.daftar.map((w) => (w.kode ? `${w.nama} (${w.kode})` : w.nama)));
+  const judul = `${LINI[p.lini].kategori.split(' (')[0]} ${p.nama} ${s.nama}${asal ? ` · Buatan ${asal}` : ''}`;
+  return [
+    judul,
+    '',
+    bersih(s.ringkas),
+    bersih(p.ringkas),
+    '',
+    'Spesifikasi:',
+    ...s.spek.map((k) => `• ${k.label}: ${k.nilai}`),
+    ...(warna.length ? ['', `Pilihan warna: ${warna.join(', ')}.`] : []),
+    '',
+    garansiPasang ? `Dipasang tim Atapura dengan garansi pemasangan tertulis ${garansiPasang}.` : '',
+    `Atapura (${bisnis.namaLegal}). WhatsApp ${wa} · atapura.com`,
+  ]
+    .filter((x, i, a) => !(x === '' && a[i - 1] === ''))
+    .join('\n');
+};
+
+const atap = produk.filter((p) => p.lini === 'atap');
+const lain = produk.filter((p) => p.lini !== 'atap');
+const tentang = [
+  `${bisnis.nama} (${bisnis.namaLegal}, ${bisnis.statusLegal}) adalah aplikator dan pemasok atap bitumen, rangka baja ringan, dan material pendukungnya.`,
+  `Tagline: ${bisnis.tagline}`,
+  `Kontak: WhatsApp ${wa} · ${bisnis.email} · atapura.com`,
+  `Alamat: ${alamat}`,
+].join('\n');
+const menu = [['tentang', 'Atapura'], ['layanan', 'Layanan & ketentuan'], ...atap.map((p) => [p.slug, p.nama]), ...lain.map((p) => [p.slug, p.nama]), ['aksesoris', 'Aksesoris']];
+---
+
+<Internal title="Product knowledge Atapura" label="Product knowledge">
+  <div class="pk">
+    <header class="pk-kepala">
+      <p class="pk-atas">Untuk sales & tim konten · data per {tanggal}</p>
+      <h1>Product knowledge <span class="miring">Atapura.</span></h1>
+      <p class="i-lead">Semua yang perlu diketahui tentang Atapura, produk, dan jasanya dalam satu tempat. Ketuk <b>Salin</b> di tiap blok untuk menempel ke konten, chat, atau marketplace.</p>
+      <div class="pk-aksi">
+        <a class="pill pill-tunas" href="/unduh/product-knowledge-atapura.pdf" download>Unduh PDF</a>
+        <button type="button" class="pill pill-garis" data-cetak>Cetak versi terbaru</button>
+      </div>
+      <nav class="pk-menu" aria-label="Isi halaman">{menu.map(([id, label]) => <a href={`#${id}`}>{label}</a>)}</nav>
+    </header>
+
+    <section id="tentang" class="pk-sek">
+      <h2>Tentang Atapura</h2>
+      <div class="salin-blok salin-profil">
+        <div class="salin-kepala"><span>Profil singkat</span><button type="button" class="salin" data-salin>Salin</button></div>
+        <pre>{tentang}</pre>
+      </div>
+      <dl class="pk-fakta">
+        <div><dt>Nama legal</dt><dd>{bisnis.namaLegal} ({bisnis.statusLegal})</dd></div>
+        <div><dt>Bidang</dt><dd>Aplikator & pemasok atap bitumen, rangka baja ringan, aksesoris atap</dd></div>
+        <div><dt>Merek genteng</dt><dd>{atap.map((p) => `${p.nama}${asalMerek[p.nama] ? ` (${asalMerek[p.nama]})` : ''}`).join(', ')}</dd></div>
+        <div><dt>WhatsApp</dt><dd>{wa}</dd></div>
+        <div><dt>Email</dt><dd>{bisnis.email}</dd></div>
+        <div><dt>Alamat</dt><dd>{alamat}</dd></div>
+      </dl>
+    </section>
+
+    <section id="layanan" class="pk-sek">
+      <h2>Layanan & ketentuan</h2>
+      <div class="pk-dua">
+        <div class="kartu">
+          <h3>Sudah termasuk di harga terpasang</h3>
+          <ul>{harga.termasuk.map((t) => <li>{t}</li>)}</ul>
+          <h3>Belum termasuk</h3>
+          <ul>{harga.tidakTermasuk.map((t) => <li>{t}</li>)}</ul>
+        </div>
+        <div class="kartu">
+          <h3>Cara bayar</h3>
+          <ul>
+            <li><b>Material:</b> {bisnis.pembayaran.material}</li>
+            {bisnis.pembayaran.jasa.map((j) => <li><b>{j.tahap} {j.persen}%:</b> {j.saat}</li>)}
+          </ul>
+          {garansiPasang && <h3>Garansi pemasangan {garansiPasang}</h3>}
+          <ul>{bisnis.garansi.cakupan.map((t) => <li>{t}</li>)}</ul>
+          <h3>Tidak ditanggung garansi</h3>
+          <ul>{bisnis.garansi.pengecualian.map((t) => <li>{t}</li>)}</ul>
+        </div>
+      </div>
+      <div class="kartu">
+        <h3>Cara klaim garansi</h3>
+        <ol>{bisnis.garansi.klaim.map((k) => <li><b>{k.nama}.</b> {k.isi}</li>)}</ol>
+      </div>
+    </section>
+
+    {[...atap, ...lain].map((p) => {
+      const r = rentangProduk(p);
+      const m = p.harga ? harga.merek[p.harga] : null;
+      return (
+        <section id={p.slug} class="pk-sek">
+          <div class="pk-judul-produk">
+            <h2>{namaLengkap(p)}</h2>
+            {asalMerek[p.nama] && <span class="chip">Buatan {asalMerek[p.nama]}</span>}
+          </div>
+          <p class="pk-ringkas">{bersih(p.ringkas)}</p>
+          <dl class="pk-fakta">
+            {m && <div><dt>Genteng saja</dt><dd>{rp(m.genteng)} per m² (harga acuan merek)</dd></div>}
+            {r && <div><dt>Terpasang</dt><dd>{rentang(r)}</dd></div>}
+            {m && <div><dt>Isi per bundel</dt><dd>{m.m2PerBundel.toLocaleString('id-ID')} m²</dd></div>}
+            {p.fakta.filter((f) => !/^Terpasang/.test(f.label)).map((f) => <div><dt>{f.label}</dt><dd>{f.nilai}</dd></div>)}
+          </dl>
+          {p.tentang.length > 0 && <div class="pk-tentang">{p.tentang.map((t) => <p>{bersih(t)}</p>)}</div>}
+
+          <h3 class="pk-h3">{LINI[p.lini].pilihan === 'merek' ? 'Merek' : 'Seri'}</h3>
+          <div class="pk-seri">
+            {p.seri.map((s) => (
+              <article class="kartu">
+                <h4>{s.nama}</h4>
+                <p class="abu">{bersih(s.ringkas)}</p>
+                <table>
+                  <tbody>{s.spek.map((k) => <tr><th>{k.label}</th><td>{k.nilai}</td></tr>)}</tbody>
+                </table>
+                {p.lini === 'atap' && (
+                  <div class="salin-blok">
+                    <div class="salin-kepala"><span>Teks siap pakai (marketplace, caption, chat)</span><button type="button" class="salin" data-salin>Salin</button></div>
+                    <pre>{teksJual(p, s)}</pre>
+                  </div>
+                )}
+              </article>
+            ))}
+          </div>
+
+          {p.warna.length > 0 && (
+            <>
+              <h3 class="pk-h3">{LINI[p.lini].corak === 'motif' ? 'Motif' : 'Warna'}</h3>
+              <div class="pk-warna">
+                {p.warna.map((g) => (
+                  <div class="kartu">
+                    <h4>{g.judul}</h4>
+                    {g.catatan && <p class="abu kecil">{g.catatan}</p>}
+                    <ul class="warna-daftar">
+                      {g.daftar.map((w) => (
+                        <li>{w.hex && <i style={`background:${w.hex}`} />}<span>{w.nama}{w.kode && <small> {w.kode}</small>}</span></li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+
+          <h3 class="pk-h3">Garansi</h3>
+          <p>{bersih(p.garansi)}</p>
+          {p.aksesori.length > 0 && (
+            <>
+              <h3 class="pk-h3">Aksesori yang dipakai</h3>
+              <ul class="pk-aks">{p.aksesori.map((a) => <li><b>{a.nama}.</b> {a.isi}</li>)}</ul>
+            </>
+          )}
+        </section>
+      );
+    })}
+
+    <section id="aksesoris" class="pk-sek">
+      <h2>Aksesoris & material pendukung</h2>
+      <p class="pk-ringkas">Sudah termasuk di harga terpasang. Harga di bawah untuk pembelian material saja.</p>
+      <div class="pk-seri">
+        {aksesoris.map((a) => (
+          <article class="kartu">
+            <h4>{a.nama}</h4>
+            <p class="abu">{a.fungsi}</p>
+            <table>
+              <tbody>
+                {a.spek.map((k) => <tr><th>{k.label}</th><td>{k.nilai}</td></tr>)}
+                <tr><th>Harga</th><td>{a.harga ? `${a.harga.catatan === 'mulai' ? 'mulai ' : ''}${rp(a.harga.nilai)} per ${a.harga.satuan}` : 'Tanya admin'}</td></tr>
+              </tbody>
+            </table>
+          </article>
+        ))}
+      </div>
+    </section>
+  </div>
+</Internal>
+
+<script>
+  // Salin isi <pre> di blok yang sama; status ditulis di tombol (tanpa alert).
+  document.querySelectorAll<HTMLButtonElement>('[data-salin]').forEach((b) => {
+    b.addEventListener('click', async () => {
+      const teks = b.closest('.salin-blok')?.querySelector('pre')?.textContent ?? '';
+      try {
+        await navigator.clipboard.writeText(teks);
+        b.textContent = 'Tersalin';
+      } catch {
+        b.textContent = 'Gagal, salin manual';
+      }
+      setTimeout(() => (b.textContent = 'Salin'), 1800);
+    });
+  });
+  document.querySelector('[data-cetak]')?.addEventListener('click', () => window.print());
+</script>
+
+<style>
+  @page { size: A4; margin: 14mm 14mm 16mm; }
+  .pk { display: grid; gap: clamp(2.5rem, 5vw, 4rem); }
+  .pk-atas { font-size: 0.85rem; color: var(--color-lumut); margin-bottom: 0.75rem; }
+  .pk-aksi { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+  .pk-aksi .pill { min-height: 44px; }
+  .pk-menu { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+  .pk-menu a { font-size: 0.85rem; padding: 0.4rem 0.9rem; border-radius: 999px; background: var(--color-embun); color: var(--color-pinus); text-decoration: none; border: 1px solid var(--color-garis); }
+  .pk-menu a:hover { border-color: var(--color-pinus); }
+  .pk-sek { scroll-margin-top: 1rem; display: grid; gap: 1rem; padding-top: clamp(2rem, 4vw, 3rem); border-top: 1px solid var(--color-garis); }
+  .pk-sek h2 { font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.4rem); letter-spacing: -0.035em; font-weight: 500; line-height: 1.1; }
+  .pk-judul-produk { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }
+  .chip { font-size: 0.8rem; padding: 0.25rem 0.75rem; border-radius: 999px; background: var(--color-pinus); color: var(--color-embun); }
+  .pk-ringkas { font-size: 1.05rem; line-height: 1.55; max-width: 62ch; }
+  .pk-tentang { display: grid; gap: 0.5rem; color: var(--color-lumut); max-width: 70ch; line-height: 1.55; }
+  .pk-h3 { font-size: 1.1rem; font-weight: 500; margin-top: 0.75rem; letter-spacing: -0.01em; }
+  .pk-fakta { display: grid; gap: 0; grid-template-columns: minmax(0, 1fr); border-radius: 1rem; background: var(--color-embun); padding: 0.5rem 1.25rem; }
+  @media (min-width: 48rem) { .pk-fakta { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 2rem; } }
+  .pk-fakta > div { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 1rem; padding: 0.65rem 0; border-bottom: 1px solid var(--color-garis); }
+  .pk-fakta dt { color: var(--color-lumut); font-size: 0.9rem; }
+  .pk-fakta dd { font-size: 0.95rem; }
+  .pk-dua { display: grid; gap: 1rem; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 48rem) { .pk-dua { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .kartu { display: grid; gap: 0.6rem; align-content: start; padding: 1.25rem; border-radius: 1rem; background: var(--color-putih); border: 1px solid var(--color-garis); break-inside: avoid; }
+  .kartu h3 { font-size: 1rem; font-weight: 500; margin-top: 0.25rem; }
+  .kartu h4 { font-size: 1.1rem; font-weight: 500; letter-spacing: -0.01em; }
+  .kartu ul, .kartu ol, .pk-aks { display: grid; gap: 0.35rem; padding-left: 1.1rem; line-height: 1.5; font-size: 0.95rem; }
+  .abu { color: var(--color-lumut); line-height: 1.5; }
+  .kecil { font-size: 0.85rem; }
+  .pk-seri, .pk-warna { display: grid; gap: 1rem; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 48rem) { .pk-seri, .pk-warna { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .kartu table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  .kartu th { text-align: left; font-weight: 400; color: var(--color-lumut); padding: 0.4rem 0.75rem 0.4rem 0; width: 40%; vertical-align: top; border-bottom: 1px solid var(--color-garis); }
+  .kartu td { padding: 0.4rem 0; vertical-align: top; border-bottom: 1px solid var(--color-garis); }
+  .warna-daftar { list-style: none; padding: 0 !important; display: grid !important; grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); gap: 0.4rem 0.75rem !important; }
+  .warna-daftar li { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; }
+  .warna-daftar i { flex: none; width: 1rem; height: 1rem; border-radius: 50%; border: 1px solid rgb(0 0 0 / 0.12); }
+  .warna-daftar small { color: var(--color-lumut); }
+  .salin-blok { border-radius: 0.85rem; background: var(--color-embun); border: 1px solid var(--color-garis); overflow: hidden; }
+  .salin-kepala { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.5rem 0.5rem 0.5rem 1rem; border-bottom: 1px solid var(--color-garis); font-size: 0.85rem; color: var(--color-lumut); }
+  .salin { min-height: 36px; padding: 0 1rem; border-radius: 999px; background: var(--color-pinus); color: var(--color-embun); font-size: 0.85rem; font-weight: 500; border: 0; cursor: pointer; white-space: nowrap; }
+  .salin-blok pre { margin: 0; padding: 0.9rem 1rem; white-space: pre-wrap; word-break: break-word; font-family: var(--font-sans); font-size: 0.88rem; line-height: 1.55; color: var(--color-tinta); }
+  @media print {
+    :global(.i-kepala), .pk-aksi, .pk-menu, .salin, .salin-blok:not(.salin-profil) { display: none !important; }
+    :global(.i) { padding-block: 0 !important; min-height: 0 !important; }
+    :global(.i .wrap) { max-width: none !important; padding-inline: 0 !important; width: 100% !important; }
+    :global(html), :global(body) { background: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .pk { gap: 0; display: block; font-size: 10pt; }
+    .pk-kepala h1 { font-size: 26pt; }
+    .pk-sek { break-before: page; border-top: 0; padding-top: 0; display: block; }
+    .pk-sek > * + * { margin-top: 3.5mm; }
+    #tentang { break-before: auto; margin-top: 8mm; }
+    .pk-sek h2 { font-size: 20pt; }
+    /* Kartu disusun berurutan (bukan grid) supaya kartu yang lebih tinggi dari sisa halaman tidak saling menimpa. */
+    .pk-seri, .pk-warna, .pk-dua { display: block; }
+    .pk-seri > * + *, .pk-warna > * + *, .pk-dua > * + * { margin-top: 3mm; }
+    .kartu { break-inside: auto; padding: 4mm 5mm; border-radius: 3mm; }
+    .kartu h4, .kartu h3 { break-after: avoid; }
+    .kartu tr { break-inside: avoid; }
+    .warna-daftar { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+    .pk-fakta { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 8mm; padding: 1mm 5mm; border-radius: 3mm; }
+    .pk-fakta > div { padding: 1.6mm 0; grid-template-columns: 30mm minmax(0, 1fr); }
+  }
+</style>
