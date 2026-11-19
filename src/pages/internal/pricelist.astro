@@ -1,8 +1,11 @@
 ---
-// Pricelist A4 untuk pelanggan (DECISIONS 051). Halaman ini sumber PDF: `node tools/pricelist/render.mjs`.
+// Pricelist A4 untuk pelanggan (DECISIONS 051). Halaman ini sumber PDF: `npm run pricelist`.
 // Semua angka dibaca dari harga.ts / produk.ts / aksesoris.ts / bisnis.ts — jangan ketik harga di sini.
-// Foto: ilustrasi Magnific (pricelist-*.jpg), selalu berlabel ilustrasi, bukan proyek Atapura.
-import { Image } from 'astro:assets';
+// Desain v4 (DECISIONS 053): meniru referensi Rama (docs/desain/referensi-dokumen di Atapura Ops): bentuk bersudut besar
+// bertakik, foto di dalam bentuk, judul Public Sans 500 + satu frasa diredupkan, Inter untuk teks kecil.
+// Narasi umum: tanpa jumlah merek/wilayah/klaim/disclaimer yang membatasi (Rama 20 Nov 2026).
+// Jebakan PDF: tanpa box-shadow/text-shadow/filter/mask; foto dalam bentuk memakai <clipPath> SVG.
+import { getImage } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import Bulat from '../../components/BulatWarna.astro';
 import { harga, type Merek } from '../../data/harga';
@@ -20,7 +23,7 @@ import fShunda from '../../../assets/gambar/magnific/pricelist-plafon-shunda.jpg
 import fJavafon from '../../../assets/gambar/magnific/pricelist-plafon-javafon.jpg';
 import fRangka from '../../../assets/gambar/magnific/pricelist-rangka.jpg';
 import fPerumahan from '../../../assets/gambar/magnific/pricelist-perumahan.jpg';
-// Foto suasana kedua dibuat sesuai rasio ruang kosong halaman motif & warna, supaya atap tidak terpotong (Rama).
+// Foto suasana kedua: dipakai pada rasio aslinya (atap tidak boleh terpotong, Rama) bila sisa halaman warna cukup.
 import h2Java from '../../../assets/gambar/magnific/pricelist-hero2-javabitumen.jpg';
 import h2Maxxi from '../../../assets/gambar/magnific/pricelist-hero2-maxxi.jpg';
 import h2Cti from '../../../assets/gambar/magnific/pricelist-hero2-cti.jpg';
@@ -31,329 +34,378 @@ import mEcoHex from '../../../assets/gambar/seri/tegola-eco-roof-hexagonal.jpg';
 import mTop from '../../../assets/gambar/seri/tegola-top-shingles-rectangular.jpg';
 
 const rp = (n: number) => `Rp${n.toLocaleString('id-ID')}`;
-const rentang = ([a, b]: readonly [number, number]) => (a === b ? rp(a) : `${rp(a)}–${b.toLocaleString('id-ID')}`);
-const m2 = (n: number) => `${n.toLocaleString('id-ID', { minimumFractionDigits: 1, maximumFractionDigits: 2 })} m²`;
+const ribu = (n: number) => (n / 1000).toLocaleString('id-ID');
 const juta = (n: number) => (n / 1_000_000).toLocaleString('id-ID', { maximumFractionDigits: 1 });
+const m2 = (n: number) => `${n.toLocaleString('id-ID', { maximumFractionDigits: 2 })} m²`;
 const tanggal = new Date(`${harga.berlakuSejak}T00:00:00+07:00`).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Asia/Jakarta' });
+const tahun = harga.berlakuSejak.slice(0, 4);
 const waTampil = bisnis.whatsapp ? `+${bisnis.whatsapp.slice(0, 2)} ${bisnis.whatsapp.slice(2, 5)}-${bisnis.whatsapp.slice(5, 9)}-${bisnis.whatsapp.slice(9)}` : '';
+const situs = 'atapura.com';
+const src = async (f: ImageMetadata, width = 1600, quality = 80) => (await getImage({ src: f, format: 'jpg', width: Math.min(width, f.width), quality })).src;
 
-// Urut dari harga genteng terendah; foto & kalimat pembuka per merek.
-// Pricelist menyebut negara asal, bukan kelas harga (Rama, 19 Nov 2026). `deskripsi` mengganti ringkas produk.ts
-// bila kalimatnya memuat narasi kelas. `acuan` = seri yang dipakai untuk harga terpasang merek itu.
-// `motif` = close-up motif tambahan yang tidak punya baris seri sendiri (mis. tiga potongan Eco Roof).
-const ATAP: { merek: Merek; slug: string; foto: ImageMetadata; suasana: string; asal: string; deskripsi?: string; acuan?: string; hero2?: { foto: ImageMetadata; ket: string; judul: string; sub: string; posisi: 'atas' | 'bawah' | 'tengah' }; motif?: { nama: string; foto: ImageMetadata }[] }[] = [
-  { merek: 'Javabitumen', slug: 'javabitumen', foto: fJavabitumen, suasana: 'Rumah tinggal di perumahan, sore hari', asal: 'Tiongkok', hero2: { foto: h2Java, ket: 'Rumah tinggal beratap Javabitumen', judul: '20 warna.', sub: 'Pilihan paling banyak di antara merek kami.', posisi: 'atas' }, deskripsi: 'Genteng aspal Javabitumen buatan Tiongkok, dengan pilihan warna solid dan gradasi yang paling banyak di antara merek kami.' },
-  { merek: 'Maxxi', slug: 'maxxi', foto: fMaxxi, suasana: 'Rumah keluarga selepas hujan', asal: 'Tiongkok', hero2: { foto: h2Maxxi, ket: 'Maxxi pada rumah satu lantai', judul: 'Sampai 30 tahun.', sub: 'Garansi pabrik Promaxxi, 25 tahun untuk Maxxiroof.', posisi: 'bawah' } },
-  { merek: 'CTI', slug: 'cti', foto: fCti, suasana: 'Rumah satu lantai, cahaya sore', asal: 'Indonesia', hero2: { foto: h2Cti, ket: 'CT3 pada kafe', judul: 'Buatan Indonesia.', sub: '3-tab, tak beraturan, atau segi enam.', posisi: 'tengah' } },
-  { merek: 'Victory', slug: 'victory', foto: fVictory, suasana: 'Penginapan di dataran tinggi', asal: 'USA', hero2: { foto: h2Victory, ket: 'Victory Two Tone pada rumah dua lantai', judul: 'Dua nada.', sub: 'Two Tone memberi dimensi di tiap lidah genteng.', posisi: 'atas' } },
-  { merek: 'Tegola', slug: 'tegola', foto: fTegola, suasana: 'Villa di perbukitan Puncak', asal: 'Italia', acuan: 'Premium Rectangular', motif: [
+// Urut dari harga genteng terendah. Negara asal, bukan kelas harga (Rama 19 Nov). `deskripsi` ditulis di sini supaya
+// tanpa klaim/disclaimer. `acuan` = seri yang dipakai untuk harga terpasang. `motif` = close-up tambahan tanpa baris seri.
+const ATAP: { merek: Merek; slug: string; foto: ImageMetadata; asal: string; deskripsi: string; acuan?: string; hero2?: { foto: ImageMetadata; judul: string; sub: string }; motif?: { nama: string; foto: ImageMetadata }[] }[] = [
+  { merek: 'Javabitumen', slug: 'javabitumen', foto: fJavabitumen, asal: 'Tiongkok', deskripsi: 'Genteng aspal dengan pilihan warna solid dan gradasi, untuk rumah tinggal dan renovasi.', hero2: { foto: h2Java, judul: 'Solid dan gradasi.', sub: 'Pilih warna yang menyatu dengan rumah Anda.' } },
+  { merek: 'Maxxi', slug: 'maxxi', foto: fMaxxi, asal: 'Tiongkok', deskripsi: 'Maxxiroof 3-tab satu lapis untuk yang ingin hemat, Promaxxi laminasi dua lapis yang lebih tebal.', hero2: { foto: h2Maxxi, judul: 'Tebal, berbayang.', sub: 'Promaxxi laminasi dua lapis.' } },
+  { merek: 'CTI', slug: 'cti', foto: fCti, asal: 'Indonesia', deskripsi: 'Genteng aspal buatan dalam negeri dengan potongan 3-tab, tidak beraturan, dan segi enam.', hero2: { foto: h2Cti, judul: 'Buatan Indonesia.', sub: '3-tab, tidak beraturan, atau segi enam.' } },
+  { merek: 'Victory', slug: 'victory', foto: fVictory, asal: 'USA', deskripsi: 'Seri Standar berwarna rata dan Two Tone yang memadukan dua nada warna di tiap lidah genteng.', hero2: { foto: h2Victory, judul: 'Dua nada.', sub: 'Two Tone memberi dimensi di tiap lidah genteng.' } },
+  { merek: 'Tegola', slug: 'tegola', foto: fTegola, asal: 'Italia', acuan: 'Premium Rectangular', deskripsi: 'Genteng aspal Tegola Canadese: Eco Roof dan Top Shingles, Premium satu lapis, dan Master dua lapis.', motif: [
     { nama: 'Eco Roof Rectangular', foto: mEcoRect },
     { nama: 'Eco Roof Traditional', foto: mEcoTrad },
     { nama: 'Eco Roof Hexagonal', foto: mEcoHex },
     { nama: 'Top Shingles Rectangular', foto: mTop },
   ] },
 ];
-/** "±Rp315–350 ribu per m²" → teks rupiah lengkap + angka terendah. */
+/** "±Rp315–350 ribu per m²" → teks rupiah + angka terendah. */
 const hargaSeri = (t?: string) => {
   if (!t) return null;
   const n = [...t.matchAll(/(\d+) ribu|(\d+)–/g)].map((m) => Number(m[1] ?? m[2]) * 1000);
-  return { teks: t.replace(/(\d+)–(\d+) ribu per m²/, '$1.000–$2.000 / m²').replace(/(\d+) ribu per m²/, '$1.000 / m²'), min: Math.min(...n) };
+  return { teks: t.replace(/^±/, '').replace(/(\d+)–(\d+) ribu per m²/, '$1–$2 rb / m²').replace(/(\d+) ribu per m²/, '$1 rb / m²'), min: Math.min(...n) };
 };
-const halamanAtap = ATAP.map((a) => {
-  const p = produk.find((x) => x.slug === a.slug)!;
-  const m = harga.merek[a.merek];
-  // Semua warna per kelompok seri, lengkap (contoh foto bila ada, kalau tidak bulatan warna perkiraan layar).
-  const warna = p.warna.map((g) => ({ judul: g.judul, catatan: g.catatan, daftar: g.daftar.map((w) => ({ ...w, foto: fotoWarna(g.tekstur, w.nama) })) }));
-  const totalWarna = warna.reduce((n, g) => n + g.daftar.length, 0);
-  const seri = p.seri.map((s) => ({ nama: s.nama, ringkas: s.ringkas, harga: hargaSeri(s.spek.find((k) => k.label === 'Genteng saja')?.nilai), motif: s.spek.find((k) => k.label === 'Motif')?.nilai }));
-  const mulai = Math.min(m.genteng, ...seri.map((x) => x.harga?.min ?? Infinity));
-  // Motif: close-up tiap seri yang punya foto, lalu motif tambahan dari ATAP.
-  const motif = [...(a.motif ?? []), ...p.seri.filter((x) => x.foto && !(a.motif ?? []).some((m) => m.foto.src === x.foto!.src)).map((x) => ({ nama: x.nama, foto: x.foto! }))];
-  return { ...a, p, m, warna, totalWarna, seri, mulai, motif };
-});
-const plafon = (['Shunda', 'Javafon'] as const).map((nama) => ({
-  nama,
-  p: produk.find((x) => x.slug === nama.toLowerCase())!,
-  h: harga.plafon.merek[nama],
-  foto: nama === 'Shunda' ? fShunda : fJavafon,
-}));
-// Nomor halaman: plafon ikut sakelar TAMPIL_PLAFON (DECISIONS 052), jadi nomor sesudahnya bergeser otomatis.
-const dua = (n: number) => String(n).padStart(2, '0');
-// Tiap merek dua halaman: halaman merek lalu halaman motif & warnanya (Rama: jangan dipisah dari produknya).
-const noMerek = (i: number) => 3 + i * 2;
-const noPerumahan = 3 + halamanAtap.length * 2;
-const noPlafon = noPerumahan + 1;
-const noRangka = noPlafon + (TAMPIL_PLAFON ? 1 : 0);
+/** Garansi pabrik pendek untuk baris ikon; null bila belum ada angka (tidak ditulis sama sekali). */
+const garansiPendek = (t: string) => {
+  const m = t.match(/(\d+)(?: dan (\d+))? tahun/);
+  if (!m) return null;
+  return `${/hingga/.test(t) ? 'hingga ' : ''}${m[2] ? `${m[1]}–${m[2]}` : m[1]} tahun`;
+};
+const halamanAtap = await Promise.all(
+  ATAP.map(async (a) => {
+    const p = produk.find((x) => x.slug === a.slug)!;
+    const m = harga.merek[a.merek];
+    // Catatan warna yang berupa disclaimer (dipastikan/dikonfirmasi ke pemasok) tidak dicetak (Rama 20 Nov).
+    const warna = p.warna.map((g) => ({ judul: g.judul, catatan: g.catatan && !/pastikan|dikonfirmasi|perkiraan/i.test(g.catatan) ? g.catatan : undefined, daftar: g.daftar.map((w) => ({ ...w, foto: fotoWarna(g.tekstur, w.nama) })) }));
+    const semuaWarna = warna.flatMap((g) => g.daftar);
+    const seri = p.seri.map((s) => ({ nama: s.nama, harga: hargaSeri(s.spek.find((k) => k.label === 'Genteng saja')?.nilai) }));
+    const mulai = Math.min(m.genteng, ...seri.map((x) => x.harga?.min ?? Infinity));
+    const motif = [...(a.motif ?? []), ...p.seri.filter((x) => x.foto && !(a.motif ?? []).some((y) => y.foto.src === x.foto!.src)).map((x) => ({ nama: x.nama, foto: x.foto! }))];
+    const tekstur = motif.at(-1)?.foto ?? a.foto;
+    return {
+      ...a, p, m, warna, seri, mulai, motif,
+      totalWarna: semuaWarna.length,
+      titik: semuaWarna.filter((w) => w.hex).slice(0, 5).map((w) => w.hex!),
+      pabrik: garansiPendek(m.garansiPabrik),
+      fotoSrc: await src(a.foto, 1400),
+      teksturSrc: await src(tekstur, 900, 82),
+      hero2Src: a.hero2 ? await src(a.hero2.foto, 1800) : null,
+    };
+  }),
+);
+// Kartu sorotan di katalog = merek dengan harga terpasang tertinggi; sisanya baris daftar.
+const unggul = halamanAtap.reduce((x, y) => (y.m.terpasang[0] > x.m.terpasang[0] ? y : x));
+const barisKatalog = halamanAtap.filter((a) => a !== unggul); // ponytail: muat ±4 baris; tambah merek → perkecil baris.
+const seriUnggul = [...new Set(unggul.p.seri.map((s) => s.nama.replace(/ (Rectangular|Traditional|Hexagonal|Beaver)$/, '')))].join(', ');
 const rangka = Object.entries(harga.rangka.merek).map(([nama, r]) => ({ nama, ...r }));
+const rangkaMulai = Math.min(...rangka.map((r) => r.harga));
+const plafon = (['Shunda', 'Javafon'] as const).map((nama) => ({ nama, h: harga.plafon.merek[nama], foto: nama === 'Shunda' ? fShunda : fJavafon }));
+const sampulSrc = await src(fSampul, 1700);
+const perumahanSrc = await src(fPerumahan, 1700);
+const rangkaSrc = await src(fRangka, 1600);
+
+// ── Motif & warna: dipaginasi dengan perkiraan tinggi (mm) yang sama dengan CSS di bawah; tinggi area isi 232 mm.
+// Diukur di Chrome (20 Nov): baris warna 37,1 mm (dengan kode), motif 54,4 mm, judul 7,8 mm, catatan satu baris 7,2 mm.
+const TINGGI = 232, CELAH = 7, MOTIF_KOLOM = 3, WARNA_KOLOM = 5, MOTIF_BARIS = 55, WARNA_BARIS = 38, JUDUL = 8;
+const tinggiCatatan = (c?: string) => (c ? (c.length > 110 ? 13 : 8) : 0);
+type Blok = { jenis: 'motif'; judul: string; catatan?: undefined; lanjut: boolean; isi: { nama: string; foto: ImageMetadata; harga?: string }[] } | { jenis: 'warna'; judul: string; catatan?: string; lanjut: boolean; isi: { nama: string; kode?: string; hex?: string; foto?: ImageMetadata }[] };
+const halamanDetail = (a: (typeof halamanAtap)[number]) => {
+  const hargaMotif = new Map(a.seri.map((s) => [s.nama, s.harga?.teks]));
+  // Motif banyak (Tegola) → 4 kolom supaya tidak memakan dua halaman.
+  const motifKolom = a.motif.length > 6 ? 4 : MOTIF_KOLOM;
+  const motifBaris = motifKolom === 4 ? 43 : MOTIF_BARIS;
+  const potong: (Blok & { total: number; kolom: number })[] = [];
+  for (let i = 0; i < a.motif.length; i += motifKolom) potong.push({ jenis: 'motif', judul: 'Motif', lanjut: i > 0, total: a.motif.length, kolom: motifKolom, isi: a.motif.slice(i, i + motifKolom).map((x) => ({ ...x, harga: hargaMotif.get(x.nama) })) });
+  for (const g of a.warna) for (let i = 0; i < g.daftar.length; i += WARNA_KOLOM) potong.push({ jenis: 'warna', judul: g.judul, catatan: g.catatan, lanjut: i > 0, total: g.daftar.length, kolom: WARNA_KOLOM, isi: g.daftar.slice(i, i + WARNA_KOLOM) });
+  const hal: { blok: Blok[]; pakai: number }[] = [];
+  for (const b of potong) {
+    const baris = b.jenis === 'motif' ? motifBaris : WARNA_BARIS;
+    const kepala = JUDUL + (b.lanjut ? 0 : tinggiCatatan(b.catatan));
+    const akhir = hal.at(-1);
+    const sebelum = akhir?.blok.at(-1);
+    const sambung = !!akhir && !!sebelum && sebelum.jenis === b.jenis && sebelum.judul === b.judul;
+    const tambah = sambung ? baris + 4 : CELAH + kepala + baris;
+    // Jangan tinggalkan 1–2 ubin sendirian di halaman berikutnya: kelompok seperti itu pindah utuh.
+    let yatim = false;
+    if (akhir && !b.lanjut) {
+      const muat = Math.floor((TINGGI - akhir.pakai - CELAH - kepala + 4) / (baris + 4));
+      const sisa = b.total - muat * b.kolom;
+      yatim = muat >= 1 && sisa > 0 && sisa <= 2;
+    }
+    if (akhir && !yatim && akhir.pakai + tambah <= TINGGI) {
+      if (sambung) (sebelum!.isi as unknown[]).push(...b.isi);
+      else akhir.blok.push({ ...b });
+      akhir.pakai += tambah;
+    } else {
+      hal.push({ blok: [{ ...b }], pakai: kepala + baris });
+    }
+  }
+  // Foto suasana kedua di sisa halaman terakhir, pada rasio asli (lebar 182 mm).
+  const akhir = hal.at(-1)!;
+  const tinggiHero = a.hero2 ? (182 * a.hero2.foto.height) / a.hero2.foto.width : 0;
+  const hero = a.hero2 && akhir.pakai + CELAH + 11 + tinggiHero <= TINGGI ? { ...a.hero2, src: a.hero2Src!, tinggi: tinggiHero } : null;
+  return hal.map((h, j) => ({ blok: h.blok, hero: j === hal.length - 1 ? hero : null }));
+};
+const detail = halamanAtap.map(halamanDetail);
+
+// Rangka baja ringan sudah punya halaman sendiri, jadi tidak diulang di aksesoris.
+const aksDaftar = aksesoris.filter((a) => a.href !== '/produk/rangka-baja-ringan');
+const aksHal: (typeof aksesoris)[] = [];
+for (let i = 0; i < aksDaftar.length; i += 9) aksHal.push(aksDaftar.slice(i, i + 9));
+const aksSrc = await Promise.all(aksesoris.map((a) => (a.foto ? src(a.foto.src, 700, 78) : Promise.resolve(null))));
 const hargaAks = (a: (typeof aksesoris)[number]) => (a.harga ? `${a.harga.catatan === 'mulai' ? 'mulai ' : ''}${rp(a.harga.nilai)}` : 'Tanya admin');
-const satuanAks = (a: (typeof aksesoris)[number]) => (a.harga ? `/ ${a.harga.satuan}${a.harga.catatan && a.harga.catatan !== 'mulai' ? ` · ${a.harga.catatan}` : ''}` : '');
+const satuanAks = (a: (typeof aksesoris)[number]) => (a.harga ? `per ${a.harga.satuan}` : '');
+
+// Nomor halaman dari susunan sebenarnya (plafon ikut sakelar TAMPIL_PLAFON, DECISIONS 052).
+const urut: string[] = ['sampul', 'katalog'];
+halamanAtap.forEach((_, i) => { urut.push(`merek-${i}`); detail[i].forEach((_, j) => urut.push(`detail-${i}-${j}`)); });
+urut.push('perumahan');
+if (TAMPIL_PLAFON) urut.push('plafon');
+urut.push('rangka', ...aksHal.map((_, k) => `aks-${k}`), 'ketentuan-0', 'ketentuan-1', 'belakang');
+const no = (k: string) => String(urut.indexOf(k) + 1).padStart(2, '0');
+// Nama merek di halaman merek: kolom 74 mm, huruf diperkecil untuk nama panjang (lebar rata-rata ±0,56 em).
+const ukuranNama = (s: string) => Math.min(42, Math.floor((74 / (s.length * 0.56)) * 2.835));
+
+const IK = {
+  telepon: '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/>',
+  situs: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',
+  lokasi: '<path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/>',
+  perisai: '<path d="M12 3 5 6v6c0 4 3 7 7 9 4-2 7-5 7-9V6z"/><path d="m9 12 2 2 4-4"/>',
+  pabrik: '<path d="M4 7h16v12H4z"/><path d="M8 7V4h8v3"/>',
+  rumah: '<path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/>',
+  palet: '<circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="10" r="1.2"/><circle cx="12" cy="7.5" r="1.2"/><circle cx="15.5" cy="10" r="1.2"/>',
+  centang: '<path d="m6 12 4 4 8-8"/>',
+  strip: '<path d="M7 12h10"/>',
+};
 ---
 
-<Base title="Pricelist Atapura" description="Daftar harga atap bitumen, plafon PVC, rangka baja ringan, dan aksesoris Atapura untuk Jabodetabek." noindex>
+<Base title="Pricelist Atapura" description="Daftar harga atap bitumen, rangka baja ringan, dan aksesoris Atapura." noindex>
 <main class="buku">
 
-  <!-- 1 · Sampul -->
-  <section class="hal sampul">
-    <Image src={fSampul} alt="" widths={[1600]} sizes="210mm" class="latar" loading="eager" />
-    <div class="sampul-redup"></div>
-    <header class="sampul-atas">
-      <img src="/brand/atapura-logo-putih.svg" alt="Atapura" class="logo-pdf" style="height: 9mm" />
-      <span class="label-terang">Pricelist · Jabodetabek</span>
-    </header>
-    <div class="sampul-bawah">
-      <p class="label-terang">{TAMPIL_PLAFON ? 'Atap bitumen · Plafon PVC · Rangka baja ringan' : 'Atap bitumen · Rangka baja ringan · Aksesoris'}</p>
-      <h1 class="sampul-judul">Atap yang<br />masuk AKAL.</h1>
-      <p class="sampul-sub">Daftar harga lengkap, dari genteng sampai paku. Berlaku sejak {tanggal}.</p>
+  <!-- 1. Sampul: satu foto bertakik, judul di langit, pil di takik -->
+  <section class="hal s1">
+    <svg class="bentuk" viewBox="0 0 210 297" aria-hidden="true">
+      <defs><clipPath id="k-sampul"><path d="M28 14H182A14 14 0 0 1 196 28V194.5A7.5 7.5 0 0 1 188.5 202H132.5A12.5 12.5 0 0 0 120 214.5A7.5 7.5 0 0 1 112.5 222H28A14 14 0 0 1 14 208V28A14 14 0 0 1 28 14Z" /></clipPath></defs>
+      <image href={sampulSrc} x="14" y="-12" width="182" height="271.3" preserveAspectRatio="xMidYMid slice" clip-path="url(#k-sampul)" />
+    </svg>
+    <img src="/brand/atapura-logo-putih.svg" alt="Atapura" class="abs logo-pdf" style="left:26mm;top:25mm;height:6.5mm" />
+    <h1 class="abs s1-judul"><span class="redup">Daftar harga</span><span>atap bitumen {tahun}.</span></h1>
+    <span class="abs pil pil-isi s1-pil">Supplier &amp; aplikator</span>
+    <div class="abs s1-bawah"><h2><span class="redup">Atap yang masuk</span> AKAL.</h2><p>Harga genteng bitumen terpasang, dari survey sampai garansi.</p></div>
+    <div class="abs s1-berlaku">Berlaku sejak<b>{tanggal}</b></div>
+    <div class="bilah bilah-garis">
+      <span><svg viewBox="0 0 24 24" class="ik" set:html={IK.telepon} />{waTampil}</span>
+      <span><svg viewBox="0 0 24 24" class="ik" set:html={IK.situs} />{situs}</span>
     </div>
-    <p class="ilustrasi ilustrasi-terang">Ilustrasi suasana, bukan proyek Atapura.</p>
   </section>
 
-  <!-- 2 · Ringkasan harga -->
-  <section class="hal kertas">
-    <div class="isi">
-      <p class="label">Ringkasan harga</p>
-      <h2 class="judul">Semua harga<br /><span class="redup">di satu halaman.</span></h2>
-      <p class="pengantar">Harga <b>genteng saja</b> untuk pembelian material. Harga <b>terpasang</b> sudah termasuk papan alas, lapis kedap, flashing, paku, skrup, jasa pasang, dan ongkos kirim di Jabodetabek.</p>
-
-      <table class="tabel">
-        <thead><tr><th>Atap bitumen</th><th>Asal</th><th class="kanan">Genteng saja / m²</th><th class="kanan">Terpasang / m²</th><th class="kanan">Isi bundel</th></tr></thead>
-        <tbody>
-          {halamanAtap.map((a) => (
-            <tr><td class="merek">{a.merek}</td><td>{a.asal}</td><td class="kanan angka">{a.mulai < a.m.genteng ? `mulai ${rp(a.mulai)}` : rp(a.m.genteng)}</td><td class="kanan angka kuat">{rentang(a.m.terpasang)}</td><td class="kanan angka">{m2(a.m.m2PerBundel)}</td></tr>
-          ))}
-        </tbody>
-      </table>
-
-      <div class:list={[{ dua: TAMPIL_PLAFON }]}>
-        {TAMPIL_PLAFON && (
-        <table class="tabel">
-          <thead><tr><th>Plafon PVC</th><th class="kanan">Terpasang / m²</th></tr></thead>
-          <tbody>{plafon.map((x) => <tr><td class="merek">{x.nama}</td><td class="kanan angka kuat">{rentang(x.h.terpasang)}</td></tr>)}</tbody>
-        </table>
-        )}
-        <table class="tabel">
-          <thead><tr><th>Rangka baja ringan</th><th class="kanan">Terpasang / m²</th></tr></thead>
-          <tbody>
-            {rangka.map((r) => <tr><td class="merek">{r.nama}</td><td class="kanan angka kuat">{rp(r.harga)}</td></tr>)}
-          </tbody>
-        </table>
-      </div>
-
-      <table class="tabel">
-        <thead><tr><th>Jasa saja (material dari Anda)</th><th class="kanan">Per m²</th></tr></thead>
-        <tbody>
-          <tr><td class="merek">Jasa pasang atap bitumen</td><td class="kanan angka kuat">{rentang(harga.jasa)}</td></tr>
-          <tr><td class="merek">Jasa pasang rangka baja ringan</td><td class="kanan angka kuat">{rp(harga.rangka.jasaSaja)}</td></tr>
-        </tbody>
-      </table>
-      <p class="catatan">Harga untuk Jabodetabek. Rentang terpasang bergantung pada bentuk atap dan pilihan material pendukung{halamanAtap.filter((a) => a.acuan).map((a) => `; terpasang ${a.merek} dihitung untuk seri ${a.acuan}`).join('')}. Angka pasti tertulis di penawaran setelah survey gratis.</p>
-    </div>
-    <footer class="kaki"><span>Atapura · Pricelist {tanggal}</span><span>02</span></footer>
-  </section>
-
-  <!-- 3–7 · Satu halaman per merek atap -->
-  {halamanAtap.map((a, i) => (
-    <section class="hal kertas">
-      <div class="foto-atas">
-        <Image loading="eager" format="jpg" quality={78} src={a.foto} alt={`Ilustrasi atap bitumen ${a.merek} terpasang: ${a.suasana.toLowerCase()}`} widths={[1600]} sizes="210mm" class="latar" />
-        <div class="foto-redup"></div>
-        <div class="foto-teks">
-          <p class="label-terang">Atap bitumen · Buatan {a.asal}</p>
-          <h2 class="merek-besar">{a.merek}</h2>
-        </div>
-        <p class="ilustrasi ilustrasi-terang">{a.suasana}. Ilustrasi, bukan proyek Atapura.</p>
-      </div>
-      <div class="isi merek-isi">
-        <div class="merek-kiri">
-          <p class="ringkas">{a.deskripsi ?? a.p.ringkas}</p>
-          {a.seri.length > 0 && (
-            <ul class:list={["seri", { "seri-padat": a.seri.length >= 4 }]}>
-              {a.seri.map((s) => (
-                <li><b>{s.nama}</b>{s.harga && <span class="seri-harga">{s.harga.teks}</span>}<span class="seri-ringkas">{s.motif ? `Motif ${s.motif}. ` : ''}{s.ringkas}</span></li>
-              ))}
-            </ul>
-          )}
-          {a.totalWarna > 0 && <p class="label warna-lanjut">{a.motif.length > 0 ? `${a.motif.length} motif · ` : ''}{a.totalWarna} pilihan warna · di halaman berikutnya</p>}
-        </div>
-        <aside class="slip">
-          <p class="slip-label">Genteng saja{a.mulai < a.m.genteng && ', mulai'}</p>
-          <p class="slip-harga"><span class="rp">Rp</span>{a.mulai.toLocaleString('id-ID')}<span class="per">/ m²</span></p>
-          <dl>
-            <div><dt>Terpasang, spek standar{a.acuan && ` · ${a.acuan}`}</dt><dd>{rentang(a.m.terpasang)} / m²</dd></div>
-            <div><dt>Contoh atap 100 m²</dt><dd>±Rp{juta(a.m.terpasang[0] * 100)}–{juta(a.m.terpasang[1] * 100)} juta</dd></div>
-            <div><dt>Isi per bundel{a.acuan && ` · ${a.acuan}`}</dt><dd>{m2(a.m.m2PerBundel)}</dd></div>
-            <div><dt>Garansi pabrik</dt><dd>{a.m.garansiPabrik}</dd></div>
-            <div><dt>Garansi pemasangan</dt><dd>{bisnis.garansiPemasanganTahun} tahun dari Atapura</dd></div>
-          </dl>
-        </aside>
-      </div>
-      <footer class="kaki"><span>Atap bitumen {a.merek}</span><span>{dua(noMerek(i))}</span></footer>
-    </section>
-    <section class:list={['hal kertas', { padat: a.motif.length >= 4 }]}>
-      <div class="isi isi-penuh">
-        <p class="label">Atap bitumen {a.merek} · Buatan {a.asal}</p>
-        <h2 class="judul">Motif &amp; warna<br /><span class="redup">{a.merek}.</span></h2>
-        {a.motif.length > 0 && (
-          <div class="kat-grup">
-            <p class="label">Motif</p>
-            <ul class:list={['motif', { 'motif-4': a.motif.length >= 4 }]}>
-              {a.motif.map((x) => <li><Image loading="eager" format="jpg" quality={85} src={x.foto} alt={`Close-up motif ${a.merek} ${x.nama}`} widths={[640]} sizes="45mm" class="motif-foto" /><span>{x.nama}</span></li>)}
-            </ul>
-          </div>
-        )}
-        <div class="kat">
-          {a.warna.map((g) => (
-            <div class="kat-grup">
-              <p class="label">{g.judul}</p>
-              {g.catatan && <p class="kat-catatan">{g.catatan}</p>}
-              <ul class="kat-warna">
-                {g.daftar.map((w) => <li><Bulat w={w} besar /><span>{w.nama}{w.kode && <em>{w.kode}</em>}</span></li>)}
-              </ul>
+  <!-- 2. Katalog ringkas (pola 19): kepala Pinus, daftar merek, satu merek sorotan -->
+  <section class="hal s2">
+    <svg class="bentuk" viewBox="0 0 210 297" aria-hidden="true"><path d="M0 0H210V80Q210 92 198 92H0Z" fill="#10231E" /></svg>
+    <div class="abs s2-kepala"><h2><span class="redup-terang">Katalog</span><br />atap bitumen</h2><p>Harga per m². Terpasang sudah termasuk material pendukung dan jasa pasang.</p></div>
+    <span class="abs pil pil-garis s2-pil">Pricelist {tahun}</span>
+    <div class="abs s2-daftar">
+      {barisKatalog.map((a) => (
+        <div class="s2-baris">
+          <img src={a.fotoSrc} alt="" />
+          <div>
+            <h3>{a.merek}<span>{a.asal}</span></h3>
+            <div class="s2-baris-bawah">
+              <span class="titik">{a.titik.slice(0, 4).map((h) => <i style={`background:${h}`} />)}</span>
+              <span class="pil pil-isi">Rp{ribu(a.m.terpasang[0])}–{ribu(a.m.terpasang[1])} rb</span>
             </div>
-          ))}
+            <p class="s2-gs">Genteng saja {a.mulai < a.m.genteng ? 'mulai ' : ''}{rp(a.mulai)} · {a.totalWarna} warna</p>
+          </div>
         </div>
-        <p class="catatan">Warna di layar dan kertas adalah perkiraan. Saat survey kami membawa sampel fisik supaya Anda bisa melihatnya di bawah cahaya rumah sendiri. Foto motif adalah ilustrasi bentuk setelah terpasang.</p>
-        {a.hero2 && (
-          <figure class:list={['hero2', `hero-${a.hero2.posisi}`]}>
-            <Image loading="eager" format="jpg" quality={80} src={a.hero2.foto} alt={`Ilustrasi ${a.hero2.ket.toLowerCase()}`} widths={[1600]} sizes="180mm" class="latar" />
-            <div class="hero-teks"><p class="hero-judul">{a.hero2.judul}</p><p class="hero-sub">{a.hero2.sub}</p></div>
-            <figcaption>{a.hero2.ket}. Ilustrasi, bukan proyek Atapura.</figcaption>
-          </figure>
-        )}
-      </div>
-      <footer class="kaki"><span>Motif &amp; warna {a.merek}</span><span>{dua(noMerek(i) + 1)}</span></footer>
-    </section>
+      ))}
+    </div>
+    <div class="abs s2-unggul">
+      <img src={unggul.fotoSrc} alt="" />
+      <h3>{unggul.merek}</h3>
+      <p class="s2-asal">Buatan {unggul.asal} · {seriUnggul}</p>
+      <div class="s2-wt"><span>Warna tersedia<br />{unggul.totalWarna} pilihan</span><span class="titik">{unggul.titik.map((h) => <i style={`background:${h}`} />)}</span></div>
+      <div class="s2-harga"><span>Terpasang /m²</span><b>Rp{ribu(unggul.m.terpasang[0])}–{ribu(unggul.m.terpasang[1])} rb</b></div>
+      <p class="s2-asal" style="margin-top:2.5mm">Genteng saja mulai {rp(unggul.mulai)}</p>
+    </div>
+    <div class="abs s2-bintang"><svg viewBox="0 0 100 100" aria-hidden="true"><polygon fill="#C6F24E" points="50,2 61,16 78,9 80,27 97,32 88,48 97,64 80,70 78,88 61,82 50,97 39,82 22,88 20,70 3,64 12,48 3,32 20,27 22,9 39,16" /></svg><span>Dari<br />{unggul.asal}</span></div>
+    <div class="abs s2-dua">
+      <div class="s2-kecil"><img src={rangkaSrc} alt="" /><div><h3>Rangka baja ringan</h3><p>{rangka.map((r) => r.nama).join(', ')}</p><span class="pil pil-isi">mulai Rp{ribu(rangkaMulai)} rb</span></div></div>
+      <div class="s2-kecil">{aksSrc[0] && <img src={aksSrc[0]} alt="" />}<div><h3>Aksesoris</h3><p>Alas, lapis kedap, flashing</p><span class="pil pil-isi">Halaman {no('aks-0')}</span></div></div>
+    </div>
+    <div class="bilah bilah-pil">
+      <span><svg viewBox="0 0 24 24" class="ik" set:html={IK.lokasi} />{bisnis.alamat.kecamatan}, {bisnis.alamat.kota}</span>
+      <span><svg viewBox="0 0 24 24" class="ik" set:html={IK.telepon} />{waTampil}</span>
+      <span><svg viewBox="0 0 24 24" class="ik" set:html={IK.situs} />{situs}</span>
+    </div>
+  </section>
+
+  {halamanAtap.map((a, i) => (
+    <>
+      <!-- Halaman merek (pola 25 + 12) -->
+      <section class="hal s3">
+        <svg class="bentuk" viewBox="0 0 210 297" aria-hidden="true">
+          <defs>
+            <clipPath id={`k-foto-${i}`}><path d="M38.5 26H106Q110 26 110 30V148Q110 152 106 152H24Q20 152 20 148V44.5Z" /></clipPath>
+            <clipPath id={`k-tekstur-${i}`}><rect x="14" y="166" width="58" height="72" rx="10" /></clipPath>
+          </defs>
+          <path d="M36 20H186Q196 20 196 30V170L178 188Q174 192 168 192H24Q14 192 14 182V42Z" fill="#F2F4F1" stroke="#F2F4F1" stroke-width="5" stroke-linejoin="round" />
+          <image href={a.fotoSrc} x="20" y="26" width="90" height="126" preserveAspectRatio="xMidYMid slice" clip-path={`url(#k-foto-${i})`} />
+          <image href={a.teksturSrc} x="14" y="166" width="58" height="72" preserveAspectRatio="xMidYMid slice" clip-path={`url(#k-tekstur-${i})`} />
+        </svg>
+        <img src="/brand/atapura-logo-putih.svg" alt="Atapura" class="abs logo-pdf" style="left:16mm;top:7mm;height:6mm" />
+        <div class="abs s3-nama"><h2 style={`font-size:${ukuranNama(a.merek)}pt`}>{a.merek}<span>dari {a.asal}.</span></h2><p>{a.deskripsi}</p></div>
+        <div class="abs s3-takik"><p>Genteng saja{a.mulai < a.m.genteng ? ', mulai' : ''}</p><b>{rp(a.mulai)} <small>/m²</small></b><p class="s3-bundel">Isi bundel {m2(a.m.m2PerBundel)}</p></div>
+        <div class="abs s3-warna">{a.titik.length > 0 && <span class="titik">{a.titik.map((h) => <i style={`background:${h}`} />)}</span>}<span><b>{a.totalWarna} warna</b><br />lihat di halaman berikut</span></div>
+        <div class="abs s3-harga"><p>Terpasang, per m²{a.acuan ? ` (${a.acuan})` : ''}</p><b><span class="rp">Rp</span>{ribu(a.m.terpasang[0])}–{ribu(a.m.terpasang[1])}<sup>rb</sup></b></div>
+        <div class="abs s3-ikon">
+          {bisnis.garansiPemasanganTahun && <div><i><svg viewBox="0 0 24 24" class="ik" set:html={IK.perisai} /></i><span><b>{bisnis.garansiPemasanganTahun} tahun</b><small>garansi pemasangan</small></span></div>}
+          {a.pabrik ? (
+            <div><i><svg viewBox="0 0 24 24" class="ik" set:html={IK.pabrik} /></i><span><b>{a.pabrik}</b><small>garansi pabrik</small></span></div>
+          ) : (
+            <div><i><svg viewBox="0 0 24 24" class="ik" set:html={IK.palet} /></i><span><b>{a.totalWarna} warna</b><small>pilihan warna</small></span></div>
+          )}
+          <div><i><svg viewBox="0 0 24 24" class="ik" set:html={IK.rumah} /></i><span><b>±Rp{juta(a.m.terpasang[0] * 100)}–{juta(a.m.terpasang[1] * 100)} juta</b><small>atap 100 m², terpasang</small></span></div>
+        </div>
+        <div class="bilah bilah-terang"><span>Atap bitumen {a.merek}</span><span>{no(`merek-${i}`)}</span></div>
+      </section>
+
+      <!-- Motif & warna, langsung sesudah merek (Rama) -->
+      {detail[i].map((h, j) => (
+        <section class="hal s4">
+          <h2 class="abs s4-judul">{a.merek} <span class="redup">motif dan warna{j > 0 ? ', lanjutan' : ''}</span></h2>
+          <div class="abs s4-isi">
+            {h.blok.map((b) => (
+              <div class="s4-blok">
+                <h3>{b.judul}{b.lanjut && <span class="redup">, lanjutan</span>}</h3>
+                {b.catatan && !b.lanjut && <p class="s4-catatan">{b.catatan}</p>}
+                {b.jenis === 'motif' ? (
+                  <ul class:list={['s4-motif', { 's4-motif-4': a.motif.length > 6 }]}>
+                    {b.isi.map((x) => (
+                      <li><Bulat w={{ nama: x.nama, foto: x.foto }} besar /><p class="s4-nama">{x.nama}</p>{x.harga && <p class="s4-sub">{x.harga}</p>}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <ul class="s4-warna">
+                    {b.isi.map((w) => <li><Bulat w={w} besar /><p class="s4-nama">{w.nama}</p>{w.kode && <p class="s4-sub">{w.kode}</p>}</li>)}
+                  </ul>
+                )}
+              </div>
+            ))}
+            {h.hero && (
+              <div class="s4-hero">
+                <p><b>{h.hero.judul}</b> <span>{h.hero.sub}</span></p>
+                <img src={h.hero.src} alt="" style={`height:${h.hero.tinggi.toFixed(1)}mm`} />
+              </div>
+            )}
+          </div>
+          <div class="bilah bilah-garis"><span>Motif dan warna {a.merek}</span><span>{no(`detail-${i}-${j}`)}</span></div>
+        </section>
+      ))}
+    </>
   ))}
 
-  <!-- Perumahan & proyek: foto drone satu kawasan beratap sama -->
-  <section class="hal sampul perumahan">
-    <Image loading="eager" format="jpg" quality={80} src={fPerumahan} alt="Ilustrasi foto drone perumahan di perbukitan dengan deretan rumah beratap bitumen yang sama" widths={[1600]} sizes="210mm" class="latar" />
-    <div class="perumahan-redup"></div>
-    <div class="perumahan-teks">
-      <p class="label-terang">Perumahan · Cluster · Proyek</p>
-      <h2 class="perumahan-judul">Satu kawasan,<br />satu atap.</h2>
-      <p class="sampul-sub">Untuk developer, cluster, dan proyek, kami pasang per bagian dengan jadwal kerja tertulis. Harga untuk volume besar kami hitung bersama Anda.</p>
-    </div>
-    <p class="ilustrasi ilustrasi-terang">Ilustrasi suasana, bukan proyek Atapura.</p>
-    <footer class="kaki kaki-terang"><span>Perumahan &amp; proyek</span><span>{dua(noPerumahan)}</span></footer>
+  <!-- Perumahan: satu foto besar, judul di langit -->
+  <section class="hal s5">
+    <svg class="bentuk" viewBox="0 0 210 297" aria-hidden="true">
+      <defs><clipPath id="k-perumahan"><rect x="14" y="66" width="182" height="217" rx="14" /></clipPath></defs>
+      <image href={perumahanSrc} x="14" y="66" width="182" height="217" preserveAspectRatio="xMidYMid slice" clip-path="url(#k-perumahan)" />
+    </svg>
+    <h2 class="abs s5-judul"><span class="redup">Satu kawasan,</span><span>satu atap.</span></h2>
+    <p class="abs s5-sub">Untuk developer, cluster, dan proyek: dipasang per bagian dengan jadwal kerja tertulis.</p>
   </section>
 
-  <!-- Plafon (disembunyikan selama TAMPIL_PLAFON false) -->
-  {TAMPIL_PLAFON && <section class="hal kertas">
-    {plafon.map((x) => (
-      <div class="plafon">
-        <div class="plafon-foto">
-          <Image loading="eager" format="jpg" quality={78} src={x.foto} alt={`Ilustrasi plafon PVC ${x.nama} terpasang`} widths={[1600]} sizes="210mm" class="latar" />
-          <div class="foto-redup"></div>
-          <div class="foto-teks"><p class="label-terang">Plafon PVC</p><h2 class="merek-sedang">{x.nama}</h2></div>
-        </div>
-        <div class="plafon-isi">
-          <div>
-            <p class="ringkas">{x.p.seri.map((s) => s.nama).join(' · ')}</p>
-            <p class="catatan">Terpasang sudah termasuk rangka hollow dan jasa pasang. Barang saja: {rentang(x.h.barang)} / m².</p>
-          </div>
-          <p class="plafon-harga"><span class="slip-label gelap">Terpasang</span><span class="angka-besar">{rentang(x.h.terpasang)}</span><span class="per">/ m²</span></p>
-        </div>
-      </div>
-    ))}
-    <p class="ilustrasi">Foto adalah ilustrasi, bukan proyek Atapura. Garansi pemasangan plafon 1 tahun.</p>
-    <footer class="kaki"><span>Plafon PVC</span><span>{dua(noPlafon)}</span></footer>
-  </section>}
-
-  <!-- 9 · Rangka -->
-  <section class="hal kertas">
-    <div class="foto-atas foto-atas-pendek">
-      <Image loading="eager" format="jpg" quality={78} src={fRangka} alt="Ilustrasi rangka atap baja ringan terpasang pada rumah baru" widths={[1600]} sizes="210mm" class="latar" />
-      <div class="foto-redup"></div>
-      <div class="foto-teks"><p class="label-terang">Sudah dengan pasang</p><h2 class="merek-besar">Rangka baja ringan</h2></div>
-      <p class="ilustrasi ilustrasi-terang">Ilustrasi, bukan proyek Atapura.</p>
-    </div>
-    <div class="isi">
-      <p class="pengantar">Untuk rumah baru, atau rangka kayu lama yang lapuk dan melendut. Harga per m² sudah termasuk material, screw, dynabolt, dan jasa pasang.</p>
-      <ul class="kartu-tiga">
-        {rangka.map((r) => (
-          <li><b>{r.nama}</b><span>{r.spek}</span><p class="angka-besar">{rp(r.harga)}<span class="per">/ m²</span></p></li>
+  {TAMPIL_PLAFON && (
+    <section class="hal s6">
+      <h2 class="abs s6-judul">Plafon PVC <span class="redup">termasuk rangka hollow dan pasang.</span></h2>
+      <div class="abs s6-daftar">
+        {plafon.map((x) => (
+          <div class="s6-baris"><h3>{x.nama}</h3><span class="pil pil-isi">Rp{ribu(x.h.terpasang[0])}–{ribu(x.h.terpasang[1])} rb / m²</span></div>
         ))}
-      </ul>
-      <table class="tabel">
-        <tbody>
-          <tr><td class="merek">Jasa pasang saja, material dari Anda</td><td class="kanan angka kuat">{rp(harga.rangka.jasaSaja)} / m²</td></tr>
-          <tr><td class="merek">Garansi pemasangan rangka</td><td class="kanan">5 tahun</td></tr>
-        </tbody>
-      </table>
+      </div>
+      <div class="bilah bilah-garis"><span>Plafon PVC</span><span>{no('plafon')}</span></div>
+    </section>
+  )}
+
+  <!-- Rangka baja ringan -->
+  <section class="hal s6">
+    <svg class="bentuk" viewBox="0 0 210 297" aria-hidden="true">
+      <defs><clipPath id="k-rangka"><rect x="14" y="14" width="182" height="121" rx="14" /></clipPath></defs>
+      <image href={rangkaSrc} x="14" y="14" width="182" height="121" preserveAspectRatio="xMidYMid slice" clip-path="url(#k-rangka)" />
+    </svg>
+    <h2 class="abs s6-judul" style="top:150mm">Rangka baja ringan <span class="redup">sudah dengan pasang.</span></h2>
+    <div class="abs s6-daftar" style="top:172mm">
+      {rangka.map((r) => (
+        <div class="s6-baris"><div><h3>{r.nama}</h3><p>{r.spek}</p></div><span class="pil pil-isi">Rp{ribu(r.harga)} rb / m²</span></div>
+      ))}
+      <div class="s6-baris"><div><h3>Jasa pasang saja</h3><p>Material dari Anda</p></div><span class="pil pil-garis">Rp{ribu(harga.rangka.jasaSaja)} rb / m²</span></div>
     </div>
-    <footer class="kaki"><span>Rangka baja ringan</span><span>{dua(noRangka)}</span></footer>
+    <div class="bilah bilah-garis"><span>Rangka baja ringan{bisnis.garansiPemasanganTahun ? `, garansi pemasangan ${bisnis.garansiPemasanganTahun} tahun` : ''}</span><span>{no('rangka')}</span></div>
   </section>
 
-  <!-- 10 · Aksesoris -->
-  <section class="hal kertas">
-    <div class="isi">
-      <p class="label">Aksesoris</p>
-      <h2 class="judul">Lapis di bawah genteng,<br /><span class="redup">harga per satuan.</span></h2>
-      <ul class="aks">
-        {aksesoris.map((a) => (
+  <!-- Aksesoris: grid katalog 3 × 3 -->
+  {aksHal.map((daftar, k) => (
+    <section class="hal s7">
+      <h2 class="abs s7-judul">Aksesoris <span class="redup">{k > 0 ? 'lanjutan' : 'dan material pendukung.'}</span></h2>
+      {k === 0 && <p class="abs s7-lead">Sudah termasuk di harga terpasang. Harga di bawah untuk membeli material saja.</p>}
+      <ul class="abs s7-grid">
+        {daftar.map((a) => (
           <li>
-            {a.foto && <Image loading="eager" format="jpg" quality={78} src={a.foto.src} alt="" widths={[480]} sizes="40mm" class="aks-foto" />}
-            <div class="aks-teks"><b>{a.nama}</b><span>{a.spek[0].label} {a.spek[0].nilai}</span></div>
-            <p class="aks-harga"><span class="angka">{hargaAks(a)}</span><span class="per">{satuanAks(a)}</span></p>
+            {aksSrc[aksesoris.indexOf(a)] && <img src={aksSrc[aksesoris.indexOf(a)]!} alt="" />}
+            <h3>{a.nama}</h3>
+            <p>{a.spek[0].nilai}</p>
+            <span class="pil pil-isi">{hargaAks(a)}<small>{satuanAks(a)}</small></span>
           </li>
         ))}
       </ul>
-      <p class="catatan">Papan alas, lapis kedap, flashing, paku, dan skrup sudah termasuk di harga terpasang atap. Harga di atas untuk pembelian material saja, belum termasuk ongkos kirim.</p>
-    </div>
-    <footer class="kaki"><span>Aksesoris</span><span>{dua(noRangka + 1)}</span></footer>
-  </section>
+      <div class="bilah bilah-garis"><span>Aksesoris</span><span>{no(`aks-${k}`)}</span></div>
+    </section>
+  ))}
 
-  <!-- 11 · Yang termasuk, pembayaran, garansi -->
-  <section class="hal kertas">
-    <div class="isi">
-      <p class="label">Ketentuan</p>
-      <h2 class="judul">Yang Anda bayar,<br /><span class="redup">tertulis dari awal.</span></h2>
-      <div class="dua dua-atas">
-        <div>
-          <h3 class="sub">Sudah termasuk di harga terpasang</h3>
-          <ul class="centang">{harga.termasuk.map((t) => <li>{t.replace(/ /g, ' ')}</li>)}</ul>
-        </div>
-        <div>
-          <h3 class="sub">Belum termasuk</h3>
-          <ul class="strip">{harga.tidakTermasuk.map((t) => <li>{t}</li>)}</ul>
-        </div>
-      </div>
-      <h3 class="sub">Pembayaran</h3>
-      <ol class="termin">
-        <li><b>Material</b><span>{bisnis.pembayaran.material}</span></li>
-        {bisnis.pembayaran.jasa.map((j) => <li><b>{j.persen}%</b><span>{j.tahap} jasa pasang · {j.saat}</span></li>)}
+  <!-- Ketentuan 1: termasuk / belum termasuk + cara bayar -->
+  <section class="hal s8">
+    <h2 class="abs s8-judul">Yang Anda bayar, <span class="redup">tertulis dari awal.</span></h2>
+    <div class="abs s8-dua">
+      <div><h3>Sudah termasuk</h3><ul class="s8-daftar">{harga.termasuk.map((t) => <li><i><svg viewBox="0 0 24 24" class="ik" set:html={IK.centang} /></i>{t}</li>)}</ul></div>
+      <div><h3>Belum termasuk</h3><ul class="s8-daftar s8-belum">{harga.tidakTermasuk.map((t) => <li><i><svg viewBox="0 0 24 24" class="ik" set:html={IK.strip} /></i>{t}</li>)}</ul></div>
+    </div>
+    <div class="abs s8-bawah">
+      <h3>Cara bayar</h3>
+      <p class="s8-material"><b>Material</b>{bisnis.pembayaran.material}</p>
+      <ol class="s8-termin">
+        {bisnis.pembayaran.jasa.map((j) => <li><b>{j.persen}%</b><span>{j.tahap} jasa pasang</span><small>{j.saat}</small></li>)}
       </ol>
-      <div class="dua dua-atas">
-        <div>
-          <h3 class="sub">Garansi pemasangan {bisnis.garansiPemasanganTahun} tahun</h3>
-          <ul class="centang">{bisnis.garansi.cakupan.map((t) => <li>{t}</li>)}</ul>
-        </div>
-        <div>
-          <h3 class="sub">Survey</h3>
-          <p class="teks">Gratis di Jabodetabek. Di luar Jabodetabek, harga dihitung bersama admin karena ada akomodasi tukang dan pengiriman material.</p>
-        </div>
-      </div>
     </div>
-    <footer class="kaki"><span>Ketentuan</span><span>{dua(noRangka + 2)}</span></footer>
+    <div class="bilah bilah-garis"><span>Ketentuan</span><span>{no('ketentuan-0')}</span></div>
   </section>
 
-  <!-- 12 · Sampul belakang -->
-  <section class="hal belakang">
-    <div class="belakang-isi">
-      <img src="/brand/atapura-logo-putih.svg" alt="Atapura" class="logo-pdf" style="height: 14mm" />
-      <p class="belakang-judul">Kirim foto atap Anda,<br /><span class="redup-terang">kami estimasikan segera.</span></p>
-      <div class="kontak">
-        <div class="qr" set:html={qr} aria-label="Kode QR WhatsApp Atapura"></div>
-        <dl>
-          <div><dt>WhatsApp</dt><dd>{waTampil}</dd></div>
-          <div><dt>Email</dt><dd>{bisnis.email}</dd></div>
-          <div><dt>Situs</dt><dd>atapura.vercel.app</dd></div>
-          <div><dt>Alamat</dt><dd>{bisnis.alamat.jalan}, {bisnis.alamat.kecamatan}, {bisnis.alamat.kota} {bisnis.alamat.kodePos}</dd></div>
-        </dl>
+  <!-- Ketentuan 2: garansi + survey -->
+  <section class="hal s8">
+    <h2 class="abs s8-judul">Garansi pemasangan <span class="redup">{bisnis.garansiPemasanganTahun} tahun.</span></h2>
+    <div class="abs s8-dua">
+      <div><h3>Ditanggung</h3><ul class="s8-daftar">{bisnis.garansi.cakupan.map((t) => <li><i><svg viewBox="0 0 24 24" class="ik" set:html={IK.centang} /></i>{t}</li>)}</ul></div>
+      <div><h3>Tidak ditanggung</h3><ul class="s8-daftar s8-belum">{bisnis.garansi.pengecualian.map((t) => <li><i><svg viewBox="0 0 24 24" class="ik" set:html={IK.strip} /></i>{t}</li>)}</ul></div>
+    </div>
+    <div class="abs s8-bawah">
+      <h3>Cara klaim</h3>
+      <ol class="s8-klaim">{bisnis.garansi.klaim.map((k, n) => <li><b>{n + 1}</b><span>{k.nama}</span><small>{k.isi}</small></li>)}</ol>
+      <h3 style="margin-top:9mm">Survey</h3>
+      <p class="s8-survey">Jadwal survey diatur bersama admin. Di luar Jabodetabek ada biaya akomodasi tukang dan pengiriman material, dihitung sesuai lokasi.</p>
+    </div>
+    <div class="bilah bilah-garis"><span>Ketentuan</span><span>{no('ketentuan-1')}</span></div>
+  </section>
+
+  <!-- Sampul belakang -->
+  <section class="hal s9">
+    <img src="/brand/atapura-logo-putih.svg" alt="Atapura" class="abs logo-pdf" style="left:14mm;top:20mm;height:8mm" />
+    <h2 class="abs s9-judul">Kirim foto atap Anda, <span class="redup-terang">kami estimasikan segera.</span></h2>
+    <div class="abs s9-kontak">
+      <div class="s9-qr" set:html={qr} aria-label="Kode QR WhatsApp Atapura"></div>
+      <div class="s9-daftar">
+        <p><span>WhatsApp</span><b>{waTampil}</b></p>
+        <p><span>Email</span><b class="kecil">{bisnis.email}</b></p>
+        <p><span>Situs</span><b>{situs}</b></p>
       </div>
     </div>
-    <p class="belakang-kaki">{bisnis.namaLegal} ({bisnis.statusLegal}). Harga berlaku sejak {tanggal} untuk Jabodetabek dan dapat berubah sewaktu-waktu. Angka pasti mengikuti penawaran tertulis setelah survey. Foto di dokumen ini adalah ilustrasi.</p>
+    <p class="abs s9-alamat">{bisnis.alamat.jalan}, {bisnis.alamat.kecamatan}, {bisnis.alamat.kota} {bisnis.alamat.kodePos}</p>
+    <p class="abs s9-kaki">{bisnis.namaLegal}. Harga berlaku sejak {tanggal}.</p>
   </section>
 
 </main>
@@ -363,188 +415,174 @@ const satuanAks = (a: (typeof aksesoris)[number]) => (a.harga ? `/ ${a.harga.sat
   @page { size: A4; margin: 0; }
   :global(html), :global(body) { background: #d8ddd7; }
   :global(body) { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  /* Sisa ±17 mm di bawah halaman terakhir (sampul belakang Pinus) ikut berwarna Pinus. */
   @media print { :global(html), :global(body) { background: var(--color-pinus); } }
-
-  /* Logo dari file SVG resmi (bukan Logo.astro yang memakai CSS mask: mask jadi kotak rusak di PDF Preview). */
-  .logo-pdf { display: block; width: auto; aspect-ratio: 6930 / 1768; }
-  /* Halaman terakhir: tanpa pemisah dan sedikit lebih pendek, supaya pembulatan tinggi tidak menumpahkan halaman kosong di PDF. */
-  /* Pemisah halaman SEBELUM tiap halaman (bukan sesudah), supaya tidak ada halaman kosong di akhir PDF. */
-  .hal + .hal { break-before: page; }
-  /* Terbukti: halaman terakhir setinggi 297 mm masih menumpahkan halaman kosong di Chrome; 280 mm tidak. Sisa ruang berwarna Pinus. */
-  .hal:last-child { height: 280mm; }
-  .buku { display: grid; gap: 8mm; justify-content: center; padding: 8mm 0; }
+  .buku { display: grid; gap: 8mm; justify-content: center; padding: 8mm 0; --embun: #f2f4f1; --pinus: #10231e; --lumut: #4c5e55; --garis: #d9ded8; --krem: #eef0ea; }
   @media print { .buku { display: block; padding: 0; } }
-  .hal {
-    position: relative; width: 210mm; height: 297mm; overflow: hidden;
-    color: var(--color-tinta); font-family: var(--font-sans); font-size: 9.5pt; line-height: 1.5;
-  }
-  .kertas { background: var(--color-embun); }
-  .latar { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .isi { padding: 16mm 16mm 0; }
-  .redup { color: var(--color-lumut); }
-  .label, .label-terang { font-size: 7.5pt; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; }
-  .label { color: var(--color-lumut); }
-  .label-terang { color: var(--embun-redup); }
-  .judul { margin-top: 3mm; font-family: var(--font-merek); font-weight: 500; font-size: 30pt; line-height: 1.02; letter-spacing: -0.04em; }
-  .pengantar { margin-top: 5mm; max-width: 125mm; font-size: 10pt; color: var(--color-lumut); }
-  .pengantar b { color: var(--color-tinta); font-weight: 500; }
-  .catatan { margin-top: 4mm; font-size: 8pt; color: var(--color-lumut); max-width: 150mm; }
-  .angka, .angka-besar, .slip-harga, .tabel td.kanan { font-variant-numeric: tabular-nums lining-nums; }
-  .ilustrasi { position: absolute; left: 16mm; bottom: 18mm; font-size: 6.5pt; color: var(--color-lumut); }
-  .ilustrasi-terang { right: 12mm; left: auto; bottom: 5mm; color: rgb(242 244 241 / 0.6); }
-  .kaki { position: absolute; left: 16mm; right: 16mm; bottom: 9mm; display: flex; justify-content: space-between; font-size: 7pt; color: var(--color-lumut); border-top: 0.6pt solid var(--color-garis); padding-top: 2.5mm; letter-spacing: 0.02em; }
-  .kaki span:last-child { font-variant-numeric: tabular-nums; }
 
-  /* Sampul */
-  .sampul { color: var(--color-embun); background: var(--color-pinus); }
-  .sampul-redup { position: absolute; inset: 0; background: linear-gradient(180deg, rgb(16 35 30 / 0.55) 0%, rgb(16 35 30 / 0) 26%, rgb(16 35 30 / 0) 50%, rgb(16 35 30 / 0.88) 100%); }
-  .sampul-atas { position: absolute; top: 16mm; left: 16mm; right: 16mm; display: flex; align-items: center; justify-content: space-between; }
-  .sampul :global(.logo-terang), .belakang :global(.logo-terang) { color: var(--color-embun); }
-  .sampul-bawah { position: absolute; left: 16mm; right: 16mm; bottom: 20mm; }
-  .sampul-judul { margin-top: 4mm; font-family: var(--font-merek); font-weight: 500; font-size: 52pt; line-height: 0.95; letter-spacing: -0.045em; }
-  .sampul-sub { margin-top: 6mm; max-width: 110mm; font-size: 11pt; color: var(--embun-redup); }
+  .hal { position: relative; width: 210mm; height: 297mm; overflow: hidden; background: var(--embun); color: var(--pinus); font-family: var(--font-sans); font-size: 11.5pt; line-height: 1.4; }
+  .hal + .hal { break-before: page; }
+  .hal:last-child { height: 280mm; }
+  .hal :global(h1), .hal :global(h2), .hal :global(h3), .hal :global(p), .hal :global(ul), .hal :global(ol) { margin: 0; padding: 0; }
+  h1, h2, h3, .pil-isi, .s3-takik b, .s3-harga b, .s3-ikon b, .s2-harga b, .s8-termin b, .s8-klaim b, .s9-daftar b { font-family: var(--font-merek); font-weight: 500; }
+  h1, h2 { letter-spacing: -0.04em; line-height: 1.04; }
+  h3 { font-size: 13pt; letter-spacing: -0.01em; }
+  .redup { opacity: 0.55; }
+  .redup-terang { color: rgb(242 244 241 / 0.55); }
+  .bentuk { position: absolute; inset: 0; width: 210mm; height: 297mm; }
+  .abs { position: absolute; }
+  .logo-pdf { display: block; width: auto; aspect-ratio: 6930 / 1768; }
+  .pil { white-space: nowrap; display: inline-flex; align-items: center; gap: 2mm; border-radius: 999px; padding: 2.2mm 5mm; font-size: 11.5pt; }
+  .pil small { font-family: var(--font-sans); font-size: 9.5pt; opacity: 0.72; }
+  .pil-isi { background: var(--pinus); color: var(--embun); }
+  .pil-garis { border: 0.8pt solid currentColor; }
+  .titik { display: inline-flex; gap: 1.6mm; flex: none; }
+  .titik i { width: 4mm; height: 4mm; border-radius: 50%; display: block; border: 0.5pt solid rgb(0 0 0 / 0.15); }
+  .ik { width: 6mm; height: 6mm; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+  .bilah { position: absolute; left: 14mm; right: 14mm; bottom: 10mm; display: flex; justify-content: space-between; align-items: center; font-size: 10.5pt; color: var(--lumut); }
+  .bilah span { display: inline-flex; align-items: center; gap: 2mm; }
+  .bilah-garis { border-top: 0.6pt solid var(--garis); padding-top: 4mm; }
+  .bilah-terang { color: var(--embun); }
+  .bilah-pil { border: 0.8pt solid var(--pinus); border-radius: 999px; padding: 2.5mm 6mm; bottom: 9mm; color: var(--pinus); }
 
-  /* Tabel ringkasan */
-  .tabel { width: 100%; margin-top: 8mm; border-collapse: collapse; }
-  .tabel th { text-align: left; font-weight: 500; font-size: 7.5pt; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-lumut); padding: 0 0 2mm; border-bottom: 0.8pt solid var(--color-tinta); }
-  .tabel td { padding: 2.6mm 0; border-bottom: 0.6pt solid var(--color-garis); font-size: 9.5pt; }
-  .tabel td + td, .tabel th + th { padding-left: 4mm; }
-  .tabel .kanan { text-align: right; }
-  .tabel .merek { font-weight: 500; }
-  .tabel .kuat { font-weight: 600; color: var(--color-pinus); }
-  .dua { display: grid; grid-template-columns: 1fr 1fr; gap: 0 10mm; align-items: start; }
-  .dua-atas { margin-top: 2mm; }
+  /* 1. Sampul */
+  .s1-judul { left: 26mm; top: 40mm; width: 150mm; font-size: 36pt; line-height: 1.06; color: var(--embun); }
+  .s1-judul span { display: block; }
+  .s1-judul .redup { opacity: 0.62; }
+  .s1-pil { left: 125mm; top: 207mm; width: 71mm; height: 15mm; justify-content: center; font-size: 12pt; }
+  .s1-bawah { left: 14mm; top: 236mm; width: 100mm; }
+  .s1-bawah h2 { font-size: 17pt; letter-spacing: -0.02em; }
+  .s1-bawah p { margin-top: 2.5mm; color: var(--lumut); }
+  .s1-berlaku { right: 14mm; top: 236mm; text-align: right; font-size: 10.5pt; color: var(--lumut); }
+  .s1-berlaku b { display: block; font-family: var(--font-merek); font-weight: 500; font-size: 12pt; color: var(--pinus); }
 
-  /* Perumahan */
-  .perumahan-redup { position: absolute; inset: 0; background: linear-gradient(180deg, rgb(16 35 30 / 0.5) 0%, rgb(16 35 30 / 0.15) 30%, rgb(16 35 30 / 0) 45%); }
-  .perumahan-teks { position: absolute; top: 18mm; left: 16mm; right: 16mm; }
-  .perumahan-judul { margin-top: 4mm; font-family: var(--font-merek); font-weight: 500; font-size: 44pt; line-height: 0.98; letter-spacing: -0.045em; }
-  .kaki-terang { color: rgb(242 244 241 / 0.7); border-top-color: rgb(242 244 241 / 0.25); }
-  .perumahan .ilustrasi-terang { bottom: 15mm; right: 16mm; }
+  /* 2. Katalog */
+  .s2-kepala { left: 14mm; top: 16mm; color: var(--embun); }
+  .s2-kepala h2 { font-size: 46pt; line-height: 0.98; }
+  .s2-kepala p { margin-top: 4mm; width: 100mm; color: rgb(242 244 241 / 0.82); }
+  .s2-pil { right: 14mm; top: 18mm; color: var(--embun); }
+  .s2-daftar { left: 14mm; top: 100mm; width: 92mm; display: grid; gap: 5mm; }
+  .s2-baris { display: grid; grid-template-columns: 30mm minmax(0, 1fr); gap: 4mm; align-items: center; }
+  .s2-baris img { width: 30mm; height: 24mm; object-fit: cover; border-radius: 3.5mm; }
+  .s2-baris h3 { font-size: 15pt; letter-spacing: -0.02em; }
+  .s2-baris h3 span { font-family: var(--font-sans); font-weight: 400; font-size: 10pt; color: var(--lumut); margin-left: 1.5mm; letter-spacing: 0; }
+  .s2-baris-bawah { margin-top: 2mm; display: flex; justify-content: space-between; align-items: center; }
+  .s2-baris .pil { padding: 1.6mm 3.6mm; font-size: 11pt; }
+  .s2-gs { margin-top: 1mm; white-space: nowrap; font-size: 9.5pt; color: var(--lumut); }
+  .s2-unggul { left: 112mm; top: 78mm; width: 84mm; height: 134mm; background: var(--pinus); color: var(--embun); border-radius: 7mm; padding: 5mm; }
+  .s2-unggul img { width: 100%; height: 52mm; object-fit: cover; border-radius: 4mm; }
+  .s2-unggul h3 { margin-top: 4mm; font-size: 24pt; letter-spacing: -0.03em; }
+  .s2-asal { font-size: 10.5pt; color: rgb(242 244 241 / 0.7); }
+  .s2-wt { margin-top: 4mm; display: flex; justify-content: space-between; align-items: center; font-size: 10pt; color: rgb(242 244 241 / 0.75); }
+  .s2-harga { margin-top: 5mm; border: 0.8pt solid rgb(242 244 241 / 0.5); border-radius: 999px; padding: 2.5mm 5mm; display: flex; justify-content: space-between; align-items: baseline; font-size: 10pt; color: rgb(242 244 241 / 0.75); }
+  .s2-harga b { white-space: nowrap; font-size: 16pt; color: var(--embun); letter-spacing: -0.02em; }
+  .s2-bintang { left: 178mm; top: 70mm; width: 26mm; height: 26mm; display: grid; place-items: center; }
+  .s2-bintang svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .s2-bintang span { position: relative; font-size: 9pt; font-weight: 500; text-align: center; line-height: 1.05; color: var(--pinus); }
+  .s2-dua { left: 14mm; right: 14mm; top: 222mm; display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
+  .s2-kecil { background: var(--krem); border: 0.8pt solid var(--garis); border-radius: 6mm; padding: 4mm; display: grid; grid-template-columns: 28mm minmax(0, 1fr); gap: 4mm; align-items: center; }
+  .s2-kecil img { width: 28mm; height: 24mm; object-fit: cover; border-radius: 3.5mm; }
+  .s2-kecil h3 { font-size: 14pt; letter-spacing: -0.02em; }
+  .s2-kecil p { font-size: 10pt; color: var(--lumut); margin-top: 0.6mm; }
+  .s2-kecil .pil { margin-top: 2.5mm; padding: 1.4mm 3.4mm; font-size: 10.5pt; }
 
-  /* Halaman merek */
-  .foto-atas { position: relative; height: 150mm; background: var(--color-pinus); color: var(--color-embun); }
-  .foto-atas-pendek { height: 150mm; }
-  .foto-redup { position: absolute; inset: 0; background: linear-gradient(180deg, rgb(16 35 30 / 0) 45%, rgb(16 35 30 / 0.82) 100%); }
-  .foto-teks { position: absolute; left: 16mm; right: 16mm; bottom: 12mm; }
-  .merek-besar { margin-top: 1mm; font-family: var(--font-merek); font-weight: 500; font-size: 44pt; line-height: 1; letter-spacing: -0.045em; }
-  .merek-sedang { margin-top: 1mm; font-family: var(--font-merek); font-weight: 500; font-size: 30pt; line-height: 1; letter-spacing: -0.04em; }
-  .merek-isi { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 0 10mm; padding-top: 10mm; }
-  .ringkas { font-size: 10pt; color: var(--color-tinta); line-height: 1.5; }
-  .seri { margin-top: 5mm; display: grid; gap: 2.5mm; }
-  .seri li { display: grid; grid-template-columns: auto 1fr; column-gap: 3mm; border-top: 0.6pt solid var(--color-garis); padding-top: 2.5mm; }
-  .seri b { font-weight: 600; font-size: 9.5pt; }
-  .seri-harga { justify-self: end; font-weight: 600; color: var(--color-pinus); font-size: 9pt; font-variant-numeric: tabular-nums; }
-  .seri-ringkas { grid-column: 1 / -1; font-size: 8pt; color: var(--color-lumut); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-  .seri-padat { gap: 2mm; }
-  .seri-padat .seri-ringkas { -webkit-line-clamp: 1; }
-  .warna { margin-top: 5mm; }
-  .warna ul { margin-top: 3mm; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 3.5mm 3mm; }
-  .warna li { display: grid; justify-items: center; gap: 1.4mm; text-align: center; }
-  .kat :global(.bulat) { display: block; width: 100%; height: 22mm; border-radius: 2.5mm; object-fit: cover; border: 0.5pt solid rgb(0 0 0 / 0.14); box-sizing: border-box; }
-  .warna :global(.bulat) { display: block; width: 14mm; height: 14mm; border-radius: 999px; object-fit: cover; border: 0.5pt solid rgb(0 0 0 / 0.14); box-sizing: border-box; }
-  .kat :global(.bulat-kosong) { display: grid; place-items: center; background: var(--color-putih); color: var(--color-lumut); font-size: 9pt; }
-  .kat { margin-top: 1mm; }
-  .warna-lanjut { margin-top: 5mm; }
-  .motif { margin-top: 2.5mm; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3.5mm 3mm; }
-  .motif-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .motif li { display: grid; gap: 1.4mm; }
-  .motif-foto { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 2.5mm; }
-  .motif span { font-size: 8pt; font-weight: 500; }
-  /* Halaman motif & warna yang penuh (Tegola): ubin sedikit lebih pendek supaya catatan tidak menabrak kaki. */
-  .padat .motif-foto { aspect-ratio: 16 / 8.5; }
-  /* Sisa ruang halaman motif & warna diisi foto suasana yang memanjang sampai garis kaki. */
-  .isi-penuh { display: flex; flex-direction: column; height: calc(297mm - 22mm); }
-  .hero2 { position: relative; flex: 1 1 auto; min-height: 0; margin-top: 6mm; border-radius: 3mm; overflow: hidden; background: var(--color-pinus); }
-  /* Teks besar ala Apple di area foto yang tidak menutupi atap; bayangan lembut menjaga keterbacaan. */
-  .hero2::before { content: ''; position: absolute; inset: 0; z-index: 1; }
-  /* Tanpa text-shadow (jadi kotak abu-abu di PDF): keterbacaan dari gradasi gelap di sisi teks. */
-  .hero-atas::before { background: linear-gradient(105deg, rgb(16 35 30 / 0.72) 0%, rgb(16 35 30 / 0.35) 32%, rgb(16 35 30 / 0) 55%); }
-  .hero-teks { position: absolute; z-index: 2; left: 6mm; max-width: 46mm; color: var(--color-embun); }
-  .hero-atas .hero-teks { top: 5mm; }
-  .hero-tengah .hero-teks { top: 50%; transform: translateY(-50%); }
-  .hero-tengah::before { background: linear-gradient(90deg, rgb(16 35 30 / 0.6) 0%, rgb(16 35 30 / 0) 40%); }
-  .hero-bawah .hero-teks { bottom: 7mm; }
-  .hero-bawah::before { background: linear-gradient(0deg, rgb(16 35 30 / 0.6) 0%, rgb(16 35 30 / 0) 50%); }
-  .hero-judul { font-family: var(--font-merek); font-weight: 600; font-size: 24pt; line-height: 1; letter-spacing: -0.045em; }
-  .hero-sub { margin-top: 1.5mm; font-size: 8.5pt; line-height: 1.35; color: rgb(242 244 241 / 0.92); }
-  .hero-tengah .hero-judul { font-size: 18pt; }
-  .hero2 figcaption { z-index: 2; right: 4mm; left: auto; text-align: right; position: absolute; bottom: 3mm; font-size: 6.5pt; color: rgb(242 244 241 / 0.85); background: rgb(16 35 30 / 0.5); padding: 0.5mm 1.6mm; border-radius: 1mm; }
-  .padat .kat :global(.bulat) { height: 18mm; }
-  .padat .kat-grup { margin-top: 2.8mm; }
-  .kat-grup { margin-top: 3.5mm; }
-  .kat-catatan { margin-top: 0.8mm; font-size: 7.5pt; color: var(--color-lumut); }
-  .kat-warna { margin-top: 2.5mm; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 3.5mm 3mm; }
-  .kat-warna li { display: grid; gap: 1.4mm; }
-  .kat-warna span { font-size: 8pt; font-weight: 500; line-height: 1.25; color: var(--color-tinta); }
-  .kat-warna em { display: block; font-style: normal; color: var(--color-lumut); font-size: 6.5pt; font-variant-numeric: tabular-nums; }
-  .warna span { font-size: 7.5pt; color: var(--color-tinta); line-height: 1.2; }
+  /* 3. Halaman merek */
+  .s3 { background: var(--lumut); }
+  .s3-nama { left: 116mm; top: 40mm; width: 74mm; }
+  .s3-nama h2 { line-height: 1; }
+  .s3-nama h2 span { display: block; font-size: 24pt; opacity: 0.55; letter-spacing: -0.02em; margin-top: 1.5mm; }
+  .s3-nama p { margin-top: 5mm; color: var(--lumut); }
+  .s3-takik { left: 116mm; bottom: 145mm; width: 74mm; background: var(--pinus); color: var(--embun); border-radius: 6mm; padding: 4.5mm 5mm; }
+  .s3-takik p { font-size: 10.5pt; color: rgb(242 244 241 / 0.72); }
+  .s3-takik b { display: block; font-size: 20pt; letter-spacing: -0.02em; margin-top: 0.5mm; }
+  .s3-takik b small { font-family: var(--font-sans); font-size: 10pt; font-weight: 400; color: rgb(242 244 241 / 0.7); }
+  .s3-bundel { margin-top: 1mm; }
+  .s3-warna { left: 116mm; top: 164mm; width: 74mm; display: flex; align-items: center; gap: 3mm; line-height: 1.3; font-size: 10.5pt; color: var(--lumut); }
+  .s3-warna b { font-weight: 500; color: var(--pinus); }
+  .s3-harga { left: 80mm; top: 206mm; right: 14mm; color: var(--embun); text-align: right; }
+  .s3-harga p { font-size: 13pt; color: rgb(242 244 241 / 0.78); }
+  .s3-harga b { display: block; white-space: nowrap; font-size: 52pt; letter-spacing: -0.05em; line-height: 1; margin-top: 1mm; }
+  .s3-harga sup { font-size: 20pt; letter-spacing: 0; vertical-align: top; margin-left: 1.5mm; line-height: 1.6; }
+  .s3-harga .rp { font-size: 22pt; letter-spacing: 0; margin-right: 1.5mm; }
+  .s3-ikon { left: 14mm; right: 14mm; top: 262mm; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); color: var(--embun); }
+  .s3-ikon > div { display: flex; align-items: center; gap: 3.5mm; padding: 0 4mm; border-left: 0.6pt solid rgb(242 244 241 / 0.28); white-space: nowrap; }
+  .s3-ikon > div:first-child { border-left: 0; padding-left: 0; }
+  .s3-ikon i { flex: none; width: 11mm; height: 11mm; border-radius: 50%; background: var(--embun); color: var(--pinus); display: grid; place-items: center; }
+  .s3-ikon b { display: block; font-size: 15pt; letter-spacing: -0.02em; line-height: 1.1; }
+  .s3-ikon small { display: block; font-size: 10.5pt; color: rgb(242 244 241 / 0.75); margin-top: 0.5mm; }
 
-  .slip { align-self: start; background: var(--color-pinus); color: var(--color-embun); border-radius: 4mm; padding: 6mm 6.5mm 4mm; }
-  .slip-label { font-size: 7.5pt; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-tunas); font-weight: 500; }
-  .slip-label.gelap { color: var(--color-lumut); }
-  .slip-harga { margin-top: 1.5mm; font-family: var(--font-merek); font-weight: 500; font-size: 30pt; line-height: 1; letter-spacing: -0.04em; }
-  .slip-harga .rp { font-size: 0.5em; opacity: 0.7; margin-right: 0.6mm; letter-spacing: 0; }
-  .per { font-size: 9pt; font-weight: 400; margin-left: 1.2mm; opacity: 0.7; letter-spacing: 0; font-family: var(--font-sans); }
-  .slip dl { margin-top: 5mm; }
-  .slip dl div { display: grid; gap: 0.4mm; padding: 2mm 0; border-top: 0.6pt solid rgb(242 244 241 / 0.16); }
-  .slip dt { font-size: 7.5pt; color: var(--embun-redup); }
-  .slip dd { font-size: 9.5pt; font-weight: 500; font-variant-numeric: tabular-nums; }
+  /* 4. Motif & warna — tinggi baris disamakan dengan konstanta paginasi di atas */
+  .s4-judul { left: 14mm; top: 16mm; right: 14mm; font-size: 26pt; }
+  .s4-isi { left: 14mm; right: 14mm; top: 38mm; height: 232mm; display: flex; flex-direction: column; gap: 7mm; }
+  .s4-blok h3 { margin-bottom: 3mm; }
+  .s4-catatan { font-size: 10.5pt; color: var(--lumut); margin: -1mm 0 3mm !important; }
+  .s4-motif, .s4-warna { list-style: none; display: grid; }
+  .s4-motif { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5mm; }
+  .s4-motif-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4mm; }
+  .s4-warna { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4mm; }
+  .s4-motif :global(.bulat), .s4-warna :global(.bulat) { display: block; width: 100%; height: auto; aspect-ratio: 5 / 4; object-fit: cover; border-radius: 3.5mm; }
+  .s4-motif :global(.bulat) { aspect-ratio: 4 / 3; border-radius: 4.5mm; }
+  .s4-warna :global(.bulat-hex) { border: 0.5pt solid rgb(0 0 0 / 0.08); }
+  .s4-warna :global(.bulat-kosong) { display: grid; place-items: center; background: var(--krem); color: var(--lumut); }
+  .s4-nama { margin-top: 1.6mm !important; font-size: 10.5pt; font-weight: 500; line-height: 1.25; }
+  .s4-motif .s4-nama { font-size: 11.5pt; margin-top: 2mm !important; }
+  .s4-sub { font-size: 9.5pt; color: var(--lumut); line-height: 1.3; }
+  .s4-hero { margin-top: auto; flex: none; }
+  .s4-hero p { display: flex; align-items: baseline; justify-content: space-between; gap: 6mm; margin-bottom: 3mm !important; }
+  .s4-hero b { font-family: var(--font-merek); font-weight: 500; font-size: 18pt; letter-spacing: -0.03em; }
+  .s4-hero span { font-size: 10.5pt; color: var(--lumut); text-align: right; }
+  .s4-hero img { display: block; width: 100%; object-fit: cover; border-radius: 10mm; }
 
-  /* Plafon */
-  .plafon { height: 132mm; display: grid; grid-template-rows: 92mm 1fr; }
-  .plafon + .plafon { margin-top: 0; }
-  .plafon-foto { position: relative; color: var(--color-embun); background: var(--color-pinus); }
-  .plafon-isi { display: flex; align-items: center; justify-content: space-between; gap: 10mm; padding: 0 16mm; }
-  .plafon-isi > div { max-width: 95mm; }
-  .plafon-harga { text-align: right; white-space: nowrap; flex: none; }
-  .plafon-harga .slip-label { display: block; margin-bottom: 1mm; }
-  .angka-besar { font-family: var(--font-merek); font-weight: 500; font-size: 20pt; letter-spacing: -0.035em; line-height: 1.1; color: var(--color-pinus); }
-  .plafon-harga .per { color: var(--color-lumut); }
-  .plafon ~ .ilustrasi { bottom: 18mm; }
+  /* 5. Perumahan */
+  .s5-judul { left: 14mm; top: 18mm; width: 120mm; font-size: 30pt; }
+  .s5-judul span { display: block; }
+    .s5-sub { right: 14mm; top: 20mm; width: 64mm; color: var(--lumut); }
 
-  /* Rangka */
-  .kartu-tiga { margin-top: 7mm; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4mm; }
-  .kartu-tiga li { background: var(--color-putih); border-radius: 4mm; padding: 5mm; display: grid; gap: 1mm; }
-  .kartu-tiga b { font-size: 12pt; font-weight: 600; letter-spacing: -0.02em; }
-  .kartu-tiga span { font-size: 8pt; color: var(--color-lumut); }
-  .kartu-tiga .angka-besar { margin-top: 3mm; }
-  .kartu-tiga .per { color: var(--color-lumut); }
+  /* 6. Rangka & plafon */
+  .s6-judul { left: 14mm; right: 14mm; top: 20mm; font-size: 26pt; }
+  .s6-daftar { left: 14mm; right: 14mm; top: 44mm; }
+  .s6-baris { display: flex; justify-content: space-between; align-items: center; gap: 6mm; padding: 4.5mm 0; border-bottom: 0.6pt solid var(--garis); }
+  .s6-baris h3 { font-size: 15pt; letter-spacing: -0.02em; }
+  .s6-baris p { font-size: 10.5pt; color: var(--lumut); margin-top: 0.5mm !important; }
 
-  /* Aksesoris */
-  .aks { margin-top: 9mm; display: grid; grid-template-columns: 1fr 1fr; gap: 5mm 6mm; }
-  .aks li { display: grid; grid-template-columns: 38mm minmax(0, 1fr); grid-template-rows: auto auto; column-gap: 4mm; align-items: center; background: var(--color-putih); border-radius: 3.5mm; padding: 2.5mm; }
-  .aks-foto { grid-row: 1 / span 2; width: 38mm; height: 30mm; object-fit: cover; border-radius: 2.5mm; }
-  .aks-teks { display: grid; gap: 0.5mm; align-self: end; }
-  .aks-teks b { font-weight: 600; font-size: 9.5pt; }
-  .aks-teks span { font-size: 7.5pt; color: var(--color-lumut); line-height: 1.35; }
-  .aks-harga { align-self: start; margin-top: 1mm; }
-  .aks-harga .angka { font-weight: 600; color: var(--color-pinus); font-size: 10.5pt; }
-  .aks-harga .per { font-size: 7.5pt; color: var(--color-lumut); margin-left: 1mm; }
+  /* 7. Aksesoris */
+  .s7-judul { left: 14mm; right: 14mm; top: 16mm; font-size: 26pt; }
+  .s7-lead { left: 14mm; top: 30mm; width: 150mm; color: var(--lumut); }
+  .s7-grid { left: 14mm; right: 14mm; top: 44mm; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7mm 5mm; }
+  .s7-grid img { display: block; width: 100%; aspect-ratio: 3 / 2; height: auto; object-fit: cover; border-radius: 4.5mm; }
+  .s7-grid h3 { margin-top: 2.5mm !important; }
+  .s7-grid p { font-size: 9.5pt; color: var(--lumut); line-height: 1.3; margin-top: 0.5mm !important; height: 2.6em; overflow: hidden; }
+  .s7-grid .pil { margin-top: 2mm; padding: 1.4mm 3.4mm; font-size: 10.5pt; }
 
-  /* Ketentuan */
-  .sub { margin-top: 8mm; font-size: 10.5pt; font-weight: 600; letter-spacing: -0.01em; }
-  .teks { margin-top: 2.5mm; color: var(--color-lumut); }
-  .centang, .strip { margin-top: 2.5mm; display: grid; gap: 1.6mm; }
-  .centang li, .strip li { position: relative; padding-left: 5mm; color: var(--color-tinta); font-size: 9pt; }
-  .centang li::before { content: ''; position: absolute; left: 0; top: 1.6mm; width: 2.2mm; height: 1.2mm; border-left: 1.2pt solid var(--color-pinus); border-bottom: 1.2pt solid var(--color-pinus); transform: rotate(-45deg); }
-  .strip li { color: var(--color-lumut); }
-  .strip li::before { content: ''; position: absolute; left: 0.2mm; top: 2.4mm; width: 2.4mm; border-top: 1pt solid var(--color-lumut); }
-  .termin { margin-top: 3mm; display: grid; gap: 0; border-top: 0.8pt solid var(--color-tinta); }
-  .termin li { display: grid; grid-template-columns: 22mm 1fr; gap: 4mm; padding: 2.6mm 0; border-bottom: 0.6pt solid var(--color-garis); font-size: 9pt; }
-  .termin b { font-family: var(--font-merek); font-weight: 600; color: var(--color-pinus); font-variant-numeric: tabular-nums; }
+  /* 8. Ketentuan */
+  .s8-judul { left: 14mm; right: 14mm; top: 16mm; font-size: 26pt; }
+  .s8-dua { left: 14mm; right: 14mm; top: 40mm; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8mm; }
+  .s8-daftar { list-style: none; margin-top: 3mm !important; display: grid; gap: 3mm; }
+  .s8-daftar li { display: grid; grid-template-columns: 7mm minmax(0, 1fr); gap: 3mm; align-items: start; font-size: 11pt; line-height: 1.35; }
+  .s8-daftar i { width: 7mm; height: 7mm; border-radius: 50%; background: var(--pinus); color: var(--embun); display: grid; place-items: center; }
+  .s8-daftar .ik { width: 4.5mm; height: 4.5mm; stroke-width: 2; }
+  .s8-belum i { background: var(--krem); color: var(--lumut); border: 0.6pt solid var(--garis); }
+  .s8-bawah { left: 14mm; right: 14mm; top: 128mm; }
+  .s8-material { margin-top: 3mm !important; display: flex; gap: 4mm; align-items: baseline; padding-bottom: 4mm !important; border-bottom: 0.6pt solid var(--garis); }
+  .s8-material b { flex: none; width: 30mm; font-family: var(--font-merek); font-weight: 500; }
+  .s8-termin, .s8-klaim { list-style: none; margin-top: 4mm !important; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5mm; }
+  .s8-klaim { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .s8-termin li, .s8-klaim li { display: flex; flex-direction: column; gap: 1mm; }
+  .s8-termin b { font-size: 34pt; letter-spacing: -0.04em; line-height: 1; }
+  .s8-klaim b { width: 9mm; height: 9mm; border-radius: 50%; background: var(--pinus); color: var(--embun); display: grid; place-items: center; font-size: 12pt; }
+  .s8-termin span, .s8-klaim span { font-weight: 500; }
+  .s8-termin small, .s8-klaim small { font-size: 10pt; color: var(--lumut); line-height: 1.35; }
+  .s8-survey { margin-top: 3mm !important; width: 150mm; color: var(--lumut); }
 
-  /* Sampul belakang */
-  .belakang { background: var(--color-pinus); color: var(--color-embun); }
-  .belakang-isi { position: absolute; left: 16mm; right: 16mm; top: 22mm; }
-  .belakang-judul { margin-top: 30mm; font-family: var(--font-merek); font-weight: 500; font-size: 30pt; line-height: 1.05; letter-spacing: -0.04em; }
-  .redup-terang { color: var(--embun-redup); }
-  .kontak { margin-top: 18mm; display: grid; grid-template-columns: 38mm 1fr; gap: 10mm; align-items: start; }
-  .qr { background: var(--color-embun); border-radius: 3mm; padding: 4mm; }
-  .qr :global(svg) { display: block; width: 100%; height: auto; }
-  .kontak dl div { padding: 2.2mm 0; border-top: 0.6pt solid rgb(242 244 241 / 0.16); display: grid; grid-template-columns: 22mm 1fr; gap: 4mm; }
-  .kontak dt { font-size: 7.5pt; color: var(--embun-redup); letter-spacing: 0.08em; text-transform: uppercase; padding-top: 0.6mm; }
-  .kontak dd { font-size: 10pt; }
-  .belakang-kaki { position: absolute; left: 16mm; right: 16mm; bottom: 14mm; font-size: 7pt; color: rgb(242 244 241 / 0.55); line-height: 1.5; max-width: 160mm; }
+  /* 9. Sampul belakang */
+  .s9 { background: var(--pinus); color: var(--embun); }
+  .s9-judul { left: 14mm; top: 48mm; width: 160mm; font-size: 34pt; }
+  .s9-kontak { left: 14mm; right: 14mm; top: 110mm; display: grid; grid-template-columns: 60mm minmax(0, 1fr); gap: 10mm; align-items: center; }
+  .s9-qr { background: var(--embun); border-radius: 6mm; padding: 5mm; }
+  .s9-qr :global(svg) { display: block; width: 100%; height: auto; }
+  .s9-daftar { display: grid; gap: 6mm; }
+  .s9-daftar span { display: block; font-size: 10.5pt; color: rgb(242 244 241 / 0.6); }
+  .s9-daftar b { font-size: 20pt; letter-spacing: -0.02em; }
+  .s9-daftar b.kecil { font-size: 14pt; }
+  .s9-alamat { left: 14mm; top: 196mm; width: 150mm; color: rgb(242 244 241 / 0.8); }
+  .s9-kaki { left: 14mm; bottom: 14mm; font-size: 10pt; color: rgb(242 244 241 / 0.5); }
 </style>

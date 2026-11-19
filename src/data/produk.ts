@@ -384,7 +384,7 @@ const semuaProduk: Produk[] = [
         ringkas: 'Model 3-tab dengan satu warna rata. Tampilan rapi dan bersih untuk rumah tinggal.',
         spek: [
           { label: 'Isi per bundel', nilai: '21 lembar (3 m²)' },
-          { label: 'Genteng saja', nilai: 'Rp220 ribu per m²' },
+          { label: 'Genteng saja', nilai: 'Rp200 ribu per m²' },
         ],
       },
       {
@@ -393,7 +393,7 @@ const semuaProduk: Produk[] = [
         ringkas: 'Model 3-tab dengan perpaduan dua nada warna di tiap lidah, sehingga atap tampak lebih berdimensi.',
         spek: [
           { label: 'Isi per bundel', nilai: '21 lembar (3 m²)' },
-          { label: 'Genteng saja', nilai: 'Rp260 ribu per m²' },
+          { label: 'Genteng saja', nilai: 'Rp220 ribu per m²' },
         ],
       },
     ],

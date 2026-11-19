@@ -6,7 +6,7 @@ import preact from '@astrojs/preact';
 import sitemap from '@astrojs/sitemap';
 
 // Satu-satunya tempat alamat situs. Ganti lewat env SITE_URL saat domain sendiri dipasang.
-const site = process.env.SITE_URL ?? 'https://atapura.vercel.app';
+const site = process.env.SITE_URL ?? 'https://atapura.com';
 
 // https://astro.build/config
 export default defineConfig({

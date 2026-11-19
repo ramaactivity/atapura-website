@@ -210,3 +210,20 @@ Masukan Rama pada pricelist (DECISIONS 051), 19 Nov malam:
 - **Pricelist**: label kelas diganti negara asal (Rama: Javabitumen & Maxxi Tiongkok, CTI Indonesia, Victory USA, Tegola Italia). Kalimat Javabitumen dibuat khusus pricelist tanpa narasi kelas. Tiap merek kini dua halaman: halaman merek (semua seri dengan harga per seri; kotak harga "mulai" bila ada seri lebih murah; terpasang & isi bundel Tegola diberi label acuan Premium Rectangular), lalu halaman **Motif & warna** (Rama: "jangan dipisah dari produknya"). Halaman itu memuat close-up tiap motif, semua warna sebagai ubin besar ±27 × 22 mm (diperbesar dua kali atas permintaan Rama supaya motif terlihat), dan foto suasana yang mengisi sisa ruang (ilustrasi penerapan website yang sudah ada; Tegola tanpa foto karena halamannya penuh). Pricelist kini 16 halaman, ±13 MB.
 - **Lanjutan (Rama)**: foto suasana di halaman motif & warna jangan memotong genteng → dibuat ulang di Magnific dengan ukuran persis ruang kosong (dari pengukuran halaman: 2,5:1 · 3,5:1 · 5:1 · 2,2:1), bangunan di tengah, dan diberi teks besar ala Apple di area langit atau area gelap supaya tidak menutupi atap ("20 warna.", "Sampai 30 tahun.", "Buatan Indonesia.", "Dua nada."). Halaman baru **"Satu kawasan, satu atap."** berisi foto drone cluster berbukit dengan atap seragam, untuk developer dan proyek, diletakkan setelah halaman merek. Pricelist kini 17 halaman, ±13 MB. Kalau isi halaman motif & warna berubah, rasio ruang kosongnya ikut berubah: ukur ulang, lalu buat foto baru dengan ukuran itu (cara di `docs/pricelist/README.md`).
 - **Perbaikan tampilan di Preview Mac** (Rama melihat kotak abu-abu): Chrome mengubah `text-shadow`/`box-shadow` menjadi gambar buram yang di Preview tampil sebagai kotak. Semua bayangan di pricelist dihapus: teks di atas foto memakai gradasi, ubin memakai garis tepi. Logo diganti file SVG resmi karena logo ber-CSS-mask rusak di PDF. Halaman kosong ke-18 dihilangkan: pemisah halaman dipasang sebelum tiap halaman, dan halaman terakhir dibuat 280 mm berlatar Pinus. Hasil diperiksa dengan render PDFKit (mesin Preview); aturannya dicatat di `docs/pricelist/README.md`.
+
+## 053 · 20 November 2026 · Pricelist v4 meniru referensi Rama, harga sheet Vendor, domain atapura.com
+- **Desain pricelist v4** (`src/pages/internal/pricelist.astro`): v3 huruf raksasa dinilai Rama 1/10. v4 meniru 62 referensi Rama
+  (disimpan di Atapura Ops `docs/desain/referensi-dokumen`, bedahnya di `REFERENSI-DOKUMEN.md`): sampul satu foto bertakik dengan
+  pil "Supplier & aplikator" di takik (lengkung takik sepusat dengan ujung pil, jarak 5 mm), katalog ringkas ala katalog furnitur
+  (kepala Pinus, baris merek + titik warna + pil harga, satu merek sorotan), halaman merek berbentuk krem bersudut potong dengan
+  foto, panel "Genteng saja" yang rata bawah dengan foto, harga terpasang besar, tiga ikon bulat; motif & warna langsung sesudah
+  mereknya; perumahan; rangka; aksesoris grid 3×3; ketentuan; sampul belakang. Judul Public Sans 500 + satu frasa diredupkan, teks
+  kecil Inter (riset tipografi situs). Persetujuan bertahap dari Rama lewat mock 3 halaman (20 Nov).
+- **Narasi umum** (Rama): tanpa jumlah merek ("lima merek"), tanpa klaim wilayah/"survey gratis", tanpa keterangan "foto ilustrasi"
+  dan catatan warna yang berupa disclaimer. Angka yang memang perlu (jumlah warna) dihitung dari data, bukan diketik.
+- Paginasi motif & warna memakai tinggi baris yang diukur di Chrome; kelompok warna yang hanya menyisakan 1–2 ubin di halaman
+  berikutnya dipindah utuh; motif > 6 jadi 4 kolom. Foto suasana kedua tampil pada rasio aslinya bila sisa halaman cukup.
+- **Harga dari sheet Vendor** (Atapura Ops DECISIONS 110, berlaku 20 Nov): Victory Standar 200 rb, Two Tone 220 rb, Multiplek 12 mm
+  179 rb, Flashing U 40 rb. Legend 270 rb baru ada di Ops (belum ada foto/warna untuk situs).
+- **Domain atapura.com** (Rama: "langsung dipasang saja", dibeli 21 Nov): ditempel ke proyek Vercel + `www` 308 ke apex; `site`
+  default di astro.config jadi atapura.com. Sampai DNS diisi di registrar, situs tetap terbuka di atapura.vercel.app.

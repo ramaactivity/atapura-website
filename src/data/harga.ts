@@ -3,7 +3,8 @@
 //   genteng per m² (genteng saja): CTI 155 rb, Maxxi 145 rb, Javabitumen 145 rb.
 //   estimasi kasar terpasang per m²: CTI 400–450 rb, Maxxi & Javabitumen 380–430 rb (spek standar).
 //   rangka baja ringan: sejak 18 Nov 2026 per merek (Bang Yusuf via Rama), lihat `rangka` di bawah.
-// Victory (Rama, 5 Nov 2026): genteng Standar 220 rb, Two Tone 260 rb per m²; terpasang 500–550 rb per m²
+// Victory (sheet Vendor, 20 Nov 2026; sebelumnya Rama 5 Nov: 220/260 rb): genteng Standar 200 rb, Two Tone 220 rb,
+//   Legend 270 rb per m² (Legend baru di Ops); terpasang 500–550 rb per m²
 //   (spek pendukung sama dengan merek lain). Kalkulator memakai harga Standar; Two Tone ditulis di halaman produk.
 // Material pendukung = harga satuan toko dokteratap.co.id. Jasa dikalibrasi supaya spek standar
 // (multiplek, underlayer, flashing U) jatuh di rentang terpasang Bang Yusuf — dijaga harga.test.ts.
@@ -13,20 +14,20 @@
 // `contoh: true` = angka acuan, belum harga Atapura; UI menandai "Harga acuan".
 export const harga = {
   contoh: false,
-  berlakuSejak: '2026-11-18',
+  berlakuSejak: '2026-11-20',
   // Tambahan material untuk potongan & sambungan.
   susut: 0.1,
   merek: {
     Javabitumen: { kelas: 'Ekonomis', genteng: 145_000, terpasang: [380_000, 430_000], m2PerBundel: 3.0, garansiPabrik: 'Menunggu dokumen resmi' },
     CTI: { kelas: 'Menengah', genteng: 155_000, terpasang: [400_000, 450_000], m2PerBundel: 3.0, garansiPabrik: '30 tahun (produk)' },
     Maxxi: { kelas: 'Ekonomis', genteng: 145_000, terpasang: [380_000, 430_000], m2PerBundel: 3.1, garansiPabrik: '25 tahun (material)' },
-    Victory: { kelas: 'Atas', genteng: 220_000, terpasang: [500_000, 550_000], m2PerBundel: 3.0, garansiPabrik: 'Menunggu dokumen resmi' },
+    Victory: { kelas: 'Atas', genteng: 200_000, terpasang: [500_000, 550_000], m2PerBundel: 3.0, garansiPabrik: 'Menunggu dokumen resmi' },
     // SEMENTARA (riset pasar 18 Nov, docs/riset/harga-tegola.md; dikoreksi Bang Yusuf Kamis 19 Nov): genteng = median 5 toko
     // Premium Rectangular (3,05 m²/bundel TDS); terpasang dari rumus hitungEstimasi spek standar, dibulatkan 10 rb.
     Tegola: { kelas: 'Premium', genteng: 420_000, terpasang: [700_000, 750_000], m2PerBundel: 3.05, garansiPabrik: 'Terbatas terdaftar hingga 40 tahun, bertahap' },
   },
   alas: {
-    'Multiplek 12 mm': { harga: 179_500, m2: 1.22 * 2.44, satuan: 'lembar' },
+    'Multiplek 12 mm': { harga: 179_000, m2: 1.22 * 2.44, satuan: 'lembar' },
     'GRC 9 mm': { harga: 210_000, m2: 1.2 * 2.4, satuan: 'lembar' },
   },
   lapisKedap: {
@@ -34,7 +35,7 @@ export const harga = {
     Membrane: { harga: 700_000, m2: 10, satuan: 'roll', nama: 'Membrane torching' },
   },
   flashing: {
-    'Flashing U': { harga: 45_000, panjang: 1.2, satuan: 'batang' },
+    'Flashing U': { harga: 40_000, panjang: 1.2, satuan: 'batang' },
     'Flashing Z': { harga: 45_000, panjang: 1.2, satuan: 'batang' },
   },
   // Plafon terpasang per m² (Bang Yusuf 18 Nov 2026): plafon + rangka hollow + jasa pasang.
