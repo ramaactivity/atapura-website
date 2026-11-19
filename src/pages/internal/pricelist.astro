@@ -19,6 +19,8 @@ import lCti from '../../../assets/mitra/cti-logo.png';
 import lTegola from '../../../assets/mitra/tegola-logo.png';
 import lHisteel from '../../../assets/mitra/histeel-logo.jpg';
 import lTatalogam from '../../../assets/mitra/tatalogam-logo.png';
+import lJavabitumen from '../../../assets/mitra/javabitumen-logo-putih.png';
+import lVictory from '../../../assets/mitra/victory-logo.png';
 import fSampul from '../../../assets/gambar/magnific/pricelist-sampul.jpg';
 import fJavabitumen from '../../../assets/gambar/magnific/pricelist-javabitumen.jpg';
 import fMaxxi from '../../../assets/gambar/magnific/pricelist-maxxi.jpg';
@@ -117,7 +119,9 @@ const sampulSrc = await src(fSampul, 1700);
 const materialSrc = await src(fMaterial, 2000);
 // Halaman mitra (Rama 20 Nov): merek yang dipasok & dipasang, per kelompok material. Logo hanya file resmi (assets/mitra);
 // merek yang belum punya file resmi ditulis namanya saja — logo tidak pernah dibuat ulang.
-const LOGO: Record<string, ImageMetadata> = { Maxxi: lMaxxi, CTI: lCti, Tegola: lTegola, 'Hi-Steel': lHisteel, Taso: lTatalogam };
+const LOGO: Record<string, ImageMetadata> = { Javabitumen: lJavabitumen, Maxxi: lMaxxi, CTI: lCti, Victory: lVictory, Tegola: lTegola, 'Hi-Steel': lHisteel, Taso: lTatalogam };
+// Logo resmi yang hanya ada versi putih tampil di ubin gelap (tidak diwarnai ulang).
+const LOGO_GELAP = new Set(['Javabitumen']);
 const logoSrc = Object.fromEntries(await Promise.all(Object.entries(LOGO).map(async ([k, f]) => [k, (await getImage({ src: f, format: 'png', width: Math.min(500, f.width) })).src])));
 const MITRA: { kelompok: string; isi: string[] }[] = [
   { kelompok: 'Genteng bitumen', isi: Object.keys(harga.merek) },
@@ -314,7 +318,7 @@ const IK = {
       {MITRA.map((m) => (
         <div class="s10-baris">
           <h3>{m.kelompok}</h3>
-          <ul>{m.isi.map((n) => <li>{logoSrc[n] ? <img src={logoSrc[n]} alt={n} /> : <span>{n}</span>}</li>)}</ul>
+          <ul>{m.isi.map((n) => <li class:list={[{ gelap: LOGO_GELAP.has(n) }]}>{logoSrc[n] ? <img src={logoSrc[n]} alt={n} /> : <span>{n}</span>}</li>)}</ul>
         </div>
       ))}
     </div>
@@ -735,6 +739,7 @@ const IK = {
   .s10-baris ul { list-style: none; display: flex; flex-wrap: wrap; gap: 3mm; }
   .s10-baris li { width: 25mm; height: 14mm; border-radius: 3.5mm; background: #fff; border: 0.6pt solid var(--garis); display: grid; place-items: center; padding: 2mm 2.5mm; }
   .s10-baris li img { max-width: 20mm; max-height: 10mm; width: auto; height: auto; object-fit: contain; display: block; }
+  .s10-baris li.gelap { background: var(--pinus); border-color: var(--pinus); }
   .s10-baris li span { font-family: var(--font-merek); font-weight: 500; font-size: 10pt; letter-spacing: -0.01em; text-align: center; line-height: 1.1; }
 
   /* 9. Sampul belakang */
