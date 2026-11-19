@@ -35,6 +35,14 @@ Hal yang perlu diingat saat menambah isi:
 - **Setelah mengubah apa pun**: cetak ulang, lalu periksa tiap halaman. Teks yang terlalu panjang bisa menabrak kaki
   halaman. Skrip pemeriksa di sesi Claude memotret tiap halaman dan mencari elemen yang keluar batas.
 
+## Jebakan PDF (sudah pernah terjadi)
+
+- **Jangan pakai `box-shadow`, `text-shadow`, atau `filter`** di pricelist. Chrome mengubahnya jadi gambar buram yang di
+  Preview Mac tampil sebagai kotak abu-abu. Untuk keterbacaan teks di atas foto, pakai gradasi gelap; untuk ubin, pakai garis tepi.
+- **Jangan pakai komponen `Logo.astro`** (CSS mask). Di PDF logonya rusak. Pakai `<img src="/brand/atapura-logo-putih.svg">`.
+- Halaman terakhir sengaja setinggi 280 mm dengan latar Pinus. Kalau 297 mm, Chrome menambah satu halaman kosong di akhir.
+- Periksa hasil akhir di **Preview Mac** (PDFKit), bukan cuma di browser. Hasil di browser bisa berbeda dari PDF.
+
 ## Arah desain
 
 Brand Atapura (DESIGN.md): Pinus, Embun, aksen Tunas, judul Public Sans, isi Inter, angka tabular. Tiap merek punya satu

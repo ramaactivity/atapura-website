@@ -4,7 +4,6 @@
 // Foto: ilustrasi Magnific (pricelist-*.jpg), selalu berlabel ilustrasi, bukan proyek Atapura.
 import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
-import Logo from '../../components/Logo.astro';
 import Bulat from '../../components/BulatWarna.astro';
 import { harga, type Merek } from '../../data/harga';
 import { produk, fotoWarna } from '../../data/produk';
@@ -98,7 +97,7 @@ const satuanAks = (a: (typeof aksesoris)[number]) => (a.harga ? `/ ${a.harga.sat
     <Image src={fSampul} alt="" widths={[1600]} sizes="210mm" class="latar" loading="eager" />
     <div class="sampul-redup"></div>
     <header class="sampul-atas">
-      <Logo tinggi="9mm" class="logo-terang" />
+      <img src="/brand/atapura-logo-putih.svg" alt="Atapura" class="logo-pdf" style="height: 9mm" />
       <span class="label-terang">Pricelist · Jabodetabek</span>
     </header>
     <div class="sampul-bawah">
@@ -342,7 +341,7 @@ const satuanAks = (a: (typeof aksesoris)[number]) => (a.harga ? `/ ${a.harga.sat
   <!-- 12 · Sampul belakang -->
   <section class="hal belakang">
     <div class="belakang-isi">
-      <Logo tinggi="14mm" class="logo-terang" />
+      <img src="/brand/atapura-logo-putih.svg" alt="Atapura" class="logo-pdf" style="height: 14mm" />
       <p class="belakang-judul">Kirim foto atap Anda,<br /><span class="redup-terang">kami estimasikan segera.</span></p>
       <div class="kontak">
         <div class="qr" set:html={qr} aria-label="Kode QR WhatsApp Atapura"></div>
@@ -364,12 +363,20 @@ const satuanAks = (a: (typeof aksesoris)[number]) => (a.harga ? `/ ${a.harga.sat
   @page { size: A4; margin: 0; }
   :global(html), :global(body) { background: #d8ddd7; }
   :global(body) { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  @media print { :global(html), :global(body) { background: none; } }
+  /* Sisa ±17 mm di bawah halaman terakhir (sampul belakang Pinus) ikut berwarna Pinus. */
+  @media print { :global(html), :global(body) { background: var(--color-pinus); } }
 
+  /* Logo dari file SVG resmi (bukan Logo.astro yang memakai CSS mask: mask jadi kotak rusak di PDF Preview). */
+  .logo-pdf { display: block; width: auto; aspect-ratio: 6930 / 1768; }
+  /* Halaman terakhir: tanpa pemisah dan sedikit lebih pendek, supaya pembulatan tinggi tidak menumpahkan halaman kosong di PDF. */
+  /* Pemisah halaman SEBELUM tiap halaman (bukan sesudah), supaya tidak ada halaman kosong di akhir PDF. */
+  .hal + .hal { break-before: page; }
+  /* Terbukti: halaman terakhir setinggi 297 mm masih menumpahkan halaman kosong di Chrome; 280 mm tidak. Sisa ruang berwarna Pinus. */
+  .hal:last-child { height: 280mm; }
   .buku { display: grid; gap: 8mm; justify-content: center; padding: 8mm 0; }
   @media print { .buku { display: block; padding: 0; } }
   .hal {
-    position: relative; width: 210mm; height: 297mm; overflow: hidden; break-after: page;
+    position: relative; width: 210mm; height: 297mm; overflow: hidden;
     color: var(--color-tinta); font-family: var(--font-sans); font-size: 9.5pt; line-height: 1.5;
   }
   .kertas { background: var(--color-embun); }
@@ -435,15 +442,15 @@ const satuanAks = (a: (typeof aksesoris)[number]) => (a.harga ? `/ ${a.harga.sat
   .warna { margin-top: 5mm; }
   .warna ul { margin-top: 3mm; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 3.5mm 3mm; }
   .warna li { display: grid; justify-items: center; gap: 1.4mm; text-align: center; }
-  .kat :global(.bulat) { display: block; width: 100%; height: 22mm; border-radius: 2.5mm; object-fit: cover; box-shadow: inset 0 0 0 0.5pt rgb(0 0 0 / 0.15), 0 0.6mm 1.6mm rgb(16 35 30 / 0.14); }
-  .warna :global(.bulat) { display: block; width: 14mm; height: 14mm; border-radius: 999px; object-fit: cover; box-shadow: inset 0 0 0 0.5pt rgb(0 0 0 / 0.15), 0 0.6mm 1.6mm rgb(16 35 30 / 0.14); }
+  .kat :global(.bulat) { display: block; width: 100%; height: 22mm; border-radius: 2.5mm; object-fit: cover; border: 0.5pt solid rgb(0 0 0 / 0.14); box-sizing: border-box; }
+  .warna :global(.bulat) { display: block; width: 14mm; height: 14mm; border-radius: 999px; object-fit: cover; border: 0.5pt solid rgb(0 0 0 / 0.14); box-sizing: border-box; }
   .kat :global(.bulat-kosong) { display: grid; place-items: center; background: var(--color-putih); color: var(--color-lumut); font-size: 9pt; }
   .kat { margin-top: 1mm; }
   .warna-lanjut { margin-top: 5mm; }
   .motif { margin-top: 2.5mm; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3.5mm 3mm; }
   .motif-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .motif li { display: grid; gap: 1.4mm; }
-  .motif-foto { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 2.5mm; box-shadow: 0 0.6mm 1.6mm rgb(16 35 30 / 0.14); }
+  .motif-foto { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 2.5mm; }
   .motif span { font-size: 8pt; font-weight: 500; }
   /* Halaman motif & warna yang penuh (Tegola): ubin sedikit lebih pendek supaya catatan tidak menabrak kaki. */
   .padat .motif-foto { aspect-ratio: 16 / 8.5; }
@@ -452,8 +459,9 @@ const satuanAks = (a: (typeof aksesoris)[number]) => (a.harga ? `/ ${a.harga.sat
   .hero2 { position: relative; flex: 1 1 auto; min-height: 0; margin-top: 6mm; border-radius: 3mm; overflow: hidden; background: var(--color-pinus); }
   /* Teks besar ala Apple di area foto yang tidak menutupi atap; bayangan lembut menjaga keterbacaan. */
   .hero2::before { content: ''; position: absolute; inset: 0; z-index: 1; }
-  .hero-atas::before { background: linear-gradient(105deg, rgb(16 35 30 / 0.62) 0%, rgb(16 35 30 / 0.25) 30%, rgb(16 35 30 / 0) 50%); }
-  .hero-teks { position: absolute; z-index: 2; left: 6mm; max-width: 46mm; color: var(--color-embun); text-shadow: 0 0.4mm 3mm rgb(0 0 0 / 0.35); }
+  /* Tanpa text-shadow (jadi kotak abu-abu di PDF): keterbacaan dari gradasi gelap di sisi teks. */
+  .hero-atas::before { background: linear-gradient(105deg, rgb(16 35 30 / 0.72) 0%, rgb(16 35 30 / 0.35) 32%, rgb(16 35 30 / 0) 55%); }
+  .hero-teks { position: absolute; z-index: 2; left: 6mm; max-width: 46mm; color: var(--color-embun); }
   .hero-atas .hero-teks { top: 5mm; }
   .hero-tengah .hero-teks { top: 50%; transform: translateY(-50%); }
   .hero-tengah::before { background: linear-gradient(90deg, rgb(16 35 30 / 0.6) 0%, rgb(16 35 30 / 0) 40%); }
@@ -462,7 +470,7 @@ const satuanAks = (a: (typeof aksesoris)[number]) => (a.harga ? `/ ${a.harga.sat
   .hero-judul { font-family: var(--font-merek); font-weight: 600; font-size: 24pt; line-height: 1; letter-spacing: -0.045em; }
   .hero-sub { margin-top: 1.5mm; font-size: 8.5pt; line-height: 1.35; color: rgb(242 244 241 / 0.92); }
   .hero-tengah .hero-judul { font-size: 18pt; }
-  .hero2 figcaption { z-index: 2; right: 4mm; left: auto; text-align: right; position: absolute; bottom: 3mm; font-size: 6.5pt; color: rgb(242 244 241 / 0.85); text-shadow: 0 0 2mm rgb(0 0 0 / 0.4); }
+  .hero2 figcaption { z-index: 2; right: 4mm; left: auto; text-align: right; position: absolute; bottom: 3mm; font-size: 6.5pt; color: rgb(242 244 241 / 0.85); background: rgb(16 35 30 / 0.5); padding: 0.5mm 1.6mm; border-radius: 1mm; }
   .padat .kat :global(.bulat) { height: 18mm; }
   .padat .kat-grup { margin-top: 2.8mm; }
   .kat-grup { margin-top: 3.5mm; }
