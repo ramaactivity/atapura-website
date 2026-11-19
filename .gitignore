@@ -10,3 +10,6 @@ build/
 .astro/
 .impeccable/review/
 .impeccable/build/
+
+# Hasil cetak pricelist (dibuat ulang: npm run pricelist)
+docs/pricelist/*.pdf

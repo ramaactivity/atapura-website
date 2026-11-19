@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "pricelist": "astro build && node tools/pricelist/render.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },

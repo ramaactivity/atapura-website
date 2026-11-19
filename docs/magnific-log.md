@@ -37,3 +37,8 @@ Total 18 Nov: 690 kredit. Saldo setelahnya: ±1.141.
 | 19 Nov 2026 | Ulang membrane & skrup | Nano Banana 2.1, 2K, 3:2 | 2 × 65 | ✅ keduanya dipakai (membrane: dak rumah Jakarta; skrup: sekrup rata papan di atas reng) | Dipertegas: Southeast Asian roofer, Jakarta suburb; screws flush, physically correct |
 
 Total 19 Nov: 520 kredit. Saldo sebelum: 45.000 (paket Plus, baru reset). Setelahnya: ±44.480. Disalin juga ke Atapura Ops `public/katalog/*.webp`.
+
+| 19 Nov 2026 | Pricelist PDF: sampul + 5 merek atap + 2 plafon + rangka (sinematik, acuan close-up seri untuk bentuk genteng) | Nano Banana 2.1, 2K (sampul 2:3, lainnya 3:2) | 9 × 65 | ✅ 8 langsung dipakai `assets/gambar/magnific/pricelist-*.jpg`; Javabitumen ❌ (cahaya datar, langit putih) | Senja/biru, Jabodetabek & Puncak, tanpa teks/logo |
+| 19 Nov 2026 | Ulang Javabitumen | Nano Banana 2.1, 2K, 3:2 | 65 | ✅ dipakai | Matahari sore samping, lampu rumah menyala |
+
+Total pricelist: 650 kredit. Saldo setelahnya: ±43.830.
