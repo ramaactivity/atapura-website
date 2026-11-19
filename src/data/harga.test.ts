@@ -3,20 +3,22 @@ import assert from 'node:assert/strict';
 import { bagianRentang, estimasiPlafon, estimasiPublik, harga, hitungEstimasi, rentangRangka, rupiahRingkas } from './harga.ts';
 
 const e = hitungEstimasi(100);
-// Contoh Bang Yusuf: atap 100 m² → skrup 1.200 pcs, paku bitumen 2.000 pcs.
-assert.equal(e.kebutuhan.find((k) => k.nama === 'Skrup')?.jumlah, 1200);
-assert.equal(e.kebutuhan.find((k) => k.nama === 'Paku bitumen')?.jumlah, 2000);
+// Rama 19 Nov: paku 35 per m², skrup 15 per lembar alas → 100 m²: paku 3.500, skrup 36 lembar × 15 = 540.
+assert.equal(e.kebutuhan.find((k) => k.nama === 'Skrup')?.jumlah, 540);
+assert.equal(e.kebutuhan.find((k) => k.nama === 'Paku bitumen')?.jumlah, 3500);
+assert.equal(hitungEstimasi(100, { merek: 'CTI', alas: 'GRC 9 mm', lapis: 'Underlayer', flashing: 'Flashing U' }).kebutuhan.find((k) => k.nama === 'Skrup')?.jumlah, hitungEstimasi(100, { merek: 'CTI', alas: 'GRC 9 mm', lapis: 'Underlayer', flashing: 'Flashing U' }).kebutuhan[1].jumlah * 15, 'skrup ikut jumlah lembar alas');
 // CTI 3 m²/bundel, +10% potongan → 37 bundel; multiplek 2,98 m² +5% → 36 lembar; underlayer 10 m² +10% → 11 roll.
 assert.equal(e.kebutuhan[0].jumlah, 37);
 assert.equal(e.kebutuhan[1].jumlah, 36);
 assert.equal(e.kebutuhan[2].jumlah, 11);
 assert.ok(e.total[0] < e.total[1], 'min < max');
-// Spek standar harus jatuh di estimasi kasar terpasang Bang Yusuf (toleransi ±15 rb untuk pembulatan bundel).
+// Spek standar harus jatuh di estimasi kasar terpasang Bang Yusuf. Toleransi ±20 rb: pembulatan bundel + atap kecil
+// punya keliling (flashing) relatif lebih panjang per m² sejak flashing dihitung dari keliling (19 Nov 2026).
 for (const merek of ['CTI', 'Maxxi', 'Javabitumen', 'Tegola'] as const) {
   for (const luas of [60, 100, 120, 200]) {
     const x = hitungEstimasi(luas, { merek, alas: 'Multiplek 12 mm', lapis: 'Underlayer', flashing: 'Flashing U' });
     const [lo, hi] = harga.merek[merek].terpasang;
-    assert.ok(x.perM2[0] >= lo - 15_000 && x.perM2[1] <= hi + 15_000, `${merek} ${luas} m²: ${x.perM2} vs ${lo}–${hi}`);
+    assert.ok(x.perM2[0] >= lo - 20_000 && x.perM2[1] <= hi + 20_000, `${merek} ${luas} m²: ${x.perM2} vs ${lo}–${hi}`);
   }
 }
 const rangka = hitungEstimasi(100, { merek: 'CTI', alas: 'Multiplek 12 mm', lapis: 'Underlayer', flashing: 'Flashing U', rangka: 'Hi-Steel' });

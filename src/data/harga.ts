@@ -7,7 +7,8 @@
 //   (spek pendukung sama dengan merek lain). Kalkulator memakai harga Standar; Two Tone ditulis di halaman produk.
 // Material pendukung = harga satuan toko dokteratap.co.id. Jasa dikalibrasi supaya spek standar
 // (multiplek, underlayer, flashing U) jatuh di rentang terpasang Bang Yusuf — dijaga harga.test.ts.
-// Kebutuhan paku & skrup per m² dari contoh Bang Yusuf (100 m² → skrup 1.200, paku 2.000).
+// Kebutuhan paku & skrup (Rama, 19 Nov 2026; menggantikan contoh awal 20 paku & 12 skrup per m²):
+//   paku bitumen 35 per m²; skrup alas 15 per lembar multiplek/GRC 122×244 cm. Sama dengan Resep Pasang Atapura Ops.
 // Luar Jabodetabek: tidak dihitung di sini (akomodasi tukang & pengiriman material), langsung ke admin.
 // `contoh: true` = angka acuan, belum harga Atapura; UI menandai "Harga acuan".
 export const harga = {
@@ -36,8 +37,6 @@ export const harga = {
     'Flashing U': { harga: 45_000, panjang: 1.2, satuan: 'batang' },
     'Flashing Z': { harga: 45_000, panjang: 1.2, satuan: 'batang' },
   },
-  // Asumsi: panjang flashing ±0,4 m per m² atap (tepi, talang, pertemuan dinding) — final setelah survey.
-  flashingMPerM2: 0.4,
   // Plafon terpasang per m² (Bang Yusuf 18 Nov 2026): plafon + rangka hollow + jasa pasang.
   // "Java Plafon" dari Bang Yusuf = JAVAFON (dikonfirmasi Rama 18 Nov). Garansi pasang 1 th (Bang Yusuf).
   // SEMENTARA (riset pasar 18 Nov, docs/riset/jawaban-yusuf-plafon.md; dikoreksi Bang Yusuf Kamis 19 Nov):
@@ -66,8 +65,8 @@ export const harga = {
     // Jasa pasang rangka saja, material dari pemilik rumah.
     jasaSaja: 55_000,
   },
-  paku: { harga: 250, perM2: 20 },
-  skrup: { harga: 150, perM2: 12 },
+  paku: { harga: 250, perM2: 35 },
+  skrup: { harga: 150, perLembarAlas: 15 },
   jasa: [70_000, 120_000],
   // Produktivitas tim per hari (m²), untuk perkiraan durasi.
   m2PerHari: [30, 45],
@@ -136,9 +135,11 @@ export function hitungEstimasi(luas: number, p: Pilihan = PILIHAN_AWAL): Estimas
   const bundel = ceil((luas * (1 + harga.susut)) / m.m2PerBundel);
   const lembar = ceil((luas * 1.05) / alas.m2);
   const roll = ceil((luas * (1 + harga.susut)) / lapis.m2);
-  const batang = ceil((luas * harga.flashingMPerM2) / fl.panjang);
+  // Flashing per meter lari di semua tepi keliling atap (10×10 m → 40 m); dari luas saja = keliling persegi 4 × √luas
+  // (Rama 19 Nov 2026; sama dengan Resep Pasang Atapura Ops). Survey mengganti perkiraan ini dengan hasil ukur.
+  const batang = ceil((4 * Math.sqrt(luas)) / fl.panjang);
   const paku = bulat(luas * harga.paku.perM2, 100);
-  const skrup = bulat(luas * harga.skrup.perM2, 100);
+  const skrup = lembar * harga.skrup.perLembarAlas;
 
   const tetap = (n: number): Rentang => [n, n];
   const baris: Estimasi['baris'] = [

@@ -175,3 +175,10 @@ Rama: "gausah tanya Bang Yusuf, gas aja dulu pasang, nanti Kamis gua ketemu dia 
 - **Tegola** (`docs/riset/harga-tegola.md`): genteng saja Premium ±Rp420 rb/m² (median 5 toko, Premium Rectangular 3,05 m²/bundel), Master ±Rp550 rb/m² (turunan rasio blog, keyakinan rendah); terpasang Rp700–750 rb/m² dari rumus `hitungEstimasi` spek standar (kelas "Premium", ikut uji kalibrasi). Tegola kini ada di kalkulator, tabel merek, FAQ, dan katalog. Belum termasuk Startbar (wajib untuk garansi pabrik di kemiringan 14–60°; harganya tidak ditemukan).
 - Catatan untuk Kamis (plafon): material Javafon Ultra saja ±Rp194–230 rb/m², jadi harga terpasang Javafon Rp200–260 rb kemungkinan tidak menutup seri Ultra (perkiraan ±Rp263–299 rb); bukti garansi 10 tahun; isi per dus Javafon (12 atau 15).
 - Pertanyaan untuk Kamis: screw yang dipakai merek apa (garansi Taso gugur bila bukan Tatalogam), beli Taso di reseller resmi mana, foto label/emboss reng K-Steel, garansi pasang rangka yang biasa diberikan, ukuran tim.
+
+## 048 · 19 November 2026 · Paku 35/m², skrup 15 per lembar alas, flashing dari keliling atap
+Koreksi lapangan Rama, sama persis dengan Resep Pasang Atapura Ops (DECISIONS 092 di sana; kalkulator website & aplikasi wajib identik):
+paku bitumen 35 per m² (dibulatkan ke 100), skrup 15 per lembar alas 122×244 cm (lembar × 15), flashing per meter lari di
+semua tepi keliling atap (10×10 m → 40 m ÷ 1,2 = 34 batang); dari luas saja = keliling persegi 4 × √luas. 100 m² CTI spek
+standar jadi Rp39,75–44,75 jt. Atap kecil sedikit lebih mahal per m² (keliling relatif panjang) → toleransi uji kalibrasi
+terhadap kisaran terpasang Bang Yusuf dilebarkan ±15 → ±20 rb; kisaran terpasang per merek perlu dicek ulang Bang Yusuf.
