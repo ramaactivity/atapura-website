@@ -1,0 +1,144 @@
+---
+// Halaman aksesoris atap (DECISIONS 050). Pola baris sama dengan "Pilihan seri" di /produk/[slug]:
+// foto (bila sudah ada ilustrasinya), nama + fungsi, lalu rincian spek & harga.
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { aksesoris, rupiah } from '../../data/aksesoris';
+import { waLink } from '../../data/bisnis';
+
+const situs = new URL('/', Astro.site).href;
+const url = new URL('/produk/aksesoris', Astro.site).href;
+const pesan = 'Halo Atapura, saya mau tanya aksesoris atap.';
+const hargaTeks = (a: (typeof aksesoris)[number]) =>
+  a.harga ? `${a.harga.catatan === 'mulai' ? 'mulai ' : ''}${rupiah(a.harga.nilai)} / ${a.harga.satuan}${a.harga.catatan && a.harga.catatan !== 'mulai' ? ` (${a.harga.catatan})` : ''}` : 'Tanya admin';
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Beranda', item: situs },
+      { '@type': 'ListItem', position: 2, name: 'Produk & layanan', item: new URL('/produk', Astro.site).href },
+      { '@type': 'ListItem', position: 3, name: 'Aksesoris atap', item: url },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: aksesoris.map((a, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'Product',
+        name: a.nama,
+        description: a.fungsi,
+        url: a.href ? new URL(a.href, Astro.site).href : `${url}#${a.slug}`,
+        ...(a.foto && { image: new URL(a.foto.src.src, Astro.site).href }),
+        ...(a.harga && a.harga.catatan !== 'mulai' && { offers: { '@type': 'Offer', priceCurrency: 'IDR', price: a.harga.nilai, description: `Harga per ${a.harga.satuan} di Jabodetabek` } }),
+      },
+    })),
+  },
+];
+---
+
+<Base
+  title="Aksesoris atap bitumen: multiplek, GRC, underlayer, flashing | Atapura"
+  description="Papan alas, lapis kedap, flashing, paku, skrup, dan aluminium foil untuk atap bitumen, lengkap dengan ukuran, fungsi, dan harga per satuan di Jabodetabek."
+  schema={schema}
+>
+  <Header terang pesanWa={pesan} />
+  <main class="pr">
+    <section class="pr-buka">
+      <div class="wrap">
+        <nav class="remah" aria-label="Remah roti"><a href="/">Beranda</a><span aria-hidden="true">/</span><a href="/produk">Produk &amp; layanan</a><span aria-hidden="true">/</span><span>Aksesoris</span></nav>
+        <div class="ak-kepala">
+          <h1 class="pr-judul">Aksesoris atap, <span class="redup">lapis di bawah genteng.</span></h1>
+          <p class="pr-lead">Papan alas, lapis kedap, dan flashing menentukan atap bocor atau tidak. Ketiganya, plus paku dan skrup, sudah termasuk di harga terpasang kami, dan bisa juga dibeli terpisah.</p>
+        </div>
+        <nav class="ak-lompat" aria-label="Lompat ke aksesoris">
+          {aksesoris.map((a) => <a href={`#${a.slug}`}>{a.nama}</a>)}
+        </nav>
+      </div>
+    </section>
+
+    <section class="pr-sek pr-putih" aria-label="Daftar aksesoris">
+      <div class="wrap">
+        <ul class="seri">
+          {aksesoris.map((a) => (
+            <li id={a.slug} class:list={['seri-baris', { 'seri-tanpa-foto': !a.foto }]}>
+              {a.foto && <Image src={a.foto.src} alt={a.foto.alt} widths={[480, 800, 1200]} sizes="(min-width: 60rem) 30vw, 100vw" class="seri-foto" />}
+              <div class="seri-teks">
+                <h2 class="seri-nama">{a.nama}</h2>
+                <p class="seri-ringkas">{a.fungsi}</p>
+                {a.href && <a class="ak-tautan" href={a.href}>Lihat merek dan harga terpasang</a>}
+              </div>
+              <dl class="rinci">
+                {a.spek.map((k) => <div><dt>{k.label}</dt><dd>{k.nilai}</dd></div>)}
+                <div class="rinci-harga"><dt>Harga</dt><dd>{hargaTeks(a)}</dd></div>
+              </dl>
+            </li>
+          ))}
+        </ul>
+        <p class="pr-catatan">Harga material per satuan untuk Jabodetabek, belum termasuk ongkos kirim dan pasang (kecuali rangka baja ringan, yang harganya sudah dengan pasang). Aluminium foil dan rangka tidak termasuk di harga terpasang atap. Foto adalah ilustrasi bentuk setelah terpasang, bukan foto proyek Atapura.</p>
+        <a class="pill pill-tunas ak-wa" href={waLink(pesan)} target="_blank" rel="noopener" data-wa="produk-aksesoris">Tanya aksesoris lewat WhatsApp</a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  /* Sama dengan /produk/[slug] supaya halaman terasa satu keluarga. */
+  .pr { background: var(--color-embun); color: var(--color-tinta); }
+  .remah { display: flex; flex-wrap: wrap; gap: 0.5rem; font-size: 0.88rem; color: var(--color-lumut); }
+  .remah a { color: inherit; }
+  .redup { opacity: 0.55; }
+  .pr-buka { padding: 120px 0 clamp(2.5rem, 5vw, 4rem); }
+  .ak-kepala { margin-top: 1.5rem; display: grid; gap: 1.25rem 4rem; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 60rem) { .ak-kepala { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); align-items: end; } }
+  .pr-judul { font-size: clamp(2.4rem, 1.3rem + 4vw, 4.8rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1; max-width: 15ch; }
+  .pr-lead { font-size: clamp(1.05rem, 1rem + 0.3vw, 1.2rem); line-height: 1.5; color: var(--color-lumut); max-width: 42ch; }
+
+  .ak-lompat { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2.25rem; }
+  .ak-lompat a {
+    display: inline-flex; align-items: center; min-height: 2.75rem; padding: 0 1rem; border-radius: 999px;
+    background: var(--color-putih); color: var(--color-tinta); font-size: 0.92rem; text-decoration: none;
+    box-shadow: inset 0 0 0 1px var(--color-garis); transition: background-color 250ms, color 250ms;
+  }
+  .ak-lompat a:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 2px; }
+  @media (hover: hover) and (pointer: fine) { .ak-lompat a:hover { background: var(--color-pinus); color: var(--color-embun); } }
+
+  .pr-sek { padding-block: clamp(3rem, 6vw, 5rem); }
+  .pr-putih { background: var(--color-putih); }
+  .pr-catatan { margin-top: 1.25rem; font-size: 0.85rem; color: var(--color-lumut); max-width: 70ch; }
+
+  .seri { border-top: 1px solid var(--color-tinta); }
+  .seri-baris { display: grid; gap: 1.25rem 3rem; grid-template-columns: minmax(0, 1fr); padding: 1.75rem 0; border-bottom: 1px solid var(--color-garis); align-items: start; scroll-margin-top: 96px; }
+  @media (min-width: 60rem) { .seri-baris { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr) minmax(0, 1fr); } }
+  @media (min-width: 60rem) { .seri-tanpa-foto { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); } }
+  .seri-foto { width: 100%; max-width: 26rem; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 14px; display: block; }
+  .seri-nama { font-size: clamp(1.35rem, 1.1rem + 0.8vw, 1.75rem); font-weight: 500; letter-spacing: -0.03em; }
+  .seri-ringkas { margin-top: 0.4rem; color: var(--color-lumut); line-height: 1.6; max-width: 46ch; }
+  .ak-tautan { display: inline-block; margin-top: 0.75rem; color: var(--color-pinus); font-weight: 500; text-underline-offset: 3px; }
+  .rinci > div { display: flex; align-items: baseline; gap: 0.6rem; padding: 0.45rem 0; font-size: 0.95rem; }
+  .rinci dt { color: var(--color-lumut); display: flex; align-items: baseline; gap: 0.6rem; flex: 1; white-space: nowrap; }
+  .rinci dt::after { content: ''; flex: 1; border-bottom: 1px dotted var(--color-garis); transform: translateY(-0.25rem); }
+  .rinci dd { font-weight: 500; text-align: right; max-width: 65%; font-variant-numeric: tabular-nums lining-nums; }
+  .rinci-harga { margin-top: 0.35rem; border-top: 1px solid var(--color-garis); padding-top: 0.75rem !important; }
+  .rinci-harga dd { color: var(--color-pinus); }
+  .ak-wa { margin-top: 1.75rem; }
+
+  @media (max-width: 47.99rem) {
+    .pr { background: #dde2dc; }
+    .pr-buka, .pr-sek { margin: 8px; border-radius: 28px; }
+    .pr-buka { background: var(--color-embun); margin-top: 0; padding-top: 96px; border-top-left-radius: 0; border-top-right-radius: 0; }
+    .pr-judul { font-size: var(--hp-display); line-height: 1.05; }
+    .pr-lead { font-size: 1rem; }
+    .seri-nama { font-size: var(--hp-t2); }
+    .ak-lompat { flex-wrap: nowrap; overflow-x: auto; margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter); scrollbar-width: none; }
+    .ak-lompat a { flex: none; }
+    .seri-foto { max-width: none; }
+    .rinci dd { font-size: 0.9375rem; }
+  }
+</style>

@@ -6,6 +6,7 @@ import { LINI, produk, layanan, type Lini } from '../../data/produk';
 import KartuProduk from '../../components/KartuProduk.astro';
 import IkonLayanan from '../../components/IkonLayanan.astro';
 import { waLink } from '../../data/bisnis';
+import { aksesoris, rupiah } from '../../data/aksesoris';
 
 const situs = new URL('/', Astro.site).href;
 // Catatan harga di bawah tiap kelompok lini.
@@ -48,6 +49,7 @@ const schema = [
         </div>
         <nav class="pk-lompat" aria-label="Lompat ke jenis produk">
           {kelompok.map(({ l, daftar }) => <a href={`#judul-${l}`}>{LINI[l].nama}<span>{daftar.length}</span></a>)}
+          <a href="#judul-aksesoris">Aksesoris<span>{aksesoris.length}</span></a>
           <a href="#judul-layanan">Layanan<span>{layanan.length}</span></a>
         </nav>
       </div>
@@ -61,6 +63,19 @@ const schema = [
         <p class="pk-catatan">{catatanLini[l]}</p>
       </section>
       ))}
+
+      <section aria-labelledby="judul-aksesoris" class="pk-lini pk-aksesoris">
+        <h2 id="judul-aksesoris" class="pk-h2">Aksesoris</h2>
+        <ul class="ak">
+          {aksesoris.map((a) => (
+            <li><a href={`/produk/aksesoris#${a.slug}`}>
+              <span class="ak-teks"><b>{a.nama}</b><span>{a.spek[0].label} {a.spek[0].nilai}</span></span>
+              <span class="ak-harga">{a.harga ? <>{a.harga.catatan === 'mulai' && 'mulai '}{rupiah(a.harga.nilai)}<span> / {a.harga.satuan}</span></> : <span>Tanya admin</span>}</span>
+            </a></li>
+          ))}
+        </ul>
+        <p class="pk-catatan">Harga material per satuan; rangka sudah dengan pasang. Papan alas, lapis kedap, flashing, paku, dan skrup sudah termasuk di harga terpasang atap. <a href="/produk/aksesoris">Lihat ukuran dan fungsinya</a></p>
+      </section>
 
       <section aria-labelledby="judul-layanan" class="pk-layanan">
         <h2 id="judul-layanan" class="pk-h2">Layanan</h2>
@@ -101,6 +116,26 @@ const schema = [
 
   .katalog { display: grid; gap: 0.85rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr)); margin-top: 1.25rem; }
 
+  .pk-aksesoris { margin-top: 4rem; }
+  /* Aksesoris: baris ringkas tanpa foto (nama, ukuran, harga per satuan); detail & ilustrasi di /produk/aksesoris. */
+  .ak { display: grid; gap: 0.6rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr)); margin-top: 1.25rem; }
+  .ak a {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 100%; min-height: 4rem;
+    padding: 0.85rem 1.1rem; border-radius: 16px; background: var(--color-putih); color: inherit; text-decoration: none;
+    box-shadow: 0 1px 2px rgb(16 35 30 / 0.06), 0 10px 24px -20px rgb(16 35 30 / 0.3);
+    transition: transform 420ms var(--ease-out), box-shadow 420ms var(--ease-out);
+  }
+  .ak-teks { display: grid; gap: 0.15rem; min-width: 0; }
+  .ak-teks b { font-size: 1rem; font-weight: 500; letter-spacing: -0.015em; line-height: 1.3; }
+  .ak-teks span { color: var(--color-lumut); font-size: 0.85rem; line-height: 1.4; }
+  .ak-harga { flex: none; font-weight: 500; font-variant-numeric: tabular-nums lining-nums; text-align: right; }
+  .ak-harga span { font-weight: 400; font-size: 0.85rem; color: var(--color-lumut); }
+  .ak a:active { transform: scale(0.98); }
+  .ak a:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 3px; }
+  @media (hover: hover) and (pointer: fine) {
+    .ak a:hover { transform: translateY(-2px); box-shadow: 0 1px 2px rgb(16 35 30 / 0.06), 0 18px 34px -22px rgb(16 35 30 / 0.45); }
+  }
+  .pk-catatan a { color: var(--color-pinus); text-underline-offset: 3px; }
   .pk-layanan { margin-top: 4.5rem; }
   /* Kartu layanan = baris ala aplikasi di semua lebar: ikon, teks singkat, tanda masuk. */
   .layanan { display: grid; gap: 0.6rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr)); margin-top: 1.25rem; }

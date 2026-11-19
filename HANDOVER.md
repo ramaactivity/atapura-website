@@ -1,5 +1,9 @@
 # Handover
 
+## Terbaru (19 November 2026)
+- Halaman **/produk/aksesoris** + kelompok Aksesoris di /produk, menu atas "Panduan" → **"Artikel"** (`/artikel`, `/blog` dialihkan ke `/panduan`). DECISIONS 050.
+- **Menunggu Rama**: 6 gambar Magnific aksesoris (`docs/desain/prompt-magnific-aksesoris.md`) → simpan `assets/gambar/magnific/aksesoris-*-3x2.jpg`, langsung tampil. **Menunggu Bang Yusuf**: GRC 9 mm atau 12 mm, harga aluminium foil & ukuran lain.
+
 ## Status (2 November 2026, sesi 1)
 
 Milestone 1 (bahan/atapura/04-ROADMAP.md):

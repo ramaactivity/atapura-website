@@ -1,3 +1,7 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/artikel", "destination": "/panduan", "permanent": true },
+    { "source": "/blog", "destination": "/panduan", "permanent": true }
+  ]
 }
