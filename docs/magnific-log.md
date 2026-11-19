@@ -32,3 +32,8 @@ Saldo sebelum: 1.831 (paket kini Plus; sisa kredit turun dari ±16.721 sejak 5 N
 | 18 Nov 2026 | Penerapan plafon ×4 (Shunda ruang keluarga & teras, Javafon kafe & dapur) + Javabitumen rumah | Nano Banana 2.1, 2K, 3:2 | 5 × 65 | ✅ semua dipakai | Tanpa orang, teks, logo |
 
 Total 18 Nov: 690 kredit. Saldo setelahnya: ±1.141.
+
+| 19 Nov 2026 | Aksesoris ×6 (underlayer, membrane, flashing U, GRC, paku, skrup), dari sesi Atapura Ops | Nano Banana 2.1, 2K, 3:2 | 6 × 65 | ✅ 4 langsung dipakai `assets/gambar/magnific/aksesoris-*-3x2.jpg`; membrane ❌ (latar kota Eropa, tukang bule) dan skrup ❌ (sekrup berdiri setengah tertanam, tidak sejajar reng) | Prompt `docs/desain/prompt-magnific-aksesoris.md` + kalimat "no text/logo/watermark" |
+| 19 Nov 2026 | Ulang membrane & skrup | Nano Banana 2.1, 2K, 3:2 | 2 × 65 | ✅ keduanya dipakai (membrane: dak rumah Jakarta; skrup: sekrup rata papan di atas reng) | Dipertegas: Southeast Asian roofer, Jakarta suburb; screws flush, physically correct |
+
+Total 19 Nov: 520 kredit. Saldo sebelum: 45.000 (paket Plus, baru reset). Setelahnya: ±44.480. Disalin juga ke Atapura Ops `public/katalog/*.webp`.
