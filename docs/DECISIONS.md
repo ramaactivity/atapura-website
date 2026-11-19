@@ -182,3 +182,9 @@ paku bitumen 35 per m² (dibulatkan ke 100), skrup 15 per lembar alas 122×244 c
 semua tepi keliling atap (10×10 m → 40 m ÷ 1,2 = 34 batang); dari luas saja = keliling persegi 4 × √luas. 100 m² CTI spek
 standar jadi Rp39,75–44,75 jt. Atap kecil sedikit lebih mahal per m² (keliling relatif panjang) → toleransi uji kalibrasi
 terhadap kisaran terpasang Bang Yusuf dilebarkan ±15 → ±20 rb; kisaran terpasang per merek perlu dicek ulang Bang Yusuf.
+
+## 049 · 19 November 2026 · Starter bitumen = keliling × 12,5 cm, dihargai genteng per m²
+Sama dengan Atapura Ops DECISIONS 095–096: starter (strip lembar genteng tanpa daun, lebar 12,5 cm — Rama) di keliling atap,
+m² = keliling × 0,125 (dari luas saja: 4 × √luas), harga = genteng per m² merek terpilih. Cocok dokumen Bang Yusuf (Olen
+77,44 m → 9,68 m²; Naryo 58,96 m → 7,37 m²). Hanya kalkulator internal & daftar kebutuhan berubah; harga publik tetap kisaran
+terpasang Bang Yusuf. Atap kecil kini di atas batas atas kisaran (60 m² +15…+32 rb/m²) → toleransi uji ±35 rb sampai kisaran baru.

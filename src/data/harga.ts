@@ -138,6 +138,9 @@ export function hitungEstimasi(luas: number, p: Pilihan = PILIHAN_AWAL): Estimas
   // Flashing per meter lari di semua tepi keliling atap (10×10 m → 40 m); dari luas saja = keliling persegi 4 × √luas
   // (Rama 19 Nov 2026; sama dengan Resep Pasang Atapura Ops). Survey mengganti perkiraan ini dengan hasil ukur.
   const batang = ceil((4 * Math.sqrt(luas)) / fl.panjang);
+  // Starter bitumen (Rama 19 Nov 2026): strip lembar genteng tanpa daun selebar 12,5 cm di keliling atap → m² = keliling × 0,125,
+  // dihargai genteng per m² merek terpilih (cocok invoice Olen & penawaran Naryo). Sama dengan Atapura Ops (DECISIONS 096).
+  const starter = Math.round(4 * Math.sqrt(luas) * 0.125 * 100) / 100;
   const paku = bulat(luas * harga.paku.perM2, 100);
   const skrup = lembar * harga.skrup.perLembarAlas;
 
@@ -147,6 +150,7 @@ export function hitungEstimasi(luas: number, p: Pilihan = PILIHAN_AWAL): Estimas
     { label: p.alas, rentang: tetap(lembar * alas.harga) },
     { label: lapis.nama, rentang: tetap(roll * lapis.harga) },
     { label: p.flashing, rentang: tetap(batang * fl.harga) },
+    { label: 'Starter bitumen', rentang: tetap(Math.round(starter * m.genteng)) },
     { label: 'Paku & skrup', rentang: tetap(paku * harga.paku.harga + skrup * harga.skrup.harga) },
     ...(p.rangka ? [{ label: `Rangka baja ringan ${p.rangka}`, rentang: tetap(luas * harga.rangka.merek[p.rangka].harga) as Rentang }] : []),
     { label: 'Jasa pasang', rentang: [luas * harga.jasa[0], luas * harga.jasa[1]] },
@@ -165,6 +169,7 @@ export function hitungEstimasi(luas: number, p: Pilihan = PILIHAN_AWAL): Estimas
       { nama: p.alas, jumlah: lembar, satuan: alas.satuan },
       { nama: lapis.nama, jumlah: roll, satuan: lapis.satuan },
       { nama: p.flashing, jumlah: batang, satuan: fl.satuan },
+      { nama: 'Starter bitumen', jumlah: starter, satuan: 'm²' },
       { nama: 'Skrup', jumlah: skrup, satuan: 'pcs' },
       { nama: 'Paku bitumen', jumlah: paku, satuan: 'pcs' },
     ],
