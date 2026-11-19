@@ -14,3 +14,5 @@ berdampingan); latar putih Maxxi dihapus di Magnific. Hi-Steel memang berbentuk 
 
 Aturan (DESIGN.md): logo mitra hanya versi resmi dan utuh, kecil, tidak diwarnai ulang atau digabung.
 Ganti dengan file yang dikirim Bang Yusuf/pabrikan bila tersedia (biasanya lebih tajam dan bervektor).
+
+ZIP unduhan /branding: `public/brand/logo-mitra.zip` (salinan file di atas dengan nama `logo-<merek>.png`). Buat ulang bila logo berubah.

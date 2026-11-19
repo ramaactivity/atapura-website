@@ -474,7 +474,7 @@ const dilarang = ['solusi terbaik', 'terpercaya No.1', 'profesional dan berpenga
                   <img src={`/brand/${u.file === 'favicon.ico' ? 'favicon.svg' : u.file}`} alt="" loading="lazy" />
                 </span>
                 <span class="unduh-teks"><span class="unduh-label">{u.label}</span><span class="unduh-ket">{u.ket}</span></span>
-                <span class="unduh-format">{u.file.split('.').pop()?.toUpperCase()}</span>
+                <span class="unduh-format"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14"/></svg>Unduh {u.file.split('.').pop()?.toUpperCase()}</span>
               </a>
             </li>
           ))}
@@ -482,6 +482,7 @@ const dilarang = ['solusi terbaik', 'terpercaya No.1', 'profesional dan berpenga
         <div class="b-sek-kepala mitra-kepala">
           <h3 class="b-h3">Logo merek mitra</h3>
           <p class="b-teks">File resmi dari pabrik atau pemasok, untuk konten dan katalog. Pakai apa adanya: jangan diwarnai ulang, dipotong, atau digabung dengan logo Atapura.</p>
+          <div class="b-aksi"><a class="pill pill-tunas" href="/brand/logo-mitra.zip" download>Unduh semua logo mitra (ZIP)</a></div>
         </div>
         <ul class="unduh-daftar">
           {unduhMitra.map((l) => (
@@ -489,7 +490,7 @@ const dilarang = ['solusi terbaik', 'terpercaya No.1', 'profesional dan berpenga
               <a href={l.src} download={l.nama}>
                 <span class:list={['unduh-pratinjau', { 'unduh-terang': !l.gelap }]}><img src={l.src} alt="" loading="lazy" /></span>
                 <span class="unduh-teks"><span class="unduh-label">{l.label}</span><span class="unduh-ket">PNG {l.file.width} px{l.gelap ? ' · versi putih, latar gelap' : ''}</span></span>
-                <span class="unduh-format">PNG</span>
+                <span class="unduh-format"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14"/></svg>Unduh PNG</span>
               </a>
             </li>
           ))}
@@ -761,7 +762,9 @@ const dilarang = ['solusi terbaik', 'terpercaya No.1', 'profesional dan berpenga
   .unduh-label { font-weight: 500; }
   .unduh-ket { font-size: 0.82rem; color: var(--embun-redup); }
   .mitra-kepala { margin-top: 3rem; }
-  .unduh-format { margin-left: auto; font-size: 0.75rem; font-weight: 500; padding: 0.25rem 0.6rem; border-radius: 999px; border: 1px solid rgb(242 244 241 / 0.25); }
+  .unduh-format { margin-left: auto; flex: none; display: inline-flex; align-items: center; gap: 0.35rem; min-height: 36px; font-size: 0.8rem; font-weight: 500; padding: 0.35rem 0.8rem; border-radius: 999px; background: rgb(242 244 241 / 0.1); border: 1px solid rgb(242 244 241 / 0.25); white-space: nowrap; }
+  .unduh-format svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .unduh-daftar a:hover .unduh-format { background: var(--color-tunas); color: var(--color-pinus); border-color: var(--color-tunas); }
 
   .b-sek-pinus .pill-garis { color: var(--color-embun); }
 </style>
