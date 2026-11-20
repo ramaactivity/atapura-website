@@ -258,3 +258,14 @@ dirinci di Ops `docs/DECISIONS.md` 123 — **disetujui & berjalan 20 Nov**:
   manual): berubah → tes kalkulator → PDF product knowledge dibuat ulang → commit → deploy. Kode wajib hilang/kunci salah =
   gagal keras, ops.json lama tetap.
 - **Harga diubah di Ops** (Daftar harga, Angka bisnis), bukan di file website.
+
+## 056 · 20 November 2026 · Product knowledge: motif & warna besar dari foto tekstur asli
+Rama: "warna dan motifnya masih mengulangi kesalahan yang sama, terlalu kecil; motif penting untuk dilihat mata". Sebelumnya
+warna = titik 12–16 px dan kartu seri tanpa foto.
+- Kartu seri menampilkan foto close-up motif selebar kartu (16:10). Warna = ubin foto tekstur seri yang diwarnai ulang
+  (`fotoWarna` + `BulatWarna besar`, sama dengan pricelist), 5:4, ±6 per baris laptop, 2 di HP, 4 per baris di PDF A4; kartu
+  warna & judul bagian tidak terpotong antarhalaman PDF.
+- Contoh warna Tegola Eco Roof (4) & Top Shingles (6) dibuat dengan metode DECISIONS 042 (luminans foto seri × hex, rata-rata =
+  hex, bercak untuk Mixed/Shaded, 480×360) — sebelumnya blok warna polos. Ikut terpakai di pricelist.
+- Teks fakta panjang (email) membungkus, tidak menabrak kolom sebelah. PDF dibuat ulang (27 halaman).
+- Belum: foto motif plafon Shunda/Javafon (tahap aset kit marketplace, Ops DECISIONS 125).
