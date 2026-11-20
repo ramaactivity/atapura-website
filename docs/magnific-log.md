@@ -57,3 +57,7 @@ Total 20 Nov: 195 kredit.
 | 20 Nov 2026 | Cover marketplace Maxxiroof (latar putih) | Nano Banana 2 flash, 2K, 1:1 | 75 | ❌ ditolak: lembar depan berisi 4 baris tab (seperti atap terpasang), satu lembar 3-tab aslinya satu baris | Sama, slate grey; acuan foto tekstur. Pelajaran: tanpa foto lembar lepas asli sebagai acuan, model mengarang bentuk lembar — minta foto produk resmi/foto asli dulu |
 
 Total 20 Nov (cover contoh): 150 kredit. Saldo sebelum: 35.974.
+| 20 Nov 2026 | Cover marketplace CTI CT3 v1: geometri lembar dirakit skrip (1000×333 mm, 3 tab, 2 celah, perekat, tekstur dari foto seri) lalu Creative Upscale 1x | Magnific Creative 1x, FilmAndPhotography, creativity 2, resemblance 6 | 270 | ⚠️ bentuk terjaga, tapi masih terlihat render (datar, tanpa tebal) | Pendekatan baru: bentuk dikunci di gambar acuan, Magnific hanya menambah realisme |
+| 20 Nov 2026 | Cover CTI CT3 v2: rakitan + tebal potongan & cahaya kiri atas | Magnific Creative 1x, sharpy, creativity 4, resemblance 5, hdr 1 | 270 | ✅ dipasang di kanvas Claude Design (artboard CT1), menunggu persetujuan Rama sebelum masuk kit | Bingkai hitam 2 px dari Magnific dipotong; ekspor 1080 px 188 KB. Skrip rakit di scratchpad (bisa diulang per merek) |
+
+Total 20 Nov (cover rakitan): 540 kredit. Saldo setelahnya: ±35.280.
