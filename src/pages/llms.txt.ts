@@ -14,7 +14,7 @@ export const GET: APIRoute = async ({ site }) => {
 
 > ${bisnis.deskripsi}
 
-${bisnis.nama} adalah aplikator sekaligus supplier atap bitumen (genteng aspal, sirap aspal, asphalt shingle). Kami menjual dan memasang dalam satu paket: alas, underlayment, flashing, genteng bitumen, dan nok. Badan usaha: ${bisnis.namaLegal} (${bisnis.statusLegal}).
+${bisnis.nama} adalah aplikator sekaligus agen atap bitumen (genteng aspal, sirap aspal, asphalt shingle). Kami menjual dan memasang dalam satu paket: alas, underlayment, flashing, genteng bitumen, dan nok. Badan usaha: ${bisnis.namaLegal} (${bisnis.statusLegal}).
 
 - Merek atap: ${bisnis.merek.join(', ')}
 - Juga: ${TAMPIL_PLAFON ? 'plafon PVC (Shunda, Javafon) dan ' : ''}rangka atap baja ringan (Taso, Hi-Steel, K-Steel)${TAMPIL_PLAFON ? ', masing-masing' : ''} dengan jasa pasang

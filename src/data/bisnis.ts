@@ -18,7 +18,7 @@ export const bisnis = {
   statusLegal: 'dalam proses pendirian',
   tagline: 'Atap yang masuk AKAL.',
   deskripsi:
-    `Aplikator dan supplier atap bitumen (genteng aspal) Maxxi, CTI, Javabitumen, Tegola, dan Victory untuk rumah, villa, kafe, dan proyek, juga ${TAMPIL_PLAFON ? 'plafon PVC dan ' : ''}rangka atap baja ringan. Berbasis di Jabodetabek, melayani proyek di luar Jabodetabek.`,
+    `Aplikator dan agen atap bitumen (genteng aspal) Maxxi, CTI, Javabitumen, Tegola, dan Victory untuk rumah, villa, kafe, dan proyek, juga ${TAMPIL_PLAFON ? 'plafon PVC dan ' : ''}rangka atap baja ringan. Berbasis di Jabodetabek, melayani proyek di luar Jabodetabek.`,
   // Format internasional tanpa "+" untuk wa.me. null = belum ada; tombol WA tetap tampil tapi diarahkan ke halaman kontak WA umum.
   whatsapp: '6289611394867' as string | null, // sementara, dari Rama 2 Nov 2026
   telepon: null as string | null,
