@@ -53,3 +53,7 @@ Total 19 Nov: 1.695 kredit. Saldo setelahnya: ±43.305.
 | 20 Nov 2026 | Halaman mitra & material lengkap: flat lay genteng, multiplek, GRC, membran, underlayer, rangka, flashing, paku, aluminium foil (2400×1320) | Nano Banana 2.1, 2K custom | 65 | ✅ `pricelist-material-lengkap.jpg` | Tanpa logo/merek di gambar |
 
 Total 20 Nov: 195 kredit.
+| 20 Nov 2026 | Cover marketplace CTI CT3 (latar putih) | Nano Banana 2 flash, 2K, 1:1 | 75 | ❌ ditolak: lembar persegi (bukan 1000×333), celah horizontal palsu, tab tidak tiga, tekstur seperti karet | Tumpukan lembar 3-tab abu tua difan, acuan foto tekstur atap terpasang |
+| 20 Nov 2026 | Cover marketplace Maxxiroof (latar putih) | Nano Banana 2 flash, 2K, 1:1 | 75 | ❌ ditolak: lembar depan berisi 4 baris tab (seperti atap terpasang), satu lembar 3-tab aslinya satu baris | Sama, slate grey; acuan foto tekstur. Pelajaran: tanpa foto lembar lepas asli sebagai acuan, model mengarang bentuk lembar — minta foto produk resmi/foto asli dulu |
+
+Total 20 Nov (cover contoh): 150 kredit. Saldo sebelum: 35.974.
