@@ -313,3 +313,9 @@ Bang Yusuf: "Untuk di marketplace harga yg kita list /m2. Contoh 155.000 (CTI CT
 "… per m² Isi X m²/Bundel …", atribut "Satuan jual: per m², dikirim per bundel isi X m²", deskripsi bagian HARGA & PEMESANAN
 (pesanan dibulatkan ke kelipatan isi bundel + contoh 100 m²). Gambar 4 jadi "Pesan berapa m²?" (luas + ±10%, kelipatan isi
 bundel, contoh m² & jumlah bundel). Ops → Harga marketplace ikut per m² (Ops commit cde1e9c).
+
+## 061 · 20 November 2026 · Note "chat admin" di semua deskripsi marketplace (Bang Yusuf)
+Bang Yusuf: "di kasi note di deskripsi e-commerce (chat admin untuk ketersediaan stok dan pengiriman)". `NOTE_CHAT` = "Chat admin
+dulu untuk ketersediaan stok dan pengiriman." di paragraf kedua tiap deskripsi (terlihat di pratinjau). Catatan risiko yang
+disampaikan ke Rama: niat mengalihkan pembeli ke transaksi langsung di luar marketplace melanggar aturan keempat marketplace
+(penalti/pembatasan toko); note-nya sendiri aman. Keputusan bisnis di Rama & Bang Yusuf.

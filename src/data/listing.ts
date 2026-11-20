@@ -56,6 +56,9 @@ const penutupPasang = () =>
     `Atapura juga aplikator atap bitumen: survey dan ukur dulu, lalu penawaran tertulis.${garansiPasang ? ` Pemasangan oleh tim Atapura bergaransi tertulis ${garansiPasang} tahun.` : ''} Chat kami untuk jadwal survey.`,
   ].join('\n');
 
+/** Note wajib di tiap deskripsi (Bang Yusuf 20 Nov): ditaruh di paragraf kedua supaya terlihat di pratinjau deskripsi. */
+export const NOTE_CHAT = 'Chat admin dulu untuk ketersediaan stok dan pengiriman.';
+
 const rapikan = (baris: (string | false | null | undefined)[]) =>
   baris
     .filter((x): x is string => typeof x === 'string')
@@ -97,6 +100,8 @@ function listingGenteng(p: Produk, s: Produk['seri'][number]): Listing {
 
   const deskripsi = rapikan([
     `${nm}, genteng aspal (asphalt shingle)${asal ? ` buatan ${asal}` : ''}. ${bersih(s.ringkas)}`,
+    '',
+    NOTE_CHAT,
     '',
     'SPESIFIKASI',
     m2 ? `• Isi per bundel: ${angka(m2)} m²${isi && !m2Spek ? ` (${isi})` : ''}` : isi ? `• Isi per bundel: ${isi}` : null,
@@ -182,6 +187,8 @@ function listingAksesoris(a: (typeof aksesoris)[number]): Listing {
   const deskripsi = rapikan([
     `${a.nama}. ${a.fungsi}`,
     '',
+    NOTE_CHAT,
+    '',
     'SPESIFIKASI',
     ...a.spek.map((k) => `• ${k.label}: ${k.nilai}`),
     perPak ? '• Isi per pak: [ISI] pcs' : null,
@@ -220,6 +227,8 @@ function listingJasa(): Listing {
     judulPendek: 'Jasa Pasang Atap Genteng Aspal Bitumen per m²',
     deskripsi: rapikan([
       'Jasa pemasangan atap genteng aspal (bitumen) oleh tim Atapura, untuk rumah baru maupun ganti atap lama.',
+      '',
+      NOTE_CHAT,
       '',
       'ALUR',
       '1. Survey dan ukur atap di lokasi.',
