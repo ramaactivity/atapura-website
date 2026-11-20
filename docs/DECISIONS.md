@@ -282,3 +282,15 @@ di lapangan, cek dulu produk asli di pasaran". Kartu aksesoris product knowledge
   (levels / perataan cahaya lokal) supaya langsung layak jadi sampul marketplace.
 - `aksesoris.ts` field `wujud` (dari slug). Kartu product knowledge: wujud barang besar + foto "saat dipasang"; PDF: kartu
   mendatar 3 per halaman, tidak terpotong.
+
+## 058 · 20 November 2026 · Kit listing marketplace (tahap C kit marketplace, Ops DECISIONS 125)
+`/internal/kit-marketplace`: per produk judul SEO (pola resmi Shopee: Merek + Model + Spesifikasi + Ukuran, kata kunci di
+depan), judul pendek ≤ 70, deskripsi teks polos terstruktur (spesifikasi, warna, cara pasang, hitung kebutuhan, garansi,
+ajakan survey), varian, atribut, berat & dimensi kirim, keyword; tombol salin & unduh CSV. Isi diturunkan dari
+`src/data/listing.ts` ← produk.ts/aksesoris.ts/harga.ts (angka Ops)/bisnis.ts; tidak ada spesifikasi yang diketik ulang.
+Satu listing genteng per seri (warna = varian, per bundel); aksesoris per barang (paku & skrup per pak, isi pak ditentukan
+pemilik); jasa pasang opsional. Plafon ditunda: harga material per batang belum ada di Ops. Batas yang dipegang: judul
+25–100, deskripsi ≤ 3.000 (lolos di keempat marketplace; sumber & tingkat keyakinan per marketplace tampil di halaman).
+Deskripsi tanpa nomor WA/link luar (dilarang marketplace), tanpa klaim tak bersumber, tanpa batas wilayah. Yang belum pasti
+masuk "Perlu dicek" (mis. isi bundel CT5/CT6 bentrok 22 lembar vs 17 lembar 2,32 m²; tinggi bundel; berat aksesoris).
+Harga tayang tetap di Ops → Harga marketplace (harga modal tidak pernah di website).

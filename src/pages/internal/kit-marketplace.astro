@@ -1,0 +1,216 @@
+---
+// Kit listing marketplace (Ops DECISIONS 125 tahap C, website DECISIONS 058): judul SEO, deskripsi, varian, atribut, berat &
+// dimensi kirim, dan keyword per produk, siap salin & unduh CSV. Isi diturunkan dari src/data (listing.ts) — jangan ketik di
+// sini. Harga tayang ada di Atapura Ops → Harga marketplace (harga modal tidak pernah di website).
+import Internal from '../../layouts/Internal.astro';
+import { BATAS, listing, MARKETPLACE_BATAS } from '../../data/listing';
+
+const KELOMPOK = [
+  { kunci: 'genteng', judul: 'Genteng aspal', ket: 'Satu listing per seri, warna sebagai varian, dijual per bundel.' },
+  { kunci: 'aksesoris', judul: 'Aksesoris', ket: 'Satu listing per barang. Paku & skrup dijual per pak.' },
+  { kunci: 'jasa', judul: 'Jasa pasang', ket: 'Opsional — cek kebijakan kategori jasa di tiap marketplace.' },
+] as const;
+const angka = (n: number) => n.toLocaleString('id-ID');
+const csvJson = JSON.stringify(
+  listing.map((l) => ({
+    kelompok: l.kelompok,
+    nama: l.nama,
+    satuan: l.satuan,
+    judul: l.judul,
+    judul_pendek: l.judulPendek,
+    deskripsi: l.deskripsi,
+    varian: l.varian ? `${l.varian.judul}: ${l.varian.pilihan.join(' | ')}` : '',
+    atribut: l.atribut.map((a) => `${a.label}: ${a.nilai}`).join(' | '),
+    berat: l.kirim.berat ?? '',
+    dimensi: l.kirim.dimensi ?? '',
+    keyword: l.keyword.join(', '),
+    perlu_dicek: l.cek.join(' | '),
+  })),
+);
+---
+
+<Internal title="Kit listing marketplace" label="Kit marketplace">
+  <div class="km">
+    <header>
+      <p class="km-atas">Internal · e-commerce</p>
+      <h1>Kit listing marketplace</h1>
+      <p class="km-sub">
+        Judul, deskripsi, varian, atribut, berat kirim, dan keyword untuk Shopee, Tokopedia & TikTok Shop, Lazada, dan Blibli. Semua diambil dari data produk website, jadi ikut berubah kalau spesifikasinya diperbarui. Harga tayang per marketplace ada di Atapura Ops → Harga marketplace.
+      </p>
+      <div class="km-aksi">
+        <button type="button" class="pill pill-gelap" data-unduh>Unduh semua (CSV)</button>
+        <a class="pill" href="https://atapura-ops.vercel.app/lainnya/harga-marketplace" target="_blank" rel="noreferrer">Harga tayang di Ops</a>
+      </div>
+      <div class="km-batas">
+        <p class="km-batas-judul">Batas yang dipegang: judul {BATAS.judulMin}–{BATAS.judulMaks} karakter, deskripsi maksimal {angka(BATAS.deskripsiMaks)} karakter (lolos di keempat marketplace).</p>
+        <dl>
+          {MARKETPLACE_BATAS.map((m) => (
+            <div>
+              <dt>{m.nama}</dt>
+              <dd>Judul {m.judul} · deskripsi {m.deskripsi}<small>{m.sumber}</small></dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </header>
+
+    <div class="km-badan">
+      <nav class="km-indeks" aria-label="Daftar listing">
+        {KELOMPOK.map((k) => (
+          <div>
+            <p class="km-indeks-grup">{k.judul}</p>
+            <ul>
+              {listing.filter((l) => l.kelompok === k.kunci).map((l) => (
+                <li><a href={`#${l.id}`}>{l.nama}{l.cek.length ? <span class="titik" aria-label="ada yang perlu dicek" /> : null}</a></li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </nav>
+
+      <div class="km-isi">
+        {KELOMPOK.map((k) => (
+          <section class="km-kel">
+            <h2>{k.judul}</h2>
+            <p class="abu">{k.ket}</p>
+            {listing.filter((l) => l.kelompok === k.kunci).map((l) => (
+              <article class="km-kartu" id={l.id}>
+                <div class="km-kepala">
+                  <h3>{l.nama}</h3>
+                  <span class="km-satuan">per {l.satuan}</span>
+                </div>
+                {l.cek.length ? (
+                  <div class="km-cek">
+                    <p>Perlu dicek sebelum upload</p>
+                    <ul>{l.cek.map((c) => <li>{c}</li>)}</ul>
+                  </div>
+                ) : null}
+
+                <div class="salin-blok">
+                  <div class="salin-kepala"><span>Judul <b class:list={['hitung', { lewat: l.judul.length > BATAS.judulMaks || l.judul.length < BATAS.judulMin }]}>{l.judul.length}/{BATAS.judulMaks}</b></span><button type="button" class="salin" data-salin>Salin</button></div>
+                  <pre>{l.judul}</pre>
+                </div>
+                <div class="salin-blok">
+                  <div class="salin-kepala"><span>Judul pendek (cadangan) <b class="hitung">{l.judulPendek.length}/70</b></span><button type="button" class="salin" data-salin>Salin</button></div>
+                  <pre>{l.judulPendek}</pre>
+                </div>
+                <div class="salin-blok">
+                  <div class="salin-kepala"><span>Deskripsi <b class:list={['hitung', { lewat: l.deskripsi.length > BATAS.deskripsiMaks }]}>{angka(l.deskripsi.length)}/{angka(BATAS.deskripsiMaks)}</b></span><button type="button" class="salin" data-salin>Salin</button></div>
+                  <pre class="km-deskripsi">{l.deskripsi}</pre>
+                </div>
+
+                <div class="km-dua">
+                  {l.varian ? (
+                    <div class="salin-blok">
+                      <div class="salin-kepala"><span>Varian: {l.varian.judul} ({l.varian.pilihan.length})</span><button type="button" class="salin" data-salin>Salin</button></div>
+                      <pre>{l.varian.pilihan.join('\n')}</pre>
+                    </div>
+                  ) : null}
+                  <div class="salin-blok">
+                    <div class="salin-kepala"><span>Keyword</span><button type="button" class="salin" data-salin>Salin</button></div>
+                    <pre>{l.keyword.join(', ')}</pre>
+                  </div>
+                </div>
+
+                <div class="km-dua">
+                  <dl class="km-atribut">
+                    <p class="km-label">Atribut</p>
+                    {l.atribut.map((a) => (
+                      <div><dt>{a.label}</dt><dd>{a.nilai}</dd></div>
+                    ))}
+                  </dl>
+                  <dl class="km-atribut">
+                    <p class="km-label">Pengiriman</p>
+                    <div><dt>Berat paket</dt><dd class:list={{ kosong: !l.kirim.berat }}>{l.kirim.berat ?? 'Timbang dulu'}</dd></div>
+                    <div><dt>Dimensi</dt><dd class:list={{ kosong: !l.kirim.dimensi }}>{l.kirim.dimensi ?? 'Ukur dulu'}</dd></div>
+                  </dl>
+                </div>
+              </article>
+            ))}
+          </section>
+        ))}
+      </div>
+    </div>
+  </div>
+  <script type="application/json" id="data-csv" set:html={csvJson} />
+</Internal>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-salin]').forEach((b) => {
+    b.addEventListener('click', async () => {
+      const teks = b.closest('.salin-blok')?.querySelector('pre')?.textContent ?? '';
+      try {
+        await navigator.clipboard.writeText(teks);
+        b.textContent = 'Tersalin';
+      } catch {
+        b.textContent = 'Gagal, salin manual';
+      }
+      setTimeout(() => (b.textContent = 'Salin'), 1600);
+    });
+  });
+  document.querySelector<HTMLButtonElement>('[data-unduh]')?.addEventListener('click', () => {
+    const data: Record<string, string>[] = JSON.parse(document.getElementById('data-csv')?.textContent ?? '[]');
+    if (!data.length) return;
+    const kolom = Object.keys(data[0]);
+    const sel = (v: string) => `"${String(v).replace(/"/g, '""')}"`;
+    const csv = '﻿' + [kolom.join(','), ...data.map((r) => kolom.map((k) => sel(r[k] ?? '')).join(','))].join('\r\n');
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+    a.download = 'kit-listing-marketplace-atapura.csv';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+</script>
+
+<style>
+  .km { display: grid; gap: clamp(2rem, 4vw, 3rem); }
+  .km-atas { font-size: 0.85rem; color: var(--color-lumut); margin-bottom: 0.75rem; }
+  h1 { font-size: clamp(2rem, 1.4rem + 2.4vw, 3rem); letter-spacing: -0.035em; font-weight: 500; line-height: 1.05; }
+  .km-sub { margin-top: 0.9rem; max-width: 68ch; line-height: 1.55; color: var(--color-lumut); }
+  .km-aksi { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+  .km-aksi .pill { min-height: 44px; cursor: pointer; }
+  .km-batas { margin-top: 1.75rem; border-radius: 1rem; background: var(--color-embun); padding: 1rem 1.25rem; }
+  .km-batas-judul { font-size: 0.95rem; font-weight: 500; }
+  .km-batas dl { display: grid; gap: 0; margin-top: 0.5rem; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 48rem) { .km-batas dl { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 2rem; } }
+  .km-batas dl > div { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: 1rem; padding: 0.6rem 0; border-bottom: 1px solid var(--color-garis); font-size: 0.9rem; }
+  .km-batas dt { color: var(--color-lumut); }
+  .km-batas small { display: block; color: var(--color-lumut); font-size: 0.8rem; margin-top: 0.15rem; }
+  .km-badan { display: grid; gap: 2rem; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 64rem) { .km-badan { grid-template-columns: 15rem minmax(0, 1fr); gap: 3rem; } }
+  .km-indeks { display: none; }
+  @media (min-width: 64rem) {
+    .km-indeks { display: grid; gap: 1.25rem; align-content: start; position: sticky; top: 1.5rem; max-height: calc(100dvh - 3rem); overflow-y: auto; }
+  }
+  .km-indeks-grup { font-size: 0.8rem; color: var(--color-lumut); margin-bottom: 0.35rem; }
+  .km-indeks ul { list-style: none; padding: 0; display: grid; gap: 0.1rem; }
+  .km-indeks a { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; padding: 0.35rem 0.6rem; border-radius: 0.6rem; font-size: 0.9rem; color: var(--color-tinta); text-decoration: none; }
+  .km-indeks a:hover { background: var(--color-embun); }
+  .titik { flex: none; width: 0.45rem; height: 0.45rem; border-radius: 50%; background: #b4760f; }
+  .km-isi { display: grid; gap: 3rem; min-width: 0; }
+  .km-kel { display: grid; gap: 1rem; }
+  .km-kel h2 { font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.1rem); letter-spacing: -0.03em; font-weight: 500; line-height: 1.1; }
+  .abu { color: var(--color-lumut); line-height: 1.5; }
+  .km-kartu { scroll-margin-top: 1rem; display: grid; gap: 0.75rem; padding: 1.25rem; border-radius: 1.25rem; background: var(--color-putih); border: 1px solid var(--color-garis); }
+  .km-kepala { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.5rem; }
+  .km-kepala h3 { font-size: 1.25rem; font-weight: 500; letter-spacing: -0.015em; }
+  .km-satuan { font-size: 0.85rem; color: var(--color-lumut); }
+  .km-cek { border-radius: 0.85rem; background: #f7ebcf; color: #6b4708; padding: 0.75rem 1rem; font-size: 0.9rem; line-height: 1.5; }
+  .km-cek p { font-weight: 600; margin-bottom: 0.25rem; }
+  .km-cek ul { padding-left: 1.1rem; display: grid; gap: 0.2rem; }
+  .salin-blok { border-radius: 0.85rem; background: var(--color-embun); border: 1px solid var(--color-garis); overflow: hidden; min-width: 0; }
+  .salin-kepala { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.45rem 0.45rem 0.45rem 1rem; border-bottom: 1px solid var(--color-garis); font-size: 0.85rem; color: var(--color-lumut); }
+  .hitung { font-weight: 500; color: var(--color-pinus); font-variant-numeric: tabular-nums; margin-left: 0.35rem; }
+  .hitung.lewat { color: #a63a24; }
+  .salin { min-height: 34px; padding: 0 1rem; border-radius: 999px; background: var(--color-pinus); color: var(--color-embun); font-size: 0.85rem; font-weight: 500; border: 0; cursor: pointer; white-space: nowrap; }
+  .salin-blok pre { margin: 0; padding: 0.85rem 1rem; white-space: pre-wrap; word-break: break-word; font-family: var(--font-sans); font-size: 0.9rem; line-height: 1.6; color: var(--color-tinta); }
+  .km-deskripsi { max-height: 22rem; overflow-y: auto; }
+  .km-dua { display: grid; gap: 0.75rem; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 48rem) { .km-dua { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .km-label { font-size: 0.85rem; color: var(--color-lumut); margin-bottom: 0.25rem; }
+  .km-atribut { display: grid; align-content: start; }
+  .km-atribut > div { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 1rem; padding: 0.5rem 0; border-bottom: 1px solid var(--color-garis); font-size: 0.9rem; }
+  .km-atribut dt { color: var(--color-lumut); }
+  .km-atribut dd { min-width: 0; overflow-wrap: anywhere; }
+  .km-atribut dd.kosong { color: #875a10; }
+</style>
