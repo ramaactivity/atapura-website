@@ -120,13 +120,23 @@ const csvJson = JSON.stringify(
 
                 {gambar(l).length ? (
                   <div class="km-gambar">
-                    <p class="km-label">Gambar listing (1:1, 1080 px) — urutan upload sesuai nomor; tiap gambar memuat "Chat admin sebelum checkout"</p>
+                    <div class="km-gambar-kepala">
+                      <p class="km-label">Gambar listing (1:1, 1080 px) — urutan upload sesuai nomor; tiap gambar memuat "Chat admin sebelum checkout"</p>
+                      <button type="button" class="salin km-unduh-semua" data-unduh-gambar={JSON.stringify(gambar(l).map((g) => ({ url: g.url, nama: `${l.id}-${g.url.split('/').pop()}` })))}>
+                        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14"></path></svg>
+                        <span>Unduh semua ({gambar(l).length} gambar)</span>
+                      </button>
+                    </div>
                     <ul>
                       {gambar(l).map((g) => (
                         <li>
-                          <a href={g.url} download><img src={g.url} alt={`${l.nama}, gambar ${g.s.no}`} loading="lazy" width="1080" height="1080" /></a>
+                          <div class="km-gambar-bingkai">
+                            <a href={g.url} download={`${l.id}-${g.url.split('/').pop()}`}><img src={g.url} alt={`${l.nama}, gambar ${g.s.no}`} loading="lazy" width="1080" height="1080" /></a>
+                            <a class="km-unduh" href={g.url} download={`${l.id}-${g.url.split('/').pop()}`} aria-label={`Unduh gambar ${g.s.no} ${l.nama}`}>
+                              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14"></path></svg>
+                            </a>
+                          </div>
                           <span>{g.s.no}. {g.s.nama.replace(/-/g, ' ')}</span>
-                          <a class="km-unduh" href={g.url} download>Unduh</a>
                         </li>
                       ))}
                     </ul>
@@ -167,6 +177,29 @@ const csvJson = JSON.stringify(
         b.textContent = 'Gagal, salin manual';
       }
       setTimeout(() => (b.textContent = 'Salin'), 1600);
+    });
+  });
+  // Unduh semua gambar satu listing: satu unduhan per file (siap diunggah ke marketplace tanpa ekstrak ZIP). Chrome bisa
+  // menanyakan izin "unduh beberapa file" sekali per situs.
+  document.querySelectorAll<HTMLButtonElement>('[data-unduh-gambar]').forEach((b) => {
+    const label = b.querySelector('span')!;
+    const awal = label.textContent ?? '';
+    b.addEventListener('click', async () => {
+      const daftar: { url: string; nama: string }[] = JSON.parse(b.dataset.unduhGambar ?? '[]');
+      b.disabled = true;
+      for (const [i, g] of daftar.entries()) {
+        label.textContent = `Mengunduh ${i + 1}/${daftar.length}`;
+        const a = document.createElement('a');
+        a.href = g.url;
+        a.download = g.nama;
+        a.click();
+        await new Promise((r) => setTimeout(r, 400));
+      }
+      label.textContent = `Terunduh ${daftar.length} gambar`;
+      setTimeout(() => {
+        label.textContent = awal;
+        b.disabled = false;
+      }, 2400);
     });
   });
   document.querySelector<HTMLButtonElement>('[data-unduh]')?.addEventListener('click', () => {
@@ -237,5 +270,11 @@ const csvJson = JSON.stringify(
   .km-gambar ul { list-style: none; padding: 0; margin: 0.4rem 0 0; display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr)); }
   .km-gambar li { display: grid; gap: 0.3rem; font-size: 0.8rem; color: var(--color-lumut); }
   .km-gambar img { display: block; width: 100%; height: auto; aspect-ratio: 1; border-radius: 0.6rem; box-shadow: 0 0 0 1px var(--color-garis); }
-  .km-unduh { font-size: 0.8rem; font-weight: 500; color: var(--color-pinus); }
+  .km-gambar-kepala { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.6rem 1rem; }
+  .km-unduh-semua { display: inline-flex; align-items: center; gap: 0.45rem; min-height: 40px; }
+  .km-unduh-semua:disabled { opacity: 0.7; cursor: default; }
+  .km-gambar-bingkai { position: relative; }
+  .km-unduh { position: absolute; right: 0.4rem; bottom: 0.4rem; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 999px; background: #fff; color: var(--color-pinus); box-shadow: 0 4px 12px -4px rgb(16 35 30 / 0.45); transition: transform 160ms cubic-bezier(0.16, 1, 0.3, 1); }
+  .km-unduh:hover { transform: translateY(-1px); }
+  .km-unduh:active { transform: scale(0.95); }
 </style>
