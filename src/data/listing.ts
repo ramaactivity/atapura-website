@@ -87,12 +87,13 @@ function listingGenteng(p: Produk, s: Produk['seri'][number]): Listing {
   const warna = warnaSeri(p, p.seri.length ? s.nama : null).flatMap((g) => g.daftar.map((w) => (w.kode ? `${w.nama} (${w.kode})` : w.nama)));
   const contohBundel = m2 ? Math.ceil((100 * (1 + harga.susut)) / m2) : null;
 
+  // Dijual per m² di marketplace (Bang Yusuf 20 Nov); isi bundel ditulis supaya pembeli tahu kelipatan pesanannya.
   const judul = pasJudul(
-    `Genteng Aspal Bitumen ${nm}${m2 ? ` Isi ${angka(m2)} m²/Bundel` : ''}${thGaransi ? ` Garansi ${thGaransi} Tahun` : ''} Atap Shingle`,
-    `Genteng Aspal Bitumen ${nm}${m2 ? ` Isi ${angka(m2)} m²/Bundel` : ''}${thGaransi ? ` Garansi ${thGaransi} Tahun` : ''}`,
-    `Genteng Aspal ${nm}${m2 ? ` ${angka(m2)} m²/Bundel` : ''}`,
+    `Genteng Aspal Bitumen ${nm} per m²${m2 ? ` Isi ${angka(m2)} m²/Bundel` : ''}${thGaransi ? ` Garansi ${thGaransi} Tahun` : ''} Atap Shingle`,
+    `Genteng Aspal Bitumen ${nm} per m²${m2 ? ` Isi ${angka(m2)} m²/Bundel` : ''}${thGaransi ? ` Garansi ${thGaransi} Tahun` : ''}`,
+    `Genteng Aspal ${nm} per m²${m2 ? ` Isi ${angka(m2)} m²/Bundel` : ''}`,
   );
-  const judulPendek = `Genteng Aspal ${nm}${m2 ? ` ${angka(m2)} m²/Bundel` : ''}`.slice(0, 70);
+  const judulPendek = `Genteng Aspal ${nm} per m²`.slice(0, 70);
 
   const deskripsi = rapikan([
     `${nm}, genteng aspal (asphalt shingle)${asal ? ` buatan ${asal}` : ''}. ${bersih(s.ringkas)}`,
@@ -108,8 +109,10 @@ function listingGenteng(p: Produk, s: Produk['seri'][number]): Listing {
     'CARA PASANG',
     'Genteng aspal dipaku di atas papan alas (multiplek atau GRC) yang sudah dilapisi underlayer. Papan alas, underlayer, paku bitumen, dan flashing tersedia terpisah di toko kami.',
     '',
-    m2 ? 'HITUNG KEBUTUHAN' : null,
-    m2 ? `Jumlah bundel = luas atap (m²) ÷ ${angka(m2)}, lalu tambah sekitar ${susutPct}% untuk potongan dan sambungan. Contoh: atap 100 m² butuh ±${contohBundel} bundel.` : null,
+    'HARGA & PEMESANAN',
+    m2
+      ? `Harga per m². Genteng dikirim per bundel isi ${angka(m2)} m², jadi jumlah pesanan dibulatkan ke kelipatan ${angka(m2)} m². Hitung kebutuhan: luas atap ditambah sekitar ${susutPct}% untuk potongan dan sambungan. Contoh: atap 100 m² → pesan ±${angka(contohBundel! * m2)} m² (${contohBundel} bundel).`
+      : 'Harga per m². Genteng dikirim per bundel; chat kami untuk isi bundel dan jumlah pesanan.',
     '',
     garansi ? 'GARANSI' : null,
     garansi ? `Garansi pabrik ${garansi}, mengikuti syarat dokumen garansi pabrik.` : null,
@@ -122,7 +125,7 @@ function listingGenteng(p: Produk, s: Produk['seri'][number]): Listing {
     id: p.seri.length ? `${p.slug}-${s.nama.toLowerCase().replace(/[^a-z0-9]+/g, '-')}` : p.slug,
     kelompok: 'genteng',
     nama: nm,
-    satuan: 'bundel',
+    satuan: 'm²',
     judul,
     judulPendek,
     deskripsi,
@@ -133,6 +136,7 @@ function listingGenteng(p: Produk, s: Produk['seri'][number]): Listing {
       asal ? { label: 'Negara asal', nilai: asal } : null,
       { label: 'Jenis', nilai: 'Genteng aspal (asphalt shingle)' },
       ukuran ? { label: 'Ukuran per lembar', nilai: ukuran } : null,
+      { label: 'Satuan jual', nilai: m2 ? `per m², dikirim per bundel isi ${angka(m2)} m²` : 'per m², dikirim per bundel' },
       m2 ? { label: 'Isi per kemasan', nilai: `${angka(m2)} m² per bundel` } : null,
       garansi ? { label: 'Garansi', nilai: `${garansi} (pabrik)` } : null,
       { label: 'Kondisi', nilai: 'Baru' },

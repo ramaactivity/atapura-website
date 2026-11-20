@@ -12,7 +12,7 @@ import { BATAS, listing, MARKETPLACE_BATAS } from '../../data/listing';
 const gambar = (l: (typeof listing)[number]) => slideListing(l).map((s) => ({ s, url: berkasSlide(l, s) })).filter((g) => existsSync(join(process.cwd(), 'public', g.url))).sort((x, y) => x.s.no - y.s.no);
 
 const KELOMPOK = [
-  { kunci: 'genteng', judul: 'Genteng aspal', ket: 'Satu listing per seri, warna sebagai varian, dijual per bundel.' },
+  { kunci: 'genteng', judul: 'Genteng aspal', ket: 'Satu listing per seri, warna sebagai varian. Harga per m², dikirim per bundel (pesanan kelipatan isi bundel).' },
   { kunci: 'aksesoris', judul: 'Aksesoris', ket: 'Satu listing per barang. Paku & skrup dijual per pak.' },
   { kunci: 'jasa', judul: 'Jasa pasang', ket: 'Opsional — cek kebijakan kategori jasa di tiap marketplace.' },
 ] as const;

@@ -307,3 +307,9 @@ di gambar marketplace). Infografis disusun dari data, bukan AI, supaya angka & t
 seri lewat `warnaSeri` (judul grup "CT3 · warna solid", "CT5 dan CT6", dll. sebelumnya tidak cocok → CT3/CT5/CT6/Eco Roof/
 Top Shingles tanpa varian di kit), Javabitumen (tanpa seri) kini satu listing. Gambar tidak dibuat ulang di CI: jalankan
 ulang `npm run aset-marketplace` bila spesifikasi/warna berubah. Cover genteng (latar putih, Magnific) menunggu ok Rama (039).
+
+## 060 · 20 November 2026 · Genteng di marketplace dijual per m² (revisi Bang Yusuf)
+Bang Yusuf: "Untuk di marketplace harga yg kita list /m2. Contoh 155.000 (CTI CT3)". Kit listing: satuan genteng m², judul
+"… per m² Isi X m²/Bundel …", atribut "Satuan jual: per m², dikirim per bundel isi X m²", deskripsi bagian HARGA & PEMESANAN
+(pesanan dibulatkan ke kelipatan isi bundel + contoh 100 m²). Gambar 4 jadi "Pesan berapa m²?" (luas + ±10%, kelipatan isi
+bundel, contoh m² & jumlah bundel). Ops → Harga marketplace ikut per m² (Ops commit cde1e9c).

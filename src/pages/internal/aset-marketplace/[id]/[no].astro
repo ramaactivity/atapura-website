@@ -52,6 +52,8 @@ const tinggiUbin = Math.min(Math.round(((1080 - 144) / kolomWarna) * 0.8), Math.
 const m2 = isiBundel ? Number(isiBundel.replace(/[^\d,]/g, '').replace(',', '.')) : null;
 const contohBundel = m2 ? Math.ceil((100 * (1 + harga.susut)) / m2) : null;
 const susutPct = Math.round(harga.susut * 100);
+// Genteng dijual per m² (Bang Yusuf 20 Nov), dikirim per bundel → m² yang dipesan = bundel × isi bundel.
+const pesanM2 = m2 && contohBundel ? (contohBundel * m2).toLocaleString('id-ID', { maximumFractionDigits: 1 }) : null;
 
 const LAPIS = [
   { id: 'alas', nama: 'Alas', isi: 'Multiplek atau GRC di atas rangka' },
@@ -121,14 +123,15 @@ const judulAtas = (l.nama.length > 22 ? 64 : 76) + 'px';
     ) : s.kunci === 'hitung' && m2 ? (
       <main class="as-slide">
         <header class="as-atas"><span class="as-logo-w"><Logo tinggi="34px" /></span><span class="as-atas-kanan">{l.nama}</span></header>
-        <h1 style="--judul: 84px">Butuh berapa <span class="miring">bundel?</span></h1>
+        <h1 style="--judul: 84px">Pesan berapa <span class="miring">m²?</span></h1>
         <div class="as-rumus">
-          <p class="as-rumus-utama">Luas atap ÷ {isiBundel}</p>
-          <p class="as-rumus-tambah">lalu tambah ±{susutPct}% untuk potongan & sambungan</p>
+          <p class="as-rumus-utama">Luas atap + ±{susutPct}%</p>
+          <p class="as-rumus-tambah">untuk potongan & sambungan, dibulatkan ke kelipatan {isiBundel} (isi 1 bundel)</p>
         </div>
         <div class="as-contoh">
           <p class="as-contoh-label">Contoh, atap 100 m²</p>
-          <p class="as-contoh-angka">±{contohBundel} <small>bundel</small></p>
+          <p class="as-contoh-angka">±{pesanM2} <small>m²</small></p>
+          <p class="as-contoh-ket">= {contohBundel} bundel</p>
         </div>
         <p class="as-sumber">Atap limasan atau banyak jurai butuh potongan lebih banyak. Jumlah pasti dihitung saat survey.</p>
       </main>
@@ -216,10 +219,11 @@ const judulAtas = (l.nama.length > 22 ? 64 : 76) + 'px';
   .as-rumus-utama { margin: 0; font-family: var(--font-merek); font-weight: 500; font-size: 58px; letter-spacing: -0.03em; color: var(--color-pinus); }
   .as-rumus-tambah { margin: 12px 0 0; font-size: 28px; color: var(--color-lumut); }
   /* Contoh menempel di bawah (dekat catatan) supaya tidak ada ruang kosong di bawah angka. */
-  .as-contoh { margin-top: auto; }
+  .as-contoh { margin-top: auto; padding-top: 40px; }
+  .as-contoh-ket { margin: 10px 0 0; font-size: 34px; color: var(--color-lumut); }
   .as-contoh + .as-sumber { margin-top: 44px; }
   .as-contoh-label { margin: 0; font-size: 26px; color: var(--color-lumut); }
-  .as-contoh-angka { margin: 4px 0 0; font-family: var(--font-merek); font-weight: 500; font-size: 190px; letter-spacing: -0.05em; line-height: 0.95; color: var(--color-pinus); font-variant-numeric: tabular-nums; }
+  .as-contoh-angka { margin: 4px 0 0; font-family: var(--font-merek); font-weight: 500; font-size: 160px; letter-spacing: -0.05em; line-height: 0.95; color: var(--color-pinus); font-variant-numeric: tabular-nums; }
   .as-contoh-angka small { font-size: 52px; letter-spacing: -0.02em; font-weight: 400; color: var(--color-lumut); }
   /* Lapisan */
   .as-lapis-dua { margin-top: auto; display: grid; grid-template-columns: 470px minmax(0, 1fr); gap: 36px; align-items: center; }
