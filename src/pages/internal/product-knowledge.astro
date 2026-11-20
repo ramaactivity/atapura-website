@@ -45,7 +45,7 @@ const teksJual = (p: (typeof produk)[number], s: (typeof produk)[number]['seri']
 const atap = produk.filter((p) => p.lini === 'atap');
 const lain = produk.filter((p) => p.lini !== 'atap');
 const tentang = [
-  `${bisnis.nama} (${bisnis.namaLegal}, ${bisnis.statusLegal}) adalah aplikator dan pemasok atap bitumen, rangka baja ringan, dan material pendukungnya.`,
+  `${bisnis.nama} (${bisnis.namaLegal}, ${bisnis.statusLegal}) adalah aplikator dan agen atap bitumen, rangka baja ringan, dan material pendukungnya.`,
   `Tagline: ${bisnis.tagline}`,
   `Kontak: WhatsApp ${wa} · ${bisnis.email} · atapura.com`,
   `Alamat: ${alamat}`,
@@ -74,7 +74,7 @@ const menu = [['tentang', 'Atapura'], ['layanan', 'Layanan & ketentuan'], ...ata
       </div>
       <dl class="pk-fakta">
         <div><dt>Nama legal</dt><dd>{bisnis.namaLegal} ({bisnis.statusLegal})</dd></div>
-        <div><dt>Bidang</dt><dd>Aplikator & pemasok atap bitumen, rangka baja ringan, aksesoris atap</dd></div>
+        <div><dt>Bidang</dt><dd>Aplikator & agen atap bitumen, rangka baja ringan, aksesoris atap</dd></div>
         <div><dt>Merek genteng</dt><dd>{atap.map((p) => `${p.nama}${asalMerek[p.nama] ? ` (${asalMerek[p.nama]})` : ''}`).join(', ')}</dd></div>
         <div><dt>WhatsApp</dt><dd>{wa}</dd></div>
         <div><dt>Email</dt><dd>{bisnis.email}</dd></div>
