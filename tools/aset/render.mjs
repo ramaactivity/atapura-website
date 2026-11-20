@@ -38,7 +38,7 @@ try {
   let n = 0;
   for (const { halaman, berkas } of daftar) {
     const png = join(sementara, `${n}.png`);
-    await jalan(chrome, ['--headless=new', '--disable-gpu', '--hide-scrollbars', '--force-device-scale-factor=1', '--window-size=1080,1080', '--virtual-time-budget=4000', `--screenshot=${png}`, `${asal}${halaman}`]);
+    await jalan(chrome, ['--headless=new', '--disable-gpu', '--hide-scrollbars', '--force-device-scale-factor=1', '--window-size=1080,1080', '--run-all-compositor-stages-before-draw', '--virtual-time-budget=10000', `--screenshot=${png}`, `${asal}${halaman}`]);
     const jpg = join(publik, berkas);
     await mkdir(dirname(jpg), { recursive: true });
     await jalan('sips', ['-s', 'format', 'jpeg', '-s', 'formatOptions', '88', png, '--out', jpg]);

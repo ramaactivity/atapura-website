@@ -78,13 +78,13 @@ const judulAtas = (l.nama.length > 22 ? 64 : 76) + 'px';
   <body>
     {s.kunci === 'cover' && a?.wujud ? (
       <main class="as-slide as-putih">
-        <Image src={a.wujud} alt="" widths={[1080]} sizes="1080px" class="as-cover" loading="eager" />
+        <Image src={a.wujud} alt="" widths={[1080]} sizes="1080px" class="as-cover" loading="eager" decoding="sync" />
       </main>
     ) : s.kunci === 'spek' && seri ? (
       <main class="as-slide">
         <header class="as-atas"><span class="as-logo-w"><Logo tinggi="34px" /></span><span class="as-atas-kanan">{l.nama}</span></header>
         <h1 style={`--judul: ${judulAtas}`}>{l.nama} <span class="miring">dalam angka.</span></h1>
-        {seri.foto ? <Image src={seri.foto} alt="" widths={[1080]} sizes="936px" class="as-foto-band" loading="eager" /> : null}
+        {seri.foto ? <Image src={seri.foto} alt="" widths={[1080]} sizes="936px" class="as-foto-band" loading="eager" decoding="sync" /> : null}
         <dl class="as-stat">
           {statGenteng.map((x) => (
             <div><dt>{x.label}</dt><dd>{x.nilai}</dd></div>
@@ -98,7 +98,7 @@ const judulAtas = (l.nama.length > 22 ? 64 : 76) + 'px';
         <h1 style={`--judul: ${judulAtas}`}><span class="as-utuh">{a.nama}</span></h1>
         <p class="as-lead">{a.fungsi.split('. ')[0].replace(/\.$/, '')}.</p>
         <div class="as-aks-dua">
-          {a.wujud ? <div class="as-aks-foto"><Image src={a.wujud} alt="" widths={[880]} sizes="440px" loading="eager" /></div> : null}
+          {a.wujud ? <div class="as-aks-foto"><Image src={a.wujud} alt="" widths={[880]} sizes="440px" loading="eager" decoding="sync" /></div> : null}
           <dl class="as-aks-spek">
             {a.spek.map((k) => (
               <div><dt>{k.label}</dt><dd>{k.nilai}</dd></div>
@@ -113,7 +113,7 @@ const judulAtas = (l.nama.length > 22 ? 64 : 76) + 'px';
         <ul class="as-ubin" style={`--kolom: ${kolomWarna}; --tinggi-ubin: ${tinggiUbin}px`}>
           {warna.map((w) => (
             <li>
-              {w.foto ? <Image src={w.foto} alt="" widths={[480]} sizes="300px" loading="eager" /> : <span class="as-ubin-hex" style={w.hex ? `background:${w.hex}` : undefined} />}
+              {w.foto ? <Image src={w.foto} alt="" widths={[480]} sizes="300px" loading="eager" decoding="sync" /> : <span class="as-ubin-hex" style={w.hex ? `background:${w.hex}` : undefined} />}
               <span class="as-ubin-nama">{w.nama}{w.kode ? <small> {w.kode}</small> : null}</span>
             </li>
           ))}
@@ -153,7 +153,7 @@ const judulAtas = (l.nama.length > 22 ? 64 : 76) + 'px';
       </main>
     ) : s.kunci === 'pasang' && penerapan ? (
       <main class="as-slide as-gelap">
-        <Image src={penerapan.gambar} alt="" widths={[1600]} sizes="1080px" class="as-latar" loading="eager" />
+        <Image src={penerapan.gambar} alt="" widths={[1600]} sizes="1080px" class="as-latar" loading="eager" decoding="sync" />
         <div class="as-redup" />
         <header class="as-atas"><span class="as-logo-w as-terang"><Logo tinggi="34px" /></span><span class="as-label-ilustrasi">Ilustrasi</span></header>
         <div class="as-pasang-isi">
@@ -169,7 +169,7 @@ const judulAtas = (l.nama.length > 22 ? 64 : 76) + 'px';
     ) : s.kunci === 'dipasang' && a?.foto ? (
       <main class="as-slide">
         <header class="as-atas"><span class="as-logo-w"><Logo tinggi="34px" /></span><span class="as-label-ilustrasi as-gelap-teks">Ilustrasi</span></header>
-        <Image src={a.foto.src} alt="" widths={[1600]} sizes="936px" class="as-foto-besar" loading="eager" />
+        <Image src={a.foto.src} alt="" widths={[1600]} sizes="936px" class="as-foto-besar" loading="eager" decoding="sync" />
         <h1 style={`--judul: ${a.nama.length > 22 ? '56px' : '64px'}`}><span class="as-utuh">{a.nama}</span> <span class="miring">saat dipasang.</span></h1>
         <p class="as-lead as-lead-lebar">{a.fungsi}</p>
       </main>
