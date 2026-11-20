@@ -3,7 +3,13 @@
 // dimensi kirim, dan keyword per produk, siap salin & unduh CSV. Isi diturunkan dari src/data (listing.ts) — jangan ketik di
 // sini. Harga tayang ada di Atapura Ops → Harga marketplace (harga modal tidak pernah di website).
 import Internal from '../../layouts/Internal.astro';
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+import { berkasSlide, slideListing } from '../../data/aset';
 import { BATAS, listing, MARKETPLACE_BATAS } from '../../data/listing';
+
+// Gambar yang sudah diekspor (npm run aset-marketplace); yang belum ada tidak ditampilkan.
+const gambar = (l: (typeof listing)[number]) => slideListing(l).map((s) => ({ s, url: berkasSlide(l, s) })).filter((g) => existsSync(join(process.cwd(), 'public', g.url))).sort((x, y) => x.s.no - y.s.no);
 
 const KELOMPOK = [
   { kunci: 'genteng', judul: 'Genteng aspal', ket: 'Satu listing per seri, warna sebagai varian, dijual per bundel.' },
@@ -112,6 +118,21 @@ const csvJson = JSON.stringify(
                   </div>
                 </div>
 
+                {gambar(l).length ? (
+                  <div class="km-gambar">
+                    <p class="km-label">Gambar listing (1:1, 1080 px) — urutan upload sesuai nomor{l.ref.jenis === 'seri' ? '; gambar 1 (cover latar putih) menyusul' : ''}</p>
+                    <ul>
+                      {gambar(l).map((g) => (
+                        <li>
+                          <a href={g.url} download><img src={g.url} alt={`${l.nama}, gambar ${g.s.no}`} loading="lazy" width="1080" height="1080" /></a>
+                          <span>{g.s.no}. {g.s.nama.replace(/-/g, ' ')}</span>
+                          <a class="km-unduh" href={g.url} download>Unduh</a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+
                 <div class="km-dua">
                   <dl class="km-atribut">
                     <p class="km-label">Atribut</p>
@@ -213,4 +234,8 @@ const csvJson = JSON.stringify(
   .km-atribut dt { color: var(--color-lumut); }
   .km-atribut dd { min-width: 0; overflow-wrap: anywhere; }
   .km-atribut dd.kosong { color: #875a10; }
+  .km-gambar ul { list-style: none; padding: 0; margin: 0.4rem 0 0; display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr)); }
+  .km-gambar li { display: grid; gap: 0.3rem; font-size: 0.8rem; color: var(--color-lumut); }
+  .km-gambar img { display: block; width: 100%; height: auto; aspect-ratio: 1; border-radius: 0.6rem; box-shadow: 0 0 0 1px var(--color-garis); }
+  .km-unduh { font-size: 0.8rem; font-weight: 500; color: var(--color-pinus); }
 </style>

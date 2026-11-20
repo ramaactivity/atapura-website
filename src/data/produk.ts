@@ -594,6 +594,17 @@ const semuaProduk: Produk[] = [
 export const produk = semuaProduk.filter((p) => TAMPIL_PLAFON || p.lini !== 'plafon');
 
 /** Nama lengkap untuk kartu & judul: "Atap bitumen CTI", "Plafon Shunda"; rangka cukup namanya. */
+/**
+ * Grup warna milik satu seri. Judul grup tidak selalu persis nama seri ("CT3 · warna solid", "CT5 dan CT6",
+ * "Top Shingles Rectangular", "Eco Roof (…)"), jadi dicocokkan sebagai kata di awal/di dalam judul. Produk tanpa seri
+ * atau satu seri: semua grup. Dipakai kit listing & aset marketplace.
+ */
+export const warnaSeri = (p: Produk, namaSeri: string | null) => {
+  if (!namaSeri || p.seri.length <= 1) return p.warna;
+  const kata = new RegExp(`(^|\\s)${namaSeri.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(\\s|$|[·,(])`);
+  return p.warna.filter((g) => g.judul === namaSeri || kata.test(g.judul));
+};
+
 export const namaLengkap = (p: Produk) => (p.lini === 'rangka' ? p.nama : `${LINI[p.lini].nama} ${p.nama}`);
 
 /** Rentang harga terpasang per m², atau null bila belum ada (tampil "tanya admin"). */

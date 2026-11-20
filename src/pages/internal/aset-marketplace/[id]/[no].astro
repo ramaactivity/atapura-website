@@ -1,0 +1,249 @@
+---
+// Satu slide aset marketplace = satu halaman 1080 × 1080 (website DECISIONS 059). Dipotret Chrome headless oleh
+// tools/aset/render.mjs → public/unduh/marketplace/<id>/<no>-<nama>.jpg. Gaya = templat carousel brand (branding §06):
+// logo kecil kiri atas, judul dengan bagian redup, angka Pinus, sumber kecil. TANPA nomor WA/situs (dilarang di gambar
+// marketplace). Semua angka & teks dari src/data.
+import '../../../../styles/global.css';
+import { Image } from 'astro:assets';
+import LapisanGambar from '../../../../components/LapisanGambar.astro';
+import Logo from '../../../../components/Logo.astro';
+import { aksesoris } from '../../../../data/aksesoris';
+import { LAPIS_AKSESORIS, semuaSlide, UBIN_PER_SLIDE } from '../../../../data/aset';
+import { bisnis } from '../../../../data/bisnis';
+import { harga } from '../../../../data/harga';
+import { fotoWarna, produk, warnaSeri } from '../../../../data/produk';
+
+export function getStaticPaths() {
+  return semuaSlide.map(({ l, s }) => ({ params: { id: l.id, no: String(s.no) }, props: { l, s } }));
+}
+const { l, s } = Astro.props;
+
+const ref = l.ref;
+const p = ref.jenis === 'seri' ? produk.find((x) => x.slug === ref.produk)! : null;
+const seri = ref.jenis === 'seri' ? (p!.seri.find((x) => x.nama === ref.seri) ?? { nama: p!.nama, ringkas: p!.ringkas, spek: [], foto: undefined }) : null;
+const a = ref.jenis === 'aksesoris' ? aksesoris.find((x) => x.slug === ref.slug)! : null;
+const nilai = (label: string) => l.atribut.find((x) => x.label === label)?.nilai;
+const spekSeri = (label: string) => seri?.spek.find((x) => x.label === label)?.nilai;
+
+// Spesifikasi genteng: 4 angka pertama yang tersedia.
+const isiBundel = nilai('Isi per kemasan')?.replace(' per bundel', '');
+const statGenteng = [
+  isiBundel ? { label: 'Isi per bundel', nilai: isiBundel } : null,
+  spekSeri('Ukuran per lembar') ? { label: 'Ukuran per lembar', nilai: spekSeri('Ukuran per lembar')! } : null,
+  spekSeri('Tebal') ? { label: 'Tebal', nilai: spekSeri('Tebal')! } : null,
+  spekSeri('Berat') ? { label: 'Berat', nilai: spekSeri('Berat')!.replace(/\s*\(.*\)/, '') } : null,
+  nilai('Garansi') ? { label: 'Garansi pabrik', nilai: nilai('Garansi')!.replace(' (pabrik)', '').replace(/\s*dari pabrik/i, '') } : null,
+  spekSeri('Tahan angin') ? { label: 'Tahan angin', nilai: spekSeri('Tahan angin')! } : null,
+]
+  .filter((x): x is { label: string; nilai: string } => x !== null)
+  .slice(0, 4);
+
+// Warna: ubin foto tekstur (contoh warna) bila ada, kalau tidak bulatan hex.
+const grupWarna = p ? warnaSeri(p, ref.jenis === 'seri' ? ref.seri : null) : [];
+const semuaWarna = grupWarna.flatMap((g) => g.daftar.map((w) => ({ ...w, foto: fotoWarna(g.tekstur, w.nama) })));
+const bagian = s.bagian ?? 0;
+const halamanWarna = Math.ceil(semuaWarna.length / UBIN_PER_SLIDE);
+const warna = semuaWarna.slice(bagian * UBIN_PER_SLIDE, (bagian + 1) * UBIN_PER_SLIDE);
+const kolomWarna = warna.length <= 4 ? 2 : warna.length <= 9 ? 3 : 4;
+// Tinggi ubin dihitung dari jumlah baris supaya grid selalu muat di ruang ±680 px di bawah judul (nama warna ±40 px, jarak 26 px).
+const barisWarna = Math.ceil(warna.length / kolomWarna);
+const tinggiUbin = Math.min(Math.round(((1080 - 144) / kolomWarna) * 0.8), Math.floor((680 - (barisWarna - 1) * 26) / barisWarna - 44));
+
+const m2 = isiBundel ? Number(isiBundel.replace(/[^\d,]/g, '').replace(',', '.')) : null;
+const contohBundel = m2 ? Math.ceil((100 * (1 + harga.susut)) / m2) : null;
+const susutPct = Math.round(harga.susut * 100);
+
+const LAPIS = [
+  { id: 'alas', nama: 'Alas', isi: 'Multiplek atau GRC di atas rangka' },
+  { id: 'underlayment', nama: 'Underlayment', isi: 'Lapis kedap air di atas alas' },
+  { id: 'flashing', nama: 'Flashing', isi: 'Penutup tepi & pertemuan dinding' },
+  { id: 'genteng', nama: 'Genteng bitumen', isi: 'Dipaku dari bawah ke atas' },
+  { id: 'nok', nama: 'Nok', isi: 'Penutup puncak, dipasang terakhir' },
+];
+const sorot = ref.jenis === 'aksesoris' ? LAPIS_AKSESORIS[ref.slug] : 'genteng';
+const penerapan = p?.penerapan[0];
+const garansiPasang = bisnis.garansiPemasanganTahun;
+const judulAtas = (l.nama.length > 22 ? 64 : 76) + 'px';
+---
+
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <meta name="viewport" content="width=1080" />
+    <title>{l.nama} · {s.nama}</title>
+  </head>
+  <body>
+    {s.kunci === 'cover' && a?.wujud ? (
+      <main class="as-slide as-putih">
+        <Image src={a.wujud} alt="" widths={[1080]} sizes="1080px" class="as-cover" loading="eager" />
+      </main>
+    ) : s.kunci === 'spek' && seri ? (
+      <main class="as-slide">
+        <header class="as-atas"><span class="as-logo-w"><Logo tinggi="34px" /></span><span class="as-atas-kanan">{l.nama}</span></header>
+        <h1 style={`--judul: ${judulAtas}`}>{l.nama} <span class="miring">dalam angka.</span></h1>
+        {seri.foto ? <Image src={seri.foto} alt="" widths={[1080]} sizes="936px" class="as-foto-band" loading="eager" /> : null}
+        <dl class="as-stat">
+          {statGenteng.map((x) => (
+            <div><dt>{x.label}</dt><dd>{x.nilai}</dd></div>
+          ))}
+        </dl>
+        <p class="as-sumber">Sumber: lembar data pabrik</p>
+      </main>
+    ) : s.kunci === 'spek' && a ? (
+      <main class="as-slide">
+        <header class="as-atas"><span class="as-logo-w"><Logo tinggi="34px" /></span><span class="as-atas-kanan">Aksesoris atap bitumen</span></header>
+        <h1 style={`--judul: ${judulAtas}`}><span class="as-utuh">{a.nama}</span></h1>
+        <p class="as-lead">{a.fungsi.split('. ')[0].replace(/\.$/, '')}.</p>
+        <div class="as-aks-dua">
+          {a.wujud ? <div class="as-aks-foto"><Image src={a.wujud} alt="" widths={[880]} sizes="440px" loading="eager" /></div> : null}
+          <dl class="as-aks-spek">
+            {a.spek.map((k) => (
+              <div><dt>{k.label}</dt><dd>{k.nilai}</dd></div>
+            ))}
+          </dl>
+        </div>
+      </main>
+    ) : s.kunci === 'warna' ? (
+      <main class="as-slide">
+        <header class="as-atas"><span class="as-logo-w"><Logo tinggi="34px" /></span><span class="as-atas-kanan">{halamanWarna > 1 ? `${bagian + 1} / ${halamanWarna} · ` : ''}{semuaWarna.length} warna</span></header>
+        <h1 style={`--judul: ${judulAtas}`}>Pilihan warna <span class="miring">{l.nama}.</span></h1>
+        <ul class="as-ubin" style={`--kolom: ${kolomWarna}; --tinggi-ubin: ${tinggiUbin}px`}>
+          {warna.map((w) => (
+            <li>
+              {w.foto ? <Image src={w.foto} alt="" widths={[480]} sizes="300px" loading="eager" /> : <span class="as-ubin-hex" style={w.hex ? `background:${w.hex}` : undefined} />}
+              <span class="as-ubin-nama">{w.nama}{w.kode ? <small> {w.kode}</small> : null}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="as-sumber">Warna di layar bisa sedikit berbeda dari aslinya.</p>
+      </main>
+    ) : s.kunci === 'hitung' && m2 ? (
+      <main class="as-slide">
+        <header class="as-atas"><span class="as-logo-w"><Logo tinggi="34px" /></span><span class="as-atas-kanan">{l.nama}</span></header>
+        <h1 style="--judul: 84px">Butuh berapa <span class="miring">bundel?</span></h1>
+        <div class="as-rumus">
+          <p class="as-rumus-utama">Luas atap ÷ {isiBundel}</p>
+          <p class="as-rumus-tambah">lalu tambah ±{susutPct}% untuk potongan & sambungan</p>
+        </div>
+        <div class="as-contoh">
+          <p class="as-contoh-label">Contoh, atap 100 m²</p>
+          <p class="as-contoh-angka">±{contohBundel} <small>bundel</small></p>
+        </div>
+        <p class="as-sumber">Atap limasan atau banyak jurai butuh potongan lebih banyak. Jumlah pasti dihitung saat survey.</p>
+      </main>
+    ) : s.kunci === 'lapisan' ? (
+      <main class="as-slide">
+        <header class="as-atas"><span class="as-logo-w"><Logo tinggi="34px" /></span><span class="as-atas-kanan">Sistem atap bitumen</span></header>
+        <h1 style={`--judul: ${a ? judulAtas : '76px'}`}>{a ? <><span class="as-utuh">{a.nama}</span> <span class="miring">di atap.</span></> : <>Lima lapis, <span class="miring">dipasang berurutan.</span></>}</h1>
+        <div class="as-lapis-dua">
+          <div class="as-lapis-gambar"><LapisanGambar aktif={sorot} /></div>
+          <ol class="as-lapis-daftar">
+            {LAPIS.map((x, i) => (
+              <li class:list={{ 'as-on': x.id === sorot }}>
+                <span class="as-lapis-no">{i + 1}</span>
+                <span><b>{x.nama}</b><span>{x.isi}</span></span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </main>
+    ) : s.kunci === 'pasang' && penerapan ? (
+      <main class="as-slide as-gelap">
+        <Image src={penerapan.gambar} alt="" widths={[1600]} sizes="1080px" class="as-latar" loading="eager" />
+        <div class="as-redup" />
+        <header class="as-atas"><span class="as-logo-w as-terang"><Logo tinggi="34px" /></span><span class="as-label-ilustrasi">Ilustrasi</span></header>
+        <div class="as-pasang-isi">
+          <h1 style="--judul: 92px">Butuh <span class="miring">pemasangan?</span></h1>
+          <p class="as-pasang-sub">Atapura juga aplikator atap bitumen.</p>
+          <div class="as-chip-baris">
+            <span class="as-chip">Survey & ukur</span>
+            <span class="as-chip">Penawaran tertulis</span>
+            {garansiPasang ? <span class="as-chip as-chip-tunas">Garansi pasang {garansiPasang} tahun</span> : null}
+          </div>
+        </div>
+      </main>
+    ) : s.kunci === 'dipasang' && a?.foto ? (
+      <main class="as-slide">
+        <header class="as-atas"><span class="as-logo-w"><Logo tinggi="34px" /></span><span class="as-label-ilustrasi as-gelap-teks">Ilustrasi</span></header>
+        <Image src={a.foto.src} alt="" widths={[1600]} sizes="936px" class="as-foto-besar" loading="eager" />
+        <h1 style={`--judul: ${a.nama.length > 22 ? '56px' : '64px'}`}><span class="as-utuh">{a.nama}</span> <span class="miring">saat dipasang.</span></h1>
+        <p class="as-lead as-lead-lebar">{a.fungsi}</p>
+      </main>
+    ) : null}
+  </body>
+</html>
+
+<style is:global>
+  html, body { margin: 0; padding: 0; background: var(--color-embun); }
+  body { width: 1080px; height: 1080px; overflow: hidden; }
+  .as-slide { position: relative; box-sizing: border-box; width: 1080px; height: 1080px; padding: 72px; display: flex; flex-direction: column; background: var(--color-embun); color: var(--color-tinta); font-family: var(--font-sans); overflow: hidden; }
+  .as-slide.as-putih { background: #fff; padding: 0; align-items: center; justify-content: center; }
+  .as-cover { width: 1080px; height: 1080px; object-fit: contain; }
+  .as-atas { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 2; }
+  .as-logo-w { color: var(--color-pinus); display: inline-flex; }
+  .as-logo-w.as-terang { color: #fff; }
+  .as-atas-kanan { font-size: 22px; color: var(--color-lumut); }
+  h1 { margin: 44px 0 0; font-family: var(--font-merek); font-weight: 500; font-size: var(--judul, 76px); letter-spacing: -0.035em; line-height: 1.02; text-wrap: balance; position: relative; z-index: 2; }
+  .miring { opacity: 0.55; }
+  .as-utuh { white-space: nowrap; }
+  .as-lead-lebar { max-width: none !important; font-size: 26px !important; }
+  .as-lead { margin: 22px 0 0; font-size: 28px; line-height: 1.45; color: var(--color-lumut); max-width: 30ch; text-wrap: pretty; }
+  .as-sumber { margin: auto 0 0; padding-top: 22px; border-top: 1px solid var(--color-garis); font-size: 20px; color: var(--color-lumut); }
+  /* Spesifikasi genteng */
+  .as-foto-band { margin-top: 40px; width: 936px; height: 330px; object-fit: cover; border-radius: 28px; display: block; }
+  .as-stat { margin: 36px 0 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 40px; }
+  .as-stat div { min-width: 0; }
+  .as-stat dt { font-size: 22px; color: var(--color-lumut); }
+  .as-stat dd { margin: 6px 0 0; font-family: var(--font-merek); font-weight: 500; font-size: 48px; letter-spacing: -0.03em; line-height: 1.05; color: var(--color-pinus); font-variant-numeric: tabular-nums; }
+  /* Spesifikasi aksesoris */
+  /* Foto + spesifikasi di tengah ruang sisa (bukan menempel bawah dengan celah besar di atas). */
+  .as-aks-dua { margin: auto 0; display: grid; grid-template-columns: 540px minmax(0, 1fr); gap: 44px; align-items: center; }
+  .as-aks-foto { background: #fff; border-radius: 28px; overflow: hidden; aspect-ratio: 1; box-shadow: 0 0 0 1px var(--color-garis); }
+  .as-aks-foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .as-aks-spek { margin: 0; display: grid; }
+  .as-aks-spek div { padding: 18px 0; border-bottom: 1px solid var(--color-garis); }
+  .as-aks-spek dt { font-size: 22px; color: var(--color-lumut); }
+  .as-aks-spek dd { margin: 6px 0 0; font-family: var(--font-merek); font-weight: 500; font-size: 34px; letter-spacing: -0.02em; line-height: 1.15; color: var(--color-pinus); }
+  /* Warna */
+  .as-ubin { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: repeat(var(--kolom), minmax(0, 1fr)); gap: 26px 22px; }
+  .as-ubin li { display: grid; gap: 10px; min-width: 0; }
+  .as-ubin img, .as-ubin-hex { display: block; width: 100%; height: var(--tinggi-ubin); object-fit: cover; border-radius: 20px; box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.08); background: var(--color-garis); }
+  .as-ubin-nama { font-size: 22px; font-weight: 500; line-height: 1.25; }
+  .as-ubin-nama small { font-weight: 400; color: var(--color-lumut); letter-spacing: 0.04em; }
+  /* Hitung */
+  .as-rumus { margin-top: 48px; border-radius: 32px; background: #fff; padding: 40px 44px; box-shadow: 0 0 0 1px var(--color-garis); }
+  .as-rumus-utama { margin: 0; font-family: var(--font-merek); font-weight: 500; font-size: 58px; letter-spacing: -0.03em; color: var(--color-pinus); }
+  .as-rumus-tambah { margin: 12px 0 0; font-size: 28px; color: var(--color-lumut); }
+  /* Contoh menempel di bawah (dekat catatan) supaya tidak ada ruang kosong di bawah angka. */
+  .as-contoh { margin-top: auto; }
+  .as-contoh + .as-sumber { margin-top: 44px; }
+  .as-contoh-label { margin: 0; font-size: 26px; color: var(--color-lumut); }
+  .as-contoh-angka { margin: 4px 0 0; font-family: var(--font-merek); font-weight: 500; font-size: 190px; letter-spacing: -0.05em; line-height: 0.95; color: var(--color-pinus); font-variant-numeric: tabular-nums; }
+  .as-contoh-angka small { font-size: 52px; letter-spacing: -0.02em; font-weight: 400; color: var(--color-lumut); }
+  /* Lapisan */
+  .as-lapis-dua { margin-top: auto; display: grid; grid-template-columns: 470px minmax(0, 1fr); gap: 36px; align-items: center; }
+  .as-lapis-gambar svg { width: 100%; height: auto; overflow: visible; display: block; }
+  .as-lapis-daftar { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+  .as-lapis-daftar li { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 18px; align-items: start; padding: 14px 16px; border-radius: 22px; }
+  .as-lapis-daftar li.as-on { background: #fff; box-shadow: 0 0 0 1px var(--color-garis); }
+  .as-lapis-no { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 999px; border: 1px solid var(--color-garis); font-size: 22px; font-weight: 500; color: var(--color-lumut); }
+  li.as-on .as-lapis-no { background: var(--color-pinus); border-color: var(--color-pinus); color: var(--color-tunas); }
+  .as-lapis-daftar b { display: block; font-size: 28px; font-weight: 500; letter-spacing: -0.015em; }
+  .as-lapis-daftar li span span { display: block; margin-top: 2px; font-size: 21px; line-height: 1.35; color: var(--color-lumut); }
+  /* Pasang (gelap) */
+  .as-slide.as-gelap { color: #fff; justify-content: space-between; }
+  .as-latar { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .as-redup { position: absolute; inset: 0; background: linear-gradient(180deg, rgb(16 35 30 / 0.5) 0%, rgb(16 35 30 / 0.05) 24%, rgb(16 35 30 / 0.12) 42%, rgb(16 35 30 / 0.72) 64%, rgb(16 35 30 / 0.94) 100%); }
+  .as-gelap .miring { opacity: 0.72; }
+  .as-label-ilustrasi { font-size: 18px; padding: 6px 14px; border-radius: 999px; background: rgb(255 255 255 / 0.85); color: var(--color-tinta); }
+  .as-pasang-isi { position: relative; z-index: 2; }
+  .as-slide.as-gelap h1 { margin: 0; }
+  .as-pasang-sub { margin: 18px 0 0; font-size: 30px; color: rgb(255 255 255 / 0.82); }
+  .as-chip-baris { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 14px; }
+  .as-chip { font-size: 24px; padding: 12px 22px; border-radius: 999px; background: rgb(255 255 255 / 0.14); border: 1px solid rgb(255 255 255 / 0.28); color: #fff; }
+  .as-chip-tunas { background: var(--color-tunas); border-color: var(--color-tunas); color: var(--color-pinus); font-weight: 500; }
+  /* Saat dipasang */
+  .as-foto-besar { margin-top: 36px; width: 936px; height: 560px; object-fit: cover; border-radius: 28px; display: block; }
+  .as-slide:not(.as-gelap) .as-label-ilustrasi { box-shadow: 0 0 0 1px var(--color-garis); }
+</style>

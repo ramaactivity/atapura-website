@@ -1,0 +1,102 @@
+---
+// Penampang atap bitumen terurai (SVG isometrik, sumbu 2:1) — satu sumber untuk beranda (Lapisan.astro) dan infografis
+// marketplace (/internal/aset-marketplace). Lapis disorot lewat atribut `data-aktif` di elemen induk mana pun
+// (alas | underlayment | flashing | genteng | nok); prop `aktif` memasang atribut itu di SVG ini sendiri.
+interface Props { aktif?: string; class?: string }
+const { aktif, class: kelas } = Astro.props;
+
+// Slab isometrik: muka atas belah ketupat + dua muka samping.
+const slab = (cx: number, cy: number, w: number, h: number, t: number) => ({
+  atas: `M${cx} ${cy - h}L${cx + w} ${cy}L${cx} ${cy + h}L${cx - w} ${cy}Z`,
+  kiri: `M${cx - w} ${cy}L${cx} ${cy + h}L${cx} ${cy + h + t}L${cx - w} ${cy + t}Z`,
+  kanan: `M${cx} ${cy + h}L${cx + w} ${cy}L${cx + w} ${cy + t}L${cx} ${cy + h + t}Z`,
+});
+const alas = slab(260, 575, 200, 100, 18);
+const under = slab(260, 410, 200, 100, 6);
+const genteng = slab(260, 210, 200, 100, 10);
+---
+
+<svg viewBox="0 0 520 700" role="presentation" class={kelas} data-aktif={aktif}>
+  <defs>
+    <pattern id="p-papan" width="40" height="40" patternUnits="userSpaceOnUse" patternTransform="matrix(1 .5 -1 .5 0 0)">
+      <rect width="40" height="40" fill="#b89a72" />
+      <path d="M0 39.5h40" stroke="#9c7f58" stroke-width="1.5" />
+      <path d="M14 8c6 2 12 2 18 0M6 24c8 2 14 2 22 0" stroke="#a88b63" fill="none" />
+    </pattern>
+    <pattern id="p-under" width="60" height="60" patternUnits="userSpaceOnUse" patternTransform="matrix(1 .5 -1 .5 0 0)">
+      <rect width="60" height="60" fill="#2b302d" />
+      <path d="M0 59.5h60" stroke="#3b423e" stroke-width="2" />
+    </pattern>
+    <!-- Tekstur butiran genteng dari foto makro (Magnific), diproyeksikan isometrik. -->
+    <pattern id="p-tekstur" width="140" height="140" patternUnits="userSpaceOnUse" patternTransform="matrix(1 .5 -1 .5 0 0)">
+      <image href="/tekstur/genteng-charcoal.webp" width="140" height="140" preserveAspectRatio="xMidYMid slice" />
+    </pattern>
+    <!-- Garis baris genteng (tab) di atas tekstur. -->
+    <pattern id="p-genteng" width="36" height="24" patternUnits="userSpaceOnUse" patternTransform="matrix(1 .5 -1 .5 0 0)">
+      <path d="M0 23.5h36M18 12v12M0 0v12" stroke="#0e1311" stroke-opacity=".75" stroke-width="1.4" />
+      <path d="M0 11.5h36" stroke="#ffffff" stroke-opacity=".08" stroke-width="1" />
+    </pattern>
+    <linearGradient id="g-kilau" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".22" />
+      <stop offset=".45" stop-color="#fff" stop-opacity="0" />
+      <stop offset="1" stop-color="#000" stop-opacity=".22" />
+    </linearGradient>
+    <filter id="f-bayang" x="-20%" y="-20%" width="140%" height="160%"><feGaussianBlur stdDeviation="9" /></filter>
+  </defs>
+
+  <g class="l l-alas" data-l="alas">
+    <path class="bayang" d={alas.atas} transform="translate(0 30)" />
+    <path d={alas.atas} fill="url(#p-papan)" />
+    <path d={alas.atas} fill="url(#g-kilau)" />
+    <path d={alas.kiri} fill="#8f7550" /><path d={alas.kanan} fill="#7a6343" />
+  </g>
+  <g class="l l-underlayment" data-l="underlayment">
+    <path class="bayang" d={under.atas} transform="translate(0 30)" />
+    <path d={under.atas} fill="url(#p-under)" />
+    <path d={under.atas} fill="url(#g-kilau)" />
+    <path d={under.kiri} fill="#1d211f" /><path d={under.kanan} fill="#161917" />
+  </g>
+  <g class="l l-flashing" data-l="flashing">
+    <path class="bayang" d="M60 410L220 330L240 340L80 420Z" transform="translate(0 24)" />
+    <path d="M60 410L220 330L240 340L80 420Z" fill="#a9b1ac" />
+    <path d="M60 410L220 330L220 296L60 376Z" fill="#c9d0cb" />
+    <path d="M60 376L220 296" stroke="#eef1ef" stroke-width="1.5" />
+  </g>
+  <g class="l l-genteng" data-l="genteng">
+    <path class="bayang" d={genteng.atas} transform="translate(0 34)" />
+    <path d={genteng.atas} fill="#2a2f2c" />
+    <path d={genteng.atas} fill="url(#p-tekstur)" />
+    <path d={genteng.atas} fill="url(#p-genteng)" />
+    <path d={genteng.atas} fill="url(#g-kilau)" />
+    <path d={genteng.kiri} fill="#222b27" /><path d={genteng.kanan} fill="#1a211e" />
+  </g>
+  <g class="l l-nok" data-l="nok">
+    <path class="bayang" d="M60 160L260 60L280 70L80 170Z" transform="translate(0 26)" />
+    <path d="M60 160L260 60L280 70L80 170Z" fill="url(#p-tekstur)" />
+    <path d="M60 160L260 60L280 70L80 170Z" fill="url(#g-kilau)" />
+    <path d="M80 170L280 70L280 82L80 182Z" fill="#26302b" />
+    <path d="M60 160L80 170L80 182L60 172Z" fill="#323c37" />
+  </g>
+</svg>
+
+<style>
+  .l { transition: opacity 700ms var(--ease-out), transform 800ms cubic-bezier(0.22, 1, 0.36, 1); }
+  .l path { transition: stroke 400ms; stroke: transparent; stroke-width: 1.5; stroke-linejoin: round; }
+  .l .bayang { fill: #0b1714; opacity: 0.16; filter: url(#f-bayang); stroke: none !important; transition: opacity 800ms, transform 800ms cubic-bezier(0.22, 1, 0.36, 1); }
+  :global([data-aktif]) .l { opacity: 0.2; }
+  :global([data-aktif="alas"]) .l-alas,
+  :global([data-aktif="underlayment"]) .l-underlayment,
+  :global([data-aktif="flashing"]) .l-flashing,
+  :global([data-aktif="genteng"]) .l-genteng,
+  :global([data-aktif="nok"]) .l-nok { opacity: 1; transform: translateY(-28px); }
+  :global([data-aktif="alas"]) .l-alas .bayang,
+  :global([data-aktif="underlayment"]) .l-underlayment .bayang,
+  :global([data-aktif="flashing"]) .l-flashing .bayang,
+  :global([data-aktif="genteng"]) .l-genteng .bayang,
+  :global([data-aktif="nok"]) .l-nok .bayang { opacity: 0.3; }
+  :global([data-aktif="alas"]) .l-alas path,
+  :global([data-aktif="underlayment"]) .l-underlayment path,
+  :global([data-aktif="flashing"]) .l-flashing path,
+  :global([data-aktif="genteng"]) .l-genteng path,
+  :global([data-aktif="nok"]) .l-nok path { stroke: var(--color-tunas); }
+</style>

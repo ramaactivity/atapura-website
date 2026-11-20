@@ -12,6 +12,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "cheatsheet": "astro build && node tools/pricelist/render.mjs public/unduh/product-knowledge-atapura.pdf /internal/product-knowledge",
+    "aset-marketplace": "astro build && node tools/aset/render.mjs",
     "tarik-ops": "node scripts/tarik-ops.mjs"
   },
   "dependencies": {

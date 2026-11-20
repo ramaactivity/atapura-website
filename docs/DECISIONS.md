@@ -294,3 +294,16 @@ pemilik); jasa pasang opsional. Plafon ditunda: harga material per batang belum 
 Deskripsi tanpa nomor WA/link luar (dilarang marketplace), tanpa klaim tak bersumber, tanpa batas wilayah. Yang belum pasti
 masuk "Perlu dicek" (mis. isi bundel CT5/CT6 bentrok 22 lembar vs 17 lembar 2,32 m²; tinggi bundel; berat aksesoris).
 Harga tayang tetap di Ops → Harga marketplace (harga modal tidak pernah di website).
+
+## 059 · 20 November 2026 · Aset gambar marketplace dari data (tahap D kit marketplace, bagian 1)
+`npm run aset-marketplace` (astro build + `tools/aset/render.mjs`): tiap slide 1080 × 1080 di
+`/internal/aset-marketplace/<id>/<no>` dipotret Chrome headless → JPG (sips, ≤ 1 MB, batas Blibli) di
+`public/unduh/marketplace/<id>/<no>-<nama>.jpg`; manifest `daftar.json`. 96 gambar untuk 23 listing, tampil + unduh di
+kit listing. Genteng: 2 spesifikasi · 3/7/8 warna (maks 9 ubin per gambar — motif wajib besar) · 4 hitung kebutuhan (hanya
+bila isi m² pasti) · 5 lapisan pasang · 6 dipasang Atapura (foto ilustrasi berlabel). Aksesoris: 1 cover (foto produk latar
+putih) · 2 spesifikasi · 3 saat dipasang · 4 posisi di lapisan. Gaya = templat carousel brand (§06) tanpa kontak (dilarang
+di gambar marketplace). Infografis disusun dari data, bukan AI, supaya angka & teks pasti benar. Diagram lapisan dipisah jadi
+`LapisanGambar.astro` (dipakai beranda & aset; beranda dicek identik piksel sebelum/sesudah). Perbaikan data ikut: warna per
+seri lewat `warnaSeri` (judul grup "CT3 · warna solid", "CT5 dan CT6", dll. sebelumnya tidak cocok → CT3/CT5/CT6/Eco Roof/
+Top Shingles tanpa varian di kit), Javabitumen (tanpa seri) kini satu listing. Gambar tidak dibuat ulang di CI: jalankan
+ulang `npm run aset-marketplace` bila spesifikasi/warna berubah. Cover genteng (latar putih, Magnific) menunggu ok Rama (039).

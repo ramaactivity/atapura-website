@@ -7,7 +7,7 @@ import { aksesoris } from './aksesoris';
 import { bisnis } from './bisnis';
 import { harga } from './harga';
 import { asalMerek } from './mitra';
-import { type Produk, produk } from './produk';
+import { type Produk, produk, warnaSeri } from './produk';
 
 /**
  * Batas yang dipegang kit: judul ≤ 100 & deskripsi ≤ 3.000 karakter lolos di keempat marketplace.
@@ -39,6 +39,8 @@ export type Listing = {
   keyword: string[];
   /** Hal yang wajib dicek sebelum upload. */
   cek: string[];
+  /** Asal data & gambar untuk aset infografis (/internal/aset-marketplace). */
+  ref: { jenis: 'seri'; produk: string; seri: string | null } | { jenis: 'aksesoris'; slug: string } | { jenis: 'jasa' };
 };
 
 const angka = (n: number) => n.toLocaleString('id-ID', { maximumFractionDigits: 2 });
@@ -82,7 +84,7 @@ function listingGenteng(p: Produk, s: Produk['seri'][number]): Listing {
   const garansi = p.terverifikasi ? nilai(s.spek, 'Garansi', 'Garansi pabrik') ?? nilai(p.fakta, 'Garansi produk') : undefined;
   const thGaransi = garansi?.match(/(\d+)\s*tahun/)?.[1];
   const kemiringan = nilai(p.fakta, 'Kemiringan');
-  const warna = p.warna.filter((g) => g.judul === s.nama || p.warna.length === 1).flatMap((g) => g.daftar.map((w) => (w.kode ? `${w.nama} (${w.kode})` : w.nama)));
+  const warna = warnaSeri(p, p.seri.length ? s.nama : null).flatMap((g) => g.daftar.map((w) => (w.kode ? `${w.nama} (${w.kode})` : w.nama)));
   const contohBundel = m2 ? Math.ceil((100 * (1 + harga.susut)) / m2) : null;
 
   const judul = pasJudul(
@@ -117,7 +119,7 @@ function listingGenteng(p: Produk, s: Produk['seri'][number]): Listing {
 
   const merek = p.nama;
   return {
-    id: `${p.slug}-${s.nama.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
+    id: p.seri.length ? `${p.slug}-${s.nama.toLowerCase().replace(/[^a-z0-9]+/g, '-')}` : p.slug,
     kelompok: 'genteng',
     nama: nm,
     satuan: 'bundel',
@@ -137,7 +139,8 @@ function listingGenteng(p: Produk, s: Produk['seri'][number]): Listing {
     ].filter((x): x is { label: string; nilai: string } => x !== null),
     kirim: { berat, dimensi: ukuran ? `${ukuran.replace(/\s*mm$/, '')} mm (ukuran lembar) × tinggi bundel` : null },
     keyword: [`genteng aspal ${merek.toLowerCase()}`, `genteng bitumen ${merek.toLowerCase()}`, nm.toLowerCase(), 'genteng aspal', 'atap bitumen', 'asphalt shingle', 'atap shingle', 'genteng bitumen'],
-    cek: p.slug === 'cti' && s.nama !== 'CT3' ? ['Isi bundel CT5/CT6 bentrok antarsumber (22 lembar di data website vs 17 lembar 2,32 m² di daftar pesaing) — pastikan ke vendor CTI.', ...cek] : cek,
+    ref: { jenis: 'seri', produk: p.slug, seri: p.seri.length ? s.nama : null },
+    cek: p.slug === 'javabitumen' ? ['Isi bundel bentrok: Ops 3,0 m² vs daftar pesaing 3,1 m² (21 lembar) — cocokkan ke vendor.', ...cek] : p.slug === 'cti' && s.nama !== 'CT3' ? ['Isi bundel CT5/CT6 bentrok antarsumber (22 lembar di data website vs 17 lembar 2,32 m² di daftar pesaing) — pastikan ke vendor CTI.', ...cek] : cek,
   };
 }
 
@@ -197,6 +200,7 @@ function listingAksesoris(a: (typeof aksesoris)[number]): Listing {
     kirim: { berat: null, dimensi: nilai(a.spek, 'Ukuran', 'Panjang') ?? null },
     keyword: KEYWORD_AKSESORIS[a.slug] ?? [],
     cek,
+    ref: { jenis: 'aksesoris', slug: a.slug },
   };
 }
 
@@ -228,12 +232,14 @@ function listingJasa(): Listing {
     atribut: [{ label: 'Jenis layanan', nilai: 'Pemasangan atap genteng aspal' }, garansiPasang ? { label: 'Garansi pemasangan', nilai: `${garansiPasang} tahun, tertulis` } : null].filter((x): x is { label: string; nilai: string } => x !== null),
     kirim: { berat: null, dimensi: null },
     keyword: ['jasa pasang atap bitumen', 'jasa pasang genteng aspal', 'tukang atap bitumen', 'ganti atap'],
+    ref: { jenis: 'jasa' },
     cek: ['Cek kebijakan kategori jasa di tiap marketplace sebelum upload; sebagian marketplace membatasi listing jasa pasang.'],
   };
 }
 
 export const listing: Listing[] = [
-  ...produk.filter((p) => p.lini === 'atap').flatMap((p) => p.seri.map((s) => listingGenteng(p, s))),
+  // Merek tanpa seri (Javabitumen: spesifikasi menunggu dokumen) = satu listing atas nama mereknya.
+  ...produk.filter((p) => p.lini === 'atap').flatMap((p) => (p.seri.length ? p.seri : [{ nama: p.nama, ringkas: p.ringkas, spek: [] }]).map((s) => listingGenteng(p, s))),
   ...aksesoris.filter((a) => JUDUL_AKSESORIS[a.slug]).map(listingAksesoris),
   listingJasa(),
 ];
