@@ -244,3 +244,8 @@ bayar, garansi, klaim), lalu per merek: harga genteng & terpasang, fakta, seri +
 Semua dibaca dari src/data (satu sumber dengan website & pricelist); tanpa harga modal. Negara asal merek pindah ke
 `data/mitra.ts` (`asalMerek`). PDF A4: `npm run cheatsheet` → `public/unduh/product-knowledge-atapura.pdf` (tombol "Unduh PDF";
 "Cetak versi terbaru" mencetak halaman langsung). Buat ulang PDF setiap data produk/harga berubah.
+
+## 055 · 20 November 2026 · Satu kesatuan dengan Atapura Ops
+Rama: repo website & Atapura Ops wajib saling sinkron; satu sesi boleh mengedit, commit, push, dan deploy keduanya (aturan
+di CLAUDE.md). Mekanisme sinkron data (Ops = sumber harga/katalog/resep, website menarik salinan `src/data/ops.json`)
+dirinci di Ops `docs/DECISIONS.md` 123 — status usulan, menunggu persetujuan Rama.

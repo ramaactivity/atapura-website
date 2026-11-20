@@ -17,6 +17,7 @@ Jenis: Situs sederhana (HTML).
 - Akun deploy, database, dan layanan dicatat di deploy.md; cocokkan dulu sebelum push/deploy.
 - Tampilan mengikuti DESIGN.md.
 - .env.local tidak pernah di-commit; daftar variabelnya di .env.example.
+- **Ops ↔ Website satu kesatuan** (Rama, 20 Nov 2026): repo `~/Proyek/Atapura Ops` dan `~/Proyek/Atapura Website` wajib saling sinkron. Dari sesi di repo mana pun **boleh** membaca & mengedit repo satunya, membaca `.env.local`-nya, commit, push, dan deploy (ikuti CLAUDE.md/deploy.md repo tujuan: cek akun, build dari worktree, stage file sendiri, tanpa force-push; cek `git status`/`git log` repo tujuan dulu). Data yang dipakai keduanya (harga, katalog, resep, aksesoris, profil bisnis, lead) jangan diubah di satu sisi saja — mekanisme sinkron di Ops `docs/DECISIONS.md` 123.
 
 ## Bahan awal
 File & folder bahan dari Rama didaftar di docs/BAHAN.md (dokumen di docs/, gambar di assets/, data di data/).
