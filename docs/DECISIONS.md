@@ -248,4 +248,13 @@ Semua dibaca dari src/data (satu sumber dengan website & pricelist); tanpa harga
 ## 055 · 20 November 2026 · Satu kesatuan dengan Atapura Ops
 Rama: repo website & Atapura Ops wajib saling sinkron; satu sesi boleh mengedit, commit, push, dan deploy keduanya (aturan
 di CLAUDE.md). Mekanisme sinkron data (Ops = sumber harga/katalog/resep, website menarik salinan `src/data/ops.json`)
-dirinci di Ops `docs/DECISIONS.md` 123 — status usulan, menunggu persetujuan Rama.
+dirinci di Ops `docs/DECISIONS.md` 123 — **disetujui & berjalan 20 Nov**:
+- `src/data/harga.ts` membaca harga jual per satuan, isi per bundel, dan angka kalkulator (waste, paku, skrup, produktivitas)
+  dari `src/data/ops.json` (salinan `GET /api/publik/katalog` Ops, dikunci `SINKRON_SECRET`). Bentuk objek `harga` tetap, jadi
+  halaman lain tidak berubah; ±5.000 kombinasi kalkulator dibandingkan sebelum/sesudah = 0 beda nilai.
+- Tetap di website: teks pemasaran (kelas, garansi, spek, termasuk), kisaran terpasang per m² dari Bang Yusuf, harga plafon
+  "barang saja" (masih draf tanpa harga di Ops).
+- `npm run tarik-ops` (lokal: kunci dibaca dari `../Atapura Ops/.env.local`); workflow `sinkron-ops.yml` tiap jam (+ tombol
+  manual): berubah → tes kalkulator → PDF product knowledge dibuat ulang → commit → deploy. Kode wajib hilang/kunci salah =
+  gagal keras, ops.json lama tetap.
+- **Harga diubah di Ops** (Daftar harga, Angka bisnis), bukan di file website.

@@ -1,0 +1,180 @@
+{
+  "versi": "JABODETABEK-20261120",
+  "berlakuSejak": "2026-11-20",
+  "varian": {
+    "GT-JAVABITUMEN": {
+      "nama": "Javabitumen",
+      "satuan": "m²",
+      "harga": 145000,
+      "hargaMaks": null,
+      "isiKemasan": 3,
+      "cakupan": 1
+    },
+    "GT-CTI": {
+      "nama": "CTI (semua seri)",
+      "satuan": "m²",
+      "harga": 155000,
+      "hargaMaks": null,
+      "isiKemasan": 3,
+      "cakupan": 1
+    },
+    "GT-MAXXI": {
+      "nama": "Maxxi (semua seri)",
+      "satuan": "m²",
+      "harga": 145000,
+      "hargaMaks": null,
+      "isiKemasan": 3.1,
+      "cakupan": 1
+    },
+    "GT-VICTORY": {
+      "nama": "Victory Standar",
+      "satuan": "m²",
+      "harga": 200000,
+      "hargaMaks": null,
+      "isiKemasan": 3,
+      "cakupan": 1
+    },
+    "GT-TEGOLA": {
+      "nama": "Tegola Premium Rectangular",
+      "satuan": "m²",
+      "harga": 420000,
+      "hargaMaks": null,
+      "isiKemasan": 3.05,
+      "cakupan": 1
+    },
+    "AL-MULTIPLEK-12": {
+      "nama": "Multiplek 12 mm",
+      "satuan": "lembar",
+      "harga": 179000,
+      "hargaMaks": null,
+      "isiKemasan": null,
+      "cakupan": 2.9768
+    },
+    "AL-GRC-9": {
+      "nama": "GRC 9 mm",
+      "satuan": "lembar",
+      "harga": 210000,
+      "hargaMaks": null,
+      "isiKemasan": null,
+      "cakupan": 2.88
+    },
+    "LK-UNDERLAYER": {
+      "nama": "Underlayer self-adhesive",
+      "satuan": "roll",
+      "harga": 600000,
+      "hargaMaks": null,
+      "isiKemasan": null,
+      "cakupan": 10
+    },
+    "LK-MEMBRANE": {
+      "nama": "Membrane torching",
+      "satuan": "roll",
+      "harga": 700000,
+      "hargaMaks": null,
+      "isiKemasan": null,
+      "cakupan": 10
+    },
+    "FL-U": {
+      "nama": "Flashing U",
+      "satuan": "batang",
+      "harga": 40000,
+      "hargaMaks": null,
+      "isiKemasan": null,
+      "cakupan": 1.2
+    },
+    "FL-Z": {
+      "nama": "Flashing Z",
+      "satuan": "batang",
+      "harga": 45000,
+      "hargaMaks": null,
+      "isiKemasan": null,
+      "cakupan": 1.2
+    },
+    "PL-SHUNDA": {
+      "nama": "Plafon Shunda terpasang",
+      "satuan": "m²",
+      "harga": 300000,
+      "hargaMaks": 370000,
+      "isiKemasan": null,
+      "cakupan": 1
+    },
+    "PL-JAVAFON": {
+      "nama": "Plafon Javafon terpasang",
+      "satuan": "m²",
+      "harga": 200000,
+      "hargaMaks": 260000,
+      "isiKemasan": null,
+      "cakupan": 1
+    },
+    "RK-TASO": {
+      "nama": "Rangka Taso terpasang",
+      "satuan": "m²",
+      "harga": 230000,
+      "hargaMaks": null,
+      "isiKemasan": null,
+      "cakupan": 1
+    },
+    "RK-HISTEEL": {
+      "nama": "Rangka Hi-Steel terpasang",
+      "satuan": "m²",
+      "harga": 200000,
+      "hargaMaks": null,
+      "isiKemasan": null,
+      "cakupan": 1
+    },
+    "RK-KSTEEL": {
+      "nama": "Rangka K-Steel terpasang",
+      "satuan": "m²",
+      "harga": 195000,
+      "hargaMaks": null,
+      "isiKemasan": null,
+      "cakupan": 1
+    },
+    "JASA-RANGKA": {
+      "nama": "Jasa pasang rangka (material dari klien)",
+      "satuan": "m²",
+      "harga": 55000,
+      "hargaMaks": null,
+      "isiKemasan": null,
+      "cakupan": 1
+    },
+    "PAKU": {
+      "nama": "Paku bitumen",
+      "satuan": "pcs",
+      "harga": 250,
+      "hargaMaks": null,
+      "isiKemasan": null,
+      "cakupan": 1
+    },
+    "SKRUP": {
+      "nama": "Skrup",
+      "satuan": "pcs",
+      "harga": 150,
+      "hargaMaks": null,
+      "isiKemasan": null,
+      "cakupan": 1
+    },
+    "JASA-PASANG": {
+      "nama": "Jasa pasang",
+      "satuan": "m²",
+      "harga": 70000,
+      "hargaMaks": 120000,
+      "isiKemasan": null,
+      "cakupan": 1
+    }
+  },
+  "angka": {
+    "wastePct": 10,
+    "pakuPerM2": 35,
+    "skrupPerLembar": 15,
+    "m2PerHari": [
+      30,
+      45
+    ],
+    "tambahanHari": 1,
+    "m2PerHariPlafon": [
+      15,
+      25
+    ]
+  }
+}

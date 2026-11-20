@@ -1,5 +1,6 @@
 # Handover
 
+- **Harga = dari Atapura Ops** (20 Nov 2026, website DECISIONS 055 / Ops 123): `src/data/ops.json` ditarik otomatis tiap jam oleh `sinkron-ops.yml`; ubah harga di Ops, bukan di `harga.ts`. `npm run tarik-ops` untuk tarik manual.
 ## Terbaru (20 November 2026)
 - **Product knowledge** `/internal/product-knowledge` (DECISIONS 054): cheatsheet sales + teks siap salin; PDF `npm run cheatsheet`
   → `public/unduh/product-knowledge-atapura.pdf` (buat ulang saat data berubah, sama seperti pricelist).

@@ -11,7 +11,8 @@
     "pricelist": "astro build && node tools/pricelist/render.mjs",
     "preview": "astro preview",
     "astro": "astro",
-    "cheatsheet": "astro build && node tools/pricelist/render.mjs public/unduh/product-knowledge-atapura.pdf /internal/product-knowledge"
+    "cheatsheet": "astro build && node tools/pricelist/render.mjs public/unduh/product-knowledge-atapura.pdf /internal/product-knowledge",
+    "tarik-ops": "node scripts/tarik-ops.mjs"
   },
   "dependencies": {
     "@astrojs/preact": "^6.1.1",

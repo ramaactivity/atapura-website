@@ -1,3 +1,27 @@
+import ops from './ops.json' with { type: 'json' };
+
+// SUMBER ANGKA = Atapura Ops (Ops DECISIONS 123): harga jual per satuan, isi per bundel, dan angka kalkulator (waste, paku, skrup,
+// produktivitas) dibaca dari src/data/ops.json, salinan GET /api/publik/katalog yang ditarik `npm run tarik-ops` (workflow
+// sinkron-ops.yml tiap jam). Ubah harga di Ops (Daftar harga / Angka bisnis), JANGAN di file ini. Yang tetap di sini: teks
+// pemasaran (kelas, garansi, spek, termasuk) dan kisaran terpasang per m² dari Bang Yusuf.
+type VarianOps = { nama: string; satuan: string; harga: number; hargaMaks: number | null; isiKemasan: number | null; cakupan: number };
+const v = (kode: string): VarianOps => {
+  const x = (ops.varian as Record<string, VarianOps>)[kode];
+  if (!x) throw new Error(`src/data/ops.json tidak memuat ${kode} — jalankan npm run tarik-ops`);
+  return x;
+};
+const rentang = (kode: string): Rentang => {
+  const x = v(kode);
+  if (x.hargaMaks === null) throw new Error(`${kode} di Ops tidak punya harga tertinggi (rentang)`);
+  return [x.harga, x.hargaMaks];
+};
+const genteng = (kode: string) => {
+  const x = v(kode);
+  if (!x.isiKemasan) throw new Error(`${kode} di Ops tidak punya isi per bundel`);
+  return { genteng: x.harga, m2PerBundel: x.isiKemasan };
+};
+
+// Riwayat angka (sebelum dipindah ke Ops):
 // Harga acuan per satuan (bukan HPP/margin — rahasia bisnis tidak pernah masuk file ini).
 // Harga Atapura dari Bang Yusuf (DECISIONS 025, 2 Nov 2026), berlaku Jabodetabek:
 //   genteng per m² (genteng saja): CTI 155 rb, Maxxi 145 rb, Javabitumen 145 rb.
@@ -14,29 +38,29 @@
 // `contoh: true` = angka acuan, belum harga Atapura; UI menandai "Harga acuan".
 export const harga = {
   contoh: false,
-  berlakuSejak: '2026-11-20',
-  // Tambahan material untuk potongan & sambungan.
-  susut: 0.1,
+  berlakuSejak: ops.berlakuSejak,
+  // Tambahan material untuk potongan & sambungan (waste limasan/banyak jurai di Angka bisnis Ops).
+  susut: ops.angka.wastePct / 100,
   merek: {
-    Javabitumen: { kelas: 'Ekonomis', genteng: 145_000, terpasang: [380_000, 430_000], m2PerBundel: 3.0, garansiPabrik: 'Menunggu dokumen resmi' },
-    CTI: { kelas: 'Menengah', genteng: 155_000, terpasang: [400_000, 450_000], m2PerBundel: 3.0, garansiPabrik: '30 tahun (produk)' },
-    Maxxi: { kelas: 'Ekonomis', genteng: 145_000, terpasang: [380_000, 430_000], m2PerBundel: 3.1, garansiPabrik: '25 tahun (material)' },
-    Victory: { kelas: 'Atas', genteng: 200_000, terpasang: [500_000, 550_000], m2PerBundel: 3.0, garansiPabrik: 'Menunggu dokumen resmi' },
+    Javabitumen: { kelas: 'Ekonomis', ...genteng('GT-JAVABITUMEN'), terpasang: [380_000, 430_000], garansiPabrik: 'Menunggu dokumen resmi' },
+    CTI: { kelas: 'Menengah', ...genteng('GT-CTI'), terpasang: [400_000, 450_000], garansiPabrik: '30 tahun (produk)' },
+    Maxxi: { kelas: 'Ekonomis', ...genteng('GT-MAXXI'), terpasang: [380_000, 430_000], garansiPabrik: '25 tahun (material)' },
+    Victory: { kelas: 'Atas', ...genteng('GT-VICTORY'), terpasang: [500_000, 550_000], garansiPabrik: 'Menunggu dokumen resmi' },
     // SEMENTARA (riset pasar 18 Nov, docs/riset/harga-tegola.md; dikoreksi Bang Yusuf Kamis 19 Nov): genteng = median 5 toko
     // Premium Rectangular (3,05 m²/bundel TDS); terpasang dari rumus hitungEstimasi spek standar, dibulatkan 10 rb.
-    Tegola: { kelas: 'Premium', genteng: 420_000, terpasang: [700_000, 750_000], m2PerBundel: 3.05, garansiPabrik: 'Terbatas terdaftar hingga 40 tahun, bertahap' },
+    Tegola: { kelas: 'Premium', ...genteng('GT-TEGOLA'), terpasang: [700_000, 750_000], garansiPabrik: 'Terbatas terdaftar hingga 40 tahun, bertahap' },
   },
   alas: {
-    'Multiplek 12 mm': { harga: 179_000, m2: 1.22 * 2.44, satuan: 'lembar' },
-    'GRC 9 mm': { harga: 210_000, m2: 1.2 * 2.4, satuan: 'lembar' },
+    'Multiplek 12 mm': { harga: v('AL-MULTIPLEK-12').harga, m2: v('AL-MULTIPLEK-12').cakupan, satuan: 'lembar' },
+    'GRC 9 mm': { harga: v('AL-GRC-9').harga, m2: v('AL-GRC-9').cakupan, satuan: 'lembar' },
   },
   lapisKedap: {
-    Underlayer: { harga: 600_000, m2: 10, satuan: 'roll', nama: 'Underlayer self-adhesive' },
-    Membrane: { harga: 700_000, m2: 10, satuan: 'roll', nama: 'Membrane torching' },
+    Underlayer: { harga: v('LK-UNDERLAYER').harga, m2: v('LK-UNDERLAYER').cakupan, satuan: 'roll', nama: 'Underlayer self-adhesive' },
+    Membrane: { harga: v('LK-MEMBRANE').harga, m2: v('LK-MEMBRANE').cakupan, satuan: 'roll', nama: 'Membrane torching' },
   },
   flashing: {
-    'Flashing U': { harga: 40_000, panjang: 1.2, satuan: 'batang' },
-    'Flashing Z': { harga: 45_000, panjang: 1.2, satuan: 'batang' },
+    'Flashing U': { harga: v('FL-U').harga, panjang: v('FL-U').cakupan, satuan: 'batang' },
+    'Flashing Z': { harga: v('FL-Z').harga, panjang: v('FL-Z').cakupan, satuan: 'batang' },
   },
   // Plafon terpasang per m² (Bang Yusuf 18 Nov 2026): plafon + rangka hollow + jasa pasang.
   // "Java Plafon" dari Bang Yusuf = JAVAFON (dikonfirmasi Rama 18 Nov). Garansi pasang 1 th (Bang Yusuf).
@@ -46,10 +70,11 @@ export const harga = {
   //   tertulis pabrik → situs menulis "sesuai ketentuan pabrik".
   plafon: {
     merek: {
-      Shunda: { terpasang: [300_000, 370_000], barang: [150_000, 230_000] },
-      Javafon: { terpasang: [200_000, 260_000], barang: [165_000, 215_000] },
+      // `barang` masih riset (Ops: varian draf tanpa harga) — pindah ke Ops setelah ditetapkan di Daftar harga.
+      Shunda: { terpasang: rentang('PL-SHUNDA'), barang: [150_000, 230_000] },
+      Javafon: { terpasang: rentang('PL-JAVAFON'), barang: [165_000, 215_000] },
     },
-    m2PerHari: [15, 25],
+    m2PerHari: ops.angka.m2PerHariPlafon as Rentang,
     termasuk: ['Rangka hollow', 'Jasa pemasangan'],
     tidakTermasuk: ['Lis plafon', 'Variasi drop ceiling', 'Instalasi listrik dan lampu', 'Bongkar plafon lama'],
   },
@@ -58,19 +83,19 @@ export const harga = {
   // Merek boleh tampil sejak 18 Nov (Rama), menggantikan aturan lama DECISIONS 028 untuk baja.
   rangka: {
     merek: {
-      Taso: { harga: 230_000, spek: 'C-Truss 0,75 mm, reng 0,45 mm' },
-      'Hi-Steel': { harga: 200_000, spek: 'C-Truss 0,75 mm, reng 0,40 mm' },
-      'K-Steel': { harga: 195_000, spek: 'C-Truss 0,75 mm, reng 0,40 mm' },
+      Taso: { harga: v('RK-TASO').harga, spek: 'C-Truss 0,75 mm, reng 0,45 mm' },
+      'Hi-Steel': { harga: v('RK-HISTEEL').harga, spek: 'C-Truss 0,75 mm, reng 0,40 mm' },
+      'K-Steel': { harga: v('RK-KSTEEL').harga, spek: 'C-Truss 0,75 mm, reng 0,40 mm' },
     },
     termasuk: 'Material, aksesori screw dan dynabolt, serta jasa pasang',
     // Jasa pasang rangka saja, material dari pemilik rumah.
-    jasaSaja: 55_000,
+    jasaSaja: v('JASA-RANGKA').harga,
   },
-  paku: { harga: 250, perM2: 35 },
-  skrup: { harga: 150, perLembarAlas: 15 },
-  jasa: [70_000, 120_000],
+  paku: { harga: v('PAKU').harga, perM2: ops.angka.pakuPerM2 },
+  skrup: { harga: v('SKRUP').harga, perLembarAlas: ops.angka.skrupPerLembar },
+  jasa: rentang('JASA-PASANG'),
   // Produktivitas tim per hari (m²), untuk perkiraan durasi.
-  m2PerHari: [30, 45],
+  m2PerHari: ops.angka.m2PerHari as Rentang,
   // Kalkulator publik (revisi 3 Nov): pelanggan hanya isi luas + merek; spek pendukung jadi keterangan, tanpa nominal ongkir.
   termasuk: ['Multiplek 12\u00a0mm / GRC 9\u00a0mm', 'Underlayment / membrane torching', 'Flashing U', 'Skrup & paku bitumen', 'Jasa pemasangan', 'Ongkos kirim material Jabodetabek'],
   tidakTermasuk: [

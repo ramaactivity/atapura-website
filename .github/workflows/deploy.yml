@@ -6,6 +6,8 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  # Dipanggil sinkron-ops.yml setelah commit data dari Ops.
+  workflow_call:
 
 concurrency:
   group: vercel-production
@@ -19,7 +21,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      # Selalu ujung main: saat dipanggil workflow sinkron, commit datanya baru dibuat setelah pemicu.
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - name: Pasang Vercel CLI
         run: npm install -g vercel@latest
       - name: Ambil setelan proyek Vercel

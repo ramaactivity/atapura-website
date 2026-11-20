@@ -7,6 +7,12 @@
 | Domain | `atapura.com` (+ `www` → 308 ke apex) | ditempel ke proyek Vercel 20 Nov 2026 sebelum dibeli (permintaan Rama); `site` default di astro.config. DNS di registrar: A `@` 216.198.79.1, CNAME `www` cname.vercel-dns.com. `atapura.vercel.app` tetap jalan |
 | Database | tidak ada (fase 1) | |
 
+## Sinkron dari Atapura Ops
+Workflow `.github/workflows/sinkron-ops.yml` (tiap jam menit ke-17, tombol manual, `repository_dispatch` tipe `sinkron-ops`)
+menarik `GET <OPS_URL>/api/publik/katalog` → `src/data/ops.json`. Secret repo `SINKRON_SECRET` (= env Vercel Ops dengan nama
+sama) dan variabel repo `OPS_URL` (`https://atapura-ops.vercel.app`), dipasang 20 Nov 2026. Bila berubah, workflow ini
+memanggil `deploy.yml` (`workflow_call`) sendiri karena push oleh GITHUB_TOKEN tidak memicu deploy.
+
 ## Alur standar
 Push ke `main` → GitHub Actions `.github/workflows/deploy.yml` → `vercel pull` → `rm -rf .git` → `vercel deploy --prod` (build di Vercel). Jangan sambungkan Git bawaan Vercel, jangan `vercel --prod` manual setelah push.
 
