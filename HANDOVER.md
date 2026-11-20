@@ -2,6 +2,11 @@
 
 - **Harga = dari Atapura Ops** (20 Nov 2026, website DECISIONS 055 / Ops 123): `src/data/ops.json` ditarik otomatis tiap jam oleh `sinkron-ops.yml`; ubah harga di Ops, bukan di `harga.ts`. `npm run tarik-ops` untuk tarik manual.
 ## Terbaru (20 November 2026)
+- **Gambar marketplace pakai sistem slide baru** (DECISIONS 062, disetujui Rama di kanvas Claude Design): bingkai Pinus +
+  kartu beratap + "Chat admin sebelum checkout" di tiap slide; urutan cover → deskripsi & spesifikasi → (warna) → penerapan →
+  (hitung kebutuhan) → syarat & ketentuan. `npm run aset-marketplace` membuat ulang semua gambar. Belum: aturan ongkir & retur
+  (tidak dicetak), foto cover rakitan merek selain CT3 (pakai tekstur seri), garis ukur per foto aksesoris, foto penerapan
+  CT5/CT6/Tegola Master/Mosaik/Traditional (slide penerapan dilewati).
 - **Product knowledge** `/internal/product-knowledge` (DECISIONS 054): cheatsheet sales + teks siap salin; PDF `npm run cheatsheet`
   → `public/unduh/product-knowledge-atapura.pdf` (buat ulang saat data berubah, sama seperti pricelist).
 - Logo mitra transparan & tajam di `/branding` (unduh per logo + ZIP); `src/data/mitra.ts` = sumber logo & negara asal merek.

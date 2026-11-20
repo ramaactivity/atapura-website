@@ -319,3 +319,29 @@ Bang Yusuf: "di kasi note di deskripsi e-commerce (chat admin untuk ketersediaan
 dulu untuk ketersediaan stok dan pengiriman." di paragraf kedua tiap deskripsi (terlihat di pratinjau). Catatan risiko yang
 disampaikan ke Rama: niat mengalihkan pembeli ke transaksi langsung di luar marketplace melanggar aturan keempat marketplace
 (penalti/pembatasan toko); note-nya sendiri aman. Keputusan bisnis di Rama & Bang Yusuf.
+
+## 062 · 20 November 2026 · Sistem slide marketplace baru (acuan Dr.Shield, Dr.Sonne, guenteng.com)
+Rama menilai infografis 059 dan dua putaran arah di kanvas Claude Design "jelek, layout & tipografi berantakan", lalu memberi
+referensi Shopee (Dr.Shield, Dr.Sonne, guenteng.com) dengan arahan "amati, tiru, modifikasi". Hasil yang disetujui ("Ya,
+pindahkan") jadi generator `npm run aset-marketplace`:
+- Bingkai Pinus 1080², logo putih kiri atas, pil Tunas "Chat admin sebelum checkout" di SETIAP slide (termasuk cover), kartu
+  putih 1000 × 892 dengan puncak atap di tengah (siluet slip Atapura). Judul rata tengah di bawah puncak.
+- Huruf hanya 2 ketebalan: Public Sans 500 (judul 64/56/48, angka 32–40) + Inter 400 (isi 34, label 30 = paling kecil),
+  tanpa tebal di tengah kalimat; kerning judul -0,025em, angka -0,01em, Inter -0,011em; jarak 8/12/40.
+- Urutan minimal per produk: 1 Cover → 2 Deskripsi & spesifikasi → 3 Penerapan → 4 Syarat & ketentuan; tambahan bila datanya
+  ada: etalase warna (maks 6 per gambar, grid 3 kolom rata; dipadatkan ke 9 bila listing > 9 gambar) dan "Hitung kebutuhan"
+  (genteng per m²). Maks 9 gambar.
+- Cover BERDESAIN (keputusan Rama). Panduan kualitas Shopee di Ops DECISIONS 125 menyarankan sampul polos tanpa teks; sudah
+  disampaikan, Rama tetap memilih cover berdesain. Foto polos latar putih disimpan sebagai cadangan
+  (`assets/gambar/produk/aksesoris-*-1x1.jpg`, `cover-cti-ct3-1x1.jpg`).
+- Cover genteng: foto lembar rakitan bila ada (`assets/gambar/produk/cover-<id>-potong.jpg`, baru CT3 versi B: acuan geometri
+  1.000 × 333 mm dari foto seri + Magnific), selain itu foto tekstur seri.
+- Gambar ukur genteng = garis luar lembar dari "Ukuran per lembar" (kotak pembatas, tidak menebak bentuk potongan). Aksesoris:
+  foto wujud + tabel (garis ukur per foto aksesoris belum digeneralisasi).
+- Foto penerapan dipetakan per listing (`PENERAPAN` di `src/data/aset.ts`): data penerapan per merek, jadi foto hanya
+  dipasang bila potongan di fotonya sama dengan seri listing. CT5, CT6, Tegola Master/Mosaik/Traditional belum punya foto yang
+  cocok → tanpa slide penerapan (perlu ilustrasi/foto baru, menunggu ok Rama per DECISIONS 039).
+- Slide lama "posisi di atap"/"lapisan pasang" dan "Butuh pemasangan?" dihapus dari carousel; chip "Ilustrasi" dihapus (Rama).
+- Syarat & ketentuan hanya dari data (NOTE_CHAT, satuan jual, isi bundel, garansi pabrik, aksesoris terpisah). Aturan ongkir &
+  retur BELUM ada → tidak dicetak sampai Rama/Bang Yusuf memutuskan.
+- Aturan generate gambar AI per slide: `docs/ketentuan-gambar-marketplace.md`.
