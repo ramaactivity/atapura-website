@@ -269,3 +269,16 @@ warna = titik 12–16 px dan kartu seri tanpa foto.
   hex, bercak untuk Mixed/Shaded, 480×360) — sebelumnya blok warna polos. Ikut terpakai di pricelist.
 - Teks fakta panjang (email) membungkus, tidak menabrak kolom sebelah. PDF dibuat ulang (27 halaman).
 - Belum: foto motif plafon Shunda/Javafon (tahap aset kit marketplace, Ops DECISIONS 125).
+
+## 057 · 20 November 2026 · Foto wujud barang aksesoris (latar putih 1:1), mengikuti produk asli
+Rama: "banyak aksesoris yang belum ada gambarnya; sales butuh lihat wujud barangnya", "harus sama persis dengan produk asli
+di lapangan, cek dulu produk asli di pasaran". Kartu aksesoris product knowledge sebelumnya tanpa gambar sama sekali.
+- 10 foto produk latar putih 1:1 2048 px di `assets/gambar/produk/aksesoris-<slug>-1x1.jpg` (Magnific Nano Banana 2): multiplek,
+  GRC, underlayer, membrane, flashing U, flashing Z, paku, skrup, aluminium foil, baja ringan. Bentuk diacu dari foto produk asli
+  pemasok (toko daring pemasok Bang Yusuf, dipakai HANYA sebagai panduan bentuk; foto baru orisinal tanpa teks/logo): flashing U
+  = pelat datar berlipatan tepi (bukan kanal), flashing Z = kaki dinding tegak + kaki atap, paku bitumen batang bercincin kepala
+  datar lebar ujung runcing, underlayer permukaan pasir abu muda, membrane roll hitam berfilm, GRC putih keabuan, baja ringan
+  kanal C berbibir + reng topi. Setiap item satu produk identik ukurannya (diperiksa diperbesar). Latar diratakan ke #FFFFFF
+  (levels / perataan cahaya lokal) supaya langsung layak jadi sampul marketplace.
+- `aksesoris.ts` field `wujud` (dari slug). Kartu product knowledge: wujud barang besar + foto "saat dipasang"; PDF: kartu
+  mendatar 3 per halaman, tidak terpotong.

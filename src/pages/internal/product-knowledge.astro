@@ -194,6 +194,17 @@ const menu = [['tentang', 'Atapura'], ['layanan', 'Layanan & ketentuan'], ...ata
       <div class="pk-seri">
         {aksesoris.map((a) => (
           <article class="kartu">
+            {/* Sales perlu melihat wujud barangnya (Rama 20 Nov): foto produk besar + contoh saat dipasang. */}
+            {(a.wujud || a.foto) && (
+              <div class:list={['aks-foto', { 'aks-foto-dua': a.wujud && a.foto }]}>
+                {a.wujud && (
+                  <figure><Image src={a.wujud} alt={`Wujud ${a.nama}`} width={720} height={720} format="jpg" quality={84} /><figcaption>Wujud barang</figcaption></figure>
+                )}
+                {a.foto && (
+                  <figure><Image src={a.foto.src} alt={a.foto.alt} width={600} height={600} format="jpg" quality={80} /><figcaption>Saat dipasang</figcaption></figure>
+                )}
+              </div>
+            )}
             <h4>{a.nama}</h4>
             <p class="abu">{a.fungsi}</p>
             <table>
@@ -257,6 +268,11 @@ const menu = [['tentang', 'Atapura'], ['layanan', 'Layanan & ketentuan'], ...ata
   .kecil { font-size: 0.85rem; }
   .pk-seri, .pk-warna { display: grid; gap: 1rem; grid-template-columns: minmax(0, 1fr); }
   @media (min-width: 48rem) { .pk-seri { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .aks-foto { display: grid; gap: 0.6rem; grid-template-columns: minmax(0, 1fr); margin-bottom: 0.3rem; }
+  .aks-foto-dua { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); align-items: start; }
+  .aks-foto figure { margin: 0; display: grid; gap: 0.35rem; }
+  .aks-foto img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 0.75rem; background: #fff; box-shadow: inset 0 0 0 1px var(--color-garis); }
+  .aks-foto figcaption { font-size: 0.8rem; color: var(--color-lumut); }
   .pk-seri-foto { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 0.75rem; margin-bottom: 0.4rem; }
   /* Ubin warna: foto tekstur 5:4 — ±6 per baris di laptop, 2 di HP. */
   .ubin-warna { list-style: none; padding: 0 !important; display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.1rem 0.9rem !important; margin-top: 0.4rem; }
@@ -301,6 +317,12 @@ const menu = [['tentang', 'Atapura'], ['layanan', 'Layanan & ketentuan'], ...ata
     .pk-h3 { break-after: avoid; }
     .ubin-warna :global(.bulat) { border-radius: 2.5mm; margin-bottom: 1.2mm; }
     .pk-seri-foto { max-height: 70mm; border-radius: 2.5mm; }
+    .aks-foto { max-width: 120mm; }
+    .aks-foto img { border-radius: 2.5mm; }
+    /* Kartu aksesoris (foto + spek) utuh dalam satu halaman PDF. */
+    #aksesoris .kartu { break-inside: avoid; display: grid !important; grid-template-columns: 74mm minmax(0, 1fr); column-gap: 6mm; align-items: start; }
+    #aksesoris .aks-foto { grid-column: 1; grid-row: 1 / span 4; max-width: none; margin: 0; }
+    #aksesoris .kartu > :not(.aks-foto) { grid-column: 2; }
     .pk-fakta { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 8mm; padding: 1mm 5mm; border-radius: 3mm; }
     .pk-fakta > div { padding: 1.6mm 0; grid-template-columns: 30mm minmax(0, 1fr); }
   }

@@ -8,6 +8,9 @@ import { harga } from './harga';
 
 const semua = import.meta.glob<ImageMetadata>('../../assets/gambar/magnific/*.jpg', { eager: true, import: 'default' });
 const foto = (nama: string) => semua[`../../assets/gambar/magnific/${nama}.jpg`];
+// Wujud barang: foto produk latar putih 1:1 (Magnific, 20 Nov 2026, Ops DECISIONS 125 tahap D) — dipakai product knowledge
+// dan sebagai sampul marketplace. File `assets/gambar/produk/aksesoris-<slug>-1x1.jpg` langsung terpakai.
+const semuaWujud = import.meta.glob<ImageMetadata>('../../assets/gambar/produk/*.jpg', { eager: true, import: 'default' });
 
 export interface Aksesoris {
   slug: string;
@@ -18,6 +21,8 @@ export interface Aksesoris {
   /** Harga per satuan dari harga.ts; kosong = tanya admin. */
   harga?: { nilai: number; satuan: string; catatan?: string };
   foto?: { src: ImageMetadata; alt: string };
+  /** Foto produk latar putih (wujud barang), dari slug. */
+  wujud?: ImageMetadata;
   /** Halaman produk sendiri bila ada (baja ringan). */
   href?: string;
 }
@@ -27,7 +32,7 @@ const gambar = (nama: string, alt: string) => {
   return src ? { src, alt } : undefined;
 };
 
-export const aksesoris: Aksesoris[] = [
+const daftar: Aksesoris[] = [
   {
     slug: 'multiplek',
     nama: 'Multiplek',
@@ -149,6 +154,8 @@ export const aksesoris: Aksesoris[] = [
     foto: gambar('penerapan-rangka-rumah-baru-3x2', 'Ilustrasi rangka atap baja ringan terpasang di rumah baru'),
   },
 ];
+
+export const aksesoris: Aksesoris[] = daftar.map((a) => ({ ...a, wujud: semuaWujud[`../../assets/gambar/produk/aksesoris-${a.slug}-1x1.jpg`] }));
 
 /** "Rp179.500" */
 export const rupiah = (n: number) => `Rp${n.toLocaleString('id-ID')}`;
