@@ -268,11 +268,13 @@ const menu = [['tentang', 'Atapura'], ['layanan', 'Layanan & ketentuan'], ...ata
   .kecil { font-size: 0.85rem; }
   .pk-seri, .pk-warna { display: grid; gap: 1rem; grid-template-columns: minmax(0, 1fr); }
   @media (min-width: 48rem) { .pk-seri { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  .aks-foto { display: grid; gap: 0.6rem; grid-template-columns: minmax(0, 1fr); margin-bottom: 0.3rem; }
-  .aks-foto-dua { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); align-items: start; }
-  .aks-foto figure { margin: 0; display: grid; gap: 0.35rem; }
-  .aks-foto img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 0.75rem; background: #fff; box-shadow: inset 0 0 0 1px var(--color-garis); }
-  .aks-foto figcaption { font-size: 0.8rem; color: var(--color-lumut); }
+  /* Wujud barang + saat dipasang: dua ubin sama besar, sejajar, berbingkai sama; keterangan = label di pojok foto. */
+  .aks-foto { display: grid; gap: 0.6rem; grid-template-columns: minmax(0, 1fr); margin-bottom: 0.4rem; }
+  .aks-foto-dua { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .aks-foto figure { position: relative; margin: 0; border-radius: 0.75rem; overflow: hidden; background: #fff; box-shadow: 0 0 0 1px var(--color-garis); }
+  .aks-foto img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
+  .aks-foto figcaption { position: absolute; top: 0.5rem; left: 0.5rem; padding: 0.2rem 0.6rem; border-radius: 999px; background: rgb(255 255 255 / 0.92); box-shadow: 0 0 0 1px var(--color-garis); font-size: 0.75rem; font-weight: 500; line-height: 1.4; color: var(--color-tinta); }
+  @media (max-width: 40rem) { .aks-foto figcaption { top: 0.35rem; left: 0.35rem; padding: 0.1rem 0.45rem; font-size: 0.68rem; } }
   .pk-seri-foto { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 0.75rem; margin-bottom: 0.4rem; }
   /* Ubin warna: foto tekstur 5:4 — ±6 per baris di laptop, 2 di HP. */
   .ubin-warna { list-style: none; padding: 0 !important; display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.1rem 0.9rem !important; margin-top: 0.4rem; }
@@ -317,8 +319,8 @@ const menu = [['tentang', 'Atapura'], ['layanan', 'Layanan & ketentuan'], ...ata
     .pk-h3 { break-after: avoid; }
     .ubin-warna :global(.bulat) { border-radius: 2.5mm; margin-bottom: 1.2mm; }
     .pk-seri-foto { max-height: 70mm; border-radius: 2.5mm; }
-    .aks-foto { max-width: 120mm; }
-    .aks-foto img { border-radius: 2.5mm; }
+    .aks-foto figure { border-radius: 2.5mm; }
+    .aks-foto figcaption { top: 1.5mm; left: 1.5mm; padding: 0.4mm 2mm; font-size: 7pt; }
     /* Kartu aksesoris (foto + spek) utuh dalam satu halaman PDF. */
     #aksesoris .kartu { break-inside: avoid; display: grid !important; grid-template-columns: 74mm minmax(0, 1fr); column-gap: 6mm; align-items: start; }
     #aksesoris .aks-foto { grid-column: 1; grid-row: 1 / span 4; max-width: none; margin: 0; }
