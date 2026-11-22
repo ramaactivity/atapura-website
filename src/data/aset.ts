@@ -65,8 +65,18 @@ export function halamanWarna(l: Listing, sisaSlot = MAKS_SLIDE): HalamanWarna[] 
   const p = produkListing(l);
   if (!p || l.ref.jenis !== 'seri') return [];
   // Judul kelompok di produk.ts beragam ("CT3 · warna solid", "Seri gradasi", "Maxxiroof") → label pendek seragam.
-  const grup = warnaSeri(p, l.ref.seri).map((g) => ({
-    label: /gradasi/i.test(g.judul) ? 'warna gradasi' : /solid/i.test(g.judul) ? 'warna solid' : 'pilihan warna',
+  // Satu seri bisa punya beberapa motif (Tegola Eco Roof: Hexagonal, Traditional, Rectangular) → sebut motifnya supaya tiga
+  // slide tidak berjudul sama "4 pilihan warna".
+  const kelompok = warnaSeri(p, l.ref.seri);
+  const seri = l.ref.seri ?? '';
+  // Sisa nama yang pendek ("J", "Coppo") adalah nama seri resmi → tulis utuh ("Master J"); yang panjang = nama motif.
+  const motif = (judul: string) => {
+    if (kelompok.length < 2 || judul === seri) return '';
+    const sisa = judul.replace(seri, '').trim();
+    return sisa.length >= 6 ? sisa : judul;
+  };
+  const grup = kelompok.map((g) => ({
+    label: /gradasi/i.test(g.judul) ? 'warna gradasi' : /solid/i.test(g.judul) ? 'warna solid' : motif(g.judul) ? `warna ${motif(g.judul)}` : 'pilihan warna',
     daftar: g.daftar.map((w) => ({ ...w, foto: fotoWarna(g.tekstur, w.nama) })),
   }));
   const pecah = (per: number) =>

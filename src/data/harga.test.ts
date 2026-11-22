@@ -54,6 +54,7 @@ assert.equal(ct6.kebutuhan[0].jumlah, 48, 'CT6 2,32 m²/bundel → 48 bundel, bu
 assert.equal(ct6.kebutuhan[0].nama, 'Genteng CTI CT6');
 assert.equal(hitungEstimasi(100, { merek: 'CTI', seri: 'CT3', ...spek }).kebutuhan[0].jumlah, 37);
 assert.equal(hitungEstimasi(100, { merek: 'Tegola', seri: 'Premium Mosaik', ...spek }).kebutuhan[0].jumlah, 32, 'Mosaik 3,45 m²');
+assert.equal(hitungEstimasi(100, { merek: 'Maxxi', seri: 'Promaxxi', ...spek }).kebutuhan[0].jumlah, 48, 'Promaxxi 2,32 m² (Ops 0044)');
 const twoTone = hitungEstimasi(100, { merek: 'Victory', seri: 'Two Tone', ...spek });
 assert.equal(twoTone.baris[0].rentang[0], 37 * 3 * 220_000, 'Two Tone pakai harga Two Tone');
 assert.throws(() => hitungEstimasi(100, { merek: 'CTI', seri: 'CT9', ...spek }), /CT9/);

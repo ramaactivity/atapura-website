@@ -11,7 +11,7 @@ const tujuan = join(akar, 'src/data/ops.json');
 /** Kode varian Ops yang dibaca src/data/harga.ts. Tambah di sini bila harga.ts membaca kode baru. */
 export const KODE_WAJIB = [
   'GT-JAVABITUMEN', 'GT-CTI', 'GT-MAXXI', 'GT-VICTORY', 'GT-TEGOLA',
-  'GT-CTI-CT6', 'GT-VICTORY-2T', 'GT-TEGOLA-PREM-TRAD', 'GT-TEGOLA-PREM-MOSAIK', 'GT-TEGOLA-PREM-GOTHIK',
+  'GT-CTI-CT6', 'GT-MAXXI-PROMAXXI', 'GT-VICTORY-2T', 'GT-TEGOLA-PREM-TRAD', 'GT-TEGOLA-PREM-MOSAIK', 'GT-TEGOLA-PREM-GOTHIK',
   'GT-TEGOLA-TOP', 'GT-TEGOLA-TOP-TRAD', 'GT-TEGOLA-ECO-RECT', 'GT-TEGOLA-ECO-TRAD', 'GT-TEGOLA-ECO-HEX',
   'AL-MULTIPLEK-12', 'AL-GRC-9', 'LK-UNDERLAYER', 'LK-MEMBRANE', 'FL-U', 'FL-Z',
   'PL-SHUNDA', 'PL-JAVAFON', 'RK-TASO', 'RK-HISTEEL', 'RK-KSTEEL', 'JASA-RANGKA',

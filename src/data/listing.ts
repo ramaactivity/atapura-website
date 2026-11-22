@@ -5,7 +5,7 @@
 // marketplace). Angka yang belum pasti masuk `cek` (ditampilkan "Perlu dicek"), tidak ditebak.
 import { aksesoris } from './aksesoris';
 import { bisnis } from './bisnis';
-import { harga } from './harga';
+import { harga, seriGenteng } from './harga';
 import { asalMerek } from './mitra';
 import { type Produk, produk, warnaSeri } from './produk';
 
@@ -73,9 +73,10 @@ function listingGenteng(p: Produk, s: Produk['seri'][number]): Listing {
   const cek: string[] = [];
   const isi = nilai(s.spek, 'Isi per bundel');
   const m2Spek = isi?.match(/([\d.,]+)\s*m²/);
-  // Isi m² dari Ops hanya berlaku untuk seri yang memang tercatat di Ops (CTI "semua seri" = CT3; Tegola = Premium Rectangular).
-  const fallbackSah = !(p.slug === 'cti' && s.nama !== 'CT3') && !(p.slug === 'tegola' && s.nama !== 'Premium Rectangular');
-  const m2 = m2Spek ? Number(m2Spek[1].replace(',', '.')) : p.harga && fallbackSah ? harga.merek[p.harga].m2PerBundel : null;
+  // Isi m² dari Ops: varian per seri bila ada (seriGenteng, mis. CT6 & Promaxxi 2,32 m²); merek tanpa peta seri = satu varian.
+  const petaSeri = p.harga ? seriGenteng[p.harga] : undefined;
+  const dariOps = p.harga ? (petaSeri ? petaSeri[s.nama]?.m2PerBundel : harga.merek[p.harga].m2PerBundel) : undefined;
+  const m2 = m2Spek ? Number(m2Spek[1].replace(',', '.')) : dariOps ?? null;
   if (!m2) cek.push('Isi m² per bundel belum pasti untuk seri ini — minta brosur/isi pak ke vendor.');
   const beratSpek = nilai(s.spek, 'Berat');
   const kgBundel = beratSpek?.match(/\(([\d.,]+)\s*kg per bundel\)/);

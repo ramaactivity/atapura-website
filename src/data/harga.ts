@@ -109,10 +109,11 @@ export const harga = {
 export type Merek = keyof typeof harga.merek;
 
 // Seri yang harga atau isi bundelnya beda dari varian merek (varian per seri di Ops, DECISIONS Ops 134–135). Dipakai kalkulator
-// internal supaya jumlah bundel benar (CT6 2,32 m², Tegola Mosaik/Gothik 3,45 m²). Merek tanpa entri = satu varian semua seri.
+// internal supaya jumlah bundel benar (CT6 & Promaxxi 2,32 m², Tegola Mosaik/Gothik 3,45 m²). Merek tanpa entri = satu varian.
 // Tegola Master belum ada: harganya masih draf di Ops (tidak ikut katalog publik).
 export const seriGenteng: Partial<Record<Merek, Record<string, ReturnType<typeof genteng>>>> = {
   CTI: { CT3: genteng('GT-CTI'), CT5: genteng('GT-CTI'), CT6: genteng('GT-CTI-CT6') },
+  Maxxi: { Maxxiroof: genteng('GT-MAXXI'), Promaxxi: genteng('GT-MAXXI-PROMAXXI') },
   Tegola: {
     'Premium Rectangular': genteng('GT-TEGOLA'),
     'Premium Traditional': genteng('GT-TEGOLA-PREM-TRAD'),

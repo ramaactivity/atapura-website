@@ -10,9 +10,9 @@
 - ✅ Fondasi terjadwal: artikel ber-`terbit` setelah hari ini (WIB) dibuang di loader (`src/content.config.ts`) → tidak ada di
   halaman/daftar/sitemap/llms.txt; `.github/workflows/terbit-terjadwal.yml` deploy tiap 00:05 WIB bila ada artikel terbit hari itu.
 - ✅ **Borongan 1 selesai** (DECISIONS 066): 9 artikel Desember terjadwal, sampul unik (Magnific 455 kredit), semua lolos
-  `tools/artikel/cek.mjs`, tabel muat di HP 390 px, artikel harga lama disegarkan (Victory & Tegola). Temuan data yang belum
-  dibereskan: (1) Ops `GT-MAXXI` 3,1 m²/bundel "semua seri", padahal Promaxxi resmi 2,32 m² → kalkulator internal kurang
-  bundel untuk Promaxxi; perlu varian Ops sendiri + harga Promaxxi dari Bang Yusuf. (2) UnderMaster: brosur 16/32 kg & ">20°",
+  `tools/artikel/cek.mjs`, tabel muat di HP 390 px, artikel harga lama disegarkan (Victory & Tegola). ✅ Promaxxi kini varian Ops
+  sendiri `GT-MAXXI-PROMAXXI` 2,32 m² (Ops DECISIONS 140, harga sementara = Maxxi; tanya Bang Yusuf) → kalkulator internal pilih
+  Maxxiroof/Promaxxi, kit & gambar marketplace ikut (gambar dibuat ulang; slide warna kini menyebut motif). Belum: (2) UnderMaster: brosur 16/32 kg & ">20°",
   lembar spek 18/36 kg, halaman web 8,91 m²/rol & 15–90° — situs memakai brosur. (3) Pratinjau artikel terjadwal untuk Rama
   belum ada (rencana: tahap 2 Ops).
 - ⏳ Berikutnya: (a) ~~borongan 1~~ — tulis 9 artikel Desember sesuai standar di dokumen kalender; (b) **tahap 2** Ops menu

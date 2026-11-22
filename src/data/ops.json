@@ -19,7 +19,7 @@
       "cakupan": 1
     },
     "GT-MAXXI": {
-      "nama": "Maxxi (semua seri)",
+      "nama": "Maxxi",
       "satuan": "m²",
       "harga": 145000,
       "hargaMaks": null,
@@ -46,6 +46,14 @@
       "nama": "CTI CT6",
       "satuan": "m²",
       "harga": 155000,
+      "hargaMaks": null,
+      "isiKemasan": 2.32,
+      "cakupan": 1
+    },
+    "GT-MAXXI-PROMAXXI": {
+      "nama": "Maxxi Promaxxi",
+      "satuan": "m²",
+      "harga": 145000,
       "hargaMaks": null,
       "isiKemasan": 2.32,
       "cakupan": 1
