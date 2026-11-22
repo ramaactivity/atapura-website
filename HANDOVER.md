@@ -31,8 +31,9 @@
   `website_visits`. Ops → Marketing → Pengunjung website (7/30/90 hari, halaman, asal, perangkat, kota) + kolom "Dibaca 30 hari"
   di Artikel website. Diuji di produksi: browser asli tercatat, Googlebot & kiriman tanpa Origin tidak. 3 baris pertama
   (22 Nov) = kunjungan uji Claude (beranda ×2, artikel panas ×1).
-- ⏳ PageSpeed: menunggu Rama membuat API key gratis (Google Cloud → PageSpeed Insights API) → `PSI_KEY` di `.env.local`
-  website; Claude memasangnya sebagai secret Ops `PSI_KEY`.
+- ✅ PageSpeed: `PSI_KEY` (project Google Cloud "Atapura", dibatasi ke PageSpeed Insights API) di `.env.local` website & Ops +
+  secret Ops. Skor HP beranda 22 Nov: 98, LCP 2,1 dtk, CLS 0, TBT 0. Cek teknis tanpa jatah SerpApi:
+  `node --experimental-strip-types scripts/pantau-seo.mjs --teknis-saja` (repo Ops).
 - Menu Ops sudah dikelompokkan ulang sesi Ops (DECISIONS 147): Artikel website & SEO & GEO di grup Marketing.
 - ⏳ Berikutnya: (a) ~~borongan 1~~ — tulis 9 artikel Desember sesuai standar di dokumen kalender; (b) ~~tahap 2~~; (c) tahap 4 SEO & GEO (Rama daftar
   Serper.dev, kunci ke `.env.local` Ops); (d) tahap 5 Search Console setelah domain aktif & `bisnis.konsep = false`.
