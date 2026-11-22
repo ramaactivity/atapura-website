@@ -1,6 +1,12 @@
 # Handover
 
 - **Harga = dari Atapura Ops** (20 Nov 2026, website DECISIONS 055 / Ops 123): `src/data/ops.json` ditarik otomatis tiap jam oleh `sinkron-ops.yml`; ubah harga di Ops, bukan di `harga.ts`. `npm run tarik-ops` untuk tarik manual.
+## Terbaru (22 November 2026) — brosur resmi CTI, Tegola, Victory (DECISIONS 063)
+- Data dikoreksi dari brosur: CT6 17 lembar = 2,32 m²; Tegola Premium Mosaik = segi enam, seri baru Premium Gothik, isi per bundel per seri, warna Tegola lengkap berkode (13 kelompok); aksesori CTI UnderMaster/BaseMaster/GuardMaster.
+- Contoh warna CTI, Tegola, Victory = ubin foto dari brosur (dideteksi otomatis, diperbesar 2× + dipertajam), ubin di halaman merek diperbesar. Alat pewarna ulang (untuk merek tanpa brosur, mis. Javabitumen): `tools/warna/warnai.py`. Brosur asli di ~/Downloads (BROSUR CTI.pdf, Brosur tegola.pdf, Brosur Tamko & Victory.pdf).
+- Ops sudah membuat varian GT-CTI-CT6; warna Ops perlu ditarik ulang dari produk.ts (sudah dikabari ke sesi Ops).
+- Belum: harga Tegola per seri (brosur tanpa harga), garansi Victory per seri (lencana 25/20 tahun di brosur tidak jelas milik seri mana).
+
 ## Terbaru (20 November 2026)
 - **Gambar marketplace pakai sistem slide baru** (DECISIONS 062, disetujui Rama di kanvas Claude Design): bingkai Pinus +
   kartu beratap + "Chat admin sebelum checkout" di tiap slide; urutan cover → deskripsi & spesifikasi → (warna) → penerapan →
