@@ -41,13 +41,15 @@ export const bisnis = {
       'Kebocoran akibat pemasangan: sambungan, flashing, paku, dan nok',
       'Kesalahan pasang yang tidak sesuai panduan pabrik',
       'Genteng terlepas atau bergeser bukan karena bencana',
-      'Perbaikan termasuk material dan jasa, tanpa biaya',
+      'Perbaikan atas kerusakan akibat pemasangan, tanpa biaya',
     ],
     pengecualian: [
       'Bencana alam: angin di atas batas pabrik, gempa, banjir, kebakaran',
       'Perubahan atau perbaikan atap oleh pihak lain',
       'Kerusakan rangka atau dinding yang bukan pekerjaan kami',
       'Talang tersumbat yang tidak dibersihkan',
+      // Rama 22 Nov 2026: garansi material tanggung jawab pabrik, bukan Atapura (sama dengan Ops lib/penawaran/syarat.ts).
+      'Cacat produk atau material dari pabrik: diklaim lewat garansi pabrik masing-masing merek',
     ],
     klaim: [
       { nama: 'Kirim foto atau video', isi: 'Lewat WhatsApp, sertakan nama pemilik dan alamat.' },
