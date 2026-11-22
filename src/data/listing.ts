@@ -149,7 +149,7 @@ function listingGenteng(p: Produk, s: Produk['seri'][number]): Listing {
     kirim: { berat, dimensi: ukuran ? `${ukuran.replace(/\s*mm$/, '')} mm (ukuran lembar) × tinggi bundel` : null },
     keyword: [`genteng aspal ${merek.toLowerCase()}`, `genteng bitumen ${merek.toLowerCase()}`, nm.toLowerCase(), 'genteng aspal', 'atap bitumen', 'asphalt shingle', 'atap shingle', 'genteng bitumen'],
     ref: { jenis: 'seri', produk: p.slug, seri: p.seri.length ? s.nama : null },
-    cek: p.slug === 'javabitumen' ? ['Isi bundel bentrok: Ops 3,0 m² vs daftar pesaing 3,1 m² (21 lembar) — cocokkan ke vendor.', ...cek] : p.slug === 'cti' && s.nama !== 'CT3' ? ['Isi bundel CT5/CT6 bentrok antarsumber (22 lembar di data website vs 17 lembar 2,32 m² di daftar pesaing) — pastikan ke vendor CTI.', ...cek] : cek,
+    cek: p.slug === 'javabitumen' ? ['Isi bundel bentrok: Ops 3,0 m² vs daftar pesaing 3,1 m² (21 lembar) — cocokkan ke vendor.', ...cek] : cek,
   };
 }
 

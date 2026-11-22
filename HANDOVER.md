@@ -1,6 +1,16 @@
 # Handover
 
 - **Harga = dari Atapura Ops** (20 Nov 2026, website DECISIONS 055 / Ops 123): `src/data/ops.json` ditarik otomatis tiap jam oleh `sinkron-ops.yml`; ubah harga di Ops, bukan di `harga.ts`. `npm run tarik-ops` untuk tarik manual.
+## Cek kesehatan (22 November 2026, sore)
+- ⚠️ **atapura.com BELUM terdaftar**: RDAP Verisign 404 (google.com 200 sebagai pembanding), tidak ada NS/A. Padahal canonical,
+  sitemap, llms.txt, JSON-LD, pricelist PDF, dan PDF product knowledge semua menulis atapura.com. Tanyakan Rama: sudah bayar di
+  registrar mana? Kalau belum, beli; kalau domain lain, ganti `site` di astro.config + `situs` di pricelist.astro +
+  product-knowledge.astro. Situs tetap jalan di atapura.vercel.app.
+- Sapu luberan 53 halaman publik (HP 390 + laptop 1230): 0 elemen keluar layar, 0 error JS (cek dibuktikan bisa gagal).
+- Sinkron Ops jalan (tiap ±6 jam, jadwal GitHub sering molor dari "tiap jam"). Varian Ops baru (GT-CTI-CT6, Tegola Premium seri)
+  tidak ditarik ke ops.json karena harganya sama dengan GT-CTI/GT-TEGOLA. Batas: kalkulator internal menghitung bundel per merek
+  (CTI 3 m², Tegola 3,05 m²) — untuk CT6/Mosaik/Gothik jumlah bundel kurang; hitungan resmi pakai penawaran di Ops.
+
 ## Terbaru (22 November 2026) — brosur resmi CTI, Tegola, Victory (DECISIONS 063)
 - Data dikoreksi dari brosur: CT6 17 lembar = 2,32 m²; Tegola Premium Mosaik = segi enam, seri baru Premium Gothik, isi per bundel per seri, warna Tegola lengkap berkode (13 kelompok); aksesori CTI UnderMaster/BaseMaster/GuardMaster.
 - Contoh warna CTI, Tegola, Victory = ubin foto dari brosur (dideteksi otomatis, diperbesar 2× + dipertajam), ubin di halaman merek diperbesar. Alat pewarna ulang (untuk merek tanpa brosur, mis. Javabitumen): `tools/warna/warnai.py`. Brosur asli di ~/Downloads (BROSUR CTI.pdf, Brosur tegola.pdf, Brosur Tamko & Victory.pdf).
