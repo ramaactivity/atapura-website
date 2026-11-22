@@ -27,6 +27,12 @@
   lewat `displayed_link`. SerpApi menyimpan cache 1 jam (gratis, tapi token susulan AI Overview kedaluwarsa) → jangan jalankan
   ulang dalam 1 jam bila butuh sumber AI lengkap.
   Opsional PSI_KEY (Google Cloud API key PageSpeed, tanpa billing) supaya kecepatan terukur.
+- ✅ **Pengunjung website** (DECISIONS 069, Ops 157): beacon tanpa cookie di `Base.astro` → `api/kunjungan.mjs` → Ops
+  `website_visits`. Ops → Marketing → Pengunjung website (7/30/90 hari, halaman, asal, perangkat, kota) + kolom "Dibaca 30 hari"
+  di Artikel website. Diuji di produksi: browser asli tercatat, Googlebot & kiriman tanpa Origin tidak. 3 baris pertama
+  (22 Nov) = kunjungan uji Claude (beranda ×2, artikel panas ×1).
+- ⏳ PageSpeed: menunggu Rama membuat API key gratis (Google Cloud → PageSpeed Insights API) → `PSI_KEY` di `.env.local`
+  website; Claude memasangnya sebagai secret Ops `PSI_KEY`.
 - Menu Ops sudah dikelompokkan ulang sesi Ops (DECISIONS 147): Artikel website & SEO & GEO di grup Marketing.
 - ⏳ Berikutnya: (a) ~~borongan 1~~ — tulis 9 artikel Desember sesuai standar di dokumen kalender; (b) ~~tahap 2~~; (c) tahap 4 SEO & GEO (Rama daftar
   Serper.dev, kunci ke `.env.local` Ops); (d) tahap 5 Search Console setelah domain aktif & `bisnis.konsep = false`.
