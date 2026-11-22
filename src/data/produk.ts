@@ -290,6 +290,7 @@ const semuaProduk: Produk[] = [
           { label: 'Ukuran per lembar', nilai: '1.000 × 340 mm' },
           { label: 'Berat', nilai: '±10,7 kg/m²' },
           { label: 'Isi per bundel', nilai: '3,05 m²' },
+          { label: 'Genteng saja', nilai: '±Rp420 ribu per m²' },
         ],
       },
       {
@@ -300,6 +301,7 @@ const semuaProduk: Produk[] = [
           { label: 'Ukuran per lembar', nilai: '1.000 × 337 mm' },
           { label: 'Berat', nilai: '±9,0 kg/m²' },
           { label: 'Isi per bundel', nilai: '3,45 m²' },
+          { label: 'Genteng saja', nilai: '±Rp420 ribu per m²' },
         ],
       },
       {
@@ -310,6 +312,7 @@ const semuaProduk: Produk[] = [
           { label: 'Ukuran per lembar', nilai: '1.000 × 337 mm' },
           { label: 'Berat', nilai: '±9,0 kg/m²' },
           { label: 'Isi per bundel', nilai: '3,45 m²' },
+          { label: 'Genteng saja', nilai: '±Rp420 ribu per m²' },
         ],
       },
       {
