@@ -355,3 +355,13 @@ Rama mengirim brosur CTI, Tegola (distributor Indonesia), dan Tamko & Victory, m
 - Tidak dipakai: merek Tamko dan seri Victory Legend/Diamond (bukan yang dijual; aturan tanpa brand lain). Lencana garansi Victory di brosur (25 & 20 tahun) tidak jelas milik seri mana → belum diklaim. Foto proyek di brosur tidak dipakai (bukan proyek Atapura).
 - Ops: varian GT-CTI-CT6 (2,32 m²/bundel) dibuat sesi Ops (commit 61264f2); warna Ops ditarik ulang dari produk.ts setelah commit ini.
 - Tambahan (masukan Rama lewat Ops): brosur Victory hanya punya close-up butiran untuk seri Standar → ubin Standar kini = pita pola 3-tab (dari foto seri `victory-standar`, diwarnai warna rata-rata butiran asli) di atas butiran asli brosur, seragam dengan Two Tone. Pita pola itu ilustrasi, butirannya foto brosur.
+
+## 064 · 22 November 2026 · Kalkulator internal memilih seri (isi bundel & harga per seri dari Ops)
+Rama: "benerin juga kalkulatornya". Kalkulator internal menghitung bundel per merek (CTI 3 m², Tegola 3,05 m²), padahal brosur
+(063) dan Ops (DECISIONS Ops 134–135) mencatat CT6 2,32 m² dan Tegola Mosaik/Gothik 3,45 m² → 100 m² CT6 tertulis 37 bundel,
+seharusnya 48. Perbaikan: `seriGenteng` di `harga.ts` memetakan seri → varian Ops (CTI CT3/CT5/CT6; Tegola Premium
+Rectangular/Traditional/Mosaik/Gothik, Top Shingles Rectangular/Traditional, Eco Roof Rectangular/Traditional/Hexagonal;
+Victory Standar/Two Tone), kodenya ditambahkan ke `KODE_WAJIB` sinkron Ops. `/internal/kalkulator` menampilkan pilihan Seri
+di bawah Merek bila mereknya punya lebih dari satu varian; harga genteng & starter ikut seri (mis. Two Tone Rp220 rb, Eco Roof
+Rp315–350 rb). Maxxi & Javabitumen tetap satu varian. Tegola Master belum masuk (harga masih draf di Ops). Kalkulator publik
+tidak berubah: tetap patokan terpasang per merek dari Bang Yusuf. Dijaga `harga.test.ts` (terbukti gagal bila seri diabaikan).

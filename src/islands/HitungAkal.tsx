@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
-import { bagianRentang, estimasiPlafon, estimasiPublik, harga, hitungEstimasi, rentangRangka, rupiahRingkas, type Alas, type Flashing, type LapisKedap, type Merek, type MerekPlafon, type MerekRangka } from '../data/harga';
+import { bagianRentang, estimasiPlafon, estimasiPublik, harga, hitungEstimasi, rentangRangka, rupiahRingkas, seriGenteng, type Alas, type Flashing, type LapisKedap, type Merek, type MerekPlafon, type MerekRangka } from '../data/harga';
 import { bisnis, dalamJabodetabek, TAMPIL_PLAFON, waLink } from '../data/bisnis';
 import './hitung-akal.css';
 
@@ -89,6 +89,7 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
   const [luas, setLuas] = useState(awal);
   const [teksLuas, setTeksLuas] = useState(String(awal));
   const [merek, setMerek] = useState<Merek>('CTI');
+  const [seri, setSeri] = useState('');
   const [alas, setAlas] = useState<Alas>('Multiplek 12 mm');
   const [lapis, setLapis] = useState<LapisKedap>('Underlayer');
   const [flashing, setFlashing] = useState<Flashing>('Flashing U');
@@ -101,7 +102,10 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
   // Plafon belum punya resep material: internal & publik sama-sama memakai harga terpasang × luas.
   const plafon = lini === 'Plafon';
   const rinciAtap = internal && !plafon;
-  const atap = hitungEstimasi(luas, { merek, alas, lapis, flashing, rangka: rangka === 'Sudah ada' ? undefined : rangka });
+  // Seri hanya di internal (isi bundel & harga per seri dari Ops); ganti merek → seri pertama merek itu.
+  const daftarSeri = internal ? Object.keys(seriGenteng[merek] ?? {}) : [];
+  const seriAktif = daftarSeri.includes(seri) ? seri : daftarSeri[0];
+  const atap = hitungEstimasi(luas, { merek, seri: seriAktif, alas, lapis, flashing, rangka: rangka === 'Sudah ada' ? undefined : rangka });
   const est = plafon ? { ...atap, ...estimasiPlafon(luas, merekPlafon) } : internal ? atap : { ...atap, ...estimasiPublik(luas, merek) };
   const namaLuas = plafon ? 'Luas plafon' : 'Luas atap';
   const minTampil = useGulir(est.perM2[0]);
@@ -157,7 +161,7 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
       : rinciAtap
       ? [
           `Pekerjaan: ${pekerjaan}`,
-          `Spek: ${merek}, ${alas}, ${harga.lapisKedap[lapis].nama}, ${flashing}, rangka ${rangka === 'Sudah ada' ? 'sudah ada' : `baja ringan ${rangka} baru`}`,
+          `Spek: ${merek}${seriAktif ? ` ${seriAktif}` : ''}, ${alas}, ${harga.lapisKedap[lapis].nama}, ${flashing}, rangka ${rangka === 'Sudah ada' ? 'sudah ada' : `baja ringan ${rangka} baru`}`,
           `Kebutuhan: ${est.kebutuhan.map((k) => `${k.nama} ${angka(k.jumlah)} ${k.satuan}`).join('; ')}`,
           `Lokasi: ${kota.trim() || '(belum diisi)'}`,
         ]
@@ -242,6 +246,12 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
             {plafon
               ? <Pilihan label="Merek plafon" opsi={MEREK_PLAFON} nilai={merekPlafon} ubah={setMerekPlafon} />
               : <Pilihan label="Merek" opsi={MEREK} nilai={merek} ubah={setMerek} />}
+            {rinciAtap && seriAktif && (
+              <div class="ha-spek-baris ha-seri">
+                <span class="ha-spek-nama">Seri</span>
+                <Pilihan label={`Seri ${merek}`} opsi={daftarSeri} nilai={seriAktif} ubah={setSeri} />
+              </div>
+            )}
           </div>
         </li>
         {rinciAtap && <>

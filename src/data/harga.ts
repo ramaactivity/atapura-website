@@ -29,7 +29,7 @@ const genteng = (kode: string) => {
 //   rangka baja ringan: sejak 18 Nov 2026 per merek (Bang Yusuf via Rama), lihat `rangka` di bawah.
 // Victory (sheet Vendor, 20 Nov 2026; sebelumnya Rama 5 Nov: 220/260 rb): genteng Standar 200 rb, Two Tone 220 rb,
 //   Legend 270 rb per m² (Legend baru di Ops); terpasang 500–550 rb per m²
-//   (spek pendukung sama dengan merek lain). Kalkulator memakai harga Standar; Two Tone ditulis di halaman produk.
+//   (spek pendukung sama dengan merek lain). Kalkulator publik memakai harga Standar; kalkulator internal per seri (seriGenteng).
 // Material pendukung = harga satuan toko dokteratap.co.id. Jasa dikalibrasi supaya spek standar
 // (multiplek, underlayer, flashing U) jatuh di rentang terpasang Bang Yusuf — dijaga harga.test.ts.
 // Kebutuhan paku & skrup (Rama, 19 Nov 2026; menggantikan contoh awal 20 paku & 12 skrup per m²):
@@ -107,6 +107,25 @@ export const harga = {
 } as const;
 
 export type Merek = keyof typeof harga.merek;
+
+// Seri yang harga atau isi bundelnya beda dari varian merek (varian per seri di Ops, DECISIONS Ops 134–135). Dipakai kalkulator
+// internal supaya jumlah bundel benar (CT6 2,32 m², Tegola Mosaik/Gothik 3,45 m²). Merek tanpa entri = satu varian semua seri.
+// Tegola Master belum ada: harganya masih draf di Ops (tidak ikut katalog publik).
+export const seriGenteng: Partial<Record<Merek, Record<string, ReturnType<typeof genteng>>>> = {
+  CTI: { CT3: genteng('GT-CTI'), CT5: genteng('GT-CTI'), CT6: genteng('GT-CTI-CT6') },
+  Tegola: {
+    'Premium Rectangular': genteng('GT-TEGOLA'),
+    'Premium Traditional': genteng('GT-TEGOLA-PREM-TRAD'),
+    'Premium Mosaik': genteng('GT-TEGOLA-PREM-MOSAIK'),
+    'Premium Gothik': genteng('GT-TEGOLA-PREM-GOTHIK'),
+    'Top Shingles Rectangular': genteng('GT-TEGOLA-TOP'),
+    'Top Shingles Traditional': genteng('GT-TEGOLA-TOP-TRAD'),
+    'Eco Roof Rectangular': genteng('GT-TEGOLA-ECO-RECT'),
+    'Eco Roof Traditional': genteng('GT-TEGOLA-ECO-TRAD'),
+    'Eco Roof Hexagonal': genteng('GT-TEGOLA-ECO-HEX'),
+  },
+  Victory: { Standar: genteng('GT-VICTORY'), 'Two Tone': genteng('GT-VICTORY-2T') },
+};
 export type Alas = keyof typeof harga.alas;
 export type LapisKedap = keyof typeof harga.lapisKedap;
 export type Flashing = keyof typeof harga.flashing;
@@ -129,6 +148,8 @@ export type Rentang = [number, number];
 
 export interface Pilihan {
   merek: Merek;
+  /** Kunci di seriGenteng[merek]; kosong = varian merek. */
+  seri?: string;
   alas: Alas;
   lapis: LapisKedap;
   flashing: Flashing;
@@ -153,7 +174,9 @@ const bulat = (n: number, ke: number) => Math.round(n / ke) * ke;
 const ceil = (n: number) => Math.ceil(n - 1e-9);
 
 export function hitungEstimasi(luas: number, p: Pilihan = PILIHAN_AWAL): Estimasi {
-  const m = harga.merek[p.merek];
+  const m = p.seri ? seriGenteng[p.merek]?.[p.seri] : harga.merek[p.merek];
+  if (!m) throw new Error(`Seri ${p.merek} ${p.seri} tidak ada di seriGenteng`);
+  const nama = `Genteng ${p.merek}${p.seri ? ` ${p.seri}` : ''}`;
   const alas = harga.alas[p.alas];
   const lapis = harga.lapisKedap[p.lapis];
   const fl = harga.flashing[p.flashing];
@@ -172,7 +195,7 @@ export function hitungEstimasi(luas: number, p: Pilihan = PILIHAN_AWAL): Estimas
 
   const tetap = (n: number): Rentang => [n, n];
   const baris: Estimasi['baris'] = [
-    { label: `Genteng ${p.merek}`, rentang: tetap(bundel * m.m2PerBundel * m.genteng) },
+    { label: nama, rentang: tetap(bundel * m.m2PerBundel * m.genteng) },
     { label: p.alas, rentang: tetap(lembar * alas.harga) },
     { label: lapis.nama, rentang: tetap(roll * lapis.harga) },
     { label: p.flashing, rentang: tetap(batang * fl.harga) },
@@ -191,7 +214,7 @@ export function hitungEstimasi(luas: number, p: Pilihan = PILIHAN_AWAL): Estimas
 
   return {
     kebutuhan: [
-      { nama: `Genteng ${p.merek}`, jumlah: bundel, satuan: 'bundel' },
+      { nama: nama, jumlah: bundel, satuan: 'bundel' },
       { nama: p.alas, jumlah: lembar, satuan: alas.satuan },
       { nama: lapis.nama, jumlah: roll, satuan: lapis.satuan },
       { nama: p.flashing, jumlah: batang, satuan: fl.satuan },

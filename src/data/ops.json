@@ -11,7 +11,7 @@
       "cakupan": 1
     },
     "GT-CTI": {
-      "nama": "CTI (semua seri)",
+      "nama": "CTI",
       "satuan": "m²",
       "harga": 155000,
       "hargaMaks": null,
@@ -40,6 +40,86 @@
       "harga": 420000,
       "hargaMaks": null,
       "isiKemasan": 3.05,
+      "cakupan": 1
+    },
+    "GT-CTI-CT6": {
+      "nama": "CTI CT6",
+      "satuan": "m²",
+      "harga": 155000,
+      "hargaMaks": null,
+      "isiKemasan": 2.32,
+      "cakupan": 1
+    },
+    "GT-VICTORY-2T": {
+      "nama": "Victory Two Tone",
+      "satuan": "m²",
+      "harga": 220000,
+      "hargaMaks": null,
+      "isiKemasan": 3,
+      "cakupan": 1
+    },
+    "GT-TEGOLA-PREM-TRAD": {
+      "nama": "Tegola Premium Traditional",
+      "satuan": "m²",
+      "harga": 420000,
+      "hargaMaks": null,
+      "isiKemasan": 3.05,
+      "cakupan": 1
+    },
+    "GT-TEGOLA-PREM-MOSAIK": {
+      "nama": "Tegola Premium Mosaik",
+      "satuan": "m²",
+      "harga": 420000,
+      "hargaMaks": null,
+      "isiKemasan": 3.45,
+      "cakupan": 1
+    },
+    "GT-TEGOLA-PREM-GOTHIK": {
+      "nama": "Tegola Premium Gothik",
+      "satuan": "m²",
+      "harga": 420000,
+      "hargaMaks": null,
+      "isiKemasan": 3.45,
+      "cakupan": 1
+    },
+    "GT-TEGOLA-TOP": {
+      "nama": "Tegola Top Shingles Rectangular",
+      "satuan": "m²",
+      "harga": 360000,
+      "hargaMaks": null,
+      "isiKemasan": 3.5,
+      "cakupan": 1
+    },
+    "GT-TEGOLA-TOP-TRAD": {
+      "nama": "Tegola Top Shingles Traditional",
+      "satuan": "m²",
+      "harga": 360000,
+      "hargaMaks": null,
+      "isiKemasan": 3.5,
+      "cakupan": 1
+    },
+    "GT-TEGOLA-ECO-RECT": {
+      "nama": "Tegola Eco Roof Rectangular",
+      "satuan": "m²",
+      "harga": 315000,
+      "hargaMaks": null,
+      "isiKemasan": 2.32,
+      "cakupan": 1
+    },
+    "GT-TEGOLA-ECO-TRAD": {
+      "nama": "Tegola Eco Roof Traditional",
+      "satuan": "m²",
+      "harga": 330000,
+      "hargaMaks": null,
+      "isiKemasan": 2.32,
+      "cakupan": 1
+    },
+    "GT-TEGOLA-ECO-HEX": {
+      "nama": "Tegola Eco Roof Hexagonal",
+      "satuan": "m²",
+      "harga": 350000,
+      "hargaMaks": null,
+      "isiKemasan": 2.3,
       "cakupan": 1
     },
     "AL-MULTIPLEK-12": {

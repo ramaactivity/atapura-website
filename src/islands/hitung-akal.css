@@ -81,6 +81,7 @@
 .ha-spek { display: grid; gap: 0.75rem; }
 .ha-spek-baris { display: grid; gap: 0.4rem; }
 .ha-spek-nama { font-size: 0.85rem; color: var(--color-lumut); }
+.ha-seri { margin-top: 0.75rem; }
 .ha-luar { color: #8a5a12; }
 
 /* Slip: kebutuhan material → harga terpasang per m² → pembayaran */

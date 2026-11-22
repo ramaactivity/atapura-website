@@ -47,4 +47,14 @@ assert.equal(rupiahRingkas(31_250_000), 'Rp31,3 jt');
 assert.equal(rupiahRingkas(950_000), 'Rp950 rb');
 assert.equal(rupiahRingkas(47_600_000, 0), 'Rp48 jt');
 assert.deepEqual(bagianRentang(41_400_000, 53_100_000), { min: '41,4', max: '53,1', satuan: 'jt' });
+// Seri dengan isi bundel/harga sendiri (Ops DECISIONS 134–135): 100 m² + 10% = 110 m².
+const spek = { alas: 'Multiplek 12 mm', lapis: 'Underlayer', flashing: 'Flashing U' } as const;
+const ct6 = hitungEstimasi(100, { merek: 'CTI', seri: 'CT6', ...spek });
+assert.equal(ct6.kebutuhan[0].jumlah, 48, 'CT6 2,32 m²/bundel → 48 bundel, bukan 37');
+assert.equal(ct6.kebutuhan[0].nama, 'Genteng CTI CT6');
+assert.equal(hitungEstimasi(100, { merek: 'CTI', seri: 'CT3', ...spek }).kebutuhan[0].jumlah, 37);
+assert.equal(hitungEstimasi(100, { merek: 'Tegola', seri: 'Premium Mosaik', ...spek }).kebutuhan[0].jumlah, 32, 'Mosaik 3,45 m²');
+const twoTone = hitungEstimasi(100, { merek: 'Victory', seri: 'Two Tone', ...spek });
+assert.equal(twoTone.baris[0].rentang[0], 37 * 3 * 220_000, 'Two Tone pakai harga Two Tone');
+assert.throws(() => hitungEstimasi(100, { merek: 'CTI', seri: 'CT9', ...spek }), /CT9/);
 console.log('harga.test ok', e.perM2, e.total);

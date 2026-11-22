@@ -7,9 +7,9 @@
   registrar mana? Kalau belum, beli; kalau domain lain, ganti `site` di astro.config + `situs` di pricelist.astro +
   product-knowledge.astro. Situs tetap jalan di atapura.vercel.app.
 - Sapu luberan 53 halaman publik (HP 390 + laptop 1230): 0 elemen keluar layar, 0 error JS (cek dibuktikan bisa gagal).
-- Sinkron Ops jalan (tiap ±6 jam, jadwal GitHub sering molor dari "tiap jam"). Varian Ops baru (GT-CTI-CT6, Tegola Premium seri)
-  tidak ditarik ke ops.json karena harganya sama dengan GT-CTI/GT-TEGOLA. Batas: kalkulator internal menghitung bundel per merek
-  (CTI 3 m², Tegola 3,05 m²) — untuk CT6/Mosaik/Gothik jumlah bundel kurang; hitungan resmi pakai penawaran di Ops.
+- Sinkron Ops jalan (tiap ±6 jam, jadwal GitHub sering molor dari "tiap jam"). Varian Ops per seri (GT-CTI-CT6, Tegola, Victory 2T)
+  kini ikut ops.json untuk kalkulator internal per seri (DECISIONS 064): `/internal/kalkulator` punya pilihan Seri (CTI,
+  Tegola, Victory) sehingga bundel CT6/Mosaik/Gothik benar. Tegola Master menunggu harga final di Ops.
 
 ## Terbaru (22 November 2026) — brosur resmi CTI, Tegola, Victory (DECISIONS 063)
 - Data dikoreksi dari brosur: CT6 17 lembar = 2,32 m²; Tegola Premium Mosaik = segi enam, seri baru Premium Gothik, isi per bundel per seri, warna Tegola lengkap berkode (13 kelompok); aksesori CTI UnderMaster/BaseMaster/GuardMaster.
