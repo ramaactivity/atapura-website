@@ -48,7 +48,7 @@ const daftar: Aksesoris[] = [
   {
     slug: 'grc',
     nama: 'GRC (papan semen)',
-    fungsi: 'Pengganti multiplek sebagai papan alas. Tidak lapuk dan tidak dimakan rayap, cocok untuk area lembap.',
+    fungsi: 'Pengganti multiplek sebagai papan alas. Papan semen berserat, tidak lapuk seperti papan kayu, cocok untuk area lembap.',
     spek: [
       { label: 'Ukuran', nilai: '120 × 240 cm per lembar' },
       { label: 'Tebal standar', nilai: '9 mm' },

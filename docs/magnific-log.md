@@ -62,3 +62,7 @@ Total 20 Nov (cover contoh): 150 kredit. Saldo sebelum: 35.974.
 
 Total 20 Nov (cover rakitan): 540 kredit. Saldo setelahnya: ±35.280.
 | 20 Nov 2026 | Cover CTI CT3 versi B: acuan geometri dirakit skrip (2 lembar 3-tab 1000×333 mm, celah 1/3 & 2/3 setinggi 143 mm, tekstur foto seri) lalu image reference | Nano Banana 2 flash, 2K, 1:1, 2 variasi | 150 | ✅ keduanya bentuk benar; v2 dipakai (latar diratakan #FFFFFF) → `assets/gambar/produk/cover-cti-ct3-1x1.jpg` + `-potong.jpg`, dipakai di cover berdesain (DECISIONS 062) | "Turn the reference image into a realistic e-commerce studio product photo. Keep the exact shapes, count, size ratio, angle and placement from the reference …" |
+
+| 22 Nov 2026 | Sampul artikel borongan 1 (izin Rama di chat: "kalau mau generate gambar pake magnific juga boleh"): cek atap hujan, tukang memasang, bocor & ember, angin, foto udara cluster | Nano Banana 2.1, 2K, 3:2 | 6 × 65 + 65 ulang | ✅ 5 dipakai `assets/gambar/magnific/artikel-*.jpg`; ❌ ruang tamu bocor v1 (interior gaya Amerika, tetesan tidak ke ember) → diulang dengan "small modern terraced house in a Jakarta suburb" ✅; ❌ sampel 5 genteng (potongan 3-tab salah: celah di tengah lembar) → diganti kolase foto seri yang ada (`artikel-perbandingan-merek-3x2.jpg`, tanpa kredit) | Dokumenter, tanpa teks/logo; foto udara dipotong 3% bawah (coretan mirip huruf di jalan) |
+
+Total 22 Nov: 455 kredit. Saldo sebelum: 35.134.

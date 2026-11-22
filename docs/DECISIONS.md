@@ -381,3 +381,20 @@ Tahap: 1 riset & kalender konten · 2 Ops "Website → Artikel" (kalender, statu
 4 Ops "Website → SEO & GEO" (cek mingguan: posisi kita & kompetitor, sebutan AI, kesehatan teknis) · 5 Search Console.
 Artikel tetap file markdown di repo website (statis, cepat, ada riwayat git); Ops memegang rencana & status. Aturan isi artikel
 tetap: klaim bersumber, tanpa brand lain, tanpa over-promise, tanpa TKDN/lokal (memori proyek).
+
+## 066 · 22 November 2026 · Borongan artikel 1: cara kerja yang dipakai ulang tiap bulan
+Borongan 1 = 9 artikel Desember (1, 4, 8, 11, 15, 18, 22, 25, 29 Des), status `terjadwal` di `data/kalender-artikel.csv`.
+- **Artikel pesaing yang sedang menang** (masukan Rama: "cek artikel yang merajai seperti Dokter Atap, recreate"): topiknya boleh
+  diambil, teksnya tidak disalin. Tiap artikel membaca 3–5 hasil teratas (termasuk dokteratap.co.id) lalu menulis ulang dari sumber
+  primer + data Atapura dengan satu "information gain" tertulis. Alasan: konten duplikat tidak diberi peringkat Google dan
+  melanggar hak cipta. Catatan: dokteratap.co.id = usaha Bang Yusuf (`src/data/aksesoris.ts`), jadi artikel kita bersaing di
+  kata kunci yang sama dengan situs partner — disampaikan ke Rama.
+- **Satu sumber angka**: harga di artikel = yang dilihat pembaca di Hitung AKAL publik (`estimasiPublik` + luas × harga rangka),
+  bukan rumus internal `hitungEstimasi`. Artikel harga lama disegarkan (Victory & Tegola ditambahkan).
+- **Gambar**: sampul unik per artikel lewat Magnific (izin Rama 22 Nov: "generate pakai Magnific boleh, atau free image") atau
+  kolase foto yang sudah ada; diperiksa diperbesar sebelum dipakai (2 dari 7 ditolak). Log di `docs/magnific-log.md`.
+- **Alat**: `node tools/artikel/cek.mjs <file…>` (panjang judul/ringkasan/jawaban, kata & merek terlarang, tautan putus atau ke
+  artikel yang belum tayang, tabel teks > 3 kolom); pengecualian yang sudah diperiksa: `<!-- cek-izinkan: kata -->`.
+  Pratinjau artikel terjadwal di lokal: `TAMPIL_TERJADWAL=1 npx astro build --outDir <folder>`.
+- Koreksi data dari pengecekan sumber: BaseMaster CTI untuk atap di bawah **15°** (angka 25 di brosur = berat 25 kg/rol);
+  GRC tidak lagi diklaim "tidak dimakan rayap" (tanpa sumber independen).

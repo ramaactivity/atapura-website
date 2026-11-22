@@ -13,6 +13,8 @@ const globTayang = (opsi: Parameters<typeof glob>[0]): Loader => {
     ...dasar,
     load: async (ctx) => {
       await dasar.load(ctx);
+      // TAMPIL_TERJADWAL=1 hanya untuk pratinjau lokal (cek tampilan sebelum tayang); produksi tidak pernah mengisinya.
+      if (process.env.TAMPIL_TERJADWAL === '1') return;
       for (const [id, e] of ctx.store.entries()) if (!sudahTayang(e.data.terbit as Date)) ctx.store.delete(id);
     },
   };

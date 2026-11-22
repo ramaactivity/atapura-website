@@ -150,7 +150,8 @@ const semuaProduk: Produk[] = [
     ],
     aksesori: [
       { nama: 'UnderMaster', isi: 'Lapisan bawah (underlayer) di atas papan alas, sebelum genteng. Gulungan 1 × 10 m atau 1 × 20 m (16 atau 32 kg), sambungan tumpang 10 cm.' },
-      { nama: 'BaseMaster', isi: 'Membran bitumen yang dipasang dengan cara dibakar (torching) untuk dak atau atap di bawah 25°.' },
+      // Batas 15° dari halaman resmi CTI BaseMaster; angka 25 di brosur adalah berat 25 kg per rol, bukan derajat.
+      { nama: 'BaseMaster', isi: 'Membran bitumen yang dipasang dengan cara dibakar (torching) untuk dak atau atap di bawah 15°.' },
       { nama: 'GuardMaster', isi: 'Membran bitumen berbutir batu berwarna (roll shingle) gulungan 1 × 10 m, untuk atap datar maupun miring.' },
     ],
     penerapan: [

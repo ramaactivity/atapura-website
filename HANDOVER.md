@@ -9,7 +9,13 @@
   `node tools/riset/autocomplete.mjs "<seed>" … > data/riset/autocomplete-YYYY-MM.csv`.
 - ✅ Fondasi terjadwal: artikel ber-`terbit` setelah hari ini (WIB) dibuang di loader (`src/content.config.ts`) → tidak ada di
   halaman/daftar/sitemap/llms.txt; `.github/workflows/terbit-terjadwal.yml` deploy tiap 00:05 WIB bila ada artikel terbit hari itu.
-- ⏳ Berikutnya: (a) **borongan 1** — tulis 9 artikel Desember sesuai standar di dokumen kalender; (b) **tahap 2** Ops menu
+- ✅ **Borongan 1 selesai** (DECISIONS 066): 9 artikel Desember terjadwal, sampul unik (Magnific 455 kredit), semua lolos
+  `tools/artikel/cek.mjs`, tabel muat di HP 390 px, artikel harga lama disegarkan (Victory & Tegola). Temuan data yang belum
+  dibereskan: (1) Ops `GT-MAXXI` 3,1 m²/bundel "semua seri", padahal Promaxxi resmi 2,32 m² → kalkulator internal kurang
+  bundel untuk Promaxxi; perlu varian Ops sendiri + harga Promaxxi dari Bang Yusuf. (2) UnderMaster: brosur 16/32 kg & ">20°",
+  lembar spek 18/36 kg, halaman web 8,91 m²/rol & 15–90° — situs memakai brosur. (3) Pratinjau artikel terjadwal untuk Rama
+  belum ada (rencana: tahap 2 Ops).
+- ⏳ Berikutnya: (a) ~~borongan 1~~ — tulis 9 artikel Desember sesuai standar di dokumen kalender; (b) **tahap 2** Ops menu
   Website → Artikel (impor CSV, status, tahan/geser; putuskan jalur "tahan" Ops → website); (c) tahap 4 SEO & GEO (Rama daftar
   Serper.dev, kunci ke `.env.local` Ops); (d) tahap 5 Search Console setelah domain aktif & `bisnis.konsep = false`.
 

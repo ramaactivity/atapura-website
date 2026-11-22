@@ -5,6 +5,7 @@ Dasar: DECISIONS 065 (mesin artikel SEO/GEO, borongan bulanan, tayang 2×/minggu
 ## Sumber & batasan
 - **Google Autocomplete** (hl=id gl=id): 25 kata kunci awal × polos + a–z → 2.139 frasa unik (`data/riset/autocomplete-2026-11.csv`, alat `tools/riset/autocomplete.mjs`). Frasa nyata yang diketik orang, **tanpa angka volume**.
 - **Riset SERP & celah konten** (±30 kueri, agen riset). Batasan: mesin pencari yang dipakai berbasis AS, bukan google.co.id → kotak "Orang juga bertanya", AI Overview, dan peta lokal tidak terlihat. Peringkat = sinyal kasar; dicek ulang lewat Serper (google.co.id) di tahap 4.
+- **Artikel pesaing yang sedang menang** (masukan Rama 22 Nov): daftar 36 artikel dokteratap.co.id (sitemap) dibandingkan dengan topik kita. Topik kuat yang belum kita punya masuk kalender: cara menghitung luas atap, kesalahan pemasangan, bagus vs murahan, 3-tab vs laminated. Topik lain dari daftar itu digabung ke artikel yang ada (lem perekat → artikel angin; batuan warna → artikel lumut & pudar; kebocoran bukan dari atap → artikel kondensasi). Teks pesaing **tidak disalin**: tiap artikel menulis ulang dari sumber primer dan data Atapura, dan wajib lebih lengkap dari artikel teratas (konten duplikat tidak diberi peringkat oleh Google dan melanggar hak cipta).
 - Riset lama yang dipakai ulang: `keyword-artikel-2026-11-03.md`, `keyword-persona-2026-11-03.md`, `kompetitor-website-2026-11-02.md`, `data-lokal-area.md`.
 - Volume asli baru ada setelah Search Console terpasang (domain aktif + situs dibuka).
 
@@ -18,7 +19,7 @@ Dasar: DECISIONS 065 (mesin artikel SEO/GEO, borongan bulanan, tayang 2×/minggu
 
 ## Strategi lokal Jabodetabek
 - Tiap artikel bertopik biaya, bocor, atau renovasi memakai **data lokal bersumber** (BMKG/BPS per wilayah, harga Jabodetabek dari Ops, contoh tipe rumah yang umum di Bekasi/Bogor/Tangerang) dan menautkan ke halaman `/area` yang relevan.
-- 15 dari 31 topik bertanda lokal. Topik khas Jabodetabek: rumah subsidi Bekasi/Bogor/Tangerang, izin renovasi di perumahan cluster, villa Puncak/Bogor, memilih tukang atap bocor di Jakarta.
+- 15 dari 35 topik bertanda lokal. Topik khas Jabodetabek: rumah subsidi Bekasi/Bogor/Tangerang, izin renovasi di perumahan cluster, villa Puncak/Bogor, memilih tukang atap bocor di Jakarta.
 - Halaman `/area` Jakarta dipecah per kota administrasi **hanya** bila isi tiap wilayah unik (data BPS + minimal satu proyek) — aturan anti doorway (DECISIONS 030). Sementara itu kueri "… jakarta selatan" dikejar lewat artikel memilih tukang + halaman Jakarta yang diperkaya.
 - Di luar website (paling berpengaruh untuk "dekat saya"): Google Business Profile area layanan Jabodetabek, ulasan per proyek, NAP sama di semua tempat — menunggu domain & nomor resmi.
 
@@ -48,15 +49,15 @@ Skor = dampak ke pelanggan 40% + cocok dengan layanan 30% + potensi pencarian 20
 | 2026-12-18 | Multiplek 12 mm vs GRC 9 mm untuk alas atap bitumen | alas atap bitumen | Sistem atap | tidak | 7.8 | – |
 | 2026-12-22 | Genteng aspal terangkat atau lepas kena angin kencang: penyebab dan pencegahan | genteng aspal lepas kena angin | Bocor & musim hujan | ya | 7.5 | – |
 | 2026-12-25 | Maxxi, CTI, Tegola, Victory: perbandingan spesifikasi resmi 2026 | merek atap bitumen terbaik | Merek | tidak | 8.5 | – |
-| 2026-12-29 | Ukuran talang dan pipa turun untuk atap bitumen sesuai curah hujan Jakarta | talang atap bitumen | Sistem atap | ya | 7.3 | Data curah hujan maksimum harian BMKG/BPS |
+| 2027-03-09 | Ukuran talang dan pipa turun untuk atap bitumen sesuai curah hujan Jakarta | talang atap bitumen | Sistem atap | ya | 7.3 | Data curah hujan maksimum harian BMKG/BPS |
 | 2027-01-01 | Genteng aspal gelombang vs genteng aspal shingle: beda bentuk, cara pasang, dan harga | genteng aspal 80x100 | Dasar | tidak | 7.6 | – |
 | 2027-01-05 | Renovasi atap rumah subsidi di Bekasi, Bogor, Tangerang: pilihan dan biayanya | renovasi atap rumah subsidi | Ganti & renovasi | ya | 7.6 | Ukuran tipikal rumah subsidi (sumber resmi PUPR/BP Tapera) |
 | 2027-01-08 | Ganti genteng beton atau keramik ke bitumen: rangka lama dipakai atau diganti? | ganti genteng ke bitumen | Ganti & renovasi | ya | 8.1 | – |
 | 2027-01-12 | Memilih tukang atap bocor di Jakarta: yang harus ditanya sebelum bayar | tukang atap bocor jakarta | Lokal Jabodetabek | ya | 8.2 | – |
 | 2027-01-15 | Garansi atap bitumen: garansi pabrik vs garansi pemasangan | garansi atap bitumen | Ganti & renovasi | tidak | 7.3 | Dokumen garansi resmi per merek |
 | 2027-01-19 | Bisakah atap bitumen dipasang di atap datar atau dak beton? | atap datar bitumen | Sistem atap | tidak | 7.4 | – |
-| 2027-01-22 | Atap bitumen untuk rumah 2 lantai dan rencana tambah lantai | atap rumah 2 lantai | Ganti & renovasi | ya | 7.1 | – |
-| 2027-01-26 | Atap limasan vs pelana dengan bitumen: beda luas, sisa potongan, dan biaya | atap limasan bitumen | Biaya | tidak | 7.2 | – |
+| 2027-03-16 | Atap bitumen untuk rumah 2 lantai dan rencana tambah lantai | atap rumah 2 lantai | Ganti & renovasi | ya | 7.1 | – |
+| 2027-03-12 | Atap limasan vs pelana dengan bitumen: beda luas, sisa potongan, dan biaya | atap limasan bitumen | Biaya | tidak | 7.2 | – |
 | 2027-01-29 | CTI CT3, CT5, dan CT6: beda bentuk, isi, dan pemakaian | genteng aspal cti | Merek | tidak | 7.2 | – |
 | 2027-02-02 | Genteng Tegola: seri, warna, dan harga 2026 | genteng tegola | Merek | ya | 7.3 | Harga Tegola per seri final dari Bang Yusuf |
 | 2027-02-05 | Genteng Victory Standar vs Two Tone | genteng victory | Merek | tidak | 6.8 | – |
@@ -71,6 +72,10 @@ Skor = dampak ke pelanggan 40% + cocok dengan layanan 30% + potensi pencarian 20
 | nanti | Halaman area Jakarta Selatan, Timur, Barat, Utara, Pusat | jasa pasang atap bitumen jakarta selatan | Lokal Jabodetabek | ya | 7.6 | Data BPS per kota administrasi; minimal satu proyek per wilayah |
 | nanti | Program gentengisasi 2026: apa artinya untuk atap rumah | program gentengisasi | Dasar | tidak | 5.3 | Naskah aturan resmi |
 | nanti | Atap bitumen dan panel surya (PLTS atap): pemasangan bracket yang aman | atap bitumen panel surya | Sistem atap | tidak | 5.2 | Panduan pabrikan soal tembusan bracket |
+| 2026-12-29 | Cara menghitung luas atap rumah: pelana, limasan, dan rumus kemiringan | cara menghitung luas atap rumah | Biaya | tidak | 8.8 | – |
+| 2027-01-22 | Kesalahan pemasangan atap bitumen yang bikin bocor dan cara mencegahnya | kesalahan pemasangan atap bitumen | Sistem atap | tidak | 8.1 | – |
+| 2027-01-26 | Cara membedakan atap bitumen bagus dan murahan sebelum membeli | atap bitumen bagus dan murah | Merek | tidak | 8.0 | Data spesifikasi resmi per merek (tebal, berat, bahan) |
+| 2027-03-19 | Genteng aspal 3-tab vs laminated: beda tebal, tampilan, dan harga | atap aspal 3 tab vs laminated | Dasar | tidak | 6.8 | – |
 
 ## Standar tiap artikel (dicek sebelum dijadwalkan)
 1. **Kalimat information gain** ditulis dulu: apa yang artikel ini punya dan 5 hasil teratas tidak. Tidak bisa ditulis → topik dibatalkan.
