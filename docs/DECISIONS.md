@@ -354,3 +354,4 @@ Rama mengirim brosur CTI, Tegola (distributor Indonesia), dan Tamko & Victory, m
 - Ubin warna di halaman merek diperbesar (min 9,5 rem, ±6 per baris laptop, 2 per baris HP) — memori "motif & warna wajib besar". PDF product knowledge dibuat ulang.
 - Tidak dipakai: merek Tamko dan seri Victory Legend/Diamond (bukan yang dijual; aturan tanpa brand lain). Lencana garansi Victory di brosur (25 & 20 tahun) tidak jelas milik seri mana → belum diklaim. Foto proyek di brosur tidak dipakai (bukan proyek Atapura).
 - Ops: varian GT-CTI-CT6 (2,32 m²/bundel) dibuat sesi Ops (commit 61264f2); warna Ops ditarik ulang dari produk.ts setelah commit ini.
+- Tambahan (masukan Rama lewat Ops): brosur Victory hanya punya close-up butiran untuk seri Standar → ubin Standar kini = pita pola 3-tab (dari foto seri `victory-standar`, diwarnai warna rata-rata butiran asli) di atas butiran asli brosur, seragam dengan Two Tone. Pita pola itu ilustrasi, butirannya foto brosur.
