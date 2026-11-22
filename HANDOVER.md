@@ -20,8 +20,11 @@
   sebelum terbit). Saat ini 59 artikel di Ops: 24 tayang, 9 terjadwal, 26 rencana.
 - ✅ **Tahap 4 terpasang** (Ops DECISIONS 146): Ops → Marketing → **SEO & GEO** + workflow Ops `pantau-seo.yml` (Senin 06:00 WIB).
   Cek teknis sudah jalan (domain ✗, boleh diindeks ✗ mode konsep, sitemap 52 URL ✓, llms.txt ✓, PageSpeed 429 tanpa kunci).
-  Peringkat Google + AI Overview menunggu **kunci SerpApi** (Serper gagal daftar; SerpApi gratis 250 cek/bulan): Rama daftar di
-  serpapi.com → Dashboard → API Key → simpan; Claude memasang `gh secret set SERPAPI_KEY` di repo Ops + `.env.local` Ops.
+  ✅ Kunci SerpApi (Free 250/bulan) dari `.env.local` website → secret Ops `SERPAPI_KEY` + `.env.local` Ops. Putaran 22 Nov:
+  27 kata kunci, 25 ber-AI Overview, Atapura 0 (situs dikunci). Pesaing teratas: dokteratap.co.id (12 kata kunci, dikutip AI 3×),
+  tokopedia (10), atapomah (7), id.onduline (6), maxxiroof (5). Perbaikan: hasil Google berupa pengalihan `/goto?url=` dibuka
+  lewat `displayed_link`. SerpApi menyimpan cache 1 jam (gratis, tapi token susulan AI Overview kedaluwarsa) → jangan jalankan
+  ulang dalam 1 jam bila butuh sumber AI lengkap.
   Opsional PSI_KEY (Google Cloud API key PageSpeed, tanpa billing) supaya kecepatan terukur.
 - Menu Ops sudah dikelompokkan ulang sesi Ops (DECISIONS 147): Artikel website & SEO & GEO di grup Marketing.
 - ⏳ Berikutnya: (a) ~~borongan 1~~ — tulis 9 artikel Desember sesuai standar di dokumen kalender; (b) ~~tahap 2~~; (c) tahap 4 SEO & GEO (Rama daftar
