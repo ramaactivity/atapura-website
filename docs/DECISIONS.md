@@ -387,8 +387,8 @@ Borongan 1 = 9 artikel Desember (1, 4, 8, 11, 15, 18, 22, 25, 29 Des), status `t
 - **Artikel pesaing yang sedang menang** (masukan Rama: "cek artikel yang merajai seperti Dokter Atap, recreate"): topiknya boleh
   diambil, teksnya tidak disalin. Tiap artikel membaca 3–5 hasil teratas (termasuk dokteratap.co.id) lalu menulis ulang dari sumber
   primer + data Atapura dengan satu "information gain" tertulis. Alasan: konten duplikat tidak diberi peringkat Google dan
-  melanggar hak cipta. Catatan: dokteratap.co.id = usaha Bang Yusuf (`src/data/aksesoris.ts`), jadi artikel kita bersaing di
-  kata kunci yang sama dengan situs partner — disampaikan ke Rama.
+  melanggar hak cipta. Dokter Atap = pesaing (koreksi Rama 22 Nov), jadi mengalahkan artikelnya di kata kunci yang sama
+  memang tujuan.
 - **Satu sumber angka**: harga di artikel = yang dilihat pembaca di Hitung AKAL publik (`estimasiPublik` + luas × harga rangka),
   bukan rumus internal `hitungEstimasi`. Artikel harga lama disegarkan (Victory & Tegola ditambahkan).
 - **Gambar**: sampul unik per artikel lewat Magnific (izin Rama 22 Nov: "generate pakai Magnific boleh, atau free image") atau

@@ -1,5 +1,5 @@
 // Aksesoris atap (DECISIONS 050): bahan pelengkap yang ikut dipasang bersama genteng bitumen, bisa juga dibeli terpisah.
-// Spek dicocokkan dengan halaman produk dokteratap.co.id (usaha Bang Yusuf, dicek 19 Nov 2026), tidak disebut sebagai sumber publik.
+// Spek dicocokkan dengan halaman produk dokteratap.co.id (pesaing, dicek 19 Nov 2026), tidak disebut sebagai sumber publik.
 // Harga hanya dari harga.ts (Bang Yusuf); barang tanpa harga tampil "Tanya admin".
 // Foto: ilustrasi Magnific. File baru `assets/gambar/magnific/aksesoris-<slug>-3x2.jpg` langsung terpakai
 // (prompt: docs/desain/prompt-magnific-aksesoris.md); sebagian memakai ilustrasi yang sudah ada.
