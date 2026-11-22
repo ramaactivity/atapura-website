@@ -1,11 +1,19 @@
 name: Terbitkan artikel terjadwal
 
-# DECISIONS 065: artikel ber-`terbit` di masa depan tidak ikut build (src/content.config.ts). Tiap 00:05 WIB workflow ini
-# mengecek apakah ada artikel yang terbit hari ini (tanggal WIB); bila ada, situs dibangun ulang & di-deploy. Tidak ada = diam.
+# DECISIONS 065 & 067: artikel ber-`terbit` di masa depan dan artikel yang ditahan pemilik di Ops tidak ikut build
+# (src/content.config.ts). Tiap 00:05 WIB: tarik daftar tahanan terbaru dari Ops (commit bila berubah), lalu deploy bila ada
+# artikel yang terbit hari ini (tanggal WIB) atau daftar tahanan berubah. Tidak ada keduanya = diam.
 on:
   schedule:
     - cron: '5 17 * * *'
   workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sinkron-ops
+  cancel-in-progress: false
 
 jobs:
   cek:
@@ -14,12 +22,29 @@ jobs:
       ada: ${{ steps.cek.outputs.ada }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Tarik daftar artikel ditahan dari Ops
+        env:
+          SINKRON_SECRET: ${{ secrets.SINKRON_SECRET }}
+          OPS_URL: ${{ vars.OPS_URL }}
+        run: node scripts/artikel-ops.mjs || echo "::warning::Sinkron artikel dengan Ops gagal; daftar artikel ditahan yang lama tetap dipakai."
       - id: cek
         run: |
           hari=$(TZ=Asia/Jakarta date +%F)
           daftar=$(grep -rlE "^terbit: '?${hari}'?\s*$" src/content || true)
           echo "Hari ini (WIB): $hari"; echo "${daftar:-tidak ada artikel terjadwal}"
-          if [ -n "$daftar" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then echo "ada=true" >> "$GITHUB_OUTPUT"; else echo "ada=false" >> "$GITHUB_OUTPUT"; fi
+          tahan=false
+          if ! git diff --quiet -- src/data/artikel-ditahan.json; then
+            tahan=true
+            git config user.name "ramaactivity"
+            git config user.email "rama.activity98@gmail.com"
+            git add src/data/artikel-ditahan.json
+            git commit -m "chore(artikel): daftar artikel ditahan dari Atapura Ops"
+            git push
+          fi
+          if [ -n "$daftar" ] || [ "$tahan" = "true" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then echo "ada=true" >> "$GITHUB_OUTPUT"; else echo "ada=false" >> "$GITHUB_OUTPUT"; fi
 
   deploy:
     needs: cek

@@ -15,8 +15,10 @@
   Maxxiroof/Promaxxi, kit & gambar marketplace ikut (gambar dibuat ulang; slide warna kini menyebut motif). Belum: (2) UnderMaster: brosur 16/32 kg & ">20°",
   lembar spek 18/36 kg, halaman web 8,91 m²/rol & 15–90° — situs memakai brosur. (3) Pratinjau artikel terjadwal untuk Rama
   belum ada (rencana: tahap 2 Ops).
-- ⏳ Berikutnya: (a) ~~borongan 1~~ — tulis 9 artikel Desember sesuai standar di dokumen kalender; (b) **tahap 2** Ops menu
-  Website → Artikel (impor CSV, status, tahan/geser; putuskan jalur "tahan" Ops → website); (c) tahap 4 SEO & GEO (Rama daftar
+- ✅ **Tahap 2 selesai** (DECISIONS 067, Ops 145): Ops → Lainnya → **Artikel website** (kalender, hitungan, tab per keadaan,
+  Tahan/Lanjutkan khusus pemilik, tercatat di riwayat). Website kirim/tarik lewat `npm run artikel-ops` (otomatis di sinkron &
+  sebelum terbit). Saat ini 59 artikel di Ops: 24 tayang, 9 terjadwal, 26 rencana.
+- ⏳ Berikutnya: (a) ~~borongan 1~~ — tulis 9 artikel Desember sesuai standar di dokumen kalender; (b) ~~tahap 2~~; (c) tahap 4 SEO & GEO (Rama daftar
   Serper.dev, kunci ke `.env.local` Ops); (d) tahap 5 Search Console setelah domain aktif & `bisnis.konsep = false`.
 
 ## Cek kesehatan (22 November 2026, sore)

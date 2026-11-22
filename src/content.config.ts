@@ -1,6 +1,7 @@
 import { defineCollection } from 'astro:content';
 import { glob, type Loader } from 'astro/loaders';
 import { z } from 'astro/zod';
+import ditahan from './data/artikel-ditahan.json' with { type: 'json' };
 
 // Artikel terjadwal (DECISIONS 065): entri dengan `terbit` setelah hari ini (tanggal WIB) dibuang saat koleksi dimuat, jadi
 // tidak ada halaman, daftar, sitemap, atau llms.txt yang memuatnya. Workflow terbit-terjadwal.yml membangun ulang situs
@@ -15,7 +16,9 @@ const globTayang = (opsi: Parameters<typeof glob>[0]): Loader => {
       await dasar.load(ctx);
       // TAMPIL_TERJADWAL=1 hanya untuk pratinjau lokal (cek tampilan sebelum tayang); produksi tidak pernah mengisinya.
       if (process.env.TAMPIL_TERJADWAL === '1') return;
-      for (const [id, e] of ctx.store.entries()) if (!sudahTayang(e.data.terbit as Date)) ctx.store.delete(id);
+      // Ditahan pemilik di Ops (Lainnya → Artikel website), ditarik `npm run artikel-ops` (DECISIONS 067).
+      const tahan = new Set<string>(ditahan);
+      for (const [id, e] of ctx.store.entries()) if (tahan.has(id) || !sudahTayang(e.data.terbit as Date)) ctx.store.delete(id);
     },
   };
 };

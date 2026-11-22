@@ -84,6 +84,7 @@ Skor = dampak ke pelanggan 40% + cocok dengan layanan 30% + potensi pencarian 20
 4. Tanpa merek lain, tanpa janji di luar kontrak, tanpa klaim TKDN/lokal, multiplek 12 mm (memori proyek).
 5. Tautan internal hanya ke halaman yang sudah tayang pada tanggal terbit artikel; minimal 3 tautan masuk/keluar dalam klaster + satu ke `/area` bila lokal + ajakan Hitung AKAL.
 6. Sampul dari aset yang ada; gambar baru lewat Magnific hanya setelah "ok" Rama (DECISIONS 039).
+8. Setelah dijadwalkan: `node tools/artikel/cek.mjs …` hijau, lalu `npm run artikel-ops` supaya muncul di Ops (Lainnya → Artikel website).
 7. 10 opsi judul → pilih satu (≤70 karakter), ringkasan ≤160 karakter, keyword utama di judul, paragraf pertama, dan satu subjudul — tanpa keyword stuffing.
 
 ## Daftar pantau GEO (untuk tahap 4)

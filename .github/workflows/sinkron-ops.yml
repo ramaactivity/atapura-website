@@ -32,9 +32,16 @@ jobs:
           SINKRON_SECRET: ${{ secrets.SINKRON_SECRET }}
           OPS_URL: ${{ vars.OPS_URL }}
         run: node scripts/tarik-ops.mjs
+      # Artikel (DECISIONS 067): kirim daftar artikel ke Ops, tarik slug yang ditahan pemilik. Gagal = peringatan, daftar lama dipakai.
+      - name: Sinkron artikel dengan Ops
+        env:
+          SINKRON_SECRET: ${{ secrets.SINKRON_SECRET }}
+          OPS_URL: ${{ vars.OPS_URL }}
+        run: node scripts/artikel-ops.mjs || echo "::warning::Sinkron artikel dengan Ops gagal; daftar artikel ditahan yang lama tetap dipakai."
       - id: beda
         run: |
           if git diff --quiet -- src/data/ops.json; then echo "ada=false" >> "$GITHUB_OUTPUT"; else echo "ada=true" >> "$GITHUB_OUTPUT"; fi
+          if git diff --quiet -- src/data/artikel-ditahan.json; then echo "artikel=false" >> "$GITHUB_OUTPUT"; else echo "artikel=true" >> "$GITHUB_OUTPUT"; fi
       - name: Tes kalkulator dengan angka baru
         if: steps.beda.outputs.ada == 'true'
         run: node --experimental-strip-types --no-warnings src/data/harga.test.ts
@@ -49,11 +56,11 @@ jobs:
       - id: simpan
         name: Commit
         run: |
-          if [ "${{ steps.beda.outputs.ada }}" != "true" ]; then echo "berubah=false" >> "$GITHUB_OUTPUT"; exit 0; fi
+          if [ "${{ steps.beda.outputs.ada }}" != "true" ] && [ "${{ steps.beda.outputs.artikel }}" != "true" ]; then echo "berubah=false" >> "$GITHUB_OUTPUT"; exit 0; fi
           git config user.name "ramaactivity"
           git config user.email "rama.activity98@gmail.com"
-          git add src/data/ops.json public/unduh/product-knowledge-atapura.pdf
-          git commit -m "chore(data): sinkron harga dari Atapura Ops $(node -p "require('./src/data/ops.json').versi")"
+          git add src/data/ops.json src/data/artikel-ditahan.json public/unduh/product-knowledge-atapura.pdf
+          git commit -m "chore(data): sinkron dari Atapura Ops $(node -p "require('./src/data/ops.json').versi") — harga ${{ steps.beda.outputs.ada }}, artikel ditahan ${{ steps.beda.outputs.artikel }}"
           git push
           echo "berubah=true" >> "$GITHUB_OUTPUT"
 

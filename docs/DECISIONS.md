@@ -398,3 +398,16 @@ Borongan 1 = 9 artikel Desember (1, 4, 8, 11, 15, 18, 22, 25, 29 Des), status `t
   Pratinjau artikel terjadwal di lokal: `TAMPIL_TERJADWAL=1 npx astro build --outDir <folder>`.
 - Koreksi data dari pengecekan sumber: BaseMaster CTI untuk atap di bawah **15°** (angka 25 di brosur = berat 25 kg/rol);
   GRC tidak lagi diklaim "tidak dimakan rayap" (tanpa sumber independen).
+
+## 067 · 22 November 2026 · Artikel dipantau & ditahan dari Ops (tahap 2 dari 065; Ops DECISIONS 145)
+- `npm run artikel-ops` (`scripts/artikel-ops.mjs`): kirim semua artikel (panduan + guides, termasuk yang terjadwal) dan topik
+  kalender yang belum ditulis (`data/kalender-artikel.csv`) ke Ops `POST /api/publik/artikel`, lalu tarik slug yang ditahan pemilik
+  ke `src/data/artikel-ditahan.json`. Kunci = SINKRON_SECRET yang sudah dipakai sinkron harga (tanpa token baru untuk Rama).
+- `src/content.config.ts` membuang slug ditahan di loader (bersama penyaring tanggal) → tidak ada di halaman, daftar, sitemap,
+  llms.txt (dibuktikan dengan artikel yang sudah tayang). `TAMPIL_TERJADWAL=1` (pratinjau lokal) tetap menampilkan semuanya.
+- Workflow: `sinkron-ops.yml` menjalankannya tiap sinkron (commit + deploy bila daftar tahanan berubah); `terbit-terjadwal.yml`
+  menariknya tepat sebelum 00:05 WIB dan deploy bila ada artikel hari itu atau tahanan berubah. Ops mati = peringatan, daftar
+  tahanan lama dipakai (tidak diam-diam menayangkan yang ditahan, tidak menggagalkan terbit artikel lain).
+- Batas: artikel lain yang menautkan artikel yang ditahan akan berisi tautan ke halaman 404 sampai dilanjutkan.
+- Rama 22 Nov: artikel tidak perlu ia baca/cek dulu; menu Ops = pantauan + rem darurat. Setelah borongan, jalankan
+  `npm run artikel-ops` supaya Ops langsung memuat artikel baru (sinkron otomatis juga mengirimnya).
