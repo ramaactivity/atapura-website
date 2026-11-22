@@ -18,6 +18,12 @@
 - ✅ **Tahap 2 selesai** (DECISIONS 067, Ops 145): Ops → Lainnya → **Artikel website** (kalender, hitungan, tab per keadaan,
   Tahan/Lanjutkan khusus pemilik, tercatat di riwayat). Website kirim/tarik lewat `npm run artikel-ops` (otomatis di sinkron &
   sebelum terbit). Saat ini 59 artikel di Ops: 24 tayang, 9 terjadwal, 26 rencana.
+- ✅ **Tahap 4 terpasang** (Ops DECISIONS 146): Ops → Marketing → **SEO & GEO** + workflow Ops `pantau-seo.yml` (Senin 06:00 WIB).
+  Cek teknis sudah jalan (domain ✗, boleh diindeks ✗ mode konsep, sitemap 52 URL ✓, llms.txt ✓, PageSpeed 429 tanpa kunci).
+  Peringkat Google + AI Overview menunggu **kunci SerpApi** (Serper gagal daftar; SerpApi gratis 250 cek/bulan): Rama daftar di
+  serpapi.com → Dashboard → API Key → simpan; Claude memasang `gh secret set SERPAPI_KEY` di repo Ops + `.env.local` Ops.
+  Opsional PSI_KEY (Google Cloud API key PageSpeed, tanpa billing) supaya kecepatan terukur.
+- Menu Ops sudah dikelompokkan ulang sesi Ops (DECISIONS 147): Artikel website & SEO & GEO di grup Marketing.
 - ⏳ Berikutnya: (a) ~~borongan 1~~ — tulis 9 artikel Desember sesuai standar di dokumen kalender; (b) ~~tahap 2~~; (c) tahap 4 SEO & GEO (Rama daftar
   Serper.dev, kunci ke `.env.local` Ops); (d) tahap 5 Search Console setelah domain aktif & `bisnis.konsep = false`.
 
