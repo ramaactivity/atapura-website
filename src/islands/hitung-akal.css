@@ -14,6 +14,11 @@
 }
 .ha-teks:focus { border-color: var(--color-pinus); }
 .ha-teks::placeholder { color: var(--color-lumut); opacity: 0.8; }
+.ha-kontak { display: grid; gap: 0.6rem; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 30rem) { .ha-kontak { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); } }
+.ha-opsional { margin-left: 0.35rem; font-size: 0.8rem; color: var(--color-lumut); }
+/* Kolom jebakan bot: tidak terlihat & tidak terjangkau tab; manusia tidak pernah mengisinya. */
+.ha-jebakan { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 
 .ha-slip {
   background: var(--color-pinus); color: var(--color-embun); border-radius: 16px;

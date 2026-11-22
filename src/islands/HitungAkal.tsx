@@ -97,6 +97,11 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
   const [rangka, setRangka] = useState<Rangka>('Sudah ada');
   const [kota, setKota] = useState('');
   const [membuka, setMembuka] = useState(false);
+  // Kontak opsional (publik): diisi → lead otomatis masuk Ops lewat /api/kirim-lead (DECISIONS 068).
+  const [nama, setNama] = useState('');
+  const [wa, setWa] = useState('');
+  const [jebakan, setJebakan] = useState('');
+  const [idKirim] = useState(() => crypto.randomUUID());
   const track = useRef<HTMLDivElement>(null);
 
   // Plafon belum punya resep material: internal & publik sama-sama memakai harga terpasang × luas.
@@ -171,6 +176,19 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
       : `Estimasi terpasang: ${perM2} (total ${rentang})${harga.contoh ? ', harga acuan' : ''}, final setelah survey`,
     `(dari ${sumber})`,
   ].join('\n');
+
+  // Dikirim saat tombol WhatsApp diketuk; sendBeacon tetap jalan walau tab berganti ke WhatsApp. Gagal = diam (WA tetap terbuka).
+  const kirimLead = () => {
+    if (internal || nama.trim().length < 2 || wa.replace(/\D/g, '').length < 9) return;
+    const utm = Object.fromEntries([...new URLSearchParams(location.search)].filter(([k]) => k.startsWith('utm_')).map(([k, v]) => [k.slice(4), v.slice(0, 200)]));
+    const isi = {
+      request_id: idKirim, nama: nama.trim(), wa: wa.trim(), luas, merek: plafon ? merekPlafon : merek,
+      ...(plafon ? { pekerjaan: 'pasang_plafon' } : {}),
+      estimasi: jabo === false ? { luarJabodetabek: true } : { total: est.total, perM2: est.perM2 },
+      halaman: `${location.pathname} (${sumber})`, utm, situs: jebakan,
+    };
+    navigator.sendBeacon?.('/api/kirim-lead', new Blob([JSON.stringify(isi)], { type: 'application/json' }));
+  };
 
   // Nomor langkah dihitung saat render karena jumlah langkah bergantung pada lini & mode internal.
   let langkah = 0;
@@ -285,6 +303,18 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
             {jabo === false && <p class="ha-bantu ha-luar">Di luar Jabodetabek: {bisnis.survey.luar.charAt(0).toLowerCase() + bisnis.survey.luar.slice(1)}.</p>}
           </div>
         </li>}
+        {!internal && <li>
+          <span class="ha-no angka">{no()}</span>
+          <div class="ha-isi">
+            <p class="ha-label">Nama &amp; nomor WhatsApp <span class="ha-opsional">opsional</span></p>
+            <div class="ha-kontak">
+              <input class="ha-teks" aria-label="Nama" placeholder="Nama Anda" autoComplete="name" maxLength={120} value={nama} onInput={(e) => setNama((e.currentTarget as HTMLInputElement).value)} />
+              <input class="ha-teks" aria-label="Nomor WhatsApp" type="tel" inputMode="tel" placeholder="Contoh: 0812 3456 7890" autoComplete="tel" maxLength={25} value={wa} onInput={(e) => setWa((e.currentTarget as HTMLInputElement).value)} />
+              <input class="ha-jebakan" tabIndex={-1} aria-hidden="true" autoComplete="off" name="situs" value={jebakan} onInput={(e) => setJebakan((e.currentTarget as HTMLInputElement).value)} />
+            </div>
+            <p class="ha-bantu">Boleh dikosongkan. Kalau diisi, admin bisa menghubungi Anda lebih dulu.</p>
+          </div>
+        </li>}
       </ol>
 
       <div class="ha-slip" data-nosnippet>
@@ -361,7 +391,7 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
           target="_blank"
           rel="noopener"
           data-wa="hitung"
-          onClick={() => { setMembuka(true); setTimeout(() => setMembuka(false), 2500); }}
+          onClick={() => { kirimLead(); setMembuka(true); setTimeout(() => setMembuka(false), 2500); }}
         >
           <svg viewBox="0 0 24 24" aria-hidden="true" class="ikon-wa"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3a.4.4 0 0 0 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3Z" /></svg>
           {membuka ? 'Membuka WhatsApp…' : jabo === false ? 'Chat admin untuk lokasi Anda' : 'Kirim estimasi ke WhatsApp'}

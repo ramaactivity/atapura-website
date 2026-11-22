@@ -411,3 +411,17 @@ Borongan 1 = 9 artikel Desember (1, 4, 8, 11, 15, 18, 22, 25, 29 Des), status `t
 - Batas: artikel lain yang menautkan artikel yang ditahan akan berisi tautan ke halaman 404 sampai dilanjutkan.
 - Rama 22 Nov: artikel tidak perlu ia baca/cek dulu; menu Ops = pantauan + rem darurat. Setelah borongan, jalankan
   `npm run artikel-ops` supaya Ops langsung memuat artikel baru (sinkron otomatis juga mengirimnya).
+
+## 068 · 22 November 2026 · Kalkulator: Nama & nomor WhatsApp opsional → lead otomatis di Atapura Ops (Ops DECISIONS 150)
+- Keputusan Rama: isian **opsional** (bukan wajib) supaya calon klien tidak merasa ribet. Kalkulator publik dapat langkah
+  terakhir "Nama & nomor WhatsApp · opsional" dengan petunjuk "Boleh dikosongkan. Kalau diisi, admin bisa menghubungi Anda
+  lebih dulu." Halaman /internal tidak memakainya. Tombol WhatsApp tetap bekerja seperti sebelumnya, dengan atau tanpa isian.
+- Saat tombol WhatsApp diketuk dan nama (≥ 2 huruf) + nomor (≥ 9 angka) terisi, browser mengirim `navigator.sendBeacon` ke
+  `/api/kirim-lead` (tetap terkirim walau tab berpindah ke WhatsApp). `request_id` dibuat sekali per kunjungan, jadi ketukan
+  berulang tetap satu lead (Ops idempoten; WA sama ≤ 24 jam ke lead terbuka digabung).
+- `/api/kirim-lead` = **Vercel Function di root repo** (`api/kirim-lead.mjs`), bukan adapter Astro — situs tetap statis, tanpa
+  paket baru. Fungsi meneruskan kolom yang dikenal (nama, wa, luas, merek, pekerjaan plafon, estimasi yang dilihat klien,
+  halaman, utm) ke `https://atapura-ops.vercel.app/api/lead` dengan header `x-atapura-secret`. Env Vercel proyek `atapura`:
+  `LEAD_SECRET` (production, disalin dari env produksi Ops 22 Nov 2026; nilainya tidak pernah ditulis di repo/chat).
+- Pengaman ringan: wajib header Origin dari situs ini dan kolom jebakan `situs` kosong (bot yang mengisinya dibalas ok tanpa
+  diteruskan). Bukan pengaman kuat — spam serius ditangani nanti bila terjadi.
