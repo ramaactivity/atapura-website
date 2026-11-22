@@ -365,3 +365,19 @@ Victory Standar/Two Tone), kodenya ditambahkan ke `KODE_WAJIB` sinkron Ops. `/in
 di bawah Merek bila mereknya punya lebih dari satu varian; harga genteng & starter ikut seri (mis. Two Tone Rp220 rb, Eco Roof
 Rp315–350 rb). Maxxi & Javabitumen tetap satu varian. Tegola Master belum masuk (harga masih draf di Ops). Kalkulator publik
 tidak berubah: tetap patokan terpasang per merek dari Bang Yusuf. Dijaga `harga.test.ts` (terbukti gagal bila seri diabaikan).
+
+## 065 · 22 November 2026 · Mesin artikel SEO/GEO + backoffice website di Ops (keputusan Rama)
+Rama ingin artikel rutin 1–2×/minggu untuk SEO & GEO (riset keyword & insight wajib, bukan artikel kosong), dikelola dari
+backoffice, plus analisa posisi SEO/GEO dan komparasi kompetitor yang dipantau & dikendalikan di Ops. Pilihan Rama (semua sesuai
+rekomendasi):
+- **Borongan bulanan**: sebulan sekali sesi Claude Code meriset & menulis ±8 artikel, dijadwalkan tayang 2×/minggu (bukan agen
+  cloud mingguan — kualitas & verifikasi sumber dijaga per artikel).
+- **Tayang otomatis, bisa ditahan**: artikel ber-`terbit` di masa depan tidak ikut build; workflow harian membangun ulang situs
+  pada hari tayang. Rama bisa membaca & menahan dari Ops.
+- **Data peringkat kompetitor: Serper.dev gratis dulu** (2.500 cek; ±50 keyword/minggu ≈ 1 tahun). Bayar diputuskan saat habis.
+- **Situs dibuka untuk Google begitu domain aktif** (`bisnis.konsep = false` + Search Console). Sampai itu artikel tetap dicicil,
+  efek peringkat belum ada.
+Tahap: 1 riset & kalender konten · 2 Ops "Website → Artikel" (kalender, status, tahan/geser) · 3 mesin artikel terjadwal ·
+4 Ops "Website → SEO & GEO" (cek mingguan: posisi kita & kompetitor, sebutan AI, kesehatan teknis) · 5 Search Console.
+Artikel tetap file markdown di repo website (statis, cepat, ada riwayat git); Ops memegang rencana & status. Aturan isi artikel
+tetap: klaim bersumber, tanpa brand lain, tanpa over-promise, tanpa TKDN/lokal (memori proyek).

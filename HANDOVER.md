@@ -1,6 +1,18 @@
 # Handover
 
 - **Harga = dari Atapura Ops** (20 Nov 2026, website DECISIONS 055 / Ops 123): `src/data/ops.json` ditarik otomatis tiap jam oleh `sinkron-ops.yml`; ubah harga di Ops, bukan di `harga.ts`. `npm run tarik-ops` untuk tarik manual.
+## Mesin artikel SEO/GEO + backoffice di Ops (22 November 2026, DECISIONS 065; Ops 137)
+- Keputusan Rama: borongan bulanan (±8 artikel/sesi), tayang otomatis Selasa & Jumat, bisa ditahan dari Ops; peringkat
+  kompetitor lewat Serper.dev gratis; situs dibuka untuk Google begitu domain aktif. Fokus pembaca: Indonesia, khususnya Jabodetabek.
+- ✅ Tahap 1 riset & kalender: `docs/riset/kalender-konten-2026-12.md` (temuan, strategi lokal, standar tiap artikel, daftar
+  pantau GEO) + `data/kalender-artikel.csv` (31 topik berskor, 15 lokal; 9 bertanggal Desember = borongan 1). Autocomplete:
+  `node tools/riset/autocomplete.mjs "<seed>" … > data/riset/autocomplete-YYYY-MM.csv`.
+- ✅ Fondasi terjadwal: artikel ber-`terbit` setelah hari ini (WIB) dibuang di loader (`src/content.config.ts`) → tidak ada di
+  halaman/daftar/sitemap/llms.txt; `.github/workflows/terbit-terjadwal.yml` deploy tiap 00:05 WIB bila ada artikel terbit hari itu.
+- ⏳ Berikutnya: (a) **borongan 1** — tulis 9 artikel Desember sesuai standar di dokumen kalender; (b) **tahap 2** Ops menu
+  Website → Artikel (impor CSV, status, tahan/geser; putuskan jalur "tahan" Ops → website); (c) tahap 4 SEO & GEO (Rama daftar
+  Serper.dev, kunci ke `.env.local` Ops); (d) tahap 5 Search Console setelah domain aktif & `bisnis.konsep = false`.
+
 ## Cek kesehatan (22 November 2026, sore)
 - ⚠️ **atapura.com BELUM terdaftar**: RDAP Verisign 404 (google.com 200 sebagai pembanding), tidak ada NS/A. Padahal canonical,
   sitemap, llms.txt, JSON-LD, pricelist PDF, dan PDF product knowledge semua menulis atapura.com. Tanyakan Rama: sudah bayar di

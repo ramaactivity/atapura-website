@@ -1,0 +1,28 @@
+name: Terbitkan artikel terjadwal
+
+# DECISIONS 065: artikel ber-`terbit` di masa depan tidak ikut build (src/content.config.ts). Tiap 00:05 WIB workflow ini
+# mengecek apakah ada artikel yang terbit hari ini (tanggal WIB); bila ada, situs dibangun ulang & di-deploy. Tidak ada = diam.
+on:
+  schedule:
+    - cron: '5 17 * * *'
+  workflow_dispatch:
+
+jobs:
+  cek:
+    runs-on: ubuntu-latest
+    outputs:
+      ada: ${{ steps.cek.outputs.ada }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: cek
+        run: |
+          hari=$(TZ=Asia/Jakarta date +%F)
+          daftar=$(grep -rlE "^terbit: '?${hari}'?\s*$" src/content || true)
+          echo "Hari ini (WIB): $hari"; echo "${daftar:-tidak ada artikel terjadwal}"
+          if [ -n "$daftar" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then echo "ada=true" >> "$GITHUB_OUTPUT"; else echo "ada=false" >> "$GITHUB_OUTPUT"; fi
+
+  deploy:
+    needs: cek
+    if: needs.cek.outputs.ada == 'true'
+    uses: ./.github/workflows/deploy.yml
+    secrets: inherit

@@ -1,12 +1,28 @@
 import { defineCollection } from 'astro:content';
-import { glob } from 'astro/loaders';
+import { glob, type Loader } from 'astro/loaders';
 import { z } from 'astro/zod';
+
+// Artikel terjadwal (DECISIONS 065): entri dengan `terbit` setelah hari ini (tanggal WIB) dibuang saat koleksi dimuat, jadi
+// tidak ada halaman, daftar, sitemap, atau llms.txt yang memuatnya. Workflow terbit-terjadwal.yml membangun ulang situs
+// pada hari tayang. Satu tempat untuk semua pemanggil getCollection.
+const hariIniWib = () => new Date().toLocaleDateString('sv-SE', { timeZone: 'Asia/Jakarta' });
+const sudahTayang = (terbit: Date | string, hari = hariIniWib()) => new Date(terbit).toISOString().slice(0, 10) <= hari;
+const globTayang = (opsi: Parameters<typeof glob>[0]): Loader => {
+  const dasar = glob(opsi);
+  return {
+    ...dasar,
+    load: async (ctx) => {
+      await dasar.load(ctx);
+      for (const [id, e] of ctx.store.entries()) if (!sudahTayang(e.data.terbit as Date)) ctx.store.delete(id);
+    },
+  };
+};
 
 // Artikel format "jawaban dulu" (ai-seo) — jawaban langsung, tabel, subjudul pertanyaan, FAQ, sumber.
 // Satu bentuk untuk /panduan (Indonesia) dan /en/guides (Inggris, untuk ekspat); hanya daftar kategorinya beda.
 const artikel = <K extends [string, ...string[]]>(base: string, kategori: K) =>
   defineCollection({
-  loader: glob({ pattern: '**/*.md', base }),
+  loader: globTayang({ pattern: '**/*.md', base }),
   schema: ({ image }) =>
     z.object({
       judul: z.string().max(70),
