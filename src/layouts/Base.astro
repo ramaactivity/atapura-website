@@ -96,5 +96,16 @@ const jsonLd = [organisasi, situs, ...schema];
   </head>
   <body>
     <slot />
+    {/* Penghitung kunjungan tanpa cookie (DECISIONS 069): satu beacon kecil per halaman ke /api/kunjungan → Atapura Ops.
+        Tidak jalan di /internal, localhost, robot, dan browser yang dikendalikan otomasi (uji Playwright/Lighthouse). */}
+    <script is:inline>
+      (function () {
+        try {
+          var p = location.pathname, n = navigator;
+          if (/^\/internal/.test(p) || /^(localhost|127\.)/.test(location.hostname) || !n.sendBeacon || n.webdriver || /bot|headless|lighthouse/i.test(n.userAgent)) return;
+          n.sendBeacon('/api/kunjungan', JSON.stringify({ p: p, r: document.referrer, s: new URLSearchParams(location.search).get('utm_source') }));
+        } catch (e) {}
+      })();
+    </script>
   </body>
 </html>

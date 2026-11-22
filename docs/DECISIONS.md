@@ -425,3 +425,11 @@ Borongan 1 = 9 artikel Desember (1, 4, 8, 11, 15, 18, 22, 25, 29 Des), status `t
   `LEAD_SECRET` (production, disalin dari env produksi Ops 22 Nov 2026; nilainya tidak pernah ditulis di repo/chat).
 - Pengaman ringan: wajib header Origin dari situs ini dan kolom jebakan `situs` kosong (bot yang mengisinya dibalas ok tanpa
   diteruskan). Bukan pengaman kuat — spam serius ditangani nanti bila terjadi.
+
+## 069 · 22 November 2026 · Penghitung kunjungan tanpa cookie (Ops DECISIONS 157)
+Rama ingin angka kunjungan artikel & situs serta asal pengunjung, dipantau di Ops (Marketing → Pengunjung website, kolom
+"Dibaca 30 hari" di Artikel website). `src/layouts/Base.astro`: satu skrip inline ±400 byte memanggil `navigator.sendBeacon`
+ke `/api/kunjungan` (path, referrer, utm_source) — tidak jalan di /internal, localhost, robot, dan browser otomasi
+(`navigator.webdriver`, jadi uji Playwright/Lighthouse tidak terhitung). `api/kunjungan.mjs` (Vercel Function, pola kirim-lead
+DECISIONS 068): wajib Origin situs sendiri, tambah kota/negara dari header Vercel, IP + browser → kode acak harian sha256
+(IP tidak disimpan/diteruskan), teruskan ke Ops dengan LEAD_SECRET yang sudah ada. Tanpa cookie, tanpa banner izin.
