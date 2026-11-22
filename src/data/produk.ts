@@ -116,7 +116,7 @@ const semuaProduk: Produk[] = [
         ringkas: 'Model 3-tab, tiga lidah rata. Tampilan paling rapi dan paling umum dipakai di rumah tinggal.',
         spek: [
           { label: 'Ukuran per lembar', nilai: '1.000 × 333 mm' },
-          { label: 'Isi per bundel', nilai: '21 lembar' },
+          { label: 'Isi per bundel', nilai: '21 lembar (3 m²)' },
           { label: 'Bahan', nilai: 'Aspal modifikasi SBS, serat kaca' },
         ],
       },
@@ -126,7 +126,7 @@ const semuaProduk: Produk[] = [
         ringkas: 'Potongan tidak beraturan yang membuat atap tampak berlapis dan bertekstur setelah terpasang.',
         spek: [
           { label: 'Ukuran per lembar', nilai: '1.000 × 317,5 mm' },
-          { label: 'Isi per bundel', nilai: '22 lembar' },
+          { label: 'Isi per bundel', nilai: '22 lembar (3 m²)' },
           { label: 'Bahan', nilai: 'Aspal modifikasi SBS, serat kaca' },
         ],
       },
@@ -136,19 +136,22 @@ const semuaProduk: Produk[] = [
         ringkas: 'Potongan segi enam untuk atap yang ingin tampil beda, sering dipilih untuk bangunan berarsitektur khusus.',
         spek: [
           { label: 'Ukuran per lembar', nilai: '1.000 × 317,5 mm' },
-          { label: 'Isi per bundel', nilai: '22 lembar' },
+          { label: 'Isi per bundel', nilai: '17 lembar (2,32 m²)' },
           { label: 'Bahan', nilai: 'Aspal modifikasi SBS, serat kaca' },
         ],
       },
     ],
     warna: [
+      // Foto contoh warna CTI = ubin dari brosur resmi CTI (diberikan Rama 22 Nov 2026), diperbesar 2x + dipertajam.
       { tekstur: 'cti-ct3', judul: 'CT3 · warna solid', daftar: [{ nama: 'Black', kode: 'BK', hex: '#1E1F21' }, { nama: 'Dark Grey', kode: 'DG', hex: '#6B6D70' }, { nama: 'Dark Brown', kode: 'DB', hex: '#2E2A2B' }, { nama: 'Red', kode: 'RD', hex: '#9B2F2E' }, { nama: 'Green', kode: 'GN', hex: '#2F5A3C' }, { nama: 'Gold', kode: 'GD', hex: '#9C7347' }] },
       { tekstur: 'cti-ct3', judul: 'CT3 · warna gradasi', daftar: [{ nama: 'Midnight Black', kode: 'MIB', hex: '#2A2B2D' }, { nama: 'Charcoal Grey', kode: 'CHG', hex: '#45474A' }, { nama: 'Coffee Brown', kode: 'COB', hex: '#5A5552' }, { nama: 'Sunset Red', kode: 'SUR', hex: '#8E3A3E' }, { nama: 'Forest Green', kode: 'FOG', hex: '#2F4A33' }, { nama: 'Tuscany Gold', kode: 'TUG', hex: '#6E5A45' }] },
-      { tekstur: 'cti-ct6', judul: 'CT5 dan CT6', catatan: 'Warna khusus (custom) bisa dipesan; tanyakan ketersediaannya lewat WhatsApp.', daftar: [{ nama: 'Black', kode: 'BK', hex: '#1E1F21' }, { nama: 'Dark Grey', kode: 'DG', hex: '#6B6D70' }, { nama: 'Dark Brown', kode: 'DB', hex: '#2E2A2B' }, { nama: 'Red', kode: 'RD', hex: '#9B2F2E' }, { nama: 'Green', kode: 'GN', hex: '#2F5A3C' }, { nama: 'Gold', kode: 'GD', hex: '#9C7347' }] },
+      { tekstur: 'cti-ct5', judul: 'CT5', daftar: [{ nama: 'Black', kode: 'BK', hex: '#1E1F21' }, { nama: 'Dark Grey', kode: 'DG', hex: '#6B6D70' }, { nama: 'Dark Brown', kode: 'DB', hex: '#2E2A2B' }, { nama: 'Red', kode: 'RD', hex: '#9B2F2E' }, { nama: 'Green', kode: 'GN', hex: '#2F5A3C' }, { nama: 'Gold', kode: 'GD', hex: '#9C7347' }] },
+      { tekstur: 'cti-ct6', judul: 'CT6', catatan: 'Warna khusus (custom) bisa dipesan; tanyakan ketersediaannya lewat WhatsApp.', daftar: [{ nama: 'Black', kode: 'BK', hex: '#1E1F21' }, { nama: 'Dark Grey', kode: 'DG', hex: '#6B6D70' }, { nama: 'Dark Brown', kode: 'DB', hex: '#2E2A2B' }, { nama: 'Red', kode: 'RD', hex: '#9B2F2E' }, { nama: 'Green', kode: 'GN', hex: '#2F5A3C' }, { nama: 'Gold', kode: 'GD', hex: '#9C7347' }] },
     ],
     aksesori: [
-      { nama: 'UnderMaster', isi: 'Lapisan bawah (underlayer) gulungan 1 × 10 m yang dipasang di atas papan alas, sebelum genteng.' },
+      { nama: 'UnderMaster', isi: 'Lapisan bawah (underlayer) di atas papan alas, sebelum genteng. Gulungan 1 × 10 m atau 1 × 20 m (16 atau 32 kg), sambungan tumpang 10 cm.' },
       { nama: 'BaseMaster', isi: 'Membran bitumen yang dipasang dengan cara dibakar (torching) untuk dak atau atap di bawah 25°.' },
+      { nama: 'GuardMaster', isi: 'Membran bitumen berbutir batu berwarna (roll shingle) gulungan 1 × 10 m, untuk atap datar maupun miring.' },
     ],
     penerapan: [
       { gambar: cti1, alt: 'Ilustrasi gazebo resort tepi kolam beratap limas genteng aspal 3-tab abu tua', keterangan: 'Potongan 3-tab, abu tua, pada gazebo resort' },
@@ -229,7 +232,7 @@ const semuaProduk: Produk[] = [
     ringkas: 'Genteng aspal buatan Tegola Canadese, Italia, dalam empat seri: Eco Roof dan Top Shingles yang lebih hemat, Premium satu lapis dengan beberapa bentuk potongan, dan Master dua lapis.',
     tentang: [
       'Tegola diproduksi Tegola Canadese di Vittorio Veneto, Italia. Lembarannya memakai aspal oksidasi, tulangan serat kaca, dan butiran basal berlapis keramik.',
-      'Seri Premium tersedia dalam beberapa bentuk potongan, dari persegi sampai sisik dan mosaik. Seri Master adalah genteng dua lapis yang lebih berat dan bertekstur.',
+      'Seri Premium tersedia dalam beberapa bentuk potongan: persegi, sisik, segi enam (Mosaik), dan persegi bertingkat (Gothik). Seri Master adalah genteng dua lapis yang lebih berat dan bertekstur.',
     ],
     fakta: [
       { label: 'Pabrikan', nilai: 'Tegola Canadese, Italia' },
@@ -275,7 +278,7 @@ const semuaProduk: Produk[] = [
         spek: [
           { label: 'Ukuran per lembar', nilai: '1.000 × 340 mm' },
           { label: 'Berat', nilai: '±10,7 kg/m²' },
-          { label: 'Isi per bundel', nilai: '21 lembar' },
+          { label: 'Isi per bundel', nilai: '21 lembar (3,05 m²)' },
           { label: 'Genteng saja', nilai: '±Rp420 ribu per m²' },
         ],
       },
@@ -286,15 +289,27 @@ const semuaProduk: Produk[] = [
         spek: [
           { label: 'Ukuran per lembar', nilai: '1.000 × 340 mm' },
           { label: 'Berat', nilai: '±10,7 kg/m²' },
+          { label: 'Isi per bundel', nilai: '3,05 m²' },
         ],
       },
       {
         nama: 'Premium Mosaik',
         foto: seriFoto('tegola-premium-mosaik'),
-        ringkas: 'Satu lapis dengan potongan mosaik yang memberi pola acak di bidang atap.',
+        ringkas: 'Satu lapis berpotongan segi enam dengan warna dua nada, bidang atap tampak seperti sisik besar.',
         spek: [
           { label: 'Ukuran per lembar', nilai: '1.000 × 337 mm' },
           { label: 'Berat', nilai: '±9,0 kg/m²' },
+          { label: 'Isi per bundel', nilai: '3,45 m²' },
+        ],
+      },
+      {
+        nama: 'Premium Gothik',
+        foto: seriFoto('tegola-premium-gothik'),
+        ringkas: 'Satu lapis dengan lidah persegi berbagai lebar dan warna dua nada, sehingga atap tampak berlapis.',
+        spek: [
+          { label: 'Ukuran per lembar', nilai: '1.000 × 337 mm' },
+          { label: 'Berat', nilai: '±9,0 kg/m²' },
+          { label: 'Isi per bundel', nilai: '3,45 m²' },
         ],
       },
       {
@@ -304,16 +319,28 @@ const semuaProduk: Produk[] = [
         spek: [
           { label: 'Ukuran per lembar', nilai: '998 × 337 mm' },
           { label: 'Berat', nilai: '±12,3 kg/m²' },
+          { label: 'Isi per bundel', nilai: '2 m²' },
           { label: 'Paku per lembar', nilai: '4 (6 untuk kemiringan 60–85°)' },
           { label: 'Genteng saja', nilai: '±Rp550 ribu per m²' },
         ],
       },
     ],
     warna: [
-      { tekstur: 'tegola-premium-rectangular', judul: 'Premium Rectangular', catatan: 'Warna Premium Traditional, Mosaik, dan Master bisa ditanyakan lewat WhatsApp.', daftar: [{ nama: 'Black', kode: '060', hex: '#2B2C2E' }, { nama: 'Slate Grey', kode: '061', hex: '#6A6E73' }, { nama: 'Light Grey', kode: '053', hex: '#A3A5A6' }, { nama: 'Dark Grey', kode: '550', hex: '#8A8A8C' }, { nama: 'Tone Green', kode: '070', hex: '#5A7A55' }, { nama: 'Coppery Red', kode: '503', hex: '#8E3B33' }, { nama: 'Tone Red', kode: '002', hex: '#8A3E35' }, { nama: 'Autumn Red', kode: '506', hex: '#8E5040' }, { nama: 'Dark Brown', kode: '521', hex: '#4A3530' }, { nama: 'Wood', kode: '547', hex: '#5A3E36' }] },
-      // Warna di bawah: perkiraan warna layar (hex), belum ada foto contoh warna; nama & kode dari brosur Dokter Atap Apr 2025.
-      { tekstur: 'tegola-eco-roof', judul: 'Eco Roof (Rectangular, Traditional, Hexagonal)', daftar: [{ nama: 'Mixed Grey', hex: '#6E7074' }, { nama: 'Mixed Green', hex: '#4F6A4A' }, { nama: 'Mixed Brown', hex: '#5E4636' }, { nama: 'Mixed Red', hex: '#8A4034' }] },
-      { tekstur: 'tegola-top-shingles', judul: 'Top Shingles Rectangular', daftar: [{ nama: 'Black', hex: '#2B2C2E' }, { nama: 'Red', kode: '001', hex: '#9A3A30' }, { nama: 'Shaded Red', kode: '002', hex: '#8A3C33' }, { nama: 'Shaded Brown', kode: '020', hex: '#5A4033' }, { nama: 'Slate Grey', kode: '061', hex: '#6A6E73' }, { nama: 'Shaded Green', kode: '053', hex: '#4E6B4C' }] },
+      // Nama, kode, kelompok, dan foto contoh (ubin dipotong dari brosur distributor Tegola, diberikan Rama 22 Nov 2026,
+      // diperbesar 2x + dipertajam: tools/warna/ & DECISIONS 063); hex = cadangan bila foto tidak ada.
+      { tekstur: 'tegola-master', judul: 'Master', daftar: [{ nama: 'Terracotta', kode: '104', hex: '#A0554A' }, { nama: 'Wood Shake', kode: '129', hex: '#6E5446' }, { nama: 'Dark Slate', kode: '151', hex: '#4A4C4F' }, { nama: 'Light Slate', kode: '153', hex: '#9AA0A4' }, { nama: 'Stone Green', kode: '156', hex: '#6E8F69' }, { nama: 'Ancient Stone', kode: '167', hex: '#5E6066' }, { nama: 'Stone Grey', kode: '174', hex: '#7E847A' }, { nama: 'Blue', kode: '180', hex: '#4F79A8' }] },
+      { tekstur: 'tegola-master-j', judul: 'Master J', daftar: [{ nama: 'Red', kode: '119', hex: '#7E3434' }, { nama: 'Brown', kode: '139', hex: '#5D4A3E' }, { nama: 'Dark Slate', kode: '160', hex: '#44464A' }, { nama: 'Green', kode: '169', hex: '#567257' }] },
+      { tekstur: 'tegola-master-coppo', judul: 'Master Coppo', daftar: [{ nama: 'Coppo', hex: '#B0704E' }] },
+      { tekstur: 'tegola-premium-mosaik', judul: 'Premium Mosaik', daftar: [{ nama: '2-Tone Red', kode: '010', hex: '#9A4237' }, { nama: '2-Tone Brown', kode: '020', hex: '#6E5E5A' }, { nama: 'Black', kode: '060', hex: '#2B2E34' }, { nama: '2-Tone Grey', kode: '061', hex: '#7C8590' }, { nama: '2-Tone Green', kode: '070', hex: '#5F8261' }, { nama: '2-Tone Blue', kode: '081', hex: '#4F78A6' }] },
+      { tekstur: 'tegola-premium-gothik', judul: 'Premium Gothik', daftar: [{ nama: '2-Tone Red', kode: '203', hex: '#9A473C' }, { nama: '2-Tone Brown', kode: '230', hex: '#5E5048' }, { nama: '2-Tone Black', kode: '251', hex: '#4A5056' }, { nama: '2-Tone Grey', kode: '254', hex: '#A3A8AD' }, { nama: '2-Tone Green', kode: '274', hex: '#4F7A50' }, { nama: '2-Tone Blue', kode: '280', hex: '#5D8FC4' }] },
+      { tekstur: 'tegola-premium-liberty', judul: 'Premium Liberty', daftar: [{ nama: 'European Red', kode: '004', hex: '#B07A64' }, { nama: '2-Tone Black', kode: '051', hex: '#4A4C50' }] },
+      { tekstur: 'tegola-premium-traditional', judul: 'Premium Traditional', daftar: [{ nama: 'Brick Red', kode: '006', hex: '#B5553A' }, { nama: 'Krakow', kode: '008', hex: '#8E4A52' }, { nama: '2-Tone Red', kode: '010', hex: '#8A3A33' }, { nama: '2-Tone Brown', kode: '023', hex: '#4E3A33' }, { nama: 'Slate Grey', kode: '066', hex: '#5A6366' }, { nama: '2-Tone Green', kode: '073', hex: '#5E8A4E' }, { nama: 'Blue', kode: '080', hex: '#3F7FC0' }] },
+      { tekstur: 'tegola-premium-rectangular', judul: 'Premium Rectangular', daftar: [{ nama: 'Red', kode: '001', hex: '#9A3A34' }, { nama: '2-Tone Red', kode: '002', hex: '#9A4A36' }, { nama: 'Spanish Red', kode: '003', hex: '#9E4A3E' }, { nama: 'European Red', kode: '004', hex: '#B0806A' }, { nama: '2-Tone Brown', kode: '020', hex: '#6E5650' }, { nama: 'Dark Brown', kode: '021', hex: '#4A3632' }, { nama: 'Dark Grey', kode: '050', hex: '#8C8A8E' }, { nama: '2-Tone Black', kode: '051', hex: '#3E3E42' }, { nama: 'Light Grey', kode: '053', hex: '#B5B8BA' }, { nama: 'Black', kode: '060', hex: '#2B2E36' }, { nama: 'Slate Grey', kode: '061', hex: '#5A5E66' }, { nama: '2-Tone Green', kode: '070', hex: '#5E8A55' }, { nama: 'Blue', kode: '080', hex: '#4A86C0' }] },
+      { tekstur: 'tegola-top-shingles-traditional', judul: 'Top Shingles Traditional', daftar: [{ nama: 'Unired', kode: '001', hex: '#8E3A33' }, { nama: '2-Tone Red', kode: '010', hex: '#8A4040' }, { nama: '2-Tone Brown', kode: '020', hex: '#6E5A4E' }, { nama: 'Black', kode: '060', hex: '#2E3236' }, { nama: 'Green', kode: '075', hex: '#3E7A55' }, { nama: '2-Tone Blue', kode: '083', hex: '#4E7FB0' }] },
+      { tekstur: 'tegola-top-shingles-rectangular', judul: 'Top Shingles Rectangular', daftar: [{ nama: 'Unired', kode: '001', hex: '#8E3533' }, { nama: '2-Tone Red', kode: '002', hex: '#8A4038' }, { nama: 'Spanish Red', kode: '003', hex: '#8E3A35' }, { nama: 'Brick', kode: '006', hex: '#7E3A33' }, { nama: '2-Tone Brown', kode: '020', hex: '#6E5046' }, { nama: 'Dark Grey', kode: '050', hex: '#9EA0A3' }, { nama: 'Black', kode: '060', hex: '#2C2E32' }, { nama: 'Slate', kode: '061', hex: '#3E4448' }, { nama: '2-Tone Green', kode: '070', hex: '#4E7A50' }, { nama: '2-Tone Blue', kode: '083', hex: '#4A5260' }] },
+      { tekstur: 'tegola-eco-roof-hexagonal', judul: 'Eco Roof Hexagonal', daftar: [{ nama: 'Red', kode: '209', hex: '#8E4036' }, { nama: 'Brown', kode: '239', hex: '#6A5048' }, { nama: 'Grey', kode: '269', hex: '#8A8C8E' }, { nama: 'Green', kode: '279', hex: '#4E6A50' }] },
+      { tekstur: 'tegola-eco-roof-traditional', judul: 'Eco Roof Traditional', daftar: [{ nama: 'Mixed Red', kode: '013', hex: '#8A4034' }, { nama: 'Mixed Brown', kode: '032', hex: '#4E3A32' }, { nama: 'Mixed Slate', kode: '065', hex: '#4E5256' }, { nama: 'Mixed Green', kode: '078', hex: '#5A7A50' }] },
+      { tekstur: 'tegola-eco-roof-rectangular', judul: 'Eco Roof Rectangular', daftar: [{ nama: 'Mixed Red', kode: '013', hex: '#8A4034' }, { nama: 'Mixed Brown', kode: '032', hex: '#4E3A32' }, { nama: 'Mixed Slate', kode: '065', hex: '#4E5256' }, { nama: 'Mixed Green', kode: '078', hex: '#5A7A50' }] },
     ],
     aksesori: [
       { nama: 'Startbar', isi: 'Membran lapisan bawah yang diwajibkan pabrik untuk pemasangan dengan paku pada kemiringan 14° ke atas.' },

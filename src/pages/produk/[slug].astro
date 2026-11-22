@@ -311,7 +311,8 @@ const schema = [
 
   .warna-grup { margin-top: 2rem; }
   .warna-judul { font-size: 1.1rem; font-weight: 500; letter-spacing: -0.02em; }
-  .warna { display: grid; gap: 1.25rem 1rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 6.25rem), 1fr)); margin-top: 1rem; }
+  .warna { display: grid; gap: 1.25rem 1rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 9.5rem), 1fr)); margin-top: 1rem; }
+  @media (max-width: 47.99rem) { .warna { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 0.75rem; } }
   .warna li { display: grid; }
   .warna-pilih { display: grid; gap: 0.3rem; width: 100%; padding: 0; border: 0; background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; border-radius: 0.85rem; }
   .warna-pilih:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 3px; }
