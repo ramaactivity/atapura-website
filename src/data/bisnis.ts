@@ -12,7 +12,7 @@ export const bisnis = {
   // KONSEP: situs ini konsep untuk diajukan ke partner (2 Nov 2026). Termin, garansi, dan harga mengikuti
   // praktik vendor terpercaya, belum keputusan final. Selama true: noindex + robots Disallow, supaya
   // Google/AI tidak mengutip angka konsep sebagai janji Atapura. Ubah ke false saat partner setuju.
-  konsep: true,
+  konsep: false, // dibuka untuk Google oleh Rama 23 Nov 2026 setelah atapura.com live
   nama: 'Atapura',
   namaLegal: 'PT Atapura Karya Lestari',
   statusLegal: 'dalam proses pendirian',
