@@ -7,6 +7,7 @@ import KartuProduk from '../../components/KartuProduk.astro';
 import IkonLayanan from '../../components/IkonLayanan.astro';
 import { TAMPIL_PLAFON, waLink } from '../../data/bisnis';
 import { aksesoris, rupiah } from '../../data/aksesoris';
+import { harga, tanggalPanjang } from '../../data/harga';
 
 const situs = new URL('/', Astro.site).href;
 // Catatan harga di bawah tiap kelompok lini.
@@ -47,7 +48,7 @@ const schema = [
         <nav class="remah" aria-label="Remah roti"><a href="/">Beranda</a><span aria-hidden="true">/</span><span>Produk &amp; layanan</span></nav>
         <div class="pk-kepala">
           <h1 class="pk-judul">{TAMPIL_PLAFON ? 'Dari rangka sampai plafon,' : 'Dari rangka sampai genteng,'} <span class="redup">satu tim yang pasang.</span></h1>
-          <p class="pk-lead">{TAMPIL_PLAFON ? 'Atap bitumen, plafon PVC, dan rangka baja ringan' : 'Atap bitumen dan rangka baja ringan'} dari merek yang kami pasang sendiri. Harga terpasang per m² tertulis di tiap produk.</p>
+          <p class="pk-lead">{TAMPIL_PLAFON ? 'Atap bitumen, plafon PVC, dan rangka baja ringan' : 'Atap bitumen dan rangka baja ringan'} dari merek yang kami pasang sendiri. Harga terpasang per m² tertulis di tiap produk, berlaku sejak {tanggalPanjang(harga.berlakuSejak)}.</p>
         </div>
         <nav class="pk-lompat" aria-label="Lompat ke jenis produk">
           {kelompok.map(({ l, daftar }) => <a href={`#judul-${l}`}>{LINI[l].nama}<span>{daftar.length}</span></a>)}

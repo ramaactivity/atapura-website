@@ -4,7 +4,7 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { Image } from 'astro:assets';
 import { LINI, fotoWarna, produk, rentangProduk, sampulProduk, type Produk } from '../../data/produk';
-import { bagianRentang, harga } from '../../data/harga';
+import { bagianRentang, estimasiPublik, harga, tanggalPanjang } from '../../data/harga';
 import KartuProduk from '../../components/KartuProduk.astro';
 import GaleriProduk from '../../components/GaleriProduk.astro';
 import { bisnis, waLink } from '../../data/bisnis';
@@ -28,6 +28,8 @@ const rentang = rentangProduk(p);
 const genteng = p.lini === 'atap' && p.harga ? harga.merek[p.harga].genteng : null;
 // Contoh total untuk 100 m² supaya angka per m² langsung terbayang (riset UX katalog: perkiraan total dekat tombol).
 const contoh = rentang && bagianRentang(rentang[0] * 100, rentang[1] * 100);
+// Lama pasang atap dari produktivitas tim di Ops (sama dengan Hitung AKAL); rangka menulisnya di fakta sendiri.
+const hari = p.lini === 'atap' && p.harga ? estimasiPublik(100, p.harga).hari : null;
 // Jaminan per lini (rangka & survey plafon: nilai sementara hasil riset 18 Nov, dikoreksi Bang Yusuf Kamis 19 Nov).
 const jaminan: Record<Produk['lini'], string[]> = {
   atap: [`Garansi pemasangan ${bisnis.garansiPemasanganTahun} tahun`, 'Survey gratis di Jabodetabek'],
@@ -100,8 +102,14 @@ const schema = [
         <aside class="slip" aria-label={`Ringkasan ${p.nama}`}>
           <dl class="slip-daftar">
             {p.fakta.map((f) => <div><dt>{f.label}</dt><dd>{f.nilai}</dd></div>)}
+            {hari && <div><dt>Lama pasang</dt><dd>±{harga.m2PerHari[0]}–{harga.m2PerHari[1]} m² per hari</dd></div>}
           </dl>
-          {contoh && <p class="slip-contoh">Contoh 100 m²: <b>±Rp{contoh.min}–{contoh.max} {contoh.satuan === 'jt' ? 'juta' : 'ribu'}</b> terpasang</p>}
+          {contoh && (
+            <p class="slip-contoh">
+              Contoh 100 m²: <b>±Rp{contoh.min}–{contoh.max} {contoh.satuan === 'jt' ? 'juta' : 'ribu'}</b> terpasang{hari && <>, <span class="tanpa-putus">sekitar {hari[0]}–{hari[1]} hari kerja</span></>}
+              <span class="slip-tanggal">Harga per {tanggalPanjang(harga.berlakuSejak)}</span>
+            </p>
+          )}
           <div class="slip-aksi">
             {bisaDihitung && <a class="pill pill-tunas" href={`/hitung?merek=${encodeURIComponent(p.nama)}`}>Hitung biaya dengan {p.nama}</a>}
             <a class:list={['pill', bisaDihitung ? 'pill-garis' : 'pill-tunas']} href={waLink(pesan)} target="_blank" rel="noopener" data-wa="produk">Tanya {p.lini === 'rangka' ? namaPanjang : p.nama} lewat WhatsApp</a>
@@ -300,6 +308,7 @@ const schema = [
   .slip-aksi .pill { justify-content: center; }
   .slip-contoh { margin-top: 0.75rem; padding: 0.7rem 0.85rem; border-radius: 12px; background: var(--color-embun); font-size: var(--fs-14); color: var(--color-lumut); font-variant-numeric: tabular-nums; }
   .slip-contoh b { color: var(--color-tinta); font-weight: 500; }
+  .slip-tanggal { display: block; margin-top: 0.2rem; font-size: var(--fs-13); }
   .slip-jaminan { display: grid; gap: 0.4rem; margin-top: 1rem; }
   .slip-jaminan li { display: flex; align-items: center; gap: 0.5rem; font-size: var(--fs-14); color: var(--color-lumut); }
   .slip-jaminan svg { flex: none; width: 1.05rem; height: 1.05rem; fill: none; stroke: var(--color-pinus); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }

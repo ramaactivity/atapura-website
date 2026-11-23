@@ -556,3 +556,9 @@ Audit 23 Nov: halaman area dibuka dengan statistik (puting beliung, asbes), harg
 - `merekTermurah` dipindah ke produk.ts (dipakai /tentang dan kotak area). Paragraf harga di 9 file area tidak lagi menulis angka
   (merujuk kotak layanan); jawaban FAQ memakai `{harga-merek}` yang diisi template dari data, jadi FAQPage schema ikut benar.
 - /area ditutup bagian "Lokasi Anda tidak ada di daftar? Tetap kami kerjakan." + Hitung estimasi + WhatsApp (`data-wa="area-indeks"`).
+
+## 081 · 23 November 2026 · Tanggal berlaku harga & lama pasang di halaman merek
+Audit 23 Nov: tanggal berlaku harga hanya ada di artikel harga & Hitung, tidak di /produk dan halaman merek; lama pasang hanya
+ada di rangka. Slip harga halaman merek atap kini memuat baris "Lama pasang ±a–b m² per hari" (produktivitas Ops, sama dengan
+Hitung AKAL), contoh 100 m² ditambah perkiraan hari kerja, dan "Harga per {tanggal}" dari `harga.berlakuSejak`. /produk:
+pengantar menyebut tanggal berlaku harga. Rangka tetap memakai baris lama pasang di datanya sendiri.
