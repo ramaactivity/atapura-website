@@ -26,7 +26,7 @@ const layanan = {
   '@type': 'Service',
   '@id': `${url}#layanan`,
   name: d.judul,
-  serviceType: 'Pemasangan dan perbaikan atap bitumen (genteng aspal)',
+  serviceType: 'Pemasangan atap bitumen (genteng aspal)',
   description: d.ringkasan,
   provider: { '@id': `${situs}#bisnis` },
   areaServed: d.cakupan.map((c) => ({ '@type': c.jenis, name: `${c.nama}, Indonesia` })),

@@ -4,7 +4,7 @@
 // Harga hanya dari harga.ts (Bang Yusuf); merek tanpa harga tampil "Tanya admin".
 import type { ImageMetadata } from 'astro';
 import { harga, rentangRangka, type Merek } from './harga';
-import { TAMPIL_PLAFON } from './bisnis';
+import { TAMPIL_PLAFON, waLink } from './bisnis';
 import cti1 from '../../assets/gambar/magnific/penerapan-cti-ct3-gazebo-3x2.jpg';
 import maxxi1 from '../../assets/gambar/magnific/penerapan-maxxi-promaxxi-rumah-3x2.jpg';
 import cti2 from '../../assets/gambar/magnific/penerapan-cti-ct3-kafe-3x2.jpg';
@@ -657,13 +657,15 @@ export function sampulProduk(p: Produk): { src: ImageMetadata; alt: string } | u
   if (w?.f) return { src: w.f, alt: `Contoh tekstur ${namaLengkap(p).toLowerCase()} warna ${w.x.nama}` };
 }
 
-/** Layanan yang ditampilkan di /produk (isi singkat, tanpa janji prosedural baru). */
+/** Layanan di /produk dan kartu beranda. Wajib sinkron dengan Ops (Rama, 23 Nov 2026): pekerjaan = PEKERJAAN di Ops
+ *  src/lib/crm/lead.ts (pasang baru, ganti atap lama, rangka baja ringan, pasang plafon), cara beli = JENIS di Ops
+ *  src/lib/hitung/penawaran.ts (material + pasang, material saja, jasa pasang saja). Perbaikan bocor tidak ada (Ops, 19 Nov). */
 const semuaLayanan = [
-  { nama: 'Pasang atap baru', ikon: 'atap-baru', isi: 'Rumah atau rangka baru, dipasang lima lapis.', href: '/panduan/lima-lapis-pemasangan-atap-bitumen' },
-  { nama: 'Ganti atap lama', ikon: 'ganti-atap', isi: 'Genteng berat atau asbes diganti genteng aspal.', href: '/panduan/ganti-atap-rumah-izin-lama-tanpa-pindah' },
-  { nama: 'Perbaikan atap bocor', ikon: 'bocor', isi: 'Kirim foto lewat WhatsApp, tim datang bila perlu.', href: '/panduan/atap-bocor-penyebab-dan-cara-mengatasi' },
+  { nama: 'Pasang atap baru', ikon: 'atap-baru', isi: 'Untuk rumah yang sedang dibangun, di atas rangka baja ringan maupun kayu.', href: '/panduan/lima-lapis-pemasangan-atap-bitumen' },
+  { nama: 'Ganti atap lama', ikon: 'ganti-atap', isi: 'Genteng beton, keramik, atau asbes diganti genteng aspal yang jauh lebih ringan.', href: '/panduan/ganti-atap-rumah-izin-lama-tanpa-pindah' },
+  { nama: 'Rangka baja ringan', ikon: 'rangka', isi: 'Taso, Hi-Steel, atau K-Steel, sudah dengan jasa pasang.', href: '/produk/rangka-baja-ringan' },
   { nama: 'Pasang plafon', ikon: 'plafon', isi: 'Plafon PVC Shunda atau Javafon, sudah dengan pasang.', href: '/produk#judul-plafon' },
-  { nama: 'Rangka baja ringan', ikon: 'rangka', isi: 'Taso, Hi-Steel, atau K-Steel, sudah dengan pasang.', href: '/produk/rangka-baja-ringan' },
-  { nama: 'Villa, kafe, dan proyek', ikon: 'proyek', isi: TAMPIL_PLAFON ? 'Atap dan plafon dengan jadwal kerja per bagian.' : 'Atap dan rangka dengan jadwal kerja per bagian.', href: '/panduan/atap-ruko-kafe-kos' },
+  { nama: 'Beli material saja', ikon: 'material', isi: 'Genteng aspal, alas, underlayment, dan aksesoris lengkap untuk dipasang tukang Anda.', href: '/produk#judul-atap' },
+  { nama: 'Jasa pasang saja', ikon: 'jasa', isi: 'Material sudah Anda siapkan, tim kami yang memasang.', href: waLink('Halo Atapura, material atap saya sudah ada. Saya mau tanya jasa pasang saja.') },
 ] as const;
 export const layanan = semuaLayanan.filter((l) => TAMPIL_PLAFON || l.ikon !== 'plafon');

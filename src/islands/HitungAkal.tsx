@@ -19,7 +19,9 @@ const angka = (n: number) => n.toLocaleString('id-ID');
 // Rentang ringkas; satu angka saja kalau batas bawah dan atas sama (mis. harga material yang sudah pasti).
 const kisaran = (r: readonly [number, number], d = 1) => kisaranRupiah(r, d);
 const termin = bisnis.pembayaran.jasa.map((t) => t.persen).join('/');
-const PEKERJAAN = ['Pasang baru', 'Ganti atap lama', 'Perbaikan'] as const;
+// Sinkron dengan PEKERJAAN di Ops (perbaikan bocor tidak ada sejak 19 Nov 2026); nilai Ops ikut terkirim bersama lead.
+const PEKERJAAN = ['Pasang baru', 'Ganti atap lama'] as const;
+const PEKERJAAN_OPS: Record<(typeof PEKERJAAN)[number], string> = { 'Pasang baru': 'pasang_baru', 'Ganti atap lama': 'ganti_atap_lama' };
 const RANGKA = ['Sudah ada', ...(Object.keys(harga.rangka.merek) as MerekRangka[])] as const;
 type Rangka = (typeof RANGKA)[number];
 type Pekerjaan = (typeof PEKERJAAN)[number];
@@ -187,7 +189,7 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
     const utm = Object.fromEntries([...new URLSearchParams(location.search)].filter(([k]) => k.startsWith('utm_')).map(([k, v]) => [k.slice(4), v.slice(0, 200)]));
     const isi = {
       request_id: idKirim, nama: nama.trim(), wa: wa.trim(), luas, merek: plafon ? merekPlafon : merek,
-      ...(plafon ? { pekerjaan: 'pasang_plafon' } : {}),
+      pekerjaan: plafon ? 'pasang_plafon' : PEKERJAAN_OPS[pekerjaan],
       estimasi: jabo === false ? { luarJabodetabek: true } : { total: est.total, perM2: est.perM2 },
       halaman: `${location.pathname} (${sumber})`, utm, situs: jebakan,
     };
@@ -352,9 +354,6 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
           })()}
         </p>
         <p class="hasil-durasi angka">Total {rentang}{est.hari && ` · ${est.hari[0]}–${est.hari[1]} hari kerja`}</p>
-        {rinciAtap && pekerjaan === 'Perbaikan' && (
-          <p class="ha-catatan">Untuk perbaikan, biaya bergantung pada sumber bocor yang ditemukan saat survey. Angka di atas adalah biaya penggantian penuh sebagai batas atas.</p>
-        )}
         {rinciAtap ? (
           <dl class="ha-bayar">
             <div><dt>Material</dt><dd><b class="angka">{kisaran(est.material, d)}</b> dibayar sebelum dikirim</dd></div>

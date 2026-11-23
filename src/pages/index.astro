@@ -12,19 +12,19 @@ import Foto from '../components/Foto.astro';
 import { Image } from 'astro:assets';
 import heroDesktop from '../../assets/gambar/magnific/hero-desktop.jpg';
 import heroHp from '../../assets/gambar/magnific/hero-hp.jpg';
-import villa from '../../assets/gambar/magnific/segmen-villa-3x2.jpg';
 import kafe from '../../assets/gambar/magnific/segmen-kafe-3x2.jpg';
 import kafeHp from '../../assets/gambar/magnific/segmen-kafe-4x5.jpg';
 import terasHujan from '../../assets/gambar/magnific/faq-teras-hujan-16x9.jpg';
-import fotoRumahBaru from '../../assets/gambar/magnific/penerapan-rangka-rumah-baru-3x2.jpg';
+import fotoPasangBaru from '../../assets/gambar/magnific/artikel-tukang-pasang-3x2.jpg';
 import fotoGantiAtap from '../../assets/gambar/magnific/ganti-atap-per-bagian-3x2.jpg';
-import fotoBocor from '../../assets/gambar/magnific/artikel-bocor-ember-3x2.jpg';
+import fotoRangka from '../../assets/gambar/magnific/penerapan-rangka-rumah-baru-3x2.jpg';
+import fotoMaterial from '../../assets/gambar/magnific/pricelist-material-lengkap.jpg';
 import '../styles/desktop.css';
 import { bisnis, waLink } from '../data/bisnis';
 import { tahap } from '../data/cara-kerja';
 import { bagianRentang, estimasiPublik, harga, rentangRangka, tanggalPanjang, type Merek } from '../data/harga';
 import LogoKlien from '../components/LogoKlien.astro';
-import { produk } from '../data/produk';
+import { produk, layanan as daftarLayanan } from '../data/produk';
 
 // Kartu contoh hitungan di hero desktop: angka dihitung dari rumus yang sama dengan kalkulator (satu sumber).
 const contohHitung = ([['Rumah satu lantai', 90, 'Maxxi'], ['Rumah dua lantai', 120, 'CTI'], ['Villa', 180, 'Javabitumen']] as const).map(([jenis, luas, merek]) => {
@@ -42,13 +42,16 @@ const logoMerek = produk.filter((p) => p.lini === 'atap').sort((a, b) => urutan.
 });
 const hari120 = estimasiPublik(120, 'CTI').hari;
 
-// Kartu layanan beranda: tiap kartu menaut ke panduan yang menjawab kebutuhan itu (tautan internal SEO).
-const layanan = [
-  { judul: 'Pasang atap baru', teks: 'Untuk rumah yang sedang dibangun, dengan rangka baja ringan maupun kayu.', foto: fotoRumahBaru, alt: 'Ilustrasi rumah baru dengan rangka atap baja ringan', href: '/panduan/rangka-atap-bitumen-baja-ringan-atau-kayu' },
-  { judul: 'Ganti atap lama', teks: 'Genteng beton atau keramik yang berat diganti genteng aspal 8,5–13 kg/m², jauh lebih ringan untuk rangka.', foto: fotoGantiAtap, alt: 'Ilustrasi tukang mengganti atap rumah dua lantai dengan genteng aspal', href: '/panduan/ganti-atap-rumah-izin-lama-tanpa-pindah' },
-  { judul: 'Perbaikan atap bocor', teks: 'Sumber bocornya dicari dulu, baru diperbaiki.', foto: fotoBocor, alt: 'Ilustrasi ember menampung tetesan dari plafon yang bocor', href: '/panduan/atap-bocor-penyebab-dan-cara-mengatasi' },
-  { judul: 'Villa, kafe & usaha', teks: 'Pilihan warna dan motif yang tampil rapi. Jadwal kerja dibahas di awal supaya usaha tidak lama tutup.', foto: villa, alt: 'Ilustrasi villa beratap genteng aspal di dataran tinggi', href: '/panduan/atap-ruko-kafe-kos' },
-];
+// Kartu layanan beranda = daftar layanan bersama (src/data/produk.ts, sinkron dengan Ops). Kartu berfoto untuk layanan
+// yang punya foto; "Jasa pasang saja" tampil sebagai baris kecil di bawah kartu.
+const fotoLayanan: Partial<Record<string, { src: ImageMetadata; alt: string }>> = {
+  'atap-baru': { src: fotoPasangBaru, alt: 'Ilustrasi tukang memasang genteng aspal di atap rumah baru' },
+  'ganti-atap': { src: fotoGantiAtap, alt: 'Ilustrasi tukang mengganti atap rumah dua lantai dengan genteng aspal' },
+  rangka: { src: fotoRangka, alt: 'Ilustrasi rumah baru dengan rangka atap baja ringan' },
+  material: { src: fotoMaterial, alt: 'Ilustrasi material atap lengkap: genteng aspal, alas, underlayment, dan aksesoris' },
+};
+const layanan = daftarLayanan.flatMap((l) => { const f = fotoLayanan[l.ikon]; return f ? [{ judul: l.nama, teks: l.isi, href: l.href, foto: f.src, alt: f.alt }] : []; });
+const jasaSaja = daftarLayanan.find((l) => l.ikon === 'jasa');
 // Harga terpasang termurah dari data Ops (ikut berubah otomatis).
 const hargaMulai = Math.min(...Object.values(harga.merek).map((m) => m.terpasang[0])) / 1000;
 
@@ -197,6 +200,7 @@ const faqSchema = {
             </li>
           ))}
         </ul>
+        {jasaSaja && <p class="lyn-catatan">Material sudah ada? <a class="lyn-wa" href={jasaSaja.href} target="_blank" rel="noopener" data-wa="jasa-saja">Tanya {jasaSaja.nama.toLowerCase()}</a></p>}
         <div id="layanan-proyek" class="lyn-pita">
           <div>
             <p class="lyn-pita-label">Untuk perusahaan</p>
@@ -470,7 +474,7 @@ const faqSchema = {
     const perbarui = () => cta.classList.toggle('tampil', heroLewat && terlihat.size === 0);
     new IntersectionObserver(([e]) => { heroLewat = !e.isIntersecting && e.boundingClientRect.top < 0; perbarui(); }).observe(document.querySelector('.hero')!);
     const io = new IntersectionObserver((es) => { es.forEach((e) => (e.isIntersecting ? terlihat.add(e.target) : terlihat.delete(e.target))); perbarui(); });
-    document.querySelectorAll('#hitung, .penutup-isi, footer').forEach((el) => io.observe(el));
+    document.querySelectorAll('#hitung, .lyn-pita, .penutup-isi, footer').forEach((el) => io.observe(el));
   }
 
   // Tombol WA melayang muncul di HP setelah slip Hitung AKAL lewat, supaya tidak dobel dengan tombol di slip.
@@ -659,6 +663,9 @@ const faqSchema = {
     .lyn-kartu:hover { transform: translateY(-3px); box-shadow: 0 1px 2px rgb(16 35 30 / 0.06), 0 22px 40px -20px rgb(16 35 30 / 0.4); }
     .lyn-kartu:hover .lyn-panah { background: var(--color-pinus); color: var(--color-tunas); box-shadow: none; }
   }
+  /* Aksi WhatsApp tanpa panah (aturan tautan global.css). */
+  .lyn-wa { display: inline-flex; align-items: center; min-height: 44px; font-weight: 500; color: var(--color-pinus); text-decoration: underline; text-decoration-color: rgb(16 35 30 / 0.35); text-underline-offset: 0.25em; }
+  .lyn-catatan { display: flex; flex-wrap: wrap; align-items: center; gap: 0 0.6rem; margin-top: 0.75rem; font-size: var(--fs-15); color: var(--color-lumut); }
   .lyn-pita {
     display: grid; gap: 1.25rem; margin-top: 12px; padding: 1.75rem; border-radius: 1.25rem;
     background: var(--color-pinus); color: var(--color-embun); --tautan: var(--color-embun);

@@ -649,4 +649,14 @@ kalkulator (bertentangan dengan arahan Rama untuk tidak menonjolkan hitung sendi
 - Urutan baru, terang–gelap selalu bergantian: Layanan → AKAL → Lima lapis (kini latar Putih) → Cara kerja → Pilih merek →
   Kalkulator → Area → Tanya jawab → Penutup. Kalkulator diletakkan tepat setelah "Bingung pilih merek?"; penggabungan keduanya
   jadi satu bagian Merek & harga dikerjakan saat sampai di bagian itu.
+- Koreksi Rama: layanan wajib sinkron dengan Ops ("perbaikan atap bocor gak ada", "harusnya ada beli material doang").
+  Patokan Ops: PEKERJAAN (`src/lib/crm/lead.ts`: pasang baru, ganti atap lama, rangka baja ringan, pasang plafon; perbaikan bocor
+  dihapus di Ops 19 Nov) dan JENIS transaksi (`src/lib/hitung/penawaran.ts`: material + pasang, material saja, jasa pasang saja).
+  Daftar bersama `layanan` di `src/data/produk.ts` disamakan (dipakai /produk dan kartu beranda): Pasang atap baru · Ganti atap
+  lama · Rangka baja ringan · Pasang plafon (tetap tersembunyi) · Beli material saja · Jasa pasang saja. "Perbaikan atap bocor"
+  dan "Villa, kafe, dan proyek" dihapus. Kartu beranda: empat berfoto + baris "Material sudah ada? Tanya jasa pasang saja"
+  (WhatsApp). Ikut disamakan: footer, judul/deskripsi /area dan `serviceType` halaman area ("Pemasangan atap bitumen"), dan
+  kalkulator /hitung (pilihan "Perbaikan" dihapus; jenis pekerjaan kini ikut terkirim ke Ops sebagai `pasang_baru` /
+  `ganti_atap_lama`, sebelumnya hanya plafon). Garansi pemasangan tetap menanggung bocor akibat pemasangan (itu garansi, bukan
+  layanan perbaikan).
 
