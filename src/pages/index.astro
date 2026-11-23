@@ -474,7 +474,7 @@ const faqSchema = {
     const perbarui = () => cta.classList.toggle('tampil', heroLewat && terlihat.size === 0);
     new IntersectionObserver(([e]) => { heroLewat = !e.isIntersecting && e.boundingClientRect.top < 0; perbarui(); }).observe(document.querySelector('.hero')!);
     const io = new IntersectionObserver((es) => { es.forEach((e) => (e.isIntersecting ? terlihat.add(e.target) : terlihat.delete(e.target))); perbarui(); });
-    document.querySelectorAll('#hitung, .lyn-pita, .penutup-isi, footer').forEach((el) => io.observe(el));
+    document.querySelectorAll('#hitung, .lyn-daftar, .lyn-pita, .penutup-isi, footer').forEach((el) => io.observe(el));
   }
 
   // Tombol WA melayang muncul di HP setelah slip Hitung AKAL lewat, supaya tidak dobel dengan tombol di slip.
@@ -531,6 +531,8 @@ const faqSchema = {
 <style>
   main { position: relative; }
   .sek { padding-block: clamp(4.5rem, 9vw, 8rem); }
+  /* Layanan langsung menempel di bawah baris angka (sudah ada garis pemisah): jarak atas dipangkas supaya tidak ada pita kosong. */
+  #layanan { padding-top: clamp(2.75rem, 4.5vw, 4rem); }
   .teks-ungkap span { opacity: 0.22; transition: opacity 350ms var(--ease-out); }
   .teks-ungkap span.nyala { opacity: 1; }
   .c-embun { background: var(--color-embun); }
@@ -611,7 +613,7 @@ const faqSchema = {
     .merek-deret { grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 3rem; padding-block: 1.75rem; }
     .merek-label { text-align: left; }
     .merek-logo { justify-content: space-between; flex-wrap: nowrap; gap: 2rem; font-size: 1.9rem; }
-    .bukti-daftar { grid-template-columns: repeat(3, minmax(0, 1fr)); padding-block: 2.25rem 2.5rem; }
+    .bukti-daftar { grid-template-columns: repeat(3, minmax(0, 1fr)); padding-block: 2rem; }
     .bukti-daftar li, .bukti-daftar li:nth-child(-n+2) { border-top: 0; padding: 0.25rem 1.5rem; border-left: 1px solid var(--color-garis); }
     .bukti-daftar li:first-child { border-left: 0; padding-left: 0; }
     .bukti-daftar li:nth-child(3) { grid-column: auto; }
