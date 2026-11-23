@@ -22,7 +22,9 @@
   ✅ 15 temuan audit kode selesai (079–084): klik WA, kotak "Layanan di {kota}" + CTA /area, tanggal harga & lama pasang di
   merek, label Ilustrasi sampul, /panduan per kategori, 404 berkerangka, catatan warna brosur CTI, Langsung ke isi, tablet bento.
   ✅ Hero beranda dirombak (085, masukan Rama + referensi-2): judul "Atap bitumen, harga masuk akal.", satu ajakan, Beranda
-  di menu, deret logo merek satu warna + baris angka, skala judul dari referensi. Bagian lain beranda belum dibahas Rama.
+  di menu, deret logo merek satu warna + baris angka, skala judul dari referensi. ✅ 086: Layanan naik ke bagian ke-3
+  (kartu berfoto), urutan bagian diatur ulang. ⏳ Berikutnya (Rama mengerjakan per bagian): AKAL, Lima lapis, Cara kerja,
+  gabung Pilih merek + Kalkulator, Area, Tanya jawab, Penutup ("Hitung dulu, baru pasang." masih menonjolkan hitung).
   ⏳ Sisa audit di luar kode: Google Business Profile, direktori, ulasan,
   proyek pertama + Rapor asli. Isi NIB/NPWP di bisnis.ts
   begitu akta PT terbit (otomatis tampil di /tentang & /perusahaan). Temuan lama cek.mjs di artikel

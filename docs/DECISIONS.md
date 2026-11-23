@@ -637,3 +637,16 @@ Beranda, terlalu banyak tombol, tipografi diambil dari referensi.
   baja ringan memang dijual & dipasang, harga di data). Baris angka ikut diganti dan tidak mengulang: 13 kota · ±4–5 hari kerja
   untuk 120 m² · harga terpasang mulai Rp…rb/m² (minimum `harga.merek[*].terpasang`, ikut Ops). Garansi & survey tetap
   dijelaskan di halaman/bagian masing-masing.
+
+## 086 · 23 November 2026 · Beranda: layanan naik ke bagian ke-3, kalkulator turun ke sebelah merek
+Pilihan Rama setelah analisis referensi-2: di Logamax, Forma Casa, SecureHome, Optibiz, dan Redow bagian setelah hero adalah
+layanan/solusi berfoto, lalu "kenapa kami", detail kualitas, proses, dan pita ajakan. Di beranda kita bagian ke-3 adalah
+kalkulator (bertentangan dengan arahan Rama untuk tidak menonjolkan hitung sendiri) dan harga muncul empat kali.
+- Layanan pindah ke bagian ke-3 dan didesain ulang: empat kartu berfoto (Pasang atap baru · Ganti atap lama · Perbaikan atap
+  bocor · Villa, kafe & usaha), masing-masing menaut ke panduan yang menjawabnya (tautan internal), plus pita gelap "Proyek
+  perumahan & komersial". Pengantar: "Material lengkap dan jasa pasang dari satu tempat." Kartu angka "8,5–13 kg" dan kartu
+  "Jadwalkan cek" lama dilebur ke teks kartu. Bento tablet DECISIONS 084 tidak berlaku lagi.
+- Urutan baru, terang–gelap selalu bergantian: Layanan → AKAL → Lima lapis (kini latar Putih) → Cara kerja → Pilih merek →
+  Kalkulator → Area → Tanya jawab → Penutup. Kalkulator diletakkan tepat setelah "Bingung pilih merek?"; penggabungan keduanya
+  jadi satu bagian Merek & harga dikerjakan saat sampai di bagian itu.
+
