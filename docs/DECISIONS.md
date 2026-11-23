@@ -615,3 +615,6 @@ Beranda, terlalu banyak tombol, tipografi diambil dari referensi.
   diturunkan ke tingkat kartu. HP tidak berubah (sudah bertoken `--hp-t1`). Judul "Atap bocor lagi" kini rata atas.
 - Animasi pembuka desktop: urutan naik baris judul dibetulkan (`.baris + .baris`, sebelumnya `nth-child(2)` meleset karena
   label kini anak pertama h1); label, tombol, dan jaminan ikut muncul halus.
+- Revisi Rama (saran Gemini): kalimat pengantar hero desktop digelapkan (campuran Lumut–Tinta 55%) dan berbobot 450, karena
+  ujung kalimat jatuh di atas daun kelapa di foto. Saran kedua (garis bawah "Hitung atap Anda →" di kartu) tidak dipakai:
+  tautan itu sudah dihapus atas permintaan Rama (hero satu ajakan).

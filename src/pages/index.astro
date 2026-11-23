@@ -579,7 +579,8 @@ const faqSchema = {
     .hero-redup { color: rgb(16 35 30 / 0.6); }
     .hero-akal { color: inherit; }
     .hero-h1-sub { background: rgb(255 255 255 / 0.55); box-shadow: inset 0 0 0 1px rgb(16 35 30 / 0.1); }
-    .hero-sub { color: var(--color-lumut); }
+    /* Lebih gelap dari Lumut + 450: ujung kalimat jatuh di atas daun kelapa di foto (masukan Rama, 23 Nov). */
+    .hero-sub { color: color-mix(in srgb, var(--color-lumut), var(--color-tinta) 55%); font-weight: 450; }
     .hero-bukti { color: var(--color-tinta); }
     .ilustrasi { color: rgb(255 255 255 / 0.85); text-shadow: 0 1px 2px rgb(0 0 0 / 0.4); }
   }
