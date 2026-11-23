@@ -478,3 +478,8 @@ di HP dengan label besar yang lebih sedikit. Judul area jadi "Survey gratis di J
 terlalu membatasi Jabodetabek, tinggal tambah ongkir dan transport"). Review Impeccable: beranda versi ringkas komponen Lapisan
 (`ringkas`), ringkasan tahap di bidang Pinus, satu gaya `.tautan-lanjut` global (panah SVG lewat mask) untuk semua tautan ke
 halaman rinci, label kecil di atas judul dibuang.
+
+## 073 · 23 November 2026 · Animasi pembuka (Bumper) dihapus, menggantikan 022
+Audit 23 Nov: animasi logo ±3,3 dtk menutup layar di kunjungan pertama, tepat pengunjung dari Google/AI/iklan; HP menengah
+baru bisa membaca setelah 4,4 dtk (tanpa animasi 0,7 dtk). Rama: "kalau secara digital marketing, SEO dan GEO dinilai jelek,
+hapus, khususnya di smartphone". Dihapus di semua perangkat (`Bumper.astro` dan pemakaiannya di beranda); hero langsung tampil.
