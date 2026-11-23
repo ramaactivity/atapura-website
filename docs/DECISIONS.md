@@ -669,4 +669,8 @@ kalkulator (bertentangan dengan arahan Rama untuk tidak menonjolkan hitung sendi
 Rama: nomor di situs salah ketik (0896-1139-4867 → WhatsApp "isn't on WhatsApp"). Nomor benar 0896-1138-4767 (`6289611384767`)
 di `src/data/bisnis.ts` (satu sumber semua tombol WA, schema, dan pesan kalkulator). Ops `src/lib/profil.ts` ikut dikoreksi.
 Aset turunan yang memuat nomor/QR (pricelist, product knowledge PDF, aset marketplace) dibuat ulang setelah ini.
+- Aset turunan: QR pricelist `assets/gambar/pricelist-qr-wa.svg` dibuat ulang untuk `https://wa.me/6289611384767` (qrcode-generator,
+  format path sama; isi dicek dengan pembaca QR CoreImage macOS), `public/unduh/product-knowledge-atapura.pdf` dicetak ulang
+  (`npm run cheatsheet`), pricelist PDF lokal dicetak ulang (`npm run pricelist`, tidak di-commit). Gambar marketplace tidak
+  memuat nomor. Ops: bawaan `src/lib/profil.ts` dikoreksi; tabel `business_settings` belum punya baris profil (pakai bawaan).
 
