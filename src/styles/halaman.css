@@ -2,47 +2,47 @@
    Satu kerangka: kartu pembuka (remah, judul dengan satu frasa redup, pengantar), bagian bergaris, slip identitas bertitik.
    HP: tiap bagian jadi kartu membulat 28px di atas latar #dde2dc, seperti beranda HP. */
 .hl { background: var(--color-embun); color: var(--color-tinta); padding-top: 120px; }
-.hl-remah { display: flex; gap: 0.5rem; font-size: 0.88rem; color: var(--color-lumut); }
+.hl-remah { display: flex; gap: 0.5rem; font-size: var(--fs-14); color: var(--color-lumut); }
 .hl-remah a { color: inherit; }
 .hl-redup { opacity: 0.55; }
 .hl-kepala { margin: 2rem 0 3rem; display: grid; gap: 1.25rem 4rem; grid-template-columns: minmax(0, 1fr); }
 @media (min-width: 60rem) { .hl-kepala { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); align-items: end; } }
 .hl-judul { font-family: var(--font-merek); font-size: clamp(2.25rem, 1.2rem + 3vw, 3.75rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.02; max-width: 17ch; text-wrap: balance; }
-.hl-lead { font-size: 1.1rem; color: var(--color-lumut); max-width: 44ch; line-height: 1.55; }
+.hl-lead { font-size: var(--fs-18); color: var(--color-lumut); max-width: 44ch; line-height: 1.55; }
 
 .hl-sek { padding-block: clamp(3rem, 6vw, 5rem); border-top: 1px solid var(--color-garis); display: grid; gap: 1.5rem 5rem; grid-template-columns: minmax(0, 1fr); }
 @media (min-width: 60rem) { .hl-sek { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); align-items: start; } }
 .hl-h2 { font-family: var(--font-merek); font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.5rem); font-weight: 500; letter-spacing: -0.035em; line-height: 1.1; max-width: 18ch; }
-.hl-teks { font-size: 1.0625rem; line-height: 1.6; color: var(--color-lumut); max-width: 58ch; }
+.hl-teks { font-size: var(--fs-17); line-height: 1.6; color: var(--color-lumut); max-width: 58ch; }
 .hl-teks + .hl-teks { margin-top: 0.75rem; }
 .hl-teks a, .hl-daftar a { color: var(--color-tinta); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
-@media (min-width: 64rem) { .hl-teks { font-size: 1.125rem; } }
+@media (min-width: 64rem) { .hl-teks { font-size: var(--fs-18); } }
 
 /* Daftar bernomor-garis: masalah → jawaban, atau yang Anda terima. */
 .hl-daftar { border-top: 1px solid var(--color-tinta); }
 .hl-daftar > li { display: grid; gap: 0.3rem; padding: 1.1rem 0; border-bottom: 1px solid var(--color-garis); }
 .hl-daftar b { font-family: var(--font-merek); font-size: 1.15rem; font-weight: 500; letter-spacing: -0.02em; color: var(--color-tinta); }
-.hl-daftar span { font-size: 1rem; line-height: 1.55; color: var(--color-lumut); }
-.hl-daftar .tautan-lanjut { justify-self: start; min-height: 36px; font-size: 0.95rem; }
+.hl-daftar span { font-size: var(--fs-16); line-height: 1.55; color: var(--color-lumut); }
+.hl-daftar .tautan-lanjut { justify-self: start; min-height: 36px; font-size: var(--fs-15); }
 
 /* Slip identitas: label di kiri, isi di kanan, titik penuntun seperti penawaran tukang (signature DESIGN.md). */
 .hl-slip { padding: clamp(1.25rem, 3vw, 2rem); border-radius: 18px; background: var(--color-putih); box-shadow: 0 1px 2px rgb(16 35 30 / 0.06), 0 22px 40px -30px rgb(16 35 30 / 0.4); }
 .hl-slip dl > div { display: grid; grid-template-columns: auto minmax(1.5rem, 1fr) minmax(0, 1.4fr); align-items: baseline; gap: 0.75rem; padding: 0.8rem 0; border-bottom: 1px solid var(--color-garis); }
 .hl-slip dl > div:last-child { border-bottom: 0; }
-.hl-slip dt { font-size: 0.95rem; color: var(--color-lumut); white-space: nowrap; }
+.hl-slip dt { font-size: var(--fs-15); color: var(--color-lumut); white-space: nowrap; }
 .hl-slip .hl-titik { align-self: start; margin-top: 0.72em; height: 1px; background: radial-gradient(circle, var(--color-lumut) 0.6px, transparent 0.8px) 0 0 / 6px 1px repeat-x; opacity: 0.5; }
-.hl-slip dd { font-size: 1rem; font-weight: 500; line-height: 1.45; text-align: right; }
-.hl-slip dd small { display: block; font-size: 0.85rem; font-weight: 400; color: var(--color-lumut); }
-.hl-slip dt a { font-size: 1.05rem; font-weight: 500; color: var(--color-tinta); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.hl-slip dd { font-size: var(--fs-16); font-weight: 500; line-height: 1.45; text-align: right; }
+.hl-slip dd small { display: block; font-size: var(--fs-14); font-weight: 400; color: var(--color-lumut); }
+.hl-slip dt a { font-size: var(--fs-17); font-weight: 500; color: var(--color-tinta); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 .hl-slip dd a { color: inherit; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 
 /* Kartu kontak / aksi. */
 .hl-kartu-baris { display: grid; gap: 0.75rem; grid-template-columns: minmax(0, 1fr); }
 @media (min-width: 48rem) { .hl-kartu-baris { grid-template-columns: minmax(0, 1.5fr) repeat(2, minmax(0, 1fr)); } }
 .hl-kartu { display: grid; align-content: start; gap: 0.5rem; padding: 1.4rem 1.4rem 1.5rem; border-radius: 18px; background: var(--color-putih); box-shadow: 0 1px 2px rgb(16 35 30 / 0.06), 0 18px 36px -30px rgb(16 35 30 / 0.4); }
-.hl-kartu .hl-kartu-label { font-size: 0.85rem; color: var(--color-lumut); }
+.hl-kartu .hl-kartu-label { font-size: var(--fs-14); color: var(--color-lumut); }
 .hl-kartu .hl-kartu-isi { font-family: var(--font-merek); color: inherit; font-size: 1.25rem; font-weight: 500; letter-spacing: -0.02em; line-height: 1.3; overflow-wrap: break-word; }
-.hl-kartu p { font-size: 0.95rem; line-height: 1.5; color: var(--color-lumut); }
+.hl-kartu p { font-size: var(--fs-15); line-height: 1.5; color: var(--color-lumut); }
 .hl-kartu .pill, .hl-kartu .tautan-lanjut, .hl-kartu .hl-tautan { justify-self: start; margin-top: 0.5rem; }
 .hl-kartu-utama { background: var(--color-pinus); color: var(--color-embun); --tautan: var(--color-embun); }
 .hl-kartu-utama .hl-kartu-label, .hl-kartu-utama p { color: var(--embun-redup); }
@@ -58,16 +58,16 @@
   .hl-kartu-buka { margin: 0 calc(8px - var(--gutter)) 8px; padding: 1.5rem var(--gutter) 0.25rem; border-radius: 28px; background: var(--color-embun); }
   .hl-kepala { margin: 1.5rem 0; }
   .hl-judul { font-size: var(--hp-display); line-height: 1.05; }
-  .hl-lead, .hl-teks { font-size: 1rem; }
+  .hl-lead, .hl-teks { font-size: var(--fs-16); }
   .hl-h2 { font-size: var(--hp-t1); }
   .hl-sek { margin: 0 calc(8px - var(--gutter)) 8px; padding: 2rem var(--gutter); border-top: 0; border-radius: 28px; background: var(--color-embun); }
   .hl-daftar b { font-size: var(--hp-t4); }
-  .hl-daftar span { font-size: 0.9375rem; }
+  .hl-daftar span { font-size: var(--fs-15); }
   .hl-slip { padding: 1rem 1.1rem; border-radius: 16px; }
   .hl-slip dl > div { grid-template-columns: minmax(0, 1fr); gap: 0.15rem; padding: 0.7rem 0; }
   .hl-slip .hl-titik { display: none; }
-  .hl-slip dt { font-size: 0.8125rem; }
-  .hl-slip dd { text-align: left; font-size: 0.9375rem; }
+  .hl-slip dt { font-size: var(--fs-13); }
+  .hl-slip dd { text-align: left; font-size: var(--fs-15); }
   .hl-kartu .hl-kartu-isi { font-size: var(--hp-t3); }
   .hl-kartu-utama .hl-kartu-isi { font-size: var(--hp-t1); }
   /* Kartu kanal kontak: kartu 28px selebar bagian lain, bukan sistem kartu kedua. */

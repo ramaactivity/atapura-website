@@ -69,7 +69,7 @@ const { foto } = Astro.props;
   .galeri-thumb[aria-pressed="true"] { opacity: 1; box-shadow: 0 0 0 2px var(--color-embun), 0 0 0 4px var(--color-pinus); }
   .galeri-thumb:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 3px; }
   @media (hover: hover) and (pointer: fine) { .galeri-thumb:hover { opacity: 1; } }
-  .galeri-kaki { margin-top: 0.55rem; font-size: 0.8rem; color: var(--color-lumut); font-variant-numeric: tabular-nums; }
+  .galeri-kaki { margin-top: 0.55rem; font-size: var(--fs-13); color: var(--color-lumut); font-variant-numeric: tabular-nums; }
   /* HP: gambar kecil disembunyikan, cukup geser; penanda urutan tetap terlihat. */
   @media (max-width: 47.99rem) {
     .galeri { margin-top: 1.25rem; }

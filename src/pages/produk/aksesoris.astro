@@ -91,7 +91,7 @@ const schema = [
 <style>
   /* Sama dengan /produk/[slug] supaya halaman terasa satu keluarga. */
   .pr { background: var(--color-embun); color: var(--color-tinta); }
-  .remah { display: flex; flex-wrap: wrap; gap: 0.5rem; font-size: 0.88rem; color: var(--color-lumut); }
+  .remah { display: flex; flex-wrap: wrap; gap: 0.5rem; font-size: var(--fs-14); color: var(--color-lumut); }
   .remah a { color: inherit; }
   .redup { opacity: 0.55; }
   .pr-buka { padding: 120px 0 clamp(2.5rem, 5vw, 4rem); }
@@ -103,7 +103,7 @@ const schema = [
   .ak-lompat { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2.25rem; }
   .ak-lompat a {
     display: inline-flex; align-items: center; min-height: 2.75rem; padding: 0 1rem; border-radius: 999px;
-    background: var(--color-putih); color: var(--color-tinta); font-size: 0.92rem; text-decoration: none;
+    background: var(--color-putih); color: var(--color-tinta); font-size: var(--fs-15); text-decoration: none;
     box-shadow: inset 0 0 0 1px var(--color-garis); transition: background-color 250ms, color 250ms;
   }
   .ak-lompat a:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 2px; }
@@ -111,7 +111,7 @@ const schema = [
 
   .pr-sek { padding-block: clamp(3rem, 6vw, 5rem); }
   .pr-putih { background: var(--color-putih); }
-  .pr-catatan { margin-top: 1.25rem; font-size: 0.85rem; color: var(--color-lumut); max-width: 70ch; }
+  .pr-catatan { margin-top: 1.25rem; font-size: var(--fs-15); color: var(--color-lumut); max-width: 70ch; }
 
   .seri { border-top: 1px solid var(--color-tinta); }
   .seri-baris { display: grid; gap: 1.25rem 3rem; grid-template-columns: minmax(0, 1fr); padding: 1.75rem 0; border-bottom: 1px solid var(--color-garis); align-items: start; scroll-margin-top: 96px; }
@@ -121,7 +121,7 @@ const schema = [
   .seri-nama { font-size: clamp(1.35rem, 1.1rem + 0.8vw, 1.75rem); font-weight: 500; letter-spacing: -0.03em; }
   .seri-ringkas { margin-top: 0.4rem; color: var(--color-lumut); line-height: 1.6; max-width: 46ch; }
   .ak-tautan { display: inline-block; margin-top: 0.75rem; color: var(--color-pinus); font-weight: 500; text-underline-offset: 3px; }
-  .rinci > div { display: flex; align-items: baseline; gap: 0.6rem; padding: 0.45rem 0; font-size: 0.95rem; }
+  .rinci > div { display: flex; align-items: baseline; gap: 0.6rem; padding: 0.45rem 0; font-size: var(--fs-15); }
   .rinci dt { color: var(--color-lumut); display: flex; align-items: baseline; gap: 0.6rem; flex: 1; white-space: nowrap; }
   .rinci dt::after { content: ''; flex: 1; border-bottom: 1px dotted var(--color-garis); transform: translateY(-0.25rem); }
   .rinci dd { font-weight: 500; text-align: right; max-width: 65%; font-variant-numeric: tabular-nums lining-nums; }
@@ -134,11 +134,11 @@ const schema = [
     .pr-buka, .pr-sek { margin: 8px; border-radius: 28px; }
     .pr-buka { background: var(--color-embun); margin-top: 0; padding-top: 96px; border-top-left-radius: 0; border-top-right-radius: 0; }
     .pr-judul { font-size: var(--hp-display); line-height: 1.05; }
-    .pr-lead { font-size: 1rem; }
+    .pr-lead { font-size: var(--fs-16); }
     .seri-nama { font-size: var(--hp-t2); }
     .ak-lompat { flex-wrap: nowrap; overflow-x: auto; margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter); scrollbar-width: none; }
     .ak-lompat a { flex: none; }
     .seri-foto { max-width: none; }
-    .rinci dd { font-size: 0.9375rem; }
+    .rinci dd { font-size: var(--fs-15); }
   }
 </style>

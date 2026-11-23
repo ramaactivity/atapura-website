@@ -88,13 +88,13 @@ const schema = [
 
 <style>
   .gr { background: var(--color-embun); color: var(--color-tinta); padding-top: 120px; }
-  .remah { display: flex; gap: 0.5rem; font-size: 0.88rem; color: var(--color-lumut); }
+  .remah { display: flex; gap: 0.5rem; font-size: var(--fs-14); color: var(--color-lumut); }
   .remah a { color: inherit; }
   .redup { opacity: 0.55; }
   .gr-kepala { margin: 2rem 0 3rem; display: grid; gap: 1.25rem 4rem; grid-template-columns: minmax(0, 1fr); }
   @media (min-width: 60rem) { .gr-kepala { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); align-items: end; } }
   .gr-judul { font-family: var(--font-merek); font-size: clamp(2.25rem, 1.2rem + 3vw, 3.75rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.02; max-width: 17ch; text-wrap: balance; }
-  .gr-lead { font-size: 1.1rem; color: var(--color-lumut); max-width: 42ch; line-height: 1.55; }
+  .gr-lead { font-size: var(--fs-18); color: var(--color-lumut); max-width: 42ch; line-height: 1.55; }
   .gr-h2 { font-family: var(--font-merek); font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.5rem); font-weight: 500; letter-spacing: -0.035em; line-height: 1.1; }
 
   .gr-sek { padding-block: clamp(3.5rem, 7vw, 6rem); }
@@ -107,25 +107,25 @@ const schema = [
   @media (min-width: 60rem) { .gr-tanya-isi { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); align-items: start; } }
   .gr-daftar { border-top: 1px solid var(--color-tinta); }
   .gr-daftar details { border-bottom: 1px solid var(--color-garis); }
-  .gr-daftar summary { display: flex; justify-content: space-between; align-items: center; gap: 1rem; min-height: 3.5rem; padding: 1rem 0; cursor: pointer; list-style: none; font-family: var(--font-merek); font-size: 1.125rem; font-weight: 500; letter-spacing: -0.015em; }
+  .gr-daftar summary { display: flex; justify-content: space-between; align-items: center; gap: 1rem; min-height: 3.5rem; padding: 1rem 0; cursor: pointer; list-style: none; font-family: var(--font-merek); font-size: var(--fs-18); font-weight: 500; letter-spacing: -0.015em; }
   .gr-daftar summary::-webkit-details-marker { display: none; }
   .gr-daftar summary:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 2px; border-radius: 6px; }
   .gr-tanda { position: relative; flex: none; width: 14px; height: 14px; }
   .gr-tanda::before, .gr-tanda::after { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 1.5px; margin-top: -0.75px; background: currentColor; transition: transform 240ms var(--ease-out); }
   .gr-tanda::after { transform: rotate(90deg); }
   .gr-daftar details[open] .gr-tanda::after { transform: rotate(0deg); }
-  .gr-daftar details p { padding: 0 0 1.25rem; font-size: 1.0625rem; line-height: 1.6; color: var(--color-lumut); max-width: 62ch; }
+  .gr-daftar details p { padding: 0 0 1.25rem; font-size: var(--fs-17); line-height: 1.6; color: var(--color-lumut); max-width: 62ch; }
   .gr-aksi { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 2rem; margin-top: 1.75rem; }
   .gr-tautan { display: inline-flex; align-items: center; min-height: 44px; font-weight: 500; color: var(--color-pinus); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
   .gr-aksi a:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 3px; }
-  @media (min-width: 64rem) { .gr-daftar details p { font-size: 1.125rem; } }
+  @media (min-width: 64rem) { .gr-daftar details p { font-size: var(--fs-18); } }
 
   @media (max-width: 47.99rem) {
     .gr { background: #dde2dc; padding-top: 96px; }
     .kartu-buka { margin: 0 calc(8px - var(--gutter)) 8px; padding: 1.5rem var(--gutter) 0.25rem; border-radius: 28px; background: var(--color-embun); }
     .gr-kepala { margin: 1.5rem 0; }
     .gr-judul { font-size: var(--hp-display); line-height: 1.05; }
-    .gr-lead, .gr-daftar details p { font-size: 1rem; }
+    .gr-lead, .gr-daftar details p { font-size: var(--fs-16); }
     .gr-h2 { font-size: var(--hp-t1); }
     .gr-daftar summary { font-size: var(--hp-t4); }
     .gr-sek, .gr-pita { margin: 0 8px 8px; padding: 2rem 0; border-radius: 28px; overflow: clip; }

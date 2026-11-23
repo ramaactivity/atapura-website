@@ -57,4 +57,4 @@ Visitor flow: search question → answer page (price/guide/area) → Hitung AKAL
 5. Speed is a feature: nothing visual may cost the first three priorities.
 
 ## Accessibility & Inclusion
-Readers aged 40–60 on phones: body text ≥17 px mobile / 18 px desktop, line-height ~1.6, WCAG AA contrast, touch targets ≥44 px, `prefers-reduced-motion` respected, print-friendly price and estimate pages.
+Readers aged 40–60 on phones: body text 15–16 px on phones (compact native register, owner's preference 23 Nov 2026) and 16–18 px on laptop, nothing under 13 px except tab-bar and map labels (DECISIONS 076), line-height ~1.5–1.6, WCAG AA contrast, touch targets ≥44 px, `prefers-reduced-motion` respected, print-friendly price and estimate pages.

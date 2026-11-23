@@ -80,7 +80,7 @@ import { tahap } from '../data/cara-kerja';
   .ck-tab::-webkit-scrollbar { display: none; }
   .ck-tombol {
     flex: none; display: inline-flex; align-items: center; gap: 0.45rem; min-height: 52px; padding: 0 1.2rem;
-    position: relative; border-radius: 14px 14px 0 0; color: rgb(242 244 241 / 0.78); font-size: 1rem; cursor: pointer;
+    position: relative; border-radius: 14px 14px 0 0; color: rgb(242 244 241 / 0.78); font-size: var(--fs-16); cursor: pointer;
     transition: color 200ms;
   }
   .ck-tombol:hover { color: var(--color-embun); }
@@ -97,7 +97,7 @@ import { tahap } from '../data/cara-kerja';
   .ck[data-siku='kiri'] .ck-kartu { border-top-left-radius: 0; }
   .ck[data-siku='kanan'] .ck-kartu { border-top-right-radius: 0; }
   .ck[data-siku='kiri'] .ck-tombol[aria-selected='true']::before, .ck[data-siku='kanan'] .ck-tombol[aria-selected='true']::after { display: none; }
-  .ck-no { font-size: 0.78rem; opacity: 0.6; font-variant-numeric: tabular-nums; }
+  .ck-no { font-size: var(--fs-13); opacity: 0.6; font-variant-numeric: tabular-nums; }
   .ck-panel {
     grid-area: 1 / 1; display: grid; gap: 1.5rem 4rem; grid-template-columns: minmax(0, 1fr); padding: clamp(1.75rem, 4vw, 4rem);
     min-height: 18rem; align-items: center;
@@ -111,12 +111,12 @@ import { tahap } from '../data/cara-kerja';
   .ck-judul { font-size: clamp(2rem, 1.2rem + 2.6vw, 3.6rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.02; max-width: 14ch; }
   .ck-kanan { display: grid; gap: 1rem; }
   .ck-pegang { font-size: clamp(1.2rem, 1rem + 0.6vw, 1.5rem); font-weight: 500; letter-spacing: -0.02em; line-height: 1.3; }
-  .ck-pegang span { display: block; font-size: 0.8rem; font-weight: 500; letter-spacing: 0; color: var(--color-lumut); margin-bottom: 0.4rem; }
+  .ck-pegang span { display: block; font-size: var(--fs-13); font-weight: 500; letter-spacing: 0; color: var(--color-lumut); margin-bottom: 0.4rem; }
   .ck-isi { color: var(--color-lumut); max-width: 46ch; }
   /* HP: ditaruh paling akhir supaya tidak tertimpa aturan dasar di atas. */
   @media (max-width: 47.99rem) {
     .ck-tab { gap: 0; }
-    .ck-tombol { min-height: var(--hp-tombol); padding: 0 0.85rem; font-size: 0.875rem; gap: 0.3rem; border-radius: 12px 12px 0 0; }
+    .ck-tombol { min-height: var(--hp-tombol); padding: 0 0.85rem; font-size: var(--fs-14); gap: 0.3rem; border-radius: 12px 12px 0 0; }
     .ck-tombol[aria-selected='true']::before, .ck-tombol[aria-selected='true']::after { width: 12px; height: 12px; }
     .ck-tombol[aria-selected='true']::before { left: -12px; background: radial-gradient(circle at 0 0, transparent 11.5px, var(--color-embun) 12px); }
     .ck-tombol[aria-selected='true']::after { right: -12px; background: radial-gradient(circle at 100% 0, transparent 11.5px, var(--color-embun) 12px); }
@@ -124,8 +124,8 @@ import { tahap } from '../data/cara-kerja';
     .ck-panel { padding: 1.4rem 1.25rem 1.5rem; gap: 1rem; min-height: 0; align-items: start; align-content: start; }
     .ck-judul { font-size: var(--hp-t2); line-height: 1.12; letter-spacing: -0.03em; max-width: 16ch; }
     .ck-pegang { font-size: var(--hp-t4); line-height: 1.35; }
-    .ck-pegang span { font-size: 0.8125rem; margin-bottom: 0.3rem; }
-    .ck-isi { font-size: 0.9375rem; line-height: 1.5; }
+    .ck-pegang span { font-size: var(--fs-13); margin-bottom: 0.3rem; }
+    .ck-isi { font-size: var(--fs-15); line-height: 1.5; }
   }
   .ck-tahap { display: none; }
   /* HP: tujuh kartu bertumpuk (referensi Framer "Perform"): tiap kartu menempel di bawah bilah atas,
@@ -139,10 +139,10 @@ import { tahap } from '../data/cara-kerja';
       background: var(--color-embun); border-radius: 18px; min-height: 15.5rem;
       box-shadow: 0 -10px 28px -18px rgb(0 0 0 / 0.55);
     }
-    .ck-tahap { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8125rem; font-weight: 500; color: var(--color-lumut); }
+    .ck-tahap { display: flex; align-items: center; gap: 0.5rem; font-size: var(--fs-13); font-weight: 500; color: var(--color-lumut); }
     .ck-tahap span {
       display: inline-grid; place-items: center; min-width: 1.75rem; height: 1.75rem; padding-inline: 0.4rem; border-radius: 999px;
-      background: var(--color-pinus); color: var(--color-tunas); font-size: 0.75rem; font-variant-numeric: tabular-nums;
+      background: var(--color-pinus); color: var(--color-tunas); font-size: var(--fs-13); font-variant-numeric: tabular-nums;
     }
   }
 </style>

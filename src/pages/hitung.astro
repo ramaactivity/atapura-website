@@ -182,33 +182,33 @@ const schema = [
 
 <style>
   .hk { background: var(--color-embun); color: var(--color-tinta); padding: 120px 0 6rem; }
-  .remah { display: flex; gap: 0.5rem; font-size: 0.88rem; color: var(--color-lumut); }
+  .remah { display: flex; gap: 0.5rem; font-size: var(--fs-14); color: var(--color-lumut); }
   .remah a { color: inherit; }
   .redup { opacity: 0.55; }
   .hk-kepala { margin: 2rem 0 3rem; display: grid; gap: 1.25rem 4rem; grid-template-columns: minmax(0, 1fr); }
   @media (min-width: 60rem) { .hk-kepala { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); align-items: end; } }
   .hk-judul { font-family: var(--font-merek); font-size: clamp(2.25rem, 1.2rem + 3vw, 3.75rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.02; max-width: 17ch; text-wrap: balance; }
-  .hk-lead { font-size: 1.1rem; color: var(--color-lumut); max-width: 42ch; line-height: 1.55; }
+  .hk-lead { font-size: var(--fs-18); color: var(--color-lumut); max-width: 42ch; line-height: 1.55; }
 
   /* Kalkulator di bidang putih selebar layar (stepper & segmen berlatar Embun butuh latar putih). */
   .hk-alat { background: var(--color-putih); padding-block: clamp(2.5rem, 5vw, 4.5rem); }
-  .hk-catatan { margin-top: 1.75rem; font-size: 0.875rem; line-height: 1.5; color: var(--color-lumut); max-width: 70ch; }
+  .hk-catatan { margin-top: 1.75rem; font-size: var(--fs-15); line-height: 1.5; color: var(--color-lumut); max-width: 70ch; }
 
   .hk-h2 { font-family: var(--font-merek); font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.5rem); font-weight: 500; letter-spacing: -0.035em; line-height: 1.1; max-width: 22ch; }
-  .hk-kecil { font-size: 0.9rem; line-height: 1.5; color: var(--color-lumut); }
+  .hk-kecil { font-size: var(--fs-15); line-height: 1.5; color: var(--color-lumut); }
   .hk-kecil a, .hk-luas-teks a { color: var(--color-tinta); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 
   /* Luas lantai → luas atap: teks di kiri, alat kecil di kanan. */
   .hk-luas { display: grid; gap: 1.75rem 5rem; grid-template-columns: minmax(0, 1fr); padding-block: clamp(3.5rem, 7vw, 6rem); scroll-margin-top: 80px; }
   @media (min-width: 60rem) { .hk-luas { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); align-items: center; } }
   .hk-luas-teks { display: grid; gap: 1rem; }
-  .hk-luas-teks > p:not(.hk-kecil) { font-size: 1.0625rem; line-height: 1.6; max-width: 56ch; }
+  .hk-luas-teks > p:not(.hk-kecil) { font-size: var(--fs-17); line-height: 1.6; max-width: 56ch; }
   .hk-luas-alat {
     display: grid; justify-items: start; gap: 0.9rem; padding: clamp(1.4rem, 3vw, 2rem); border-radius: 1.25rem;
     background: var(--color-putih); box-shadow: 0 1px 2px rgb(16 35 30 / 0.06), 0 22px 40px -28px rgb(16 35 30 / 0.35);
   }
-  .hk-luas-label { font-size: 1.05rem; }
-  .hk-luas-hasil { font-size: 1rem; color: var(--color-lumut); }
+  .hk-luas-label { font-size: var(--fs-17); }
+  .hk-luas-hasil { font-size: var(--fs-16); color: var(--color-lumut); }
   .hk-luas-hasil b { font-variant-numeric: proportional-nums lining-nums; font-family: var(--font-merek); font-size: 1.6rem; font-weight: 500; letter-spacing: -0.03em; color: var(--color-tinta); }
   .hk-luas-pakai:focus-visible, .hk-wa:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 3px; }
 
@@ -218,11 +218,11 @@ const schema = [
   .hk-langkah li { counter-increment: lk; position: relative; padding: 0 0 1.75rem 3rem; }
   .hk-langkah li::before {
     content: counter(lk); position: absolute; left: 0; top: 0; display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%;
-    background: var(--color-pinus); color: var(--color-putih); font-size: 0.875rem; font-weight: 600; font-variant-numeric: tabular-nums;
+    background: var(--color-pinus); color: var(--color-putih); font-size: var(--fs-14); font-weight: 600; font-variant-numeric: tabular-nums;
   }
   .hk-langkah li:not(:last-child)::after { content: ''; position: absolute; left: calc(1rem - 0.5px); top: 2.4rem; bottom: 0.4rem; width: 1px; background: var(--color-garis); }
   .hk-langkah-judul { font-family: var(--font-merek); font-size: 1.25rem; font-weight: 500; letter-spacing: -0.02em; line-height: 1.6rem; }
-  .hk-langkah p { margin-top: 0.35rem; font-size: 1rem; line-height: 1.55; color: var(--color-lumut); max-width: 40ch; }
+  .hk-langkah p { margin-top: 0.35rem; font-size: var(--fs-16); line-height: 1.55; color: var(--color-lumut); max-width: 40ch; }
   @media (min-width: 60rem) {
     .hk-langkah { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.5rem; }
     .hk-langkah li { padding: 3.25rem 0 0; }
@@ -240,7 +240,7 @@ const schema = [
   }
   .hk-merek li:first-child a { border-top: 1px solid var(--color-tinta); }
   .hk-merek-nama { grid-area: nama; font-family: var(--font-merek); font-size: 1.25rem; font-weight: 500; letter-spacing: -0.02em; line-height: 1.25; }
-  .hk-merek-ket { grid-area: ket; font-size: 0.85rem; line-height: 1.4; color: var(--color-lumut); }
+  .hk-merek-ket { grid-area: ket; font-size: var(--fs-14); line-height: 1.4; color: var(--color-lumut); }
   .hk-titik { grid-area: titik; align-self: center; height: 1px; background: radial-gradient(circle, var(--color-lumut) 0.6px, transparent 0.8px) 0 0 / 6px 1px repeat-x; opacity: 0.55; }
   .hk-merek-rp { grid-area: rp; font-family: var(--font-merek); font-size: 1.25rem; font-weight: 500; letter-spacing: -0.02em; white-space: nowrap; }
   .hk-panah { grid-area: panah; align-self: center; width: 1.1rem; height: 1.1rem; fill: none; stroke: var(--color-lumut); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transition: transform 240ms var(--ease-out), stroke 200ms; }
@@ -255,23 +255,23 @@ const schema = [
   @media (min-width: 60rem) { .hk-tanya { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); align-items: start; } .hk-wa { grid-column: 2; justify-self: start; } }
   .hk-tanya-daftar { border-top: 1px solid var(--color-tinta); }
   .hk-tanya details { border-bottom: 1px solid var(--color-garis); }
-  .hk-tanya summary { display: flex; justify-content: space-between; align-items: center; gap: 1rem; min-height: 3.5rem; padding: 1rem 0; cursor: pointer; list-style: none; font-family: var(--font-merek); font-size: 1.125rem; font-weight: 500; letter-spacing: -0.015em; }
+  .hk-tanya summary { display: flex; justify-content: space-between; align-items: center; gap: 1rem; min-height: 3.5rem; padding: 1rem 0; cursor: pointer; list-style: none; font-family: var(--font-merek); font-size: var(--fs-18); font-weight: 500; letter-spacing: -0.015em; }
   .hk-tanya summary::-webkit-details-marker { display: none; }
   .hk-tanya summary:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 2px; border-radius: 6px; }
   .hk-tanda { position: relative; flex: none; width: 14px; height: 14px; }
   .hk-tanda::before, .hk-tanda::after { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 1.5px; margin-top: -0.75px; background: currentColor; transition: transform 240ms var(--ease-out); }
   .hk-tanda::after { transform: rotate(90deg); }
   .hk-tanya details[open] .hk-tanda::after { transform: rotate(0deg); }
-  .hk-tanya details p { padding: 0 0 1.25rem; font-size: 1.0625rem; line-height: 1.6; color: var(--color-lumut); max-width: 62ch; }
+  .hk-tanya details p { padding: 0 0 1.25rem; font-size: var(--fs-17); line-height: 1.6; color: var(--color-lumut); max-width: 62ch; }
 
-  @media (min-width: 64rem) { .hk-luas-teks > p:not(.hk-kecil), .hk-tanya details p { font-size: 1.125rem; } }
+  @media (min-width: 64rem) { .hk-luas-teks > p:not(.hk-kecil), .hk-tanya details p { font-size: var(--fs-18); } }
 
   @media (max-width: 47.99rem) {
     .hk { background: #dde2dc; padding: 96px 0 4rem; }
     .kartu-buka { margin: 0 calc(8px - var(--gutter)) 8px; padding: 1.5rem var(--gutter) 0.25rem; border-radius: 28px; background: var(--color-embun); }
     .hk-kepala { margin: 1.5rem 0 1.5rem; }
     .hk-judul { font-size: var(--hp-display); line-height: 1.05; }
-    .hk-lead { font-size: 1rem; }
+    .hk-lead { font-size: var(--fs-16); }
     .hk-alat { margin: 0 8px; border-radius: 28px; padding-block: 1.75rem 2rem; }
     .hk-h2 { font-size: var(--hp-t1); }
     /* Bagian setelah kalkulator jadi kartu membulat di atas latar abu, seperti beranda HP. */
@@ -284,7 +284,7 @@ const schema = [
     .hk-merek-nama, .hk-merek-rp { font-size: var(--hp-t4); }
     .hk-merek a { grid-template-columns: auto minmax(1rem, 1fr) auto 1.25rem; min-height: 3.5rem; padding: 0.85rem 0; gap: 0.15rem 0.5rem; }
     .hk-tanya summary { font-size: var(--hp-t4); }
-    .hk-tanya details p, .hk-luas-teks > p:not(.hk-kecil) { font-size: 1rem; }
+    .hk-tanya details p, .hk-luas-teks > p:not(.hk-kecil) { font-size: var(--fs-16); }
     .hk-wa { width: 100%; }
   }
 </style>

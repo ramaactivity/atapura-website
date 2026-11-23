@@ -140,11 +140,11 @@ const schema = [
 
 <style>
   .ar { background: var(--color-embun); color: var(--color-tinta); padding: 120px 0 6rem; }
-  .remah { display: flex; flex-wrap: wrap; gap: 0.5rem; font-size: 0.88rem; color: var(--color-lumut); }
+  .remah { display: flex; flex-wrap: wrap; gap: 0.5rem; font-size: var(--fs-14); color: var(--color-lumut); }
   .remah a { color: inherit; }
   .ar-kepala { padding-bottom: 2rem; }
   .ar-judul { margin-top: 1.5rem; font-size: clamp(2.2rem, 1.2rem + 3.6vw, 4.4rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.02; max-width: 20ch; }
-  .ar-meta { margin-top: 1.25rem; font-size: 0.92rem; color: var(--color-lumut); display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }
+  .ar-meta { margin-top: 1.25rem; font-size: var(--fs-15); color: var(--color-lumut); display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }
   .ar-pisah { width: 18px; height: 1px; background: currentColor; }
   .ar-sampul { width: 100%; max-height: 34rem; object-fit: cover; border-radius: 18px; }
   /* Lebar penuh sejajar judul (DESIGN.md: tanpa kolom sempit di tengah). Mulai 60rem dua kolom:
@@ -158,10 +158,10 @@ const schema = [
   .ar-utama > .prosa { margin-top: 0; }
   .ar-utama > .prosa > :global(:first-child) { margin-top: 0; }
   .ar-jawab { padding: 1.5rem 1.75rem; border-radius: 14px; background: var(--color-pinus); color: var(--color-embun); }
-  .ar-jawab-label { font-size: 0.82rem; font-weight: 500; color: var(--color-tunas); margin-bottom: 0.5rem; }
+  .ar-jawab-label { font-size: var(--fs-13); font-weight: 500; color: var(--color-tunas); margin-bottom: 0.5rem; }
   .ar-jawab-isi { font-size: 1.15rem; line-height: 1.55; }
 
-  .prosa { margin-top: 2.5rem; font-size: 1.08rem; line-height: 1.7; }
+  .prosa { margin-top: 2.5rem; font-size: var(--fs-17); line-height: 1.7; }
   .prosa :global(h2) { font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2.2rem); font-weight: 500; letter-spacing: -0.035em; line-height: 1.15; margin: 3rem 0 1rem; }
   .prosa :global(p) { margin: 1rem 0; }
   .prosa :global(ul), .prosa :global(ol) { margin: 1rem 0; padding-left: 1.4rem; }
@@ -170,17 +170,17 @@ const schema = [
   .prosa :global(li) { margin: 0.45rem 0; padding-left: 0.2rem; }
   .prosa :global(strong) { font-weight: 600; }
   .prosa :global(a) { color: var(--color-pinus); text-decoration: underline; }
-  .prosa :global(table) { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; display: block; overflow-x: auto; }
+  .prosa :global(table) { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: var(--fs-15); display: block; overflow-x: auto; }
   @media (min-width: 48rem) { .prosa :global(table) { display: table; } }
   .prosa :global(th), .prosa :global(td) { text-align: left; vertical-align: top; padding: 0.75rem 1rem 0.75rem 0; border-bottom: 1px solid var(--color-garis); }
-  .prosa :global(thead th) { font-weight: 500; color: var(--color-lumut); font-size: 0.85rem; border-bottom: 1px solid var(--color-tinta); }
+  .prosa :global(thead th) { font-weight: 500; color: var(--color-lumut); font-size: var(--fs-14); border-bottom: 1px solid var(--color-tinta); }
 
   .ar-faq, .ar-sumber { margin-top: 3.5rem; }
   .ar-faq h2, .ar-sumber h2, .ar-lain h2 { font-size: 1.5rem; font-weight: 500; letter-spacing: -0.03em; margin-bottom: 1rem; }
   .ar-faq dl > div { padding: 1.1rem 0; border-top: 1px solid var(--color-garis); }
-  .ar-faq dt { font-weight: 500; font-size: 1.08rem; }
+  .ar-faq dt { font-weight: 500; font-size: var(--fs-17); }
   .ar-faq dd { margin-top: 0.35rem; color: var(--color-lumut); }
-  .ar-sumber li { color: var(--color-lumut); font-size: 0.92rem; margin: 0.4rem 0; }
+  .ar-sumber li { color: var(--color-lumut); font-size: var(--fs-15); margin: 0.4rem 0; }
   .ar-sumber a { color: inherit; }
   .ar-cta { margin-top: 3.5rem; padding: clamp(1.5rem, 3vw, 2.25rem); border-radius: 16px; background: var(--color-pinus); color: var(--color-embun); }
   .ar-cta-judul { font-size: 1.6rem; font-weight: 500; letter-spacing: -0.03em; }
@@ -197,16 +197,16 @@ const schema = [
   }
   .ar-kartu :global(.ar-kartu-foto) { display: block; width: 100%; aspect-ratio: 16 / 10; height: auto; object-fit: cover; transition: transform 700ms var(--ease-out); }
   .ar-kartu-teks { display: grid; align-content: start; gap: 0.45rem; padding: 1.1rem 1.25rem 1.35rem; }
-  .ar-kartu-meta { font-size: 0.8rem; color: var(--color-lumut); }
+  .ar-kartu-meta { font-size: var(--fs-13); color: var(--color-lumut); }
   .ar-kartu-judul { font-family: var(--font-merek); font-size: 1.15rem; font-weight: 500; letter-spacing: -0.02em; line-height: 1.3; }
-  .ar-kartu-ringkas { font-size: 0.9rem; line-height: 1.5; color: var(--color-lumut); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .ar-kartu-ringkas { font-size: var(--fs-14); line-height: 1.5; color: var(--color-lumut); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
   .ar-kartu:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 3px; }
   @media (hover: hover) and (pointer: fine) {
     .ar-kartu:hover { transform: translateY(-3px); box-shadow: 0 1px 2px rgb(16 35 30 / 0.06), 0 26px 44px -26px rgb(16 35 30 / 0.45); }
     .ar-kartu:hover :global(.ar-kartu-foto) { transform: scale(1.04); }
   }
   .ar-halaman { margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid var(--color-garis); }
-  .ar-halaman-judul { font-size: 0.9rem; font-weight: 500; color: var(--color-lumut); }
+  .ar-halaman-judul { font-size: var(--fs-14); font-weight: 500; color: var(--color-lumut); }
   .ar-halaman ul { display: flex; flex-wrap: wrap; gap: 0 1.75rem; margin-top: 0.25rem; }
   .ar-halaman a { display: inline-flex; padding: 0; background: none; border-radius: 0; font-weight: 500; letter-spacing: 0; text-decoration: underline; }
   .ar-halaman a:hover { transform: none; }
@@ -215,28 +215,28 @@ const schema = [
   @media (max-width: 47.99rem) {
     .ar { padding-top: 96px; }
     .ar-judul { font-size: var(--hp-t1); line-height: 1.15; }
-    .ar-meta { font-size: 0.8125rem; }
+    .ar-meta { font-size: var(--fs-13); }
     .ar-jawab { padding: 1.25rem; }
-    .ar-jawab-isi { font-size: 1rem; }
-    .prosa { font-size: 1rem; line-height: 1.65; }
+    .ar-jawab-isi { font-size: var(--fs-16); }
+    .prosa { font-size: var(--fs-16); line-height: 1.65; }
     .prosa :global(h2) { font-size: var(--hp-t2); margin: 2.25rem 0 0.75rem; }
     .prosa :global(h3) { font-size: var(--hp-t3); }
-    .prosa :global(table) { font-size: 0.9375rem; }
+    .prosa :global(table) { font-size: var(--fs-15); }
     .ar-faq h2, .ar-sumber h2, .ar-lain h2 { font-size: var(--hp-t2); }
     .ar-faq dt { font-size: var(--hp-t4); }
-    .ar-faq dd, .ar-sumber li { font-size: 0.9375rem; }
+    .ar-faq dd, .ar-sumber li { font-size: var(--fs-15); }
     .ar-cta-judul { font-size: var(--hp-t2); }
     .ar-kartu { grid-template-columns: 88px minmax(0, 1fr); grid-template-rows: auto; align-items: center; gap: 0.9rem; padding: 0.6rem; border-radius: 16px; }
     .ar-kartu :global(.ar-kartu-foto) { aspect-ratio: 1; border-radius: 11px; }
     .ar-kartu-teks { padding: 0.15rem 0.4rem 0.15rem 0; gap: 0.3rem; }
-    .ar-kartu-judul { font-size: 0.9375rem; line-height: 1.3; }
-    .ar-kartu-meta { font-size: 0.75rem; }
+    .ar-kartu-judul { font-size: var(--fs-15); line-height: 1.3; }
+    .ar-kartu-meta { font-size: var(--fs-13); }
     .ar-kartu-ringkas { display: none; }
     /* Pola kartu HP sama dengan beranda: latar abu hangat, isi jadi kartu membulat. */
     .ar { background: #dde2dc; padding-bottom: 1rem; }
     .ar article { margin: 8px; padding: 1.5rem 0 2rem; border-radius: 28px; background: var(--color-embun); overflow: clip; }
     .ar-lain { margin: 8px; padding: 1.75rem calc(var(--gutter) - 8px); border-radius: 28px; background: var(--color-embun); }
-    .ar-halaman a { font-size: 0.9375rem; }
+    .ar-halaman a { font-size: var(--fs-15); }
     .ar-halaman ul { gap: 0 1.25rem; }
     .ar-kartu-daftar { margin-top: 0.25rem; gap: 0.5rem; }
   }

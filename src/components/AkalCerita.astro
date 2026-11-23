@@ -44,7 +44,7 @@ const foto = await Promise.all(pilar.map(async (p) => ({ ...p, img: await getIma
     font-size: clamp(2.6rem, 1.6rem + 4vw, 3.4rem); font-weight: 500; letter-spacing: -0.05em; line-height: 0.95; color: var(--color-tunas);
     display: grid; gap: 0.5rem;
   }
-  .babak-urut { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.02em; color: var(--embun-redup); }
+  .babak-urut { font-size: var(--fs-13); font-weight: 500; letter-spacing: 0.02em; color: var(--embun-redup); }
   .babak-takut { font-size: 1.45rem; font-weight: 500; letter-spacing: -0.03em; line-height: 1.2; color: var(--color-embun); }
   .babak-dapat { color: var(--embun-redup); }
   @media (max-width: 47.99rem) {
@@ -60,7 +60,7 @@ const foto = await Promise.all(pilar.map(async (p) => ({ ...p, img: await getIma
     .babak-foto { aspect-ratio: 16 / 10; }
     .babak-isi { padding: 1.1rem 1.1rem 1.25rem; gap: 0.45rem; }
     .babak-takut { font-size: var(--hp-t3); }
-    .babak-dapat { font-size: 0.95rem; }
+    .babak-dapat { font-size: var(--fs-15); }
   }
   .babak-bukti { justify-self: start; margin-top: 0.1rem; }
 
@@ -73,7 +73,7 @@ const foto = await Promise.all(pilar.map(async (p) => ({ ...p, img: await getIma
     .babak-isi { flex: 1; align-content: start; padding: 1.4rem 1.3rem 1.5rem; gap: 0.55rem; }
     .babak-nama { font-size: 2.4rem; color: var(--color-embun); }
     .babak-takut { font-size: 1.2rem; line-height: 1.25; }
-    .babak-dapat { font-size: 0.95rem; line-height: 1.5; }
+    .babak-dapat { font-size: var(--fs-16); line-height: 1.5; }
     .babak-bukti { margin-top: auto; padding-top: 0.6rem; }
   }
 </style>

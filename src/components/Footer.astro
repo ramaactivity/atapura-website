@@ -153,15 +153,15 @@ const kolom = en ? kolomEn : kolomId;
   @media (min-width: 64rem) { .kaki-atas { grid-template-columns: minmax(0, 1fr) minmax(0, 1.9fr); } }
   .kaki-besar { font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.5rem); font-weight: 500; letter-spacing: -0.035em; line-height: 1.12; max-width: 16ch; text-wrap: balance; }
   .kaki-aksi {
-    display: inline-block; margin-top: 1.25rem; font-size: 1rem; font-weight: 500; color: var(--color-embun);
+    display: inline-block; margin-top: 1.25rem; font-size: var(--fs-16); font-weight: 500; color: var(--color-embun);
     text-decoration: underline; text-decoration-color: var(--color-tunas); text-decoration-thickness: 2px; text-underline-offset: 0.4em;
   }
   .kaki-aksi:hover { color: var(--color-tunas); }
   .kaki-kolom { display: grid; gap: 2.75rem 2rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   @media (min-width: 48rem) { .kaki-kolom { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-  .kaki-judul { font-size: 1rem; line-height: 1.4; font-weight: 500; color: var(--color-embun); padding-bottom: 0.15rem; }
+  .kaki-judul { font-size: var(--fs-16); line-height: 1.4; font-weight: 500; color: var(--color-embun); padding-bottom: 0.15rem; }
   .kaki-kolom ul { display: grid; }
-  .kaki-kolom li { font-size: 1rem; line-height: 1.5; }
+  .kaki-kolom li { font-size: var(--fs-16); line-height: 1.5; }
   .kaki-kolom li + li { margin-top: 0.12rem; }
   .kaki-kolom a { color: rgb(242 244 241 / 0.62); text-decoration: none; transition: color 200ms; }
   .kaki-kolom a:hover { color: var(--color-tunas); text-decoration: underline; text-underline-offset: 0.25em; }
@@ -177,7 +177,7 @@ const kolom = en ? kolomEn : kolomId;
   /* Wordmark raksasa selebar konten (acuan Harper Ave.), logo resmi lewat komponen Logo. */
   .kaki-merek { margin-top: clamp(2.5rem, 5vw, 4rem); color: var(--color-embun); }
   .kaki-merek :global(.logo) { display: block; width: 100%; height: auto; }
-  .kaki-legal { font-size: 0.875rem; line-height: 1.6; color: rgb(242 244 241 / 0.6); }
+  .kaki-legal { font-size: var(--fs-14); line-height: 1.6; color: rgb(242 244 241 / 0.6); }
   .kaki-sosial { display: flex; flex-wrap: wrap; gap: 0.35rem; }
   .kaki-sosial a, .kaki-sosial-segera {
     display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; color: var(--color-embun);
@@ -188,7 +188,7 @@ const kolom = en ? kolomEn : kolomId;
   .kaki-sosial-segera { opacity: 0.35; cursor: default; }
   .kaki-bawah {
     margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid rgb(242 244 241 / 0.1);
-    display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; justify-content: space-between; font-size: 0.875rem; line-height: 1.6; color: rgb(242 244 241 / 0.5);
+    display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; justify-content: space-between; font-size: var(--fs-14); line-height: 1.6; color: rgb(242 244 241 / 0.5);
   }
   @media (max-width: 47.99rem) { .kaki-besar { font-size: var(--hp-t2); } }
 </style>

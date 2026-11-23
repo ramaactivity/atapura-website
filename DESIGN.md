@@ -191,7 +191,7 @@ Yang ditolak secara visual: pola kontraktor standar (foto rumah stok + kartu iko
 - Estimasi terlihat di layar pertama, termasuk di HP.
 - Section bertumpuk seperti baris genteng (overlap + bayangan jatuh ke bawah).
 - Hijau pinus, bukan hitam; satu aksen lime (Tunas) yang sangat hemat.
-- Satu keluarga huruf, kontras berat 300 lawan 760 dalam satu kalimat.
+- Dua huruf: Public Sans 500 untuk judul & angka besar, Inter untuk teks; penekanan lewat satu frasa diredupkan.
 - Semua angka tabular; rupiah tanpa desimal.
 - Semua kontrol custom berbentuk pill, target sentuh minimal 44px.
 
@@ -234,14 +234,14 @@ Palet hijau hutan yang tenang dengan latar terang sedikit kehijauan, ditusuk sat
 **Character:** Gaya askmidnight.com: judul bobot 500 dengan tracking -0.04em, isi 400, label/nama 500. Tanpa italic; penekanan bagian kalimat lewat warna diredupkan (`.miring` = opacity 0.55), atau Tunas untuk "AKAL." di hero HP. Angka di kolom harga tabular; angka besar kalkulator proporsional dengan "Rp" & satuan mengecil.
 
 ### Hierarchy
-- **Display** (300, kata kunci miring 400, clamp 3.2rem sampai 6.4rem, line-height 0.94, tracking -0.045em): judul hero saja. Kalimat yang sama dipecah tipis lalu tebal-miring ("Atap yang masuk" / "*AKAL.*").
-- **Headline** (300, kata kunci miring 400, clamp 2rem sampai 3.6rem, line-height 1.08, maks 18ch): judul section. Bagian pembuka boleh berat 300 ("Masuk AKAL," bisa dicek). Penutup memakai versi lebih besar (clamp 2.5rem sampai 5rem, maks 14ch).
-- **Title** (400, clamp 1.35rem sampai 1.75rem): sub-judul dalam section (lapisan, "kapan kami menyarankan pilihan lain", slot bukti).
-- **Figure** (400, tracking -0.03em, clamp 1.9rem sampai 2.6rem, tabular): angka estimasi di slip; batas atas rentang diawali "s/d" berat 300 warna Lumut.
-- **Lead** (400, clamp 1.125rem sampai 1.35rem, line-height 1.5, maks 38ch): paragraf pembuka section.
-- **Body** (400, 17px di HP / 18px mulai 64rem, line-height 1.6): teks baca; jawaban tanya-jawab maks 62ch, bukti AKAL maks 52ch.
-- **Label** (500, 0.95rem): label kontrol, judul kolom footer, label tombol (tombol 1rem).
-- **Caption** (400, 0.8 sampai 0.85rem, line-height 1.45, Lumut): catatan di bawah slip, bantuan kontrol, kaki kalkulator.
+Diperbarui 23 Nov 2026 (DECISIONS 076) mengikuti situs yang tayang.
+- **Display** (Public Sans 500, tracking -0.04em, clamp ±3.2rem sampai 7rem, line-height ±0.92–1.02): judul hero dan judul halaman dalam (`clamp(2.25rem, …, 3.75rem)`). Satu frasa diredupkan (opacity 0.55).
+- **Headline** (Public Sans 500, tracking -0.035em, clamp ±1.6rem sampai 4rem): judul bagian. HP: `--hp-t1` (26 px).
+- **Title** (Public Sans 500, 1.15–1.35rem): judul kartu, baris daftar, nama merek. HP: `--hp-t2`–`--hp-t4`.
+- **Teks kecil–sedang = token** di `global.css`: `--fs-13` label & keterangan (lantai), `--fs-14` catatan/kaki, `--fs-15` isi ringkas & kartu, `--fs-16` isi, `--fs-17` isi baca & label kontrol, `--fs-18` pengantar kecil. Jangan menulis rem lepas di bawah 1.15rem; pakai token.
+- **Isi**: HP 15–16 px (register ringkas, selera Rama dari Ops), laptop 16–18 px; jawaban tanya-jawab maks 62ch.
+- **Angka besar** (Public Sans 500, proporsional): estimasi di slip; "Rp" dan satuan mengecil dengan `max(var(--fs-13), …em)` supaya tidak pernah di bawah 13 px.
+- Pengecualian lantai 13 px yang disengaja: label bilah tab bawah HP (ukuran native iOS ±10 px) dan label di dalam peta SVG.
 
 ### Named Rules
 **The Satu Frasa Rule.** Paling banyak satu frasa diredupkan per judul; tidak pernah untuk paragraf.
@@ -371,7 +371,7 @@ Pill Tunas 52px di kanan bawah (16px + safe area), hanya di bawah 64rem, muncul 
 - **Do** susun section sebagai course yang menimpa course berikutnya (overlap `clamp(28px, 4vw, 48px)`, radius bawah 6px, bayangan jatuh ke bawah) dan bergantian terang/gelap.
 - **Do** taruh harga, tabel, dan tanya-jawab di bidang terang (Embun/Putih) dengan teks Tinta; Pinus untuk bukti dan penutup.
 - **Do** pakai Tunas hanya untuk aksi utama dan satu kata di atas gelap, selalu dengan teks Pinus di atasnya.
-- **Do** tekankan judul lewat satu kata miring di kalimat berbobot 300; jangan pakai bobot di atas 500.
+- **Do** tekankan judul lewat satu frasa diredupkan (opacity 0.55) di judul berbobot 500; tanpa italic, tanpa bobot di atas 500.
 - **Do** pakai `tabular-nums` untuk setiap angka; rupiah tanpa desimal.
 - **Do** beri setiap kontrol target sentuh minimal 44px dan bentuk pill.
 - **Do** tandai angka uji dengan chip "contoh" dan slot bukti kosong dengan bingkai putus-putus yang jujur.

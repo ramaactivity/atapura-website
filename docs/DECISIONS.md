@@ -506,3 +506,13 @@ identitas bertitik (sumber utama Google/AI untuk entitas, schema AboutPage), mer
 diganti "invoice" (faktur pajak butuh NPWP/PKP yang belum ada); semua tautan "Untuk perusahaan" ke /perusahaan. Footer: Tentang,
 Kontak, Untuk perusahaan; "Panduan brand" dikeluarkan. /branding noindex + keluar dari sitemap (audit SEO). Gaya bersama halaman
 informasi di `src/styles/halaman.css`.
+
+## 076 · 23 November 2026 · Skala teks bertoken, lantai 13 px; isi HP mengikuti register ringkas Rama
+Audit §7: HP 37 ukuran huruf, 70 teks < 13 px (terkecil 6,5 px pada label harga di daftar merek HP); laptop 187 teks < 14 px dan
+paragraf catatan 13–15 px. PRODUCT.md menulis isi ≥17 px HP, tetapi selera Rama untuk HP (Ops; masukan kalkulator 23 Nov) adalah
+register ringkas 14–16 px; yang dipakai selera Rama, PRODUCT.md disesuaikan. Token `--fs-13…18` di `global.css`; 278 deklarasi
+rem < 1.15rem dipetakan ke token terdekat (skrip sekali jalan, bergeser umumnya < 0,5 px). Label berbasis em (Rp, satuan, "tahun")
+diberi `max(var(--fs-13), …em)`. Catatan panjang naik ke 15 px, paragraf isi laptop (AKAL, cara bayar, klaim) ke 16 px.
+Dikecualikan sengaja: label bilah tab HP (native iOS), label peta SVG, template internal (pricelist/marketplace, presisi cetak),
+/branding. Hasil HP: 37 → 20 ukuran, teks < 13 px hanya pengecualian di atas. DESIGN.md bagian Typography diperbarui ke
+kenyataan situs (Public Sans 500 + frasa redup, bukan 300 + miring).

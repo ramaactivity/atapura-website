@@ -112,13 +112,13 @@ const ribu = (n: number) => (n / 1000).toLocaleString('id-ID');
   .pm-alasan { color: var(--color-lumut); max-width: 52ch; }
   .pm-fakta { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; border-top: 1px solid var(--color-garis); margin-top: 0.4rem; }
   .pm-fakta > div { display: flex; justify-content: space-between; gap: 1rem; padding: 0.8rem 0; border-bottom: 1px solid var(--color-garis); }
-  .pm-fakta dt { color: var(--color-lumut); font-size: 0.93rem; }
+  .pm-fakta dt { color: var(--color-lumut); font-size: var(--fs-15); }
   .pm-fakta dd { text-align: right; font-weight: 500; }
-  .pm-fakta dd span { font-weight: 400; color: var(--color-lumut); font-size: 0.9rem; }
+  .pm-fakta dd span { font-weight: 400; color: var(--color-lumut); font-size: var(--fs-14); }
   .pm-aksi { margin-top: 0.4rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1.25rem; }
-  .pm-detail { display: inline-flex; align-items: center; min-height: 44px; color: var(--color-tinta); font-size: 0.95rem; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .pm-detail { display: inline-flex; align-items: center; min-height: 44px; color: var(--color-tinta); font-size: var(--fs-15); text-underline-offset: 3px; text-decoration-thickness: 1px; }
   @media (max-width: 47.99rem) {
-    .pm-btn { min-height: var(--hp-tombol); padding: 0.65rem 1rem; border-radius: 12px; font-size: 0.9375rem; }
+    .pm-btn { min-height: var(--hp-tombol); padding: 0.65rem 1rem; border-radius: 12px; font-size: var(--fs-15); }
     .pm-kartu { padding: 1.25rem; }
     .pm-judul { font-size: var(--hp-t3); }
   }

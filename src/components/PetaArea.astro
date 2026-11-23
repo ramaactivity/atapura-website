@@ -91,12 +91,12 @@ const daftar = (a: readonly string[]) => (a.length > 1 ? `${a.slice(0, -1).join(
   .peta-sisip-darat { fill: #dfe5e0; }
   .peta-sisip-pulau { font-family: var(--font-sans); font-size: 9px; font-weight: 500; fill: var(--color-tinta); text-anchor: middle; dominant-baseline: middle; }
   .peta-sisip-kotak { fill: #83b394; stroke: var(--color-pinus); stroke-width: 1.2; }
-  .peta-sisip-teks { font-size: 0.8125rem; line-height: 1.45; color: var(--color-tinta); }
+  .peta-sisip-teks { font-size: var(--fs-14); line-height: 1.45; color: var(--color-tinta); }
   /* Laptop/tablet: peta kecil di kiri, teks di kanan (laut utara terlalu sempit untuk ditempeli tanpa menutup wilayah). */
   @media (min-width: 48rem) { .peta-sisip { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); padding: 0.9rem 1.25rem; } }
 
   .peta-ket { margin-top: 0.85rem; font-size: 0.85rem; line-height: 1.5; color: var(--color-lumut); max-width: 60ch; }
-  .peta-sumber { display: block; margin-top: 0.3rem; font-size: 0.75rem; opacity: 0.8; }
+  .peta-sumber { display: block; margin-top: 0.3rem; font-size: var(--fs-13); opacity: 0.8; }
 
   /* HP: label besar dan sedikit supaya terbaca di lebar ±340 px (peta tampil ±0,45×). */
   @media (max-width: 47.99rem) {

@@ -55,7 +55,7 @@ const tgl = (d: Date) => d.toLocaleDateString('id-ID', { day: 'numeric', month: 
 
 <style>
   .pd { background: var(--color-embun); color: var(--color-tinta); padding: 120px 0 6rem; }
-  .remah { display: flex; gap: 0.5rem; font-size: 0.88rem; color: var(--color-lumut); }
+  .remah { display: flex; gap: 0.5rem; font-size: var(--fs-14); color: var(--color-lumut); }
   .remah a { color: inherit; }
   .pd-kepala { margin: 2rem 0 3rem; display: grid; gap: 1.25rem 4rem; grid-template-columns: minmax(0, 1fr); }
   @media (min-width: 60rem) { .pd-kepala { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); align-items: end; } }
@@ -71,18 +71,18 @@ const tgl = (d: Date) => d.toLocaleDateString('id-ID', { day: 'numeric', month: 
   @media (min-width: 64rem) { .pd-utama .pd-tautan { grid-template-columns: 1.4fr 1fr; } .pd-utama .pd-foto { aspect-ratio: auto; height: 100%; min-height: 26rem; } }
   .pd-isi { display: grid; gap: 0.6rem; padding: 1.5rem; align-content: start; }
   .pd-utama .pd-isi { padding: clamp(1.5rem, 3vw, 2.5rem); align-content: center; }
-  .pd-meta { font-size: 0.82rem; font-weight: 500; color: var(--color-lumut); }
+  .pd-meta { font-size: var(--fs-13); font-weight: 500; color: var(--color-lumut); }
   .pd-kartu-judul { font-size: 1.35rem; font-weight: 500; letter-spacing: -0.03em; line-height: 1.2; }
   .pd-utama .pd-kartu-judul { font-size: clamp(1.7rem, 1.2rem + 1.5vw, 2.5rem); }
-  .pd-ringkas { color: var(--color-lumut); font-size: 0.95rem; }
-  .pd-tgl { font-size: 0.82rem; color: var(--color-lumut); }
+  .pd-ringkas { color: var(--color-lumut); font-size: var(--fs-15); }
+  .pd-tgl { font-size: var(--fs-13); color: var(--color-lumut); }
 
   @media (max-width: 47.99rem) {
     .pd { padding-top: 96px; }
     .pd-judul { font-size: var(--hp-display); line-height: 1.05; }
-    .pd-lead { font-size: 1rem; }
+    .pd-lead { font-size: var(--fs-16); }
     .pd-kartu-judul, .pd-utama .pd-kartu-judul { font-size: var(--hp-t3); }
-    .pd-ringkas { font-size: 0.9375rem; }
+    .pd-ringkas { font-size: var(--fs-15); }
     /* Pola kartu HP sama dengan beranda. */
     .pd { background: #dde2dc; }
     .kartu-buka { margin: 0 calc(8px - var(--gutter)) 1.25rem; padding: 1.5rem var(--gutter) 0.25rem; border-radius: 28px; background: var(--color-embun); }

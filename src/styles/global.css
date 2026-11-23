@@ -57,7 +57,7 @@ html {
 }
 
 body {
-  font-size: 1rem; /* 16px di HP: ukuran baca bawaan iOS/Android */
+  font-size: var(--fs-16); /* 16px di HP: ukuran baca bawaan iOS/Android */
   /* Ritme teks ala Apple (isi 17 px, baris 1,47, sedikit dirapatkan), disesuaikan untuk Inter: baris 1,5, -0,011 em. */
   line-height: 1.5;
   letter-spacing: -0.011em;
@@ -67,10 +67,10 @@ body {
 }
 
 @media (min-width: 48rem) {
-  body { font-size: 1.0625rem; line-height: 1.6; }
+  body { font-size: var(--fs-17); line-height: 1.6; }
 }
 @media (min-width: 64rem) {
-  body { font-size: 1.125rem; }
+  body { font-size: var(--fs-18); }
 }
 
 h1, h2, h3 {
@@ -103,11 +103,22 @@ a { text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
 .pill {
   display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
   min-height: 48px; padding: 0 1.4rem; border-radius: 999px;
-  font-weight: 500; font-size: 1rem; letter-spacing: -0.005em;
+  font-weight: 500; font-size: var(--fs-16); letter-spacing: -0.005em;
   transition: transform 160ms var(--ease-out), background-color 200ms, box-shadow 200ms;
   text-decoration: none; cursor: pointer;
 }
 .pill:active { transform: scale(0.97); }
+
+/* Skala teks kecil–sedang (DECISIONS 076): satu langkah per peran, lantai 13 px. Judul memakai clamp sendiri
+   (Public Sans) dan token --hp-* di HP. Pengecualian sengaja: label bilah tab bawah (ukuran native iOS) dan label peta. */
+:root {
+  --fs-13: 0.8125rem; /* label, keterangan kecil (minimal) */
+  --fs-14: 0.875rem;  /* catatan, kaki */
+  --fs-15: 0.9375rem; /* isi ringkas, kartu */
+  --fs-16: 1rem;      /* isi */
+  --fs-17: 1.0625rem; /* isi baca, label kontrol */
+  --fs-18: 1.125rem;  /* pengantar kecil, judul baris */
+}
 
 /* Skala ukuran HP (acuan iOS HIG, sedikit lebih ringkas — permintaan Rama 3 Nov 2026).
    Dipakai blok @media (max-width: 47.99rem) di tiap komponen supaya semua bagian satu skala.
@@ -123,7 +134,7 @@ a { text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
   --hp-tombol: 44px;
 }
 @media (max-width: 47.99rem) {
-  .pill { min-height: var(--hp-tombol); padding: 0 1.15rem; font-size: 0.9375rem; }
+  .pill { min-height: var(--hp-tombol); padding: 0 1.15rem; font-size: var(--fs-15); }
   /* Ruang untuk bilah tab bawah (Header.astro) + bilah atas yang menempel. */
   body { padding-bottom: calc(49px + env(safe-area-inset-bottom)); }
   html { scroll-padding-top: calc(60px + env(safe-area-inset-top)); }
@@ -146,9 +157,9 @@ a { text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
 
 .contoh {
   display: inline-flex; align-items: center; padding: 0.2rem 0.65rem; border-radius: 999px;
-  background: var(--color-tunas-pucat); color: var(--color-pinus); font-size: 0.75rem; font-weight: 500;
+  background: var(--color-tunas-pucat); color: var(--color-pinus); font-size: var(--fs-13); font-weight: 500;
 }
-.contoh-kecil { margin-left: 0.4rem; padding: 0.05rem 0.5rem; font-size: 0.7rem; }
+.contoh-kecil { margin-left: 0.4rem; padding: 0.05rem 0.5rem; font-size: var(--fs-13); }
 
 /* Garis denah (acuan Lupitor): bingkai gambar kerja tipis dengan tanda "+" di keempat sudut.
    Garis datar selebar layar, garis tegak di luar tepi konten (konten tetap sejajar section lain).
