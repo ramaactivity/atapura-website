@@ -355,8 +355,8 @@ Menggantikan bento bukti (DECISIONS 085). Baris atas: label "Merek yang kami pas
 ### Garis denah
 `.denah` (global.css, ≥64rem): garis 1px Lumut 20% selebar layar di atas/bawah konten, garis tegak 1.5rem di luar tepi konten, tanda "+" 13px di keempat sudut. Hanya untuk bidang terang yang berisi data (Merek, Rapor). Lapisan punya bahasa gambar teknik sendiri.
 
-### Kartu contoh Hitung AKAL (hero desktop)
-Slip putih kecil bertepi chevron di kanan bawah hero, tiga contoh dari `estimasiPublik` bergantian 12 dtk (fade + blur 4px). Bukan tautan (hero cukup satu ajakan). Diam di contoh pertama bila gerak dikurangi.
+### Kartu contoh biaya terpasang (hero desktop)
+Label "Contoh biaya terpasang": jangan memakai istilah "Hitung AKAL" di hero, pengunjung baru belum tahu artinya (Rama, 23 Nov 2026). Slip putih kecil bertepi chevron di kanan bawah hero, tiga contoh dari `estimasiPublik` bergantian 12 dtk (fade + blur 4px). Bukan tautan (hero cukup satu ajakan). Diam di contoh pertama bila gerak dikurangi.
 
 ### Wordmark footer & logo klien
 Footer ditutup logo resmi selebar konten (komponen Logo, Embun). Deretan "Dipercaya oleh" (LogoKlien) hanya tampil bila `src/data/klien.ts` berisi logo asli; logo abu 60%, ≥5 logo berjalan 40 dtk.

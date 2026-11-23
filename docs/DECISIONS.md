@@ -618,3 +618,5 @@ Beranda, terlalu banyak tombol, tipografi diambil dari referensi.
 - Revisi Rama (saran Gemini): kalimat pengantar hero desktop digelapkan (campuran Lumut–Tinta 55%) dan berbobot 450, karena
   ujung kalimat jatuh di atas daun kelapa di foto. Saran kedua (garis bawah "Hitung atap Anda →" di kartu) tidak dipakai:
   tautan itu sudah dihapus atas permintaan Rama (hero satu ajakan).
+- Rama: "orang gatau apa itu AKAL" → label kartu hero jadi "Contoh biaya terpasang"; jawaban FAQ durasi menyebut "kalkulator
+  biaya di halaman Hitung biaya", bukan "Hitung AKAL".

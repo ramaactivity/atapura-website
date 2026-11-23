@@ -62,7 +62,7 @@ const tanya = [
   },
   {
     q: 'Berapa lama pengerjaannya?',
-    a: `Atap 120 m² umumnya selesai ${estimasiPublik(120, 'CTI').hari.join('–')} hari kerja, tergantung cuaca dan bentuk atap. Hitung AKAL menampilkan perkiraan untuk luas Anda. Jadwal pasti kami kirim tertulis setelah survey.`,
+    a: `Atap 120 m² umumnya selesai ${estimasiPublik(120, 'CTI').hari.join('–')} hari kerja, tergantung cuaca dan bentuk atap. Kalkulator biaya di halaman Hitung biaya menampilkan perkiraan untuk luas atap Anda. Jadwal pasti kami kirim tertulis setelah survey.`,
   },
   {
     q: 'Garansinya seperti apa?',
@@ -125,8 +125,8 @@ const faqSchema = {
         </ul>
       </div>
       <!-- Contoh hasil saja (bukti harga terbuka), bukan tombol: hero cukup satu ajakan (Rama, 23 Nov 2026). -->
-      <aside class="hero-kartu" aria-label="Contoh hasil Hitung AKAL">
-        <span class="hk-label">Contoh Hitung AKAL</span>
+      <aside class="hero-kartu" aria-label="Contoh biaya pasang atap bitumen">
+        <span class="hk-label">Contoh biaya terpasang</span>
         <span class="hk-putar">
           {contohHitung.map((c) => (
             <span class="hk-item">
@@ -610,7 +610,7 @@ const faqSchema = {
     .bukti-daftar li > span { font-size: var(--fs-15); margin-top: 0.6rem; }
   }
 
-  /* Kartu contoh Hitung AKAL di hero desktop (acuan Lupitor: kartu produk di atas foto). */
+  /* Kartu contoh biaya terpasang di hero desktop (acuan Lupitor: kartu produk di atas foto). */
   .hero-kartu { display: none; }
   @media (min-width: 64rem) {
     .hero-kartu {
