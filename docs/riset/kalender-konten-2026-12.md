@@ -82,7 +82,7 @@ Skor = dampak ke pelanggan 40% + cocok dengan layanan 30% + potensi pencarian 20
 2. Format "jawaban dulu" (skema `src/content.config.ts`): jawaban 2–3 kalimat di atas, subjudul berbentuk pertanyaan, tabel untuk perbandingan, FAQ, daftar sumber (ikut ke JSON-LD).
 3. Klaim teknis & angka bersumber (pabrikan, BMKG/BPS, regulasi, data Ops bertanggal) — memori "klaim wajib bersumber"; harga dari `harga.ts`/Ops, bukan ketik tangan.
 4. Tanpa merek lain, tanpa janji di luar kontrak, tanpa klaim TKDN/lokal, multiplek 12 mm (memori proyek).
-5. Tautan internal hanya ke halaman yang sudah tayang pada tanggal terbit artikel; minimal 3 tautan masuk/keluar dalam klaster + satu ke `/area` bila lokal + ajakan Hitung AKAL ke `/hitung` (boleh `?merek=X`; DECISIONS 071, bukan `/#hitung`).
+5. Tautan internal hanya ke halaman yang sudah tayang pada tanggal terbit artikel; minimal 3 tautan masuk/keluar dalam klaster + satu ke `/area` bila lokal + ajakan Hitung AKAL ke `/hitung` (boleh `?merek=X`; DECISIONS 071, bukan `/#hitung`). Minimal 2 tautan ke artikel lain di isi (dicek `cek.mjs`); sebut merek dengan nama resminya supaya blok "Halaman terkait" otomatis menaut ke halaman merek (DECISIONS 074).
 6. Sampul dari aset yang ada; gambar baru lewat Magnific hanya setelah "ok" Rama (DECISIONS 039).
 8. Setelah dijadwalkan: `node tools/artikel/cek.mjs …` hijau, lalu `npm run artikel-ops` supaya muncul di Ops (Lainnya → Artikel website).
 7. 10 opsi judul → pilih satu (≤70 karakter), ringkasan ≤160 karakter, keyword utama di judul, paragraf pertama, dan satu subjudul — tanpa keyword stuffing.

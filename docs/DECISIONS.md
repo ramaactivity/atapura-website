@@ -483,3 +483,14 @@ halaman rinci, label kecil di atas judul dibuang.
 Audit 23 Nov: animasi logo ±3,3 dtk menutup layar di kunjungan pertama, tepat pengunjung dari Google/AI/iklan; HP menengah
 baru bisa membaca setelah 4,4 dtk (tanpa animasi 0,7 dtk). Rama: "kalau secara digital marketing, SEO dan GEO dinilai jelek,
 hapus, khususnya di smartphone". Dihapus di semua perangkat (`Bumper.astro` dan pemakaiannya di beranda); hero langsung tampil.
+
+## 074 · 23 November 2026 · Tautan antar-artikel: "Baca juga" relevan + "Halaman terkait" otomatis
+Permintaan Rama: tiap artikel mengajak ke halaman dan artikel lain. Audit 21 artikel tayang: semua sudah mengajak ke Hitung AKAL
+(kotak template), tetapi 2 artikel tanpa tautan ke artikel lain, hanya 2 menaut halaman merek, 0 ke area/cara kerja/garansi, dan
+"Baca juga" selalu tiga artikel pertama yang sama di semua artikel. Perbaikan di template (berlaku otomatis untuk artikel baru):
+(1) "Baca juga" diurutkan menurut kategori sama + kata judul yang sama, artikel yang sudah ditaut di isi diturunkan;
+(2) blok "Halaman terkait" dibaca dari isi artikel: halaman merek yang disebut (Maxxi/Maxxiroof/Promaxxi, CTI, Javabitumen,
+Tegola, Victory), rangka baja ringan, /cara-kerja (bila membahas lapis/survey/pasang), /garansi, /area (bila menyebut Jabodetabek);
+(3) dua artikel tanpa tautan diberi tautan kontekstual ke artikel & halaman yang sudah tayang; (4) `tools/artikel/cek.mjs` menolak
+artikel dengan < 2 tautan ke artikel lain, dan larangan "menautkan artikel belum tayang" dihitung terhadap tanggal terbit atau hari
+ini (mana yang lebih akhir), supaya artikel lama boleh menaut artikel yang sudah tayang.

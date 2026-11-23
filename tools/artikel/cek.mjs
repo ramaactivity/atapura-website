@@ -21,6 +21,7 @@ const frontmatter = (teks) => {
   const ambil = (k) => m[1].match(new RegExp(`^${k}: '((?:[^']|'')*)'`, 'm'))?.[1].replaceAll("''", "'") ?? m[1].match(new RegExp(`^${k}: (.*)$`, 'm'))?.[1];
   return { ambil, isi: m[2], fm: m[1] };
 };
+const hariIni = new Date(Date.now() + 7 * 3600e3).toISOString().slice(0, 10); // tanggal WIB
 const terbitDari = (file) => {
   const t = readFileSync(file, 'utf8').match(/^terbit: '?(\d{4}-\d{2}-\d{2})/m);
   return t?.[1];
@@ -57,8 +58,13 @@ for (const file of process.argv.slice(2)) {
     const tujuan = join(akar, 'src/content', jenis, `${slug}.md`);
     if (!existsSync(tujuan)) { salah.push(`tautan putus: ${href}`); continue; }
     const t2 = jenis === 'panduan' ? terbitDari(tujuan) : null;
-    if (t2 && terbit && t2 > terbit) salah.push(`menautkan artikel yang belum tayang (${t2}): ${href}`);
+    // Yang dilarang: tujuan belum tayang pada saat artikel ini terbit ATAU hari ini (mana yang lebih akhir).
+    const batas = terbit && terbit > hariIni ? terbit : hariIni;
+    if (t2 && t2 > batas) salah.push(`menautkan artikel yang belum tayang (${t2}): ${href}`);
   }
+  // DECISIONS 074: tiap artikel mengajak ke artikel lain (min. 2). Ajakan Hitung AKAL sudah dipasang template (Artikel.astro).
+  const keArtikel = new Set([...isi.matchAll(/\]\(\/panduan\/([^)#\s?]+)/g)].map((m) => m[1])).size;
+  if (keArtikel < 2) salah.push(`tautan ke artikel lain baru ${keArtikel} (min. 2)`);
   const masuk = readdirSync(join(akar, 'src/content/panduan')).filter((f) => f.endsWith('.md') && readFileSync(join(akar, 'src/content/panduan', f), 'utf8').includes(`/panduan/${basename(file, '.md')}`)).length;
   console.log(`${salah.length ? '✗' : '✓'} ${basename(file)} · terbit ${terbit} · judul ${judul.length} · ringkasan ${ringkasan.length} · jawaban ${kata} kata · tautan masuk ${masuk}`);
   for (const s of salah) console.log(`    - ${s}`);

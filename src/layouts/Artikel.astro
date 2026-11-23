@@ -25,6 +25,8 @@ interface Props {
   dataWa: string;
   lainJudul?: string;
   lain: { href: string; label: string; judul: string }[];
+  /** Halaman situs yang dibahas artikel (merek, cara kerja, garansi, area), DECISIONS 074. */
+  halaman?: { href: string; label: string }[];
   /** Schema khusus halaman (Article/Service, dst.); Breadcrumb & FAQPage dibuat di sini. */
   schema: object[];
   lang?: 'id' | 'en';
@@ -38,7 +40,7 @@ const TEKS = {
 } as const;
 
 const {
-  judul, ringkasan, jawaban, penulis, diperbarui, sampul, sampulAlt, induk, label, faq, sumber, waPesan, dataWa, lain,
+  judul, ringkasan, jawaban, penulis, diperbarui, sampul, sampulAlt, induk, label, faq, sumber, waPesan, dataWa, lain, halaman = [],
   cta = `Masukkan luas dan merek, estimasinya langsung terlihat. Survey gratis di ${bisnis.area.length} kota dan kabupaten Jabodetabek.`,
   lang = 'id',
   alternates = [],
@@ -115,6 +117,12 @@ const schema = [
       <section class="wrap ar-lain" aria-labelledby="lain-judul">
         <h2 id="lain-judul">{lainJudul}</h2>
         <ul>{lain.map((x) => <li><a href={x.href}><span>{x.label}</span>{x.judul}</a></li>)}</ul>
+        {halaman.length > 0 && (
+          <nav class="ar-halaman" aria-label="Halaman terkait">
+            <p class="ar-halaman-judul">Halaman terkait</p>
+            <ul>{halaman.map((h) => <li><a class="tautan-lanjut" href={h.href}>{h.label}</a></li>)}</ul>
+          </nav>
+        )}
       </section>
     )}
   </main>
@@ -175,6 +183,11 @@ const schema = [
   .ar-lain a { display: grid; gap: 0.4rem; padding: 1.25rem; border-radius: 14px; background: var(--color-putih); text-decoration: none; color: inherit; font-weight: 500; letter-spacing: -0.02em; transition: transform 400ms var(--ease-out); }
   .ar-lain a:hover { transform: translateY(-3px); }
   .ar-lain span { font-size: 0.8rem; color: var(--color-lumut); font-weight: 400; }
+  .ar-halaman { margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid var(--color-garis); }
+  .ar-halaman-judul { font-size: 0.9rem; font-weight: 500; color: var(--color-lumut); }
+  .ar-halaman ul { display: flex; flex-wrap: wrap; gap: 0 1.75rem; margin-top: 0.25rem; }
+  .ar-halaman a { display: inline-flex; padding: 0; background: none; border-radius: 0; font-weight: 500; letter-spacing: 0; text-decoration: underline; }
+  .ar-halaman a:hover { transform: none; }
 
   /* Skala HP (token --hp-* di global.css); harus setelah aturan dasar supaya tidak tertimpa. */
   @media (max-width: 47.99rem) {
@@ -195,7 +208,9 @@ const schema = [
     /* Pola kartu HP sama dengan beranda: latar abu hangat, isi jadi kartu membulat. */
     .ar { background: #dde2dc; padding-bottom: 1rem; }
     .ar article { margin: 8px; padding: 1.5rem 0 2rem; border-radius: 28px; background: var(--color-embun); overflow: clip; }
-    .ar-lain { margin: 8px; padding: 1.75rem 0; border-radius: 28px; background: var(--color-embun); }
+    .ar-lain { margin: 8px; padding: 1.75rem calc(var(--gutter) - 8px); border-radius: 28px; background: var(--color-embun); }
+    .ar-halaman a { font-size: 0.9375rem; }
+    .ar-halaman ul { gap: 0 1.25rem; }
     .ar-lain ul { margin-top: 0.25rem; }
   }
 </style>

@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Artikel from '../../layouts/Artikel.astro';
+import { namaLengkap, produk } from '../../data/produk';
 
 export async function getStaticPaths() {
   const semua = await getCollection('panduan');
@@ -14,7 +15,28 @@ const { Content } = await render(a);
 const d = a.data;
 const url = new URL(`/panduan/${a.id}`, Astro.site).href;
 const situs = new URL('/', Astro.site).href;
-const lain = semua.filter((x) => x.id !== a.id).slice(0, 3).map((x) => ({ href: `/panduan/${x.id}`, label: x.data.kategori, judul: x.data.judul }));
+// Baca juga (DECISIONS 074): kategori sama + kata judul yang sama, artikel yang sudah ditaut di isi didahulukan yang belum.
+const STOP = new Set(['atap', 'bitumen', 'yang', 'dengan', 'untuk', 'apakah', 'berapa', 'cara', 'dari', 'atau', 'dan', 'saja']);
+const kataJudul = (s: string) => new Set((s.toLowerCase().match(/[a-z]{4,}/g) ?? []).filter((w) => !STOP.has(w)));
+const kunci = kataJudul(d.judul);
+const sudahDitaut = new Set([...(a.body ?? '').matchAll(/\]\(\/panduan\/([^)#\s?]+)/g)].map((m) => m[1]));
+const skor = (x: typeof a) => (x.data.kategori === d.kategori ? 3 : 0) + [...kataJudul(x.data.judul)].filter((w) => kunci.has(w)).length * 2 - (sudahDitaut.has(x.id) ? 4 : 0);
+const lain = semua
+  .filter((x) => x.id !== a.id)
+  .sort((p, q) => skor(q) - skor(p) || q.data.diperbarui.getTime() - p.data.diperbarui.getTime())
+  .slice(0, 3)
+  .map((x) => ({ href: `/panduan/${x.id}`, label: x.data.kategori, judul: x.data.judul }));
+
+// Halaman terkait: dibaca dari isi artikel, jadi artikel baru otomatis menaut ke halaman merek & layanan yang ia bahas.
+const isiArtikel = a.body ?? '';
+const alias: Record<string, RegExp> = { Maxxi: /\b(Maxxi|Maxxiroof|Promaxxi)\b/ };
+const halaman = [
+  ...produk.filter((p) => p.lini === 'atap' && (alias[p.nama] ?? new RegExp(`\\b${p.nama}\\b`)).test(isiArtikel)).map((p) => ({ href: `/produk/${p.slug}`, label: namaLengkap(p) })),
+  ...produk.filter((p) => p.lini === 'rangka' && /baja ringan/i.test(isiArtikel)).map((p) => ({ href: `/produk/${p.slug}`, label: namaLengkap(p) })),
+  ...(/lapis|underlay|survey|pasang/i.test(isiArtikel) ? [{ href: '/cara-kerja', label: 'Cara kerja & lima lapis' }] : []),
+  ...(/garansi/i.test(isiArtikel) ? [{ href: '/garansi', label: 'Bayar & garansi' }] : []),
+  ...(/Jabodetabek|Jakarta|Bogor|Depok|Tangerang|Bekasi/.test(isiArtikel) ? [{ href: '/area', label: 'Area survey' }] : []),
+].filter((h) => !isiArtikel.includes(`](${h.href})`));
 
 const artikel = {
   '@context': 'https://schema.org',
@@ -32,6 +54,7 @@ const artikel = {
 ---
 
 <Artikel
+  halaman={halaman}
   judul={d.judul} ringkasan={d.ringkasan} jawaban={d.jawaban} penulis={d.penulis} diperbarui={d.diperbarui}
   sampul={d.sampul} sampulAlt={d.sampulAlt} induk={{ nama: 'Panduan', href: '/panduan' }} label={d.kategori}
   faq={d.faq} sumber={d.sumber} lain={lain} schema={[artikel]} alternates={alternates}

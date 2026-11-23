@@ -31,7 +31,7 @@ sumber:
 | 4 | Genteng bitumen | Shingle 3-tab atau laminasi | Lapisan luar: tahan cuaca, memberi warna |
 | 5 | Nok | Potongan shingle di bubungan | Menutup sambungan paling atas |
 
-Genteng dipasang dari bawah ke atas. Panduan CTI memakai paku 2,5 cm berkepala minimal 7 mm, 4 paku per lembar di area yang nanti tertutup lembar berikutnya, dan 6 paku atau lebih untuk daerah berangin kencang. Di atap 10–15°, sambungan underlayment dilebihkan menjadi 150 mm.
+Genteng dipasang dari bawah ke atas. Panduan CTI memakai paku 2,5 cm berkepala minimal 7 mm, 4 paku per lembar di area yang nanti tertutup lembar berikutnya, dan 6 paku atau lebih untuk daerah berangin kencang. Di atap 10–15°, sambungan underlayment dilebihkan menjadi 150 mm; batas kemiringan tiap merek ada di [kemiringan atap bitumen minimal](/panduan/kemiringan-atap-bitumen-minimal).
 
 ## Titik rawan di lapis yang tertutup
 
@@ -39,9 +39,9 @@ Bagian yang paling perlu diawasi justru yang tidak terlihat setelah atap jadi:
 
 1. **Sambungan alas yang tidak rata.** Genteng lentur mengikuti permukaan di bawahnya; papan yang menonjol membuat genteng terangkat.
 2. **Underlayment terpotong atau tumpang tindihnya kurang.** Air yang lolos dari genteng tidak tertahan.
-3. **Flashing terlewat di tepi dinding.** Pertemuan atap dan dinding termasuk titik yang paling butuh perlindungan tambahan.
+3. **Flashing terlewat di tepi dinding.** Pertemuan atap dan dinding termasuk titik yang paling butuh perlindungan tambahan. Detailnya di [nok, flashing, dan talang atap bitumen](/panduan/nok-flashing-talang-atap-bitumen).
 4. **Paku di luar posisi.** Paku yang miring, terlalu dalam, kurang dalam, atau di luar area yang ditentukan pabrik membuat genteng mudah terangkat angin. Panduan CTI dan asosiasi pabrikan atap aspal AS (ARMA) sama-sama menandai kesalahan ini.
 
 ## Cara memeriksa pekerjaan yang sudah tertutup
 
-Anda tidak perlu naik ke atap. Mintalah **foto setiap lapis sebelum ditutup**: alas yang rata, underlayment yang tumpang tindih, flashing di tepi dinding, lalu genteng dan nok. Foto ini sekaligus menjadi bukti saat klaim garansi.
+Anda tidak perlu naik ke atap. Mintalah **foto setiap lapis sebelum ditutup**: alas yang rata, underlayment yang tumpang tindih, flashing di tepi dinding, lalu genteng dan nok. Begitulah [cara kerja Atapura](/cara-kerja) di setiap proyek. Foto ini sekaligus menjadi bukti saat [klaim garansi](/garansi).

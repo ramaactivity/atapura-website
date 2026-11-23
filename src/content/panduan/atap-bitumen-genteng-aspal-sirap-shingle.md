@@ -59,7 +59,9 @@ Yang sering membuat bingung: atap gelombang juga disebut "atap bitumen", tapi ca
 
 ## Mana yang cocok untuk rumah Anda?
 
-- **Ingin hemat dan rapi:** 3-tab, misalnya Maxxiroof atau CTI CT3.
-- **Ingin tampilan lebih tebal dan berbayang:** laminasi seperti Promaxxi.
+- **Ingin hemat dan rapi:** 3-tab, misalnya [Maxxiroof](/produk/maxxi) atau [CTI CT3](/produk/cti).
+- **Ingin tampilan lebih tebal dan berbayang:** laminasi seperti [Promaxxi](/produk/maxxi).
 - **Ingin pola yang berbeda:** CTI CT5 atau CT6.
-- **Belum yakin:** lihat sampel fisiknya di rumah sendiri. Warna dan tekstur terlihat berbeda di bawah cahaya siang dan saat mendung.
+- **Belum yakin:** lihat sampel fisiknya di rumah sendiri. Warna dan tekstur terlihat berbeda di bawah cahaya siang dan saat mendung; panduannya ada di [memilih warna atap bitumen](/panduan/warna-atap-bitumen-rumah-minimalis).
+
+Selisih biaya antarmerek dan antarjenis ada di [harga atap bitumen per m²](/panduan/harga-atap-bitumen-per-m2).

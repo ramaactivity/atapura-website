@@ -14,7 +14,9 @@
   ✅ Tahap 1: **kalkulator pindah ke `/hitung`** (DECISIONS 071) + kartu hitung cepat di beranda (`HitungCepat.tsx`), semua
   tautan `/#hitung` diganti. Kalkulator HP diringkas (masukan Rama: "desktop dipaksakan"). ✅ Tahap 2 (DECISIONS 072): beranda
   jadi landing page 11 bagian (HP 14,8 layar), halaman baru `/cara-kerja` & `/garansi`, AKAL desktop jadi kisi kartu.
-  ⏳ Belum: Bumper (tanya Rama), /tentang /kontak /perusahaan, skala tipografi & ukuran teks isi (audit §7).
+  ✅ Bumper dihapus (073). ✅ Tautan antar-artikel (074): "Baca juga" relevan + "Halaman terkait" otomatis + aturan cek.mjs.
+  ⏳ Berikutnya: /tentang /kontak /perusahaan, skala tipografi & ukuran teks isi (audit §7). Temuan lama cek.mjs di artikel
+  November (kata "TKDN", tabel > 3 kolom, jawaban > 60 kata) belum disentuh.
   ⏳ Setelah itu (permintaan Rama 23 Nov): tiap artikel wajib mengajak ke halaman/artikel lain (audit tautan internal artikel).
 
 - **Lead otomatis ke Ops** (22 Nov 2026, DECISIONS 068 / Ops 150): kalkulator publik punya isian Nama & No. WA opsional → `api/kirim-lead.mjs` (Vercel Function) → Ops `/api/lead`. Env `LEAD_SECRET` di Vercel proyek `atapura`.
