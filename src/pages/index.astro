@@ -182,8 +182,8 @@ const faqSchema = {
     <section id="layanan" class="sek c-embun" aria-labelledby="judul-layanan">
       <div class="wrap">
         <div class="kepala">
-          <h2 id="judul-layanan" class="judul-besar">Apa pun atap Anda, <span class="miring">ada jalan keluarnya.</span></h2>
-          <p class="lead">Material lengkap dan jasa pasang dari satu tempat. Pilih yang paling dekat dengan kebutuhan Anda.</p>
+          <h2 id="judul-layanan" class="judul-besar">Solusi layanan atap bitumen <span class="miring">sesuai kebutuhan proyek Anda.</span></h2>
+          <p class="lead">Semua kebutuhan material dan pemasangan dalam satu pintu.</p>
         </div>
         <!-- Deret kartu berfoto (acuan Forma Casa & Logamax, DECISIONS 086); HP digeser ke samping. -->
         <ul class="lyn-daftar">
@@ -533,6 +533,10 @@ const faqSchema = {
   .sek { padding-block: clamp(4.5rem, 9vw, 8rem); }
   /* Layanan langsung menempel di bawah baris angka (sudah ada garis pemisah): jarak atas dipangkas supaya tidak ada pita kosong. */
   #layanan { padding-top: clamp(2.75rem, 4.5vw, 4rem); }
+  /* Judul layanan dua baris di tablet/laptop: "Solusi layanan atap bitumen" / "sesuai kebutuhan proyek Anda." */
+  @media (min-width: 48rem) { #judul-layanan { max-width: 30ch; } #judul-layanan .miring { display: block; } }
+  /* Pengantar di kanan: dua baris seimbang, menempel ke tepi kanan (masukan Rama). */
+  @media (min-width: 60rem) { #layanan .lead { justify-self: end; max-width: 30ch; text-wrap: balance; } }
   .teks-ungkap span { opacity: 0.22; transition: opacity 350ms var(--ease-out); }
   .teks-ungkap span.nyala { opacity: 1; }
   .c-embun { background: var(--color-embun); }

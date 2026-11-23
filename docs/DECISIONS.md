@@ -662,6 +662,9 @@ kalkulator (bertentangan dengan arahan Rama untuk tidak menonjolkan hitung sendi
   Kalimat jawaban 9 halaman area (yang dikutip mesin pencari/AI) diubah dari "Atapura memasang dan memperbaiki atap
   bitumen" menjadi "Atapura memasang atap bitumen".
 
+- Teks Layanan (Rama): judul "Solusi layanan atap bitumen sesuai kebutuhan proyek Anda." (dua baris di tablet/laptop, frasa
+  kedua diredupkan), pengantar "Semua kebutuhan material dan pemasangan dalam satu pintu." dua baris menempel ke tepi kanan.
+
 ## 087 · 23 November 2026 · Nomor WhatsApp dikoreksi: 0896-1138-4767
 Rama: nomor di situs salah ketik (0896-1139-4867 → WhatsApp "isn't on WhatsApp"). Nomor benar 0896-1138-4767 (`6289611384767`)
 di `src/data/bisnis.ts` (satu sumber semua tombol WA, schema, dan pesan kalkulator). Ops `src/lib/profil.ts` ikut dikoreksi.
