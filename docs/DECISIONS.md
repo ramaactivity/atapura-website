@@ -625,5 +625,6 @@ Beranda, terlalu banyak tombol, tipografi diambil dari referensi.
   yang dikerjakan + siapa yang mengerjakan). Pilihan akhir Rama, "singkat dan tegas" + AKAL: "Spesialis jasa pasang atap bitumen
   (genteng aspal), lengkap lima lapis dari alas sampai nok. Dikerjakan tim profesional dengan prinsip AKAL: andal, berkualitas,
   amanah, lestari." Memuat kata kunci inti yang dipantau Ops ("jasa pasang atap bitumen", "genteng aspal"). "Solusi terbaik"
-  sengaja tidak dipakai (daftar kata terlarang, klaim tak terbukti). Label atas jadi "Rumah, villa, dan kafe · Jabodetabek"
-  supaya "jasa pasang" tidak dobel; lokasi hanya di label.
+  sengaja tidak dipakai (daftar kata terlarang, klaim tak terbukti). Koreksi Rama: label atas tetap "Jasa pasang genteng
+  aspal · Jabodetabek", jadi kalimat dibuka "Spesialis atap bitumen, dipasang lengkap lima lapis…" supaya "jasa pasang" dan
+  "genteng aspal" tidak dobel dengan label; lokasi hanya di label.
