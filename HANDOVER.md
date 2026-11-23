@@ -1,7 +1,12 @@
 # Handover
 
+- **atapura.com LIVE 23 Nov 2026**: dibeli Rama di Hostinger (hPanel, nameserver bawaan dns-parking.com). DNS: A `@`
+  216.198.79.1 (TTL 3600), CNAME `www` → atapura.com (ikut ke IP Vercel; Vercel verified). Sertifikat HTTPS diterbitkan manual
+  via API `POST /v8/certs` (autoRenew). `https://atapura.com` 200, `www` 308 → apex. Masih noindex (`bisnis.konsep = true`) —
+  buka untuk Google + Search Console menunggu keputusan Rama.
+
 - **Audit menyeluruh 23 Nov 2026** → `docs/riset/audit-website-2026-11-23.md` (SEO/GEO, customer, owner, desain,
-  tipografi, developer, HP vs desktop). P0: atapura.com masih "No match" di whois (cek pembelian Rama), situs noindex,
+  tipografi, developer, HP vs desktop). P0: ~~atapura.com belum terdaftar~~ (live 23 Nov), situs noindex,
   FAQ beranda bertentangan (5° & "tiga merek", index.astro:49/57), intro 3,3 dtk. Usulan beranda 15 → 10 bagian +
   halaman /tentang /garansi /cara-kerja /kontak /perusahaan — menunggu keputusan Rama, belum ada kode yang diubah.
 
@@ -44,7 +49,7 @@
   Serper.dev, kunci ke `.env.local` Ops); (d) tahap 5 Search Console setelah domain aktif & `bisnis.konsep = false`.
 
 ## Cek kesehatan (22 November 2026, sore)
-- ⚠️ **atapura.com BELUM terdaftar**: RDAP Verisign 404 (google.com 200 sebagai pembanding), tidak ada NS/A. Padahal canonical,
+- ~~atapura.com BELUM terdaftar~~ (selesai 23 Nov, lihat atas): RDAP Verisign 404 (google.com 200 sebagai pembanding), tidak ada NS/A. Padahal canonical,
   sitemap, llms.txt, JSON-LD, pricelist PDF, dan PDF product knowledge semua menulis atapura.com. Tanyakan Rama: sudah bayar di
   registrar mana? Kalau belum, beli; kalau domain lain, ganti `site` di astro.config + `situs` di pricelist.astro +
   product-knowledge.astro. Situs tetap jalan di atapura.vercel.app.

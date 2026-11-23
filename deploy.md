@@ -4,7 +4,7 @@
 |---|---|---|
 | GitHub | ramaactivity | repo privat `ramaactivity/atapura-website`, commit email rama.activity98@gmail.com |
 | Vercel | atapurakaryalestari@gmail.com (team `atapura`, `team_E2sc4rJv4neVvRPpJubDdAqr`) | proyek `atapura`, `prj_R9OCxzPUAjRnUTZR4Uavihp5QK36`, Hobby, Vercel Authentication mati, alias `atapura.vercel.app` |
-| Domain | `atapura.com` (+ `www` → 308 ke apex) | ditempel ke proyek Vercel 20 Nov 2026 sebelum dibeli (permintaan Rama); `site` default di astro.config. DNS di registrar: A `@` 216.198.79.1, CNAME `www` cname.vercel-dns.com. `atapura.vercel.app` tetap jalan |
+| Domain | `atapura.com` (+ `www` → 308 ke apex) | registrar **Hostinger** (hPanel, dibeli Rama 21 Nov, live 23 Nov 2026; nameserver bawaan dns-parking.com). DNS: A `@` 216.198.79.1, CNAME `www` → atapura.com. Cert HTTPS Vercel autoRenew. `site` default di astro.config. `atapura.vercel.app` tetap jalan |
 | Database | tidak ada (fase 1) | |
 
 ## Sinkron dari Atapura Ops
