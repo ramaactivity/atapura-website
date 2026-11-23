@@ -4,7 +4,7 @@
   216.198.79.1 (TTL 3600), CNAME `www` → atapura.com (ikut ke IP Vercel; Vercel verified). Sertifikat HTTPS diterbitkan manual
   via API `POST /v8/certs` (autoRenew). `https://atapura.com` 200, `www` 308 → apex. Dibuka untuk Google 23 Nov (DECISIONS 070,
   `bisnis.konsep = false`). Search Console aktif 23 Nov: properti Domain
-  `atapura.com` (akun Google Rama, avatar "Y"), verifikasi TXT `google-site-verification=BEPJ…` di Hostinger — JANGAN dihapus.
+  `atapura.com` (owner: atapurakaryalestari@gmail.com, profil "Yusuf Nasution"; status indeks harian di Ops SEO & GEO, Ops DECISIONS 162–163), verifikasi TXT `google-site-verification=BEPJ…` di Hostinger — JANGAN dihapus.
   Sitemap `https://atapura.com/sitemap-index.xml` dikirim (status awal "Couldn't fetch"/Last read kosong = belum dicoba Google;
   cek ulang 24–25 Nov, situs sudah dites 200 dengan UA Googlebot).
 
