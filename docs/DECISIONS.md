@@ -632,3 +632,8 @@ Beranda, terlalu banyak tombol, tipografi diambil dari referensi.
   dobel dan tidak terlalu panjang: "Dipasang lima lapis dari alas sampai nok oleh tim profesional dengan prinsip AKAL: andal,
   berkualitas, amanah, lestari." Chip satu baris di HP 390 px, dua baris di 360 px.
   Penulisan nilai AKAL (Rama): huruf depan besar, "Andal, Berkualitas, Amanah & Lestari".
+- Rama: tiga klaim di bawah tombol (survey & ukur gratis, garansi pemasangan 5 tahun, tiap lapis difoto) berpotensi jadi
+  bumerang. Diganti penekanan jasa + material lengkap: "Material lengkap · Jasa pasang tuntas · Bisa sekalian rangka" (rangka
+  baja ringan memang dijual & dipasang, harga di data). Baris angka ikut diganti dan tidak mengulang: 13 kota · ±4–5 hari kerja
+  untuk 120 m² · harga terpasang mulai Rp…rb/m² (minimum `harga.merek[*].terpasang`, ikut Ops). Garansi & survey tetap
+  dijelaskan di halaman/bagian masing-masing.

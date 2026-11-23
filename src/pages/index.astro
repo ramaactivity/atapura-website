@@ -40,6 +40,8 @@ const logoMerek = produk.filter((p) => p.lini === 'atap').sort((a, b) => urutan.
   return { slug: p.slug, nama: p.nama, src, tinggi: `${(1 / Math.sqrt(src.width / src.height / 3)).toFixed(3)}em` };
 });
 const hari120 = estimasiPublik(120, 'CTI').hari;
+// Harga terpasang termurah dari data Ops (ikut berubah otomatis).
+const hargaMulai = Math.min(...Object.values(harga.merek).map((m) => m.terpasang[0])) / 1000;
 
 const panduanTerbaru =(await getCollection('panduan')).sort((a, b) => b.data.diperbarui.getTime() - a.data.diperbarui.getTime()).slice(0, 3);
 
@@ -118,10 +120,10 @@ const faqSchema = {
         <div class="hero-aksi">
           <a href="/hitung" class="pill hero-utama">Hitung estimasi biaya</a>
         </div>
-        <ul class="hero-bukti" aria-label="Jaminan">
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 15.5 15.5 3l5.5 5.5L8.5 21z" /><path d="m7 11.5 2 2M10 8.5l2 2M13 5.5l2 2" /></svg><span>Survey <span class="hb-panjang">&amp; ukur </span>gratis</span></li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 5.8v5.6c0 4.3 2.9 7.9 7 9.6 4.1-1.7 7-5.3 7-9.6V5.8z" /><path d="m9 12 2.1 2.1L15.2 10" /></svg><span>Garansi <span class="hb-panjang">pemasangan </span>{bisnis.garansiPemasanganTahun} tahun</span></li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2.2l1.6-2.5h5.4L16.3 7h2.2A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5z" /><circle cx="12" cy="12.8" r="3.3" /></svg><span>Tiap lapis difoto</span></li>
+        <ul class="hero-bukti" aria-label="Yang Anda dapat">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 8 12 3.5 20.5 8v8L12 20.5 3.5 16z" /><path d="M3.5 8 12 12.5 20.5 8M12 12.5v8" /></svg><span>Material lengkap</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 15.5 15.5 3l5.5 5.5L8.5 21z" /><path d="m7 11.5 2 2M10 8.5l2 2M13 5.5l2 2" /></svg><span>Jasa pasang tuntas</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 19 12 5l9.5 14z" /><path d="M7.2 12h9.6M12 5v14M7.2 12 12 19l4.8-7" /></svg><span>Bisa sekalian rangka</span></li>
         </ul>
       </div>
       <!-- Contoh hasil saja (bukti harga terbuka), bukan tombol: hero cukup satu ajakan (Rama, 23 Nov 2026). -->
@@ -156,10 +158,9 @@ const faqSchema = {
           </ul>
         </div>
         <ul class="bukti-daftar">
-          <li><b>{bisnis.garansiPemasanganTahun} tahun</b><span>garansi pemasangan tertulis</span></li>
-          <li><b>{bisnis.area.length} kota</b><span>dan kabupaten Jabodetabek</span></li>
-          <li><b>Gratis</b><span>survey &amp; ukur di lokasi</span></li>
+          <li><b>{bisnis.area.length} kota</b><span>dan kabupaten di Jabodetabek</span></li>
           <li><b>±<span class="angka">{hari120[0]}–{hari120[1]}</span> hari</b><span>kerja untuk atap 120 m²</span></li>
+          <li><b>Rp<span class="angka">{hargaMulai}</span> rb</b><span>per m² terpasang, harga mulai</span></li>
         </ul>
       </div>
     </section>
@@ -596,6 +597,7 @@ const faqSchema = {
   .bukti-daftar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .bukti-daftar li { padding: 1.4rem 1rem 1.4rem 0; border-top: 1px solid var(--color-garis); }
   .bukti-daftar li:nth-child(-n+2) { border-top: 0; }
+  .bukti-daftar li:nth-child(3) { grid-column: 1 / -1; } /* HP: tiga angka = 2 + 1 lebar penuh */
   .bukti-daftar b { display: block; font-weight: 500; font-size: 1.6rem; letter-spacing: -0.04em; line-height: 1.05; white-space: nowrap; }
   .bukti-daftar li > span { font-size: var(--fs-14); color: var(--color-lumut); line-height: 1.4; display: block; margin-top: 0.2rem; }
   /* Desktop: logo sebaris dengan labelnya, angka empat kolom dengan garis pemisah tegak. */
@@ -603,9 +605,10 @@ const faqSchema = {
     .merek-deret { grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 3rem; padding-block: 1.75rem; }
     .merek-label { text-align: left; }
     .merek-logo { justify-content: space-between; flex-wrap: nowrap; gap: 2rem; font-size: 1.9rem; }
-    .bukti-daftar { grid-template-columns: repeat(4, minmax(0, 1fr)); padding-block: 2.25rem 2.5rem; }
+    .bukti-daftar { grid-template-columns: repeat(3, minmax(0, 1fr)); padding-block: 2.25rem 2.5rem; }
     .bukti-daftar li, .bukti-daftar li:nth-child(-n+2) { border-top: 0; padding: 0.25rem 1.5rem; border-left: 1px solid var(--color-garis); }
     .bukti-daftar li:first-child { border-left: 0; padding-left: 0; }
+    .bukti-daftar li:nth-child(3) { grid-column: auto; }
     .bukti-daftar b { font-size: clamp(2.5rem, 1.2rem + 2.2vw, 3.5rem); line-height: 1; }
     .bukti-daftar li > span { font-size: var(--fs-15); margin-top: 0.6rem; }
   }
@@ -894,7 +897,6 @@ const faqSchema = {
     .hero-bukti { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.25rem 0.9rem; margin-top: 0.6rem; }
     .hero-bukti li { display: inline-flex; align-items: center; gap: 0.3rem; font-size: var(--fs-13); font-weight: 500; color: rgb(255 255 255 / 0.8); white-space: nowrap; }
     .hero-bukti svg { width: 0.95rem; height: 0.95rem; color: var(--color-tunas); stroke-width: 1.9; }
-    .hb-panjang { display: none; }
     .ilustrasi { bottom: auto; top: calc(64px + env(safe-area-inset-top)); right: var(--gutter); font-size: var(--fs-13); opacity: 0.7; }
 
     .kartu { padding: 1.1rem; min-height: 0; border-radius: 16px; }
