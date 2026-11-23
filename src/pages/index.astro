@@ -676,6 +676,10 @@ const faqSchema = {
   .kartu.gelap p { color: var(--embun-redup); }
   .kartu.gelap .kartu-label { color: rgb(242 244 241 / 0.6); }
   .kartu.gelap .pill { margin-top: auto; align-self: flex-start; }
+  /* Tablet: dua kolom (foto berpasangan, kartu teks berpasangan), bukan foto selebar layar (DECISIONS 084). */
+  @media (min-width: 48rem) and (max-width: 63.99rem) {
+    .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
   @media (min-width: 64rem) {
     .bento { grid-template-columns: repeat(12, minmax(0, 1fr)); grid-auto-rows: 300px; }
     .kartu, .kartu.foto { min-height: 0; }

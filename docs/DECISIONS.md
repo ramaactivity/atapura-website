@@ -581,3 +581,10 @@ Audit 23 Nov: sampul artikel/area gambar AI tanpa keterangan terlihat (hanya alt
 - **Aksesibilitas**: tautan "Langsung ke isi" (Header.astro, muncul saat difokus, target `#isi` setelah navigasi). Kontras judul
   redup (opacity .55) diukur di 10 halaman laptop & HP: 57 elemen, terendah 3,82:1 dan semuanya ≥ 26 px → lolos WCAG AA teks
   besar (3:1); tidak diubah.
+
+## 084 · 23 November 2026 · Tablet: kartu layanan beranda dua kolom
+Audit 23 Nov: di tablet 768 px kartu layanan beranda jadi satu kolom foto selebar layar (tampilan HP direntangkan). Di
+48–63,99 rem bento kini dua kolom (pasangan foto, pasangan kartu teks, kafe + perusahaan); tinggi beranda tablet 17.559 →
+16.680 px. Halaman lain dicek di 768 px (produk, panduan, area, tentang, merek, cara kerja): sudah dua kolom atau satu kolom yang
+memang sempit, tidak diubah. Angka bilah bukti di tangkapan layar sempat terbaca "3 merek / 3 tahun": itu animasi hitung naik
+yang tertangkap di tengah jalan; HTML-nya 5 merek, 13 kota, 5 tahun.

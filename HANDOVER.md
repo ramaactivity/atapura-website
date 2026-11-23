@@ -19,8 +19,8 @@
   ✅ Artikel November lolos cek.mjs (077), 30/30. ✅ SEO teknis (078): schema usaha & produk, judul, alt warna, lastmod,
   hreflang dihapus, garis miring. ✅ Bing Webmaster: diimpor Rama dari Search Console 23 Nov (akun atapurakaryalestari).
   ✅ Klik WhatsApp tercatat (079): `data-wa` → /api/kunjungan → Ops `website_events`, tampil di Ops Lainnya → Pengunjung.
-  ⏳ Sisa 15 temuan audit dikerjakan berurutan (6–15: CTA /area, slip "Layanan di {kota}", tanggal harga, lama pasang,
-  label Ilustrasi, chip kategori /panduan, 404, label warna CTI, aksesibilitas, tablet 2 kolom).
+  ✅ 15 temuan audit kode selesai (079–084): klik WA, kotak "Layanan di {kota}" + CTA /area, tanggal harga & lama pasang di
+  merek, label Ilustrasi sampul, /panduan per kategori, 404 berkerangka, catatan warna brosur CTI, Langsung ke isi, tablet bento.
   ⏳ Sisa audit di luar kode: Google Business Profile, direktori, ulasan,
   proyek pertama + Rapor asli. Isi NIB/NPWP di bisnis.ts
   begitu akta PT terbit (otomatis tampil di /tentang & /perusahaan). Temuan lama cek.mjs di artikel
