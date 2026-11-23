@@ -17,7 +17,11 @@
   ✅ Bumper dihapus (073). ✅ Tautan antar-artikel (074): "Baca juga" relevan + "Halaman terkait" otomatis + aturan cek.mjs.
   ✅ /tentang /kontak /perusahaan (075). ✅ Skala teks bertoken `--fs-13…18`, lantai 13 px (076); DESIGN.md tipografi diperbarui.
   ✅ Artikel November lolos cek.mjs (077), 30/30. ✅ SEO teknis (078): schema usaha & produk, judul, alt warna, lastmod,
-  hreflang dihapus, garis miring. ⏳ Sisa audit di luar kode: Google Business Profile, Bing Webmaster, direktori, ulasan,
+  hreflang dihapus, garis miring. ✅ Bing Webmaster: diimpor Rama dari Search Console 23 Nov (akun atapurakaryalestari).
+  ✅ Klik WhatsApp tercatat (079): `data-wa` → /api/kunjungan → Ops `website_events`, tampil di Ops Lainnya → Pengunjung.
+  ⏳ Sisa 15 temuan audit dikerjakan berurutan (6–15: CTA /area, slip "Layanan di {kota}", tanggal harga, lama pasang,
+  label Ilustrasi, chip kategori /panduan, 404, label warna CTI, aksesibilitas, tablet 2 kolom).
+  ⏳ Sisa audit di luar kode: Google Business Profile, direktori, ulasan,
   proyek pertama + Rapor asli. Isi NIB/NPWP di bisnis.ts
   begitu akta PT terbit (otomatis tampil di /tentang & /perusahaan). Temuan lama cek.mjs di artikel
   November (kata "TKDN", tabel > 3 kolom, jawaban > 60 kata) belum disentuh.

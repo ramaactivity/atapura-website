@@ -104,14 +104,20 @@ const jsonLd = [organisasi, situs, ...schema];
   </head>
   <body>
     <slot />
-    {/* Penghitung kunjungan tanpa cookie (DECISIONS 069): satu beacon kecil per halaman ke /api/kunjungan → Atapura Ops.
+    {/* Penghitung kunjungan tanpa cookie (DECISIONS 069): satu beacon kecil per halaman (dan per klik WhatsApp) ke /api/kunjungan → Atapura Ops.
         Tidak jalan di /internal, localhost, robot, dan browser yang dikendalikan otomasi (uji Playwright/Lighthouse). */}
     <script is:inline>
       (function () {
         try {
           var p = location.pathname, n = navigator;
           if (/^\/internal/.test(p) || /^(localhost|127\.)/.test(location.hostname) || !n.sendBeacon || n.webdriver || /bot|headless|lighthouse/i.test(n.userAgent)) return;
-          n.sendBeacon('/api/kunjungan', JSON.stringify({ p: p, r: document.referrer, s: new URLSearchParams(location.search).get('utm_source') }));
+          var d = { p: p, r: document.referrer, s: new URLSearchParams(location.search).get('utm_source') };
+          n.sendBeacon('/api/kunjungan', JSON.stringify(d));
+          // Klik tombol WhatsApp (DECISIONS 079): label = atribut data-wa, dicatat terpisah dari kunjungan di Ops.
+          document.addEventListener('click', function (ev) {
+            var el = ev.target.closest && ev.target.closest('[data-wa]');
+            if (el) n.sendBeacon('/api/kunjungan', JSON.stringify({ p: d.p, r: d.r, s: d.s, e: 'klik-wa', l: el.getAttribute('data-wa') }));
+          }, true);
         } catch (e) {}
       })();
     </script>

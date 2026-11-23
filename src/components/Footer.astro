@@ -123,7 +123,7 @@ const kolom = en ? kolomEn : kolomId;
         {sosial.filter((x) => x.url).map((x) => (
           <li>
             {/* Akun yang belum ada tidak ditampilkan (audit 23 Nov: ikon "segera hadir" melemahkan kepercayaan). */}
-            <a href={x.url!} aria-label={x.nama} title={x.nama} {...(x.luar ? { target: '_blank', rel: 'noopener' } : {})} set:html={x.svg} />
+            <a href={x.url!} aria-label={x.nama} title={x.nama} {...(x.luar ? { target: '_blank', rel: 'noopener' } : {})} data-wa={x.nama === 'WhatsApp' ? 'footer' : undefined} set:html={x.svg} />
           </li>
         ))}
       </ul>

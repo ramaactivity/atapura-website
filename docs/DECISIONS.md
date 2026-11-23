@@ -534,3 +534,14 @@ harga genteng per m² (material, `UnitPriceSpecification` unitCode MTK, seller #
 (4) Foto contoh warna di halaman merek ber-alt "Contoh warna atap bitumen X Warna". (5) Sitemap memuat lastmod dari `diperbarui`
 artikel, area, dan guides (39 URL); halaman lain tanpa lastmod. (6) hreflang dihapus: /en/guides untuk ekspat isinya berbeda,
 bukan terjemahan, dan pasangan lama tidak timbal balik. (7) vercel.json `trailingSlash: false` → /x/ dialihkan ke /x.
+
+## 079 · 23 November 2026 · Klik WhatsApp diukur; perbaikan isi kecil dari audit
+Audit 23 Nov: tujuan situs adalah chat WhatsApp, tapi klik tombol WA tidak terukur — tidak ketahuan bagian mana yang bekerja.
+- Beacon di Base.astro juga mendengar klik pada elemen ber-`data-wa` (delegasi di `document`, fase capture, aturan lewati sama
+  dengan beacon kunjungan: /internal, localhost, robot, otomasi) dan mengirim `{e:'klik-wa', l:<label>}` ke /api/kunjungan.
+  Fungsi itu meneruskan `event`/`label` (label disaring `[a-z0-9-]{1,40}`, selain itu null) ke Ops, yang menyimpannya di tabel
+  `website_events` terpisah dari kunjungan (Ops DECISIONS 170). Ikon WhatsApp di footer diberi `data-wa="footer"`.
+- Label baru cukup ditulis di atribut `data-wa`; Ops menampilkan label tak dikenal apa adanya, nama rapinya di `BAGIAN_WA` Ops.
+- Klik ≠ chat terkirim (orang bisa menutup WhatsApp); angka dibaca sebagai minat, bukan lead.
+- Perbaikan isi dari audit (commit 3428792): multiplek ditulis 12 mm (ada 18 mm), tanpa 9 mm; rangka ditandai terverifikasi;
+  tautan DOI jurnal ROTASI yang mati diganti tautan artikel di ejournal.undip.ac.id; kode ikon sosmed "segera hadir" dibuang.

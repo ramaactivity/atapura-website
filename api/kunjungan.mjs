@@ -1,5 +1,5 @@
 // POST /api/kunjungan — penghitung kunjungan tanpa cookie (website DECISIONS 069, Ops DECISIONS 157).
-// Tiap halaman mengirim {p: path, r: referrer, s: utm_source} lewat navigator.sendBeacon (src/layouts/Base.astro). Fungsi ini
+// Tiap halaman mengirim {p: path, r: referrer, s: utm_source} (klik WhatsApp menambah e: 'klik-wa', l: label data-wa, DECISIONS 079) lewat navigator.sendBeacon (src/layouts/Base.astro). Fungsi ini
 // menambah kota/negara dari header Vercel, mengubah IP + browser jadi kode acak harian (IP tidak pernah disimpan atau
 // diteruskan), lalu meneruskan ke Atapura Ops dengan LEAD_SECRET yang sudah ada di env Vercel. Robot disaring di Ops.
 import { createHash } from 'node:crypto';
@@ -31,6 +31,7 @@ export async function POST(request) {
       city: request.headers.get('x-vercel-ip-city'),
       country: request.headers.get('x-vercel-ip-country'),
       visitor,
+      ...(isi?.e === 'klik-wa' && { event: 'klik-wa', label: /^[a-z0-9-]{1,40}$/.test(String(isi.l)) ? isi.l : null }),
     }),
   });
   if (!r.ok) console.error('[kunjungan] Ops menolak:', r.status, await r.text());
