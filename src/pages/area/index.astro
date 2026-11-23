@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import { bisnis } from '../../data/bisnis';
+import { bisnis, waLink } from '../../data/bisnis';
 
 const semua = (await getCollection('area')).sort((a, b) => a.data.urut - b.data.urut);
 const kelompok = (['Jabodetabek', 'Luar Jabodetabek'] as const).map((w) => ({ w, isi: semua.filter((a) => a.data.wilayah === w) }));
@@ -50,6 +50,16 @@ const schema = [
           </ul>
         </section>
       ))}
+      <section class="ae-penutup" aria-labelledby="ae-penutup-judul">
+        <h2 id="ae-penutup-judul" class="ae-penutup-judul">Lokasi Anda tidak ada di daftar? <span class="redup">Tetap kami kerjakan.</span></h2>
+        <div>
+          <p>Hitung dulu biaya atapnya. Di luar Jabodetabek, ongkos kirim material dan transport tukang dihitung bersama admin.</p>
+          <div class="ae-aksi">
+            <a class="pill pill-tunas" href="/hitung">Hitung estimasi biaya</a>
+            <a class="ae-tautan" href={waLink('Halo Atapura, saya mau tanya pemasangan atap di lokasi saya.')} target="_blank" rel="noopener" data-wa="area-indeks">Tanya lokasi lewat WhatsApp</a>
+          </div>
+        </div>
+      </section>
     </div>
   </main>
   <Footer />
@@ -72,8 +82,20 @@ const schema = [
   .ae-daftar b { font-size: 1.2rem; font-weight: 500; letter-spacing: -0.02em; }
   .ae-daftar span { color: var(--color-lumut); font-size: var(--fs-15); line-height: 1.45; }
 
+  .ae-penutup { margin-top: clamp(3.5rem, 7vw, 5.5rem); padding-top: clamp(2.5rem, 5vw, 3.5rem); border-top: 1px solid var(--color-garis); display: grid; gap: 1.25rem 5rem; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 60rem) { .ae-penutup { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); align-items: start; } }
+  .ae-penutup-judul { font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.5rem); font-weight: 500; letter-spacing: -0.035em; line-height: 1.1; max-width: 18ch; }
+  .ae-penutup p { font-size: var(--fs-17); line-height: 1.6; color: var(--color-lumut); max-width: 52ch; }
+  .ae-aksi { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 2rem; margin-top: 1.5rem; }
+  .ae-tautan { display: inline-flex; align-items: center; min-height: 44px; font-weight: 500; color: var(--color-pinus); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+  .ae-aksi a:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 3px; }
+
   @media (max-width: 47.99rem) {
-    .ae { padding-top: 96px; }
+    .ae { padding-top: 96px; padding-bottom: 8px; }
+    .ae-penutup { margin: 1.25rem calc(8px - var(--gutter)) 0; padding: 2rem var(--gutter); border-top: 0; border-radius: 28px; background: var(--color-embun); }
+    .ae-penutup-judul { font-size: var(--hp-t1); }
+    .ae-penutup p { font-size: var(--fs-16); }
+    .ae-aksi .pill { width: 100%; }
     .ae-judul { font-size: var(--hp-display); line-height: 1.05; }
     .ae-lead { font-size: var(--fs-16); }
     .ae-grup-judul { font-size: var(--hp-t2); }

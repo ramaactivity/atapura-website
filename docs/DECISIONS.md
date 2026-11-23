@@ -545,3 +545,14 @@ Audit 23 Nov: tujuan situs adalah chat WhatsApp, tapi klik tombol WA tidak teruk
 - Klik ≠ chat terkirim (orang bisa menutup WhatsApp); angka dibaca sebagai minat, bukan lead.
 - Perbaikan isi dari audit (commit 3428792): multiplek ditulis 12 mm (ada 18 mm), tanpa 9 mm; rangka ditandai terverifikasi;
   tautan DOI jurnal ROTASI yang mati diganti tautan artikel di ejournal.undip.ac.id; kode ikon sosmed "segera hadir" dibuang.
+
+## 080 · 23 November 2026 · Halaman area dibuka dengan layanan & harga; /area tidak lagi buntu
+Audit 23 Nov: halaman area dibuka dengan statistik (puting beliung, asbes), harga hanya menyebut 3 merek dan ditulis tangan di
+9 file; /area berakhir di kartu data tanpa ajakan.
+- Kotak "Layanan di {kota}" (`src/components/LayananArea.astro`) di awal kolom isi lewat slot `awal` di Artikel.astro: survey
+  (gratis di Jabodetabek, "bisa diatur" di luar), harga terpasang lima merek termurah dulu, lama pasang (m²/hari + contoh 100 m²),
+  garansi pemasangan, tanggal berlaku harga. Semua dari harga.ts/produk.ts/bisnis.ts. Pola slip bertitik dari /tentang; di HP
+  label & isi tetap sebaris supaya lima merek tidak memanjang.
+- `merekTermurah` dipindah ke produk.ts (dipakai /tentang dan kotak area). Paragraf harga di 9 file area tidak lagi menulis angka
+  (merujuk kotak layanan); jawaban FAQ memakai `{harga-merek}` yang diisi template dari data, jadi FAQPage schema ikut benar.
+- /area ditutup bagian "Lokasi Anda tidak ada di daftar? Tetap kami kerjakan." + Hitung estimasi + WhatsApp (`data-wa="area-indeks"`).

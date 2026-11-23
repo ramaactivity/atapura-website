@@ -14,7 +14,7 @@ faq:
   - q: 'Apakah survey di Kota Bekasi gratis?'
     a: 'Ya. Kota Bekasi termasuk wilayah survey gratis Atapura. Kami mengukur atap, memeriksa rangka, dan membawa sampel warna.'
   - q: 'Berapa harga pasang atap bitumen di Kota Bekasi?'
-    a: 'Sama dengan wilayah Jabodetabek lain: CTI Rp400–450 ribu per m², Maxxi dan Javabitumen Rp380–430 ribu per m², dengan spek standar dan rangka yang sudah ada. Harga final ditulis setelah survey.'
+    a: 'Sama dengan wilayah Jabodetabek lain: {harga-merek}, dengan spek standar dan rangka yang sudah ada. Harga final ditulis setelah survey.'
   - q: 'Kenapa data hujannya dari pos hujan, bukan stasiun BMKG?'
     a: 'Buku Kota Bekasi Dalam Angka 2026 dari BPS memakai data empat pos hujan Perum Jasa Tirta II di dalam kota. Itu data resmi terdekat untuk Kota Bekasi yang kami temukan.'
 sumber:
@@ -47,4 +47,4 @@ Total tahunan kami jumlahkan dari angka bulanan di tabel BPS. Ketinggian Kota Be
 
 ## Harga dan survey di Kota Bekasi
 
-Harga terpasang: CTI Rp400–450 ribu per m², Maxxi dan Javabitumen Rp380–430 ribu per m², spek standar. Rinciannya ada di [harga atap bitumen per m²](/panduan/harga-atap-bitumen-per-m2). Survey gratis. Atap sudah merembes? Mulai dari [cara menemukan titik bocornya](/panduan/atap-bocor-penyebab-dan-cara-mengatasi).
+Harga terpasang sama dengan wilayah Jabodetabek lain untuk kelima merek, seperti di rincian layanan di atas. Rinciannya ada di [harga atap bitumen per m²](/panduan/harga-atap-bitumen-per-m2). Survey gratis. Atap sudah merembes? Mulai dari [cara menemukan titik bocornya](/panduan/atap-bocor-penyebab-dan-cara-mengatasi).

@@ -1,0 +1,50 @@
+---
+// "Layanan di {kota}" di awal halaman area (DECISIONS 080): yang dicari pengunjung (harga, survey, lama pasang, garansi)
+// sebelum data iklim. Semua angka dari harga.ts/produk.ts/bisnis.ts, jadi ikut berubah bersama Hitung AKAL dan halaman merek.
+import { bisnis } from '../data/bisnis';
+import { harga, kisaranRupiah, estimasiPublik, tanggalPanjang } from '../data/harga';
+import { merekTermurah } from '../data/produk';
+import '../styles/halaman.css';
+
+interface Props { nama: string; jabodetabek: boolean }
+const { nama, jabodetabek } = Astro.props;
+const [a, b] = harga.m2PerHari;
+const contoh = estimasiPublik(100, 'CTI').hari;
+---
+<section class="la" aria-labelledby="la-judul">
+  <div>
+    <h2 id="la-judul" class="la-judul">Layanan di {nama}</h2>
+    <p class="la-catatan">
+      Harga terpasang per m², berlaku sejak {tanggalPanjang(harga.berlakuSejak)}. Sudah termasuk genteng, alas, lapis kedap, flashing, dan jasa pasang dengan spek standar.{!jabodetabek && ' Di luar Jabodetabek ditambah ongkos kirim dan transport tukang.'}
+    </p>
+  </div>
+  <div class="hl-slip">
+    <dl>
+      <div><dt>Survey</dt><span class="hl-titik" aria-hidden="true"></span>{jabodetabek
+        ? <dd>Gratis<small>ukur atap dan cek rangka</small></dd>
+        : <dd>Bisa diatur<small>biaya jalan dihitung bersama</small></dd>}</div>
+      {merekTermurah.map(({ p, r }) => (
+        <div><dt><a href={`/produk/${p.slug}`}>{p.nama}</a></dt><span class="hl-titik" aria-hidden="true"></span><dd class="angka">{r ? kisaranRupiah(r) : 'Tanya admin'}</dd></div>
+      ))}
+      <div><dt>Lama pasang</dt><span class="hl-titik" aria-hidden="true"></span><dd>±{a}–{b} m² per hari<small>100 m² sekitar {contoh[0]}–{contoh[1]} hari</small></dd></div>
+      <div><dt>Garansi pemasangan</dt><span class="hl-titik" aria-hidden="true"></span><dd>{bisnis.garansiPemasanganTahun} tahun<small>plus garansi pabrik</small></dd></div>
+    </dl>
+  </div>
+  <a class="tautan-lanjut" href="/hitung">Hitung untuk luas atap Anda</a>
+</section>
+
+<style>
+  .la { margin-bottom: 3rem; display: grid; gap: 1rem; }
+  .la-judul { font-size: 1.5rem; font-weight: 500; letter-spacing: -0.03em; }
+  .la-catatan { margin-top: 0.4rem; font-size: var(--fs-15); line-height: 1.5; color: var(--color-lumut); max-width: 60ch; }
+  /* Isi kanan pendek: titik penuntun sampai ke angka. */
+  .la .hl-slip :global(dl > div) { grid-template-columns: auto minmax(1.5rem, 1fr) auto; }
+  .la .tautan-lanjut { justify-self: start; }
+  @media (max-width: 47.99rem) {
+    .la { margin-bottom: 2.25rem; }
+    .la-judul { font-size: var(--hp-t2); }
+    /* HP: label kiri, isi kanan sebaris (bukan ditumpuk) supaya lima merek tidak memanjang. */
+    .la .hl-slip :global(dl > div) { grid-template-columns: auto minmax(0, 1fr); gap: 1rem; }
+    .la .hl-slip :global(dd) { text-align: right; }
+  }
+</style>

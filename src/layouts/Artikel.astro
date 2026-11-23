@@ -85,6 +85,7 @@ const schema = [
           <p class="ar-jawab-isi">{jawaban}</p>
         </aside>
         <div class="ar-utama">
+        <slot name="awal" />
         <div class="prosa"><slot /></div>
 
         {faq.length > 0 && (

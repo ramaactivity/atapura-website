@@ -640,6 +640,11 @@ export const namaLengkap = (p: Produk) => (p.lini === 'rangka' ? p.nama : `${LIN
 
 /** Rentang harga terpasang per m², atau null bila belum ada (tampil "tanya admin"). */
 export const rentangProduk = (p: Produk) => (p.harga ? harga.merek[p.harga].terpasang : (p.rentang ?? null));
+/** Lini atap, termurah dulu, dengan harga terpasang per m² (dipakai /tentang dan kotak layanan halaman area). */
+export const merekTermurah = produk
+  .filter((p) => p.lini === 'atap')
+  .map((p) => ({ p, r: rentangProduk(p) }))
+  .sort((x, y) => (x.r?.[0] ?? Infinity) - (y.r?.[0] ?? Infinity));
 
 /** Foto sampul kartu katalog: ilustrasi penerapan → foto seri → contoh warna pertama. */
 export function sampulProduk(p: Produk): { src: ImageMetadata; alt: string } | undefined {

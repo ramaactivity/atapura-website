@@ -52,4 +52,4 @@ Di Puncak, musim keringnya lebih jelas. Di sekitar Dramaga, hujan turun hampir s
 
 ## Harga dan survey di Kabupaten Bogor
 
-Harga terpasang sama dengan wilayah Jabodetabek lain: CTI Rp400–450 ribu per m², Maxxi dan Javabitumen Rp380–430 ribu per m², spek standar. Biaya akses khusus, bila ada, kami tulis terpisah setelah survey. Untuk wilayah kota, lihat [Kota Bogor](/area/kota-bogor).
+Harga terpasang sama dengan wilayah Jabodetabek lain untuk kelima merek, seperti di rincian layanan di atas. Biaya akses khusus, bila ada, kami tulis terpisah setelah survey. Untuk wilayah kota, lihat [Kota Bogor](/area/kota-bogor).

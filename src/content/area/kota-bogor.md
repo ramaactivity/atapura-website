@@ -53,4 +53,4 @@ Sebagai pembanding, Stasiun Kemayoran di Jakarta mencatat 2.697 mm pada 2025. Di
 
 ## Harga dan survey di Kota Bogor
 
-Harga terpasang sama dengan wilayah Jabodetabek lain: CTI Rp400–450 ribu per m², Maxxi dan Javabitumen Rp380–430 ribu per m², spek standar. Survey gratis, dan pilihan alas (multiplek 12 mm atau GRC) kami tentukan setelah melihat kondisi lokasi. Untuk area di luar kota, lihat [Kabupaten Bogor dan Puncak](/area/kabupaten-bogor).
+Harga terpasang sama dengan wilayah Jabodetabek lain untuk kelima merek, seperti di rincian layanan di atas. Survey gratis, dan pilihan alas (multiplek 12 mm atau GRC) kami tentukan setelah melihat kondisi lokasi. Untuk area di luar kota, lihat [Kabupaten Bogor dan Puncak](/area/kabupaten-bogor).

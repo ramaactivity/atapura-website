@@ -14,7 +14,7 @@ faq:
   - q: 'Apakah survey di Kabupaten Tangerang gratis?'
     a: 'Ya. Kabupaten Tangerang termasuk wilayah survey gratis Atapura. Kami mengukur atap, memeriksa rangka, dan membawa sampel warna.'
   - q: 'Berapa harga pasang atap bitumen di Kabupaten Tangerang?'
-    a: 'Sama dengan wilayah Jabodetabek lain: CTI Rp400–450 ribu per m², Maxxi dan Javabitumen Rp380–430 ribu per m², dengan spek standar dan rangka yang sudah ada. Harga final ditulis setelah survey.'
+    a: 'Sama dengan wilayah Jabodetabek lain: {harga-merek}, dengan spek standar dan rangka yang sudah ada. Harga final ditulis setelah survey.'
 sumber:
   - nama: 'BPS Provinsi Banten, Curah Hujan Menurut Bulan dan Stasiun Pengamatan, 2024'
     url: 'https://banten.bps.go.id/id/statistics-table/2/MzcyIzI=/curah-hujan-menurut-bulan-dan-stasiun-pengamatan-di-provinsi-banten--mm-bulan-.html'
@@ -46,4 +46,4 @@ Tiga stasiun BMKG di Tangerang Raya pada 2024: Stasiun Geofisika Tangerang 2.139
 
 ## Harga dan survey di Kabupaten Tangerang
 
-Harga terpasang: CTI Rp400–450 ribu per m², Maxxi dan Javabitumen Rp380–430 ribu per m², spek standar. Rinciannya ada di [harga atap bitumen per m²](/panduan/harga-atap-bitumen-per-m2). Survey gratis. Wilayah tetangga: [Kota Tangerang](/area/kota-tangerang) dan [Tangerang Selatan](/area/tangerang-selatan).
+Harga terpasang sama dengan wilayah Jabodetabek lain untuk kelima merek, seperti di rincian layanan di atas. Rinciannya ada di [harga atap bitumen per m²](/panduan/harga-atap-bitumen-per-m2). Survey gratis. Wilayah tetangga: [Kota Tangerang](/area/kota-tangerang) dan [Tangerang Selatan](/area/tangerang-selatan).

@@ -56,6 +56,6 @@ Hujan besar tidak hanya datang di awal tahun. Pada 2025, Mei dan Juli pun mencat
 
 ## Harga dan survey di Jakarta
 
-Harga terpasang atap bitumen di Jakarta sama dengan wilayah Jabodetabek lain: CTI Rp400–450 ribu per m², Maxxi dan Javabitumen Rp380–430 ribu per m², dengan spek standar. Rinciannya ada di [harga atap bitumen per m²](/panduan/harga-atap-bitumen-per-m2). Survey gratis untuk kelima kota administrasi Jakarta.
+Harga terpasang atap bitumen di Jakarta sama dengan wilayah Jabodetabek lain untuk kelima merek, seperti di rincian layanan di atas. Rinciannya ada di [harga atap bitumen per m²](/panduan/harga-atap-bitumen-per-m2). Survey gratis untuk kelima kota administrasi Jakarta.
 
 Atap sudah bocor? Mulai dari [cara menemukan titik bocornya](/panduan/atap-bocor-penyebab-dan-cara-mengatasi).
