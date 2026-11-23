@@ -631,3 +631,4 @@ Beranda, terlalu banyak tombol, tipografi diambil dari referensi.
   Final (Rama): chip "Spesialis jasa pasang genteng aspal · Jabodetabek"; kalimat tanpa kata "spesialis" lagi supaya tidak
   dobel dan tidak terlalu panjang: "Dipasang lima lapis dari alas sampai nok oleh tim profesional dengan prinsip AKAL: andal,
   berkualitas, amanah, lestari." Chip satu baris di HP 390 px, dua baris di 360 px.
+  Penulisan nilai AKAL (Rama): huruf depan besar, "Andal, Berkualitas, Amanah & Lestari".
