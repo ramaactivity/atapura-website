@@ -122,7 +122,44 @@
 .ha-cakup-tidak li::before { content: '–'; color: rgb(242 244 241 / 0.45); }
 .ha-cakup-bayar { grid-column: 1 / -1; padding-top: 0.8rem; border-top: 1px solid rgb(242 244 241 / 0.1); font-size: 0.85rem; color: rgb(242 244 241 / 0.62); }
 
+/* HP: register ringkas ala aplikasi (pelajaran Ops, Rama 23 Nov: "desktop dipaksakan di HP").
+   Label 15, bantuan 13, angka isian 16 (iOS tidak zoom), sudut 10px untuk kontrol (bukan pill), target sentuh tetap ≥44px. */
 @media (max-width: 47.99rem) {
-  .hitung-cta { min-height: 48px; font-size: 0.9375rem; }
+  .ha { gap: 1.25rem; }
+  .ha-langkah { border-top: 0; }
+  .ha-langkah > li { grid-template-columns: minmax(0, 1fr); gap: 0; padding: 1.1rem 0; }
+  .ha-langkah > li:first-child { padding-top: 0.25rem; }
+  .ha-no { display: none; }
+  .ha-isi { gap: 0.65rem; }
+  .ha-label { font-size: 0.9375rem; font-weight: 500; }
+  .ha-bantu { font-size: 0.8125rem; }
+  .ha-opsional { font-size: 0.75rem; }
+  .stepper { padding: 2px; border-radius: 12px; }
+  .stepper-btn { position: relative; width: 38px; height: 38px; border-radius: 10px; }
+  .stepper-btn::after { content: ''; position: absolute; inset: -3px; }
+  .stepper-btn svg { width: 14px; height: 14px; }
+  .stepper-isi { padding-inline: 0.45rem; }
+  .stepper-input { width: 3.3ch; font-size: 1rem; }
+  .stepper-satuan { font-size: 0.8125rem; }
+  .slider { height: 32px; }
+  .slider-jempol { width: 24px; height: 24px; margin: -12px 0 0 -12px; }
+  .segmen { gap: 6px; }
+  .segmen-btn { min-height: 40px; padding: 0 0.85rem; border-radius: 10px; font-size: 0.875rem; }
+  /* Merek: kisi 3 kolom rata seperti kontrol segmen iOS. */
+  .segmen[aria-label="Merek"], .segmen[aria-label="Merek plafon"] { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .segmen[aria-label="Merek"] .segmen-btn, .segmen[aria-label="Merek plafon"] .segmen-btn { padding: 0 0.3rem; }
+  .ha-teks { min-height: 44px; padding: 0 0.9rem; border-radius: 10px; font-size: 1rem; }
+  .ha-kontak { gap: 0.5rem; }
+  .ha-slip { padding: 1.25rem; border-radius: 16px; gap: 0.25rem; }
+  .ha-label-kecil { font-size: 0.8125rem; }
+  .hasil-angka { font-size: 2.5rem; margin: 0.4rem 0 0.15rem; }
+  .hasil-durasi { font-size: 0.875rem; }
+  .ha-cakup { margin-top: 0.9rem; padding: 0.9rem; gap: 0.9rem; }
+  .ha-cakup ul { gap: 0.3rem; margin-top: 0.4rem; font-size: 0.8125rem; }
+  .ha-cakup-bayar { padding-top: 0.7rem; font-size: 0.8125rem; }
+  .ha-luar-judul { font-size: var(--hp-t2); }
+  .ha-luar-isi, .ha-catatan { font-size: 0.8125rem; }
+  .hitung-cta { min-height: 48px; margin-top: 1rem; font-size: 0.9375rem; }
+  .hitung-kaki { font-size: 0.75rem; }
 }
 .ha-bantu a { color: var(--color-tinta); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; white-space: nowrap; }

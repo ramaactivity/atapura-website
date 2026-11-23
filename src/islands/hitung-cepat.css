@@ -52,6 +52,13 @@
 .hc-cta:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 3px; }
 
 @media (max-width: 47.99rem) {
+  .hc-label { font-size: 0.9375rem; font-weight: 500; }
+  .hc-bantu { font-size: 0.8125rem; }
+  .hc-atur { gap: 0.65rem; padding-top: 1.1rem; }
+  .hc-slip-judul { font-size: 0.8125rem; }
+  .hc-merek small { font-size: 0.75rem; }
+  .hc-kaki { font-size: 0.8125rem; }
+  .hc-cta { min-height: 48px; font-size: 0.9375rem; }
   .hc-merek { font-size: var(--hp-t4); }
   .hc-rp { font-size: var(--hp-t4); }
   .hc-daftar a { min-height: 3.25rem; padding: 0.75rem 0; gap: 0.5rem; }
