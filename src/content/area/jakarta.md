@@ -10,7 +10,7 @@ wilayah: 'Jabodetabek'
 urut: 1
 judul: 'Pasang dan perbaikan atap bitumen di Jakarta'
 ringkasan: 'Jakarta mencatat 2.697 mm hujan pada 2025, terbanyak di Januari. Yang perlu diperhatikan pada atap rumah di Jakarta, harga terpasang, dan survey gratis.'
-jawaban: 'Atapura memasang dan memperbaiki atap bitumen (genteng aspal) di kelima kota administrasi Jakarta, dengan survey gratis. Stasiun BMKG Kemayoran mencatat 2.697 mm hujan sepanjang 2025, dengan Januari sebagai bulan terbasah (539 mm). Di Jakarta Utara yang berada di tepi laut, udara bergaram mempercepat karat logam, sehingga rangka, sekrup, dan flashing perlu dipilih dan diperiksa lebih teliti.'
+jawaban: 'Atapura memasang atap bitumen (genteng aspal) di kelima kota administrasi Jakarta, dengan survey gratis. Stasiun BMKG Kemayoran mencatat 2.697 mm hujan sepanjang 2025, dengan Januari sebagai bulan terbasah (539 mm). Di Jakarta Utara yang berada di tepi laut, udara bergaram mempercepat karat logam, sehingga rangka, sekrup, dan flashing perlu dipilih dan diperiksa lebih teliti.'
 diperbarui: 2026-11-03
 sampul: '../../../assets/gambar/magnific/atap-rumah-padat-3x2.jpg'
 sampulAlt: 'Ilustrasi atap rumah-rumah padat di perkotaan dilihat dari atas'

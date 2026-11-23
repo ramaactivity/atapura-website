@@ -6,7 +6,7 @@ wilayah: 'Jabodetabek'
 urut: 7
 judul: 'Pasang dan perbaikan atap bitumen di Kota Bekasi'
 ringkasan: 'Pos hujan di Kota Bekasi mencatat sekitar 1.950–2.580 mm hujan pada 2025, paling deras di Januari. Yang perlu diperhatikan pada atap dan survey gratis.'
-jawaban: 'Atapura memasang dan memperbaiki atap bitumen (genteng aspal) di Kota Bekasi dengan survey gratis. Empat pos hujan Perum Jasa Tirta II di Kota Bekasi mencatat sekitar 1.950–2.580 mm hujan sepanjang 2025; di tiga dari empat pos, Januari adalah bulan terbasah, dan November paling kering di keempatnya. Kota Bekasi berada di dataran 28–110 m dan tidak berbatasan dengan laut.'
+jawaban: 'Atapura memasang atap bitumen (genteng aspal) di Kota Bekasi dengan survey gratis. Empat pos hujan Perum Jasa Tirta II di Kota Bekasi mencatat sekitar 1.950–2.580 mm hujan sepanjang 2025; di tiga dari empat pos, Januari adalah bulan terbasah, dan November paling kering di keempatnya. Kota Bekasi berada di dataran 28–110 m dan tidak berbatasan dengan laut.'
 diperbarui: 2026-11-03
 sampul: '../../../assets/gambar/magnific/rumah-cluster.jpg'
 sampulAlt: 'Ilustrasi perumahan cluster beratap genteng aspal'

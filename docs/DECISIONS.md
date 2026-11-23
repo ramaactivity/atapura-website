@@ -659,4 +659,6 @@ kalkulator (bertentangan dengan arahan Rama untuk tidak menonjolkan hitung sendi
   kalkulator /hitung (pilihan "Perbaikan" dihapus; jenis pekerjaan kini ikut terkirim ke Ops sebagai `pasang_baru` /
   `ganti_atap_lama`, sebelumnya hanya plafon). Garansi pemasangan tetap menanggung bocor akibat pemasangan (itu garansi, bukan
   layanan perbaikan).
+  Kalimat jawaban 9 halaman area (yang dikutip mesin pencari/AI) diubah dari "Atapura memasang dan memperbaiki atap
+  bitumen" menjadi "Atapura memasang atap bitumen".
 

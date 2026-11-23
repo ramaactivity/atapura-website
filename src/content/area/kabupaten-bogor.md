@@ -6,7 +6,7 @@ wilayah: 'Jabodetabek'
 urut: 3
 judul: 'Pasang dan perbaikan atap bitumen di Kabupaten Bogor dan Puncak'
 ringkasan: 'Kabupaten Bogor punya dua iklim: sekitar 4.800 mm hujan di Stasiun Klimatologi Bogor dan 3.747 mm di Citeko, Puncak. Yang perlu diperhatikan pada atapnya.'
-jawaban: 'Atapura memasang dan memperbaiki atap bitumen di Kabupaten Bogor, termasuk kawasan Puncak, dengan survey gratis. Wilayahnya beragam: Stasiun Klimatologi Bogor di Dramaga mencatat sekitar 4.800 mm hujan pada 2024, sedangkan Stasiun Meteorologi Citeko di Puncak mencatat 3.747 mm dengan musim kering yang lebih jelas (Agustus 55 mm). Rumah di lereng dan dataran tinggi perlu perhatian pada lembap, angin, dan akses material.'
+jawaban: 'Atapura memasang atap bitumen di Kabupaten Bogor, termasuk kawasan Puncak, dengan survey gratis. Wilayahnya beragam: Stasiun Klimatologi Bogor di Dramaga mencatat sekitar 4.800 mm hujan pada 2024, sedangkan Stasiun Meteorologi Citeko di Puncak mencatat 3.747 mm dengan musim kering yang lebih jelas (Agustus 55 mm). Rumah di lereng dan dataran tinggi perlu perhatian pada lembap, angin, dan akses material.'
 diperbarui: 2026-11-03
 sampul: '../../../assets/gambar/magnific/segmen-villa-4x5.jpg'
 sampulAlt: 'Ilustrasi rumah beratap genteng aspal di dataran tinggi berkabut'
