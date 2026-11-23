@@ -53,4 +53,4 @@ Untuk hitungan yang lebih teliti, cara mengukur kemiringan dan pengaruhnya ke lu
 
 ## Bayarnya bagaimana?
 
-Material dibayar lunas sebelum dikirim. Jasa pasang dibayar bertahap 40/30/30: saat mulai kerja, saat genteng terpasang sekitar separuh, dan saat serah terima. Rincian komponen harga ada di [harga atap bitumen per m²](/panduan/harga-atap-bitumen-per-m2), dan estimasi untuk luas atap Anda bisa langsung dicoba di [Hitung AKAL](/#hitung).
+Material dibayar lunas sebelum dikirim. Jasa pasang dibayar bertahap 40/30/30: saat mulai kerja, saat genteng terpasang sekitar separuh, dan saat serah terima. Rincian komponen harga ada di [harga atap bitumen per m²](/panduan/harga-atap-bitumen-per-m2), dan estimasi untuk luas atap Anda bisa langsung dicoba di [Hitung AKAL](/hitung).

@@ -120,4 +120,4 @@ Anda tidak perlu naik ke atap untuk memeriksanya. Atapura mengirim foto setiap l
 
 ## Hitung biaya atap lengkap
 
-Perkiraan biaya atap bitumen terpasang, termasuk underlayer, bisa dihitung di [Hitung AKAL](/?merek=CTI#hitung). Survey atap tanpa biaya tersedia di Jabodetabek. Daftar harga per roll dan spesifikasi barangnya ada di [halaman aksesoris](/produk/aksesoris).
+Perkiraan biaya atap bitumen terpasang, termasuk underlayer, bisa dihitung di [Hitung AKAL](/hitung?merek=CTI). Survey atap tanpa biaya tersedia di Jabodetabek. Daftar harga per roll dan spesifikasi barangnya ada di [halaman aksesoris](/produk/aksesoris).

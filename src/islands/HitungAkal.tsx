@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
-import { bagianRentang, estimasiPlafon, estimasiPublik, harga, hitungEstimasi, rentangRangka, rupiahRingkas, seriGenteng, type Alas, type Flashing, type LapisKedap, type Merek, type MerekPlafon, type MerekRangka } from '../data/harga';
+import { bagianRentang, estimasiPlafon, estimasiPublik, harga, hitungEstimasi, kisaranRupiah, rentangRangka, rupiahRingkas, seriGenteng, type Alas, type Flashing, type LapisKedap, type Merek, type MerekPlafon, type MerekRangka } from '../data/harga';
 import { bisnis, dalamJabodetabek, TAMPIL_PLAFON, waLink } from '../data/bisnis';
 import './hitung-akal.css';
 
 const MIN = 10;
 const MAX = 400;
 const LANGKAH = 5;
-const MEREK = Object.keys(harga.merek) as Merek[];
+// Termurah dulu, sama dengan kartu hitung cepat dan daftar harga di /hitung.
+const MEREK = (Object.keys(harga.merek) as Merek[]).sort((a, b) => harga.merek[a].terpasang[0] - harga.merek[b].terpasang[0]);
 const MEREK_PLAFON = Object.keys(harga.plafon.merek) as MerekPlafon[];
 type Lini = 'Atap' | 'Plafon';
 // Plafon disembunyikan selama TAMPIL_PLAFON false (DECISIONS 052); langkah "Yang dihitung" ikut hilang.
@@ -16,7 +17,7 @@ const LAPIS = Object.keys(harga.lapisKedap) as LapisKedap[];
 const FLASHING = Object.keys(harga.flashing) as Flashing[];
 const angka = (n: number) => n.toLocaleString('id-ID');
 // Rentang ringkas; satu angka saja kalau batas bawah dan atas sama (mis. harga material yang sudah pasti).
-const kisaran = ([a, b]: readonly [number, number], d = 1) => (a === b ? rupiahRingkas(a, d) : `${rupiahRingkas(a, d)}–${rupiahRingkas(b, d).replace('Rp', '')}`);
+const kisaran = (r: readonly [number, number], d = 1) => kisaranRupiah(r, d);
 const termin = bisnis.pembayaran.jasa.map((t) => t.persen).join('/');
 const PEKERJAAN = ['Pasang baru', 'Ganti atap lama', 'Perbaikan'] as const;
 const RANGKA = ['Sudah ada', ...(Object.keys(harga.rangka.merek) as MerekRangka[])] as const;
@@ -123,14 +124,17 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
     setTeksLuas(String(v));
   };
 
-  // Tautan "Hitung biaya dengan X" dari halaman produk: /?merek=X#hitung.
+  // Tautan dari kartu hitung cepat, halaman produk, dan artikel: /hitung?luas=120&merek=X.
   useEffect(() => {
-    const m = new URLSearchParams(location.search).get('merek');
+    const q = new URLSearchParams(location.search);
+    const l = Number(q.get('luas'));
+    if (l >= MIN) atur(l);
+    const m = q.get('merek');
     if (m && MEREK.includes(m as Merek)) setMerek(m as Merek);
     if (TAMPIL_PLAFON && m && MEREK_PLAFON.includes(m as MerekPlafon)) { setLini('Plafon'); setMerekPlafon(m as MerekPlafon); }
   }, []);
 
-  // Kolom luas di hero mengirim angkanya ke sini.
+  // Bantuan "luas lantai → luas atap" di /hitung mengirim angkanya ke sini.
   useEffect(() => {
     const dengar = (e: Event) => atur(Number((e as CustomEvent<number>).detail) || awal);
     const dengarMerek = (e: Event) => { const m = (e as CustomEvent<string>).detail as Merek; if (MEREK.includes(m)) setMerek(m); };
@@ -156,7 +160,7 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
   const persen = ((luas - MIN) / (MAX - MIN)) * 100;
   // Publik: juta dibulatkan tanpa koma supaya enak dibaca; internal tetap 1 desimal.
   const d = internal ? 1 : 0;
-  const rentang = `${rupiahRingkas(est.total[0], d)} – ${rupiahRingkas(est.total[1], d)}`;
+  const rentang = kisaranRupiah(est.total, d);
   const perM2 = `${rupiahRingkas(est.perM2[0])} – ${rupiahRingkas(est.perM2[1])} per m²`;
   const pesan = [
     `Halo Atapura, saya mau tanya pemasangan ${plafon ? 'plafon' : 'atap bitumen'}.`,
@@ -254,7 +258,7 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
               <span class="slider-isi" />
               <span class="slider-jempol" />
             </div>
-            <p class="ha-bantu">{plafon ? 'Belum tahu luasnya? Luas plafon kira-kira sama dengan luas lantai ruangan: panjang × lebar.' : 'Belum tahu luasnya? Untuk atap miring, kira-kira luas lantai teratas × 1,3.'}</p>
+            <p class="ha-bantu">{plafon ? 'Belum tahu luasnya? Luas plafon kira-kira sama dengan luas lantai ruangan: panjang × lebar.' : <>Belum tahu luasnya? Untuk atap miring, kira-kira luas lantai teratas × 1,3.{!internal && <> <a href="#luas-lantai">Hitung dari luas lantai</a></>}</>}</p>
           </div>
         </li>
         <li>
@@ -317,7 +321,7 @@ export default function HitungAkal({ awal = 100, sumber = 'beranda', internal = 
         </li>}
       </ol>
 
-      <div class="ha-slip" data-nosnippet>
+      <div class="ha-slip" id="hasil" data-nosnippet>
         <div class="ha-slip-kepala">
           <p class="ha-label-kecil">{rinciAtap ? 'Kebutuhan material' : jabo === false ? 'Harga' : 'Estimasi harga terpasang'} untuk {luas} m²</p>
           {harga.contoh && <span class="contoh">Harga acuan</span>}

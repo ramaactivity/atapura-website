@@ -60,4 +60,4 @@ Atap yang dirawat sesuai [jadwal perawatan sederhana](/panduan/atap-bitumen-taha
 
 ## Minta dicek
 
-Atapura mengecek atap bocor di Jabodetabek tanpa biaya survey, lalu menuliskan titik bocor dan pilihan perbaikannya. Kalau penggantian lebih masuk akal, Anda bisa melihat estimasi biayanya dulu di [Hitung AKAL](/#hitung).
+Atapura mengecek atap bocor di Jabodetabek tanpa biaya survey, lalu menuliskan titik bocor dan pilihan perbaikannya. Kalau penggantian lebih masuk akal, Anda bisa melihat estimasi biayanya dulu di [Hitung AKAL](/hitung).

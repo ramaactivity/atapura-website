@@ -21,6 +21,7 @@
 .ha-jebakan { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 
 .ha-slip {
+  scroll-margin-top: 80px;
   background: var(--color-pinus); color: var(--color-embun); border-radius: 16px;
   padding: clamp(1.6rem, 3vw, 2.6rem); display: grid; gap: 0.4rem;
   box-shadow: 0 30px 60px -30px rgb(16 35 30 / 0.55);
@@ -124,3 +125,4 @@
 @media (max-width: 47.99rem) {
   .hitung-cta { min-height: 48px; font-size: 0.9375rem; }
 }
+.ha-bantu a { color: var(--color-tinta); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; white-space: nowrap; }

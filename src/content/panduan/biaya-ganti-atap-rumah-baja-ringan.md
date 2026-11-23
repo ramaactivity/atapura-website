@@ -43,7 +43,7 @@ Harga Atapura per 20 November 2026, Jabodetabek, untuk atap bitumen CTI, di atas
 | Tipe 60 | ±78 m² | Rp31–35 jt | Rp46–50 jt |
 | 6 × 12 m | ±94 m² | Rp38–42 jt | Rp56–61 jt |
 
-Bagian atapnya dihitung sama dengan [Hitung AKAL](/#hitung): harga terpasang CTI Rp400–450 ribu per m² dikali luas atap. Rangka K-Steel Rp195 ribu per m² dikali luas yang sama lalu ditambahkan, dan totalnya dibulatkan. Per m² atap, totalnya jadi Rp595–645 ribu. Untuk ukuran yang sama, kolom "atap saja" cocok dengan angka CTI di [biaya atap rumah per ukuran](/panduan/biaya-atap-rumah-per-ukuran).
+Bagian atapnya dihitung sama dengan [Hitung AKAL](/hitung): harga terpasang CTI Rp400–450 ribu per m² dikali luas atap. Rangka K-Steel Rp195 ribu per m² dikali luas yang sama lalu ditambahkan, dan totalnya dibulatkan. Per m² atap, totalnya jadi Rp595–645 ribu. Untuk ukuran yang sama, kolom "atap saja" cocok dengan angka CTI di [biaya atap rumah per ukuran](/panduan/biaya-atap-rumah-per-ukuran).
 
 Sudah termasuk: rangka baja ringan terpasang (material, screw, dynabolt, dan jasa), multiplek 12 mm atau GRC 9 mm, lapis kedap air, flashing U, paku dan skrup, jasa pasang atap, serta ongkos kirim material di Jabodetabek.
 
@@ -99,4 +99,4 @@ Material dibayar lunas sebelum dikirim. Jasa pasang dibayar bertahap 40/30/30: s
 
 ## Hitung dan survey di Jabodetabek
 
-Coba luas atap Anda di [Hitung AKAL](/#hitung), lalu kirim hasilnya lewat WhatsApp. Survey tanpa biaya di Jabodetabek, termasuk pemeriksaan rangka lama dan bongkar yang perlu dihitung. Kami melayani antara lain [Jakarta](/area/jakarta), [Depok](/area/depok), [Kota Bekasi](/area/kota-bekasi), [Kabupaten Bekasi](/area/kabupaten-bekasi), [Tangerang Selatan](/area/tangerang-selatan), dan [Kabupaten Bogor](/area/kabupaten-bogor).
+Coba luas atap Anda di [Hitung AKAL](/hitung), lalu kirim hasilnya lewat WhatsApp. Survey tanpa biaya di Jabodetabek, termasuk pemeriksaan rangka lama dan bongkar yang perlu dihitung. Kami melayani antara lain [Jakarta](/area/jakarta), [Depok](/area/depok), [Kota Bekasi](/area/kota-bekasi), [Kabupaten Bekasi](/area/kabupaten-bekasi), [Tangerang Selatan](/area/tangerang-selatan), dan [Kabupaten Bogor](/area/kabupaten-bogor).

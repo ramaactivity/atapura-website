@@ -242,6 +242,14 @@ export function estimasiPublik(luas: number, merek: Merek): Pick<Estimasi, 'perM
   };
 }
 
+/** Rentang rupiah ringkas, satu format untuk semua permukaan: "Rp48–54 jt", "Rp380–430 rb", "Rp3,8 jt–12 jt" bila satuan beda. */
+export function kisaranRupiah([a, b]: readonly [number, number], desimal = 0): string {
+  if (a === b) return rupiahRingkas(a, desimal);
+  const x = rupiahRingkas(a, desimal), y = rupiahRingkas(b, desimal);
+  const satuan = (s: string) => s.slice(s.lastIndexOf(' ') + 1);
+  return `${satuan(x) === satuan(y) ? x.slice(0, x.lastIndexOf(' ')) : x}–${y.replace('Rp', '')}`;
+}
+
 /** desimal: angka di belakang koma untuk juta (publik 0 supaya mudah dibaca, internal 1). */
 export function rupiahRingkas(n: number, desimal = 1): string {
   if (n >= 1_000_000) {

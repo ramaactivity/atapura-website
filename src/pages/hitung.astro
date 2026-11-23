@@ -1,0 +1,287 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import HitungAkal from '../islands/HitungAkal';
+import { bisnis, waLink } from '../data/bisnis';
+import { harga, kisaranRupiah, rentangRangka, tanggalPanjang, type Merek } from '../data/harga';
+import { produk } from '../data/produk';
+
+// Halaman kalkulator sendiri (DECISIONS 071): tujuan semua tautan "Hitung", bisa ranking untuk
+// "kalkulator / biaya pasang atap bitumen". Beranda hanya memuat kartu hitung cepat yang menaut ke sini.
+const situs = new URL('/', Astro.site).href;
+const tanggal = tanggalPanjang(harga.berlakuSejak);
+const termin = bisnis.pembayaran.jasa.map((t) => `${t.persen}%`).join(', ');
+const rb = (n: number) => (n / 1000).toLocaleString('id-ID');
+
+// Daftar harga per merek: murah ke mahal, tiap baris menaut ke halaman merek.
+const merek = (Object.keys(harga.merek) as Merek[])
+  .sort((a, b) => harga.merek[a].terpasang[0] - harga.merek[b].terpasang[0])
+  .map((m) => ({ nama: m, ...harga.merek[m], slug: produk.find((p) => p.lini === 'atap' && p.nama === m)?.slug }));
+
+const langkah = [
+  { judul: bisnis.survey.jabodetabek === 'Gratis' ? 'Survey gratis' : 'Survey', isi: 'Tim datang mengukur atap, memeriksa rangka, dan membawa sampel warna. Di Jabodetabek tanpa biaya.' },
+  { judul: 'Penawaran tertulis', isi: 'Material, aksesoris, jasa, dan jadwal dirinci per item sebelum Anda setuju.' },
+  { judul: 'Baru membayar', isi: `Material lunas sebelum dikirim. Jasa pasang bertahap ${termin}, mengikuti progres.` },
+];
+
+const tanya = [
+  {
+    q: 'Kenapa hasilnya berupa kisaran, bukan satu angka?',
+    a: 'Angka akhir bergantung pada luas yang terukur saat survey, bentuk atap, kondisi rangka, dan panjang flashing di tepi atap dan dinding. Karena itu harga final kami tulis setelah survey gratis dan opname luas, lalu kami kirim sebagai penawaran tertulis per item.',
+  },
+  {
+    q: 'Apa saja yang sudah termasuk?',
+    a: `Genteng, ${harga.termasuk.map((t) => t.charAt(0).toLowerCase() + t.slice(1)).join(', ')}. Yang belum termasuk: rangka baja ringan baru bila rangka lama perlu diganti (Rp${rb(rentangRangka[0])}–${rb(rentangRangka[1])} ribu per m² terpasang), ${harga.tidakTermasuk.map((t) => t.charAt(0).toLowerCase() + t.slice(1)).join(', ')}.`,
+  },
+  {
+    q: 'Bagaimana cara bayarnya?',
+    a: `Material dibayar lunas sebelum dikirim ke lokasi karena dipesan khusus untuk atap Anda. Jasa pasang dibayar bertahap ${termin}: ${bisnis.pembayaran.jasa.map((t) => t.saat.toLowerCase()).join('; ')}. Detail kesepakatan dibahas bersama lewat WhatsApp.`,
+  },
+  {
+    q: 'Lokasi saya di luar Jabodetabek. Apakah tetap bisa?',
+    a: `Bisa. ${bisnis.survey.luar}, misalnya tiket pesawat atau ekspedisi antarpulau. Pilih "Kirim estimasi ke WhatsApp", lalu tulis kota Anda; admin menghitungnya bersama Anda.`,
+  },
+];
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Beranda', item: situs },
+      { '@type': 'ListItem', position: 2, name: 'Hitung biaya', item: new URL('/hitung', Astro.site).href },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: tanya.map((t) => ({ '@type': 'Question', name: t.q, acceptedAnswer: { '@type': 'Answer', text: t.a } })),
+  },
+];
+---
+<Base
+  title="Kalkulator Biaya Pasang Atap Bitumen per m² | Atapura"
+  description={`Hitung estimasi biaya pasang atap bitumen Maxxi, CTI, Javabitumen, Victory, dan Tegola di Jabodetabek: material, aksesoris, dan jasa pasang. Harga per ${tanggal}.`}
+  schema={schema}
+>
+  <Header terang />
+  <main class="hk">
+    <div class="wrap">
+      <div class="kartu-buka">
+        <nav class="remah" aria-label="Remah roti"><a href="/">Beranda</a><span aria-hidden="true">/</span><span>Hitung biaya</span></nav>
+        <div class="hk-kepala">
+          <h1 class="hk-judul">Hitung biaya atap bitumen <span class="redup">sebelum bicara dengan siapa pun.</span></h1>
+          <p class="hk-lead">Isi luas atap dan pilih merek. Estimasi sudah termasuk genteng, alas, lapis kedap, flashing, dan jasa pasang di Jabodetabek.</p>
+        </div>
+      </div>
+    </div>
+
+    <section id="kalkulator" class="hk-alat" aria-label="Kalkulator Hitung AKAL">
+      <div class="wrap">
+        <HitungAkal client:load awal={120} sumber="Hitung AKAL" />
+        <p class="hk-catatan" data-nosnippet>
+          {harga.contoh ? 'Harga acuan pasar Jabodetabek, dihitung dari harga distributor dan jasa pasang. ' : 'Estimasi untuk lokasi di Jabodetabek. '}Harga final kami tulis setelah survey gratis dan opname luas. Harga per {tanggal}.
+        </p>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <section id="luas-lantai" class="hk-luas" aria-labelledby="judul-luas">
+        <div class="hk-luas-teks">
+          <h2 id="judul-luas" class="hk-h2">Belum tahu luas atap?</h2>
+          <p>Mulai dari luas lantai teratas rumah Anda: panjang × lebar bangunan di lantai paling atas. Luas atap miring kira-kira 1,3 kali angka itu karena bidangnya miring dan menjorok keluar dinding.</p>
+          <p class="hk-kecil">Patokan ini mendekati atap 25–30° dengan teritis pendek. Teritis lebar atau atap lebih curam membuat luasnya lebih besar. <a href="/panduan/cara-menghitung-luas-atap">Cara menghitung luas atap yang lebih tepat</a></p>
+        </div>
+        <div class="hk-luas-alat" data-luas-lantai>
+          <label for="luas-lantai-isi" class="hk-luas-label">Luas lantai teratas</label>
+          <div class="stepper">
+            <button type="button" class="stepper-btn" aria-label="Kurangi 5 m²" data-ubah="-5">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10" /></svg>
+            </button>
+            <span class="stepper-isi">
+              <input id="luas-lantai-isi" class="stepper-input angka" inputmode="numeric" autocomplete="off" value="90" maxlength="3" />
+              <span class="stepper-satuan">m²</span>
+            </span>
+            <button type="button" class="stepper-btn" aria-label="Tambah 5 m²" data-ubah="5">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M8 3v10" /></svg>
+            </button>
+          </div>
+          <p class="hk-luas-hasil" aria-live="polite">Perkiraan luas atap <b class="angka" data-hasil>117</b> m²</p>
+          <button type="button" class="pill pill-gelap hk-luas-pakai" data-pakai>Pakai di kalkulator</button>
+        </div>
+      </section>
+
+      <section class="hk-lanjut" aria-labelledby="judul-lanjut">
+        <h2 id="judul-lanjut" class="hk-h2">Setelah estimasi terkirim, <span class="redup">belum ada yang perlu dibayar.</span></h2>
+        <ol class="hk-langkah">
+          {langkah.map((l) => (
+            <li><h3 class="hk-langkah-judul">{l.judul}</h3><p>{l.isi}</p></li>
+          ))}
+        </ol>
+      </section>
+
+      <section class="hk-harga" aria-labelledby="judul-harga">
+        <div class="hk-harga-kepala">
+          <h2 id="judul-harga" class="hk-h2">Harga terpasang per <span class="hk-m2">m²</span></h2>
+          <p class="hk-kecil">Jabodetabek, spek standar, belum termasuk rangka baru. Harga per {tanggal}.</p>
+        </div>
+        <ul class="hk-merek" data-nosnippet>
+          {merek.map((m) => (
+            <li>
+              <a href={m.slug ? `/produk/${m.slug}` : '/produk'}>
+                <span class="hk-merek-nama">{m.nama}</span>
+                <span class="hk-titik" aria-hidden="true"></span>
+                <span class="hk-merek-rp angka">{kisaranRupiah(m.terpasang)}</span>
+                <svg class="hk-panah" viewBox="0 0 20 20" aria-hidden="true"><path d="m8 5 5 5-5 5" /></svg>
+                <small class="hk-merek-ket">Kelas {m.kelas.toLowerCase()}{m.genteng && <>. Genteng saja Rp<span class="angka">{rb(m.genteng)}</span> rb/m²</>}</small>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="hk-tanya" aria-labelledby="judul-tanya">
+        <h2 id="judul-tanya" class="hk-h2">Pertanyaan soal harga</h2>
+        <div class="hk-tanya-daftar">
+          {tanya.map((t, i) => (
+            <details name="tanya-harga" open={i === 0}>
+              <summary><span>{t.q}</span><span class="hk-tanda" aria-hidden="true"></span></summary>
+              <p>{t.a}</p>
+            </details>
+          ))}
+        </div>
+        <a class="pill pill-garis hk-wa" href={waLink('Halo Atapura, saya mau tanya soal biaya pasang atap bitumen.')} target="_blank" rel="noopener" data-wa="hitung-tanya">Tanya admin lewat WhatsApp</a>
+      </section>
+    </div>
+  </main>
+  <Footer />
+</Base>
+
+<script>
+  // Bantuan luas lantai → luas atap (× 1,3), lalu kirim angkanya ke kalkulator lewat event yang sudah didengar HitungAkal.
+  const alat = document.querySelector<HTMLElement>('[data-luas-lantai]');
+  if (alat) {
+    const isi = alat.querySelector<HTMLInputElement>('input')!;
+    const hasil = alat.querySelector<HTMLElement>('[data-hasil]')!;
+    const atap = () => Math.min(400, Math.max(10, Math.round((Number(isi.value) || 0) * 1.3)));
+    const tampil = () => { hasil.textContent = String(atap()); };
+    const jepit = (n: number) => { isi.value = String(Math.min(300, Math.max(8, Math.round(n)))); tampil(); };
+    alat.querySelectorAll<HTMLButtonElement>('[data-ubah]').forEach((b) => b.addEventListener('click', () => jepit((Number(isi.value) || 0) + Number(b.dataset.ubah))));
+    isi.addEventListener('input', () => { isi.value = isi.value.replace(/\D/g, '').slice(0, 3); tampil(); });
+    isi.addEventListener('blur', () => jepit(Number(isi.value) || 8));
+    alat.querySelector('[data-pakai]')!.addEventListener('click', () => {
+      dispatchEvent(new CustomEvent('atapura:luas', { detail: atap() }));
+      document.getElementById('kalkulator')!.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+    });
+  }
+</script>
+
+<style>
+  .hk { background: var(--color-embun); color: var(--color-tinta); padding: 120px 0 6rem; }
+  .remah { display: flex; gap: 0.5rem; font-size: 0.88rem; color: var(--color-lumut); }
+  .remah a { color: inherit; }
+  .redup { opacity: 0.55; }
+  .hk-kepala { margin: 2rem 0 3rem; display: grid; gap: 1.25rem 4rem; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 60rem) { .hk-kepala { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); align-items: end; } }
+  .hk-judul { font-family: var(--font-merek); font-size: clamp(2.25rem, 1.2rem + 3vw, 3.75rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.02; max-width: 17ch; text-wrap: balance; }
+  .hk-lead { font-size: 1.1rem; color: var(--color-lumut); max-width: 42ch; line-height: 1.55; }
+
+  /* Kalkulator di bidang putih selebar layar (stepper & segmen berlatar Embun butuh latar putih). */
+  .hk-alat { background: var(--color-putih); padding-block: clamp(2.5rem, 5vw, 4.5rem); }
+  .hk-catatan { margin-top: 1.75rem; font-size: 0.875rem; line-height: 1.5; color: var(--color-lumut); max-width: 70ch; }
+
+  .hk-h2 { font-family: var(--font-merek); font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.5rem); font-weight: 500; letter-spacing: -0.035em; line-height: 1.1; max-width: 22ch; }
+  .hk-kecil { font-size: 0.9rem; line-height: 1.5; color: var(--color-lumut); }
+  .hk-kecil a, .hk-luas-teks a { color: var(--color-tinta); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+
+  /* Luas lantai → luas atap: teks di kiri, alat kecil di kanan. */
+  .hk-luas { display: grid; gap: 1.75rem 5rem; grid-template-columns: minmax(0, 1fr); padding-block: clamp(3.5rem, 7vw, 6rem); scroll-margin-top: 80px; }
+  @media (min-width: 60rem) { .hk-luas { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); align-items: center; } }
+  .hk-luas-teks { display: grid; gap: 1rem; }
+  .hk-luas-teks > p:not(.hk-kecil) { font-size: 1.0625rem; line-height: 1.6; max-width: 56ch; }
+  .hk-luas-alat {
+    display: grid; justify-items: start; gap: 0.9rem; padding: clamp(1.4rem, 3vw, 2rem); border-radius: 1.25rem;
+    background: var(--color-putih); box-shadow: 0 1px 2px rgb(16 35 30 / 0.06), 0 22px 40px -28px rgb(16 35 30 / 0.35);
+  }
+  .hk-luas-label { font-size: 1.05rem; }
+  .hk-luas-hasil { font-size: 1rem; color: var(--color-lumut); }
+  .hk-luas-hasil b { font-variant-numeric: proportional-nums lining-nums; font-family: var(--font-merek); font-size: 1.6rem; font-weight: 500; letter-spacing: -0.03em; color: var(--color-tinta); }
+  .hk-luas-pakai:focus-visible, .hk-wa:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 3px; }
+
+  /* Setelah estimasi terkirim: tiga langkah bersambung garis, bukan tiga kartu. */
+  .hk-lanjut { padding-block: clamp(3.5rem, 7vw, 6rem); border-top: 1px solid var(--color-garis); }
+  .hk-langkah { counter-reset: lk; display: grid; gap: 0; margin-top: 2.25rem; grid-template-columns: minmax(0, 1fr); }
+  .hk-langkah li { counter-increment: lk; position: relative; padding: 0 0 1.75rem 3rem; }
+  .hk-langkah li::before {
+    content: counter(lk); position: absolute; left: 0; top: 0; display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%;
+    background: var(--color-pinus); color: var(--color-putih); font-size: 0.875rem; font-weight: 600; font-variant-numeric: tabular-nums;
+  }
+  .hk-langkah li:not(:last-child)::after { content: ''; position: absolute; left: calc(1rem - 0.5px); top: 2.4rem; bottom: 0.4rem; width: 1px; background: var(--color-garis); }
+  .hk-langkah-judul { font-family: var(--font-merek); font-size: 1.25rem; font-weight: 500; letter-spacing: -0.02em; line-height: 1.6rem; }
+  .hk-langkah p { margin-top: 0.35rem; font-size: 1rem; line-height: 1.55; color: var(--color-lumut); max-width: 40ch; }
+  @media (min-width: 60rem) {
+    .hk-langkah { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.5rem; }
+    .hk-langkah li { padding: 3.25rem 0 0; }
+    .hk-langkah li:not(:last-child)::after { left: 2.75rem; right: -1.75rem; top: 1rem; bottom: auto; width: auto; height: 1px; }
+  }
+
+  /* Harga per merek: baris bertitik penuntun seperti slip rincian. */
+  .hk-harga { padding-block: clamp(3.5rem, 7vw, 6rem); border-top: 1px solid var(--color-garis); display: grid; gap: 1.75rem 5rem; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 60rem) { .hk-harga { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); align-items: start; } }
+  .hk-harga-kepala { display: grid; gap: 0.75rem; }
+  .hk-m2 { font-family: var(--font-sans); letter-spacing: -0.02em; }
+  .hk-merek a {
+    display: grid; grid-template-columns: auto minmax(1.5rem, 1fr) auto 1.25rem; grid-template-areas: 'nama titik rp panah' 'ket ket ket .'; align-items: baseline; gap: 0.2rem 0.75rem;
+    min-height: 4rem; padding: 1rem 0; color: var(--color-tinta); text-decoration: none; border-bottom: 1px solid var(--color-garis);
+  }
+  .hk-merek li:first-child a { border-top: 1px solid var(--color-tinta); }
+  .hk-merek-nama { grid-area: nama; font-family: var(--font-merek); font-size: 1.25rem; font-weight: 500; letter-spacing: -0.02em; line-height: 1.25; }
+  .hk-merek-ket { grid-area: ket; font-size: 0.85rem; line-height: 1.4; color: var(--color-lumut); }
+  .hk-titik { grid-area: titik; align-self: center; height: 1px; background: radial-gradient(circle, var(--color-lumut) 0.6px, transparent 0.8px) 0 0 / 6px 1px repeat-x; opacity: 0.55; }
+  .hk-merek-rp { grid-area: rp; font-family: var(--font-merek); font-size: 1.25rem; font-weight: 500; letter-spacing: -0.02em; white-space: nowrap; }
+  .hk-panah { grid-area: panah; align-self: center; width: 1.1rem; height: 1.1rem; fill: none; stroke: var(--color-lumut); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transition: transform 240ms var(--ease-out), stroke 200ms; }
+  .hk-merek a:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 2px; border-radius: 8px; }
+  @media (hover: hover) and (pointer: fine) {
+    .hk-merek a:hover .hk-panah { transform: translateX(3px); stroke: var(--color-pinus); }
+    .hk-merek a:hover .hk-merek-nama { color: var(--color-pinus); }
+  }
+
+  /* Tanya jawab harga. */
+  .hk-tanya { padding-block: clamp(3.5rem, 7vw, 6rem) 0; border-top: 1px solid var(--color-garis); display: grid; gap: 1.75rem 5rem; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 60rem) { .hk-tanya { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); align-items: start; } .hk-wa { grid-column: 2; justify-self: start; } }
+  .hk-tanya-daftar { border-top: 1px solid var(--color-tinta); }
+  .hk-tanya details { border-bottom: 1px solid var(--color-garis); }
+  .hk-tanya summary { display: flex; justify-content: space-between; align-items: center; gap: 1rem; min-height: 3.5rem; padding: 1rem 0; cursor: pointer; list-style: none; font-family: var(--font-merek); font-size: 1.125rem; font-weight: 500; letter-spacing: -0.015em; }
+  .hk-tanya summary::-webkit-details-marker { display: none; }
+  .hk-tanya summary:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 2px; border-radius: 6px; }
+  .hk-tanda { position: relative; flex: none; width: 14px; height: 14px; }
+  .hk-tanda::before, .hk-tanda::after { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 1.5px; margin-top: -0.75px; background: currentColor; transition: transform 240ms var(--ease-out); }
+  .hk-tanda::after { transform: rotate(90deg); }
+  .hk-tanya details[open] .hk-tanda::after { transform: rotate(0deg); }
+  .hk-tanya details p { padding: 0 0 1.25rem; font-size: 1.0625rem; line-height: 1.6; color: var(--color-lumut); max-width: 62ch; }
+
+  @media (min-width: 64rem) { .hk-luas-teks > p:not(.hk-kecil), .hk-tanya details p { font-size: 1.125rem; } }
+
+  @media (max-width: 47.99rem) {
+    .hk { background: #dde2dc; padding: 96px 0 4rem; }
+    .kartu-buka { margin: 0 calc(8px - var(--gutter)) 8px; padding: 1.5rem var(--gutter) 0.25rem; border-radius: 28px; background: var(--color-embun); }
+    .hk-kepala { margin: 1.5rem 0 1.5rem; }
+    .hk-judul { font-size: var(--hp-display); line-height: 1.05; }
+    .hk-lead { font-size: 1rem; }
+    .hk-alat { margin: 0 8px; border-radius: 28px; padding-block: 1.75rem 2rem; }
+    .hk-h2 { font-size: var(--hp-t1); }
+    /* Bagian setelah kalkulator jadi kartu membulat di atas latar abu, seperti beranda HP. */
+    .hk-luas, .hk-lanjut, .hk-harga, .hk-tanya {
+      margin: 8px calc(8px - var(--gutter)) 0; padding: 2rem var(--gutter); border-radius: 28px; border-top: 0; background: var(--color-embun);
+    }
+    .hk-luas-alat { justify-items: stretch; background: none; box-shadow: none; padding: 1.25rem 0 0; border-top: 1px solid var(--color-tinta); border-radius: 0; }
+    .hk-luas-alat .stepper { justify-self: start; }
+    .hk-luas-pakai { width: 100%; }
+    .hk-merek-nama, .hk-merek-rp { font-size: var(--hp-t4); }
+    .hk-merek a { grid-template-columns: auto minmax(1rem, 1fr) auto 1.25rem; min-height: 3.5rem; padding: 0.85rem 0; gap: 0.15rem 0.5rem; }
+    .hk-tanya summary { font-size: var(--hp-t4); }
+    .hk-tanya details p, .hk-luas-teks > p:not(.hk-kecil) { font-size: 1rem; }
+    .hk-wa { width: 100%; }
+  }
+</style>

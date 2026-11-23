@@ -58,4 +58,4 @@ Daftar plus-minusnya secara lengkap ada di [kelebihan dan kekurangan atap bitume
 
 Uji di Florida membandingkan beberapa jenis atap pada rumah yang sama persis. Genteng aspal abu-abu gelap memantulkan sekitar 8% sinar matahari, genteng aspal putih sekitar 24%, dan atap logam putih menghasilkan loteng paling dingin di antara semuanya. Jadi warna, plafon, dan ventilasi lebih menentukan daripada jenis bahannya. Penjelasan untuk atap bitumen ada di [apakah atap bitumen panas](/panduan/apakah-atap-bitumen-panas).
 
-Estimasi atap bitumen untuk luas atap Anda bisa dicoba di [Hitung AKAL](/#hitung).
+Estimasi atap bitumen untuk luas atap Anda bisa dicoba di [Hitung AKAL](/hitung).

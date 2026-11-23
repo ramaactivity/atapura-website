@@ -143,4 +143,4 @@ Pada atap 10–15°, panduan CTI melebihkan sambungan underlayment menjadi 150 m
 
 ## Bandingkan biayanya untuk atap Anda
 
-Masukkan luas atap di Hitung AKAL dan pilih mereknya, misalnya [Maxxi](/?merek=Maxxi#hitung), [CTI](/?merek=CTI#hitung), atau [Tegola](/?merek=Tegola#hitung), untuk melihat estimasi totalnya berdampingan. Kalau masih ragu antara dua merek, tanyakan lewat WhatsApp. Survey di Jabodetabek tanpa biaya, dan merek final bisa diputuskan setelah kemiringan atap Anda diukur.
+Masukkan luas atap di Hitung AKAL dan pilih mereknya, misalnya [Maxxi](/hitung?merek=Maxxi), [CTI](/hitung?merek=CTI), atau [Tegola](/hitung?merek=Tegola), untuk melihat estimasi totalnya berdampingan. Kalau masih ragu antara dua merek, tanyakan lewat WhatsApp. Survey di Jabodetabek tanpa biaya, dan merek final bisa diputuskan setelah kemiringan atap Anda diukur.

@@ -94,4 +94,4 @@ Pada atap bitumen (genteng aspal), lembar yang rusak bisa diganti per lembar tan
 
 ## Survey atap bocor di Jabodetabek
 
-Atapura mengecek atap bocor di Jabodetabek tanpa biaya survey. Kirim foto dan video yang Anda ambil semalam lewat WhatsApp, supaya tim bisa menilai apakah perlu datang dan bagian mana yang diperiksa lebih dulu. Lihat juga kondisi hujan di wilayah Anda di halaman [area layanan](/area), misalnya [Jakarta](/area/jakarta), [Depok](/area/depok), atau [Kota Bekasi](/area/kota-bekasi). Kalau atap lama ternyata lebih masuk akal diganti, perkiraan biayanya bisa dihitung di [Hitung AKAL](/#hitung).
+Atapura mengecek atap bocor di Jabodetabek tanpa biaya survey. Kirim foto dan video yang Anda ambil semalam lewat WhatsApp, supaya tim bisa menilai apakah perlu datang dan bagian mana yang diperiksa lebih dulu. Lihat juga kondisi hujan di wilayah Anda di halaman [area layanan](/area), misalnya [Jakarta](/area/jakarta), [Depok](/area/depok), atau [Kota Bekasi](/area/kota-bekasi). Kalau atap lama ternyata lebih masuk akal diganti, perkiraan biayanya bisa dihitung di [Hitung AKAL](/hitung).

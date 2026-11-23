@@ -59,4 +59,4 @@ Atap bitumen juga bisa diteruskan ke dinding sebagai pelapis fasad dengan warna 
 
 ## Sebelum memutuskan
 
-Foto di katalog dan layar HP jarang menampilkan warna aslinya. Kami membawa sampel fisik saat survey gratis di Jabodetabek. Sementara itu, Anda bisa melihat estimasi biayanya di [Hitung AKAL](/#hitung).
+Foto di katalog dan layar HP jarang menampilkan warna aslinya. Kami membawa sampel fisik saat survey gratis di Jabodetabek. Sementara itu, Anda bisa melihat estimasi biayanya di [Hitung AKAL](/hitung).

@@ -22,7 +22,7 @@ const [judulA, judulB] = p.lini === 'rangka' ? ['Rangka', 'baja ringan'] : [L.na
 const namaPanjang = p.lini === 'rangka' ? p.nama.toLowerCase() : `${L.nama.toLowerCase()} ${p.nama}`;
 const lain = produk.filter((x) => x.slug !== p.slug && x.lini === p.lini);
 const pesan = `Halo Atapura, saya mau tanya ${namaPanjang}.`;
-// Kalkulator beranda menerima ?merek= (atap atau plafon) dan langsung memilihnya.
+// Kalkulator /hitung menerima ?merek= (atap atau plafon) dan langsung memilihnya.
 const bisaDihitung = Boolean(p.harga) || p.lini === 'plafon';
 const rentang = rentangProduk(p);
 // Contoh total untuk 100 m² supaya angka per m² langsung terbayang (riset UX katalog: perkiraan total dekat tombol).
@@ -72,7 +72,7 @@ const schema = [
 ---
 
 <Base title={`${p.judul} | Atapura`} description={p.ringkas} schema={schema}>
-  <Header terang hitungHref={bisaDihitung ? `/?merek=${encodeURIComponent(p.nama)}#hitung` : undefined} pesanWa={pesan} />
+  <Header terang hitungHref={bisaDihitung ? `/hitung?merek=${encodeURIComponent(p.nama)}` : undefined} pesanWa={pesan} />
   <main class="pr">
     <section class="pr-buka">
       <div class="wrap pr-buka-isi">
@@ -88,7 +88,7 @@ const schema = [
           </dl>
           {contoh && <p class="slip-contoh">Contoh 100 m²: <b>±Rp{contoh.min}–{contoh.max} {contoh.satuan === 'jt' ? 'juta' : 'ribu'}</b> terpasang</p>}
           <div class="slip-aksi">
-            {bisaDihitung && <a class="pill pill-tunas" href={`/?merek=${encodeURIComponent(p.nama)}#hitung`}>Hitung biaya dengan {p.nama}</a>}
+            {bisaDihitung && <a class="pill pill-tunas" href={`/hitung?merek=${encodeURIComponent(p.nama)}`}>Hitung biaya dengan {p.nama}</a>}
             <a class:list={['pill', bisaDihitung ? 'pill-garis' : 'pill-tunas']} href={waLink(pesan)} target="_blank" rel="noopener" data-wa="produk">Tanya {p.lini === 'rangka' ? namaPanjang : p.nama} lewat WhatsApp</a>
           </div>
           {jaminan[p.lini].length > 0 && (

@@ -78,4 +78,4 @@ Semakin curam, semakin luas bidang atap yang harus ditutup. Ini berpengaruh lang
 | 30° | ±115 m² |
 | 35° | ±122 m² |
 
-Angka di atas belum termasuk tritisan (bagian atap yang menjorok keluar dinding). Kalau Anda belum tahu luasnya, perkiraan kasar luas lantai teratas dikali 1,3 sudah cukup untuk mencoba [Hitung AKAL](/#hitung). Ukuran pastinya kami ambil saat survey.
+Angka di atas belum termasuk tritisan (bagian atap yang menjorok keluar dinding). Kalau Anda belum tahu luasnya, perkiraan kasar luas lantai teratas dikali 1,3 sudah cukup untuk mencoba [Hitung AKAL](/hitung). Ukuran pastinya kami ambil saat survey.

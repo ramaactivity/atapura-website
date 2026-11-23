@@ -36,7 +36,7 @@ type Kolom = { judul: string; tautan: { label: string; href: string; luar?: bool
 const guides = en ? (await getCollection('guides')).sort((a, b) => b.data.diperbarui.getTime() - a.data.diperbarui.getTime()).slice(0, 3) : [];
 const kolomEn: Kolom = [
   { judul: 'Guides', tautan: [...guides.map((g) => ({ label: singkat(g.data.judul), href: `/en/guides/${g.id}` })), { label: 'All guides', href: '/en/guides' }] },
-  { judul: 'Indonesian site', tautan: [{ label: 'Home', href: '/' }, { label: 'Cost estimator', href: '/#hitung' }, { label: 'Guides (Indonesian)', href: '/panduan' }, { label: 'Service areas', href: '/area' }] },
+  { judul: 'Indonesian site', tautan: [{ label: 'Home', href: '/' }, { label: 'Cost estimator', href: '/hitung' }, { label: 'Guides (Indonesian)', href: '/panduan' }, { label: 'Service areas', href: '/area' }] },
   { judul: 'Contact', tautan: [{ label: 'WhatsApp', href: waLink(waPesan), luar: true }, { label: 'Email', href: `mailto:${bisnis.email}` }] },
 ];
 const kolomId: Kolom = [
@@ -54,7 +54,7 @@ const kolomId: Kolom = [
   {
     judul: 'Biaya & garansi',
     tautan: [
-      { label: 'Hitung AKAL', href: '/#hitung' },
+      { label: 'Hitung AKAL', href: '/hitung' },
       { label: 'Pilih merek', href: '/#merek' },
       { label: 'Termin pembayaran', href: '/#garansi' },
       { label: `Garansi ${bisnis.garansiPemasanganTahun} tahun`, href: '/#garansi' },
@@ -96,7 +96,7 @@ const kolom = en ? kolomEn : kolomId;
   <div class="wrap kaki-atas">
     <div class="kaki-tagline">
       <p class="kaki-besar">{en ? 'Asphalt shingle roofs, installed right, from Jakarta.' : 'Atap yang masuk AKAL, untuk rumah di Jabodetabek.'}</p>
-      <a class="kaki-aksi" href={en ? '/en/guides' : '/#hitung'}>{en ? 'Read the guides' : 'Hitung estimasi biaya'}</a>
+      <a class="kaki-aksi" href={en ? '/en/guides' : '/hitung'}>{en ? 'Read the guides' : 'Hitung estimasi biaya'}</a>
     </div>
     <nav class="kaki-kolom" aria-label={en ? 'Footer links' : 'Tautan footer'}>
       {kolom.map((k) => (

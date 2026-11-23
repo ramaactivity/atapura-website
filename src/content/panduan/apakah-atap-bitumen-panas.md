@@ -54,4 +54,4 @@ Panas dari genteng ke ruangan melewati beberapa lapis:
 2. **Beri jalan keluar untuk udara panas.** ARMA menganjurkan luas bukaan ventilasi bersih minimal 1/300 dari luas ruang di bawah atap, dan 1/150 lebih disarankan. Ventilasi juga membuang uap air, sehingga papan alas tetap kering.
 3. **Diskusikan plafon dan insulasinya.** Ruang di bawah atap yang tertutup plafon menjadi pembatas sebelum panas masuk ke kamar. Kebutuhannya kami lihat per rumah saat survey.
 
-Panas yang terjebak juga berpengaruh ke umur genteng. Penjelasannya ada di [atap bitumen tahan berapa lama](/panduan/atap-bitumen-tahan-berapa-lama). Estimasi biaya atapnya bisa Anda lihat dulu di [Hitung AKAL](/#hitung).
+Panas yang terjebak juga berpengaruh ke umur genteng. Penjelasannya ada di [atap bitumen tahan berapa lama](/panduan/atap-bitumen-tahan-berapa-lama). Estimasi biaya atapnya bisa Anda lihat dulu di [Hitung AKAL](/hitung).

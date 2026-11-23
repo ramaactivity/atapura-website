@@ -63,9 +63,11 @@ const ribu = (n: number) => (n / 1000).toLocaleString('id-ID');
         )}
         <div class="pm-aksi">
           {p.merek ? (
-            <a class="pill pill-gelap" href="#hitung" data-hitung-merek={p.merek}>Hitung biaya dengan {p.merek}</a>
+            <a class="pill pill-gelap" href={`/hitung?merek=${encodeURIComponent(p.merek)}`}>Hitung biaya dengan {p.merek}</a>
+            <a class="pm-detail" href={`/produk/${p.merek.toLowerCase()}`}>Lihat detail {p.merek}</a>
           ) : (
-            <a class="pill pill-gelap" href="#hitung">Hitung biaya dulu</a>
+            <a class="pill pill-gelap" href="/hitung">Hitung biaya dulu</a>
+            <a class="pm-detail" href="/produk">Lihat kelima merek</a>
           )}
         </div>
       </article>
@@ -91,10 +93,6 @@ const ribu = (n: number) => (n / 1000).toLocaleString('id-ID');
         pilih(tombol[(i + arah + tombol.length) % tombol.length], true);
       });
     });
-    // "Hitung dengan merek ini" mengisi pilihan merek di Hitung AKAL.
-    root.querySelectorAll<HTMLAnchorElement>('[data-hitung-merek]').forEach((a) =>
-      a.addEventListener('click', () => setTimeout(() => dispatchEvent(new CustomEvent('atapura:merek', { detail: a.dataset.hitungMerek })), 450)),
-    );
   }
 </script>
 
@@ -119,7 +117,8 @@ const ribu = (n: number) => (n / 1000).toLocaleString('id-ID');
   .pm-fakta dt { color: var(--color-lumut); font-size: 0.93rem; }
   .pm-fakta dd { text-align: right; font-weight: 500; }
   .pm-fakta dd span { font-weight: 400; color: var(--color-lumut); font-size: 0.9rem; }
-  .pm-aksi { margin-top: 0.4rem; }
+  .pm-aksi { margin-top: 0.4rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1.25rem; }
+  .pm-detail { display: inline-flex; align-items: center; min-height: 44px; color: var(--color-tinta); font-size: 0.95rem; text-underline-offset: 3px; text-decoration-thickness: 1px; }
   @media (max-width: 47.99rem) {
     .pm-btn { min-height: var(--hp-tombol); padding: 0.65rem 1rem; border-radius: 12px; font-size: 0.9375rem; }
     .pm-kartu { padding: 1.25rem; }

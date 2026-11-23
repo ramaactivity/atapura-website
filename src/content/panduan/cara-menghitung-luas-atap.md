@@ -120,4 +120,4 @@ Untuk menghitung material, Atapura menambahkan 10% dari luas atap untuk potongan
 
 ## Masukkan luasnya ke Hitung AKAL
 
-Sudah punya angkanya? Masukkan luas atap ke [Hitung AKAL](/#hitung) untuk melihat estimasi biaya terpasang per merek. Ukuran final diambil saat survey, yang tidak dipungut biaya di Jabodetabek.
+Sudah punya angkanya? Masukkan luas atap ke [Hitung AKAL](/hitung) untuk melihat estimasi biaya terpasang per merek. Ukuran final diambil saat survey, yang tidak dipungut biaya di Jabodetabek.

@@ -439,3 +439,19 @@ atapura.com live (Hostinger DNS → Vercel), lalu Rama memutuskan "buka untuk Go
 noindex hilang dari halaman publik dan robots.txt jadi `Allow: /` + `Sitemap`. Halaman `/internal/*` tetap noindex lewat prop
 `noindex` di Base.astro. Konsekuensi: angka harga, termin, dan garansi di situs kini bisa dikutip Google/AI sebagai klaim
 Atapura — ubah di sumbernya (Ops / bisnis.ts) kalau ada yang belum final. Balik ke `true` untuk menutup lagi.
+
+## 071 · 23 November 2026 · Kalkulator pindah ke /hitung; beranda memuat kartu hitung cepat
+Keputusan Rama setelah audit 23 Nov (`docs/riset/audit-website-2026-11-23.md`, §3): kalkulator lengkap tidak lagi di beranda.
+Alasan: (1) halaman sendiri bisa ranking untuk "kalkulator / biaya pasang atap bitumen" (sudah direncanakan di
+`data/keyword-validasi.csv`, autocomplete "estimasi biaya ganti atap rumah"); (2) artikel, area, dan halaman merek menaut
+langsung ke `/hitung?merek=X` alih-alih memuat beranda yang berat lalu meloncat ke tengah; (3) halaman fokus tanpa gangguan
+sampai tombol "Kirim estimasi ke WhatsApp"; (4) siap jadi tujuan iklan dan terukur sebagai langkah funnel; (5) beranda ±2 layar
+HP lebih pendek. Supaya kesan "harga terbuka" tetap terasa di beranda, bagian `#hitung` diganti kartu hitung cepat
+(`src/islands/HitungCepat.tsx`): satu isian luas → kelima merek langsung terhitung dari `estimasiPublik` (rumus sama dengan
+kalkulator, angka tidak mungkin beda), tiap baris menaut ke `/hitung?luas=X&merek=Y`. Kalkulator membaca `?luas=` dan `?merek=`.
+`/hitung` memuat: kalkulator, bantuan "luas lantai teratas × 1,3" (sesuai artikel cara menghitung luas atap: patokan untuk
+25–30° teritis pendek) yang mengisi kalkulator, tiga langkah setelah estimasi terkirim (survey gratis → penawaran tertulis →
+baru membayar), harga terpasang per merek bertanggal yang menaut ke halaman merek, dan tanya-jawab harga (FAQPage). Semua
+tautan `/#hitung` & `/?merek=X#hitung` (header, tab bar, footer, artikel, produk, kuis pilih merek) diganti; `id="hitung"`
+tetap ada di kartu beranda supaya tautan lama di luar situs tetap mendarat. Kuis pilih merek kini juga menaut ke halaman merek.
+Artikel baru wajib menaut ke `/hitung` (aturan di kalender konten).

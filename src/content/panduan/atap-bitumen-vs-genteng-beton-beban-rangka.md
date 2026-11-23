@@ -46,4 +46,4 @@ Atap ringan bukan berarti tanpa syarat:
 2. **Kemiringan minimal.** Setiap merek punya batas kemiringan dari pabrik. Atap yang terlalu landai perlu solusi lain. Lihat [kemiringan atap bitumen](/panduan/kemiringan-atap-bitumen-minimal).
 3. **Kondisi rangka lama tetap dicek.** Yang lapuk atau melendut diperbaiki dulu, seringan apa pun atap barunya.
 
-Ingin tahu total biayanya untuk luas atap Anda, termasuk alas dan jasa? Gunakan [Hitung AKAL](/#hitung) atau baca [harga atap bitumen per m²](/panduan/harga-atap-bitumen-per-m2).
+Ingin tahu total biayanya untuk luas atap Anda, termasuk alas dan jasa? Gunakan [Hitung AKAL](/hitung) atau baca [harga atap bitumen per m²](/panduan/harga-atap-bitumen-per-m2).

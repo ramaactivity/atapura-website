@@ -1,6 +1,6 @@
 // Jalankan: node --experimental-strip-types src/data/harga.test.ts
 import assert from 'node:assert/strict';
-import { bagianRentang, estimasiPlafon, estimasiPublik, harga, hitungEstimasi, rentangRangka, rupiahRingkas } from './harga.ts';
+import { bagianRentang, estimasiPlafon, estimasiPublik, harga, hitungEstimasi, kisaranRupiah, rentangRangka, rupiahRingkas } from './harga.ts';
 
 const e = hitungEstimasi(100);
 // Rama 19 Nov: paku 35 per m², skrup 15 per lembar alas → 100 m²: paku 3.500, skrup 36 lembar × 15 = 540.
@@ -58,4 +58,9 @@ assert.equal(hitungEstimasi(100, { merek: 'Maxxi', seri: 'Promaxxi', ...spek }).
 const twoTone = hitungEstimasi(100, { merek: 'Victory', seri: 'Two Tone', ...spek });
 assert.equal(twoTone.baris[0].rentang[0], 37 * 3 * 220_000, 'Two Tone pakai harga Two Tone');
 assert.throws(() => hitungEstimasi(100, { merek: 'CTI', seri: 'CT9', ...spek }), /CT9/);
+// Satu format rentang untuk kartu beranda, kalkulator, dan daftar harga (DECISIONS 071).
+assert.equal(kisaranRupiah([48_000_000, 54_000_000]), 'Rp48–54 jt');
+assert.equal(kisaranRupiah([380_000, 430_000]), 'Rp380–430 rb');
+assert.equal(kisaranRupiah([800_000, 1_200_000], 1), 'Rp800 rb–1,2 jt');
+assert.equal(kisaranRupiah([45_600_000, 45_600_000], 1), 'Rp45,6 jt');
 console.log('harga.test ok', e.perM2, e.total);

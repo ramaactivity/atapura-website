@@ -6,9 +6,13 @@
   `bisnis.konsep = false`). Berikutnya: Search Console (properti Domain, verifikasi TXT di Hostinger) + kirim sitemap.
 
 - **Audit menyeluruh 23 Nov 2026** → `docs/riset/audit-website-2026-11-23.md` (SEO/GEO, customer, owner, desain,
-  tipografi, developer, HP vs desktop). P0: ~~atapura.com belum terdaftar~~ (live 23 Nov), situs noindex,
-  FAQ beranda bertentangan (5° & "tiga merek", index.astro:49/57), intro 3,3 dtk. Usulan beranda 15 → 10 bagian +
-  halaman /tentang /garansi /cara-kerja /kontak /perusahaan — menunggu keputusan Rama, belum ada kode yang diubah.
+  tipografi, developer, HP vs desktop). P0: ~~atapura.com belum terdaftar~~ (live 23 Nov), ~~situs noindex~~ (070),
+  ~~FAQ beranda bertentangan~~ (diperbaiki 23 Nov, angka dari data), intro 3,3 dtk (belum). Rama mengerjakan "satu per satu".
+  ✅ Tahap 1: **kalkulator pindah ke `/hitung`** (DECISIONS 071) + kartu hitung cepat di beranda (`HitungCepat.tsx`), semua
+  tautan `/#hitung` diganti. ⏳ Tahap 2: susunan beranda 9 bagian (audit §3 + percakapan 23 Nov: hero → hitung cepat → masalah
+  bocor + 5 lapis ringkas → layanan per kebutuhan (kartu bisa diklik) → 4 jaminan AKAL → 4 langkah → pilih merek → area →
+  FAQ & penutup; Hujan dihapus; 5 lapis/Rapor/6 tahap → /cara-kerja; garansi lengkap → /garansi; Warna → halaman merek).
+  ⏳ Setelah itu (permintaan Rama 23 Nov): tiap artikel wajib mengajak ke halaman/artikel lain (audit tautan internal artikel).
 
 - **Lead otomatis ke Ops** (22 Nov 2026, DECISIONS 068 / Ops 150): kalkulator publik punya isian Nama & No. WA opsional → `api/kirim-lead.mjs` (Vercel Function) → Ops `/api/lead`. Env `LEAD_SECRET` di Vercel proyek `atapura`.
 - **Harga = dari Atapura Ops** (20 Nov 2026, website DECISIONS 055 / Ops 123): `src/data/ops.json` ditarik otomatis tiap jam oleh `sinkron-ops.yml`; ubah harga di Ops, bukan di `harga.ts`. `npm run tarik-ops` untuk tarik manual.

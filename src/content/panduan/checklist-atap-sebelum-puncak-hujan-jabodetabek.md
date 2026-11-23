@@ -89,4 +89,4 @@ Lembar genteng aspal yang rusak bisa diganti per lembar tanpa membongkar seluruh
 
 ## Survey atap di Jabodetabek
 
-Atapura melayani survey atap tanpa biaya di Jabodetabek. Kirim foto temuan Anda lewat WhatsApp lebih dulu, supaya tim bisa menilai apakah perlu datang. Lihat juga kondisi hujan di wilayah Anda: [Jakarta](/area/jakarta), [Kota Bogor](/area/kota-bogor), [Kabupaten Bogor](/area/kabupaten-bogor), [Depok](/area/depok), [Tangerang Selatan](/area/tangerang-selatan), dan [Kota Bekasi](/area/kota-bekasi). Kalau atap lama memang sudah waktunya diganti, perkiraan biayanya bisa dihitung di [Hitung AKAL](/#hitung).
+Atapura melayani survey atap tanpa biaya di Jabodetabek. Kirim foto temuan Anda lewat WhatsApp lebih dulu, supaya tim bisa menilai apakah perlu datang. Lihat juga kondisi hujan di wilayah Anda: [Jakarta](/area/jakarta), [Kota Bogor](/area/kota-bogor), [Kabupaten Bogor](/area/kabupaten-bogor), [Depok](/area/depok), [Tangerang Selatan](/area/tangerang-selatan), dan [Kota Bekasi](/area/kota-bekasi). Kalau atap lama memang sudah waktunya diganti, perkiraan biayanya bisa dihitung di [Hitung AKAL](/hitung).

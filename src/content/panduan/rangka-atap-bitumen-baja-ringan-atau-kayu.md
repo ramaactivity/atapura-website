@@ -65,4 +65,4 @@ Yang tetap kami periksa saat survey:
 3. Lendutan di tengah bentang.
 4. Kemiringan. Kalau terlalu landai untuk genteng aspal, rangka perlu diubah. Lihat [batas kemiringannya](/panduan/kemiringan-atap-bitumen-minimal).
 
-Hasilnya kami tulis: dipertahankan, diperbaiki sebagian, atau diganti baja ringan. Estimasi atapnya bisa Anda lihat dulu di [Hitung AKAL](/#hitung); rangka baru dihitung terpisah saat survey.
+Hasilnya kami tulis: dipertahankan, diperbaiki sebagian, atau diganti baja ringan. Estimasi atapnya bisa Anda lihat dulu di [Hitung AKAL](/hitung); rangka baru dihitung terpisah saat survey.

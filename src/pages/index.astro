@@ -11,7 +11,7 @@ import Warna from '../components/Warna.astro';
 import PilihMerek from '../components/PilihMerek.astro';
 import AkalCerita from '../components/AkalCerita.astro';
 import { getCollection } from 'astro:content';
-import HitungAkal from '../islands/HitungAkal';
+import HitungCepat from '../islands/HitungCepat';
 import Foto from '../components/Foto.astro';
 import { Image } from 'astro:assets';
 import Bumper from '../components/Bumper.astro';
@@ -27,7 +27,7 @@ import kafeHp from '../../assets/gambar/magnific/segmen-kafe-4x5.jpg';
 import drone from '../../assets/gambar/magnific/cara-kerja-drone-16x9.jpg';
 import terasHujan from '../../assets/gambar/magnific/faq-teras-hujan-16x9.jpg';
 import '../styles/desktop.css';
-import { bisnis, waLink, TAMPIL_PLAFON } from '../data/bisnis';
+import { bisnis, waLink } from '../data/bisnis';
 import { bagianRentang, estimasiPublik, harga, rentangRangka, tanggalPanjang, type Merek } from '../data/harga';
 import LogoKlien from '../components/LogoKlien.astro';
 
@@ -46,7 +46,7 @@ const tanya = [
   },
   {
     q: 'Apa bedanya atap bitumen, genteng aspal, sirap aspal, dan shingle?',
-    a: 'Keempatnya sebutan untuk produk yang sama: lembaran fiberglass berlapis aspal dengan butiran batu di permukaannya. Shingle adalah istilah Inggrisnya, sirap aspal sebutan lama, dan di toko bangunan lebih sering disebut genteng aspal. Atapura memasang tiga merek: Maxxi, CTI, dan Javabitumen.',
+    a: `Keempatnya sebutan untuk produk yang sama: lembaran fiberglass berlapis aspal dengan butiran batu di permukaannya. Shingle adalah istilah Inggrisnya, sirap aspal sebutan lama, dan di toko bangunan lebih sering disebut genteng aspal. Atapura memasang ${bisnis.merek.length} merek: ${bisnis.merek.slice(0, -1).join(', ')}, dan ${bisnis.merek.at(-1)}.`,
   },
   {
     q: 'Berapa biaya pasang atap bitumen per meter persegi?',
@@ -54,11 +54,11 @@ const tanya = [
   },
   {
     q: 'Apakah atap bitumen cocok untuk rumah saya?',
-    a: 'Atap bitumen cocok untuk atap miring dengan rangka kayu atau baja ringan, karena bobotnya jauh lebih ringan dari genteng beton atau keramik. Kemiringan minimal yang kami pasang 5 derajat. Kalau atap Anda lebih landai dari itu, kami sarankan material lain dan kami jelaskan alasannya saat survey.',
+    a: 'Atap bitumen cocok untuk atap miring dengan rangka kayu atau baja ringan, karena bobotnya jauh lebih ringan dari genteng beton atau keramik. Batas kemiringannya mengikuti pabrik: Maxxi mulai 15 derajat, Tegola 14 derajat untuk pemasangan paku biasa, dan CTI mulai 10 derajat dengan cara pasang khusus. Kalau atap Anda lebih landai dari itu, kami sarankan material lain dan kami jelaskan alasannya saat survey.',
   },
   {
     q: 'Berapa lama pengerjaannya?',
-    a: 'Atap 100–120 m² umumnya selesai sekitar 4 hari kerja, tergantung cuaca dan bentuk atap. Hitung AKAL menampilkan perkiraan untuk luas Anda. Jadwal pasti kami kirim tertulis setelah survey.',
+    a: `Atap 120 m² umumnya selesai ${estimasiPublik(120, 'CTI').hari.join('–')} hari kerja, tergantung cuaca dan bentuk atap. Hitung AKAL menampilkan perkiraan untuk luas Anda. Jadwal pasti kami kirim tertulis setelah survey.`,
   },
   {
     q: 'Garansinya seperti apa?',
@@ -113,7 +113,7 @@ const faqSchema = {
         </h1>
         <p class="hero-sub">Maxxi, CTI, Javabitumen, Tegola, dan Victory. Harga terbuka sebelum Anda bicara dengan siapa pun.</p>
         <div class="hero-aksi">
-          <a href="#hitung" class="pill hero-utama">Hitung estimasi biaya</a>
+          <a href="/hitung" class="pill hero-utama">Hitung estimasi biaya</a>
           <a href="#layanan-proyek" class="pill pill-garis hero-kedua">Untuk perusahaan &amp; proyek</a>
         </div>
         <ul class="hero-bukti" aria-label="Jaminan">
@@ -121,7 +121,7 @@ const faqSchema = {
           <li>Garansi {bisnis.garansiPemasanganTahun} tahun</li>
         </ul>
       </div>
-      <a class="hero-kartu" href="#hitung" aria-label="Contoh hasil Hitung AKAL. Hitung biaya atap Anda">
+      <a class="hero-kartu" href="/hitung" aria-label="Contoh hasil Hitung AKAL. Hitung biaya atap Anda">
         <span class="hk-label">Contoh Hitung AKAL</span>
         <span class="hk-putar">
           {contohHitung.map((c) => (
@@ -166,6 +166,16 @@ const faqSchema = {
 
     <LogoKlien />
 
+    <section id="hitung" class="sek c-embun" aria-labelledby="hitung-judul">
+      <div class="wrap hc-wrap">
+        <div class="hc-teks">
+          <h2 id="hitung-judul" class="judul-besar">Berapa biaya atap Anda? <span class="miring">Lima merek, satu isian.</span></h2>
+          <p class="lead">Isi luas atap Anda. Totalnya sudah termasuk genteng, alas, lapis kedap, flashing, dan jasa pasang. Harga per {tanggalPanjang(harga.berlakuSejak)}.</p>
+        </div>
+        <HitungCepat client:idle />
+      </div>
+    </section>
+
     <section id="layanan" class="sek c-embun" aria-labelledby="judul-layanan">
       <div class="wrap">
         <div class="kepala">
@@ -185,7 +195,7 @@ const faqSchema = {
             <p class="kartu-label">Ganti atap lama</p>
             <p class="kartu-angka angka">8,5–13 kg</p>
             <p>per m² untuk genteng bitumen, dibanding 40–60 kg/m² genteng beton atau keramik. Beban rangka jauh lebih ringan.</p>
-            <a class="kartu-tautan" href="#hitung">Hitung ganti atap</a>
+            <a class="kartu-tautan" href="/hitung">Hitung ganti atap</a>
           </article>
           <article class="kartu k-bocor">
             <p class="kartu-label">Perbaikan atap bocor</p>
@@ -213,19 +223,6 @@ const faqSchema = {
           <p class="lead">Empat hal yang paling sering membuat pemilik rumah ragu mengganti atap, dan apa yang Anda pegang untuk masing-masing. Semuanya bisa Anda cek di halaman ini.</p>
         </div>
         <AkalCerita />
-      </div>
-    </section>
-
-    <section id="hitung" class="sek c-putih" aria-labelledby="hitung-judul">
-      <div class="wrap">
-        <div class="kepala">
-          <h2 id="hitung-judul" class="judul-besar">Hitung dulu, <span class="miring">baru bicara.</span></h2>
-          <p class="lead">{TAMPIL_PLAFON ? 'Atap atau plafon, cukup' : 'Cukup'} isi luas dan pilih merek. Hasilnya bisa Anda kirim ke WhatsApp atau simpan untuk dibahas di rumah.</p>
-        </div>
-        <HitungAkal client:idle awal={120} />
-        <p class="hitung-catatan" data-nosnippet>
-          {harga.contoh ? 'Harga acuan pasar Jabodetabek, dihitung dari harga distributor dan jasa pasang. Harga final kami tulis setelah survey gratis. ' : 'Estimasi untuk lokasi di Jabodetabek. Harga final kami tulis setelah survey gratis dan opname luas. '}Harga per {tanggalPanjang(harga.berlakuSejak)}.
-        </p>
       </div>
     </section>
 
@@ -464,7 +461,7 @@ const faqSchema = {
         <h2 id="judul-penutup" class="penutup-judul">Hitung dulu, <span class="miring">baru pasang.</span></h2>
         <p class="penutup-teks">Satu menit untuk tahu kisaran biayanya, satu chat untuk menjadwalkan survey gratis. Setelah itu, keputusan sepenuhnya di tangan Anda.</p>
         <div class="penutup-aksi">
-          <a href="#hitung" class="pill pill-terang">Hitung estimasi biaya</a>
+          <a href="/hitung" class="pill pill-terang">Hitung estimasi biaya</a>
           <a href={waLink('Halo Atapura, saya mau jadwalkan survey atap.')} target="_blank" rel="noopener" class="penutup-tautan" data-wa="penutup">Jadwalkan survey lewat WhatsApp</a>
         </div>
       </div>
@@ -492,7 +489,7 @@ const faqSchema = {
 
   <div class="cta-apung no-print" data-cta-apung hidden>
     <span>Berapa biaya atap Anda?</span>
-    <a class="pill pill-tunas" href="#hitung">Hitung estimasi</a>
+    <a class="pill pill-tunas" href="/hitung">Hitung estimasi</a>
   </div>
 
   <a href={waLink('Halo Atapura, saya mau tanya soal atap bitumen.')} target="_blank" rel="noopener" class="wa-apung no-print" data-wa="apung" aria-label="Chat WhatsApp Atapura" hidden>
@@ -778,7 +775,6 @@ const faqSchema = {
     .kartu.foto:hover :global(img) { transform: scale(1.04); }
   }
 
-  .hitung-catatan { margin-top: 1.5rem; font-size: 0.8rem; color: var(--color-lumut); }
 
   /* Hujan: foto penuh + insight */
   .hujan { position: relative; min-height: 88svh; display: flex; align-items: center; color: var(--color-putih); overflow: clip; isolation: isolate; }

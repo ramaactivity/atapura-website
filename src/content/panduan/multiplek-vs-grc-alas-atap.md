@@ -102,4 +102,4 @@ Multiplek 12 mm adalah standar alas yang Atapura pakai. GRC 9 mm menjadi pilihan
 
 ## Hitung biaya dan minta survey
 
-Kisaran harga terpasang di [Hitung AKAL](/#hitung) sudah memasukkan alas papan, underlayer, flashing, paku, skrup, dan jasa pasang. Selisih bila memilih GRC dibahas di penawaran setelah survey, yang tersedia tanpa biaya di Jabodetabek. Harga per lembar kedua papan juga tercantum di [halaman aksesoris](/produk/aksesoris).
+Kisaran harga terpasang di [Hitung AKAL](/hitung) sudah memasukkan alas papan, underlayer, flashing, paku, skrup, dan jasa pasang. Selisih bila memilih GRC dibahas di penawaran setelah survey, yang tersedia tanpa biaya di Jabodetabek. Harga per lembar kedua papan juga tercantum di [halaman aksesoris](/produk/aksesoris).

@@ -27,7 +27,8 @@ ${bisnis.nama} adalah aplikator sekaligus agen atap bitumen (genteng aspal, sira
 
 ## Halaman utama
 
-- [Beranda dan kalkulator Hitung AKAL](${url('/')}): estimasi biaya total pasang atap bitumen, lima lapis pemasangan, perbandingan merek, area layanan, tanya jawab
+- [Beranda](${url('/')}): ringkasan layanan pasang atap bitumen, estimasi cepat per merek, lima lapis pemasangan, perbandingan merek, area layanan, tanya jawab
+- [Kalkulator Hitung AKAL](${url('/hitung')}): estimasi biaya terpasang per m² dan total untuk luas atap dan merek pilihan, apa yang sudah dan belum termasuk, cara bayar, harga per merek
 - [Produk & layanan](${url('/produk')}): katalog atap bitumen, ${TAMPIL_PLAFON ? 'plafon PVC, ' : ''}rangka baja ringan, dan aksesoris dengan harga per m²
 - [Panduan](${url('/panduan')}): artikel tanya-jawab atap bitumen
 - [Area layanan](${url('/area')}): kondisi iklim dan atap per daerah, Jabodetabek dan luar Jabodetabek

@@ -119,4 +119,4 @@ Garansi pemasangan Atapura 5 tahun mencakup genteng yang terlepas atau bergeser 
 
 ## Cek atap setelah angin kencang di Jabodetabek
 
-Atapura melayani survey atap tanpa biaya di Jabodetabek. Kirim foto lembar yang terangkat lewat WhatsApp lebih dulu, supaya tim bisa menilai apakah cukup direkatkan ulang atau perlu diganti. Lihat juga kondisi wilayah Anda di halaman [area layanan](/area), misalnya [Depok](/area/depok), [Kabupaten Bekasi](/area/kabupaten-bekasi), [Kota Tangerang](/area/kota-tangerang), dan [Jakarta](/area/jakarta). Kalau atap lama sudah waktunya diganti, perkiraan biayanya bisa dihitung di [Hitung AKAL](/#hitung).
+Atapura melayani survey atap tanpa biaya di Jabodetabek. Kirim foto lembar yang terangkat lewat WhatsApp lebih dulu, supaya tim bisa menilai apakah cukup direkatkan ulang atau perlu diganti. Lihat juga kondisi wilayah Anda di halaman [area layanan](/area), misalnya [Depok](/area/depok), [Kabupaten Bekasi](/area/kabupaten-bekasi), [Kota Tangerang](/area/kota-tangerang), dan [Jakarta](/area/jakarta). Kalau atap lama sudah waktunya diganti, perkiraan biayanya bisa dihitung di [Hitung AKAL](/hitung).

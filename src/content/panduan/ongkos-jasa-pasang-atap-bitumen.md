@@ -107,4 +107,4 @@ Bila satu tarif per m² jauh lebih rendah, cek apakah ada lapis atau pekerjaan y
 
 ## Hitung untuk atap Anda
 
-Masukkan luas atap dan merek di [Hitung AKAL](/#hitung) untuk melihat estimasi terpasang per m² dan totalnya. Survey di Jabodetabek tanpa biaya, dan setelah itu rincian jasa, material, dan pekerjaan tambahan ditulis terpisah. Kami melayani [Jakarta](/area/jakarta), [Depok](/area/depok), [Kota Bogor](/area/kota-bogor), [Kabupaten Bogor](/area/kabupaten-bogor), [Tangerang Selatan](/area/tangerang-selatan), [Kota Tangerang](/area/kota-tangerang), [Kota Bekasi](/area/kota-bekasi), dan [Kabupaten Bekasi](/area/kabupaten-bekasi).
+Masukkan luas atap dan merek di [Hitung AKAL](/hitung) untuk melihat estimasi terpasang per m² dan totalnya. Survey di Jabodetabek tanpa biaya, dan setelah itu rincian jasa, material, dan pekerjaan tambahan ditulis terpisah. Kami melayani [Jakarta](/area/jakarta), [Depok](/area/depok), [Kota Bogor](/area/kota-bogor), [Kabupaten Bogor](/area/kabupaten-bogor), [Tangerang Selatan](/area/tangerang-selatan), [Kota Tangerang](/area/kota-tangerang), [Kota Bekasi](/area/kota-bekasi), dan [Kabupaten Bekasi](/area/kabupaten-bekasi).
