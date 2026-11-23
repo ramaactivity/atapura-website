@@ -1,0 +1,126 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CaraKerja from '../components/CaraKerja.astro';
+import Lapisan from '../components/Lapisan.astro';
+import RaporContoh from '../components/RaporContoh.astro';
+import { bisnis, waLink } from '../data/bisnis';
+
+// Rincian proses yang dulu memenuhi beranda (DECISIONS 072): enam tahap, Standar Pasang AKAL lima lapis, format Rapor Proyek.
+const situs = new URL('/', Astro.site).href;
+const schema = [{
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Beranda', item: situs },
+    { '@type': 'ListItem', position: 2, name: 'Cara kerja', item: new URL('/cara-kerja', Astro.site).href },
+  ],
+}];
+---
+<Base
+  title="Cara Kerja Pasang Atap Bitumen: 6 Tahap & 5 Lapis | Atapura"
+  description={`Enam tahap dari survey gratis sampai pelunasan, lima lapis Standar Pasang AKAL yang difoto sebelum tertutup, dan Rapor Proyek yang Anda simpan. Garansi pemasangan ${bisnis.garansiPemasanganTahun} tahun.`}
+  schema={schema}
+>
+  <Header terang />
+  <main class="cj">
+    <div class="wrap">
+      <div class="kartu-buka">
+        <nav class="remah" aria-label="Remah roti"><a href="/">Beranda</a><span aria-hidden="true">/</span><span>Cara kerja</span></nav>
+        <div class="cj-kepala">
+          <h1 class="cj-judul">Dari survey sampai serah terima, <span class="redup">semua tertulis.</span></h1>
+          <p class="cj-lead">Enam tahap kerja, lima lapis pemasangan yang difoto sebelum tertutup, dan Rapor Proyek yang Anda simpan setelah atap selesai.</p>
+        </div>
+      </div>
+    </div>
+
+    <section id="tahap" class="cj-pita" aria-labelledby="judul-tahap">
+      <div class="wrap">
+        <div class="cj-sek-kepala">
+          <h2 id="judul-tahap" class="cj-h2">Enam tahap, <span class="redup"><span class="tanpa-putus">masing-masing</span> ada buktinya.</span></h2>
+          <p>Pilih tahapnya untuk melihat apa yang dikerjakan tim dan apa yang Anda pegang di setiap langkah.</p>
+        </div>
+        <CaraKerja />
+      </div>
+    </section>
+
+    <section id="lapisan" class="cj-sek" aria-labelledby="judul-lapisan">
+      <div class="wrap">
+        <div class="cj-sek-kepala">
+          <h2 id="judul-lapisan" class="cj-h2">Standar Pasang AKAL: <span class="redup">lima lapis, difoto satu per satu.</span></h2>
+          <p>Tiap lapis punya tugasnya sendiri, dan tiap lapis kami foto sebelum tertutup lapis berikutnya. Ketuk lapisnya untuk melihat gunanya dan di mana kebocoran biasanya bermula.</p>
+        </div>
+        <Lapisan />
+      </div>
+    </section>
+
+    <section id="rapor" class="cj-sek cj-putih" aria-labelledby="judul-rapor">
+      <div class="wrap cj-rapor">
+        <div class="cj-sek-kepala">
+          <h2 id="judul-rapor" class="cj-h2">Bukti yang bisa <span class="redup">Anda simpan.</span></h2>
+          <p>Setiap atap yang kami pasang mendapat Rapor Proyek: data pekerjaan dan foto tiap lapis, diperiksa kepala aplikator.</p>
+          <p class="cj-kecil">Rapor pertama terbit di sini setelah proyek pertama diserahterimakan. Begini formatnya.</p>
+        </div>
+        <RaporContoh />
+      </div>
+    </section>
+
+    <section class="cj-sek cj-tutup" aria-labelledby="judul-tutup">
+      <div class="wrap">
+        <h2 id="judul-tutup" class="cj-h2">Mulai dari angka, <span class="redup">bukan dari janji.</span></h2>
+        <div class="cj-aksi">
+          <a class="pill pill-tunas" href="/hitung">Hitung estimasi biaya</a>
+          <a class="tautan-lanjut" href="/garansi">Cara bayar &amp; garansi {bisnis.garansiPemasanganTahun} tahun</a>
+          <a class="cj-tautan" href={waLink('Halo Atapura, saya mau jadwalkan survey atap.')} target="_blank" rel="noopener" data-wa="cara-kerja">Jadwalkan survey lewat WhatsApp</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .cj { background: var(--color-embun); color: var(--color-tinta); padding-top: 120px; }
+  .remah { display: flex; gap: 0.5rem; font-size: 0.88rem; color: var(--color-lumut); }
+  .remah a { color: inherit; }
+  .redup { opacity: 0.55; }
+  .cj-kepala { margin: 2rem 0 3rem; display: grid; gap: 1.25rem 4rem; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 60rem) { .cj-kepala { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); align-items: end; } }
+  .cj-judul { font-family: var(--font-merek); font-size: clamp(2.25rem, 1.2rem + 3vw, 3.75rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.02; max-width: 17ch; text-wrap: balance; }
+  .cj-lead { font-size: 1.1rem; color: var(--color-lumut); max-width: 42ch; line-height: 1.55; }
+
+  .cj-h2 { font-family: var(--font-merek); font-size: clamp(1.75rem, 1.2rem + 1.8vw, 2.75rem); font-weight: 500; letter-spacing: -0.035em; line-height: 1.08; max-width: 20ch; }
+  .cj-sek-kepala { display: grid; gap: 1rem; margin-bottom: clamp(2rem, 4vw, 3rem); }
+  .cj-sek-kepala p { font-size: 1.0625rem; line-height: 1.6; color: var(--color-lumut); max-width: 58ch; }
+  .cj-sek-kepala p.cj-kecil { font-size: 0.9rem; }
+
+  /* Enam tahap di bidang Pinus (komponen CaraKerja dirancang untuk latar gelap). */
+  .cj-pita { background: var(--color-pinus); color: var(--color-embun); padding-block: clamp(3.5rem, 7vw, 6rem); }
+  .cj-pita .cj-sek-kepala p { color: var(--embun-redup); }
+  .cj-sek { padding-block: clamp(3.5rem, 7vw, 6rem); }
+  .cj-putih { background: var(--color-putih); }
+  .cj-rapor { display: grid; gap: 2rem 4rem; grid-template-columns: minmax(0, 1fr); align-items: center; }
+  @media (min-width: 64rem) { .cj-rapor { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr); } .cj-rapor .cj-sek-kepala { margin-bottom: 0; } }
+
+  .cj-tutup .cj-h2 { max-width: 16ch; }
+  .cj-aksi { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 2rem; margin-top: 1.75rem; }
+  .cj-tautan { display: inline-flex; align-items: center; min-height: 44px; font-weight: 500; color: var(--color-pinus); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+  .cj-aksi a:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 3px; }
+  @media (min-width: 64rem) { .cj-sek-kepala p { font-size: 1.125rem; } }
+
+  @media (max-width: 47.99rem) {
+    .cj { background: #dde2dc; padding-top: 96px; }
+    .kartu-buka { margin: 0 calc(8px - var(--gutter)) 8px; padding: 1.5rem var(--gutter) 0.25rem; border-radius: 28px; background: var(--color-embun); }
+    .cj-kepala { margin: 1.5rem 0; }
+    .cj-judul { font-size: var(--hp-display); line-height: 1.05; }
+    .cj-lead, .cj-sek-kepala p { font-size: 1rem; }
+    .cj-h2 { font-size: var(--hp-t1); }
+    /* Tiap bagian jadi kartu membulat di atas latar abu, seperti beranda HP. */
+    .cj-pita, .cj-sek { margin: 0 8px 8px; padding: 2rem 0; border-radius: 28px; overflow: clip; }
+    .cj-sek { background: var(--color-embun); }
+    .cj-putih { background: var(--color-putih); }
+    .cj-aksi { flex-direction: column; align-items: flex-start; gap: 0; }
+    .cj-aksi .pill { width: 100%; margin-bottom: 0.5rem; }
+  }
+</style>

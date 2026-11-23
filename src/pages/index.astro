@@ -3,11 +3,7 @@ import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Lapisan from '../components/Lapisan.astro';
-import CaraKerja from '../components/CaraKerja.astro';
-import KlaimGaransi from '../components/KlaimGaransi.astro';
 import PetaArea from '../components/PetaArea.astro';
-import RaporContoh from '../components/RaporContoh.astro';
-import Warna from '../components/Warna.astro';
 import PilihMerek from '../components/PilihMerek.astro';
 import AkalCerita from '../components/AkalCerita.astro';
 import { getCollection } from 'astro:content';
@@ -17,17 +13,15 @@ import { Image } from 'astro:assets';
 import Bumper from '../components/Bumper.astro';
 import heroDesktop from '../../assets/gambar/magnific/hero-desktop.jpg';
 import heroHp from '../../assets/gambar/magnific/hero-hp.jpg';
-import hujanDesktop from '../../assets/gambar/magnific/hujan-desktop.jpg';
-import hujanHp from '../../assets/gambar/magnific/hujan-hp.jpg';
 import tukang from '../../assets/gambar/magnific/tukang-4x5.jpg';
 import villa from '../../assets/gambar/magnific/segmen-villa-3x2.jpg';
 import villaHp from '../../assets/gambar/magnific/segmen-villa-4x5.jpg';
 import kafe from '../../assets/gambar/magnific/segmen-kafe-3x2.jpg';
 import kafeHp from '../../assets/gambar/magnific/segmen-kafe-4x5.jpg';
-import drone from '../../assets/gambar/magnific/cara-kerja-drone-16x9.jpg';
 import terasHujan from '../../assets/gambar/magnific/faq-teras-hujan-16x9.jpg';
 import '../styles/desktop.css';
 import { bisnis, waLink } from '../data/bisnis';
+import { tahap } from '../data/cara-kerja';
 import { bagianRentang, estimasiPublik, harga, rentangRangka, tanggalPanjang, type Merek } from '../data/harga';
 import LogoKlien from '../components/LogoKlien.astro';
 
@@ -166,75 +160,13 @@ const faqSchema = {
 
     <LogoKlien />
 
-    <section id="hitung" class="sek c-embun" aria-labelledby="hitung-judul">
+    <section id="hitung" class="sek gelap c-pinus" aria-labelledby="hitung-judul">
       <div class="wrap hc-wrap">
         <div class="hc-teks">
           <h2 id="hitung-judul" class="judul-besar">Berapa biaya atap Anda? <span class="miring">Lima merek, satu isian.</span></h2>
           <p class="lead">Isi luas atap Anda. Totalnya sudah termasuk genteng, alas, lapis kedap, flashing, dan jasa pasang. Harga per {tanggalPanjang(harga.berlakuSejak)}.</p>
         </div>
         <HitungCepat client:idle />
-      </div>
-    </section>
-
-    <section id="layanan" class="sek c-embun" aria-labelledby="judul-layanan">
-      <div class="wrap">
-        <div class="kepala">
-          <h2 id="judul-layanan" class="judul-besar">Apa pun atap Anda, <span class="miring">ada jalan keluarnya.</span></h2>
-          <p class="lead">Membangun rumah baru, mengganti genteng yang berat, menghentikan bocor, atau menyiapkan kafe yang tidak boleh lama tutup. Pilih yang paling dekat dengan kebutuhan Anda.</p>
-        </div>
-        <div class="bento">
-          <article class="kartu foto k-tukang">
-            <Foto desktop={tukang} alt="Ilustrasi tukang atap memaku genteng aspal" sizes="(min-width: 64rem) 40vw, 100vw" />
-            <div class="kartu-isi"><h3 class="kartu-judul">Pasang atap baru</h3><p>Rangka baja ringan atau kayu, dari alas sampai nok.</p></div>
-          </article>
-          <article class="kartu foto k-villa">
-            <Foto desktop={villa} hp={villaHp} alt="Ilustrasi villa beratap genteng aspal di dataran tinggi" sizes="(min-width: 64rem) 56vw, 100vw" />
-            <div class="kartu-isi"><h3 class="kartu-judul">Villa di dataran tinggi</h3><p>Atap curam, hujan deras, kabut. Warna dicocokkan di lokasi.</p></div>
-          </article>
-          <article class="kartu k-ganti">
-            <p class="kartu-label">Ganti atap lama</p>
-            <p class="kartu-angka angka">8,5–13 kg</p>
-            <p>per m² untuk genteng bitumen, dibanding 40–60 kg/m² genteng beton atau keramik. Beban rangka jauh lebih ringan.</p>
-            <a class="kartu-tautan" href="/hitung">Hitung ganti atap</a>
-          </article>
-          <article class="kartu k-bocor">
-            <p class="kartu-label">Perbaikan atap bocor</p>
-            <h3 class="kartu-judul">Kami cari sumbernya dulu, bukan menambal.</h3>
-            <a class="kartu-tautan" href={waLink('Halo Atapura, atap saya bocor. Saya mau jadwalkan cek.')} target="_blank" rel="noopener" data-wa="bocor">Jadwalkan cek</a>
-          </article>
-          <article class="kartu foto k-kafe">
-            <Foto desktop={kafe} hp={kafeHp} alt="Ilustrasi kafe beratap genteng aspal saat golden hour" sizes="(min-width: 64rem) 56vw, 100vw" />
-            <div class="kartu-isi"><h3 class="kartu-judul">Kafe &amp; usaha</h3><p>Jadwal kerja tertulis, supaya usaha Anda tidak tutup lebih lama dari perlu.</p></div>
-          </article>
-          <article id="layanan-proyek" class="kartu gelap k-proyek">
-            <p class="kartu-label">Untuk perusahaan</p>
-            <h3 class="kartu-judul">Proyek perumahan &amp; komersial</h3>
-            <p>TDS, faktur, dan termin untuk diajukan ke atasan atau klien.</p>
-            <a class="pill pill-tunas" href={waLink('Halo Atapura, saya dari perusahaan dan butuh penawaran resmi untuk proyek atap.')} target="_blank" rel="noopener" data-wa="proyek">Minta penawaran resmi</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="akal" class="sek gelap c-pinus" aria-labelledby="judul-akal">
-      <div class="wrap">
-        <div class="kepala">
-          <h2 id="judul-akal" class="judul-besar">Pasang atap tanpa was-was. <span class="miring">Itu yang masuk AKAL.</span></h2>
-          <p class="lead">Empat hal yang paling sering membuat pemilik rumah ragu mengganti atap, dan apa yang Anda pegang untuk masing-masing. Semuanya bisa Anda cek di halaman ini.</p>
-        </div>
-        <AkalCerita />
-      </div>
-    </section>
-
-    <section class="hujan" aria-labelledby="judul-hujan">
-      <Foto desktop={hujanDesktop} hp={hujanHp} alt="Ilustrasi hujan deras di atap genteng aspal saat senja" class="hujan-foto" />
-      <div class="wrap hujan-isi">
-        <h2 id="judul-hujan" class="judul-besar">Hujan deras seharusnya cuma jadi <span class="miring">suara.</span></h2>
-        <ul class="hujan-fakta">
-          <li><b>Underlayment</b>menahan air yang lolos dari genteng sebelum sampai ke plafon.</li>
-          <li><b>Flashing</b>menutup titik rawan: dinding, talang, dan tepi atap.</li>
-          <li><b>Difoto tiap lapis</b>sebelum tertutup, jadi bagian yang tak terlihat tetap bisa dicek.</li>
-        </ul>
       </div>
     </section>
 
@@ -251,11 +183,12 @@ const faqSchema = {
               Karena itu kami memasang atap bitumen sebagai satu sistem lima lapis, dan memotret setiap lapis
               sebelum tertutup lapis berikutnya. Foto itu Anda terima, jadi bagian yang nanti tidak terlihat tetap bisa dicek.
             </p>
+            <a class="tautan-lanjut" href="/cara-kerja#lapisan">Standar Pasang AKAL selengkapnya</a>
           </div>
         </div>
         <div class="lembar">
           <span class="lembar-sudut" aria-hidden="true"></span>
-          <Lapisan />
+          <Lapisan ringkas />
           <div class="lembar-blok">
             <h3 class="lembar-judul">Lima lapis di atas kepala Anda</h3>
             <dl class="lembar-data">
@@ -269,61 +202,79 @@ const faqSchema = {
       </div>
     </section>
 
-    <section id="cara-kerja" class="sek gelap latar-foto" aria-labelledby="judul-cara">
-      <Foto desktop={drone} alt="" class="latar-img" sizes="100vw" />
-      <div class="wrap">
-        <div class="cara-kepala">
-          <h2 id="judul-cara" class="judul-besar">Uang Anda baru berpindah <span class="miring">di tahap tiga.</span></h2>
-          <p class="lead">Enam tahap dari survey sampai pelunasan. Sebelum membayar apa pun, Anda sudah tahu hasil survey dan rincian biayanya.</p>
-        </div>
-        <CaraKerja />
-      </div>
-    </section>
-
-    <section id="garansi" class="sek gelap kabut" style="--kabut: url(/kabut/villa.webp)" aria-labelledby="judul-garansi">
+    <section id="akal" class="sek gelap c-pinus" aria-labelledby="judul-akal">
       <div class="wrap">
         <div class="kepala">
-          <h2 id="judul-garansi" class="judul-besar">Bayar bertahap, <span class="miring">garansi {bisnis.garansiPemasanganTahun} tahun.</span></h2>
-          <p class="lead">Jasa pasang dibayar mengikuti kemajuan pekerjaan. Hasil pemasangan kami jamin tertulis, terpisah dari garansi pabrik.</p>
+          <h2 id="judul-akal" class="judul-besar">Pasang atap tanpa <span class="tanpa-putus">was-was.</span> <span class="miring">Itu yang masuk AKAL.</span></h2>
+          <p class="lead">Empat hal yang paling sering membuat pemilik rumah ragu mengganti atap, dan apa yang Anda pegang untuk masing-masing. Tiap janji menaut ke buktinya.</p>
         </div>
-        <div class="gb">
-          <div class="gb-termin">
-            <h3 class="gb-judul">Cara pembayaran</h3>
-            <div class="bayar-material">
-              <p class="bayar-label">Material</p>
-              <p class="bayar-isi"><b>Lunas sebelum dikirim.</b> Material dipesan khusus untuk atap Anda, jadi dibayar penuh sebelum diantar ke lokasi.</p>
-            </div>
-            <p class="bayar-label bayar-label-jasa">Jasa pasang, bertahap</p>
-            <ol class="termin">
-              {bisnis.pembayaran.jasa.map((t) => (
-                <li>
-                  <span class="termin-persen">{t.persen}<span>%</span></span>
-                  <span class="termin-teks"><b>{t.tahap}</b>{t.saat}</span>
-                </li>
-              ))}
-            </ol>
-            <p class="gb-catatan">Setiap termin jasa disertai foto progres.</p>
-          </div>
-          <div class="gb-garansi">
-            <p class="garansi-angka">{bisnis.garansiPemasanganTahun}<span>tahun</span></p>
-            <p class="garansi-sub">Garansi pemasangan, berlaku sejak serah terima.</p>
-            <div class="garansi-dua">
-              <div>
-                <h3 class="gb-label">Yang ditanggung</h3>
-                <ul class="garansi-daftar">{bisnis.garansi.cakupan.map((c) => <li>{c}</li>)}</ul>
-              </div>
-              <div>
-                <h3 class="gb-label">Yang tidak ditanggung</h3>
-                <ul class="garansi-daftar garansi-tidak">{bisnis.garansi.pengecualian.map((c) => <li>{c}</li>)}</ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <KlaimGaransi />
+        <AkalCerita />
       </div>
     </section>
 
-    <section id="merek" class="sek terang c-putih" aria-labelledby="judul-merek">
+    <section id="layanan" class="sek c-embun" aria-labelledby="judul-layanan">
+      <div class="wrap">
+        <div class="kepala">
+          <h2 id="judul-layanan" class="judul-besar">Apa pun atap Anda, <span class="miring">ada jalan keluarnya.</span></h2>
+          <p class="lead">Membangun rumah baru, mengganti genteng yang berat, menghentikan bocor, atau menyiapkan kafe yang tidak boleh lama tutup. Pilih yang paling dekat dengan kebutuhan Anda.</p>
+        </div>
+        <div class="bento">
+          <a class="kartu foto k-tukang" href="/panduan/rangka-atap-bitumen-baja-ringan-atau-kayu">
+            <Foto desktop={tukang} alt="Ilustrasi tukang atap memaku genteng aspal" sizes="(min-width: 64rem) 40vw, 100vw" />
+            <div class="kartu-isi"><h3 class="kartu-judul">Pasang atap baru</h3><p>Rangka baja ringan atau kayu, dari alas sampai nok.</p></div>
+          </a>
+          <a class="kartu foto k-villa" href="/produk">
+            <Foto desktop={villa} hp={villaHp} alt="Ilustrasi villa beratap genteng aspal di dataran tinggi" sizes="(min-width: 64rem) 56vw, 100vw" />
+            <div class="kartu-isi"><h3 class="kartu-judul">Villa di dataran tinggi</h3><p>Atap curam, hujan deras, kabut. Warna dicocokkan di lokasi.</p></div>
+          </a>
+          <article class="kartu k-ganti">
+            <p class="kartu-label">Ganti atap lama</p>
+            <p class="kartu-angka angka">8,5–13 kg</p>
+            <p>per m² untuk genteng bitumen, dibanding 40–60 kg/m² genteng beton atau keramik. Beban rangka jauh lebih ringan.</p>
+            <a class="kartu-tautan tautan-lanjut" href="/hitung">Hitung ganti atap</a>
+          </article>
+          <article class="kartu k-bocor">
+            <p class="kartu-label">Perbaikan atap bocor</p>
+            <h3 class="kartu-judul">Kami cari sumbernya dulu, bukan menambal.</h3>
+            <a class="kartu-tautan" href={waLink('Halo Atapura, atap saya bocor. Saya mau jadwalkan cek.')} target="_blank" rel="noopener" data-wa="bocor">Jadwalkan cek</a>
+          </article>
+          <a class="kartu foto k-kafe" href="/panduan/atap-ruko-kafe-kos">
+            <Foto desktop={kafe} hp={kafeHp} alt="Ilustrasi kafe beratap genteng aspal saat golden hour" sizes="(min-width: 64rem) 56vw, 100vw" />
+            <div class="kartu-isi"><h3 class="kartu-judul">Kafe &amp; usaha</h3><p>Jadwal kerja tertulis, supaya usaha Anda tidak tutup lebih lama dari perlu.</p></div>
+          </a>
+          <article id="layanan-proyek" class="kartu gelap k-proyek">
+            <p class="kartu-label">Untuk perusahaan</p>
+            <h3 class="kartu-judul">Proyek perumahan &amp; komersial</h3>
+            <p>TDS, faktur, dan termin untuk diajukan ke atasan atau klien.</p>
+            <a class="pill pill-tunas" href={waLink('Halo Atapura, saya dari perusahaan dan butuh penawaran resmi untuk proyek atap.')} target="_blank" rel="noopener" data-wa="proyek">Minta penawaran resmi</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="cara-kerja" class="sek gelap c-pinus" aria-labelledby="judul-cara">
+      <div class="wrap">
+        <div class="kepala">
+          <h2 id="judul-cara" class="judul-besar">Uang Anda baru berpindah <span class="miring">di tahap tiga.</span></h2>
+          <p class="lead">Sebelum membayar apa pun, Anda sudah memegang hasil survey dan rincian biaya tertulis. Setelah lunas, garansi pemasangan {bisnis.garansiPemasanganTahun} tahun mulai berjalan.</p>
+        </div>
+        <ol class="tahap">
+          {tahap.map((t, i) => (
+            <li class:list={{ 'tahap-bayar': i === 2 }}>
+              <span class="tahap-no angka" aria-hidden="true">{i + 1}</span>
+              <b class="tahap-nama">{t.nama}</b>
+              <span class="tahap-judul">{t.judul}</span>
+            </li>
+          ))}
+        </ol>
+        <div class="tahap-tautan">
+          <a class="tautan-lanjut" href="/cara-kerja">Rincian enam tahap &amp; lima lapis</a>
+          <a class="tautan-lanjut" href="/garansi">Cara bayar &amp; garansi {bisnis.garansiPemasanganTahun} tahun</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="merek" class="sek terang c-embun" aria-labelledby="judul-merek">
       <div class="wrap denah">
         <div class="merek-kepala">
           <h2 id="judul-merek" class="judul-besar">Bingung pilih merek? <span class="miring">Mulai dari kebutuhan Anda.</span></h2>
@@ -380,37 +331,15 @@ const faqSchema = {
         </ol>
         <p class="tabel-catatan">Harga terpasang = estimasi kasar untuk Jabodetabek dengan spek standar (alas multiplek, underlayer, flashing), belum termasuk rangka baru (baja ringan Rp{rentangRangka[0] / 1000}–{rentangRangka[1] / 1000} rb/m², tergantung merek). Genteng kami ambil langsung dari pabrikan. Garansi pabrik dan spesifikasi diverifikasi ulang dengan dokumen resmi sebelum pemesanan.</p>
         </details>
-        <div class="batas">
-          <h3 class="batas-judul">Kapan kami menyarankan <span class="miring">pilihan lain</span></h3>
-          <ol class="batas-daftar">
-            <li>
-              <strong>Atap terlalu landai.</strong> Batas kemiringan mengikuti pabrik: Maxxi mulai 15 derajat, Tegola 14 derajat untuk pemasangan paku biasa, CTI mulai 10 derajat dengan cara pasang khusus. Di bawah batas itu,
-              air hujan mengalir terlalu pelan dan bisa merembes ke sambungan. Untuk dak atau atap nyaris datar, kami jelaskan alternatifnya saat survey.
-            </li>
-            <li>
-              <strong>Jarak bukan halangan, tapi ada biayanya.</strong> Proyek di luar Jabodetabek tetap kami kerjakan, dan tim pemasang kami
-              berpengalaman sampai {bisnis.survey.pengalamanLuar.join(', ')}. Untuk lokasi di luar Jabodetabek, biaya akomodasi tukang dan pengiriman material dihitung bersama admin sesuai lokasi. Tiket dan ekspedisi bisa kami carikan atau Anda atur sendiri, dan kami tidak mengambil untung dari akomodasi.
-            </li>
-          </ol>
-        </div>
+        <a class="tautan-lanjut merek-semua" href="/produk">Lihat kelima merek, warna, dan spesifikasinya</a>
       </div>
     </section>
 
-    <section id="warna" class="sek terang c-embun" aria-labelledby="judul-warna">
-      <div class="wrap">
-        <div class="kepala">
-          <h2 id="judul-warna" class="judul-besar">Pilih warna, <span class="miring">kami cocokkan di rumah Anda.</span></h2>
-          <p class="lead">Warna genteng terlihat berbeda di brosur, di siang terik, dan saat mendung. Itu sebabnya kami membawa sampel fisik saat survey.</p>
-        </div>
-        <Warna />
-      </div>
-    </section>
-
-    <section id="area" class="sek terang c-embun" aria-labelledby="judul-area">
+    <section id="area" class="sek terang c-putih" aria-labelledby="judul-area">
       <div class="wrap area">
         <div class="area-teks">
-          <h2 id="judul-area" class="judul-besar">Survey gratis di <span class="miring">{bisnis.area.length} kota dan kabupaten.</span></h2>
-          <p class="lead">Tim kami datang mengukur atap, memeriksa rangka, dan mencocokkan warna di bawah cahaya asli rumah Anda. Di luar Jabodetabek? Tetap bisa: chat admin, biaya akomodasi dan pengiriman dihitung sesuai lokasi. <a href="/area" class="area-tautan">Lihat kondisi atap per daerah</a>.</p>
+          <h2 id="judul-area" class="judul-besar">Survey gratis di Jabodetabek, <span class="miring">siap ke mana saja.</span></h2>
+          <p class="lead">Di {bisnis.area.length} kota dan kabupaten Jabodetabek, tim datang mengukur atap dan memeriksa rangka tanpa biaya. Di luar itu tetap kami kerjakan; ongkos kirim material dan transport tukang dihitung bersama admin sesuai lokasi. <a href="/area" class="area-tautan">Lihat kondisi atap per daerah</a>.</p>
           <div class="wilayah">
             {wilayah.map((w) => (
               <div>
@@ -420,20 +349,7 @@ const faqSchema = {
             ))}
           </div>
         </div>
-        <PetaArea />
-      </div>
-    </section>
-
-    <section id="rapor" class="sek terang c-putih" aria-labelledby="judul-rapor">
-      <div class="wrap rapor-blok denah">
-        <div class="rapor-teks">
-          <h2 id="judul-rapor" class="judul-besar">Bukti yang bisa Anda <span class="miring">simpan.</span></h2>
-          <p class="lead">
-            Setiap atap yang kami pasang mendapat Rapor Proyek: data pekerjaan dan foto tiap lapis, diperiksa kepala aplikator.
-          </p>
-          <p class="rapor-jujur">Rapor pertama terbit di sini setelah proyek pertama diserahterimakan. Di samping ini formatnya.</p>
-        </div>
-        <RaporContoh />
+        <PetaArea tautan={Object.fromEntries(halamanArea)} />
       </div>
     </section>
 
@@ -499,10 +415,10 @@ const faqSchema = {
 </Base>
 
 <script>
-  // Desktop: foto besar (hero, hujan, penutup) bergeser halus mengikuti kursor dengan pegas; cahaya senja ikut di hero.
+  // Desktop: foto besar (hero, penutup) bergeser halus mengikuti kursor dengan pegas; cahaya senja ikut di hero.
   const desktop = matchMedia('(min-width: 64rem) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
   if (desktop.matches) {
-    for (const [pilih, kekuatan] of [['.hero', 16], ['.hujan', 22], ['.penutup', 22]] as const) {
+    for (const [pilih, kekuatan] of [['.hero', 16], ['.penutup', 22]] as const) {
       const sek = document.querySelector<HTMLElement>(pilih);
       const foto = sek?.querySelector<HTMLElement>('img');
       if (!sek || !foto) continue;
@@ -628,7 +544,7 @@ const faqSchema = {
   /* Hero: foto penuh, satu ajakan. Desktop: teks gelap di atas langit; HP: teks putih di bawah foto. */
   .hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end; overflow: clip; isolation: isolate; background: #cfdde4; }
   /* Foto lahir di komponen Foto, jadi selektornya global; <picture> dijadikan lapisan latar. */
-  .hero :global(picture), .hujan :global(picture), .kartu.foto :global(picture) { position: absolute; inset: 0; z-index: -2; }
+  .hero :global(picture), .kartu.foto :global(picture) { position: absolute; inset: 0; z-index: -2; }
   .kartu.foto :global(picture) { z-index: 0; }
   :global(.hero-foto) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 40%; z-index: -2; }
   .hero::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgb(10 20 16 / 0.92) 0%, rgb(10 20 16 / 0.68) 45%, transparent 75%); }
@@ -777,16 +693,6 @@ const faqSchema = {
 
 
   /* Hujan: foto penuh + insight */
-  .hujan { position: relative; min-height: 88svh; display: flex; align-items: center; color: var(--color-putih); overflow: clip; isolation: isolate; }
-  :global(.hujan-foto) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 75% 50%; z-index: -2; }
-  .hujan::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgb(12 14 10 / 0.8), rgb(12 14 10 / 0.4) 55%, rgb(12 14 10 / 0.7)); }
-  @media (min-width: 64rem) { .hujan::before { background: linear-gradient(90deg, rgb(12 14 10 / 0.86) 0%, rgb(12 14 10 / 0.55) 40%, transparent 72%); } }
-  .hujan-isi { width: 100%; padding-block: 5rem; }
-  .hujan .judul-besar { max-width: 13ch; }
-  .hujan-fakta { margin-top: 3rem; display: grid; gap: 1.5rem; max-width: 46rem; grid-template-columns: minmax(0, 1fr); }
-  @media (min-width: 48rem) { .hujan-fakta { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-  .hujan-fakta li { border-top: 1px solid rgb(255 255 255 / 0.35); padding-top: 0.9rem; font-size: 0.92rem; color: rgb(255 255 255 / 0.82); }
-  .hujan-fakta b { display: block; font-weight: 500; color: var(--color-putih); }
 
   /* Judul section besar: tipis, rapat, satu kata miring. */
   .judul-besar { font-size: clamp(2.4rem, 1.2rem + 4.6vw, 5.4rem); font-weight: 500; letter-spacing: -0.04em; line-height: 0.98; max-width: 16ch; }
@@ -823,8 +729,6 @@ const faqSchema = {
   .lembar-data dd { font-size: 0.92rem; }
 
   /* Cara kerja */
-  .cara-kepala { display: grid; gap: 1.5rem 4rem; grid-template-columns: minmax(0, 1fr); margin-bottom: clamp(3rem, 6vw, 5rem); }
-  @media (min-width: 60rem) { .cara-kepala { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); align-items: end; } }
 
   /* Merek: lembar spesifikasi */
   .merek-kepala { display: grid; gap: 1.5rem 4rem; grid-template-columns: minmax(0, 1fr); margin-bottom: clamp(2.5rem, 5vw, 4rem); }
@@ -864,16 +768,6 @@ const faqSchema = {
     .merek-hp-pasti { margin-top: 0.4rem; color: var(--color-lumut); font-size: 0.95rem; }
   }
   .tabel-catatan { margin-top: 1rem; font-size: 0.85rem; color: var(--color-lumut); }
-  .batas {
-    margin-top: clamp(3rem, 6vw, 5rem); display: grid; gap: 1.25rem 4rem; grid-template-columns: minmax(0, 1fr);
-    padding: clamp(1.5rem, 3vw, 2.5rem); background: var(--color-embun); border-radius: 0.5rem;
-  }
-  @media (min-width: 60rem) { .batas { grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); } }
-  .batas-judul { font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.4rem); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05; }
-  .batas-daftar { display: grid; gap: 1.25rem; color: var(--color-lumut); counter-reset: batas; }
-  .batas-daftar li { padding-left: 2.25rem; position: relative; }
-  .batas-daftar li::before { counter-increment: batas; content: counter(batas, decimal-leading-zero); position: absolute; left: 0; top: 0.15rem; font-size: 0.85rem; color: var(--color-lumut); }
-  .batas-daftar strong { color: var(--color-tinta); font-weight: 500; }
 
   /* Area: teks + peta skematik */
   .area { display: grid; gap: 3rem 4rem; grid-template-columns: minmax(0, 1fr); align-items: center; }
@@ -886,10 +780,6 @@ const faqSchema = {
   .wilayah-kota a { color: inherit; text-decoration: underline; text-decoration-color: var(--color-garis); text-underline-offset: 3px; }
 
   /* Rapor */
-  .rapor-blok { display: grid; gap: 3rem 4rem; grid-template-columns: minmax(0, 1fr); align-items: center; }
-  @media (min-width: 64rem) { .rapor-blok { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.5fr); } }
-  .rapor-teks .lead { margin-top: 1.25rem; }
-  .rapor-jujur { margin-top: 1rem; color: var(--color-lumut); max-width: 40ch; }
 
   /* Tanya */
   .tanya { display: grid; gap: 2.5rem 4rem; grid-template-columns: minmax(0, 1fr); }
@@ -928,47 +818,8 @@ const faqSchema = {
   }
 
   /* Latar suasana: foto Magnific dikecilkan & diburamkan (±1,5 KB), digelapkan supaya teks terbaca (pola askmidnight). */
-  .kabut { position: relative; isolation: isolate; background: var(--color-pinus) var(--kabut) center / cover no-repeat; }
-  .kabut::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgb(10 16 13 / 0.55), rgb(10 16 13 / 0.35) 50%, rgb(10 16 13 / 0.6)); }
-  .kabut .lead { color: rgb(242 244 241 / 0.78); }
 
-  /* Latar foto penuh (drone) digelapkan */
-  .latar-foto { position: relative; isolation: isolate; background: var(--color-pinus); overflow: clip; }
-  .latar-foto :global(picture) { position: absolute; inset: 0; z-index: -2; }
-  :global(.latar-img) { width: 100%; height: 100%; object-fit: cover; }
-  .latar-foto::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgb(10 16 13 / 0.82), rgb(10 16 13 / 0.55) 45%, rgb(10 16 13 / 0.78)); }
-  .latar-foto .lead { color: rgb(242 244 241 / 0.8); }
 
-  /* Garansi & bayar */
-  .gb { display: grid; gap: 1.5rem; grid-template-columns: minmax(0, 1fr); }
-  @media (min-width: 64rem) { .gb { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); } }
-  .gb-judul { font-size: 1.25rem; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 1.25rem; }
-  .gb-label { font-size: 0.85rem; font-weight: 500; color: var(--color-lumut); margin-bottom: 0.6rem; }
-  .gb-termin { padding: clamp(1.5rem, 3vw, 2.5rem); border-radius: 16px; background: var(--color-embun); color: var(--color-tinta); }
-  .bayar-label { font-size: 0.85rem; font-weight: 500; color: var(--color-lumut); }
-  .bayar-material { padding-bottom: 1.25rem; margin-bottom: 1.25rem; border-bottom: 1px solid var(--color-garis); display: grid; gap: 0.35rem; }
-  .bayar-isi { color: var(--color-lumut); font-size: 0.95rem; }
-  .bayar-isi b { color: var(--color-tinta); font-weight: 500; }
-  .bayar-label-jasa { margin-bottom: 0.6rem; }
-  .termin { border-top: 1px solid var(--color-tinta); }
-  .termin li { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 1rem; align-items: center; padding: 1.2rem 0; border-bottom: 1px solid var(--color-garis); }
-  .termin-persen { font-size: 3rem; font-weight: 500; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums; }
-  .termin-persen span { font-size: 0.45em; color: var(--color-lumut); margin-left: 0.05em; }
-  .termin-teks { display: grid; color: var(--color-lumut); font-size: 0.95rem; }
-  .termin-teks b { color: var(--color-tinta); font-weight: 500; font-size: 1.05rem; }
-  .gb-catatan { margin-top: 1rem; font-size: 0.88rem; color: var(--color-lumut); }
-  .gb-garansi { padding: clamp(1.5rem, 3vw, 2.5rem); border-radius: 16px; background: var(--color-pinus); color: var(--color-embun); }
-  .garansi-angka { font-size: clamp(5rem, 3rem + 6vw, 8rem); font-weight: 500; letter-spacing: -0.05em; line-height: 0.9; }
-  .garansi-angka span { font-size: 0.22em; letter-spacing: -0.01em; margin-left: 0.3em; color: var(--color-tunas); }
-  .garansi-sub { margin-top: 0.75rem; color: var(--embun-redup); }
-  .garansi-dua { margin-top: 2rem; display: grid; gap: 1.5rem; grid-template-columns: minmax(0, 1fr); }
-  @media (min-width: 48rem) { .garansi-dua { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  .gb-garansi .gb-label { color: rgb(242 244 241 / 0.6); }
-  .garansi-daftar { display: grid; gap: 0.5rem; font-size: 0.93rem; }
-  .garansi-daftar li { padding-left: 1.4rem; position: relative; color: var(--color-embun); }
-  .garansi-daftar li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 0.6rem; height: 0.35rem; border-left: 1.5px solid var(--color-tunas); border-bottom: 1.5px solid var(--color-tunas); transform: rotate(-45deg); }
-  .garansi-tidak li { color: var(--embun-redup); }
-  .garansi-tidak li::before { width: 0.6rem; height: 0; border-left: 0; border-bottom: 1.5px solid rgb(242 244 241 / 0.45); transform: none; top: 0.7em; }
 
   /* Penutup + panduan: satu latar gelap, foto memudar ke latar dan menyambung dua bagian (pola "Are we a match?"). */
   .penutup { position: relative; isolation: isolate; overflow: clip; background: #0c1a16; color: var(--color-embun); }
@@ -1037,7 +888,7 @@ const faqSchema = {
   /* ── HP: skala & ritme khusus layar kecil (token --hp-* di global.css, acuan iOS HIG). ───── */
   @media (max-width: 47.99rem) {
     .sek { padding-block: 3.25rem; }
-    .kepala, .anatomi-kepala, .cara-kepala, .merek-kepala { gap: 0.75rem; margin-bottom: 1.5rem; }
+    .kepala, .anatomi-kepala, .merek-kepala { gap: 0.75rem; margin-bottom: 1.5rem; }
     .judul-besar, .judul-2 { font-size: var(--hp-t1); line-height: 1.08; letter-spacing: -0.03em; max-width: 18ch; }
     .lead { font-size: 1rem; line-height: 1.5; }
 
@@ -1086,10 +937,6 @@ const faqSchema = {
     .ds-merek { font-size: var(--hp-t2); }
     .merek-hp li { padding: 1.1rem 0; }
     .merek-hp-harga { font-size: var(--hp-t3); }
-    .batas-judul { font-size: var(--hp-t2); }
-    .gb-judul { font-size: var(--hp-t4); margin-bottom: 0.9rem; }
-    .termin-persen { font-size: var(--hp-angka); }
-    .garansi-angka { font-size: var(--hp-angka-besar); }
     .lembar-judul { font-size: 1rem; }
     .lembar-sudut { display: none; }
     .lembar { margin-top: 2rem; }
@@ -1128,5 +975,49 @@ const faqSchema = {
     .bukti { margin: 8px; border-radius: 28px; border-bottom: 0; }
 
   .wa-apung { display: none; } /* digantikan tombol Chat di bilah tab bawah */
+  }
+
+  .anatomi-isi .tautan-lanjut { justify-self: start; }
+  .merek-semua { margin-top: 1.25rem; }
+
+  /* Kartu layanan berfoto kini tautan: panah kecil di judul sebagai tanda bisa diketuk. */
+  a.kartu { text-decoration: none; }
+  a.kartu .kartu-judul::after {
+    content: ''; display: inline-block; width: 0.85em; height: 0.85em; margin-left: 0.45rem; vertical-align: -0.04em; background: currentColor;
+    -webkit-mask: var(--panah) center / contain no-repeat; mask: var(--panah) center / contain no-repeat; transition: transform 240ms var(--ease-out);
+  }
+  a.kartu:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 3px; }
+  @media (hover: hover) and (pointer: fine) { a.kartu:hover .kartu-judul::after { transform: translateX(4px); } }
+
+  /* Ringkasan enam tahap: kisi bernomor; tahap bayar (ke-3) ditandai Pinus karena itu inti judulnya. */
+  .tahap { display: grid; column-gap: 2rem; grid-template-columns: minmax(0, 1fr); }
+  .tahap li { display: grid; grid-template-columns: 2rem minmax(0, 1fr); column-gap: 1rem; row-gap: 0.15rem; align-items: start; padding: 1.1rem 0; border-top: 1px solid var(--color-garis); }
+  .tahap-no { grid-row: span 2; display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; border: 1px solid var(--color-garis); font-size: 0.875rem; color: var(--color-lumut); }
+  .tahap-nama { font-family: var(--font-merek); font-size: 1.15rem; font-weight: 500; letter-spacing: -0.02em; line-height: 2rem; }
+  .tahap-judul { color: var(--color-lumut); font-size: 0.95rem; line-height: 1.45; }
+  .tahap li.tahap-bayar { border-top: 2px solid var(--color-pinus); }
+  .tahap-bayar .tahap-no { background: var(--color-pinus); border-color: var(--color-pinus); color: var(--color-embun); }
+  .tahap-bayar .tahap-judul { color: var(--color-tinta); }
+  @media (min-width: 48rem) {
+    .tahap { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .tahap li { grid-template-columns: minmax(0, 1fr); padding: 1.25rem 0 1.75rem; }
+    .tahap-no { grid-row: auto; margin-bottom: 0.75rem; }
+    .tahap-nama { line-height: 1.3; }
+  }
+  @media (min-width: 90rem) { .tahap { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+  .tahap-tautan { display: flex; flex-wrap: wrap; gap: 0 2rem; margin-top: 1.25rem; }
+  /* Di bidang Pinus: garis & nomor turunan Embun; tahap bayar diisi Embun (Tunas hanya untuk aksi utama). */
+  .gelap .tahap li { border-top-color: rgb(242 244 241 / 0.16); }
+  .gelap .tahap-no { border-color: rgb(242 244 241 / 0.3); color: var(--embun-redup); }
+  .gelap .tahap-judul { color: var(--embun-redup); }
+  .gelap .tahap li.tahap-bayar { border-top-color: var(--color-embun); }
+  .gelap .tahap-bayar .tahap-no { background: var(--color-embun); border-color: var(--color-embun); color: var(--color-pinus); }
+  .gelap .tahap-bayar .tahap-judul { color: var(--color-embun); }
+
+  @media (max-width: 47.99rem) {
+    .tahap-nama { font-size: var(--hp-t4); }
+    .tahap-judul { font-size: 0.875rem; }
+    .tahap li { padding: 0.9rem 0; }
+    .tautan-lanjut { font-size: 0.9375rem; }
   }
 </style>

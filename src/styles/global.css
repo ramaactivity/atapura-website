@@ -176,3 +176,22 @@ a { text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
   }
   .sek:has(> .denah) { overflow-x: clip; padding-block: clamp(3rem, 5vw, 4.5rem); }
 }
+
+/* Tautan lanjut ke halaman rinci (DECISIONS 072): teks bergaris bawah + panah SVG lewat mask, satu gaya di semua halaman.
+   Warna dari --tautan (Pinus di bidang terang, Embun di bidang .gelap). Aksi WhatsApp tidak memakai panah. */
+:root { --panah: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E"); }
+.gelap { --tautan: var(--color-embun); }
+.tautan-lanjut {
+  display: inline-flex; align-items: center; gap: 0.4rem; min-height: 44px; font-weight: 500; color: var(--tautan, var(--color-pinus));
+  text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px;
+}
+.tautan-lanjut::after {
+  content: ''; flex: none; width: 1em; height: 1em; background: currentColor;
+  -webkit-mask: var(--panah) center / contain no-repeat; mask: var(--panah) center / contain no-repeat;
+  transition: transform 240ms var(--ease-out);
+}
+.tautan-lanjut:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; border-radius: 4px; }
+@media (hover: hover) and (pointer: fine) { .tautan-lanjut:hover::after { transform: translateX(3px); } }
+
+/* Kata berulang dengan tanda hubung (was-was, masing-masing) tidak boleh terpotong di akhir baris. */
+.tanpa-putus { white-space: nowrap; }

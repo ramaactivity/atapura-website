@@ -28,6 +28,8 @@ ${bisnis.nama} adalah aplikator sekaligus agen atap bitumen (genteng aspal, sira
 ## Halaman utama
 
 - [Beranda](${url('/')}): ringkasan layanan pasang atap bitumen, estimasi cepat per merek, lima lapis pemasangan, perbandingan merek, area layanan, tanya jawab
+- [Cara kerja](${url('/cara-kerja')}): enam tahap dari survey gratis sampai pelunasan, Standar Pasang AKAL lima lapis yang difoto sebelum tertutup, format Rapor Proyek
+- [Bayar & garansi](${url('/garansi')}): material lunas sebelum dikirim, jasa pasang bertahap, garansi pemasangan tertulis terpisah dari garansi pabrik, yang ditanggung dan tidak, cara klaim lewat WhatsApp
 - [Kalkulator Hitung AKAL](${url('/hitung')}): estimasi biaya terpasang per m² dan total untuk luas atap dan merek pilihan, apa yang sudah dan belum termasuk, cara bayar, harga per merek
 - [Produk & layanan](${url('/produk')}): katalog atap bitumen, ${TAMPIL_PLAFON ? 'plafon PVC, ' : ''}rangka baja ringan, dan aksesoris dengan harga per m²
 - [Panduan](${url('/panduan')}): artikel tanya-jawab atap bitumen

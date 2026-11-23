@@ -1,6 +1,6 @@
 ---
-// AKAL sebagai cerita seiring scroll: foto menempel di kiri dan berganti per pilar, cerita berjalan di kanan.
-// HP: tiap pilar jadi kartu foto penuh. Foto: Magnific gelombang 2 (docs/desain/prompt-magnific-gelombang-2.md), ilustrasi.
+// AKAL: empat janji, masing-masing menaut ke buktinya. Desktop: kisi kartu foto (dulu panggung menempel 360vh,
+// diganti DECISIONS 072 karena 4,4 layar gulir untuk 4 kartu). HP: kartu foto digeser ke samping. Foto: Magnific gelombang 2 (docs/desain/prompt-magnific-gelombang-2.md), ilustrasi.
 import { getImage } from 'astro:assets';
 import { bisnis } from '../data/bisnis';
 import fotoAndal from '../../assets/gambar/magnific/akal-andal.jpg';
@@ -9,74 +9,34 @@ import fotoAmanah from '../../assets/gambar/magnific/akal-amanah.jpg';
 import fotoLestari from '../../assets/gambar/magnific/akal-lestari.jpg';
 
 const pilar = [
-  { id: 'andal', h: 'A', nama: 'Andal', takut: 'Tukang datang seenaknya, kerjaan molor?', dapat: 'Anda tahu tanggal mulai dan perkiraan selesai sebelum membayar apa pun, tertulis. Setiap tahap dikabari lewat chat.', bukti: '#cara-kerja', label: 'Lihat 6 tahap kerja', foto: fotoAndal, alt: 'Ilustrasi pemilik rumah menerima kabar jadwal sementara tim tiba membawa genteng' },
-  { id: 'kualitas', h: 'K', nama: 'Kualitas', takut: 'Takut bocor lagi padahal sudah bayar mahal?', dapat: 'Anda bisa melihat bagian atap yang nanti tertutup: setiap lapis difoto sebelum ditutup lapis berikutnya, lalu dikirim ke Anda.', bukti: '#lapisan', label: 'Lihat kelima lapis', foto: fotoKualitas, alt: 'Ilustrasi tangan tukang memaku genteng aspal di atas underlayment, ponsel memotret pekerjaan' },
-  { id: 'amanah', h: 'A', nama: 'Amanah', takut: 'Takut harga membengkak atau tertipu?', dapat: 'Anda tahu kisaran biayanya sebelum bicara dengan siapa pun, lalu membayar material sebelum dikirim dan jasa pasang bertahap mengikuti progres.', bukti: '#garansi', label: 'Lihat termin bayar', foto: fotoAmanah, alt: 'Ilustrasi penandatanganan kontrak dengan sampel genteng di meja' },
-  { id: 'lestari', h: 'L', nama: 'Lestari', takut: 'Ditinggal begitu lunas?', dapat: `Atap Anda tetap dijaga ${bisnis.garansiPemasanganTahun} tahun: bocor akibat pemasangan diperbaiki gratis, dan dicek lagi setelah musim hujan pertama.`, bukti: '#garansi', label: 'Lihat garansi', foto: fotoLestari, alt: 'Ilustrasi keluarga bersantai di teras saat hujan sore' },
+  { id: 'andal', h: 'A', nama: 'Andal', takut: 'Tukang datang seenaknya, kerjaan molor?', dapat: 'Anda tahu tanggal mulai dan perkiraan selesai sebelum membayar apa pun, tertulis. Setiap tahap dikabari lewat chat.', bukti: '/cara-kerja', label: 'Lihat 6 tahap kerja', foto: fotoAndal, alt: 'Ilustrasi pemilik rumah menerima kabar jadwal sementara tim tiba membawa genteng' },
+  { id: 'kualitas', h: 'K', nama: 'Kualitas', takut: 'Takut bocor lagi padahal sudah bayar mahal?', dapat: 'Anda bisa melihat bagian atap yang nanti tertutup: setiap lapis difoto sebelum ditutup lapis berikutnya, lalu dikirim ke Anda.', bukti: '/cara-kerja#lapisan', label: 'Lihat kelima lapis', foto: fotoKualitas, alt: 'Ilustrasi tangan tukang memaku genteng aspal di atas underlayment, ponsel memotret pekerjaan' },
+  { id: 'amanah', h: 'A', nama: 'Amanah', takut: 'Takut harga membengkak atau tertipu?', dapat: 'Anda tahu kisaran biayanya sebelum bicara dengan siapa pun, lalu membayar material sebelum dikirim dan jasa pasang bertahap mengikuti progres.', bukti: '/garansi#bayar', label: 'Lihat termin bayar', foto: fotoAmanah, alt: 'Ilustrasi pemilik rumah meninjau rincian biaya dengan sampel genteng di meja' },
+  { id: 'lestari', h: 'L', nama: 'Lestari', takut: 'Ditinggal begitu lunas?', dapat: `Atap Anda tetap dijaga ${bisnis.garansiPemasanganTahun} tahun: bocor akibat pemasangan diperbaiki tanpa biaya. Klaim cukup lewat WhatsApp dengan foto.`, bukti: '/garansi', label: 'Lihat garansi', foto: fotoLestari, alt: 'Ilustrasi keluarga bersantai di teras saat hujan sore' },
 ];
 const foto = await Promise.all(pilar.map(async (p) => ({ ...p, img: await getImage({ src: p.foto, width: 1100, format: 'webp', quality: 74 }) })));
 ---
 
-<div class="cerita" data-cerita>
-  <div class="cerita-lekat">
-    <div class="cerita-panggung" aria-hidden="true">
+<div class="cerita">
+  <ol class="cerita-babak">
       {foto.map((p, i) => (
-        <figure class="cerita-foto" data-foto={p.id} data-aktif={i === 0 ? '' : undefined}>
-          <img src={p.img.src} alt="" width="1100" height="1375" loading="lazy" decoding="async" />
-        </figure>
-      ))}
-      <ol class="cerita-titik">
-        {foto.map((p, i) => <li data-titik={p.id} data-aktif={i === 0 ? '' : undefined}>{p.h}</li>)}
-      </ol>
-    </div>
-    <ol class="cerita-babak">
-      {foto.map((p, i) => (
-        <li class="babak" data-babak={p.id} data-aktif={i === 0 ? '' : undefined}>
+        <li class="babak">
           <img class="babak-foto" src={p.img.src} alt={p.alt} width="1100" height="1375" loading="lazy" decoding="async" />
           <div class="babak-isi">
             <p class="babak-nama"><span class="babak-urut">{String(i + 1).padStart(2, '0')} / 04</span>{p.nama}</p>
             <h3 class="babak-takut">{p.takut}</h3>
             <p class="babak-dapat">{p.dapat}</p>
-            <a class="babak-bukti" href={p.bukti}>{p.label}</a>
+            <a class="babak-bukti tautan-lanjut" href={p.bukti}>{p.label}</a>
           </div>
         </li>
       ))}
-    </ol>
-    <div class="cerita-progres" aria-hidden="true"><span></span></div>
-  </div>
+  </ol>
 </div>
 
-<script>
-  // Desktop: foto & teks terkunci di layar; posisi scroll di dalam bagian menentukan pilar aktif (tanpa teks melompat).
-  for (const root of document.querySelectorAll<HTMLElement>('[data-cerita]')) {
-    const ids = [...root.querySelectorAll<HTMLElement>('[data-babak]')].map((b) => b.dataset.babak!);
-    const bar = root.querySelector<HTMLElement>('.cerita-progres span');
-    const mq = matchMedia('(min-width: 64rem)');
-    let aktif = '', antre = 0;
-    const set = (id: string) => {
-      if (id === aktif) return;
-      aktif = id;
-      root.querySelectorAll<HTMLElement>('[data-foto],[data-titik],[data-babak]').forEach((el) => {
-        if ((el.dataset.foto ?? el.dataset.titik ?? el.dataset.babak) === id) el.setAttribute('data-aktif', ''); else el.removeAttribute('data-aktif');
-      });
-    };
-    const hitung = () => {
-      antre = 0;
-      if (!mq.matches) return;
-      const r = root.getBoundingClientRect();
-      const p = Math.min(1, Math.max(0, -r.top / (r.height - innerHeight)));
-      if (bar) bar.style.transform = `scaleX(${p})`;
-      set(ids[Math.min(ids.length - 1, Math.floor(p * ids.length))]);
-    };
-    addEventListener('scroll', () => { if (!antre) antre = requestAnimationFrame(hitung); }, { passive: true });
-    hitung();
-  }
-</script>
 
 <style>
   /* HP: kartu foto per pilar */
-  .cerita-panggung, .cerita-progres { display: none; }
-  .cerita-babak { display: grid; gap: 1.25rem; }
+    .cerita-babak { display: grid; gap: 1.25rem; }
   .babak { border-radius: 18px; overflow: hidden; background: var(--color-pinus-2); }
   .babak-foto { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
   .babak-isi { padding: 1.5rem 1.4rem 1.75rem; display: grid; gap: 0.6rem; }
@@ -102,43 +62,18 @@ const foto = await Promise.all(pilar.map(async (p) => ({ ...p, img: await getIma
     .babak-takut { font-size: var(--hp-t3); }
     .babak-dapat { font-size: 0.95rem; }
   }
-  .babak-bukti { justify-self: start; margin-top: 0.3rem; font-weight: 500; color: var(--color-embun); text-decoration: underline; text-decoration-color: rgb(242 244 241 / 0.35); }
-  .babak-bukti:hover { color: var(--color-tunas); }
+  .babak-bukti { justify-self: start; margin-top: 0.1rem; }
 
-  /* Desktop: satu panggung terkunci; panjang bagian = jarak scroll untuk 4 pilar. */
+  /* Tablet: dua kolom; desktop: empat kartu sejajar. Nama pilar Embun (Satu Tunas Rule: maks satu kata Tunas per layar). */
+  @media (min-width: 48rem) { .cerita-babak { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (min-width: 64rem) {
-    .cerita { height: 360vh; position: relative; }
-    .cerita-lekat {
-      position: sticky; top: 8vh; height: 84vh;
-      display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 5rem; align-items: center;
-    }
-    .cerita-panggung { display: block; position: relative; height: 100%; border-radius: 22px; overflow: hidden; background: var(--color-pinus-2); }
-    .cerita-foto { position: absolute; inset: 0; margin: 0; opacity: 0; transition: opacity 900ms cubic-bezier(0.65, 0, 0.35, 1); }
-    .cerita-foto img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.08); transition: transform 2400ms cubic-bezier(0.16, 1, 0.3, 1); }
-    .cerita-foto[data-aktif] { opacity: 1; }
-    .cerita-foto[data-aktif] img { transform: scale(1); }
-    .cerita-titik { position: absolute; z-index: 2; top: 1.5rem; right: 1.5rem; display: flex; gap: 0.4rem; }
-    .cerita-titik li {
-      width: 2.4rem; height: 2.4rem; display: grid; place-items: center; border-radius: 50%; font-size: 0.85rem; font-weight: 500;
-      color: rgb(242 244 241 / 0.8); background: rgb(10 20 16 / 0.5); transition: background-color 500ms, color 500ms;
-    }
-    .cerita-titik li[data-aktif] { background: var(--color-tunas); color: var(--color-pinus); }
-
-    /* Semua teks ditumpuk di satu sel; hanya yang aktif terlihat. Posisi tidak pernah berpindah. */
-    .cerita-babak { display: grid; gap: 0; align-self: center; }
-    .babak { grid-area: 1 / 1; background: none; border-radius: 0; opacity: 0; transform: translate3d(0, 28px, 0); pointer-events: none;
-      transition: opacity 600ms cubic-bezier(0.7, 0, 0.84, 0), transform 600ms cubic-bezier(0.7, 0, 0.84, 0); }
-    .babak[data-aktif] { opacity: 1; transform: none; pointer-events: auto;
-      transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1) 250ms, transform 900ms cubic-bezier(0.16, 1, 0.3, 1) 250ms; }
-    .babak-foto { display: none; }
-    .babak-isi { padding: 0; gap: 1.1rem; max-width: 32rem; }
-    .babak-nama { font-size: clamp(4rem, 1.5rem + 5.5vw, 7rem); gap: 1rem; }
-    .babak-takut { font-size: clamp(1.6rem, 1.1rem + 1.2vw, 2.3rem); letter-spacing: -0.035em; line-height: 1.12; }
-    .babak-dapat { font-size: 1.1rem; line-height: 1.55; }
-    .cerita-progres { display: block; position: absolute; left: calc(52.5% + 2.5rem); right: 0; bottom: 0; height: 2px; background: rgb(242 244 241 / 0.15); }
-    .cerita-progres span { display: block; height: 100%; background: var(--color-tunas); transform-origin: 0 50%; transform: scaleX(0); }
-  }
-  @media (min-width: 64rem) and (prefers-reduced-motion: reduce) {
-    .babak, .babak[data-aktif], .cerita-foto, .cerita-foto img { transition: none; }
+    .cerita-babak { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+    .babak { display: flex; flex-direction: column; }
+    .babak-foto { aspect-ratio: 4 / 5; }
+    .babak-isi { flex: 1; align-content: start; padding: 1.4rem 1.3rem 1.5rem; gap: 0.55rem; }
+    .babak-nama { font-size: 2.4rem; color: var(--color-embun); }
+    .babak-takut { font-size: 1.2rem; line-height: 1.25; }
+    .babak-dapat { font-size: 0.95rem; line-height: 1.5; }
+    .babak-bukti { margin-top: auto; padding-top: 0.6rem; }
   }
 </style>

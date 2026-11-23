@@ -1,0 +1,135 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import GaransiBayar from '../components/GaransiBayar.astro';
+import KlaimGaransi from '../components/KlaimGaransi.astro';
+import { bisnis, waLink } from '../data/bisnis';
+
+// Cara bayar, garansi pemasangan, dan cara klaim (dulu bagian beranda, DECISIONS 072).
+const situs = new URL('/', Astro.site).href;
+const n = bisnis.garansiPemasanganTahun;
+const kecil = (t: string) => t.charAt(0).toLowerCase() + t.slice(1);
+const tanya = [
+  {
+    q: 'Apa beda garansi pabrik dan garansi pemasangan?',
+    a: `Garansi pabrik menanggung material genteng sesuai dokumen resmi tiap merek dan diklaim lewat pabriknya. Garansi pemasangan dari Atapura berlaku ${n} tahun sejak serah terima dan menanggung kebocoran serta kesalahan pasang, termasuk material dan jasa perbaikannya.`,
+  },
+  {
+    q: 'Apa yang tidak ditanggung garansi pemasangan?',
+    a: `${bisnis.garansi.pengecualian.map(kecil).join('; ')}.`.replace(/^./, (c) => c.toUpperCase()),
+  },
+  {
+    q: 'Berapa lama klaim ditangani?',
+    a: 'Kirim foto atau video lewat WhatsApp beserta nama pemilik dan alamat. Kami menilai dari foto; bila ada kebocoran atau kerusakan, tim datang ke lokasi paling lambat 3 hari kerja. Perbaikan yang tercakup garansi dijadwalkan tertulis tanpa biaya.',
+  },
+];
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Beranda', item: situs },
+      { '@type': 'ListItem', position: 2, name: 'Bayar & garansi', item: new URL('/garansi', Astro.site).href },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: tanya.map((t) => ({ '@type': 'Question', name: t.q, acceptedAnswer: { '@type': 'Answer', text: t.a } })),
+  },
+];
+---
+<Base
+  title={`Garansi Pasang Atap Bitumen ${n} Tahun & Cara Bayar | Atapura`}
+  description={`Garansi pemasangan atap bitumen ${n} tahun tertulis, terpisah dari garansi pabrik. Material lunas sebelum dikirim, jasa pasang bertahap ${bisnis.pembayaran.jasa.map((t) => t.persen).join('/')}. Klaim lewat WhatsApp.`}
+  schema={schema}
+>
+  <Header terang />
+  <main class="gr">
+    <div class="wrap">
+      <div class="kartu-buka">
+        <nav class="remah" aria-label="Remah roti"><a href="/">Beranda</a><span aria-hidden="true">/</span><span>Bayar &amp; garansi</span></nav>
+        <div class="gr-kepala">
+          <h1 class="gr-judul">Garansi pemasangan {n} tahun, <span class="redup">terpisah dari garansi pabrik.</span></h1>
+          <p class="gr-lead">Hasil pemasangan kami jamin tertulis sejak serah terima. Jasa pasang dibayar bertahap mengikuti kemajuan pekerjaan, setiap termin disertai foto progres.</p>
+        </div>
+      </div>
+    </div>
+
+    <section id="bayar" class="gr-sek gr-putih" aria-label="Cara pembayaran dan garansi pemasangan">
+      <div class="wrap"><GaransiBayar /></div>
+    </section>
+
+    <section id="klaim" class="gr-pita" aria-label="Cara klaim garansi">
+      <div class="wrap"><KlaimGaransi /></div>
+    </section>
+
+    <section class="gr-sek gr-tanya" aria-labelledby="judul-tanya">
+      <div class="wrap gr-tanya-isi">
+        <h2 id="judul-tanya" class="gr-h2">Yang biasanya ditanyakan <span class="redup">soal garansi.</span></h2>
+        <div class="gr-daftar">
+          {tanya.map((t, i) => (
+            <details name="tanya-garansi" open={i === 0}>
+              <summary><span>{t.q}</span><span class="gr-tanda" aria-hidden="true"></span></summary>
+              <p>{t.a}</p>
+            </details>
+          ))}
+          <div class="gr-aksi">
+            <a class="pill pill-tunas" href="/hitung">Hitung estimasi biaya</a>
+            <a class="gr-tautan" href={waLink('Halo Atapura, saya mau tanya soal garansi pemasangan atap.')} target="_blank" rel="noopener" data-wa="garansi">Tanya admin lewat WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .gr { background: var(--color-embun); color: var(--color-tinta); padding-top: 120px; }
+  .remah { display: flex; gap: 0.5rem; font-size: 0.88rem; color: var(--color-lumut); }
+  .remah a { color: inherit; }
+  .redup { opacity: 0.55; }
+  .gr-kepala { margin: 2rem 0 3rem; display: grid; gap: 1.25rem 4rem; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 60rem) { .gr-kepala { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); align-items: end; } }
+  .gr-judul { font-family: var(--font-merek); font-size: clamp(2.25rem, 1.2rem + 3vw, 3.75rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.02; max-width: 17ch; text-wrap: balance; }
+  .gr-lead { font-size: 1.1rem; color: var(--color-lumut); max-width: 42ch; line-height: 1.55; }
+  .gr-h2 { font-family: var(--font-merek); font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.5rem); font-weight: 500; letter-spacing: -0.035em; line-height: 1.1; }
+
+  .gr-sek { padding-block: clamp(3.5rem, 7vw, 6rem); }
+  .gr-putih { background: var(--color-putih); }
+  /* Cara klaim di bidang Pinus (komponen KlaimGaransi dirancang untuk latar gelap). */
+  .gr-pita { background: var(--color-pinus); color: var(--color-embun); padding-block: clamp(2.5rem, 5vw, 4rem); }
+  .gr-pita :global(.klaim) { margin-top: 0; }
+
+  .gr-tanya-isi { display: grid; gap: 1.75rem 5rem; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 60rem) { .gr-tanya-isi { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); align-items: start; } }
+  .gr-daftar { border-top: 1px solid var(--color-tinta); }
+  .gr-daftar details { border-bottom: 1px solid var(--color-garis); }
+  .gr-daftar summary { display: flex; justify-content: space-between; align-items: center; gap: 1rem; min-height: 3.5rem; padding: 1rem 0; cursor: pointer; list-style: none; font-family: var(--font-merek); font-size: 1.125rem; font-weight: 500; letter-spacing: -0.015em; }
+  .gr-daftar summary::-webkit-details-marker { display: none; }
+  .gr-daftar summary:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 2px; border-radius: 6px; }
+  .gr-tanda { position: relative; flex: none; width: 14px; height: 14px; }
+  .gr-tanda::before, .gr-tanda::after { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 1.5px; margin-top: -0.75px; background: currentColor; transition: transform 240ms var(--ease-out); }
+  .gr-tanda::after { transform: rotate(90deg); }
+  .gr-daftar details[open] .gr-tanda::after { transform: rotate(0deg); }
+  .gr-daftar details p { padding: 0 0 1.25rem; font-size: 1.0625rem; line-height: 1.6; color: var(--color-lumut); max-width: 62ch; }
+  .gr-aksi { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 2rem; margin-top: 1.75rem; }
+  .gr-tautan { display: inline-flex; align-items: center; min-height: 44px; font-weight: 500; color: var(--color-pinus); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+  .gr-aksi a:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 3px; }
+  @media (min-width: 64rem) { .gr-daftar details p { font-size: 1.125rem; } }
+
+  @media (max-width: 47.99rem) {
+    .gr { background: #dde2dc; padding-top: 96px; }
+    .kartu-buka { margin: 0 calc(8px - var(--gutter)) 8px; padding: 1.5rem var(--gutter) 0.25rem; border-radius: 28px; background: var(--color-embun); }
+    .gr-kepala { margin: 1.5rem 0; }
+    .gr-judul { font-size: var(--hp-display); line-height: 1.05; }
+    .gr-lead, .gr-daftar details p { font-size: 1rem; }
+    .gr-h2 { font-size: var(--hp-t1); }
+    .gr-daftar summary { font-size: var(--hp-t4); }
+    .gr-sek, .gr-pita { margin: 0 8px 8px; padding: 2rem 0; border-radius: 28px; overflow: clip; }
+    .gr-tanya { background: var(--color-embun); }
+    .gr-aksi .pill { width: 100%; }
+  }
+</style>

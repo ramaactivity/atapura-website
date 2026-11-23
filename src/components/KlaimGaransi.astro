@@ -19,8 +19,8 @@ const sla = ['Hari ini', '≤ 3 hari kerja', 'Terjadwal tertulis', 'Sebelum & se
 
 <div class="klaim" data-klaim>
   <div class="klaim-kepala">
-    <h3 class="klaim-judul">Cara klaim garansi</h3>
-    <p class="klaim-sub">Empat langkah, semuanya lewat WhatsApp dan tercatat.</p>
+    <h2 class="klaim-judul">Klaim garansi <span class="klaim-redup">cukup lewat WhatsApp.</span></h2>
+    <p class="klaim-sub">Empat langkah, semuanya tercatat.</p>
   </div>
   <ol class="klaim-alur">
     <span class="klaim-garis" aria-hidden="true"><span></span></span>
@@ -53,7 +53,9 @@ const sla = ['Hari ini', '≤ 3 hari kerja', 'Terjadwal tertulis', 'Sebelum & se
 <style>
   .klaim { margin-top: clamp(3rem, 6vw, 4.5rem); --dur: 1400ms; }
   .klaim-kepala { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.5rem 2rem; margin-bottom: 1.75rem; }
-  .klaim-judul { font-size: 1.25rem; font-weight: 500; letter-spacing: -0.02em; }
+  .klaim-judul { font-family: var(--font-merek); font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.5rem); font-weight: 500; letter-spacing: -0.035em; line-height: 1.1; }
+  .klaim-redup { opacity: 0.55; }
+  @media (max-width: 47.99rem) { .klaim-judul { font-size: var(--hp-t1); } }
   .klaim-sub { font-size: 0.93rem; color: var(--embun-redup); }
 
   .klaim-alur { position: relative; display: grid; gap: 1.75rem; grid-template-columns: minmax(0, 1fr); }
@@ -111,5 +113,4 @@ const sla = ['Hari ini', '≤ 3 hari kerja', 'Terjadwal tertulis', 'Sebelum & se
   .klaim[data-siap][data-jalan] .klaim-ikon { color: var(--color-tunas); }
   .klaim[data-siap][data-jalan] .klaim-ikon svg :is(path, rect, circle) { stroke-dashoffset: 0; }
   .klaim[data-siap][data-jalan] .klaim-no { scale: 1; }
-  @media (max-width: 47.99rem) { .klaim-judul { font-size: var(--hp-t3); } }
 </style>

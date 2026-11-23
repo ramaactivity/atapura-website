@@ -1,61 +1,113 @@
 ---
+// Peta area dari batas wilayah BPS (geoBoundaries), dibuat ulang lewat tools/peta/buat-peta.py (DECISIONS 072).
+// Hijau = survey gratis. Peta kecil Indonesia = pulau tempat tim pemasang pernah bekerja: di luar Jabodetabek tetap dikerjakan.
+// Laptop: label lengkap + peta kecil menempel di laut utara. HP: label besar yang lebih sedikit + peta kecil jadi kartu di bawah.
+import peta from '../data/peta-area.json';
 import { bisnis } from '../data/bisnis';
 
-// Peta skematik (bukan skala): posisi relatif kota terhadap Jakarta Pusat, cukup untuk orientasi.
-const titik: Record<string, [number, number, 'kiri' | 'kanan' | 'bawah' | 'atas']> = {
-  'Jakarta Utara': [300, 104, 'atas'],
-  'Jakarta Pusat': [300, 188, 'atas'],
-  'Jakarta Barat': [222, 182, 'kiri'],
-  'Jakarta Timur': [372, 222, 'bawah'],
-  'Jakarta Selatan': [292, 258, 'kiri'],
-  'Kota Tangerang': [142, 168, 'atas'],
-  'Kabupaten Tangerang': [62, 132, 'atas'],
-  'Tangerang Selatan': [190, 282, 'kiri'],
-  'Kota Bekasi': [462, 194, 'bawah'],
-  'Kabupaten Bekasi': [548, 158, 'atas'],
-  Depok: [296, 336, 'kanan'],
-  'Kota Bogor': [310, 438, 'kanan'],
-  'Kabupaten Bogor': [196, 410, 'kiri'],
+interface Props { tautan?: Record<string, string> }
+const { tautan = {} } = Astro.props;
+
+const pendek: Record<string, string> = {
+  'Jakarta Utara': 'Utara', 'Jakarta Barat': 'Barat', 'Jakarta Pusat': 'Pusat', 'Jakarta Timur': 'Timur', 'Jakarta Selatan': 'Selatan',
+  'Kabupaten Tangerang': 'Kab. Tangerang', 'Kabupaten Bekasi': 'Kab. Bekasi', 'Kabupaten Bogor': 'Kab. Bogor', 'Tangerang Selatan': 'Tangsel',
 };
-const pos = (k: string) => titik[k];
+const geser: Record<string, [number, number]> = { 'Kabupaten Bogor': [-70, 40], 'Kota Bogor': [0, 6], 'Jakarta Pusat': [0, 2] };
+// HP: satu label per kota besar, di titik tengah gabungan wilayahnya (koordinat peta 760 × 669).
+const labelHp: [string, number, number][] = [['Jakarta', 372, 196], ['Tangerang', 168, 188], ['Tangsel', 272, 284], ['Depok', 362, 350], ['Bekasi', 548, 232], ['Bogor', 318, 498]];
+const layanan = peta.wilayah.filter((w) => w.layanan);
+const jakarta = (n: string) => n.startsWith('Jakarta');
+const kmPx = peta.lebar / ((107.32 - 106.36) * Math.cos((-6.38 * Math.PI) / 180) * 111.32);
+const ind = peta.indonesia;
+const pengalaman: readonly string[] = bisnis.survey.pengalamanLuar;
+const daftar = (a: readonly string[]) => (a.length > 1 ? `${a.slice(0, -1).join(', ')}, dan ${a.at(-1)}` : a[0]);
 ---
 
 <figure class="peta" aria-labelledby="peta-ket">
-  <svg viewBox="0 0 620 490" role="img" aria-labelledby="peta-ket">
-    <g class="peta-cincin">
-      {[90, 175, 260].map((r) => <circle cx="300" cy="188" r={r} />)}
-    </g>
-    <g class="peta-garis">
-      {bisnis.area.filter((k) => k !== 'Jakarta Pusat').map((k) => <line x1="300" y1="188" x2={pos(k)[0]} y2={pos(k)[1]} />)}
-    </g>
-    {bisnis.area.map((k) => {
-      const [x, y, sisi] = pos(k);
-      const dx = sisi === 'kiri' ? -12 : sisi === 'kanan' ? 12 : 0;
-      const dy = sisi === 'atas' ? -14 : sisi === 'bawah' ? 22 : 5;
-      const anchor = sisi === 'kiri' ? 'end' : sisi === 'kanan' ? 'start' : 'middle';
-      return (
-        <g class:list={['peta-titik', k.startsWith('Jakarta') && 'peta-jkt']}>
-          <circle cx={x} cy={y} r="5" />
-          <text x={x + dx} y={y + dy} text-anchor={anchor}>{k}</text>
-        </g>
-      );
-    })}
-  </svg>
+  <div class="peta-bingkai">
+    <svg class="peta-utama" viewBox={`0 0 ${peta.lebar} ${peta.tinggi}`} role="img" aria-labelledby="peta-ket">
+      <rect class="peta-laut" width={peta.lebar} height={peta.tinggi} />
+      {peta.wilayah.filter((w) => !w.layanan).map((w) => <path class="peta-tetangga" d={w.d} />)}
+      {layanan.map((w) => {
+        const isi = <path class:list={['peta-wilayah', { 'peta-jkt': jakarta(w.nama) }]} d={w.d} />;
+        return tautan[w.nama] ? <a href={tautan[w.nama]} aria-label={`${w.nama}: survey gratis`}>{isi}</a> : isi;
+      })}
+      <g class="peta-label peta-label-lengkap" aria-hidden="true">
+        {layanan.map((w) => {
+          const [dx, dy] = geser[w.nama] ?? [0, 0];
+          return <text x={w.label[0] + dx} y={w.label[1] + dy} class:list={{ 'peta-label-kecil': jakarta(w.nama) }}>{pendek[w.nama] ?? w.nama}</text>;
+        })}
+        <text x="338" y="84" class="peta-label-wilayah">DKI Jakarta</text>
+      </g>
+      <g class="peta-label peta-label-hp" aria-hidden="true">
+        {labelHp.map(([n, x, y]) => <text x={x} y={y}>{n}</text>)}
+      </g>
+      <text x="150" y="64" class="peta-laut-label" aria-hidden="true">Laut Jawa</text>
+      <g class="peta-skala" aria-hidden="true" transform={`translate(28 ${peta.tinggi - 30})`}>
+        <path d={`M0 0V6H${(10 * kmPx).toFixed(1)}V0`} />
+        <text x={(10 * kmPx).toFixed(1)} y="-8" text-anchor="end">10 km</text>
+      </g>
+    </svg>
+
+    <div class="peta-sisip">
+      <svg viewBox={`-6 -4 ${ind.lebar + 12} ${ind.tinggi + 8}`} role="img" aria-label={`Peta Indonesia: Jabodetabek ditandai, tim pernah bekerja hingga ${daftar(pengalaman)}`}>
+        <path class="peta-sisip-darat" d={ind.d} />
+        {ind.pulau.filter((p) => pengalaman.includes(p.nama)).map((p) => <text class="peta-sisip-pulau" x={p.x} y={p.y}>{p.nama}</text>)}
+        <rect class="peta-sisip-kotak" x={ind.kotak[0] - 3} y={ind.kotak[1] - 3} width={ind.kotak[2] + 6} height={ind.kotak[3] + 6} rx="2" />
+      </svg>
+      <p class="peta-sisip-teks">Di luar Jabodetabek tetap kami kerjakan. Tim pemasang kami pernah mengerjakan atap hingga {daftar(pengalaman)}.</p>
+    </div>
+  </div>
   <figcaption id="peta-ket" class="peta-ket">
-    Area survey gratis Atapura: {bisnis.area.length} kota dan kabupaten di Jabodetabek. Peta skematik, bukan skala.
+    Hijau: survey gratis di {bisnis.area.length} kota dan kabupaten Jabodetabek.
+    <span class="peta-sumber">Batas wilayah: BPS via geoBoundaries (CC BY 3.0 IGO); garis Indonesia: geoBoundaries (ODbL).</span>
   </figcaption>
 </figure>
 
 <style>
   .peta { margin: 0; }
-  .peta svg { width: 100%; height: auto; display: block; overflow: visible; }
-  .peta-cincin circle { fill: none; stroke: var(--color-garis); stroke-width: 1; stroke-dasharray: 2 5; }
-  .peta-garis line { stroke: var(--color-lumut); stroke-width: 0.75; opacity: 0.28; }
-  .peta-titik circle { fill: var(--color-putih); stroke: var(--color-pinus); stroke-width: 1.5; transition: transform 300ms var(--ease-out); transform-box: fill-box; transform-origin: center; }
-  .peta-jkt circle { fill: var(--color-pinus); }
-  .peta-titik text { font-size: 13px; fill: var(--color-tinta); font-family: var(--font-sans); letter-spacing: -0.01em; }
-  .peta-ket { margin-top: 1rem; font-size: 0.85rem; color: var(--color-lumut); }
-  @media (hover: hover) and (pointer: fine) {
-    .peta-titik:hover circle { transform: scale(1.6); }
+  .peta-bingkai { position: relative; }
+  .peta-utama { display: block; width: 100%; height: auto; border-radius: 20px; }
+  /* Wilayah layanan: hijau sage turunan Pinus (Tunas khusus aksi utama; Pinus pucat murni terbaca abu). */
+  .peta-laut { fill: #e2eae8; }
+  .peta-tetangga { fill: var(--color-embun); stroke: #d4dad3; stroke-width: 1; }
+  .peta-wilayah { fill: #cfe3d6; stroke: var(--color-putih); stroke-width: 1.4; stroke-linejoin: round; transition: fill 220ms; }
+  .peta-jkt { fill: #b0d0bc; }
+  .peta a:focus-visible { outline: none; }
+  .peta a:focus-visible .peta-wilayah { fill: #83b394; }
+  @media (hover: hover) and (pointer: fine) { .peta a:hover .peta-wilayah { fill: #83b394; } }
+  .peta-label { pointer-events: none; }
+  .peta-label text { font-family: var(--font-sans); font-size: 12px; font-weight: 500; fill: var(--color-tinta); text-anchor: middle; dominant-baseline: middle; paint-order: stroke; stroke: rgb(255 255 255 / 0.75); stroke-width: 3px; stroke-linejoin: round; }
+  .peta-label .peta-label-kecil { font-size: 10px; }
+  .peta-label .peta-label-wilayah { font-size: 11px; font-weight: 600; fill: var(--color-lumut); stroke: none; }
+  .peta-label-hp { display: none; }
+  .peta-laut-label { font-family: var(--font-sans); font-size: 12px; letter-spacing: 0.25em; fill: rgb(76 94 85 / 0.7); }
+  .peta-skala path { fill: none; stroke: var(--color-lumut); stroke-width: 1.2; }
+  .peta-skala text { font-family: var(--font-sans); font-size: 10px; fill: var(--color-lumut); }
+
+  /* Peta kecil Indonesia: kartu putih. Laptop: menempel di laut utara peta besar. */
+  .peta-sisip { display: grid; gap: 0.5rem 1.25rem; align-items: center; margin-top: 10px; padding: 0.85rem 1rem 0.9rem; border-radius: 14px; background: var(--color-putih); box-shadow: 0 1px 2px rgb(16 35 30 / 0.06), 0 14px 28px -18px rgb(16 35 30 / 0.35); }
+  .peta-sisip svg { display: block; width: 100%; height: auto; }
+  .peta-sisip-darat { fill: #dfe5e0; }
+  .peta-sisip-pulau { font-family: var(--font-sans); font-size: 9px; font-weight: 500; fill: var(--color-tinta); text-anchor: middle; dominant-baseline: middle; }
+  .peta-sisip-kotak { fill: #83b394; stroke: var(--color-pinus); stroke-width: 1.2; }
+  .peta-sisip-teks { font-size: 0.8125rem; line-height: 1.45; color: var(--color-tinta); }
+  /* Laptop/tablet: peta kecil di kiri, teks di kanan (laut utara terlalu sempit untuk ditempeli tanpa menutup wilayah). */
+  @media (min-width: 48rem) { .peta-sisip { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); padding: 0.9rem 1.25rem; } }
+
+  .peta-ket { margin-top: 0.85rem; font-size: 0.85rem; line-height: 1.5; color: var(--color-lumut); max-width: 60ch; }
+  .peta-sumber { display: block; margin-top: 0.3rem; font-size: 0.75rem; opacity: 0.8; }
+
+  /* HP: label besar dan sedikit supaya terbaca di lebar ±340 px (peta tampil ±0,45×). */
+  @media (max-width: 47.99rem) {
+    .peta-utama { border-radius: 16px; }
+    .peta-label-lengkap { display: none; }
+    .peta-label-hp { display: inline; }
+    .peta-label-hp text { font-size: 27px; font-weight: 600; stroke-width: 6px; }
+    .peta-laut-label { font-size: 22px; }
+    .peta-skala text { font-size: 20px; }
+    .peta-skala path { stroke-width: 2.4; }
+    .peta-sisip-pulau { font-size: 10px; }
+    .peta-ket { font-size: 0.8125rem; }
   }
 </style>

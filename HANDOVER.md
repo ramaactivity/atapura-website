@@ -12,9 +12,9 @@
   tipografi, developer, HP vs desktop). P0: ~~atapura.com belum terdaftar~~ (live 23 Nov), ~~situs noindex~~ (070),
   ~~FAQ beranda bertentangan~~ (diperbaiki 23 Nov, angka dari data), intro 3,3 dtk (belum). Rama mengerjakan "satu per satu".
   ✅ Tahap 1: **kalkulator pindah ke `/hitung`** (DECISIONS 071) + kartu hitung cepat di beranda (`HitungCepat.tsx`), semua
-  tautan `/#hitung` diganti. ⏳ Tahap 2: susunan beranda 9 bagian (audit §3 + percakapan 23 Nov: hero → hitung cepat → masalah
-  bocor + 5 lapis ringkas → layanan per kebutuhan (kartu bisa diklik) → 4 jaminan AKAL → 4 langkah → pilih merek → area →
-  FAQ & penutup; Hujan dihapus; 5 lapis/Rapor/6 tahap → /cara-kerja; garansi lengkap → /garansi; Warna → halaman merek).
+  tautan `/#hitung` diganti. Kalkulator HP diringkas (masukan Rama: "desktop dipaksakan"). ✅ Tahap 2 (DECISIONS 072): beranda
+  jadi landing page 11 bagian (HP 14,8 layar), halaman baru `/cara-kerja` & `/garansi`, AKAL desktop jadi kisi kartu.
+  ⏳ Belum: Bumper (tanya Rama), /tentang /kontak /perusahaan, skala tipografi & ukuran teks isi (audit §7).
   ⏳ Setelah itu (permintaan Rama 23 Nov): tiap artikel wajib mengajak ke halaman/artikel lain (audit tautan internal artikel).
 
 - **Lead otomatis ke Ops** (22 Nov 2026, DECISIONS 068 / Ops 150): kalkulator publik punya isian Nama & No. WA opsional → `api/kirim-lead.mjs` (Vercel Function) → Ops `/api/lead`. Env `LEAD_SECRET` di Vercel proyek `atapura`.

@@ -455,3 +455,26 @@ baru membayar), harga terpasang per merek bertanggal yang menaut ke halaman mere
 tautan `/#hitung` & `/?merek=X#hitung` (header, tab bar, footer, artikel, produk, kuis pilih merek) diganti; `id="hitung"`
 tetap ada di kartu beranda supaya tautan lama di luar situs tetap mendarat. Kuis pilih merek kini juga menaut ke halaman merek.
 Artikel baru wajib menaut ke `/hitung` (aturan di kalender konten).
+
+## 072 · 23 November 2026 · Beranda diringkas jadi landing page; /cara-kerja dan /garansi berdiri sendiri
+Lanjutan audit 23 Nov (§3) atas persetujuan Rama ("langsung bangun"). Prinsip: urutan bagian = urutan pertanyaan di kepala
+pembeli, tiap bagian menjawab satu pertanyaan lalu menaut ke halaman rinci. Urutan baru: hero → fakta → hitung cepat (bidang
+Pinus, slip putih) → "Atap bocor lagi?" + 5 lapis → 4 janji AKAL → layanan per kebutuhan (kartu foto kini tautan) → ringkasan
+6 tahap (tahap 3 pembayaran ditandai) → pilih merek → area → tanya-jawab → penutup. Latar bergantian gelap/terang; AKAL
+dipindah ke antara "atap bocor" dan layanan karena komponen 5 lapis dan bento layanan sama-sama butuh latar Embun.
+Dibuang dari beranda: Hujan (duplikat 5 lapis), Warna (halaman merek sudah punya warna brosur; komponen `Warna.astro` dihapus),
+Rapor Proyek kosong, blok bayar & garansi lengkap, tab 6 tahap besar, blok "kapan pilihan lain" (isinya sudah di FAQ).
+Pindah ke halaman baru: `/cara-kerja` (CaraKerja 6 tahap, Lapisan, RaporContoh) dan `/garansi` (`GaransiBayar.astro` dipindah
+utuh dari beranda, KlaimGaransi, FAQ garansi). Data 6 tahap jadi `src/data/cara-kerja.ts` (satu sumber). AKAL desktop: panggung
+menempel 360vh diganti kisi 4 kartu; janji "dicek lagi setelah musim hujan pertama" dicabut (bertentangan dengan 035 & aturan
+tanpa janji kunjungan rutin). Menu: "Warna" → "Cara kerja"; tab bar Garansi → /garansi, Merek → /produk; menu HP "Area" → /area.
+Hasil: beranda HP 24,6 → 14,8 layar, laptop 26,8 → 17,7, kata 1.898 → 1.071. Belum: animasi pembuka (Bumper) menunggu
+keputusan Rama; /tentang, /kontak, /perusahaan menyusul.
+Tambahan hari yang sama (masukan Rama): peta skematik area diganti **peta asli** dari batas wilayah BPS (geoBoundaries
+IDN ADM2, CC BY 3.0 IGO; garis Indonesia ADM0, ODbL; sumber dicantumkan di keterangan peta), dibuat ulang lewat
+`tools/peta/buat-peta.py` → `src/data/peta-area.json`. Bukan gambar AI: AI mengarang bentuk wilayah. Wilayah layanan hijau muda
+(tautan ke /area), peta kecil Indonesia menandai pulau tempat tim pernah bekerja (`bisnis.survey.pengalamanLuar`); tampil juga
+di HP dengan label besar yang lebih sedikit. Judul area jadi "Survey gratis di Jabodetabek, siap ke mana saja" (Rama: "jangan
+terlalu membatasi Jabodetabek, tinggal tambah ongkir dan transport"). Review Impeccable: beranda versi ringkas komponen Lapisan
+(`ringkas`), ringkasan tahap di bidang Pinus, satu gaya `.tautan-lanjut` global (panah SVG lewat mask) untuk semua tautan ke
+halaman rinci, label kecil di atas judul dibuang.

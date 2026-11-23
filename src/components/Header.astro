@@ -31,20 +31,19 @@ const t = lang === 'en'
 const menuId = [
   { href: '/hitung', label: 'Hitung biaya' },
   { href: '/produk', label: 'Produk & layanan' },
-  { href: '/#garansi', label: 'Garansi' },
+  { href: '/cara-kerja', label: 'Cara kerja' },
+  { href: '/garansi', label: 'Garansi' },
   { href: '/panduan', label: 'Artikel' },
-  { href: '/#warna', label: 'Warna' },
 ];
 const menu = lang === 'en' ? menuEn : menuId;
 // Menu HP: daftar lebih lengkap karena tidak ada navigasi lain di layar kecil.
 const menuHpId = [
   { href: '/hitung', label: 'Hitung biaya' },
   { href: '/produk', label: 'Produk & layanan' },
-  { href: '/#cara-kerja', label: 'Cara kerja' },
-  { href: '/#garansi', label: 'Bayar & garansi' },
+  { href: '/cara-kerja', label: 'Cara kerja' },
+  { href: '/garansi', label: 'Bayar & garansi' },
   { href: '/#merek', label: 'Pilih merek' },
-  { href: '/#warna', label: 'Warna' },
-  { href: '/#area', label: 'Area survey' },
+  { href: '/area', label: 'Area survey' },
   { href: '/#tanya', label: 'Tanya jawab' },
   { href: '/panduan', label: 'Artikel' },
 ];
@@ -95,11 +94,11 @@ const menuHp = lang === 'en' ? menuEn : menuHpId;
     <span class="tab-bulat" set:html={ikonWhatsapp} />
     <span>{label.chat}</span>
   </a>
-  <a class="tab" href="/#merek" data-tab="merek">
+  <a class="tab" href="/produk" data-tab="merek">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 12.2V4.5a1 1 0 0 1 1-1h7.7l8.3 8.3a1.5 1.5 0 0 1 0 2.1l-6.6 6.6a1.5 1.5 0 0 1-2.1 0z" /><circle cx="8" cy="8" r="1.4" /></svg>
     <span>{label.merek}</span>
   </a>
-  <a class="tab" href="/#garansi" data-tab="garansi">
+  <a class="tab" href="/garansi" data-tab="garansi">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 5.8v5.6c0 4.3 2.9 7.9 7 9.6 4.1-1.7 7-5.3 7-9.6V5.8z" /><path d="m9 12 2.1 2.1L15.2 10" /></svg>
     <span>{label.garansi}</span>
   </a>
@@ -123,7 +122,7 @@ const menuHp = lang === 'en' ? menuEn : menuHpId;
     const diBeranda = location.pathname === '/' || location.pathname === '/index';
     if (diBeranda) {
       aktif('beranda');
-      const peta: Record<string, string> = { hitung: 'hitung', merek: 'merek', warna: 'merek', garansi: 'garansi' };
+      const peta: Record<string, string> = { hitung: 'hitung', merek: 'merek' };
       const bagian = [...document.querySelectorAll<HTMLElement>('main section[id], main [id=hitung]')];
       const io = new IntersectionObserver((es) => {
         for (const e of es) if (e.isIntersecting) aktif(peta[e.target.id] ?? 'beranda');
@@ -133,6 +132,8 @@ const menuHp = lang === 'en' ? menuEn : menuHpId;
       tab[0].addEventListener('click', (e) => { e.preventDefault(); scrollTo({ top: 0, behavior: 'smooth' }); });
     } else if (location.pathname.startsWith('/hitung')) {
       aktif('hitung');
+    } else if (location.pathname.startsWith('/garansi')) {
+      aktif('garansi');
     } else if (location.pathname.startsWith('/produk')) {
       aktif('merek');
     }

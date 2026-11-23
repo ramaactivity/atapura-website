@@ -51,6 +51,12 @@
 .hc-cta { margin-top: 1rem; width: 100%; min-height: 52px; font-weight: 600; }
 .hc-cta:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 3px; }
 
+/* Di bidang gelap (beranda): teks pendukung Embun turunan, slip putih dengan bayangan lebih dalam seperti kartu hero. */
+.gelap .hc-atur { border-top-color: rgb(242 244 241 / 0.28); }
+.gelap .hc-bantu { color: var(--embun-redup); }
+.gelap .hc-bantu a { color: var(--color-embun); }
+.gelap .hc-slip { color: var(--color-tinta); filter: drop-shadow(0 26px 30px rgb(0 0 0 / 0.32)) drop-shadow(0 6px 10px rgb(0 0 0 / 0.16)); }
+
 @media (max-width: 47.99rem) {
   .hc-label { font-size: 0.9375rem; font-weight: 500; }
   .hc-bantu { font-size: 0.8125rem; }

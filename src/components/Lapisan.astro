@@ -1,5 +1,8 @@
 ---
 import LapisanGambar from './LapisanGambar.astro';
+// ringkas: beranda hanya diagram + nama lapis; uraian tiap lapis di /cara-kerja (DECISIONS 072).
+interface Props { ringkas?: boolean }
+const { ringkas = false } = Astro.props;
 // Penampang atap bitumen terurai, digambar isometrik (sumbu 2:1). Nomor = urutan pemasangan;
 // daftar ditampilkan dari atas (Nok) ke bawah (Alas) supaya sejajar dengan gambarnya.
 const lapis = [
@@ -42,7 +45,7 @@ const lapis = [
 
 ---
 
-<div class="lapisan" data-lapisan>
+<div class:list={["lapisan", { "lapisan-ringkas": ringkas }]} data-lapisan>
   <figure class="lapisan-gambar" aria-hidden="true">
     <LapisanGambar />
   </figure>
@@ -193,4 +196,9 @@ const lapis = [
     .lapis-nama { font-size: var(--hp-t4); }
     .lapis-isi { font-size: 0.9375rem; line-height: 1.5; }
   }
+  /* Ringkas: tanpa uraian; pelat label memeluk namanya saja supaya tidak ada kotak kosong di atas grid. */
+  .lapisan-ringkas .lapis-isi { display: none; }
+  .lapisan-ringkas .lapis { width: fit-content; background: none; }
+  .lapisan-ringkas .sisi-kiri .lapis { margin-left: auto; }
+  .lapisan-ringkas .lapis:hover, .lapisan-ringkas .lapis[aria-pressed="true"] { background: var(--color-putih); }
 </style>
