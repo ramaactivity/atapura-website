@@ -23,21 +23,25 @@ const menuEn = [
   { href: '/en/guides/asphalt-shingles-indonesia', label: 'Costs & brands' },
   { href: '/en/guides/best-roof-tropical-climate', label: 'Tropical climate' },
   { href: '/en/guides/bali-villa-roof', label: 'Bali villas' },
+  { href: '/perusahaan', label: 'For businesses' },
   { href: '/', label: 'Indonesian site' },
 ];
 const t = lang === 'en'
-  ? { perusahaan: 'For businesses', wa: 'Chat on WhatsApp', waPesan: 'Hi Atapura, I have a question about an asphalt shingle roof.', menu: 'Menu', tutup: 'Close', tutupLabel: 'Close menu', hitung: 'Cost estimator (Indonesian)', proyek: 'For businesses & projects', beranda: 'Atapura, home' }
-  : { perusahaan: 'Untuk perusahaan', wa: 'Chat WhatsApp', waPesan: 'Halo Atapura, saya mau tanya soal atap bitumen.', menu: 'Menu', tutup: 'Tutup', tutupLabel: 'Tutup menu', hitung: 'Hitung estimasi biaya', proyek: 'Untuk perusahaan & proyek', beranda: 'Atapura, ke beranda' };
+  ? { wa: 'Chat on WhatsApp', waPesan: 'Hi Atapura, I have a question about an asphalt shingle roof.', menu: 'Menu', tutup: 'Close', tutupLabel: 'Close menu', hitung: 'Cost estimator (Indonesian)', proyek: 'For businesses & projects', beranda: 'Atapura, home' }
+  : { wa: 'Chat WhatsApp', waPesan: 'Halo Atapura, saya mau tanya soal atap bitumen.', menu: 'Menu', tutup: 'Tutup', tutupLabel: 'Tutup menu', hitung: 'Hitung estimasi biaya', proyek: 'Untuk perusahaan & proyek', beranda: 'Atapura, ke beranda' };
 const menuId = [
+  { href: '/', label: 'Beranda' },
   { href: '/hitung', label: 'Hitung biaya' },
   { href: '/produk', label: 'Produk & layanan' },
   { href: '/cara-kerja', label: 'Cara kerja' },
   { href: '/garansi', label: 'Garansi' },
   { href: '/panduan', label: 'Artikel' },
+  { href: '/perusahaan', label: 'Untuk perusahaan' },
 ];
 const menu = lang === 'en' ? menuEn : menuId;
 // Menu HP: daftar lebih lengkap karena tidak ada navigasi lain di layar kecil.
 const menuHpId = [
+  { href: '/', label: 'Beranda' },
   { href: '/hitung', label: 'Hitung biaya' },
   { href: '/produk', label: 'Produk & layanan' },
   { href: '/cara-kerja', label: 'Cara kerja' },
@@ -48,6 +52,10 @@ const menuHpId = [
   { href: '/panduan', label: 'Artikel' },
 ];
 const menuHp = lang === 'en' ? menuEn : menuHpId;
+// Menu yang sedang dibuka: beranda hanya untuk '/', lainnya juga untuk halaman di bawahnya (/produk/cti → Produk).
+// Build berformat file: pathname bisa '/hitung.html' atau '/index.html', jadi akhiran dibuang dulu.
+const jalur = Astro.url.pathname.replace(/(\/index)?\.html$/, '').replace(/\/$/, '') || '/';
+const kini = (href: string) => (href === '/' ? jalur === '/' : jalur === href || jalur.startsWith(`${href}/`));
 ---
 
 {/* Lompat ke isi untuk pengguna keyboard & pembaca layar (DECISIONS 083): muncul hanya saat difokus. */}
@@ -56,9 +64,8 @@ const menuHp = lang === 'en' ? menuEn : menuHpId;
   <div class="wrap kepala-isi">
     <a href="/" class="merek-kata" aria-label={t.beranda}><Logo tinggi="1.3rem" /></a>
     <nav aria-label="Utama" class="kepala-nav">
-      {menu.map((m) => <a href={m.href}>{m.label}</a>)}
+      {menu.map((m) => <a href={m.href} aria-current={kini(m.href) ? 'page' : undefined}>{m.label}</a>)}
     </nav>
-    <a class="pill kepala-perusahaan" href="/perusahaan">{t.perusahaan}</a>
     <a class="pill kepala-wa" href={waLink(t.waPesan)} target="_blank" rel="noopener" data-wa="header">
       {t.wa}
     </a>
@@ -72,7 +79,7 @@ const menuHp = lang === 'en' ? menuEn : menuHpId;
   <div class="lembar-pegangan" aria-hidden="true"></div>
   <nav aria-label="Menu HP">
     <ul class="lembar-daftar">
-      {menuHp.map((m) => <li><a href={m.href} data-tutup-menu>{m.label}</a></li>)}
+      {menuHp.map((m) => <li><a href={m.href} data-tutup-menu aria-current={kini(m.href) ? 'page' : undefined}>{m.label}</a></li>)}
     </ul>
   </nav>
   <div class="lembar-aksi">
@@ -162,11 +169,15 @@ const menuHp = lang === 'en' ? menuEn : menuHpId;
   .kepala-isi { display: flex; align-items: center; gap: 2rem; min-height: 80px; }
   .merek-kata { display: inline-flex; align-items: center; min-height: 44px; color: inherit; filter: drop-shadow(0 1px 8px rgb(0 0 0 / 0.3)); }
   .kepala-nav { display: none; gap: 1.75rem; margin-left: auto; font-size: var(--fs-15); }
-  .kepala-nav a { color: inherit; text-decoration: none; padding-block: 0.6rem; opacity: 0.8; transition: opacity 200ms; }
+  .kepala-nav a { color: inherit; text-decoration: none; padding-block: 0.6rem; opacity: 0.8; transition: opacity 200ms; white-space: nowrap; }
   .kepala-nav a:hover { opacity: 1; }
-  .kepala-wa { margin-left: auto; min-height: 44px; padding-inline: 1.2rem; font-size: var(--fs-15); background: var(--color-pinus); color: var(--color-putih); }
+  /* Halaman aktif: teks penuh + titik kecil di bawahnya (acuan Novus/Logamax). */
+  .kepala-nav a { position: relative; }
+  .kepala-nav a[aria-current='page'] { opacity: 1; font-weight: 500; }
+  .kepala-nav a[aria-current='page']::after { content: ''; position: absolute; left: 50%; bottom: 0.1rem; width: 4px; height: 4px; margin-left: -2px; border-radius: 50%; background: currentColor; }
+  .lembar-daftar a[aria-current='page'] { color: var(--color-pinus); font-weight: 600; }
+  .kepala-wa { margin-left: auto; white-space: nowrap; min-height: 44px; padding-inline: 1.2rem; font-size: var(--fs-15); background: var(--color-pinus); color: var(--color-putih); }
   .kepala-wa:hover { background: var(--color-pinus-2); }
-  .kepala-perusahaan { display: none; min-height: 44px; padding-inline: 1.2rem; font-size: var(--fs-15); border: 1px solid currentColor; color: inherit; }
   .kepala-menu {
     display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px; padding: 0 1rem; margin-left: -1.25rem;
     border-radius: 999px; font-size: var(--fs-14); font-weight: 500; color: inherit; cursor: pointer;
@@ -211,8 +222,12 @@ const menuHp = lang === 'en' ? menuEn : menuHpId;
     .merek-kata { filter: none; }
     .kepala-nav { display: flex; }
     .kepala-wa { margin-left: 0; }
-    .kepala-perusahaan { display: inline-flex; }
-    .kepala-menu { display: none; }
+      .kepala-menu { display: none; }
+  }
+  /* Laptop kecil (1024–1199 px): tujuh tautan + tombol WA, jarak dirapatkan. */
+  @media (min-width: 64rem) and (max-width: 74.99rem) {
+    .kepala-isi { gap: 1.25rem; }
+    .kepala-nav { gap: 1rem; font-size: var(--fs-14); }
   }
 
   /* ── HP: kerangka aplikasi native (acuan iOS HIG) ──────────────────────────────────────────

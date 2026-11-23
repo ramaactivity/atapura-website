@@ -22,10 +22,13 @@
   /* Judul naik dari balik garis, baris demi baris. */
   .baris { display: block; clip-path: inset(-0.1em -0.6em -0.14em -0.1em); }
   .baris > span { display: block; animation: naik-baris 1100ms var(--ease-film) both; }
-  .baris:nth-child(2) > span { animation-delay: 120ms; }
+  .baris + .baris > span { animation-delay: 120ms; }
   @keyframes naik-baris { from { transform: translateY(105%); } }
 
   .hero-sub, .hitung-bar, .hero-alt { animation: muncul 1000ms var(--ease-film) 380ms both; }
+  .hero-h1-sub { animation: muncul 900ms var(--ease-film) both; }
+  .hero-aksi { animation: muncul 1000ms var(--ease-film) 480ms both; }
+  .hero-bukti { animation: muncul 1000ms var(--ease-film) 580ms both; }
   @keyframes muncul { from { opacity: 0; transform: translateY(14px); } }
 
   /* Kartu contoh Hitung AKAL: masuk setelah judul, lalu tiga contoh bergantian pelan (12 dtk per putaran). */

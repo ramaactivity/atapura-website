@@ -23,6 +23,7 @@ import { bisnis, waLink } from '../data/bisnis';
 import { tahap } from '../data/cara-kerja';
 import { bagianRentang, estimasiPublik, harga, rentangRangka, tanggalPanjang, type Merek } from '../data/harga';
 import LogoKlien from '../components/LogoKlien.astro';
+import { produk } from '../data/produk';
 
 // Kartu contoh hitungan di hero desktop: angka dihitung dari rumus yang sama dengan kalkulator (satu sumber).
 const contohHitung = ([['Rumah satu lantai', 90, 'Maxxi'], ['Rumah dua lantai', 120, 'CTI'], ['Villa', 180, 'Javabitumen']] as const).map(([jenis, luas, merek]) => {
@@ -30,7 +31,17 @@ const contohHitung = ([['Rumah satu lantai', 90, 'Maxxi'], ['Rumah dua lantai', 
   return { jenis, luas, merek, rp: bagianRentang(e.total[0], e.total[1]), hari: e.hari };
 });
 
-const panduanTerbaru = (await getCollection('panduan')).sort((a, b) => b.data.diperbarui.getTime() - a.data.diperbarui.getTime()).slice(0, 3);
+// Deret logo merek: file satu warna dari tools/logo/satu-warna.py. Tinggi diseimbangkan menurut rasio lebar
+// supaya logo lebar (Javabitumen, Tegola) tidak terlihat lebih besar dari logo ringkas (Maxxi, Victory).
+const fileLogo = import.meta.glob<{ default: ImageMetadata }>('../../assets/mitra/satu-warna/*.png', { eager: true });
+const urutan: readonly string[] = bisnis.merek;
+const logoMerek = produk.filter((p) => p.lini === 'atap').sort((a, b) => urutan.indexOf(a.nama) - urutan.indexOf(b.nama)).map((p) => {
+  const src = fileLogo[`../../assets/mitra/satu-warna/${p.slug}.png`].default;
+  return { slug: p.slug, nama: p.nama, src, tinggi: `${(1 / Math.sqrt(src.width / src.height / 3)).toFixed(3)}em` };
+});
+const hari120 = estimasiPublik(120, 'CTI').hari;
+
+const panduanTerbaru =(await getCollection('panduan')).sort((a, b) => b.data.diperbarui.getTime() - a.data.diperbarui.getTime()).slice(0, 3);
 
 const tanya = [
   {
@@ -99,21 +110,22 @@ const faqSchema = {
       <div class="hero-cahaya" aria-hidden="true"></div>
       <div class="wrap hero-isi">
         <h1 id="judul" class="hero-judul">
-          <span class="baris"><span>Atap yang masuk</span></span>
-          <span class="baris miring-hero"><span>AKAL.</span></span>
-          <span class="hero-h1-sub">Jasa pasang atap bitumen (genteng aspal) di Jabodetabek.</span>
+          <span class="hero-h1-sub">Jasa pasang genteng aspal · Jabodetabek</span>
+          <span class="baris"><span>Atap bitumen,</span></span>
+          <span class="baris hero-redup"><span>harga masuk <b class="hero-akal">akal.</b></span></span>
         </h1>
-        <p class="hero-sub">Maxxi, CTI, Javabitumen, Tegola, dan Victory. Harga terbuka sebelum Anda bicara dengan siapa pun.</p>
+        <p class="hero-sub">Estimasi biaya total untuk luas atap Anda keluar dalam satu menit, lengkap dengan rinciannya. Survey dan ukur di lokasi gratis.</p>
         <div class="hero-aksi">
           <a href="/hitung" class="pill hero-utama">Hitung estimasi biaya</a>
-          <a href="/perusahaan" class="pill pill-garis hero-kedua">Untuk perusahaan &amp; proyek</a>
         </div>
         <ul class="hero-bukti" aria-label="Jaminan">
-          <li>Survey gratis</li>
-          <li>Garansi {bisnis.garansiPemasanganTahun} tahun</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 15.5 15.5 3l5.5 5.5L8.5 21z" /><path d="m7 11.5 2 2M10 8.5l2 2M13 5.5l2 2" /></svg><span>Survey <span class="hb-panjang">&amp; ukur </span>gratis</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 5.8v5.6c0 4.3 2.9 7.9 7 9.6 4.1-1.7 7-5.3 7-9.6V5.8z" /><path d="m9 12 2.1 2.1L15.2 10" /></svg><span>Garansi <span class="hb-panjang">pemasangan </span>{bisnis.garansiPemasanganTahun} tahun</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2.2l1.6-2.5h5.4L16.3 7h2.2A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5z" /><circle cx="12" cy="12.8" r="3.3" /></svg><span>Tiap lapis difoto</span></li>
         </ul>
       </div>
-      <a class="hero-kartu" href="/hitung" aria-label="Contoh hasil Hitung AKAL. Hitung biaya atap Anda">
+      <!-- Contoh hasil saja (bukti harga terbuka), bukan tombol: hero cukup satu ajakan (Rama, 23 Nov 2026). -->
+      <aside class="hero-kartu" aria-label="Contoh hasil Hitung AKAL">
         <span class="hk-label">Contoh Hitung AKAL</span>
         <span class="hk-putar">
           {contohHitung.map((c) => (
@@ -124,34 +136,30 @@ const faqSchema = {
             </span>
           ))}
         </span>
-        <span class="hk-aksi">Hitung atap Anda <span aria-hidden="true">→</span></span>
-      </a>
+      </aside>
       <p class="ilustrasi">Ilustrasi, bukan proyek Atapura</p>
     </section>
 
-    <section class="bukti" aria-label="Fakta Atapura">
+    <section class="bukti" aria-label="Merek dan fakta Atapura">
       <div class="wrap">
-        <!-- HP: 2×2 angka. Desktop ≥64rem: bento, tiap kotak membawa gambaran kecil (.bv) dari isinya. -->
+        <!-- Deret logo merek (satu warna, DECISIONS 085) lalu baris angka bergaris pemisah (acuan Banklio/Redow). -->
+        <div class="merek-deret">
+          <p class="merek-label">Merek yang kami pasang</p>
+          <ul class="merek-logo">
+            {logoMerek.map((l) => (
+              <li>
+                <a href={`/produk/${l.slug}`} aria-label={`Atap bitumen ${l.nama}`} style={`--h: ${l.tinggi}`}>
+                  <Image src={l.src} alt={l.nama} height={112} densities={[1]} loading="lazy" />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
         <ul class="bukti-daftar">
-          <li class="bk-merek">
-            <b>{bisnis.merek.length} merek</b><span class="bk-hp">{bisnis.merek.join(', ')}</span><span class="bk-desktop">yang kami pasang, saran tanpa memihak</span>
-            <span class="bv bv-merek" aria-hidden="true">{bisnis.merek.map((m) => <em>{m}</em>)}</span>
-          </li>
-          <li class="bk-kota">
-            <b>{bisnis.area.length} kota</b><span>dan kabupaten Jabodetabek</span>
-            <span class="bv bv-kota" aria-hidden="true">{bisnis.area.map((a) => <em>{a}</em>)}</span>
-          </li>
-          <li class="bk-survey">
-            <b>Gratis</b><span>survey &amp; ukur di lokasi</span>
-            <span class="bv bv-meteran" aria-hidden="true"><i></i></span>
-          </li>
-          <li class="bk-garansi">
-            <b>{bisnis.garansiPemasanganTahun} tahun</b><span>garansi pemasangan tertulis<span class="bk-tambah">, terpisah dari garansi pabrik</span></span>
-            <span class="bv bv-tahun" aria-hidden="true">
-              {Array.from({ length: bisnis.garansiPemasanganTahun ?? 0 }, (_, i) => <i><em>Th {i + 1}</em></i>)}
-              <small>Dihitung sejak serah terima</small>
-            </span>
-          </li>
+          <li><b>{bisnis.garansiPemasanganTahun} tahun</b><span>garansi pemasangan tertulis</span></li>
+          <li><b>{bisnis.area.length} kota</b><span>dan kabupaten Jabodetabek</span></li>
+          <li><b>Gratis</b><span>survey &amp; ukur di lokasi</span></li>
+          <li><b>±<span class="angka">{hari120[0]}–{hari120[1]}</span> hari</b><span>kerja untuk atap 120 m²</span></li>
         </ul>
       </div>
     </section>
@@ -491,18 +499,6 @@ const faqSchema = {
     document.querySelectorAll('.bukti-daftar b').forEach((b) => io.observe(b));
   }
 
-  // Bento bukti desktop: ruas garansi & pita meteran terisi sekali saat kotaknya terlihat.
-  {
-    const ul = document.querySelector('.bukti-daftar');
-    if (ul && matchMedia('(min-width: 64rem) and (prefers-reduced-motion: no-preference)').matches) {
-      ul.classList.add('bukti-gerak');
-      const io = new IntersectionObserver((es) => es.forEach((e) => {
-        if (e.isIntersecting) { e.target.classList.add('tampak'); io.unobserve(e.target); }
-      }), { threshold: 0.5 });
-      ul.querySelectorAll('.bk-garansi, .bk-survey').forEach((li) => io.observe(li));
-    }
-  }
-
   // Kalimat pernyataan menebal kata demi kata mengikuti gulir (referensi Framer "Perform").
   for (const p of document.querySelectorAll<HTMLElement>('[data-ungkap]')) {
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) break;
@@ -534,8 +530,10 @@ const faqSchema = {
   .c-pinus { background: var(--color-pinus); }
   .terang { color: var(--color-tinta); }
   .gelap { color: var(--color-embun); }
-  .judul-2 { font-size: clamp(2.1rem, 1.3rem + 3vw, 4rem); font-weight: 500; max-width: 18ch; }
-  .lead { font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem); line-height: 1.5; max-width: 40ch; color: var(--color-lumut); }
+  /* Skala judul beranda (DECISIONS 085, acuan referensi Rama): hero ±59 px di 1230 px, judul bagian ±39 px (rasio ±1,5),
+     penutup di antaranya. Tidak ada judul bagian yang lebih besar dari hero. */
+  .judul-2 { font-size: clamp(1.9rem, 0.8rem + 2.1vw, 3rem); font-weight: 500; letter-spacing: -0.035em; line-height: 1.08; max-width: 20ch; }
+  .lead { font-size: var(--fs-18); line-height: 1.55; max-width: 44ch; color: var(--color-lumut); }
   .gelap .lead { color: var(--embun-redup); }
   .kepala { display: grid; gap: 1.5rem 4rem; grid-template-columns: minmax(0, 1fr); margin-bottom: clamp(2.5rem, 5vw, 4rem); }
   @media (min-width: 60rem) { .kepala { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); align-items: end; } }
@@ -548,86 +546,67 @@ const faqSchema = {
   :global(.hero-foto) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 40%; z-index: -2; }
   .hero::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgb(10 20 16 / 0.92) 0%, rgb(10 20 16 / 0.68) 45%, transparent 75%); }
   .hero-isi { width: 100%; padding-bottom: clamp(2.5rem, 6vh, 4rem); color: var(--color-putih); }
-  .hero-judul { display: flex; flex-direction: column; font-size: clamp(3.2rem, 1.4rem + 7vw, 7rem); line-height: 0.92; letter-spacing: -0.04em; font-weight: 500; max-width: 7.5ch; }
-  .miring-hero { color: var(--color-tunas); }
-  @media (min-width: 64rem) { .miring-hero { color: inherit; } }
-  .hero-h1-sub { display: block; margin-top: 1.4rem; font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem); line-height: 1.45; letter-spacing: 0; font-weight: 500; max-width: 30ch; }
-  .hero-sub { margin-top: 0.4rem; max-width: 34ch; font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem); line-height: 1.5; }
+  /* Judul dua baris: "Atap bitumen," / "harga masuk akal." (baris kedua diredupkan; HP: "akal." Tunas). */
+  .hero-judul { display: flex; flex-direction: column; font-size: clamp(2.75rem, 0.9rem + 3.6vw, 5rem); line-height: 1; letter-spacing: -0.04em; font-weight: 500; }
+  /* Tablet & HP (teks putih di atas foto gelap): baris kedua putih redup, "akal." Tunas. */
+  .hero-redup { color: rgb(255 255 255 / 0.62); }
+  .hero-akal { font-weight: inherit; color: var(--color-tunas); }
+  /* Label di atas judul (tetap di dalam h1 untuk SEO): chip kaca kecil di desktop. */
+  .hero-h1-sub {
+    align-self: flex-start; display: inline-flex; align-items: center; gap: 0.6rem; margin-bottom: 1.25rem; padding: 0.5rem 1rem 0.5rem 0.85rem;
+    border-radius: 999px; font-size: var(--fs-14); font-weight: 500; line-height: 1.2; letter-spacing: 0;
+    background: rgb(255 255 255 / 0.12); box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.22);
+  }
+  .hero-h1-sub::before { content: ''; flex: none; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .hero-sub { margin-top: 1.25rem; max-width: 40ch; font-size: var(--fs-18); line-height: 1.55; }
   .hero-aksi { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.6rem; }
   .hero-aksi .pill { min-height: 54px; padding-inline: 1.6rem; font-size: var(--fs-16); }
   .hero-utama { background: var(--color-tunas); color: var(--color-pinus); }
-  .hero-bukti { display: none; }
-  .hero-kedua { color: var(--color-putih); border-color: rgb(255 255 255 / 0.6); }
+  /* Tiga jaminan berikon di bawah tombol (acuan Logamax). */
+  .hero-bukti { display: flex; flex-wrap: wrap; gap: 0.6rem 1.5rem; margin-top: 1.75rem; }
+  .hero-bukti li { display: inline-flex; align-items: center; gap: 0.45rem; font-size: var(--fs-14); font-weight: 500; }
+  .hero-bukti svg { flex: none; width: 1.15rem; height: 1.15rem; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
   @media (min-width: 64rem) {
     .hero-utama { background: var(--color-pinus); color: var(--color-putih); }
-    .hero-kedua { color: var(--color-pinus); border-color: rgb(16 35 30 / 0.45); background: rgb(242 244 241 / 0.4); }
   }
   .ilustrasi { position: absolute; right: var(--gutter); bottom: 0.9rem; font-size: var(--fs-13); color: rgb(255 255 255 / 0.8); }
   @media (min-width: 64rem) {
-    .hero { align-items: center; }
-    .hero::before { background: linear-gradient(90deg, rgb(242 244 241 / 0.9) 0%, rgb(242 244 241 / 0.55) 34%, transparent 58%); }
-    .hero-isi { color: var(--color-pinus); padding-top: 96px; padding-bottom: 0; }
-    .hero-sub { color: var(--color-tinta); }
+    /* Hero sedikit di bawah satu layar supaya deret logo merek mengintip di layar pertama. */
+    .hero { align-items: center; min-height: calc(100svh - 5.5rem); }
+    .hero::before { background: linear-gradient(90deg, rgb(242 244 241 / 0.95) 0%, rgb(242 244 241 / 0.8) 40%, transparent 66%); }
+    .hero-isi { color: var(--color-pinus); padding-top: 96px; padding-bottom: 2rem; }
+    .baris { white-space: nowrap; }
+    .hero-redup { color: rgb(16 35 30 / 0.6); }
+    .hero-akal { color: inherit; }
+    .hero-h1-sub { background: rgb(255 255 255 / 0.55); box-shadow: inset 0 0 0 1px rgb(16 35 30 / 0.1); }
+    .hero-sub { color: var(--color-lumut); }
+    .hero-bukti { color: var(--color-tinta); }
     .ilustrasi { color: rgb(255 255 255 / 0.85); text-shadow: 0 1px 2px rgb(0 0 0 / 0.4); }
   }
 
-  /* Bukti: fakta yang bisa dicek */
+  /* Bukti: deret logo merek + baris angka. HP: logo dua baris di tengah, angka 2×2. */
   .bukti { background: var(--color-putih); border-bottom: 1px solid var(--color-garis); }
+  .merek-deret { display: grid; gap: 1rem; padding-block: 1.5rem 1.25rem; border-bottom: 1px solid var(--color-garis); }
+  .merek-label { font-size: var(--fs-14); font-weight: 500; color: var(--color-lumut); text-align: center; }
+  .merek-logo { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1rem 1.6rem; font-size: 1.6rem; }
+  .merek-logo a { display: flex; align-items: center; min-height: 44px; opacity: 0.78; transition: opacity 200ms; }
+  .merek-logo a:hover, .merek-logo a:focus-visible { opacity: 1; }
+  .merek-logo img { display: block; height: var(--h); width: auto; }
   .bukti-daftar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .bukti-daftar li { padding: 1.4rem 1rem 1.4rem 0; border-top: 1px solid var(--color-garis); }
   .bukti-daftar li:nth-child(-n+2) { border-top: 0; }
-  .bukti-daftar b { display: block; font-weight: 500; font-size: 1.6rem; letter-spacing: -0.04em; line-height: 1.05; }
-  .bukti-daftar span { font-size: var(--fs-14); color: var(--color-lumut); line-height: 1.4; display: block; margin-top: 0.2rem; }
-  .bukti-daftar .bk-desktop, .bukti-daftar .bv, .bukti-daftar .bk-tambah { display: none; }
-  /* Desktop: bento (acuan Lockeroom) — tiap kotak membawa gambaran kecil dari isinya, bukan ikon. */
+  .bukti-daftar b { display: block; font-weight: 500; font-size: 1.6rem; letter-spacing: -0.04em; line-height: 1.05; white-space: nowrap; }
+  .bukti-daftar li > span { font-size: var(--fs-14); color: var(--color-lumut); line-height: 1.4; display: block; margin-top: 0.2rem; }
+  /* Desktop: logo sebaris dengan labelnya, angka empat kolom dengan garis pemisah tegak. */
   @media (min-width: 64rem) {
-    .bukti { padding-block: clamp(1.5rem, 3vw, 2.5rem); border-bottom: 0; }
-    .bukti-daftar {
-      gap: 12px; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) minmax(0, 1fr);
-      grid-template-areas: 'garansi merek kota' 'garansi survey kota';
-    }
-    .bukti-daftar li { display: flex; flex-direction: column; border: 0; border-radius: 1.25rem; padding: 1.5rem; background: var(--color-embun); min-height: 12.5rem; }
-    .bukti-daftar b { font-size: 2rem; }
-    .bukti-daftar .bk-hp { display: none; }
-    .bukti-daftar .bk-desktop { display: block; }
-    .bukti-daftar .bk-tambah { display: inline; }
-    .bukti-daftar .bv { display: flex; margin-top: auto; padding-top: 1.25rem; }
-    .bk-merek { grid-area: merek; } .bk-kota { grid-area: kota; } .bk-survey { grid-area: survey; }
-    .bukti-daftar .bk-garansi { grid-area: garansi; background: var(--color-pinus); color: var(--color-embun); }
-    .bk-garansi b { font-size: clamp(4rem, 2rem + 3vw, 5.5rem); line-height: 0.95; letter-spacing: -0.05em; }
-    .bukti-daftar .bk-garansi > span:not(.bv) { color: var(--embun-redup); max-width: 22ch; }
-
-    /* Merek: tiga nama sebagai pill */
-    .bukti-daftar .bv-merek { flex-wrap: wrap; gap: 6px; }
-    .bv-merek em { font-style: normal; font-size: var(--fs-14); font-weight: 500; padding: 0.35rem 0.85rem; border-radius: 999px; background: var(--color-putih); box-shadow: inset 0 0 0 1px var(--color-garis); }
-
-    /* Kota: semua nama, dipisah titik tengah */
-    .bukti-daftar .bv-kota { display: block; font-size: var(--fs-13); line-height: 1.55; color: var(--color-lumut); }
-    .bv-kota em { font-style: normal; }
-    .bv-kota em:not(:last-child)::after { content: ' · '; opacity: 0.6; }
-
-    /* Survey: pita meteran */
-    .bukti-daftar .bv-meteran {
-      position: relative; height: 36px; border-radius: 6px; background-color: var(--color-putih); box-shadow: inset 0 0 0 1px var(--color-garis);
-      background-image:
-        repeating-linear-gradient(90deg, var(--color-lumut) 0 1px, transparent 1px 40px),
-        repeating-linear-gradient(90deg, var(--color-garis) 0 1px, transparent 1px 8px);
-      background-size: 100% 55%, 100% 30%; background-repeat: no-repeat; background-position: 8px 0, 8px 0;
-    }
-    .bv-meteran i { position: absolute; left: 8px; bottom: 6px; height: 3px; width: 64%; border-radius: 2px; background: var(--color-pinus); transform-origin: left; transition: transform 1200ms var(--ease-out); }
-
-    /* Garansi: lima tahun sebagai lima ruas */
-    .bukti-daftar .bv-tahun { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; }
-    .bv-tahun i { position: relative; display: block; height: 3.25rem; border-radius: 0.5rem; background: rgb(242 244 241 / 0.07); overflow: hidden; }
-    .bv-tahun i::before { content: ''; position: absolute; inset: 0; background: rgb(242 244 241 / 0.16); transform-origin: bottom; transition: transform 700ms var(--ease-out); }
-    .bv-tahun i:nth-child(2)::before { transition-delay: 120ms; } .bv-tahun i:nth-child(3)::before { transition-delay: 240ms; }
-    .bv-tahun i:nth-child(4)::before { transition-delay: 360ms; } .bv-tahun i:nth-child(5)::before { transition-delay: 480ms; }
-    .bv-tahun em { position: absolute; left: 0.55rem; bottom: 0.45rem; font-style: normal; font-size: var(--fs-13); color: var(--embun-redup); }
-    .bv-tahun small { grid-column: 1 / -1; margin-top: 0.5rem; font-size: var(--fs-13); color: rgb(242 244 241 / 0.6); }
-
-    /* Gerak (dipasang skrip hanya bila gerak tidak dikurangi): ruas & meteran terisi saat kotak terlihat. */
-    .bukti-gerak li:not(.tampak) .bv-tahun i::before { transform: scaleY(0); }
-    .bukti-gerak li:not(.tampak) .bv-meteran i { transform: scaleX(0); }
+    .merek-deret { grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 3rem; padding-block: 1.75rem; }
+    .merek-label { text-align: left; }
+    .merek-logo { justify-content: space-between; flex-wrap: nowrap; gap: 2rem; font-size: 1.9rem; }
+    .bukti-daftar { grid-template-columns: repeat(4, minmax(0, 1fr)); padding-block: 2.25rem 2.5rem; }
+    .bukti-daftar li, .bukti-daftar li:nth-child(-n+2) { border-top: 0; padding: 0.25rem 1.5rem; border-left: 1px solid var(--color-garis); }
+    .bukti-daftar li:first-child { border-left: 0; padding-left: 0; }
+    .bukti-daftar b { font-size: clamp(2.5rem, 1.2rem + 2.2vw, 3.5rem); line-height: 1; }
+    .bukti-daftar li > span { font-size: var(--fs-15); margin-top: 0.6rem; }
   }
 
   /* Kartu contoh Hitung AKAL di hero desktop (acuan Lupitor: kartu produk di atas foto). */
@@ -635,7 +614,7 @@ const faqSchema = {
   @media (min-width: 64rem) {
     .hero-kartu {
       position: absolute; right: var(--gutter); bottom: clamp(3rem, 9vh, 6rem); z-index: 2; isolation: isolate;
-      display: grid; gap: 0.3rem; width: 19.5rem; padding: 2.2rem 1.4rem 1.2rem; color: var(--color-tinta); text-decoration: none;
+      display: grid; gap: 0.3rem; width: 19.5rem; padding: 2.2rem 1.4rem 1.4rem; color: var(--color-tinta);
       filter: drop-shadow(0 26px 30px rgb(0 0 0 / 0.32)) drop-shadow(0 6px 10px rgb(0 0 0 / 0.16));
     }
     .hero-kartu::before {
@@ -650,13 +629,6 @@ const faqSchema = {
     .hk-angka { font-size: 2.1rem; font-weight: 500; letter-spacing: -0.035em; line-height: 1.1; }
     .hk-angka small { font-size: var(--fs-16); color: var(--color-lumut); letter-spacing: 0; }
     .hk-hari { font-size: var(--fs-14); color: var(--color-lumut); }
-    .hk-aksi {
-      display: flex; justify-content: space-between; margin-top: 0.8rem; padding-top: 0.8rem;
-      border-top: 1px dotted var(--color-garis); font-size: var(--fs-15); font-weight: 500; color: var(--color-pinus);
-    }
-    .hk-aksi span { transition: transform 300ms var(--ease-out); }
-    .hero-kartu:hover .hk-aksi span { transform: translateX(4px); }
-    .hero-kartu:focus-visible { outline: 2px solid var(--color-tunas); outline-offset: 4px; }
   }
 
   /* Layanan: bento campur foto, angka, ajakan */
@@ -698,7 +670,7 @@ const faqSchema = {
   /* Hujan: foto penuh + insight */
 
   /* Judul section besar: tipis, rapat, satu kata miring. */
-  .judul-besar { font-size: clamp(2.4rem, 1.2rem + 4.6vw, 5.4rem); font-weight: 500; letter-spacing: -0.04em; line-height: 0.98; max-width: 16ch; }
+  .judul-besar { font-size: clamp(1.9rem, 0.8rem + 2.1vw, 3rem); font-weight: 500; letter-spacing: -0.035em; line-height: 1.08; max-width: 20ch; }
 
   /* Anatomi: lembar gambar teknik di atas grid tipis. */
   .anatomi {
@@ -708,7 +680,7 @@ const faqSchema = {
     background-size: 48px 48px; background-position: -1px -1px;
   }
   .anatomi-kepala { display: grid; gap: 1.5rem 4rem; grid-template-columns: minmax(0, 1fr); }
-  @media (min-width: 60rem) { .anatomi-kepala { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: end; } }
+  @media (min-width: 60rem) { .anatomi-kepala { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: start; } }
   .anatomi-isi { display: grid; gap: 1rem; color: var(--color-lumut); }
   .lembar { position: relative; margin-top: clamp(3rem, 7vw, 6rem); padding-top: 1rem; }
   .lembar-sudut { position: absolute; inset: 0; pointer-events: none; }
@@ -752,8 +724,8 @@ const faqSchema = {
   .ds td { width: 27%; color: var(--color-tinta); }
   .ds thead th { padding-top: 1.5rem; padding-bottom: 1.75rem; }
   .ds-no { display: block; font-size: var(--fs-13); color: var(--color-lumut); margin-bottom: 0.4rem; }
-  .ds-merek { display: block; font-size: clamp(2rem, 1.2rem + 2.4vw, 3.4rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1; }
-  .ds-harga td { font-size: clamp(1.8rem, 1.2rem + 1.6vw, 2.6rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums lining-nums; }
+  .ds-merek { display: block; font-size: clamp(1.6rem, 1rem + 1.4vw, 2.4rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1; }
+  .ds-harga td { font-size: clamp(1.5rem, 1rem + 1.1vw, 2.1rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums lining-nums; }
   .harga-rp { font-size: max(var(--fs-13), 0.4em); letter-spacing: 0; vertical-align: 0.85em; margin-right: 0.15em; color: var(--color-lumut); }
   .harga-sat { font-size: max(var(--fs-13), 0.36em); letter-spacing: 0; margin-left: 0.35em; color: var(--color-lumut); }
   .ds-sd { color: var(--color-lumut); }
@@ -834,7 +806,7 @@ const faqSchema = {
   .penutup-latar :global(picture), .penutup-latar :global(img) { display: block; width: 100%; height: 100%; }
   :global(.penutup-foto) { object-fit: cover; object-position: 60% 50%; opacity: 0.85; }
   .penutup-isi { min-height: 92svh; display: grid; align-content: end; gap: 1.5rem; justify-items: start; padding-block: 6rem 4rem; }
-  .penutup-judul { font-size: clamp(2.8rem, 1rem + 7vw, 6.5rem); font-weight: 500; letter-spacing: -0.04em; line-height: 0.95; max-width: 11ch; text-shadow: 0 2px 30px rgb(0 0 0 / 0.35); }
+  .penutup-judul { font-size: clamp(2.25rem, 0.9rem + 3vw, 4rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1; max-width: 14ch; text-shadow: 0 2px 30px rgb(0 0 0 / 0.35); }
   .penutup-teks { max-width: 40ch; font-size: 1.15rem; line-height: 1.6; color: rgb(242 244 241 / 0.82); }
   .penutup-aksi { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.75rem; margin-top: 0.5rem; }
   .pill-terang { background: var(--color-embun); color: var(--color-pinus); min-height: 54px; padding-inline: 1.6rem; }
@@ -848,7 +820,7 @@ const faqSchema = {
     .penutup-isi { align-content: center; min-height: 100svh; padding-block: 8rem 6rem; }
   }
   .penutup-panduan { padding-bottom: clamp(4rem, 8vw, 7rem); }
-  .jurnal-judul { padding-top: clamp(3rem, 6vw, 5rem); border-top: 1px solid rgb(242 244 241 / 0.14); font-size: clamp(2rem, 1.2rem + 2.6vw, 3.4rem); font-weight: 500; letter-spacing: -0.04em; margin-bottom: 2.5rem; }
+  .jurnal-judul { padding-top: clamp(3rem, 6vw, 5rem); border-top: 1px solid rgb(242 244 241 / 0.14); font-size: clamp(1.9rem, 0.8rem + 2.1vw, 3rem); font-weight: 500; letter-spacing: -0.04em; margin-bottom: 2.5rem; }
   .jurnal { display: grid; }
   .jurnal-item { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; padding-block: 1.75rem; border-bottom: 1px solid rgb(242 244 241 / 0.1); color: inherit; text-decoration: none; }
   .jurnal li:first-child .jurnal-item { padding-top: 0; }
@@ -905,23 +877,23 @@ const faqSchema = {
         linear-gradient(0deg, rgb(10 20 16 / 0.96) 0%, rgb(10 20 16 / 0.82) 34%, rgb(10 20 16 / 0.25) 60%, transparent 78%);
     }
     .hero-isi { padding-bottom: 2.25rem; }
-    .hero-judul { max-width: none; font-size: 2.875rem; line-height: 0.94; letter-spacing: -0.045em; }
-    .hero-judul .baris { max-width: 8ch; }
+    .hero-judul { font-size: 2.75rem; line-height: 0.96; letter-spacing: -0.045em; }
     .hero-h1-sub {
-      order: -1; display: flex; align-items: flex-start; gap: 0.55rem; margin: 0 0 1rem; max-width: 34ch;
+      padding: 0; border-radius: 0; background: none; box-shadow: none;
+      order: -1; display: flex; align-items: flex-start; gap: 0.55rem; margin: 0 0 1rem;
       font-size: var(--fs-13); font-weight: 500; line-height: 1.35; letter-spacing: 0; color: rgb(255 255 255 / 0.82); text-wrap: balance;
     }
-    .hero-h1-sub::before { content: ''; flex: none; margin-top: 0.68em; width: 22px; height: 1px; background: var(--color-tunas); }
+    .hero-h1-sub::before { content: ''; flex: none; margin-top: 0.68em; width: 22px; height: 1px; border-radius: 0; background: var(--color-tunas); }
     .hero-sub { display: none; } /* HP: cukup label, judul, satu tombol (permintaan Rama); kalimatnya tetap di desktop */
     .hero-aksi { margin-top: 1.75rem; display: grid; gap: 0.25rem; }
     .hero-aksi .pill { min-height: 50px; font-size: var(--fs-16); }
     .hero-utama { box-shadow: 0 10px 28px -12px rgb(198 242 78 / 0.7); }
     .hero-utama::after { content: '→'; margin-left: 0.15rem; transition: transform 200ms var(--ease-out); }
     .hero-utama:active::after { transform: translateX(3px); }
-    .hero-kedua { min-height: var(--hp-tombol) !important; border: 0; background: none; font-size: var(--fs-14) !important; font-weight: 500; color: rgb(255 255 255 / 0.85); text-decoration: underline; text-underline-offset: 0.3em; text-decoration-color: rgb(255 255 255 / 0.35); }
     .hero-bukti { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.25rem 0.9rem; margin-top: 0.6rem; }
     .hero-bukti li { display: inline-flex; align-items: center; gap: 0.3rem; font-size: var(--fs-13); font-weight: 500; color: rgb(255 255 255 / 0.8); white-space: nowrap; }
-    .hero-bukti li::before { content: '✓'; color: var(--color-tunas); }
+    .hero-bukti svg { width: 0.95rem; height: 0.95rem; color: var(--color-tunas); stroke-width: 1.9; }
+    .hb-panjang { display: none; }
     .ilustrasi { bottom: auto; top: calc(64px + env(safe-area-inset-top)); right: var(--gutter); font-size: var(--fs-13); opacity: 0.7; }
 
     .kartu { padding: 1.1rem; min-height: 0; border-radius: 16px; }
@@ -962,7 +934,7 @@ const faqSchema = {
     .bukti-daftar li { padding: 1.1rem 0.75rem 1.1rem 0; border-top: 1px solid var(--color-garis); }
     .bukti-daftar li:nth-child(-n+2) { border-top: 0; }
     .bukti-daftar b { font-size: 2rem; font-variant-numeric: tabular-nums; }
-    .bukti-daftar span { font-size: var(--fs-13); }
+    .bukti-daftar li > span { font-size: var(--fs-13); }
     /* Kalimat pernyataan lebih besar supaya efek menebal terasa. */
     .teks-ungkap { font-size: var(--hp-t3); line-height: 1.4; font-weight: 500; letter-spacing: -0.015em; color: var(--color-tinta); }
     /* Tombol utama: teks kiri, panah dalam bulatan di kanan (pola aplikasi). */

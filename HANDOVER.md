@@ -21,6 +21,8 @@
   ✅ Klik WhatsApp tercatat (079): `data-wa` → /api/kunjungan → Ops `website_events`, tampil di Ops Lainnya → Pengunjung.
   ✅ 15 temuan audit kode selesai (079–084): klik WA, kotak "Layanan di {kota}" + CTA /area, tanggal harga & lama pasang di
   merek, label Ilustrasi sampul, /panduan per kategori, 404 berkerangka, catatan warna brosur CTI, Langsung ke isi, tablet bento.
+  ✅ Hero beranda dirombak (085, masukan Rama + referensi-2): judul "Atap bitumen, harga masuk akal.", satu ajakan, Beranda
+  di menu, deret logo merek satu warna + baris angka, skala judul dari referensi. Bagian lain beranda belum dibahas Rama.
   ⏳ Sisa audit di luar kode: Google Business Profile, direktori, ulasan,
   proyek pertama + Rapor asli. Isi NIB/NPWP di bisnis.ts
   begitu akta PT terbit (otomatis tampil di /tentang & /perusahaan). Temuan lama cek.mjs di artikel

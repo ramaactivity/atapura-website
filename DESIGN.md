@@ -200,7 +200,7 @@ Yang ditolak secara visual: pola kontraktor standar (foto rumah stok + kartu iko
 Palet hijau hutan yang tenang dengan latar terang sedikit kehijauan, ditusuk satu lime yang dipakai seperti stabilo.
 
 ### Primary
-- **Tunas** (lime): satu-satunya aksen. Hanya untuk aksi utama (tombol "Kirim ke WhatsApp", "Hitung estimasi biaya", tombol WA melayang), jempol slider, garis chevron di hero (opasitas 55%), nomor lapis yang aktif, sorotan seleksi teks, cincin fokus, dan satu kata di atas latar gelap ("AKAL."). Teks di atasnya selalu Pinus.
+- **Tunas** (lime): satu-satunya aksen. Hanya untuk aksi utama (tombol "Kirim ke WhatsApp", "Hitung estimasi biaya", tombol WA melayang), jempol slider, garis chevron di hero (opasitas 55%), nomor lapis yang aktif, sorotan seleksi teks, cincin fokus, dan satu kata di atas latar gelap ("akal." di hero HP). Teks di atasnya selalu Pinus.
 - **Tunas hover**: Tunas yang sedikit lebih terang, hanya untuk hover tombol utama.
 - **Tunas pucat**: latar chip penanda di bidang terang (penanda "contoh" pada harga uji).
 
@@ -231,12 +231,12 @@ Palet hijau hutan yang tenang dengan latar terang sedikit kehijauan, ditusuk sat
 
 **Larangan:** SF Pro tidak boleh dipasang sebagai font web (lisensi Apple: hanya untuk mock-up aplikasi di platform Apple, dilarang untuk "website content" dan embed). Jangan menambah font ketiga.
 
-**Character:** Gaya askmidnight.com: judul bobot 500 dengan tracking -0.04em, isi 400, label/nama 500. Tanpa italic; penekanan bagian kalimat lewat warna diredupkan (`.miring` = opacity 0.55), atau Tunas untuk "AKAL." di hero HP. Angka di kolom harga tabular; angka besar kalkulator proporsional dengan "Rp" & satuan mengecil.
+**Character:** Gaya askmidnight.com: judul bobot 500 dengan tracking -0.04em, isi 400, label/nama 500. Tanpa italic; penekanan bagian kalimat lewat warna diredupkan (`.miring` = opacity 0.55), atau Tunas untuk "akal." di hero HP. Angka di kolom harga tabular; angka besar kalkulator proporsional dengan "Rp" & satuan mengecil.
 
 ### Hierarchy
 Diperbarui 23 Nov 2026 (DECISIONS 076) mengikuti situs yang tayang.
-- **Display** (Public Sans 500, tracking -0.04em, clamp ±3.2rem sampai 7rem, line-height ±0.92–1.02): judul hero dan judul halaman dalam (`clamp(2.25rem, …, 3.75rem)`). Satu frasa diredupkan (opacity 0.55).
-- **Headline** (Public Sans 500, tracking -0.035em, clamp ±1.6rem sampai 4rem): judul bagian. HP: `--hp-t1` (26 px).
+- **Display** (Public Sans 500, tracking -0.04em, line-height 1): judul hero beranda `clamp(2.75rem, 0.9rem + 3.6vw, 5rem)` (±59 px di 1230 px, 44 px di HP), dua baris, baris kedua diredupkan. Judul halaman dalam `clamp(2.25rem, …, 3.75rem)`. Judul penutup beranda `clamp(2.25rem, 0.9rem + 3vw, 4rem)`. Tidak ada judul bagian yang lebih besar dari judul hero (DECISIONS 085).
+- **Headline** (Public Sans 500, tracking -0.035em, line-height 1.08, maks 20ch): judul bagian beranda `clamp(1.9rem, 0.8rem + 2.1vw, 3rem)` (±39 px di 1230 px; rasio ±1,5 terhadap hero, mengikuti referensi Rama). HP: `--hp-t1` (26 px). Pengantar (`.lead`, sub hero) `--fs-18`, Lumut, baris 1,55, maks 44ch.
 - **Title** (Public Sans 500, 1.15–1.35rem): judul kartu, baris daftar, nama merek. HP: `--hp-t2`–`--hp-t4`.
 - **Teks kecil–sedang = token** di `global.css`: `--fs-13` label & keterangan (lantai), `--fs-14` catatan/kaki, `--fs-15` isi ringkas & kartu, `--fs-16` isi, `--fs-17` isi baca & label kontrol, `--fs-18` pengantar kecil. Jangan menulis rem lepas di bawah 1.15rem; pakai token.
 - **Isi**: HP 15–16 px (register ringkas, selera Rama dari Ops), laptop 16–18 px; jawaban tanya-jawab maks 62ch.
@@ -260,7 +260,7 @@ Lebar penuh dengan gutter cair (20px sampai 72px), kontainer maks 90rem, dan kon
 
 **Tata baris genteng.** Tiap section adalah satu "course": padding atas dan bawah = overlap (28px sampai 48px) + jarak section (56px sampai 112px), margin bawah negatif sebesar overlap, sehingga course di bawahnya terselip di bawah course di atasnya. Urutan tumpukan menurun dari atas ke bawah (z-index 7 sampai 1). Latar course bergantian: Pinus (hero) → Embun → Putih → Pinus → Embun → Putih → Pinus 2 → footer Pinus.
 
-**Hero.** HP: judul, lalu slip kalkulator, angka estimasi terlihat tanpa scroll. Desktop (≥64rem): grid 1.25fr / 1fr rata bawah, tinggi min(100svh, 980px), slip di kanan menjorok keluar ke course berikutnya (margin bawah negatif overlap + 4rem).
+**Hero.** Satu ajakan saja (Rama, 23 Nov 2026): label kecil (di dalam h1 untuk SEO; chip kaca di desktop, garis Tunas di HP) → judul dua baris → kalimat pengantar (desktop saja) → satu tombol "Hitung estimasi biaya" → tiga jaminan berikon (Survey & ukur gratis, Garansi pemasangan 5 tahun, Tiap lapis difoto). Kartu contoh Hitung AKAL hanya informasi, bukan tautan. Desktop (≥64rem): tinggi `calc(100svh - 5.5rem)` supaya deret logo merek mengintip di layar pertama; tabir terang dari kiri (95% → 80% di 40% → transparan 66%).
 
 **Section dua kolom.** Mulai 60rem, judul di kiri dan isi di kanan dengan jarak kolom 4rem; di tanya-jawab judulnya menempel (sticky). Di bawah 60rem semua satu kolom `minmax(0, 1fr)`.
 
@@ -340,7 +340,7 @@ Semua custom, tidak ada kontrol native.
 
 ### Navigation
 - Header transparan di atas hero, teks Embun. Wordmark "Atapura" 760 1.3rem tracking -0.035em (sementara, sampai logo resmi ada).
-- Menu 0.95rem warna Embun redup, hover Embun; tampil mulai 64rem. Di HP hanya wordmark + tombol outline "Chat WhatsApp".
+- Menu desktop: Beranda · Hitung biaya · Produk & layanan · Cara kerja · Garansi · Artikel · Untuk perusahaan (tautan teks, tanpa pill) + satu pill "Chat WhatsApp". Halaman aktif = teks penuh 500 + titik 4px di bawahnya (`aria-current`). 1024–1199 px: jarak 1rem, huruf 14 px. Tampil mulai 64rem; HP memakai tombol Menu + bilah tab bawah.
 - Footer Pinus: tiga kolom mulai 48rem, judul kolom 650, isi Embun redup, baris kaki 0.8rem Embun 60% dengan garis atas Embun 14%.
 
 ### Rincian bertitik (signature)
@@ -349,14 +349,14 @@ Daftar `dt`/`dd`: nama pos Lumut di kiri, angka berat 600 di kanan, dihubungkan 
 ### Penampang lima lapis (signature)
 Diagram SVG lapisan atap + daftar tombol bernomor. Memilih satu lapis mengangkat lapis itu 22px dan memberinya garis Tunas, lapis lain meredup ke 15%. Nomor lapis: lingkaran 2.25rem bergaris Garis; aktif = Pinus dengan angka Tunas; baris aktif berlatar Putih radius 1rem.
 
-### Bento bukti (desktop)
-Grid 4 kolom × 2 baris (`garansi merek kota rekening / garansi kontrak survey rekening`), kotak Embun radius 1.25rem, garansi di Pinus. Tiap kotak membawa gambaran kecil dari isinya (bukan ikon): kertas kontrak, pill merek, daftar kota, pita meteran, ruas tahun garansi, kartu rekening. Ruas & meteran terisi sekali saat terlihat (hanya bila gerak tidak dikurangi; bawaan = sudah terisi). HP tetap 2×2 angka.
+### Deret merek + baris angka (di bawah hero)
+Menggantikan bento bukti (DECISIONS 085). Baris atas: label "Merek yang kami pasang" + lima logo satu warna Pinus (opasitas 78%, penuh saat disorot), masing-masing menaut ke `/produk/<merek>`. Tinggi logo diseimbangkan menurut rasio lebarnya (`1 / √(rasio/3)` em) supaya logo lebar tidak terlihat lebih besar. File dari `tools/logo/satu-warna.py` (bagian putih di logo berwarna dilubangi; logo putih Javabitumen dipakai bentuk aslinya). Garis 1px, lalu empat angka (5 tahun, 13 kota, Gratis, ±4–5 hari) dengan garis pemisah tegak di desktop; HP 2×2 dan logo dua baris di tengah.
 
 ### Garis denah
 `.denah` (global.css, ≥64rem): garis 1px Lumut 20% selebar layar di atas/bawah konten, garis tegak 1.5rem di luar tepi konten, tanda "+" 13px di keempat sudut. Hanya untuk bidang terang yang berisi data (Merek, Rapor). Lapisan punya bahasa gambar teknik sendiri.
 
 ### Kartu contoh Hitung AKAL (hero desktop)
-Slip putih kecil bertepi chevron di kanan bawah hero, tiga contoh dari `estimasiPublik` bergantian 12 dtk (fade + blur 4px), menaut ke #hitung. Diam di contoh pertama bila gerak dikurangi.
+Slip putih kecil bertepi chevron di kanan bawah hero, tiga contoh dari `estimasiPublik` bergantian 12 dtk (fade + blur 4px). Bukan tautan (hero cukup satu ajakan). Diam di contoh pertama bila gerak dikurangi.
 
 ### Wordmark footer & logo klien
 Footer ditutup logo resmi selebar konten (komponen Logo, Embun). Deretan "Dipercaya oleh" (LogoKlien) hanya tampil bila `src/data/klien.ts` berisi logo asli; logo abu 60%, ≥5 logo berjalan 40 dtk.

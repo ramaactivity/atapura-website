@@ -13,6 +13,8 @@ berdampingan); latar putih Maxxi dihapus di Magnific. Hi-Steel memang berbentuk 
 - K-Steel, Alphaproof, Bitumax — tidak ada file logo yang bersih di internet (20 Nov 2026, hanya foto kemasan di marketplace); minta ke pemasok.
 
 Aturan (DESIGN.md): logo mitra hanya versi resmi dan utuh, kecil, tidak diwarnai ulang atau digabung.
+Pengecualian: `satu-warna/` = versi satu warna Pinus untuk deret "Merek yang kami pasang" di beranda (DECISIONS 085),
+dibuat ulang dengan `python3 tools/logo/satu-warna.py` setiap kali file logo di atas diganti.
 Ganti dengan file yang dikirim Bang Yusuf/pabrikan bila tersedia (biasanya lebih tajam dan bervektor).
 
 ZIP unduhan /branding: `public/brand/logo-mitra.zip` (salinan file di atas dengan nama `logo-<merek>.png`). Buat ulang bila logo berubah.

@@ -588,3 +588,30 @@ Audit 23 Nov: di tablet 768 px kartu layanan beranda jadi satu kolom foto seleba
 16.680 px. Halaman lain dicek di 768 px (produk, panduan, area, tentang, merek, cara kerja): sudah dua kolom atau satu kolom yang
 memang sempit, tidak diubah. Angka bilah bukti di tangkapan layar sempat terbaca "3 merek / 3 tahun": itu animasi hitung naik
 yang tertangkap di tengah jalan; HTML-nya 5 merek, 13 kota, 5 tahun.
+
+## 085 · 23 November 2026 · Hero beranda dirombak: satu ajakan, logo merek, skala judul dari referensi
+Masukan Rama dengan 11 referensi (Banklio, Redow, SecureHome, Grow+, Novus, Optibiz, Aurel, Logamax, Forma Casa, konsultan
+keuangan; semua di `docs/desain/referensi-2/`): teks hero perlu ditulis ulang, nama merek diganti logo, menu belum punya
+Beranda, terlalu banyak tombol, tipografi diambil dari referensi.
+- **Judul** (pilihan Rama): "Atap bitumen, harga masuk akal." Huruf kecil, bukan "AKAL", karena huruf besar semua terasa
+  berteriak, lebih lebar, dan memotong kalimat (masukan Rama). Label di atas judul "Jasa pasang genteng aspal · Jabodetabek"
+  tetap di dalam h1, jadi h1 memuat "atap bitumen", "genteng aspal", dan "Jabodetabek". Kalimat pengantar menjawab "kenapa
+  masuk akal": estimasi total satu menit + rincian, survey & ukur gratis. Tagline lama "Atap yang masuk AKAL." tetap di bagian
+  AKAL.
+- **Satu ajakan**: hero hanya punya "Hitung estimasi biaya". Tombol "Untuk perusahaan & proyek" dihapus dari hero (HP juga),
+  kartu contoh Hitung AKAL jadi informasi (bukan tautan, baris "Hitung atap Anda →" dihapus), dan di header "Untuk perusahaan"
+  jadi tautan teks di menu, jadi pill di header tinggal "Chat WhatsApp".
+- **Menu**: Beranda ditambahkan (desktop & menu HP); halaman aktif ditandai titik kecil (`aria-current`). Path build berformat
+  file (`/hitung.html`) dinormalkan dulu.
+- **Logo merek**: deret "Merek yang kami pasang" tepat di bawah hero (mengintip di layar pertama laptop), lima logo **satu
+  warna** (pilihan Rama dari dua opsi; warna asli dinilai terlalu ramai), menaut ke halaman merek. Dibuat dari file resmi oleh
+  `tools/logo/satu-warna.py`: bentuk tidak diubah, bagian putih di logo berwarna dilubangi. Ini pengecualian sadar atas aturan
+  "logo tidak diwarnai ulang" di `assets/mitra/README.md`, khusus deret ini.
+- **Bento bukti → baris angka** (pilihan Rama): 5 tahun garansi · 13 kota · survey gratis · ±4–5 hari kerja untuk 120 m²
+  (dari `estimasiPublik`, satu sumber). "5 merek" tidak ditulis lagi karena logonya sudah tampil.
+- **Tipografi** (skill hierarchy-and-scale): judul bagian beranda sebelumnya ±76 px dan penutup sampai 104 px, lebih besar
+  dari judul hero. Diukur dari referensi: hero ±1,5–2× judul bagian, pengantar 17–18 px abu. Kini hero ±59 px, judul bagian
+  ±39 px, penutup ±51 px (laptop 1230 px), pengantar `--fs-18` Lumut; nama merek, angka harga, dan judul tahap Cara kerja
+  diturunkan ke tingkat kartu. HP tidak berubah (sudah bertoken `--hp-t1`). Judul "Atap bocor lagi" kini rata atas.
+- Animasi pembuka desktop: urutan naik baris judul dibetulkan (`.baris + .baris`, sebelumnya `nth-child(2)` meleset karena
+  label kini anak pertama h1); label, tombol, dan jaminan ikut muncul halus.
