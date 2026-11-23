@@ -2,8 +2,8 @@
 
 - **atapura.com LIVE 23 Nov 2026**: dibeli Rama di Hostinger (hPanel, nameserver bawaan dns-parking.com). DNS: A `@`
   216.198.79.1 (TTL 3600), CNAME `www` → atapura.com (ikut ke IP Vercel; Vercel verified). Sertifikat HTTPS diterbitkan manual
-  via API `POST /v8/certs` (autoRenew). `https://atapura.com` 200, `www` 308 → apex. Masih noindex (`bisnis.konsep = true`) —
-  buka untuk Google + Search Console menunggu keputusan Rama.
+  via API `POST /v8/certs` (autoRenew). `https://atapura.com` 200, `www` 308 → apex. Dibuka untuk Google 23 Nov (DECISIONS 070,
+  `bisnis.konsep = false`). Berikutnya: Search Console (properti Domain, verifikasi TXT di Hostinger) + kirim sitemap.
 
 - **Audit menyeluruh 23 Nov 2026** → `docs/riset/audit-website-2026-11-23.md` (SEO/GEO, customer, owner, desain,
   tipografi, developer, HP vs desktop). P0: ~~atapura.com belum terdaftar~~ (live 23 Nov), situs noindex,

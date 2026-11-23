@@ -433,3 +433,9 @@ ke `/api/kunjungan` (path, referrer, utm_source) — tidak jalan di /internal, l
 (`navigator.webdriver`, jadi uji Playwright/Lighthouse tidak terhitung). `api/kunjungan.mjs` (Vercel Function, pola kirim-lead
 DECISIONS 068): wajib Origin situs sendiri, tambah kota/negara dari header Vercel, IP + browser → kode acak harian sha256
 (IP tidak disimpan/diteruskan), teruskan ke Ops dengan LEAD_SECRET yang sudah ada. Tanpa cookie, tanpa banner izin.
+
+## 070 · 23 November 2026 · Situs keluar dari mode konsep, dibuka untuk Google & AI
+atapura.com live (Hostinger DNS → Vercel), lalu Rama memutuskan "buka untuk Google". `bisnis.konsep = false`: meta robots
+noindex hilang dari halaman publik dan robots.txt jadi `Allow: /` + `Sitemap`. Halaman `/internal/*` tetap noindex lewat prop
+`noindex` di Base.astro. Konsekuensi: angka harga, termin, dan garansi di situs kini bisa dikutip Google/AI sebagai klaim
+Atapura — ubah di sumbernya (Ops / bisnis.ts) kalau ada yang belum final. Balik ke `true` untuk menutup lagi.
