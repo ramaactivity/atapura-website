@@ -562,3 +562,11 @@ Audit 23 Nov: tanggal berlaku harga hanya ada di artikel harga & Hitung, tidak d
 ada di rangka. Slip harga halaman merek atap kini memuat baris "Lama pasang ±a–b m² per hari" (produktivitas Ops, sama dengan
 Hitung AKAL), contoh 100 m² ditambah perkiraan hari kerja, dan "Harga per {tanggal}" dari `harga.berlakuSejak`. /produk:
 pengantar menyebut tanggal berlaku harga. Rangka tetap memakai baris lama pasang di datanya sendiri.
+
+## 082 · 23 November 2026 · Label "Ilustrasi" di sampul; /panduan per kategori dengan chip lompat
+Audit 23 Nov: sampul artikel/area gambar AI tanpa keterangan terlihat (hanya alt); /panduan satu daftar ±12.000 px di HP.
+- Artikel.astro: sampul jadi `<figure>` dengan keterangan "Ilustrasi, bukan proyek Atapura." (Inggris: "Illustration, not an
+  Atapura project."), sama dengan galeri produk. Semua 48 sampul di konten berasal dari Magnific.
+- /panduan: artikel dikelompokkan per kategori (urutan Dasar, Biaya, Pemasangan, Perawatan, Perbandingan, Teknis, Proyek, Usaha),
+  chip lompat + jumlah di kartu pembuka (CSS chip dipindah ke global.css `.lompat`, dipakai juga /produk). Kartu unggulan
+  dihapus. HP: baris ringkas foto 96 px + judul + tanggal, ringkasan disembunyikan (tinggi halaman HP ±5.300 px).

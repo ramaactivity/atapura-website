@@ -35,8 +35,8 @@ interface Props {
 }
 
 const TEKS = {
-  id: { beranda: 'Beranda', remah: 'Remah roti', oleh: 'Oleh', diperbarui: 'Diperbarui', jawaban: 'Jawaban singkat', faq: 'Pertanyaan terkait', sumber: 'Sumber angka', ctaJudul: 'Hitung biaya untuk atap Anda.', ctaHitung: 'Buka Hitung AKAL', ctaWa: 'Tanya lewat WhatsApp', lain: 'Baca juga', locale: 'id-ID' },
-  en: { beranda: 'Home', remah: 'Breadcrumb', oleh: 'By', diperbarui: 'Updated', jawaban: 'Short answer', faq: 'Related questions', sumber: 'Sources', ctaJudul: 'Talk to us about your roof.', ctaHitung: 'Open the cost estimator (Indonesian)', ctaWa: 'Chat on WhatsApp', lain: 'Read next', locale: 'en-GB' },
+  id: { beranda: 'Beranda', remah: 'Remah roti', oleh: 'Oleh', diperbarui: 'Diperbarui', jawaban: 'Jawaban singkat', faq: 'Pertanyaan terkait', sumber: 'Sumber angka', ctaJudul: 'Hitung biaya untuk atap Anda.', ctaHitung: 'Buka Hitung AKAL', ctaWa: 'Tanya lewat WhatsApp', lain: 'Baca juga', ilustrasi: 'Ilustrasi, bukan proyek Atapura.', locale: 'id-ID' },
+  en: { beranda: 'Home', remah: 'Breadcrumb', oleh: 'By', diperbarui: 'Updated', jawaban: 'Short answer', faq: 'Related questions', sumber: 'Sources', ctaJudul: 'Talk to us about your roof.', ctaHitung: 'Open the cost estimator (Indonesian)', ctaWa: 'Chat on WhatsApp', lain: 'Read next', ilustrasi: 'Illustration, not an Atapura project.', locale: 'en-GB' },
 } as const;
 
 const {
@@ -76,9 +76,11 @@ const schema = [
         <h1 class="ar-judul">{judul}</h1>
         <p class="ar-meta">{t.oleh} {penulis}<span class="ar-pisah" aria-hidden="true"></span>{t.diperbarui} <time datetime={diperbarui.toISOString()}>{tgl(diperbarui)}</time></p>
       </header>
-      <div class="wrap">
+      {/* Semua sampul gambar AI (Magnific), jadi diberi keterangan terlihat, seperti galeri produk (DECISIONS 082). */}
+      <figure class="wrap">
         <Image src={sampul} alt={sampulAlt} widths={[640, 1024, 1600]} sizes="(min-width: 64rem) 1200px, 100vw" class="ar-sampul" loading="eager" />
-      </div>
+        <figcaption class="ar-sampul-ket">{t.ilustrasi}</figcaption>
+      </figure>
       <div class="wrap ar-badan">
         <aside class="ar-jawab" aria-label={t.jawaban}>
           <p class="ar-jawab-label">{t.jawaban}</p>
@@ -148,6 +150,7 @@ const schema = [
   .ar-meta { margin-top: 1.25rem; font-size: var(--fs-15); color: var(--color-lumut); display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }
   .ar-pisah { width: 18px; height: 1px; background: currentColor; }
   .ar-sampul { width: 100%; max-height: 34rem; object-fit: cover; border-radius: 18px; }
+  .ar-sampul-ket { margin-top: 0.55rem; font-size: var(--fs-13); color: var(--color-lumut); }
   /* Lebar penuh sejajar judul (DESIGN.md: tanpa kolom sempit di tengah). Mulai 60rem dua kolom:
      jawaban singkat menempel di kiri, isi di kanan dengan panjang baris tetap nyaman dibaca. */
   .ar-badan { padding-top: 3rem; display: grid; gap: 2.5rem 4rem; grid-template-columns: minmax(0, 1fr); align-items: start; }

@@ -15,6 +15,11 @@ const remah = {
     { '@type': 'ListItem', position: 2, name: 'Panduan', item: new URL('/panduan', Astro.site).href },
   ],
 };
+// Dikelompokkan per kategori + chip lompat (DECISIONS 082): dulu satu daftar ±12.000 px di HP. Urutan: yang ditanya duluan.
+const URUTAN = ['Dasar', 'Biaya', 'Pemasangan', 'Perawatan', 'Perbandingan', 'Teknis', 'Proyek', 'Usaha'];
+const kelompok = Object.entries(Object.groupBy(artikel, (a) => a.data.kategori))
+  .sort(([x], [y]) => (URUTAN.indexOf(x) + 1 || 99) - (URUTAN.indexOf(y) + 1 || 99))
+  .map(([k, isi]) => ({ k, id: `kategori-${k.toLowerCase()}`, isi: isi! }));
 const tgl = (d: Date) => d.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Asia/Jakarta' });
 ---
 
@@ -32,22 +37,29 @@ const tgl = (d: Date) => d.toLocaleDateString('id-ID', { day: 'numeric', month: 
         <h1 class="pd-judul">Panduan atap bitumen, <span class="redup">dijawab langsung.</span></h1>
         <p class="pd-lead">Pertanyaan yang biasa muncul sebelum mengganti atap: istilah, beban, cara pasang, biaya, dan perawatan. Setiap artikel dibuka dengan jawaban singkat. <a href="/en/guides" class="pd-en" hreflang="en" lang="en">Guides in English</a></p>
       </div>
+      <nav class="lompat" aria-label="Lompat ke kategori">
+        {kelompok.map((g) => <a href={`#${g.id}`}>{g.k}<span>{g.isi.length}</span></a>)}
+      </nav>
       </div>
-      <ul class="pd-daftar">
-        {artikel.map((a, i) => (
-          <li class:list={['pd-kartu', { 'pd-utama': i === 0 }]}>
-            <a href={`/panduan/${a.id}`} class="pd-tautan">
-              <Image src={a.data.sampul} alt={a.data.sampulAlt} widths={[480, 800, 1200]} sizes={i === 0 ? '(min-width: 64rem) 60vw, 100vw' : '(min-width: 64rem) 30vw, 100vw'} class="pd-foto" />
-              <span class="pd-isi">
-                <span class="pd-meta">{a.data.kategori}</span>
-                <span class="pd-kartu-judul">{a.data.judul}</span>
-                <span class="pd-ringkas">{a.data.ringkasan}</span>
-                <span class="pd-tgl">Diperbarui {tgl(a.data.diperbarui)}</span>
-              </span>
-            </a>
-          </li>
-        ))}
-      </ul>
+      {kelompok.map((g) => (
+        <section class="pd-grup" aria-labelledby={g.id}>
+          <h2 id={g.id} class="pd-h2">{g.k}</h2>
+          <ul class="pd-daftar">
+            {g.isi.map((a) => (
+              <li class="pd-kartu">
+                <a href={`/panduan/${a.id}`} class="pd-tautan">
+                  <Image src={a.data.sampul} alt="" widths={[200, 480, 800]} sizes="(min-width: 64rem) 30vw, (min-width: 48rem) 45vw, 96px" class="pd-foto" />
+                  <span class="pd-isi">
+                    <span class="pd-kartu-judul">{a.data.judul}</span>
+                    <span class="pd-ringkas">{a.data.ringkasan}</span>
+                    <span class="pd-tgl">Diperbarui {tgl(a.data.diperbarui)}</span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
     </div>
   </main>
   <Footer />
@@ -63,17 +75,16 @@ const tgl = (d: Date) => d.toLocaleDateString('id-ID', { day: 'numeric', month: 
   .redup { opacity: 0.55; }
   .pd-lead { font-size: 1.15rem; color: var(--color-lumut); max-width: 40ch; }
   .pd-en { color: var(--color-pinus); text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+  .pd-grup + .pd-grup { margin-top: clamp(2.5rem, 5vw, 4rem); }
+  .pd-h2 { scroll-margin-top: 96px; font-size: 1.5rem; font-weight: 500; letter-spacing: -0.03em; margin-bottom: 1rem; }
   .pd-daftar { display: grid; gap: 1.25rem; grid-template-columns: minmax(0, 1fr); }
-  @media (min-width: 64rem) { .pd-daftar { grid-template-columns: repeat(3, minmax(0, 1fr)); } .pd-utama { grid-column: span 3; } }
-  .pd-tautan { display: grid; height: 100%; background: var(--color-putih); border-radius: 16px; overflow: hidden; text-decoration: none; color: inherit; transition: transform 500ms var(--ease-out), box-shadow 500ms var(--ease-out); }
+  @media (min-width: 48rem) { .pd-daftar { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 64rem) { .pd-daftar { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .pd-tautan { display: grid; grid-template-rows: auto 1fr; height: 100%; background: var(--color-putih); border-radius: 16px; overflow: hidden; text-decoration: none; color: inherit; transition: transform 500ms var(--ease-out), box-shadow 500ms var(--ease-out); }
   .pd-tautan:hover { transform: translateY(-4px); box-shadow: 0 24px 40px -24px rgb(16 35 30 / 0.35); }
   .pd-foto { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
-  @media (min-width: 64rem) { .pd-utama .pd-tautan { grid-template-columns: 1.4fr 1fr; } .pd-utama .pd-foto { aspect-ratio: auto; height: 100%; min-height: 26rem; } }
   .pd-isi { display: grid; gap: 0.6rem; padding: 1.5rem; align-content: start; }
-  .pd-utama .pd-isi { padding: clamp(1.5rem, 3vw, 2.5rem); align-content: center; }
-  .pd-meta { font-size: var(--fs-13); font-weight: 500; color: var(--color-lumut); }
   .pd-kartu-judul { font-size: 1.35rem; font-weight: 500; letter-spacing: -0.03em; line-height: 1.2; }
-  .pd-utama .pd-kartu-judul { font-size: clamp(1.7rem, 1.2rem + 1.5vw, 2.5rem); }
   .pd-ringkas { color: var(--color-lumut); font-size: var(--fs-15); }
   .pd-tgl { font-size: var(--fs-13); color: var(--color-lumut); }
 
@@ -81,8 +92,15 @@ const tgl = (d: Date) => d.toLocaleDateString('id-ID', { day: 'numeric', month: 
     .pd { padding-top: 96px; }
     .pd-judul { font-size: var(--hp-display); line-height: 1.05; }
     .pd-lead { font-size: var(--fs-16); }
-    .pd-kartu-judul, .pd-utama .pd-kartu-judul { font-size: var(--hp-t3); }
-    .pd-ringkas { font-size: var(--fs-15); }
+    .pd-h2 { font-size: var(--hp-t2); }
+    /* HP: baris ringkas (foto kecil + judul + tanggal), seperti daftar artikel di aplikasi berita. */
+    .pd-daftar { gap: 0.5rem; }
+    .kartu-buka .lompat { margin: 0 0 1.5rem; }
+    .pd-tautan { grid-template-rows: none; grid-template-columns: 96px minmax(0, 1fr); align-items: center; gap: 0.9rem; padding: 0.6rem; border-radius: 18px; }
+    .pd-foto { aspect-ratio: 1; border-radius: 12px; }
+    .pd-isi { padding: 0.2rem 0.4rem 0.2rem 0; gap: 0.3rem; }
+    .pd-kartu-judul { font-size: var(--hp-t4); line-height: 1.25; }
+    .pd-ringkas { display: none; }
     /* Pola kartu HP sama dengan beranda. */
     .pd { background: #dde2dc; }
     .kartu-buka { margin: 0 calc(8px - var(--gutter)) 1.25rem; padding: 1.5rem var(--gutter) 0.25rem; border-radius: 28px; background: var(--color-embun); }
