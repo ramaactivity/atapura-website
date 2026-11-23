@@ -20,7 +20,7 @@ export const bisnis = {
   deskripsi:
     `Aplikator dan agen atap bitumen (genteng aspal) Maxxi, CTI, Javabitumen, Tegola, dan Victory untuk rumah, villa, kafe, dan proyek, juga ${TAMPIL_PLAFON ? 'plafon PVC dan ' : ''}rangka atap baja ringan. Berbasis di Jabodetabek, melayani proyek di luar Jabodetabek.`,
   // Format internasional tanpa "+" untuk wa.me. null = belum ada; tombol WA tetap tampil tapi diarahkan ke halaman kontak WA umum.
-  whatsapp: '6289611394867' as string | null, // sementara, dari Rama 2 Nov 2026
+  whatsapp: '6289611384767' as string | null, // 0896-1138-4767, dikoreksi Rama 23 Nov 2026 (sebelumnya salah ketik 0896-1139-4867)
   telepon: null as string | null,
   email: 'atapurakaryalestari@gmail.com',
   jamKerja: null as string | null,
