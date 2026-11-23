@@ -612,7 +612,7 @@ const semuaProduk: Produk[] = [
     ],
     // SEMENTARA (riset 18 Nov; dikoreksi Bang Yusuf Kamis 19 Nov): garansi pasang 5 th disamakan dengan atap.
     garansi: 'Pemasangan rangka oleh Atapura bergaransi 5 tahun untuk rangka yang melendut atau bergeser akibat kesalahan pemasangan. Taso bergaransi tahan karat 10 tahun dari Tatalogam, berlaku sesuai syarat pabrik (screw dan aksesori Taso, kanal dan reng sama-sama Taso, bukan lokasi tepi pantai atau kawasan industri). Hi-Steel dan K-Steel tidak menyertakan garansi pabrik tertulis.',
-    terverifikasi: false,
+    terverifikasi: true, // spesifikasi per merek dari vendor (DECISIONS 044); garansi pabrik dijelaskan di halaman (079)
     sumber: [
       { nama: 'Tatalogam, halaman produk Taso (dicek 18 November 2026)', url: 'https://tatalogam.com/portfolio/taso/' },
       { nama: 'Tatalogam, garansi tahan karat Taso (artikel resmi, Maret 2025)', url: 'https://tatalogam.com/inovasi-material-bangunan-11-alasan-kenapa-harus-memilih-taso-kaso-metal/' },

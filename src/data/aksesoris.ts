@@ -39,7 +39,7 @@ const daftar: Aksesoris[] = [
     fungsi: 'Papan alas (dek) yang disekrup ke rangka. Genteng bitumen dipaku di atasnya, jadi papan ini yang menentukan atap rata atau bergelombang.',
     spek: [
       { label: 'Ukuran', nilai: '122 × 244 cm per lembar' },
-      { label: 'Tebal standar', nilai: '12 mm (ada 9 & 18 mm)' },
+      { label: 'Tebal standar', nilai: '12 mm (ada 18 mm)' },
       { label: 'Bahan', nilai: 'Kayu lapis meranti campur' },
     ],
     harga: { nilai: harga.alas['Multiplek 12 mm'].harga, satuan: 'lembar', catatan: '12 mm' },

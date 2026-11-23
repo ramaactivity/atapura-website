@@ -25,7 +25,7 @@ sumber:
   - nama: 'Kindangen, Rogi & Gosal (2025), Civil Engineering and Architecture 13(2): 965–975'
     url: 'https://doi.org/10.13189/cea.2025.130215'
   - nama: 'Muchammad (2006), ceiling with radiant barrier, ROTASI 8(4): 34–40'
-    url: 'https://doi.org/10.14710/rotasi.8.4.34-40'
+    url: 'https://ejournal.undip.ac.id/index.php/rotasi/article/view/2406'
   - nama: 'Farhan et al. (2021), roof tile colour and cooling load in Malaysia, Sustainability 13(9): 4665'
     url: 'https://doi.org/10.3390/su13094665'
   - nama: 'Florida Solar Energy Center, report FSEC-CR-1220-00'

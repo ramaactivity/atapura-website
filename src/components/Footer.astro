@@ -120,13 +120,10 @@ const kolom = en ? kolomEn : kolomId;
         <p class="kaki-legal kaki-legal-pt">{bisnis.namaLegal} ({bisnis.statusLegal}).<br />Didirikan oleh {bisnis.pendiri.join(' dan ')}. Survey gratis di {bisnis.area.length} kota dan kabupaten Jabodetabek.<br />{alamatLengkap}</p>
       )}
       <ul class="kaki-sosial" aria-label={en ? 'Contact and social media' : 'Kontak dan media sosial'}>
-        {sosial.map((x) => (
+        {sosial.filter((x) => x.url).map((x) => (
           <li>
-            {x.url ? (
-              <a href={x.url} aria-label={x.nama} title={x.nama} {...(x.luar ? { target: '_blank', rel: 'noopener' } : {})} set:html={x.svg} />
-            ) : (
-              <span class="kaki-sosial-segera" aria-label={en ? `${x.nama} (coming soon)` : `${x.nama} (segera hadir)`} title={en ? `${x.nama}, coming soon` : `${x.nama} — segera hadir`} set:html={x.svg} />
-            )}
+            {/* Akun yang belum ada tidak ditampilkan (audit 23 Nov: ikon "segera hadir" melemahkan kepercayaan). */}
+            <a href={x.url!} aria-label={x.nama} title={x.nama} {...(x.luar ? { target: '_blank', rel: 'noopener' } : {})} set:html={x.svg} />
           </li>
         ))}
       </ul>
@@ -179,13 +176,12 @@ const kolom = en ? kolomEn : kolomId;
   .kaki-merek :global(.logo) { display: block; width: 100%; height: auto; }
   .kaki-legal { font-size: var(--fs-14); line-height: 1.6; color: rgb(242 244 241 / 0.6); }
   .kaki-sosial { display: flex; flex-wrap: wrap; gap: 0.35rem; }
-  .kaki-sosial a, .kaki-sosial-segera {
+  .kaki-sosial a {
     display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; color: var(--color-embun);
     background: rgb(242 244 241 / 0.07); box-shadow: inset 0 0 0 1px rgb(242 244 241 / 0.12); transition: background-color 250ms, color 250ms, transform 250ms var(--ease-out);
   }
   .kaki-sosial :global(svg) { width: 18px; height: 18px; }
   .kaki-sosial a:hover { background: var(--color-tunas); color: var(--color-pinus); transform: translateY(-2px); }
-  .kaki-sosial-segera { opacity: 0.35; cursor: default; }
   .kaki-bawah {
     margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid rgb(242 244 241 / 0.1);
     display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; justify-content: space-between; font-size: var(--fs-14); line-height: 1.6; color: rgb(242 244 241 / 0.5);
