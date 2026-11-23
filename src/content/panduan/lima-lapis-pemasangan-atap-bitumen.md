@@ -23,13 +23,13 @@ sumber:
 
 ## Kelima lapis, dari bawah ke atas
 
-| No. | Lapis | Bahan umum | Tugasnya |
-|---|---|---|---|
-| 1 | Alas | Multiplek 12 mm atau GRC 9 mm | Permukaan rata tempat genteng dipaku |
-| 2 | Underlayment | Membran bitumen self-adhesive, gulungan 1 × 10 m | Menahan air yang lolos dari genteng |
-| 3 | Flashing | Pelat logam, profil Z atau U | Menutup pertemuan atap dengan dinding, talang, dan tepi |
-| 4 | Genteng bitumen | Shingle 3-tab atau laminasi | Lapisan luar: tahan cuaca, memberi warna |
-| 5 | Nok | Potongan shingle di bubungan | Menutup sambungan paling atas |
+| Lapis | Bahan umum | Tugasnya |
+|---|---|---|
+| 1. Alas | Multiplek 12 mm atau GRC 9 mm | Permukaan rata tempat genteng dipaku |
+| 2. Underlayment | Membran bitumen self-adhesive, gulungan 1 × 10 m | Menahan air yang lolos dari genteng |
+| 3. Flashing | Pelat logam, profil Z atau U | Menutup pertemuan atap dengan dinding, talang, dan tepi |
+| 4. Genteng bitumen | Shingle 3-tab atau laminasi | Lapisan luar: tahan cuaca, memberi warna |
+| 5. Nok | Potongan shingle di bubungan | Menutup sambungan paling atas |
 
 Genteng dipasang dari bawah ke atas. Panduan CTI memakai paku 2,5 cm berkepala minimal 7 mm, 4 paku per lembar di area yang nanti tertutup lembar berikutnya, dan 6 paku atau lebih untuk daerah berangin kencang. Di atap 10–15°, sambungan underlayment dilebihkan menjadi 150 mm; batas kemiringan tiap merek ada di [kemiringan atap bitumen minimal](/panduan/kemiringan-atap-bitumen-minimal).
 

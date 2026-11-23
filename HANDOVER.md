@@ -16,7 +16,8 @@
   jadi landing page 11 bagian (HP 14,8 layar), halaman baru `/cara-kerja` & `/garansi`, AKAL desktop jadi kisi kartu.
   ✅ Bumper dihapus (073). ✅ Tautan antar-artikel (074): "Baca juga" relevan + "Halaman terkait" otomatis + aturan cek.mjs.
   ✅ /tentang /kontak /perusahaan (075). ✅ Skala teks bertoken `--fs-13…18`, lantai 13 px (076); DESIGN.md tipografi diperbarui.
-  ⏳ Berikutnya: temuan lama cek.mjs di artikel November (TKDN, tabel > 3 kolom, jawaban > 60 kata). Isi NIB/NPWP di bisnis.ts
+  ✅ Artikel November lolos cek.mjs (077), 30/30. ⏳ Berikutnya: SEO teknis lanjutan dari audit (schema Product/priceRange,
+  judul > 70 karakter, alt galeri kosong, lastmod sitemap, hreflang). Isi NIB/NPWP di bisnis.ts
   begitu akta PT terbit (otomatis tampil di /tentang & /perusahaan). Temuan lama cek.mjs di artikel
   November (kata "TKDN", tabel > 3 kolom, jawaban > 60 kata) belum disentuh.
   ⏳ Setelah itu (permintaan Rama 23 Nov): tiap artikel wajib mengajak ke halaman/artikel lain (audit tautan internal artikel).

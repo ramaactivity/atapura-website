@@ -45,8 +45,10 @@ for (const file of process.argv.slice(2)) {
     const ketemu = (fm + isi).match(pola);
     if (ketemu && !izin.includes(ketemu[0].toLowerCase())) salah.push(`kata terlarang: "${ketemu[0]}"`);
   }
-  for (const baris of isi.split('\n')) {
-    if (/^\|.*\|$/.test(baris) && !/^\|[-:| ]+\|$/.test(baris)) {
+  const barisIsi = isi.split('\n');
+  for (const [i, baris] of barisIsi.entries()) {
+    const judulTabel = /^\|[-:| ]+\|$/.test(barisIsi[i + 1] ?? ''); // baris judul boleh terbungkus, tidak dihitung
+    if (/^\|.*\|$/.test(baris) && !/^\|[-:| ]+\|$/.test(baris) && !judulTabel) {
       const sel = baris.split('|').slice(1, -1);
       if (sel.length > 3 && sel.some((s) => s.trim().length > 12)) { salah.push(`tabel ${sel.length} kolom berisi teks: ${baris.slice(0, 60)}…`); break; }
     }

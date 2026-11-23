@@ -24,13 +24,15 @@ Anda sedang menyusun RAB rumah, dan baris "atap" masih kosong. Berikut perkiraan
 
 ## Perkiraan biaya atap bitumen terpasang
 
-| Ukuran rumah (lantai teratas) | Perkiraan luas atap | CTI | Maxxi / Javabitumen | Lama kerja |
-|---|---|---|---|---|
-| Tipe 36 (36 m²) | ±47 m² | Rp19–21 jt | Rp18–20 jt | ±3 hari |
-| 6 × 9 m (54 m²) | ±70 m² | Rp28–32 jt | Rp27–30 jt | 3–4 hari |
-| 6 × 10 m (60 m²) | ±78 m² | Rp31–35 jt | Rp30–34 jt | 3–4 hari |
-| 6 × 12 m (72 m²) | ±94 m² | Rp38–42 jt | Rp36–40 jt | 4–5 hari |
-| 10 × 10 m (100 m²) | ±130 m² | Rp52–59 jt | Rp49–56 jt | 4–6 hari |
+| Lantai teratas | Luas atap | CTI (Rp juta) | Maxxi / Javabitumen (Rp juta) |
+|---|---|---|---|
+| Tipe 36 | ±47 m² | 19–⁠21 | 18–⁠20 |
+| 6 × 9 m | ±70 m² | 28–⁠32 | 27–⁠30 |
+| 6 × 10 m | ±78 m² | 31–⁠35 | 30–⁠34 |
+| 6 × 12 m | ±94 m² | 38–⁠42 | 36–⁠40 |
+| 10 × 10 m | ±130 m² | 52–⁠59 | 49–⁠56 |
+
+Lama kerja: tipe 36 sekitar 3 hari, 6 × 9 m dan 6 × 10 m 3–4 hari, 6 × 12 m 4–5 hari, 10 × 10 m 4–6 hari.
 
 Dihitung dari harga terpasang per m² di Jabodetabek (CTI Rp400–450 ribu, Maxxi dan Javabitumen Rp380–430 ribu), dengan spek standar: multiplek 12 mm, lapis kedap air, flashing, paku dan skrup, serta jasa pasang. Rangka memakai yang sudah ada.
 

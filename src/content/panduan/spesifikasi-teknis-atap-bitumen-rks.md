@@ -1,7 +1,7 @@
 ---
 judul: 'Spesifikasi teknis atap bitumen untuk RKS, pengadaan, dan tugas kuliah'
 ringkasan: 'Contoh uraian spesifikasi teknis atap bitumen: rangka, reng, papan alas, underlayment, genteng, paku, nok, dan jurai, dari panduan pemasangan pabrikan.'
-jawaban: 'Spesifikasi teknis atap bitumen mencakup rangka (CTI memakai kuda-kuda baja ringan berjarak 800–1.200 mm), papan alas multiplek 12 mm dengan reng berjarak 60,5 cm dan sekrup tiap 300 mm, underlayment dengan sambungan 100 mm (150 mm untuk atap 10–15°), genteng aspal dengan tumpukan baris 190 mm dan 4 paku 2,5 cm per lembar (6 atau lebih di daerah berangin), serta nok dan jurai dari potongan genteng. Untuk pengadaan yang mensyaratkan TKDN, nilai produknya dicek di inventaris resmi Kemenperin.'
+jawaban: 'Spesifikasi teknis atap bitumen mencakup rangka (kuda-kuda baja ringan berjarak 800–1.200 mm), papan alas multiplek 12 mm dengan reng 60,5 cm, underlayment dengan sambungan 100 mm (150 mm untuk atap 10–15°), genteng dengan tumpukan baris 190 mm dan 4 paku 2,5 cm per lembar, serta nok dan jurai. Nilai TKDN dicek di inventaris resmi Kemenperin.'
 kategori: 'Teknis'
 terbit: 2026-11-03
 diperbarui: 2026-11-03
@@ -29,23 +29,23 @@ sumber:
 
 Halaman ini untuk Anda yang menyusun RKS proyek kantor, sekolah, atau rumah ibadah, menilai penawaran, atau mengerjakan tugas perancangan. Angka di bawah diambil dari dokumen pabrikan; gambar kerja final tetap mengikuti bentuk atap dan merek yang dipilih.
 
+<!-- cek-izinkan: TKDN --><!-- TKDN hanya muncul sebagai arahan cek ke inventaris Kemenperin (DECISIONS 036). -->
+
 ## Contoh uraian spesifikasi teknis
 
-| No. | Item | Spesifikasi | Sumber |
-|---|---|---|---|
-| 1 | Rangka | Baja ringan atau baja berat profil kanal C; kuda-kuda berjarak 800–1.200 mm | CTI |
-| 2 | Reng | Jarak maksimal 60,5 cm untuk papan alas 12 mm | CTI |
-| 3 | Papan alas | Multiplek 12 mm atau GRC; disekrup ke rangka tiap 300 mm, sekrup terakhir 50 mm dari tepi papan; bila rangka terlihat dari dalam, multiplek minimal 15 mm atau sekrup dicat | CTI |
-| 4 | Flashing tepi | Dipasang mengelilingi tepi papan alas | CTI |
-| 5 | Underlayment | Gulungan 1 × 10 m; sambungan 100 mm untuk atap di atas 15°, 150 mm untuk atap 10–15° | CTI |
-| 6 | Baris awal | Starter course di tepi bawah sebelum baris genteng pertama | CTI |
-| 7 | Genteng aspal | Tumpukan antarbaris 190 mm; contoh ukuran CT3 1.000 × 333 mm, CT6 1.000 × 317,5 mm, Maxxiroof 1.000 × 333 mm tebal 2,66 mm | CTI, Maxxi |
-| 8 | Paku | Panjang 2,5 cm, kepala minimal 7 mm; 4 paku per lembar di area yang tertutup baris berikutnya; 6 paku atau lebih untuk daerah berangin kencang, kemiringan di atas 60°, atau atap mansard, ditambah sealant | CTI |
-| 9 | Nok | Lembar genteng dipotong tiga, ditekuk di tengah, dipaku di area yang tertutup potongan berikutnya | CTI |
-| 10 | Jurai dalam (lembah) | Tipe anyam atau tipe potong; paku minimal 200 mm dari garis jurai; lembar dipotong 50 mm dari garis jurai | CTI |
-| 11 | Kemiringan | Maxxi 15°–90°; CTI menyediakan cara pasang untuk 10–15° | Maxxi, CTI |
-| 12 | Ketahanan api | CTI menyatakan lulus uji Fire Resistance Class A | CTI |
-| 13 | Garansi produk | Maxxiroof 25 tahun, Promaxxi 30 tahun, CTI 30 tahun produk; syarat berbeda per merek | Maxxi, CTI |
+1. **Rangka.** Baja ringan atau baja berat profil kanal C; kuda-kuda berjarak 800–1.200 mm. (sumber: CTI)
+2. **Reng.** Jarak maksimal 60,5 cm untuk papan alas 12 mm. (sumber: CTI)
+3. **Papan alas.** Multiplek 12 mm atau GRC; disekrup ke rangka tiap 300 mm, sekrup terakhir 50 mm dari tepi papan; bila rangka terlihat dari dalam, multiplek minimal 15 mm atau sekrup dicat. (sumber: CTI)
+4. **Flashing tepi.** Dipasang mengelilingi tepi papan alas. (sumber: CTI)
+5. **Underlayment.** Gulungan 1 × 10 m; sambungan 100 mm untuk atap di atas 15°, 150 mm untuk atap 10–15°. (sumber: CTI)
+6. **Baris awal.** Starter course di tepi bawah sebelum baris genteng pertama. (sumber: CTI)
+7. **Genteng aspal.** Tumpukan antarbaris 190 mm; contoh ukuran CT3 1.000 × 333 mm, CT6 1.000 × 317,5 mm, Maxxiroof 1.000 × 333 mm tebal 2,66 mm. (sumber: CTI, Maxxi)
+8. **Paku.** Panjang 2,5 cm, kepala minimal 7 mm; 4 paku per lembar di area yang tertutup baris berikutnya; 6 paku atau lebih untuk daerah berangin kencang, kemiringan di atas 60°, atau atap mansard, ditambah sealant. (sumber: CTI)
+9. **Nok.** Lembar genteng dipotong tiga, ditekuk di tengah, dipaku di area yang tertutup potongan berikutnya. (sumber: CTI)
+10. **Jurai dalam (lembah).** Tipe anyam atau tipe potong; paku minimal 200 mm dari garis jurai; lembar dipotong 50 mm dari garis jurai. (sumber: CTI)
+11. **Kemiringan.** Maxxi 15°–90°; CTI menyediakan cara pasang untuk 10–15°. (sumber: Maxxi, CTI)
+12. **Ketahanan api.** CTI menyatakan lulus uji Fire Resistance Class A. (sumber: CTI)
+13. **Garansi produk.** Maxxiroof 25 tahun, Promaxxi 30 tahun, CTI 30 tahun produk; syarat berbeda per merek. (sumber: Maxxi, CTI)
 
 ## Standar uji yang sering dirujuk
 

@@ -516,3 +516,11 @@ diberi `max(var(--fs-13), …em)`. Catatan panjang naik ke 15 px, paragraf isi l
 Dikecualikan sengaja: label bilah tab HP (native iOS), label peta SVG, template internal (pricelist/marketplace, presisi cetak),
 /branding. Hasil HP: 37 → 20 ukuran, teks < 13 px hanya pengecualian di atas. DESIGN.md bagian Typography diperbarui ke
 kenyataan situs (Public Sans 500 + frasa redup, bukan 300 + miring).
+
+## 077 · 23 November 2026 · Artikel November dibereskan sampai lolos cek.mjs
+Temuan lama (sebelum aturan cek.mjs ada): tabel 5 kolom "bitumen vs spandek/UPVC/metal" terpotong di HP (515 px di wadah
+334 px) → daftar per aspek; tabel spesifikasi RKS 4 kolom (kolom isi sempit, satu baris jadi ±12 baris teks) → daftar
+bernomor dengan sumber per item; tabel lima lapis tanpa kolom "No."; tabel biaya per ukuran: satuan "Rp juta" ke judul kolom,
+lama kerja ke kalimat, spasi angka dikunci (tanpa patah). "TKDN" di artikel sekolah/RKS memang hanya arahan cek ke inventaris
+Kemenperin (036): satu kalimat ditulis ulang, FAQ RKS diberi penanda `cek-izinkan`. "pasti" diganti ("selalu", "tepat").
+Jawaban singkat RKS dipangkas ke ≤ 60 kata. cek.mjs: baris judul tabel tidak dihitung panjangnya. Hasil: 30/30 artikel lolos.
