@@ -25,7 +25,7 @@ const lain = semua
   .filter((x) => x.id !== a.id)
   .sort((p, q) => skor(q) - skor(p) || q.data.diperbarui.getTime() - p.data.diperbarui.getTime())
   .slice(0, 3)
-  .map((x) => ({ href: `/panduan/${x.id}`, label: x.data.kategori, judul: x.data.judul }));
+  .map((x) => ({ href: `/panduan/${x.id}`, label: x.data.kategori, judul: x.data.judul, sampul: x.data.sampul, ringkasan: x.data.ringkasan, menit: Math.max(2, Math.round((x.body ?? '').split(/\s+/).length / 200)) }));
 
 // Halaman terkait: dibaca dari isi artikel, jadi artikel baru otomatis menaut ke halaman merek & layanan yang ia bahas.
 const isiArtikel = a.body ?? '';

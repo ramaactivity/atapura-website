@@ -24,7 +24,7 @@ interface Props {
   waPesan: string;
   dataWa: string;
   lainJudul?: string;
-  lain: { href: string; label: string; judul: string }[];
+  lain: { href: string; label: string; judul: string; sampul?: ImageMetadata; ringkasan?: string; menit?: number }[];
   /** Halaman situs yang dibahas artikel (merek, cara kerja, garansi, area), DECISIONS 074. */
   halaman?: { href: string; label: string }[];
   /** Schema khusus halaman (Article/Service, dst.); Breadcrumb & FAQPage dibuat di sini. */
@@ -116,7 +116,16 @@ const schema = [
     {lain.length > 0 && (
       <section class="wrap ar-lain" aria-labelledby="lain-judul">
         <h2 id="lain-judul">{lainJudul}</h2>
-        <ul>{lain.map((x) => <li><a href={x.href}><span>{x.label}</span>{x.judul}</a></li>)}</ul>
+        <ul class="ar-kartu-daftar">{lain.map((x) => (
+          <li><a class="ar-kartu" href={x.href}>
+            {x.sampul && <Image src={x.sampul} alt="" widths={[200, 480, 720]} sizes="(min-width: 48rem) 30vw, 88px" class="ar-kartu-foto" />}
+            <span class="ar-kartu-teks">
+              <span class="ar-kartu-meta">{x.label}{x.menit && <> · {x.menit} menit baca</>}</span>
+              <span class="ar-kartu-judul">{x.judul}</span>
+              {x.ringkasan && <span class="ar-kartu-ringkas">{x.ringkasan}</span>}
+            </span>
+          </a></li>
+        ))}</ul>
         {halaman.length > 0 && (
           <nav class="ar-halaman" aria-label="Halaman terkait">
             <p class="ar-halaman-judul">Halaman terkait</p>
@@ -178,11 +187,24 @@ const schema = [
   .ar-cta p:not(.ar-cta-judul) { margin-top: 0.4rem; color: var(--embun-redup); }
   .ar-cta-aksi { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.25rem; }
   .ar-lain { margin-top: 5rem; }
-  .ar-lain ul { display: grid; gap: 0.75rem; grid-template-columns: minmax(0, 1fr); }
-  @media (min-width: 48rem) { .ar-lain ul { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-  .ar-lain a { display: grid; gap: 0.4rem; padding: 1.25rem; border-radius: 14px; background: var(--color-putih); text-decoration: none; color: inherit; font-weight: 500; letter-spacing: -0.02em; transition: transform 400ms var(--ease-out); }
-  .ar-lain a:hover { transform: translateY(-3px); }
-  .ar-lain span { font-size: 0.8rem; color: var(--color-lumut); font-weight: 400; }
+  /* Baca juga (DECISIONS 074): kartu bersampul. Laptop: foto di atas; HP: baris gaya aplikasi berita (gambar kecil di kiri). */
+  .ar-kartu-daftar { display: grid; gap: 0.75rem; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 48rem) { .ar-kartu-daftar { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; } }
+  .ar-kartu {
+    display: grid; grid-template-rows: auto 1fr; height: 100%; overflow: hidden; border-radius: 16px; background: var(--color-putih); color: inherit; text-decoration: none;
+    box-shadow: 0 1px 2px rgb(16 35 30 / 0.06), 0 18px 36px -28px rgb(16 35 30 / 0.4);
+    transition: transform 400ms var(--ease-out), box-shadow 400ms var(--ease-out);
+  }
+  .ar-kartu :global(.ar-kartu-foto) { display: block; width: 100%; aspect-ratio: 16 / 10; height: auto; object-fit: cover; transition: transform 700ms var(--ease-out); }
+  .ar-kartu-teks { display: grid; align-content: start; gap: 0.45rem; padding: 1.1rem 1.25rem 1.35rem; }
+  .ar-kartu-meta { font-size: 0.8rem; color: var(--color-lumut); }
+  .ar-kartu-judul { font-family: var(--font-merek); font-size: 1.15rem; font-weight: 500; letter-spacing: -0.02em; line-height: 1.3; }
+  .ar-kartu-ringkas { font-size: 0.9rem; line-height: 1.5; color: var(--color-lumut); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .ar-kartu:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 3px; }
+  @media (hover: hover) and (pointer: fine) {
+    .ar-kartu:hover { transform: translateY(-3px); box-shadow: 0 1px 2px rgb(16 35 30 / 0.06), 0 26px 44px -26px rgb(16 35 30 / 0.45); }
+    .ar-kartu:hover :global(.ar-kartu-foto) { transform: scale(1.04); }
+  }
   .ar-halaman { margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid var(--color-garis); }
   .ar-halaman-judul { font-size: 0.9rem; font-weight: 500; color: var(--color-lumut); }
   .ar-halaman ul { display: flex; flex-wrap: wrap; gap: 0 1.75rem; margin-top: 0.25rem; }
@@ -204,13 +226,18 @@ const schema = [
     .ar-faq dt { font-size: var(--hp-t4); }
     .ar-faq dd, .ar-sumber li { font-size: 0.9375rem; }
     .ar-cta-judul { font-size: var(--hp-t2); }
-    .ar-lain a { font-size: var(--hp-t4); }
+    .ar-kartu { grid-template-columns: 88px minmax(0, 1fr); grid-template-rows: auto; align-items: center; gap: 0.9rem; padding: 0.6rem; border-radius: 16px; }
+    .ar-kartu :global(.ar-kartu-foto) { aspect-ratio: 1; border-radius: 11px; }
+    .ar-kartu-teks { padding: 0.15rem 0.4rem 0.15rem 0; gap: 0.3rem; }
+    .ar-kartu-judul { font-size: 0.9375rem; line-height: 1.3; }
+    .ar-kartu-meta { font-size: 0.75rem; }
+    .ar-kartu-ringkas { display: none; }
     /* Pola kartu HP sama dengan beranda: latar abu hangat, isi jadi kartu membulat. */
     .ar { background: #dde2dc; padding-bottom: 1rem; }
     .ar article { margin: 8px; padding: 1.5rem 0 2rem; border-radius: 28px; background: var(--color-embun); overflow: clip; }
     .ar-lain { margin: 8px; padding: 1.75rem calc(var(--gutter) - 8px); border-radius: 28px; background: var(--color-embun); }
     .ar-halaman a { font-size: 0.9375rem; }
     .ar-halaman ul { gap: 0 1.25rem; }
-    .ar-lain ul { margin-top: 0.25rem; }
+    .ar-kartu-daftar { margin-top: 0.25rem; gap: 0.5rem; }
   }
 </style>
