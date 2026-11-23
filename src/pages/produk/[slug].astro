@@ -4,7 +4,7 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { Image } from 'astro:assets';
 import { LINI, fotoWarna, produk, rentangProduk, sampulProduk, type Produk } from '../../data/produk';
-import { bagianRentang } from '../../data/harga';
+import { bagianRentang, harga } from '../../data/harga';
 import KartuProduk from '../../components/KartuProduk.astro';
 import GaleriProduk from '../../components/GaleriProduk.astro';
 import { bisnis, waLink } from '../../data/bisnis';
@@ -25,6 +25,7 @@ const pesan = `Halo Atapura, saya mau tanya ${namaPanjang}.`;
 // Kalkulator /hitung menerima ?merek= (atap atau plafon) dan langsung memilihnya.
 const bisaDihitung = Boolean(p.harga) || p.lini === 'plafon';
 const rentang = rentangProduk(p);
+const genteng = p.lini === 'atap' && p.harga ? harga.merek[p.harga].genteng : null;
 // Contoh total untuk 100 m² supaya angka per m² langsung terbayang (riset UX katalog: perkiraan total dekat tombol).
 const contoh = rentang && bagianRentang(rentang[0] * 100, rentang[1] * 100);
 // Jaminan per lini (rangka & survey plafon: nilai sementara hasil riset 18 Nov, dikoreksi Bang Yusuf Kamis 19 Nov).
@@ -52,12 +53,26 @@ const schema = [
     description: p.ringkas,
     category: L.kategori,
     ...(sampul && { image: new URL(sampul.src.src, Astro.site).href }),
-    ...(rentang && {
-      offers: { '@type': 'AggregateOffer', priceCurrency: 'IDR', lowPrice: rentang[0], highPrice: rentang[1], description: 'Harga terpasang per m² di Jabodetabek' },
+    // Harga produk = harga genteng per m² (material); harga terpasang ada di Service di bawah (DECISIONS 078).
+    ...(genteng && {
+      offers: {
+        '@type': 'Offer', priceCurrency: 'IDR', price: genteng, seller: { '@id': `${situs}#bisnis` },
+        priceSpecification: { '@type': 'UnitPriceSpecification', price: genteng, priceCurrency: 'IDR', unitCode: 'MTK', unitText: 'm²' },
+      },
     }),
     url,
     ...(p.seri.length && { model: p.seri.map((s) => s.nama).join(', ') }),
   },
+  ...(rentang ? [{
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${url}#pasang`,
+    name: `Pemasangan ${namaPanjang}`,
+    serviceType: p.lini === 'rangka' ? 'Pemasangan rangka atap baja ringan' : 'Pemasangan atap bitumen',
+    provider: { '@id': `${situs}#bisnis` },
+    areaServed: 'Jabodetabek',
+    offers: { '@type': 'AggregateOffer', priceCurrency: 'IDR', lowPrice: rentang[0], highPrice: rentang[1], description: 'Harga terpasang per m² di Jabodetabek' },
+  }] : []),
   {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -139,7 +154,7 @@ const schema = [
                   {g.daftar.map((w) => (
                     <li><button type="button" class="warna-pilih" aria-pressed="false" data-pilih={`${w.nama}${w.kode ? ` (${w.kode})` : ''}`}>
                       {fotoWarna(g.tekstur, w.nama)
-                        ? <Image src={fotoWarna(g.tekstur, w.nama)} alt="" widths={[240, 480]} sizes="10rem" class="contoh-warna" />
+                        ? <Image src={fotoWarna(g.tekstur, w.nama)} alt={`Contoh warna ${namaPanjang} ${w.nama}`} widths={[240, 480]} sizes="10rem" class="contoh-warna" />
                         : w.hex && <span class="contoh-warna" style={`--w: ${w.hex}`} aria-hidden="true"></span>}
                       <span class="warna-nama">{w.nama}</span>
                       {w.kode && <span class="warna-kode">{w.kode}</span>}

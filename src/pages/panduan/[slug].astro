@@ -5,12 +5,11 @@ import { namaLengkap, produk } from '../../data/produk';
 
 export async function getStaticPaths() {
   const semua = await getCollection('panduan');
-  const guides = await getCollection('guides');
-  return semua.map((a) => ({ params: { slug: a.id }, props: { a, semua, inggris: guides.find((g) => g.data.padanan === a.id)?.id } }));
+  return semua.map((a) => ({ params: { slug: a.id }, props: { a, semua } }));
 }
 
-const { a, semua, inggris } = Astro.props;
-const alternates = inggris ? [{ hreflang: 'id', href: `/panduan/${a.id}` }, { hreflang: 'en', href: `/en/guides/${inggris}` }] : [];
+const { a, semua } = Astro.props;
+// Tanpa hreflang: artikel Inggris (/en/guides) untuk ekspat isinya berbeda, bukan terjemahan (DECISIONS 078).
 const { Content } = await render(a);
 const d = a.data;
 const url = new URL(`/panduan/${a.id}`, Astro.site).href;
@@ -57,7 +56,7 @@ const artikel = {
   halaman={halaman}
   judul={d.judul} ringkasan={d.ringkasan} jawaban={d.jawaban} penulis={d.penulis} diperbarui={d.diperbarui}
   sampul={d.sampul} sampulAlt={d.sampulAlt} induk={{ nama: 'Panduan', href: '/panduan' }} label={d.kategori}
-  faq={d.faq} sumber={d.sumber} lain={lain} schema={[artikel]} alternates={alternates}
+  faq={d.faq} sumber={d.sumber} lain={lain} schema={[artikel]}
   waPesan={`Halo Atapura, saya baru membaca panduan "${d.judul}" dan mau bertanya.`} dataWa="artikel"
 >
   <Content />

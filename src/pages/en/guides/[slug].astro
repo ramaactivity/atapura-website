@@ -13,9 +13,6 @@ const d = a.data;
 const url = new URL(`/en/guides/${a.id}`, Astro.site).href;
 const situs = new URL('/', Astro.site).href;
 const lain = semua.filter((x) => x.id !== a.id).slice(0, 3).map((x) => ({ href: `/en/guides/${x.id}`, label: x.data.kategori, judul: x.data.judul }));
-const alternates = d.padanan
-  ? [{ hreflang: 'en', href: `/en/guides/${a.id}` }, { hreflang: 'id', href: `/panduan/${d.padanan}` }]
-  : [];
 
 const artikel = {
   '@context': 'https://schema.org',
@@ -33,7 +30,7 @@ const artikel = {
 ---
 
 <Artikel
-  lang="en" alternates={alternates}
+  lang="en"
   judul={d.judul} ringkasan={d.ringkasan} jawaban={d.jawaban} penulis={d.penulis === 'Tim Atapura' ? 'Atapura team' : d.penulis} diperbarui={d.diperbarui}
   sampul={d.sampul} sampulAlt={d.sampulAlt} induk={{ nama: 'Guides', href: '/en/guides' }} label={d.kategori}
   faq={d.faq} sumber={d.sumber} lain={lain} schema={[artikel]}

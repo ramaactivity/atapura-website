@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { harga } from '../data/harga';
 import { bisnis, TAMPIL_PLAFON } from '../data/bisnis';
 
 interface Props {
@@ -18,6 +19,8 @@ interface Props {
 }
 
 const { title, description, schema = [], ogImage = '/og/beranda.jpg', noindex = false, lang = 'id', alternates = [] } = Astro.props;
+// Judul di hasil Google terpotong di ±60–65 karakter: akhiran merek dibuang bila judul jadi terlalu panjang (DECISIONS 078).
+const judulTampil = title.endsWith(' | Atapura') && title.length > 65 ? title.slice(0, -' | Atapura'.length) : title;
 // build.format 'file' membuat pathname berakhiran .html; canonical selalu versi bersih tanpa .html / slash akhir.
 const bersih = Astro.url.pathname.replace(/(\/index)?\.html$/, '').replace(/\/$/, '');
 const canonical = new URL(bersih || '/', Astro.site).href;
@@ -25,12 +28,17 @@ const siteUrl = new URL('/', Astro.site).href;
 const gambar = new URL(ogImage, Astro.site).href;
 
 // Alamat kantor (sementara) + area layanan eksplisit. Field yang belum ada datanya tidak ditulis.
+// Rentang harga terpasang per m² (termurah–termahal) untuk priceRange; dari data yang sama dengan kalkulator.
+const semuaTerpasang = Object.values(harga.merek).flatMap((m) => m.terpasang);
+const rb = (n: number) => `Rp${(n / 1000).toLocaleString('id-ID')} rb`;
 const organisasi = {
   '@context': 'https://schema.org',
   '@type': 'RoofingContractor',
   '@id': `${siteUrl}#bisnis`,
   name: bisnis.nama,
+  legalName: bisnis.namaLegal,
   description: bisnis.deskripsi,
+  priceRange: `${rb(Math.min(...semuaTerpasang))}–${rb(Math.max(...semuaTerpasang))} per m² terpasang`,
   slogan: bisnis.tagline,
   url: siteUrl,
   email: bisnis.email,
@@ -42,7 +50,7 @@ const organisasi = {
     postalCode: bisnis.alamat.kodePos,
     addressCountry: 'ID',
   },
-  ...(bisnis.telepon && { telephone: `+${bisnis.telepon}` }),
+  ...((bisnis.telepon ?? bisnis.whatsapp) && { telephone: `+${bisnis.telepon ?? bisnis.whatsapp}` }),
   ...(bisnis.sosmed.length && { sameAs: bisnis.sosmed }),
   areaServed: bisnis.area.map((name) => ({
     '@type': name.startsWith('Kabupaten') ? 'AdministrativeArea' : 'City',
@@ -70,7 +78,7 @@ const jsonLd = [organisasi, situs, ...schema];
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>{title}</title>
+    <title>{judulTampil}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     {alternates.map((a) => <link rel="alternate" hreflang={a.hreflang} href={new URL(a.href, Astro.site).href} />)}

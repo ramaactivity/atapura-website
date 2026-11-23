@@ -524,3 +524,13 @@ bernomor dengan sumber per item; tabel lima lapis tanpa kolom "No."; tabel biaya
 lama kerja ke kalimat, spasi angka dikunci (tanpa patah). "TKDN" di artikel sekolah/RKS memang hanya arahan cek ke inventaris
 Kemenperin (036): satu kalimat ditulis ulang, FAQ RKS diberi penanda `cek-izinkan`. "pasti" diganti ("selalu", "tepat").
 Jawaban singkat RKS dipangkas ke ≤ 60 kata. cek.mjs: baris judul tabel tidak dihitung panjangnya. Hasil: 30/30 artikel lolos.
+
+## 078 · 23 November 2026 · SEO teknis: schema usaha & produk, judul, alt warna, lastmod, hreflang, garis miring
+Dari audit SEO/GEO 23 Nov (P1–P2). (1) RoofingContractor: `legalName`, `priceRange` (dihitung dari harga terpasang termurah–
+termahal di harga.ts), `telephone` = nomor WhatsApp selama belum ada telepon kantor. (2) Product merek atap kini ber-Offer
+harga genteng per m² (material, `UnitPriceSpecification` unitCode MTK, seller #bisnis); harga terpasang dipindah ke `Service`
+"Pemasangan …" (AggregateOffer). Dulu harga terpasang ditulis sebagai harga produk. (3) Judul > 65 karakter: akhiran
+" | Atapura" dibuang di Base.astro (satu aturan untuk semua halaman); 4 judul artikel 66–70 karakter dibiarkan (judul terindeks).
+(4) Foto contoh warna di halaman merek ber-alt "Contoh warna atap bitumen X Warna". (5) Sitemap memuat lastmod dari `diperbarui`
+artikel, area, dan guides (39 URL); halaman lain tanpa lastmod. (6) hreflang dihapus: /en/guides untuk ekspat isinya berbeda,
+bukan terjemahan, dan pasangan lama tidak timbal balik. (7) vercel.json `trailingSlash: false` → /x/ dialihkan ke /x.
