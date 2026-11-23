@@ -48,7 +48,7 @@ const kolomId: Kolom = [
       { label: 'Ganti atap lama', href: '/#layanan' },
       { label: 'Perbaikan atap bocor', href: '/#layanan' },
       { label: 'Villa & kafe', href: '/#layanan' },
-      { label: 'Proyek perusahaan', href: '/#layanan-proyek' },
+      { label: 'Proyek perusahaan', href: '/perusahaan' },
     ],
   },
   {
@@ -77,15 +77,16 @@ const kolomId: Kolom = [
     tautan: [
       { label: 'WhatsApp', href: waLink(waPesan), luar: true },
       { label: 'Email', href: `mailto:${bisnis.email}` },
+      { label: 'Alamat & kontak', href: '/kontak' },
       ...(bisnis.telepon ? [{ label: `+${bisnis.telepon}`, href: `tel:+${bisnis.telepon}` }] : []),
     ],
   },
   {
     judul: 'Atapura',
     tautan: [
-      { label: 'Masuk AKAL', href: '/#akal' },
+      { label: 'Tentang Atapura', href: '/tentang' },
       { label: 'Cara kerja', href: '/cara-kerja' },
-      { label: 'Panduan brand', href: '/branding' },
+      { label: 'Untuk perusahaan', href: '/perusahaan' },
     ],
   },
 ];

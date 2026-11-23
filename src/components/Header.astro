@@ -56,7 +56,7 @@ const menuHp = lang === 'en' ? menuEn : menuHpId;
     <nav aria-label="Utama" class="kepala-nav">
       {menu.map((m) => <a href={m.href}>{m.label}</a>)}
     </nav>
-    <a class="pill kepala-perusahaan" href="/#layanan-proyek">{t.perusahaan}</a>
+    <a class="pill kepala-perusahaan" href="/perusahaan">{t.perusahaan}</a>
     <a class="pill kepala-wa" href={waLink(t.waPesan)} target="_blank" rel="noopener" data-wa="header">
       {t.wa}
     </a>
@@ -75,7 +75,7 @@ const menuHp = lang === 'en' ? menuEn : menuHpId;
   </nav>
   <div class="lembar-aksi">
     <a class="pill pill-tunas" href="/hitung" data-tutup-menu>{t.hitung}</a>
-    <a class="pill pill-garis" href="/#layanan-proyek" data-tutup-menu>{t.proyek}</a>
+    <a class="pill pill-garis" href="/perusahaan" data-tutup-menu>{t.proyek}</a>
   </div>
   <button type="button" class="lembar-tutup" data-tutup-menu aria-label={t.tutupLabel}>{t.tutup}</button>
 </dialog>

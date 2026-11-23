@@ -1,0 +1,81 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { bisnis, waLink } from '../data/bisnis';
+import '../styles/halaman.css';
+
+// Untuk pengadaan & proyek (DECISIONS 075): yang diterima pembeli kantoran, apa adanya. Tidak menjanjikan kontrak (037),
+// tanpa faktur pajak (belum ada NPWP/PKP), tanpa klaim TKDN (036: arahkan ke inventaris resmi Kemenperin).
+const situs = new URL('/', Astro.site).href;
+const termin = bisnis.pembayaran.jasa.map((t) => `${t.persen}%`).join(', ');
+const terima = [
+  { b: 'Penawaran tertulis per item', s: 'Material, aksesoris, jasa, dan perkiraan hari kerja dirinci, siap diajukan ke atasan atau klien.' },
+  { b: 'Spesifikasi teknis dari pabrik', s: 'Data teknis resmi merek yang dipilih, bila pabrik menyediakannya, untuk dilampirkan di RKS atau dokumen tender.' },
+  { b: 'Jadwal kerja tertulis', s: 'Tanggal mulai dan perkiraan selesai, supaya pekerjaan lain di proyek bisa diatur.' },
+  { b: 'Foto progres di setiap termin', s: 'Tiap lapis difoto sebelum tertutup; foto menyertai tagihan termin jasa.' },
+  { b: 'Rapor Proyek dan kartu garansi', s: `Diserahkan saat serah terima, bersama hasil uji semprot dan opname luas. Garansi pemasangan ${bisnis.garansiPemasanganTahun} tahun.` },
+  { b: 'Invoice dan kuitansi', s: 'Untuk setiap pembayaran material dan termin jasa.' },
+];
+const schema = [{
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Beranda', item: situs },
+    { '@type': 'ListItem', position: 2, name: 'Untuk perusahaan', item: new URL('/perusahaan', Astro.site).href },
+  ],
+}];
+---
+<Base
+  title="Atap Bitumen untuk Proyek & Perusahaan: Penawaran Resmi | Atapura"
+  description={`Penawaran tertulis per item, spesifikasi teknis pabrik, jadwal kerja, foto progres, dan garansi pemasangan ${bisnis.garansiPemasanganTahun} tahun untuk developer, kontraktor, arsitek, dan pengelola gedung.`}
+  schema={schema}
+>
+  <Header terang />
+  <main class="hl">
+    <div class="wrap">
+      <div class="hl-kartu-buka">
+        <nav class="hl-remah" aria-label="Remah roti"><a href="/">Beranda</a><span aria-hidden="true">/</span><span>Untuk perusahaan</span></nav>
+        <div class="hl-kepala">
+          <h1 class="hl-judul">Untuk proyek dan pengadaan, <span class="hl-redup">dokumen yang bisa Anda ajukan.</span></h1>
+          <p class="hl-lead">Developer perumahan, kontraktor, arsitek, dan pengelola gedung: minta penawaran resmi per item lewat WhatsApp atau email.</p>
+        </div>
+      </div>
+
+      <section class="hl-sek" aria-labelledby="judul-terima">
+        <h2 id="judul-terima" class="hl-h2">Yang Anda terima, <span class="hl-redup">dari penawaran sampai serah terima.</span></h2>
+        <ul class="hl-daftar">{terima.map((x) => <li><b>{x.b}</b><span>{x.s}</span></li>)}</ul>
+      </section>
+
+      <section class="hl-sek" aria-labelledby="judul-legal">
+        <div>
+          <h2 id="judul-legal" class="hl-h2">Legalitas dan pembayaran, <span class="hl-redup">apa adanya.</span></h2>
+          <p class="hl-teks" style="margin-top: 1rem">Kami tulis yang sudah ada dan yang menyusul, supaya Anda bisa memutuskan dengan lengkap.</p>
+        </div>
+        <div class="hl-slip">
+          <dl>
+            <div><dt>Badan usaha</dt><span class="hl-titik" aria-hidden="true"></span><dd>{bisnis.namaLegal}<small>{bisnis.statusLegal}</small></dd></div>
+            <div><dt>NIB dan NPWP</dt><span class="hl-titik" aria-hidden="true"></span><dd>{bisnis.nib && bisnis.npwp ? `${bisnis.nib} / ${bisnis.npwp}` : 'Menyusul'}{!(bisnis.nib && bisnis.npwp) && <small>dicantumkan setelah akta PT terbit</small>}</dd></div>
+            <div><dt>Material</dt><span class="hl-titik" aria-hidden="true"></span><dd>Lunas sebelum dikirim<small>dipesan khusus untuk proyek Anda</small></dd></div>
+            <div><dt>Jasa pasang</dt><span class="hl-titik" aria-hidden="true"></span><dd>Bertahap {termin}<small>{bisnis.pembayaran.jasa.map((t) => t.saat.toLowerCase()).join('; ')}</small></dd></div>
+            <div><dt>Kesepakatan</dt><span class="hl-titik" aria-hidden="true"></span><dd>Dibahas bersama<small>lewat WhatsApp atau email setelah survey</small></dd></div>
+            <div><dt>TKDN</dt><span class="hl-titik" aria-hidden="true"></span><dd>Cek per produk<small>di <a href="https://tkdn.kemenperin.go.id/" target="_blank" rel="noopener">inventaris resmi Kemenperin</a></small></dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="hl-sek" aria-labelledby="judul-minta">
+        <h2 id="judul-minta" class="hl-h2">Minta penawaran <span class="hl-redup">resmi.</span></h2>
+        <div>
+          <p class="hl-teks">Sertakan nama proyek, lokasi, perkiraan luas atap atau gambar kerja, dan merek bila sudah ditentukan. Spesifikasi untuk RKS bisa dimulai dari <a href="/panduan/spesifikasi-teknis-atap-bitumen-rks">panduan spesifikasi teknis atap bitumen</a>.</p>
+          <div class="hl-aksi">
+            <a class="pill pill-tunas" href={waLink('Halo Atapura, saya dari perusahaan dan butuh penawaran resmi untuk proyek atap.')} target="_blank" rel="noopener" data-wa="perusahaan">Minta penawaran lewat WhatsApp</a>
+            <a class="hl-tautan" href={`mailto:${bisnis.email}?subject=${encodeURIComponent('Permintaan penawaran resmi proyek atap')}`}>Kirim lewat email</a>
+            <a class="tautan-lanjut" href="/hitung">Hitung estimasi awal</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <Footer />
+</Base>

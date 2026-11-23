@@ -1,0 +1,84 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { bisnis, waLink } from '../data/bisnis';
+import '../styles/halaman.css';
+
+// Kontak (DECISIONS 075): nama, alamat, telepon sama persis dengan footer, JSON-LD, dan Google Business Profile (NAP).
+const situs = new URL('/', Astro.site).href;
+const a = bisnis.alamat;
+const wa = bisnis.whatsapp;
+const waTampil = wa ? `+62 ${wa.slice(2, 5)}-${wa.slice(5, 9)}-${wa.slice(9)}` : null;
+const alamatPenuh = `${a.jalan}, ${a.kelurahan}, ${a.kecamatan}, ${a.kota}, ${a.provinsi} ${a.kodePos}`;
+const peta = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(alamatPenuh)}`;
+const siapkan = [
+  { b: 'Luas atap atau foto atap', s: 'Belum tahu luasnya? Hitung AKAL bisa memperkirakannya dari luas lantai teratas.' },
+  { b: 'Lokasi', s: 'Kota atau kabupaten. Di Jabodetabek survey gratis; di luar itu ongkos kirim dan transport tukang dihitung bersama.' },
+  { b: 'Merek yang diminati, bila sudah ada', s: 'Belum yakin juga tidak apa-apa; sampel lima merek kami bawa saat survey.' },
+];
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Beranda', item: situs },
+      { '@type': 'ListItem', position: 2, name: 'Kontak', item: new URL('/kontak', Astro.site).href },
+    ],
+  },
+  { '@context': 'https://schema.org', '@type': 'ContactPage', name: 'Kontak Atapura', url: new URL('/kontak', Astro.site).href, about: { '@id': `${situs}#bisnis` } },
+];
+---
+<Base
+  title="Kontak Atapura: WhatsApp, Email, Alamat | Atapura"
+  description={`Hubungi Atapura lewat WhatsApp${waTampil ? ` ${waTampil}` : ''} atau email ${bisnis.email}. Survey gratis di ${bisnis.area.length} kota dan kabupaten Jabodetabek.`}
+  schema={schema}
+>
+  <Header terang />
+  <main class="hl">
+    <div class="wrap">
+      <div class="hl-kartu-buka">
+        <nav class="hl-remah" aria-label="Remah roti"><a href="/">Beranda</a><span aria-hidden="true">/</span><span>Kontak</span></nav>
+        <div class="hl-kepala">
+          <h1 class="hl-judul">Hubungi Atapura, <span class="hl-redup">paling cepat lewat WhatsApp.</span></h1>
+          <p class="hl-lead">Kirim estimasi dari Hitung AKAL atau foto atap Anda. Admin membalas dan menjadwalkan survey.</p>
+        </div>
+      </div>
+
+      <div class="hl-kartu-baris">
+        {wa && (
+          <div class="hl-kartu hl-kartu-utama">
+            <p class="hl-kartu-label">WhatsApp</p>
+            <p class="hl-kartu-isi angka">{waTampil}</p>
+            <p>Untuk pertanyaan, estimasi, dan jadwal survey.</p>
+            <a class="pill pill-tunas" href={waLink('Halo Atapura, saya mau tanya soal atap.')} target="_blank" rel="noopener" data-wa="kontak">Chat WhatsApp</a>
+          </div>
+        )}
+        <div class="hl-kartu">
+          <p class="hl-kartu-label">Email</p>
+          <p class="hl-kartu-isi">{bisnis.email.split('@')[0]}@<wbr />{bisnis.email.split('@')[1]}</p>
+          <p>Untuk penawaran resmi perusahaan dan dokumen proyek.</p>
+          <a class="hl-tautan" href={`mailto:${bisnis.email}?subject=${encodeURIComponent('Permintaan penawaran atap')}`}>Kirim email</a>
+        </div>
+        <div class="hl-kartu">
+          <p class="hl-kartu-label">Alamat</p>
+          <p class="hl-kartu-isi">{a.jalan}</p>
+          <p>Kel. {a.kelurahan}, Kec. {a.kecamatan}, {a.kota}, {a.provinsi} {a.kodePos}</p>
+          <a class="hl-tautan" href={peta} target="_blank" rel="noopener">Buka di Google Maps</a>
+        </div>
+      </div>
+
+      <section class="hl-sek" style="margin-top: clamp(2.5rem, 5vw, 4rem)" aria-labelledby="judul-siapkan">
+        <h2 id="judul-siapkan" class="hl-h2">Supaya jawabannya cepat, <span class="hl-redup">siapkan tiga hal ini.</span></h2>
+        <div>
+          <ul class="hl-daftar">{siapkan.map((x) => <li><b>{x.b}</b><span>{x.s}</span></li>)}</ul>
+          <div class="hl-aksi">
+            <a class="tautan-lanjut" href="/hitung">Hitung estimasi dulu</a>
+            <a class="tautan-lanjut" href="/perusahaan">Untuk perusahaan &amp; proyek</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <Footer />
+</Base>

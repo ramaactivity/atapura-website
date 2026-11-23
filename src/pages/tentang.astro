@@ -1,0 +1,110 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { bisnis } from '../data/bisnis';
+import { produk, rentangProduk } from '../data/produk';
+import { kisaranRupiah } from '../data/harga';
+import '../styles/halaman.css';
+
+// Halaman entitas (DECISIONS 075): siapa Atapura, untuk pembaca dan untuk Google/AI. Semua isi dari bisnis.ts;
+// yang belum ada (NIB, NPWP, proyek selesai) ditulis jujur sebagai "menyusul", tidak dikarang. Partner tidak disebut (027).
+const situs = new URL('/', Astro.site).href;
+const a = bisnis.alamat;
+const daftar = (x: readonly string[]) => (x.length > 1 ? `${x.slice(0, -1).join(', ')}, dan ${x.at(-1)}` : x[0]);
+// Merek: termurah dulu, dengan harga terpasang per m² sebagai bukti "kelas harga berbeda".
+const merek = produk
+  .filter((p) => p.lini === 'atap')
+  .map((p) => ({ p, r: rentangProduk(p) }))
+  .sort((x, y) => (x.r?.[0] ?? Infinity) - (y.r?.[0] ?? Infinity));
+const masalah = [
+  { takut: 'Tidak tahu harga yang wajar', jawab: 'Harga terpasang per m² kami tulis terbuka untuk kelima merek, dan Hitung AKAL menghitung totalnya sebelum Anda bicara dengan siapa pun.', href: '/hitung', label: 'Hitung biaya atap' },
+  { takut: 'Tidak bisa menilai hasil pemasangan', jawab: 'Kami memasang mengikuti Standar Pasang AKAL lima lapis dan memotret tiap lapis sebelum tertutup, jadi bagian yang nanti tidak terlihat tetap bisa Anda periksa.', href: '/cara-kerja', label: 'Lihat cara kerja' },
+  { takut: 'Takut ditinggal setelah lunas', jawab: `Garansi pemasangan ${bisnis.garansiPemasanganTahun} tahun kami tulis terpisah dari garansi pabrik, dan klaimnya cukup lewat WhatsApp dengan foto.`, href: '/garansi', label: 'Lihat garansi' },
+];
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Beranda', item: situs },
+      { '@type': 'ListItem', position: 2, name: 'Tentang Atapura', item: new URL('/tentang', Astro.site).href },
+    ],
+  },
+  { '@context': 'https://schema.org', '@type': 'AboutPage', name: 'Tentang Atapura', url: new URL('/tentang', Astro.site).href, about: { '@id': `${situs}#bisnis` } },
+];
+---
+<Base
+  title="Tentang Atapura: Aplikator Atap Bitumen Jabodetabek | Atapura"
+  description={`Atapura (${bisnis.namaLegal}, ${bisnis.statusLegal}) memasang atap bitumen ${daftar(bisnis.merek)} di Jabodetabek dan kota lain. Didirikan oleh ${daftar(bisnis.pendiri)}.`}
+  schema={schema}
+>
+  <Header terang />
+  <main class="hl">
+    <div class="wrap">
+      <div class="hl-kartu-buka">
+        <nav class="hl-remah" aria-label="Remah roti"><a href="/">Beranda</a><span aria-hidden="true">/</span><span>Tentang</span></nav>
+        <div class="hl-kepala">
+          <h1 class="hl-judul">Atapura, aplikator atap bitumen Jabodetabek. <span class="hl-redup">Harga, lapisan, dan garansi tertulis.</span></h1>
+          <p class="hl-lead">Kami memasang atap bitumen (genteng aspal) untuk rumah, villa, kafe, dan proyek, di Jabodetabek dan kota lain.</p>
+        </div>
+      </div>
+
+      <section class="hl-sek" aria-labelledby="judul-identitas">
+        <div>
+          <h2 id="judul-identitas" class="hl-h2">Siapa <span class="hl-redup">di balik Atapura.</span></h2>
+          <p class="hl-teks" style="margin-top: 1rem">Atapura didirikan oleh {daftar(bisnis.pendiri)} dan berkantor di {a.kelurahan}, {a.kota}. Nomor NIB dan NPWP kami cantumkan setelah akta PT terbit.</p>
+        </div>
+        <div class="hl-slip">
+          <dl>
+            <div><dt>Nama usaha</dt><span class="hl-titik" aria-hidden="true"></span><dd>{bisnis.nama}</dd></div>
+            <div><dt>Badan usaha</dt><span class="hl-titik" aria-hidden="true"></span><dd>{bisnis.namaLegal}<small>{bisnis.statusLegal}</small></dd></div>
+            <div><dt>Pendiri</dt><span class="hl-titik" aria-hidden="true"></span><dd>{daftar(bisnis.pendiri)}</dd></div>
+            {bisnis.nib && <div><dt>NIB</dt><span class="hl-titik" aria-hidden="true"></span><dd>{bisnis.nib}</dd></div>}
+            {bisnis.npwp && <div><dt>NPWP</dt><span class="hl-titik" aria-hidden="true"></span><dd>{bisnis.npwp}</dd></div>}
+            <div><dt>Alamat</dt><span class="hl-titik" aria-hidden="true"></span><dd>{a.jalan}<small>Kel. {a.kelurahan}, Kec. {a.kecamatan}, {a.kota}, {a.provinsi} {a.kodePos}</small></dd></div>
+            <div><dt>Survey gratis</dt><span class="hl-titik" aria-hidden="true"></span><dd>{bisnis.area.length} kota dan kabupaten Jabodetabek<small><a href="/area">Lihat daftar area</a></small></dd></div>
+            <div><dt>Di luar Jabodetabek</dt><span class="hl-titik" aria-hidden="true"></span><dd>Tetap dikerjakan<small>ongkos kirim dan transport tukang dihitung bersama admin</small></dd></div>
+            <div><dt>Pengalaman tim pemasang</dt><span class="hl-titik" aria-hidden="true"></span><dd>{daftar(bisnis.survey.pengalamanLuar)}<small>sebelum Atapura berdiri</small></dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="hl-sek" aria-labelledby="judul-kenapa">
+        <h2 id="judul-kenapa" class="hl-h2">Tiga hal yang paling sering <span class="hl-redup">membuat orang ragu.</span></h2>
+        <ul class="hl-daftar">
+          {masalah.map((m) => (
+            <li><b>{m.takut}</b><span>{m.jawab}</span><a class="tautan-lanjut" href={m.href}>{m.label}</a></li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="hl-sek" aria-labelledby="judul-merek">
+        <div>
+          <h2 id="judul-merek" class="hl-h2">Lima merek, <span class="hl-redup">saran tanpa memihak.</span></h2>
+          <p class="hl-teks" style="margin-top: 1rem">Kelas harganya berbeda, jadi saran kami mengikuti kebutuhan dan anggaran Anda, bukan target satu merek. Kalau atap Anda terlalu landai untuk bitumen, kami sampaikan saat survey.</p>
+        </div>
+        <div class="hl-slip">
+          <dl>
+            {merek.map(({ p, r }) => (
+              <div><dt><a href={`/produk/${p.slug}`}>{p.nama}</a></dt><span class="hl-titik" aria-hidden="true"></span><dd class="angka">{r ? kisaranRupiah(r) : 'Tanya admin'}<small>per m² terpasang, Jabodetabek</small></dd></div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      <section class="hl-sek" aria-labelledby="judul-jujur">
+        <h2 id="judul-jujur" class="hl-h2">Yang belum ada, <span class="hl-redup">tidak kami karang.</span></h2>
+        <div>
+          <p class="hl-teks">Atapura perusahaan baru. Foto di situs ini ilustrasi dan diberi label, bukan proyek kami. Rapor Proyek pertama, berisi data dan foto tiap lapis, terbit setelah proyek pertama diserahterimakan.</p>
+          <div class="hl-aksi">
+            <a class="pill pill-tunas" href="/hitung">Hitung estimasi biaya</a>
+            <a class="tautan-lanjut" href="/cara-kerja#rapor">Lihat format Rapor Proyek</a>
+            <a class="tautan-lanjut" href="/kontak">Hubungi kami</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <Footer />
+</Base>

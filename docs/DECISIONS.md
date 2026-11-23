@@ -494,3 +494,15 @@ Tegola, Victory), rangka baja ringan, /cara-kerja (bila membahas lapis/survey/pa
 (3) dua artikel tanpa tautan diberi tautan kontekstual ke artikel & halaman yang sudah tayang; (4) `tools/artikel/cek.mjs` menolak
 artikel dengan < 2 tautan ke artikel lain, dan larangan "menautkan artikel belum tayang" dihitung terhadap tanggal terbit atau hari
 ini (mana yang lebih akhir), supaya artikel lama boleh menaut artikel yang sudah tayang.
+
+## 075 · 23 November 2026 · Halaman /tentang, /kontak, /perusahaan
+Audit 23 Nov (P0 entitas & E-E-A-T, POV pembeli skeptis dan pengadaan). Semua isi dari `bisnis.ts` dan teks yang sudah ada di
+situs; yang belum ada ditulis jujur: PT "dalam proses pendirian", NIB/NPWP "menyusul" (muncul otomatis begitu diisi di
+`bisnis.ts`), proyek pertama belum ada. Hanya Ramadan Saputra disebut (027), tanpa janji kontrak (037), tanpa rekening (035),
+tanpa klaim TKDN: pengadaan diarahkan ke inventaris resmi Kemenperin (036). /tentang: masalah pembeli → jawaban Atapura, slip
+identitas bertitik (sumber utama Google/AI untuk entitas, schema AboutPage), merek, pengakuan "yang belum ada tidak kami karang".
+/kontak: WhatsApp, email, alamat + Google Maps (NAP sama dengan footer/JSON-LD), hal yang perlu disiapkan (schema ContactPage).
+/perusahaan: dokumen yang diterima, slip legalitas & pembayaran, penawaran resmi lewat WA/email. Kartu proyek beranda: "faktur"
+diganti "invoice" (faktur pajak butuh NPWP/PKP yang belum ada); semua tautan "Untuk perusahaan" ke /perusahaan. Footer: Tentang,
+Kontak, Untuk perusahaan; "Panduan brand" dikeluarkan. /branding noindex + keluar dari sitemap (audit SEO). Gaya bersama halaman
+informasi di `src/styles/halaman.css`.
