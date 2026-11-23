@@ -50,6 +50,8 @@ const menuHpId = [
 const menuHp = lang === 'en' ? menuEn : menuHpId;
 ---
 
+{/* Lompat ke isi untuk pengguna keyboard & pembaca layar (DECISIONS 083): muncul hanya saat difokus. */}
+<a class="lompat-isi no-print" href="#isi">{lang === 'en' ? 'Skip to content' : 'Langsung ke isi'}</a>
 <header class:list={["kepala no-print", { "kepala-terang": terang }]}>
   <div class="wrap kepala-isi">
     <a href="/" class="merek-kata" aria-label={t.beranda}><Logo tinggi="1.3rem" /></a>
@@ -103,6 +105,7 @@ const menuHp = lang === 'en' ? menuEn : menuHpId;
     <span>{label.garansi}</span>
   </a>
 </nav>
+<span id="isi" tabindex="-1"></span>
 
 <script>
   // HP: bilah atas berubah jadi kaca buram setelah halaman digulir (seperti nav bar iOS).
@@ -152,6 +155,9 @@ const menuHp = lang === 'en' ? menuEn : menuHpId;
 </script>
 
 <style>
+  .lompat-isi { position: fixed; z-index: 100; top: 12px; left: 12px; padding: 0.7rem 1.1rem; border-radius: 999px; background: var(--color-pinus); color: var(--color-embun); font-weight: 500; text-decoration: none; transform: translateY(-160%); }
+  .lompat-isi:focus-visible { transform: none; outline: 2px solid var(--color-tunas); outline-offset: 2px; }
+  #isi:focus { outline: none; }
   .kepala { position: absolute; inset: 0 0 auto; z-index: 20; color: var(--color-putih); }
   .kepala-isi { display: flex; align-items: center; gap: 2rem; min-height: 80px; }
   .merek-kata { display: inline-flex; align-items: center; min-height: 44px; color: inherit; filter: drop-shadow(0 1px 8px rgb(0 0 0 / 0.3)); }

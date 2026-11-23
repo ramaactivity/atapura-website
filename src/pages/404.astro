@@ -1,27 +1,43 @@
 ---
 import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import { waLink } from '../data/bisnis';
----
+import '../styles/halaman.css';
 
-<Base title="Halaman tidak ditemukan | Atapura" description="Halaman yang Anda cari tidak ada. Kembali ke beranda Atapura untuk menghitung biaya atap bitumen.">
-  <main class="hilang">
+// 404 dengan menu & footer seperti halaman lain (DECISIONS 083): orang yang nyasar tetap bisa lanjut, bukan buntu.
+const tujuan = [
+  { b: 'Hitung biaya atap', s: 'Masukkan luas atap, estimasi lima merek langsung terlihat.', href: '/hitung' },
+  { b: 'Produk & layanan', s: 'Merek genteng aspal, rangka baja ringan, dan aksesoris beserta harga terpasang.', href: '/produk' },
+  { b: 'Panduan', s: 'Biaya, pemasangan, perawatan, dan perbandingan, dibuka dengan jawaban singkat.', href: '/panduan' },
+  { b: 'Area layanan', s: 'Kota dan kabupaten yang kami layani, juga di luar Jabodetabek.', href: '/area' },
+];
+---
+<Base title="Halaman tidak ditemukan | Atapura" description="Halaman yang Anda cari tidak ada. Hitung biaya atap bitumen, lihat produk, atau baca panduan Atapura.">
+  <Header terang />
+  <main class="hl">
     <div class="wrap">
-      <p class="hilang-kode angka">404</p>
-      <h1 class="hilang-judul">Halaman ini <span class="hilang-miring">tidak ada.</span></h1>
-      <p class="hilang-teks">Mungkin alamatnya salah ketik, atau halamannya belum terbit. Dari beranda Anda bisa menghitung biaya atap atau langsung bertanya.</p>
-      <div class="hilang-aksi">
-        <a class="pill pill-tunas" href="/">Ke beranda</a>
-        <a class="pill pill-garis" href={waLink('Halo Atapura, saya mau tanya soal atap bitumen.')} target="_blank" rel="noopener">Chat WhatsApp</a>
+      <div class="hl-kartu-buka">
+        <nav class="hl-remah" aria-label="Remah roti"><a href="/">Beranda</a><span aria-hidden="true">/</span><span>Tidak ditemukan</span></nav>
+        <div class="hl-kepala">
+          <h1 class="hl-judul">Halaman ini tidak ada, <span class="hl-redup">tapi atap Anda tetap bisa dihitung.</span></h1>
+          <p class="hl-lead">Mungkin alamatnya salah ketik, atau halamannya sudah dipindah. Pilih salah satu tujuan di bawah, atau tanya admin langsung.</p>
+        </div>
       </div>
+
+      <section class="hl-sek" aria-labelledby="judul-tujuan">
+        <h2 id="judul-tujuan" class="hl-h2">Yang biasanya <span class="hl-redup">dicari di sini.</span></h2>
+        <div>
+          <ul class="hl-daftar">
+            {tujuan.map((x) => <li><b>{x.b}</b><span>{x.s}</span><a class="tautan-lanjut" href={x.href}>Buka {x.b.toLowerCase()}</a></li>)}
+          </ul>
+          <div class="hl-aksi">
+            <a class="pill pill-tunas" href="/hitung">Hitung estimasi biaya</a>
+            <a class="hl-tautan" href={waLink('Halo Atapura, saya mau tanya soal atap bitumen.')} target="_blank" rel="noopener" data-wa="404">Tanya admin lewat WhatsApp</a>
+          </div>
+        </div>
+      </section>
     </div>
   </main>
+  <Footer />
 </Base>
-
-<style>
-  .hilang { min-height: 100svh; display: flex; align-items: center; background: var(--color-pinus); color: var(--color-embun); padding-block: 6rem; }
-  .hilang-kode { font-size: var(--fs-14); color: var(--color-tunas); }
-  .hilang-judul { margin-top: 1rem; font-size: clamp(3rem, 1.4rem + 6vw, 6.5rem); font-weight: 500; letter-spacing: -0.04em; line-height: 0.95; max-width: 10ch; }
-  .hilang-miring { opacity: 0.55; }
-  .hilang-teks { margin-top: 1.5rem; max-width: 42ch; color: var(--embun-redup); font-size: 1.15rem; }
-  .hilang-aksi { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.6rem; }
-</style>

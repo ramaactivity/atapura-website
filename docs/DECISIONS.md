@@ -570,3 +570,14 @@ Audit 23 Nov: sampul artikel/area gambar AI tanpa keterangan terlihat (hanya alt
 - /panduan: artikel dikelompokkan per kategori (urutan Dasar, Biaya, Pemasangan, Perawatan, Perbandingan, Teknis, Proyek, Usaha),
   chip lompat + jumlah di kartu pembuka (CSS chip dipindah ke global.css `.lompat`, dipakai juga /produk). Kartu unggulan
   dihapus. HP: baris ringkas foto 96 px + judul + tanggal, ringkasan disembunyikan (tinggi halaman HP ±5.300 px).
+
+## 083 · 23 November 2026 · 404 berkerangka, label warna CTI dicek ke brosur, aksesibilitas
+- **404**: dulu layar Pinus tanpa menu/footer. Kini kerangka halaman informasi (halaman.css) dengan menu, footer, empat tujuan
+  (Hitung, Produk & layanan, Panduan, Area), Hitung estimasi + WhatsApp (`data-wa="404"`).
+- **Warna CTI**: audit curiga CT3 "Black" tampil hijau tua dan "Dark Brown" tampil abu. Dicek ke BROSUR CTI.pdf halaman 1–3:
+  urutan dan nama ubin di situs **sama persis** dengan brosur; yang bergeser warna cetak brosurnya sendiri (Black kehijauan/abu,
+  Dark Brown abu gelap, di CT3, CT5, CT6). Ubin tidak diwarnai ulang (akan mengarang warna); grup CT3 solid, CT5, CT6 diberi
+  catatan bahwa foto dari brosur cetak dan perlu dicocokkan dengan sampel fisik saat survey.
+- **Aksesibilitas**: tautan "Langsung ke isi" (Header.astro, muncul saat difokus, target `#isi` setelah navigasi). Kontras judul
+  redup (opacity .55) diukur di 10 halaman laptop & HP: 57 elemen, terendah 3,82:1 dan semuanya ≥ 26 px → lolos WCAG AA teks
+  besar (3:1); tidak diubah.
