@@ -620,3 +620,10 @@ Beranda, terlalu banyak tombol, tipografi diambil dari referensi.
   tautan itu sudah dihapus atas permintaan Rama (hero satu ajakan).
 - Rama: "orang gatau apa itu AKAL" → label kartu hero jadi "Contoh biaya terpasang"; jawaban FAQ durasi menyebut "kalkulator
   biaya di halaman Hitung biaya", bukan "Hitung AKAL".
+- Kalimat pengantar hero ditulis ulang (Rama: estimasi, hitung sendiri, dan survey gratis bukan poin yang ingin ditonjolkan).
+  Riset hero 15 situs (lokal: semua dibuka dari "kami" + fitur produk; luar: BOXT/instant-roof 12–25 kata, sudut "Anda", apa
+  yang dikerjakan + siapa yang mengerjakan). Pilihan akhir Rama, "singkat dan tegas" + AKAL: "Spesialis jasa pasang atap bitumen
+  (genteng aspal), lengkap lima lapis dari alas sampai nok. Dikerjakan tim profesional dengan prinsip AKAL: andal, berkualitas,
+  amanah, lestari." Memuat kata kunci inti yang dipantau Ops ("jasa pasang atap bitumen", "genteng aspal"). "Solusi terbaik"
+  sengaja tidak dipakai (daftar kata terlarang, klaim tak terbukti). Label atas jadi "Rumah, villa, dan kafe · Jabodetabek"
+  supaya "jasa pasang" tidak dobel; lokasi hanya di label.
