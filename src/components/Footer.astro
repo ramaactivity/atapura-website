@@ -115,9 +115,9 @@ const kolom = en ? kolomEn : kolomId;
   <div class="wrap kaki-identitas">
     <div class="kaki-legal-grup">
       {en ? (
-        <p class="kaki-legal kaki-legal-pt">{bisnis.namaLegal} (being incorporated).<br />Founded by {bisnis.pendiri.join(' and ')}. Free site survey in {bisnis.area.length} cities and regencies of Greater Jakarta.<br />{alamatLengkap}</p>
+        <p class="kaki-legal kaki-legal-pt">{bisnis.namaLegal} (being incorporated).<br />Founded by {bisnis.pendiri.join(' and ')}. Serving all of Greater Jakarta and projects beyond Java.<br />{alamatLengkap}</p>
       ) : (
-        <p class="kaki-legal kaki-legal-pt">{bisnis.namaLegal} ({bisnis.statusLegal}).<br />Didirikan oleh {bisnis.pendiri.join(' dan ')}. Survey gratis di {bisnis.area.length} kota dan kabupaten Jabodetabek.<br />{alamatLengkap}</p>
+        <p class="kaki-legal kaki-legal-pt">{bisnis.namaLegal} ({bisnis.statusLegal}).<br />Didirikan oleh {bisnis.pendiri.join(' dan ')}. Melayani seluruh Jabodetabek hingga luar Pulau Jawa.<br />{alamatLengkap}</p>
       )}
       <ul class="kaki-sosial" aria-label={en ? 'Contact and social media' : 'Kontak dan media sosial'}>
         {sosial.filter((x) => x.url).map((x) => (
