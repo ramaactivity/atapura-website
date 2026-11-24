@@ -3,10 +3,8 @@ import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import PetaArea from '../components/PetaArea.astro';
-import PilihMerek from '../components/PilihMerek.astro';
 import AkalCerita from '../components/AkalCerita.astro';
 import { getCollection } from 'astro:content';
-import HitungCepat from '../islands/HitungCepat';
 import Foto from '../components/Foto.astro';
 import { Image } from 'astro:assets';
 import heroDesktop from '../../assets/gambar/magnific/hero-desktop.jpg';
@@ -22,7 +20,7 @@ import '../styles/desktop.css';
 import { bisnis, waLink } from '../data/bisnis';
 import { bagianRentang, estimasiPublik, harga, rentangRangka, tanggalPanjang, type Merek } from '../data/harga';
 import LogoKlien from '../components/LogoKlien.astro';
-import { produk, layanan as daftarLayanan } from '../data/produk';
+import { produk, layanan as daftarLayanan, sampulProduk } from '../data/produk';
 
 // Kartu contoh hitungan di hero desktop: angka dihitung dari rumus yang sama dengan kalkulator (satu sumber).
 const contohHitung = ([['Rumah satu lantai', 90, 'Maxxi'], ['Rumah dua lantai', 120, 'CTI'], ['Villa', 180, 'Javabitumen']] as const).map(([jenis, luas, merek]) => {
@@ -39,6 +37,18 @@ const logoMerek = produk.filter((p) => p.lini === 'atap').sort((a, b) => urutan.
   return { slug: p.slug, nama: p.nama, src, tinggi: `${(1 / Math.sqrt(src.width / src.height / 3)).toFixed(3)}em` };
 });
 const hari120 = estimasiPublik(120, 'CTI').hari;
+
+// Kartu merek & harga: urut dari harga terpasang termurah; logo satu warna, foto sampul, garansi pabrik bila ada angkanya.
+const kartuMerek = produk.filter((p) => p.lini === 'atap' && p.harga).map((p) => {
+  const h = harga.merek[p.harga as Merek];
+  const lg = logoMerek.find((l) => l.slug === p.slug)!;
+  const th = h.garansiPabrik.match(/\d+/)?.[0];
+  return {
+    slug: p.slug, nama: p.nama, kelas: h.kelas, foto: sampulProduk(p), logo: lg.src, tinggiLogo: lg.tinggi,
+    min: h.terpasang[0], rp: bagianRentang(h.terpasang[0], h.terpasang[1]),
+    garansi: th ? `Garansi pabrik ${/hingga/i.test(h.garansiPabrik) ? 's.d. ' : ''}${th} th` : null,
+  };
+}).sort((a, b) => a.min - b.min);
 
 // Empat langkah ringkas untuk beranda (rincian enam tahap di /cara-kerja, src/data/cara-kerja.ts). Kalimat umum,
 // tanpa janji prosedural yang tidak ada di Ops (foto per lapis, dsb.).
@@ -103,14 +113,6 @@ const wilayah = [
   { nama: 'Banten', kota: bisnis.area.filter((a) => /Tangerang/.test(a)) },
 ];
 
-const merekTabel = [
-  { nama: 'Maxxi', kelas: harga.merek.Maxxi.kelas, pasti: 'Model 3-tab, 1000 × 333 mm, tebal 2,66 mm, 3,10 m² per bundel', r: harga.merek.Maxxi.terpasang, g: harga.merek.Maxxi.genteng, garansi: harga.merek.Maxxi.garansiPabrik },
-  { nama: 'CTI', kelas: harga.merek.CTI.kelas, pasti: 'Seri CT3 (1000 × 333 mm), CT5, dan CT6 (1000 × 317,5 mm), 3,00 m² per bundel', r: harga.merek.CTI.terpasang, g: harga.merek.CTI.genteng, garansi: harga.merek.CTI.garansiPabrik },
-  { nama: 'Javabitumen', kelas: harga.merek.Javabitumen.kelas, pasti: 'Spesifikasi menunggu brosur resmi dari produsen', r: harga.merek.Javabitumen.terpasang, g: harga.merek.Javabitumen.genteng, garansi: harga.merek.Javabitumen.garansiPabrik },
-  // Harga Tegola SEMENTARA dari riset pasar (DECISIONS 047), dikoreksi Bang Yusuf Kamis 19 Nov.
-  { nama: 'Tegola', kelas: harga.merek.Tegola.kelas, pasti: 'Pabrikan Tegola Canadese, Italia. Seri satu lapis Premium (1000 × 340 mm, ±10,7 kg/m²) dan dua lapis Master (±12,3 kg/m²); paku biasa mulai 14° (Master 19°)', r: harga.merek.Tegola.terpasang, g: harga.merek.Tegola.genteng, garansi: 'Garansi terbatas terdaftar hingga 40 tahun, bertahap; syarat pasang sesuai manual pabrik' },
-  { nama: 'Victory', kelas: harga.merek.Victory.kelas, pasti: 'Model 3-tab, seri Standar dan Two Tone, 21 lembar (3 m²) per bundel', r: harga.merek.Victory.terpasang, g: harga.merek.Victory.genteng, garansi: harga.merek.Victory.garansiPabrik },
-] as { nama: string; kelas: string; pasti: string; r: readonly [number, number] | null; g: number | null; garansi: string }[];
 
 const faqSchema = {
   '@context': 'https://schema.org',
@@ -254,73 +256,34 @@ const faqSchema = {
     </section>
 
     <section id="merek" class="sek terang c-embun" aria-labelledby="judul-merek">
-      <div class="wrap denah">
-        <div class="merek-kepala">
-          <h2 id="judul-merek" class="judul-besar">Bingung pilih merek? <span class="miring">Mulai dari kebutuhan Anda.</span></h2>
-          <p class="lead">Semua merek yang kami pasang sama-sama atap bitumen yang baik. Bedanya ada di harga, asal produksi, dan lama garansi pabrik.</p>
+      <div class="wrap">
+        <div class="kepala">
+          <h2 id="judul-merek" class="judul-besar judul-dua">Lima merek pilihan, <span class="miring">harga terpasang per m².</span></h2>
+          <p class="lead">Sudah termasuk material lengkap dan jasa pasang di Jabodetabek. Harga per {tanggalPanjang(harga.berlakuSejak)}.</p>
         </div>
-        <PilihMerek />
-        <details class="spek">
-          <summary><span>Bandingkan spesifikasi lengkap {merekTabel.length} merek</span><span class="spek-tanda" aria-hidden="true"></span></summary>
-        <div class="datasheet" role="region" aria-label="Perbandingan merek" tabindex="0">
-          <table class="ds">
-            <caption class="sr-only">Perbandingan merek atap bitumen yang dipasang Atapura</caption>
-            <thead>
-              <tr>
-                <td></td>
-                {merekTabel.map((m, i) => (
-                  <th scope="col"><span class="ds-no">{String(i + 1).padStart(2, '0')}</span><span class="ds-merek">{m.nama}</span></th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="ds-harga" data-nosnippet>
-                <th scope="row">Terpasang per m²<span class="ds-ket">Jabodetabek, spek standar</span></th>
-                {merekTabel.map((m) => { if (!m.r) return <td class="ds-tunggu">Tanya admin</td>; const b = bagianRentang(m.r[0], m.r[1]); return <td><span class="harga-rp">Rp</span>{b.min}<span class="ds-sd">–</span>{b.max}<span class="harga-sat">{b.satuan} / m²</span></td>; })}
-              </tr>
-              <tr data-nosnippet>
-                <th scope="row">Genteng saja per m²</th>
-                {merekTabel.map((m) => (m.g ? <td class="angka">Rp{(m.g / 1000).toLocaleString('id-ID')} rb</td> : <td class="ds-tunggu">Tanya admin</td>))}
-              </tr>
-              <tr>
-                <th scope="row">Kelas harga</th>
-                {merekTabel.map((m) => <td>{m.kelas}</td>)}
-              </tr>
-              <tr>
-                <th scope="row">Yang sudah pasti</th>
-                {merekTabel.map((m) => <td class="ds-pasti">{m.pasti}</td>)}
-              </tr>
-              <tr>
-                <th scope="row">Garansi pabrik</th>
-                {merekTabel.map((m) => <td class="ds-tunggu">{m.garansi}</td>)}
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <ol class="merek-hp" aria-label="Perbandingan merek">
-          {merekTabel.map((m, i) => (
+        <!-- Kartu merek berfoto, urut dari termurah (acuan Bau Cargo "Наши услуги" + Forma Casa, DECISIONS 090).
+             Pemilih merek, tabel spesifikasi, dan kalkulator pindah ke /produk dan /hitung. -->
+        <ul class="mk-daftar">
+          {kartuMerek.map((m) => (
             <li>
-              <p class="ds-no">{String(i + 1).padStart(2, '0')}</p>
-              <p class="ds-merek">{m.nama}</p>
-              <p class="merek-hp-kelas">{m.kelas}</p>
-              <p class="merek-hp-harga" data-nosnippet>{(() => { if (!m.r) return <span class="ds-tunggu">Harga: tanya admin</span>; const b = bagianRentang(m.r[0], m.r[1]); return <><span class="harga-rp">Rp</span>{b.min}<span class="ds-sd">–</span>{b.max}<span class="harga-sat">{b.satuan} / m² terpasang</span></>; })()}{harga.contoh && <span class="contoh contoh-kecil">acuan</span>}</p>
-              <p class="merek-hp-pasti">{m.pasti}</p>
+              <a class="mk-kartu" href={`/produk/${m.slug}`}>
+                <span class="mk-atas">
+                  <img class="mk-logo" src={m.logo.src} width={m.logo.width} height={m.logo.height} alt={m.nama} style={`--h: ${m.tinggiLogo}`} loading="lazy" decoding="async" />
+                  <span class="mk-kelas">{m.kelas}</span>
+                </span>
+                {m.foto && <Image class="mk-foto" src={m.foto.src} alt={m.foto.alt} widths={[360, 540, 720]} sizes="(min-width: 75rem) 18vw, (min-width: 48rem) 30vw, 72vw" loading="lazy" />}
+                <span class="mk-harga-label">Terpasang per m²</span>
+                <span class="mk-harga angka" data-nosnippet><span class="mk-rp">Rp</span>{m.rp.min}–{m.rp.max}<span class="mk-satuan"> {m.rp.satuan}</span></span>
+                {m.garansi && <span class="mk-garansi">{m.garansi}</span>}
+                <span class="mk-panah" aria-hidden="true">→</span>
+              </a>
             </li>
           ))}
-        </ol>
-        <p class="tabel-catatan">Harga terpasang = estimasi kasar untuk Jabodetabek dengan spek standar (alas multiplek, underlayer, flashing), belum termasuk rangka baru (baja ringan Rp{rentangRangka[0] / 1000}–{rentangRangka[1] / 1000} rb/m², tergantung merek). Genteng kami ambil langsung dari pabrikan. Garansi pabrik dan spesifikasi diverifikasi ulang dengan dokumen resmi sebelum pemesanan.</p>
-        </details>
-        <a class="tautan-lanjut merek-semua" href="/produk">Lihat kelima merek, warna, dan spesifikasinya</a>
-      </div>
-    </section>
-
-    <section id="hitung" class="sek gelap c-pinus" aria-labelledby="hitung-judul">
-      <div class="wrap hc-wrap">
-        <div class="hc-teks">
-          <h2 id="hitung-judul" class="judul-besar">Berapa biaya atap Anda? <span class="miring">Lima merek, satu isian.</span></h2>
-          <p class="lead">Isi luas atap Anda. Totalnya sudah termasuk genteng, alas, lapis kedap, flashing, dan jasa pasang. Harga per {tanggalPanjang(harga.berlakuSejak)}.</p>
+        </ul>
+        <div class="mk-bawah">
+          <a class="tautan-lanjut" href="/produk">Bandingkan warna dan spesifikasi</a>
+          <a class="tautan-lanjut" href="/hitung">Hitung untuk luas atap Anda</a>
         </div>
-        <HitungCepat client:idle />
       </div>
     </section>
 
@@ -635,44 +598,45 @@ const faqSchema = {
 
   /* Cara kerja */
 
-  /* Merek: lembar spesifikasi */
-  .merek-kepala { display: grid; gap: 1.5rem 4rem; grid-template-columns: minmax(0, 1fr); margin-bottom: clamp(2.5rem, 5vw, 4rem); }
-  @media (min-width: 60rem) { .merek-kepala { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: end; } }
-  .merek-kepala .lead { color: var(--color-lumut); }
-  .spek { margin-top: clamp(2.5rem, 5vw, 3.5rem); border-top: 1px solid var(--color-tinta); }
-  .spek summary { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.3rem 0; cursor: pointer; list-style: none; font-size: var(--fs-18); font-weight: 500; }
-  .spek summary::-webkit-details-marker { display: none; }
-  .spek-tanda { position: relative; width: 14px; height: 14px; flex: none; }
-  .spek-tanda::before, .spek-tanda::after { content: ''; position: absolute; left: 0; top: 50%; width: 14px; height: 1px; background: currentColor; transition: transform 400ms var(--ease-out); }
-  .spek-tanda::after { transform: rotate(90deg); }
-  .spek[open] .spek-tanda::after { transform: rotate(0deg); }
-  .spek .datasheet { border-top: 0; }
-  .datasheet { overflow-x: auto; border-top: 1px solid var(--color-tinta); }
-  .ds { width: 100%; min-width: 44rem; border-collapse: collapse; }
-  .ds th, .ds td { text-align: left; vertical-align: top; padding: 1.1rem 1.25rem 1.1rem 0; border-bottom: 1px solid var(--color-garis); }
-  .ds tbody th { width: 18%; font-weight: 400; font-size: var(--fs-14); color: var(--color-lumut); }
-  .ds td { width: 27%; color: var(--color-tinta); }
-  .ds thead th { padding-top: 1.5rem; padding-bottom: 1.75rem; }
-  .ds-no { display: block; font-size: var(--fs-13); color: var(--color-lumut); margin-bottom: 0.4rem; }
-  .ds-merek { display: block; font-size: clamp(1.6rem, 1rem + 1.4vw, 2.4rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1; }
-  .ds-harga td { font-size: clamp(1.5rem, 1rem + 1.1vw, 2.1rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums lining-nums; }
-  .harga-rp { font-size: max(var(--fs-13), 0.4em); letter-spacing: 0; vertical-align: 0.85em; margin-right: 0.15em; color: var(--color-lumut); }
-  .harga-sat { font-size: max(var(--fs-13), 0.36em); letter-spacing: 0; margin-left: 0.35em; color: var(--color-lumut); }
-  .ds-sd { color: var(--color-lumut); }
-  .ds-pasti { font-size: var(--fs-15); color: var(--color-lumut) !important; }
-  .ds-tunggu { font-size: var(--fs-15); color: var(--color-lumut) !important; }
-  .ds-harga td.ds-tunggu { font-size: var(--fs-15); letter-spacing: 0; line-height: 1.4; }
-  .merek-hp { display: none; }
-  @media (max-width: 47.99rem) {
-    .datasheet { display: none; }
-    .merek-hp { display: grid; border-top: 1px solid var(--color-tinta); }
-    .merek-hp li { padding: 1.4rem 0; border-bottom: 1px solid var(--color-garis); }
-    .merek-hp-harga { margin-top: 0.5rem; font-size: 1.5rem; font-weight: 500; letter-spacing: -0.03em; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.35rem; }
-    .merek-hp-kelas { margin-top: 0.3rem; font-size: var(--fs-14); color: var(--color-lumut); }
-    .merek-hp-satuan { font-size: var(--fs-14); color: var(--color-lumut); }
-    .merek-hp-pasti { margin-top: 0.4rem; color: var(--color-lumut); font-size: var(--fs-15); }
+  /* Merek & harga: kartu produk berfoto (acuan Bau Cargo "Наши услуги"), urut termurah. HP & tablet digeser ke samping. */
+  .mk-daftar {
+    display: grid; grid-auto-flow: column; grid-auto-columns: 72%; gap: 12px;
+    overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none;
+    margin-inline: calc(-1 * var(--gutter)); padding: 0 var(--gutter) 10px; scroll-padding-inline: var(--gutter);
   }
-  .tabel-catatan { margin-top: 1rem; font-size: var(--fs-15); color: var(--color-lumut); }
+  .mk-daftar::-webkit-scrollbar { display: none; }
+  .mk-daftar li { scroll-snap-align: start; }
+  .mk-kartu {
+    position: relative; display: flex; flex-direction: column; height: 100%; padding: 1.1rem 1.1rem 1.25rem; border-radius: 1.25rem;
+    background: var(--color-putih); color: var(--color-tinta); text-decoration: none;
+    box-shadow: 0 1px 2px rgb(16 35 30 / 0.06), 0 14px 30px -18px rgb(16 35 30 / 0.28);
+    transition: transform 300ms var(--ease-out), box-shadow 300ms var(--ease-out);
+  }
+  .mk-atas { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; min-height: 2.5rem; }
+  .mk-logo { display: block; height: calc(var(--h) * 1.45); width: auto; max-width: 62%; opacity: 0.85; }
+  .mk-kelas { padding: 0.3rem 0.7rem; border-radius: 999px; background: var(--color-embun); font-size: var(--fs-13); font-weight: 500; color: var(--color-lumut); white-space: nowrap; }
+  .mk-kartu :global(.mk-foto) { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; margin: 0.9rem 0 1rem; border-radius: 0.85rem; }
+  .mk-harga-label { font-size: var(--fs-13); color: var(--color-lumut); }
+  .mk-harga { margin-top: 0.15rem; font-family: var(--font-merek); font-size: 1.65rem; font-weight: 500; letter-spacing: -0.035em; line-height: 1.1; font-variant-numeric: tabular-nums lining-nums; }
+  .mk-rp, .mk-satuan { font-size: var(--fs-15); letter-spacing: 0; color: var(--color-lumut); }
+  .mk-rp { margin-right: 0.1em; }
+  .mk-garansi { margin-top: 0.35rem; padding-right: 3rem; font-size: var(--fs-14); color: var(--color-lumut); }
+  .mk-panah {
+    position: absolute; right: 1rem; bottom: 1rem; display: grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: 50%;
+    box-shadow: inset 0 0 0 1px var(--color-garis); color: var(--color-pinus); transition: background-color 250ms, color 250ms;
+  }
+  .mk-kartu:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 3px; }
+  @media (hover: hover) and (pointer: fine) {
+    .mk-kartu:hover { transform: translateY(-3px); box-shadow: 0 1px 2px rgb(16 35 30 / 0.06), 0 22px 40px -20px rgb(16 35 30 / 0.4); }
+    .mk-kartu:hover .mk-panah { background: var(--color-pinus); color: var(--color-tunas); box-shadow: none; }
+  }
+  .mk-bawah { display: flex; flex-wrap: wrap; gap: 0 2rem; margin-top: 1.25rem; }
+  @media (min-width: 48rem) { .mk-daftar { grid-auto-columns: 40%; } }
+  @media (min-width: 64rem) { .mk-daftar { grid-auto-columns: 31%; } }
+  /* Laptop lebar: lima kartu sejajar tanpa geser. */
+  @media (min-width: 75rem) {
+    .mk-daftar { grid-auto-flow: row; grid-template-columns: repeat(5, minmax(0, 1fr)); overflow: visible; margin-inline: 0; padding: 0; }
+  }
 
   /* Area: teks + peta skematik */
   .area { display: grid; gap: 3rem 4rem; grid-template-columns: minmax(0, 1fr); align-items: center; }
@@ -782,7 +746,7 @@ const faqSchema = {
   /* ── HP: skala & ritme khusus layar kecil (token --hp-* di global.css, acuan iOS HIG). ───── */
   @media (max-width: 47.99rem) {
     .sek { padding-block: 3.25rem; }
-    .kepala, .merek-kepala { gap: 0.75rem; margin-bottom: 1.5rem; }
+    .kepala { gap: 0.75rem; margin-bottom: 1.5rem; }
     .judul-besar, .judul-2 { font-size: var(--hp-t1); line-height: 1.08; letter-spacing: -0.03em; max-width: 18ch; }
     .lead { font-size: var(--fs-16); line-height: 1.5; }
 
@@ -826,9 +790,6 @@ const faqSchema = {
     .lyn-pita { padding: 1.4rem; }
     .lyn-pita-judul { font-size: var(--hp-t3); }
 
-    .ds-merek { font-size: var(--hp-t2); }
-    .merek-hp li { padding: 1.1rem 0; }
-    .merek-hp-harga { font-size: var(--hp-t3); }
     .tanya-q { font-size: var(--hp-t4); }
     .penutup-judul { font-size: 2rem; }
     .penutup-teks { font-size: var(--fs-16); }
@@ -842,7 +803,6 @@ const faqSchema = {
     .jurnal-nama { font-size: var(--fs-15); line-height: 1.3; letter-spacing: -0.01em; }
     .jurnal-ringkas { display: none; }
     .bukti-daftar b { font-size: 1.25rem; }
-    .spek summary { font-size: var(--fs-16); padding: 1rem 0; }
 
     /* Fakta jadi angka besar 2×2 yang menghitung naik (yang bukan angka disembunyikan di HP). */
     .bukti-daftar li { padding: 1.1rem 0.75rem 1.1rem 0; border-top: 1px solid var(--color-garis); }
@@ -864,7 +824,6 @@ const faqSchema = {
   .wa-apung { display: none; } /* digantikan tombol Chat di bilah tab bawah */
   }
 
-  .merek-semua { margin-top: 1.25rem; }
 
 
   /* Cara kerja: empat langkah di satu garis waktu dengan titik Tunas (acuan Redow). HP: garis tegak di kiri. */
