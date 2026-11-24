@@ -344,21 +344,27 @@ const faqSchema = {
       <div class="wrap">
         <div class="kepala">
           <div class="kepala-judul"><p class="label-bagian">Area layanan</p><h2 id="judul-area" class="judul-besar judul-dua">Melayani seluruh Jabodetabek, <span class="miring">hingga luar Pulau Jawa.</span></h2></div>
-          <p class="lead">Survey dan pengukuran di lokasi untuk wilayah Jabodetabek. Di luar Jabodetabek, ongkos kirim material dan akomodasi tukang dihitung bersama admin.</p>
+          <p class="lead">Survey dan pengukuran di lokasi untuk Jabodetabek. Di luar Jabodetabek, ongkos kirim material dan akomodasi tukang dihitung bersama admin.</p>
         </div>
-        <!-- Chip kota yang bisa diklik (acuan Bau Cargo) + peta di kartu (acuan Logamax "Key Trade Lanes"), DECISIONS 090.
-             HP: peta disembunyikan, tersedia di /area. -->
-        <div class="ar">
+        <!-- Daftar kota = legenda peta (DECISIONS 095): baris bergaris tipis ala tabel Notion, titik warna = warna wilayah di
+             peta; arahkan kursor ke kota → wilayahnya menyala di peta (dan sebaliknya). HP: peta disembunyikan, tersedia di /area. -->
+        <div class="ar" data-ar>
           <div class="ar-kiri">
             {wilayah.map((w) => (
               <div class="ar-grup">
-                <h3 class="ar-nama">{w.nama}</h3>
-                <ul class="ar-chip">{w.kota.map((k) => <li>{halamanArea.has(k) ? <a href={halamanArea.get(k)}>{k}</a> : <span>{k}</span>}</li>)}</ul>
+                <h3 class="ar-nama">{w.nama}<span>{w.kota.length} wilayah</span></h3>
+                <ul class="ar-daftar">
+                  {w.kota.map((k) => (
+                    <li data-kota={k} class:list={{ 'ar-jkt': k.startsWith('Jakarta') }}>
+                      {halamanArea.has(k) ? <a href={halamanArea.get(k)}>{k}<span class="ar-panah" aria-hidden="true">→</span></a> : <span class="ar-baris">{k}</span>}
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
             <div class="ar-grup">
               <h3 class="ar-nama">Pernah dikerjakan di luar Jabodetabek</h3>
-              <ul class="ar-chip ar-luar">{bisnis.survey.pengalamanLuar.map((k) => <li><span>{k}</span></li>)}</ul>
+              <p class="ar-jauh">{bisnis.survey.pengalamanLuar.join(' · ')}</p>
             </div>
             <a class="tautan-lanjut" href="/area">Lihat peta &amp; kondisi tiap daerah</a>
           </div>
@@ -446,8 +452,8 @@ const faqSchema = {
 
         <div class="ajak">
           <div class="ajak-teks">
-            <h2 id="judul-penutup" class="ajak-judul">Punya proyek atap? <span class="miring">Mulai dari satu chat.</span></h2>
-            <p class="ajak-isi">Kirim ukuran atau foto atap Anda lewat WhatsApp. Kami bantu pilih material dan siapkan penawarannya.</p>
+            <h2 id="judul-penutup" class="ajak-judul">Bingung pilih merek atau hitung biayanya? <span class="miring">Kami bantu hitungkan.</span></h2>
+            <p class="ajak-isi">Kirim ukuran atau foto atap Anda lewat WhatsApp. Kami bantu pilih merek yang cocok dan hitung perkiraan biayanya, tanpa kewajiban memesan.</p>
             <div class="ajak-aksi">
               <a href={waLink('Halo Atapura, saya mau konsultasi proyek atap.')} target="_blank" rel="noopener" class="pill pill-tunas ajak-wa" data-wa="penutup"><span class="ajak-ikon" set:html={ikonWhatsapp} />Chat WhatsApp</a>
               <a href="/hitung" class="ajak-tautan">Hitung estimasi biaya</a>
@@ -467,6 +473,18 @@ const faqSchema = {
 </Base>
 
 <script>
+  // Area: kota di daftar ↔ wilayah di peta menyala bersamaan (DECISIONS 095).
+  const ar = document.querySelector<HTMLElement>('[data-ar]');
+  if (ar) {
+    const nyala = (el: EventTarget | null, on: boolean) => {
+      const k = el instanceof Element ? el.closest<HTMLElement>('[data-kota]')?.dataset.kota : undefined;
+      if (k) ar.querySelectorAll(`[data-kota="${k}"]`).forEach((e) => e.classList.toggle('menyala', on));
+    };
+    for (const [masuk, keluar] of [['pointerover', 'pointerout'], ['focusin', 'focusout']] as const) {
+      ar.addEventListener(masuk, (e) => nyala(e.target, true));
+      ar.addEventListener(keluar, (e) => nyala(e.target, false));
+    }
+  }
   // Desktop: foto besar (hero, penutup) bergeser halus mengikuti kursor dengan pegas; cahaya senja ikut di hero.
   const desktop = matchMedia('(min-width: 64rem) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
   if (desktop.matches) {
@@ -545,6 +563,8 @@ const faqSchema = {
   .kepala-judul .label-bagian { margin-bottom: 0.5rem; } /* eyebrow → judul 8 px (Notion) */
   @media (min-width: 48rem) { .judul-besar.judul-dua { max-width: 32ch; } .judul-dua .miring { display: block; } }
   @media (min-width: 60rem) { .kepala:has(.judul-dua) .lead { justify-self: end; max-width: 32ch; text-wrap: balance; } }
+  /* Pengantar Area dua kalimat: dilebarkan supaya 3 baris, bukan 5 (Rama 24 Nov). */
+  @media (min-width: 60rem) { #area .kepala .lead { max-width: none; text-wrap: pretty; } }
   .c-embun { background: var(--color-embun); }
   .c-putih { background: var(--color-putih); }
   .c-pinus { background: var(--color-pinus); }
@@ -744,28 +764,43 @@ const faqSchema = {
     .mk-daftar { grid-auto-flow: row; grid-template-columns: repeat(5, minmax(0, 1fr)); overflow: visible; margin-inline: 0; padding: 0; }
   }
 
-  /* Area: teks + peta skematik */
-  /* Area: chip kota (tautan ke /area/*) + peta dalam kartu. */
+  /* Area: daftar kota sebagai legenda peta (tabel bergaris tipis ala Notion, dua kolom) + peta dalam kartu. */
   .ar { display: grid; gap: 2rem 3.5rem; grid-template-columns: minmax(0, 1fr); align-items: start; }
-  .ar-kiri { display: grid; gap: 1.5rem; align-content: start; }
-  .ar-nama { font-size: var(--fs-14); font-weight: 500; color: var(--color-lumut); }
-  .ar-chip { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.6rem; }
-  .ar-chip a, .ar-chip span {
-    display: inline-flex; align-items: center; min-height: 40px; padding: 0 1rem; border-radius: 999px;
-    background: var(--color-embun); color: var(--color-tinta); font-size: var(--fs-15); font-weight: 500; text-decoration: none;
-    transition: background-color 250ms, color 250ms;
+  .ar-kiri { display: grid; gap: 1.75rem; align-content: start; }
+  .ar-nama {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-tinta); font-size: var(--fs-13); font-weight: 600; letter-spacing: 0.01em;
+    line-height: 1.33; text-transform: uppercase; color: var(--color-tinta);
   }
-  .ar-chip a:hover { background: var(--color-pinus); color: var(--color-embun); }
-  .ar-chip a:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 2px; }
-  .ar-luar span { background: transparent; box-shadow: inset 0 0 0 1px var(--color-garis); color: var(--color-lumut); }
+  .ar-nama span { font-weight: 400; letter-spacing: 0; text-transform: none; color: var(--color-lumut); }
+  .ar-daftar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 1.5rem; }
+  .ar-daftar li { border-bottom: 1px solid var(--color-garis); }
+  .ar-daftar a, .ar-baris {
+    display: flex; align-items: center; gap: 0.6rem; min-height: 48px; font-size: var(--fs-16); font-weight: 500;
+    color: var(--color-tinta); text-decoration: none; transition: color 200ms;
+  }
+  /* Titik = warna wilayah di peta (Jakarta lebih tua), jadi daftar terbaca sebagai legenda. */
+  .ar-daftar a::before, .ar-baris::before {
+    content: ''; flex: none; width: 10px; height: 10px; border-radius: 3px; background: #cfe3d6;
+    box-shadow: inset 0 0 0 1px rgb(16 35 30 / 0.12); transition: background-color 200ms;
+  }
+  .ar-jkt a::before, .ar-jkt .ar-baris::before { background: #b0d0bc; }
+  .ar-panah { margin-left: auto; color: var(--color-lumut); transition: transform 250ms var(--ease-out), color 200ms; }
+  .ar-daftar li.menyala a, .ar-daftar li.menyala .ar-baris { color: var(--color-pinus); }
+  .ar-daftar li.menyala a::before, .ar-daftar li.menyala .ar-baris::before { background: #83b394; }
+  .ar-daftar li.menyala .ar-panah { transform: translateX(4px); color: var(--color-pinus); }
+  .ar-daftar a:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 2px; border-radius: 4px; }
+  .ar-jauh { text-wrap: balance; padding-top: 0.75rem; font-size: var(--fs-16); font-weight: 500; color: var(--color-tinta); }
   .ar-kiri .tautan-lanjut { justify-self: start; }
   .ar-peta { padding: 1.25rem; border-radius: 1.5rem; background: var(--color-embun); }
   @media (min-width: 60rem) { .ar { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); } }
-  /* Kartu Indonesia kecil di peta dobel dengan chip "luar Jabodetabek": disembunyikan di beranda (tetap di /area). */
+  /* Kartu Indonesia kecil di peta dobel dengan baris "luar Jabodetabek": disembunyikan di beranda (tetap di /area). */
   .ar-peta :global(.peta-sisip) { display: none; }
   @media (max-width: 47.99rem) {
     .ar-peta { display: none; }
-    .ar-chip a, .ar-chip span { min-height: 36px; padding: 0 0.85rem; font-size: var(--fs-14); }
+    .ar-daftar { column-gap: 1rem; }
+    .ar-daftar a, .ar-baris { min-height: 44px; gap: 0.5rem; font-size: var(--fs-15); }
+    .ar-panah { display: none; }
   }
 
   /* Rapor */

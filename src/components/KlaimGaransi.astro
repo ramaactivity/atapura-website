@@ -22,7 +22,7 @@ const sla = ['Hari ini', '≤ 3 hari kerja', 'Jadwal disepakati', 'Sebelum & ses
     <h2 class="klaim-judul">Klaim garansi <span class="klaim-redup">cukup lewat WhatsApp.</span></h2>
     <p class="klaim-sub">{TAMPIL_FOTO_PROGRES ? 'Empat langkah, semuanya tercatat.' : 'Tiga langkah, dari chat sampai perbaikan.'}</p>
   </div>
-  <ol class="klaim-alur">
+  <ol class="klaim-alur" style={`--n: ${bisnis.garansi.klaim.length}`}>
     <span class="klaim-garis" aria-hidden="true"><span></span></span>
     {bisnis.garansi.klaim.map((k, i) => (
       <li class="klaim-langkah" style={`--i: ${i}`}>
@@ -59,7 +59,7 @@ const sla = ['Hari ini', '≤ 3 hari kerja', 'Jadwal disepakati', 'Sebelum & ses
   .klaim-sub { font-size: var(--fs-15); color: var(--embun-redup); }
 
   .klaim-alur { position: relative; display: grid; gap: 1.75rem; grid-template-columns: minmax(0, 1fr); }
-  @media (min-width: 48rem) { .klaim-alur { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; } }
+  @media (min-width: 48rem) { .klaim-alur { grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 1.5rem; } } /* --n = jumlah langkah (3 saat Laporan disembunyikan, DECISIONS 093) */
 
   /* Garis penghubung. HP: potongan per langkah dari bawah ikon ke ikon berikutnya. Layar lebar: satu garis horizontal. */
   .klaim-garis { display: none; }
@@ -69,7 +69,7 @@ const sla = ['Hari ini', '≤ 3 hari kerja', 'Jadwal disepakati', 'Sebelum & ses
   }
   @media (min-width: 48rem) {
     .klaim-langkah::after { display: none; }
-    .klaim-garis { display: block; position: absolute; left: 32px; right: calc(25% - 32px); top: 32px; height: 1px; background: rgb(242 244 241 / 0.18); }
+    .klaim-garis { display: block; position: absolute; left: 32px; right: calc(100% / var(--n) - 32px); top: 32px; height: 1px; background: rgb(242 244 241 / 0.18); }
     .klaim-garis span { position: absolute; inset: 0; background: var(--color-tunas); transform-origin: left; }
   }
 

@@ -792,3 +792,14 @@ Rapor Proyek" belum dijalankan di lapangan dan tidak ada di Ops, jadi berisiko j
 - Rama memilih bobot "600 judul, 500 judul kartu" (setelah sesi Ops sempat memasang 700 ala Notion): token baru
   `--bobot-judul-kartu: 500` untuk semua tingkat title (judul kartu, pertanyaan FAQ, nama merek & langkah, harga kecil);
   judul tetap `--bobot-judul: 600`. Ops dikabari untuk menyamakan.
+
+## 095 · 24 November 2026 · Ajakan penutup, daftar kota jadi legenda peta, klaim 3 langkah
+- Ajakan penutup (Rama: "Mulai dari satu chat … narasi jelek"): diganti menjawab keraguan terakhir pengunjung setelah melihat
+  merek & harga — "Bingung pilih merek atau hitung biayanya? Kami bantu hitungkan." + "Kirim ukuran atau foto atap Anda lewat
+  WhatsApp. Kami bantu pilih merek yang cocok dan hitung perkiraan biayanya, tanpa kewajiban memesan." (skill copywriting:
+  masalah pembaca + langkah jelas + pengurang risiko). Judul kartu pakai heading-1 (display-2 pecah 4 baris).
+- Area (Rama: "chip-nya kurang menarik"): chip diganti daftar kota bergaris tipis dua kolom per provinsi (ala tabel Notion) yang
+  berfungsi sebagai legenda peta — titik warna = warna wilayah di peta, arahkan kursor/fokus ke kota → wilayahnya menyala di
+  peta dan sebaliknya (`data-kota`). "Pernah dikerjakan di luar Jabodetabek" jadi satu baris bertitik. Pengantar Area dilebarkan
+  (5 → 3 baris di laptop).
+- /garansi: alur klaim mengikuti jumlah langkah (`--n`), 3 kolom penuh setelah langkah Laporan disembunyikan (093).

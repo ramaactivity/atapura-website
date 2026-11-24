@@ -29,7 +29,7 @@ const daftar = (a: readonly string[]) => (a.length > 1 ? `${a.slice(0, -1).join(
       <rect class="peta-laut" width={peta.lebar} height={peta.tinggi} />
       {peta.wilayah.filter((w) => !w.layanan).map((w) => <path class="peta-tetangga" d={w.d} />)}
       {layanan.map((w) => {
-        const isi = <path class:list={['peta-wilayah', { 'peta-jkt': jakarta(w.nama) }]} d={w.d} />;
+        const isi = <path class:list={['peta-wilayah', { 'peta-jkt': jakarta(w.nama) }]} d={w.d} data-kota={w.nama} />;
         return tautan[w.nama] ? <a href={tautan[w.nama]} aria-label={`${w.nama}: survey gratis`}>{isi}</a> : isi;
       })}
       <g class="peta-label peta-label-lengkap" aria-hidden="true">
@@ -76,6 +76,8 @@ const daftar = (a: readonly string[]) => (a.length > 1 ? `${a.slice(0, -1).join(
   .peta a:focus-visible { outline: none; }
   .peta a:focus-visible .peta-wilayah { fill: #83b394; }
   @media (hover: hover) and (pointer: fine) { .peta a:hover .peta-wilayah { fill: #83b394; } }
+  /* Menyala saat kota yang sama di daftar beranda disorot (DECISIONS 095). */
+  .peta-wilayah.menyala { fill: #83b394; }
   .peta-label { pointer-events: none; }
   .peta-label text { font-family: var(--font-sans); font-size: 12px; font-weight: 500; fill: var(--color-tinta); text-anchor: middle; dominant-baseline: middle; paint-order: stroke; stroke: rgb(255 255 255 / 0.75); stroke-width: 3px; stroke-linejoin: round; }
   .peta-label .peta-label-kecil { font-size: 10px; }
