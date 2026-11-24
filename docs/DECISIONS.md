@@ -827,3 +827,10 @@ Lighthouse HP (live, sebelum): performa 90, aksesibilitas 97, best practices 100
 - Halaman lain (/hitung, /produk, artikel, /area/depok, /garansi) performa 100; diperbaiki: label tab bawah HP Pinus 48%
   (2,97:1) → Lumut; sampul artikel/area `sizes` = lebar sebenarnya + ukuran 720 px; foto kartu produk ukuran 280–480 px;
   /garansi "Cara pembayaran" h3 → h2 (urutan judul).
+
+## 098 · 25 November 2026 · Tanggal harga tidak ditampilkan di halaman publik
+Melanjutkan perintah Rama di beranda ("harga per Jumat 20 November 2026 gaperlu dicantumkan", DECISIONS 090) ke halaman lain:
+slip /produk/[merek], pengantar /produk, /hitung (pengantar, keterangan tabel harga, dan meta description), serta catatan
+harga di halaman /area/*. Harga tetap ditarik dari Ops (`ops.json`). Yang sengaja tetap: daftar sumber artikel ("Daftar harga
+Atapura … berlaku sejak …") karena angka di artikel mengacu ke daftar harga tanggal itu (klaim wajib bersumber). Kalimat /hitung
+"setelah survey gratis dan opname luas" → "setelah survey dan pengukuran luas" (sama dengan tanya jawab beranda).

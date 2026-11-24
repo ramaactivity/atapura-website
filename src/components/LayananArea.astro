@@ -2,7 +2,7 @@
 // "Layanan di {kota}" di awal halaman area (DECISIONS 080): yang dicari pengunjung (harga, survey, lama pasang, garansi)
 // sebelum data iklim. Semua angka dari harga.ts/produk.ts/bisnis.ts, jadi ikut berubah bersama Hitung AKAL dan halaman merek.
 import { bisnis } from '../data/bisnis';
-import { harga, kisaranRupiah, estimasiPublik, tanggalPanjang } from '../data/harga';
+import { harga, kisaranRupiah, estimasiPublik } from '../data/harga';
 import { merekTermurah } from '../data/produk';
 import '../styles/halaman.css';
 
@@ -15,7 +15,7 @@ const contoh = estimasiPublik(100, 'CTI').hari;
   <div>
     <h2 id="la-judul" class="la-judul">Layanan di {nama}</h2>
     <p class="la-catatan">
-      Harga terpasang per m², berlaku sejak {tanggalPanjang(harga.berlakuSejak)}. Sudah termasuk genteng, alas, lapis kedap, flashing, dan jasa pasang dengan spek standar.{!jabodetabek && ' Di luar Jabodetabek ditambah ongkos kirim dan transport tukang.'}
+      Harga terpasang per m². Sudah termasuk genteng, alas, lapis kedap, flashing, dan jasa pasang dengan spek standar.{!jabodetabek && ' Di luar Jabodetabek ditambah ongkos kirim dan transport tukang.'}
     </p>
   </div>
   <div class="hl-slip">

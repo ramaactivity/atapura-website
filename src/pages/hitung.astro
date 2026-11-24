@@ -4,7 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import HitungAkal from '../islands/HitungAkal';
 import { bisnis, waLink } from '../data/bisnis';
-import { harga, kisaranRupiah, rentangRangka, tanggalPanjang, type Merek } from '../data/harga';
+import { harga, kisaranRupiah, rentangRangka, type Merek } from '../data/harga';
 import { produk } from '../data/produk';
 import { getCollection } from 'astro:content';
 
@@ -13,7 +13,6 @@ import { getCollection } from 'astro:content';
 const situs = new URL('/', Astro.site).href;
 // Artikel terjadwal belum ada di build sebelum tanggal terbitnya: tautan hanya muncul kalau artikelnya sudah tayang.
 const artikelLuas = (await getCollection('panduan')).some((a) => a.id === 'cara-menghitung-luas-atap');
-const tanggal = tanggalPanjang(harga.berlakuSejak);
 const termin = bisnis.pembayaran.jasa.map((t) => `${t.persen}%`).join(', ');
 const rb = (n: number) => (n / 1000).toLocaleString('id-ID');
 
@@ -65,7 +64,7 @@ const schema = [
 ---
 <Base
   title="Kalkulator Biaya Pasang Atap Bitumen per m² | Atapura"
-  description={`Hitung estimasi biaya pasang atap bitumen Maxxi, CTI, Javabitumen, Victory, dan Tegola di Jabodetabek: material, aksesoris, dan jasa pasang. Harga per ${tanggal}.`}
+  description={`Hitung estimasi biaya pasang atap bitumen Maxxi, CTI, Javabitumen, Victory, dan Tegola di Jabodetabek: material, aksesoris, dan jasa pasang.`}
   schema={schema}
 >
   <Header terang />
@@ -84,7 +83,7 @@ const schema = [
       <div class="wrap">
         <HitungAkal client:load awal={120} sumber="Hitung AKAL" />
         <p class="hk-catatan" data-nosnippet>
-          {harga.contoh ? 'Harga acuan pasar Jabodetabek, dihitung dari harga distributor dan jasa pasang. ' : 'Estimasi untuk lokasi di Jabodetabek. '}Harga final kami tulis setelah survey gratis dan opname luas. Harga per {tanggal}.
+          {harga.contoh ? 'Harga acuan pasar Jabodetabek, dihitung dari harga distributor dan jasa pasang. ' : 'Estimasi untuk lokasi di Jabodetabek. '}Harga final kami tulis setelah survey dan pengukuran luas.
         </p>
       </div>
     </section>
@@ -127,7 +126,7 @@ const schema = [
       <section class="hk-harga" aria-labelledby="judul-harga">
         <div class="hk-harga-kepala">
           <h2 id="judul-harga" class="hk-h2">Harga terpasang per <span class="hk-m2">m²</span></h2>
-          <p class="hk-kecil">Jabodetabek, spek standar, belum termasuk rangka baru. Harga per {tanggal}.</p>
+          <p class="hk-kecil">Jabodetabek, spek standar, belum termasuk rangka baru.</p>
         </div>
         <ul class="hk-merek" data-nosnippet>
           {merek.map((m) => (

@@ -4,7 +4,7 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { Image } from 'astro:assets';
 import { LINI, fotoWarna, produk, rentangProduk, sampulProduk, type Produk } from '../../data/produk';
-import { bagianRentang, estimasiPublik, harga, tanggalPanjang } from '../../data/harga';
+import { bagianRentang, estimasiPublik, harga } from '../../data/harga';
 import KartuProduk from '../../components/KartuProduk.astro';
 import GaleriProduk from '../../components/GaleriProduk.astro';
 import { bisnis, waLink } from '../../data/bisnis';
@@ -107,7 +107,6 @@ const schema = [
           {contoh && (
             <p class="slip-contoh">
               Contoh 100 m²: <b>±Rp{contoh.min}–{contoh.max} {contoh.satuan === 'jt' ? 'juta' : 'ribu'}</b> terpasang{hari && <>, <span class="tanpa-putus">sekitar {hari[0]}–{hari[1]} hari kerja</span></>}
-              <span class="slip-tanggal">Harga per {tanggalPanjang(harga.berlakuSejak)}</span>
             </p>
           )}
           <div class="slip-aksi">
@@ -308,7 +307,6 @@ const schema = [
   .slip-aksi .pill { justify-content: center; }
   .slip-contoh { margin-top: 0.75rem; padding: 0.7rem 0.85rem; border-radius: 12px; background: var(--color-embun); font-size: var(--fs-14); color: var(--color-lumut); font-variant-numeric: tabular-nums; }
   .slip-contoh b { color: var(--color-tinta); font-weight: 500; }
-  .slip-tanggal { display: block; margin-top: 0.2rem; font-size: var(--fs-13); }
   .slip-jaminan { display: grid; gap: 0.4rem; margin-top: 1rem; }
   .slip-jaminan li { display: flex; align-items: center; gap: 0.5rem; font-size: var(--fs-14); color: var(--color-lumut); }
   .slip-jaminan svg { flex: none; width: 1.05rem; height: 1.05rem; fill: none; stroke: var(--color-pinus); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
