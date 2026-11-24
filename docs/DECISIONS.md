@@ -843,3 +843,6 @@ AKAL." dengan huruf miring (dilarang), huruf lama, tanpa logo Λ. Dibuat ulang d
 asli, Inter 600, label spesialis, "Atap bitumen, / harga masuk akal.", tiga keunggulan hero, logo Inter baru), dirender Chrome
 1200×630 → JPEG kualitas 85 (126 KB). WhatsApp menyimpan pratinjau lama beberapa waktu; tautan baru/yang belum pernah
 dibagikan langsung memakai gambar baru.
+- Meta description (Google): beranda disamakan dengan hero ("Spesialis jasa pasang atap bitumen (genteng aspal) … Material
+  lengkap, jasa pasang tuntas." — dulu menonjolkan "hitung dalam satu menit, cara pasang per lapis, survey gratis"); /panduan
+  dan /tentang dipendekkan ≤ 160 karakter. Judul artikel 63–70 karakter dan ringkasan Tegola (181) dibiarkan.
