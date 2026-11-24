@@ -52,15 +52,21 @@ html {
   .bukti-daftar b, .bk-garansi b, .hk-angka, .kartu-angka, .ds-merek, .ds-harga td, .merek-hp-harga,
   .termin-persen, .garansi-angka, .babak-nama, .babak-takut, .kaki-besar, .ck-judul, .ck-pegang, .pm-judul,
   .hilang-judul, .rapor-judul, .klaim-judul, .ar-cta-judul, .hasil-angka, .teks-ungkap,
-  .b-judul, .s-display, .s-headline, .s-title, .s-angka, .j-a, .komp-harga, .pilar dt, .tulis-tagline, .spesimen-merek) {
+  .b-judul, .s-display, .s-headline, .s-title, .s-angka, .j-a, .komp-harga, .pilar dt, .tulis-tagline, .spesimen-merek,
+  .vt-bar span, .vt-g-angka, .vt-lama b) {
   font-family: var(--font-merek);
 }
 
+/* Label bagian di atas judul (token "eyebrow" Notion 600/1.33 kapital; DECISIONS 091) di lantai 13 px
+   Atapura (Notion 12 px). Inter kapital butuh sedikit lebih renggang dari 0.01em Notion supaya tidak rapat. */
+.label-bagian { font-size: var(--fs-13); font-weight: 600; letter-spacing: 0.04em; line-height: 1.33; text-transform: uppercase; color: var(--color-lumut); }
+.gelap .label-bagian { color: rgb(242 244 241 / 0.6); }
+
 body {
   font-size: var(--fs-16); /* 16px di HP: ukuran baca bawaan iOS/Android */
-  /* Ritme teks ala Apple (isi 17 px, baris 1,47, sedikit dirapatkan), disesuaikan untuk Inter: baris 1,5, -0,011 em. */
-  line-height: 1.5;
-  letter-spacing: -0.011em;
+  /* Teks isi ala Notion/MongoDB/Figma (DECISIONS 091): Inter, spasi huruf 0 (dulu -0,011 em terasa bertumpuk), baris 1,55. */
+  line-height: 1.55;
+  letter-spacing: 0;
   font-feature-settings: "kern", "liga";
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

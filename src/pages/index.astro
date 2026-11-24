@@ -76,40 +76,87 @@ const panduanTerbaru =(await getCollection('panduan')).sort((a, b) => b.data.dip
 
 // Tanya jawab beranda (juga FAQPage schema). Isi sinkron dengan Ops: harga dari ops.json, cara bayar & garansi = S&K
 // penawaran Ops (src/lib/penawaran/syarat.ts), material saja / jasa saja = JENIS transaksi Ops. Urut dari yang paling dicari.
-const tanya = [
+const rb = (r: readonly [number, number]) => `Rp${r.map((n) => n / 1000).join('–')} ribu`;
+// Jawaban = paragraf pendek (+ daftar bila berisi angka) supaya enak dibaca (Rama, 24 Nov); schema memakai gabungannya.
+type Baris = [tebal: string, isi: string];
+type Visual = 'termin' | 'garansi' | 'sudut' | 'lama';
+// Teks jawaban boleh memuat <b> untuk nilai kunci (pola Notion); schema memakai versi tanpa tag.
+// skema = teks lengkap untuk FAQPage schema bila tampilan memakai visual (isi visual tidak hilang dari mesin pencari).
+const tanya: { q: string; p: string[]; kelompok?: { judul: string; baris: Baris[] }[]; visual?: Visual; p2?: string[]; skema?: string }[] = [
   {
     q: 'Berapa biaya pasang atap bitumen per meter persegi?',
-    a: `Di Jabodetabek, estimasi terpasang per m² (genteng, alas, underlayment, aksesoris, dan jasa pasang): CTI Rp${harga.merek.CTI.terpasang.map((n) => n / 1000).join('–')} ribu, Maxxi dan Javabitumen Rp${harga.merek.Maxxi.terpasang.map((n) => n / 1000).join('–')} ribu, Victory Rp${harga.merek.Victory.terpasang.map((n) => n / 1000).join('–')} ribu, Tegola Rp${harga.merek.Tegola.terpasang.map((n) => n / 1000).join('–')} ribu. Harga genteng saja: CTI Rp${harga.merek.CTI.genteng / 1000} ribu, Maxxi dan Javabitumen Rp${harga.merek.Maxxi.genteng / 1000} ribu, Victory Rp${harga.merek.Victory.genteng / 1000} ribu (Standar) per m². Rangka baja ringan baru, bila perlu, Rp${rentangRangka[0] / 1000}–${rentangRangka[1] / 1000} ribu per m² terpasang (material, aksesori, dan jasa), tergantung merek: K-Steel, Hi-Steel, atau Taso. Harga final kami tulis setelah survey dan pengukuran luas.`,
+    p: ['Di Jabodetabek, estimasi biaya per m² terbagi menjadi tiga bagian:'],
+    kelompok: [
+      { judul: 'Paket terpasang lengkap (genteng, alas, underlayment, aksesoris, dan jasa pasang)', baris: [
+        ['Maxxi & Javabitumen', rb(harga.merek.Maxxi.terpasang)], ['CTI', rb(harga.merek.CTI.terpasang)],
+        ['Victory', rb(harga.merek.Victory.terpasang)], ['Tegola', rb(harga.merek.Tegola.terpasang)],
+      ] },
+      { judul: 'Genteng saja', baris: [
+        ['Maxxi & Javabitumen', `Rp${harga.merek.Maxxi.genteng / 1000} ribu`], ['CTI', `Rp${harga.merek.CTI.genteng / 1000} ribu`],
+        ['Victory (Standar)', `Rp${harga.merek.Victory.genteng / 1000} ribu`],
+      ] },
+      { judul: 'Rangka baja ringan baru, bila perlu (material, aksesoris, dan jasa)', baris: [['K-Steel, Hi-Steel, atau Taso', rb(rentangRangka)]] },
+    ],
+    p2: ['<b>Harga final</b> kami tulis setelah survey dan pengukuran luas.'],
   },
   {
     q: 'Bisa beli material saja atau jasa pasang saja?',
-    a: 'Bisa. Selain paket material dan pemasangan, kami melayani pembelian material saja untuk dipasang tukang Anda, dan jasa pasang saja bila material sudah Anda siapkan. Garansi material ditanggung pabrik masing-masing merek; garansi pemasangan berlaku untuk pekerjaan yang kami pasang.',
+    p: [
+      'Bisa. Selain paket material dan pemasangan, kami melayani pembelian <b>material saja</b> untuk dipasang tukang Anda, dan <b>jasa pasang saja</b> bila material sudah Anda siapkan.',
+      'Garansi material ditanggung pabrik masing-masing merek. Garansi pemasangan berlaku untuk pekerjaan yang kami pasang.',
+    ],
   },
   {
     q: 'Apakah atap bitumen cocok untuk bangunan saya?',
-    a: 'Atap bitumen cocok untuk atap miring dengan rangka kayu atau baja ringan, karena bobotnya jauh lebih ringan dari genteng beton atau keramik. Batas kemiringannya mengikuti pabrik: Maxxi mulai 15 derajat, Tegola 14 derajat untuk pemasangan paku biasa, dan CTI mulai 10 derajat dengan cara pasang khusus. Kalau atap Anda lebih landai dari itu, kami sarankan material lain dan kami jelaskan alasannya saat survey.',
+    p: ['Atap bitumen cocok untuk <b>atap miring</b> dengan rangka kayu atau baja ringan, karena bobotnya jauh lebih ringan dari genteng beton atau keramik. Batas kemiringan minimalnya mengikuti pabrik:'],
+    visual: 'sudut',
+    p2: ['Kalau atap Anda lebih landai dari itu, kami sarankan material lain dan kami jelaskan alasannya saat survey.'],
+    skema: 'Atap bitumen cocok untuk atap miring dengan rangka kayu atau baja ringan, karena bobotnya jauh lebih ringan dari genteng beton atau keramik. Batas kemiringannya mengikuti pabrik: Maxxi mulai 15 derajat, Tegola 14 derajat untuk pemasangan paku biasa, dan CTI mulai 10 derajat dengan cara pasang khusus. Kalau atap Anda lebih landai dari itu, kami sarankan material lain dan kami jelaskan alasannya saat survey.',
   },
   {
     q: 'Berapa lama pengerjaannya?',
-    a: `Atap 120 m² umumnya selesai ${estimasiPublik(120, 'CTI').hari.join('–')} hari kerja, tergantung cuaca dan bentuk atap. Kalkulator biaya di halaman Hitung biaya menampilkan perkiraan untuk luas atap Anda. Jadwal pastinya disepakati setelah survey.`,
+    p: [],
+    visual: 'lama',
+    p2: ['Tergantung cuaca dan bentuk atap. Jadwal pastinya disepakati setelah survey; kalkulator di halaman Hitung biaya menampilkan perkiraan untuk luas atap Anda.'],
+    skema: `Atap 120 m² umumnya selesai ${estimasiPublik(120, 'CTI').hari.join('–')} hari kerja, tergantung cuaca dan bentuk atap. Jadwal pastinya disepakati setelah survey. Kalkulator di halaman Hitung biaya menampilkan perkiraan untuk luas atap Anda.`,
   },
   {
     q: 'Garansinya seperti apa?',
-    a: `Ada dua garansi terpisah. Garansi pabrik menanggung material genteng sesuai dokumen resmi tiap merek. Garansi pemasangan dari Atapura berlaku ${bisnis.garansiPemasanganTahun} tahun sejak serah terima dan menanggung kebocoran dan kesalahan pasang, termasuk material dan jasa perbaikannya. Klaim cukup lewat WhatsApp dengan foto; tim memeriksa paling lambat 3 hari kerja.`,
+    p: ['Ada dua garansi terpisah:'],
+    visual: 'garansi',
+    p2: ['Klaim cukup lewat WhatsApp dengan foto; tim memeriksa paling lambat <b>3 hari kerja</b>.'],
+    skema: `Ada dua garansi terpisah. Garansi pabrik menanggung material genteng sesuai dokumen resmi tiap merek. Garansi pemasangan dari Atapura berlaku ${bisnis.garansiPemasanganTahun} tahun sejak serah terima, menanggung kebocoran dan kesalahan pasang, termasuk material dan jasa perbaikannya. Klaim cukup lewat WhatsApp dengan foto; tim memeriksa paling lambat 3 hari kerja.`,
   },
   {
     q: 'Bagaimana cara bayarnya?',
-    a: `Detail kesepakatan kami bahas bersama lewat WhatsApp. Material dibayar lunas sebelum dikirim ke lokasi. Jasa pasang dibayar bertahap ${bisnis.pembayaran.jasa.map((t) => `${t.persen}%`).join(', ')}: ${bisnis.pembayaran.jasa.map((t) => t.saat.toLowerCase()).join('; ')}.`,
+    p: ['Material dibayar <b>lunas sebelum dikirim</b> ke lokasi. Jasa pasang dibayar bertahap mengikuti progres:'],
+    visual: 'termin',
+    p2: ['Detail kesepakatan kami bahas bersama lewat WhatsApp.'],
+    skema: `Detail kesepakatan kami bahas bersama lewat WhatsApp. Material dibayar lunas sebelum dikirim ke lokasi. Jasa pasang dibayar bertahap: ${bisnis.pembayaran.jasa.map((t) => `${t.persen}% ${t.saat.toLowerCase()}`).join('; ')}.`,
   },
   {
     q: 'Apakah Atapura melayani di luar Jabodetabek?',
-    a: `Ya. Kami melayani seluruh Jabodetabek hingga luar Pulau Jawa. Untuk lokasi di luar Jabodetabek, harga dihitung langsung bersama admin lewat WhatsApp karena ada akomodasi tukang dan pengiriman material (misalnya tiket pesawat atau ekspedisi antarpulau). Tiket dan ekspedisi bisa kami carikan atau Anda atur sendiri; kami tidak mengambil untung dari akomodasi. Tim pemasang kami berpengalaman mengerjakan atap hingga ${bisnis.survey.pengalamanLuar.join(', ')}.`,
+    p: [
+      'Ya. Kami melayani <b>seluruh Jabodetabek hingga luar Pulau Jawa</b>. Untuk lokasi di luar Jabodetabek, harga dihitung langsung bersama admin lewat WhatsApp karena ada akomodasi tukang dan pengiriman material, misalnya tiket pesawat atau ekspedisi antarpulau.',
+      `Tiket dan ekspedisi bisa kami carikan atau Anda atur sendiri; kami <b>tidak mengambil untung dari akomodasi</b>. Tim pemasang kami berpengalaman mengerjakan atap hingga ${bisnis.survey.pengalamanLuar.join(', ')}.`,
+    ],
   },
   {
     q: 'Apa bedanya atap bitumen, genteng aspal, sirap aspal, dan shingle?',
-    a: `Keempatnya sebutan untuk produk yang sama: lembaran fiberglass berlapis aspal dengan butiran batu di permukaannya. Shingle adalah istilah Inggrisnya, sirap aspal sebutan lama, dan di toko bangunan lebih sering disebut genteng aspal. Atapura memasang ${bisnis.merek.length} merek: ${bisnis.merek.slice(0, -1).join(', ')}, dan ${bisnis.merek.at(-1)}.`,
+    p: [
+      'Keempatnya sebutan untuk <b>produk yang sama</b>: lembaran fiberglass berlapis aspal dengan butiran batu di permukaannya.',
+      `Shingle adalah istilah Inggrisnya, sirap aspal sebutan lama, dan di toko bangunan lebih sering disebut genteng aspal. Atapura memasang ${bisnis.merek.length} merek: ${bisnis.merek.slice(0, -1).join(', ')}, dan ${bisnis.merek.at(-1)}.`,
+    ],
   },
 ];
+const sudutMin = [
+  { merek: 'CTI', derajat: 10, ket: 'cara pasang khusus' }, { merek: 'Tegola', derajat: 14, ket: 'paku biasa' }, { merek: 'Maxxi', derajat: 15, ket: '' },
+];
+const teksJawab = (t: (typeof tanya)[number]) => (t.skema ?? [
+  ...t.p,
+  ...(t.kelompok ?? []).map((k) => `${k.judul}: ${k.baris.map(([a, b]) => `${a} ${b}`).join('; ')}.`),
+  ...(t.p2 ?? []),
+].join(' ')).replace(/<[^>]+>/g, '');
 
 // Kota yang sudah punya halaman /area/* jadi tautan (SEO internal); yang belum tetap teks biasa.
 const halamanArea = new Map((await getCollection('area')).flatMap((a) => a.data.cakupan.map((c) => [c.nama, `/area/${a.id}`] as const)));
@@ -123,7 +170,7 @@ const wilayah = [
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: tanya.map((t) => ({ '@type': 'Question', name: t.q, acceptedAnswer: { '@type': 'Answer', text: t.a } })),
+  mainEntity: tanya.map((t) => ({ '@type': 'Question', name: t.q, acceptedAnswer: { '@type': 'Answer', text: teksJawab(t) } })),
 };
 ---
 
@@ -197,7 +244,7 @@ const faqSchema = {
     <section id="layanan" class="sek c-embun" aria-labelledby="judul-layanan">
       <div class="wrap">
         <div class="kepala">
-          <h2 id="judul-layanan" class="judul-besar judul-dua">Solusi layanan atap bitumen <span class="miring">sesuai kebutuhan proyek Anda.</span></h2>
+          <div class="kepala-judul"><p class="label-bagian">Layanan</p><h2 id="judul-layanan" class="judul-besar judul-dua">Solusi layanan atap bitumen <span class="miring">sesuai kebutuhan proyek Anda.</span></h2></div>
           <p class="lead">Semua kebutuhan material dan pemasangan dalam satu pintu.</p>
         </div>
         <!-- Deret kartu berfoto (acuan Forma Casa & Logamax, DECISIONS 086); HP digeser ke samping. -->
@@ -233,7 +280,7 @@ const faqSchema = {
     <section id="akal" class="sek terang c-putih" aria-labelledby="judul-akal">
       <div class="wrap">
         <div class="kepala">
-          <h2 id="judul-akal" class="judul-besar judul-dua">Empat nilai yang kami pegang <span class="miring">di setiap proyek atap.</span></h2>
+          <div class="kepala-judul"><p class="label-bagian">Nilai AKAL</p><h2 id="judul-akal" class="judul-besar judul-dua">Empat nilai yang kami pegang <span class="miring">di setiap proyek atap.</span></h2></div>
           <p class="lead">Prinsip AKAL kami jaga dari penawaran pertama sampai lama setelah atap terpasang.</p>
         </div>
         <AkalCerita />
@@ -243,7 +290,7 @@ const faqSchema = {
     <section id="cara-kerja" class="sek gelap c-pinus" aria-labelledby="judul-cara">
       <div class="wrap">
         <div class="kepala">
-          <h2 id="judul-cara" class="judul-besar judul-dua">Dari chat pertama <span class="miring">sampai atap terpasang.</span></h2>
+          <div class="kepala-judul"><p class="label-bagian">Cara kerja</p><h2 id="judul-cara" class="judul-besar judul-dua">Dari chat pertama <span class="miring">sampai atap terpasang.</span></h2></div>
           <p class="lead">Prosesnya jelas sejak awal, jadi Anda selalu tahu langkah berikutnya.</p>
         </div>
         <!-- Empat langkah bernomor di satu garis waktu (acuan Redow "From insight to impact", DECISIONS 090).
@@ -264,7 +311,7 @@ const faqSchema = {
     <section id="merek" class="sek terang c-embun" aria-labelledby="judul-merek">
       <div class="wrap">
         <div class="kepala">
-          <h2 id="judul-merek" class="judul-besar judul-dua">Lima merek pilihan, <span class="miring">harga terpasang per m².</span></h2>
+          <div class="kepala-judul"><p class="label-bagian">Merek &amp; harga</p><h2 id="judul-merek" class="judul-besar judul-dua">Lima merek pilihan, <span class="miring">harga terpasang per m².</span></h2></div>
           <p class="lead">Sudah termasuk material lengkap dan jasa pasang di Jabodetabek.</p>
         </div>
         <!-- Kartu merek berfoto, urut dari termurah (acuan Bau Cargo "Наши услуги" + Forma Casa, DECISIONS 090).
@@ -296,7 +343,7 @@ const faqSchema = {
     <section id="area" class="sek terang c-putih" aria-labelledby="judul-area">
       <div class="wrap">
         <div class="kepala">
-          <h2 id="judul-area" class="judul-besar judul-dua">Melayani seluruh Jabodetabek, <span class="miring">hingga luar Pulau Jawa.</span></h2>
+          <div class="kepala-judul"><p class="label-bagian">Area layanan</p><h2 id="judul-area" class="judul-besar judul-dua">Melayani seluruh Jabodetabek, <span class="miring">hingga luar Pulau Jawa.</span></h2></div>
           <p class="lead">Survey dan pengukuran di lokasi untuk wilayah Jabodetabek. Di luar Jabodetabek, ongkos kirim material dan akomodasi tukang dihitung bersama admin.</p>
         </div>
         <!-- Chip kota yang bisa diklik (acuan Bau Cargo) + peta di kartu (acuan Logamax "Key Trade Lanes"), DECISIONS 090.
@@ -323,6 +370,7 @@ const faqSchema = {
     <section id="tanya" class="sek terang c-embun" aria-labelledby="judul-tanya">
       <div class="wrap tanya">
         <div class="tanya-kiri">
+          <p class="label-bagian">Tanya jawab</p>
           <h2 id="judul-tanya" class="judul-2">Pertanyaan yang sering <span class="miring">kami terima.</span></h2>
           <div class="tanya-foto"><Foto desktop={terasHujan} alt="Ilustrasi hujan deras dilihat dari ruang tamu, air menetes rapi dari atap" sizes="(min-width: 60rem) 38vw, 100vw" /></div>
           <a class="tanya-panduan" href="/panduan">Baca panduan lengkap atap bitumen</a>
@@ -331,7 +379,43 @@ const faqSchema = {
           {tanya.map((t) => (
             <details class="tanya-item" name="tanya">
               <summary><span class="tanya-q">{t.q}</span><span class="tanya-tanda" aria-hidden="true"></span></summary>
-              <p class="tanya-a">{t.a}</p>
+              <div class="tanya-a">
+                {t.p.map((x) => <p set:html={x} />)}
+                {t.kelompok?.map((k) => (
+                  <div class="tanya-kelompok">
+                    <p class="tanya-kelompok-judul">{k.judul}</p>
+                    <dl class="tanya-rincian">{k.baris.map(([a, b]) => <div><dt>{a}</dt><dd>{b} <span>/ m²</span></dd></div>)}</dl>
+                  </div>
+                ))}
+                {t.visual === 'termin' && (
+                  <div class="vt-termin">
+                    <div class="vt-bar" role="img" aria-label={bisnis.pembayaran.jasa.map((j) => `${j.persen}% ${j.saat.toLowerCase()}`).join(', ')}>
+                      {bisnis.pembayaran.jasa.map((j) => <span style={`flex: ${j.persen}`}>{j.persen}%</span>)}
+                    </div>
+                    <ol class="vt-termin-ket">{bisnis.pembayaran.jasa.map((j) => <li style={`flex: ${j.persen}`}><b>{j.tahap}</b>{j.saat}</li>)}</ol>
+                  </div>
+                )}
+                {t.visual === 'garansi' && (
+                  <div class="vt-garansi">
+                    <div><span class="vt-g-label">Dari pabrik</span><span class="vt-g-angka">Material genteng</span><span class="vt-g-isi">Masa dan cakupannya sesuai dokumen resmi tiap merek.</span></div>
+                    <div class="vt-g-kita"><span class="vt-g-label">Dari Atapura · pemasangan</span><span class="vt-g-angka">{bisnis.garansiPemasanganTahun} tahun</span><span class="vt-g-isi">Kebocoran & kesalahan pasang, sejak serah terima, termasuk material dan jasa perbaikannya.</span></div>
+                  </div>
+                )}
+                {t.visual === 'sudut' && (
+                  <ul class="vt-sudut">
+                    {sudutMin.map((x) => (
+                      <li>
+                        <svg viewBox="0 0 48 28" aria-hidden="true"><path class="dasar" d="M2 26H46" /><path d={`M2 26 L46 ${(26 - Math.tan((x.derajat * Math.PI) / 180) * 44).toFixed(1)}`} /></svg>
+                        <span><b>{x.merek}</b><span class="vt-s-angka">mulai {x.derajat}°</span>{x.ket && <small>{x.ket}</small>}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                {t.visual === 'lama' && (
+                  <p class="vt-lama"><b class="angka">{estimasiPublik(120, 'CTI').hari.join('–')}</b><span>hari kerja<br />untuk atap 120 m²</span></p>
+                )}
+                {t.p2?.map((x) => <p set:html={x} />)}
+              </div>
             </details>
           ))}
         </div>
@@ -343,7 +427,7 @@ const faqSchema = {
     <section class="penutup sek terang c-putih" aria-labelledby="judul-jurnal">
       <div class="wrap">
         <div class="kepala">
-          <h2 id="judul-jurnal" class="judul-besar judul-dua">Artikel &amp; panduan <span class="miring">atap bitumen.</span></h2>
+          <div class="kepala-judul"><p class="label-bagian">Artikel</p><h2 id="judul-jurnal" class="judul-besar judul-dua">Artikel &amp; panduan <span class="miring">atap bitumen.</span></h2></div>
           <p class="lead">Jelajahi artikel soal biaya, merek, dan perawatan atap bitumen, ditulis dari pengalaman di lapangan.</p>
         </div>
         <ul class="pd-daftar">
@@ -458,6 +542,7 @@ const faqSchema = {
   /* Judul layanan dua baris di tablet/laptop: "Solusi layanan atap bitumen" / "sesuai kebutuhan proyek Anda." */
   /* Pola kepala bagian beranda (Rama, 23–24 Nov): judul dua baris (frasa redup turun ke baris kedua), pengantar di kanan
      dua–tiga baris seimbang yang menempel ke tepi kanan. Dipakai bagian yang judulnya diberi .judul-dua. */
+  .kepala-judul .label-bagian { margin-bottom: 0.9rem; }
   @media (min-width: 48rem) { .judul-besar.judul-dua { max-width: 32ch; } .judul-dua .miring { display: block; } }
   @media (min-width: 60rem) { .kepala:has(.judul-dua) .lead { justify-self: end; max-width: 32ch; text-wrap: balance; } }
   .c-embun { background: var(--color-embun); }
@@ -694,6 +779,7 @@ const faqSchema = {
   .tanya-daftar { display: grid; border-top: 1px solid var(--color-garis); interpolate-size: allow-keywords; }
   .tanya-item { border-bottom: 1px solid var(--color-garis); }
   .tanya-kiri { display: grid; gap: 1.25rem; align-content: start; }
+  .tanya-kiri .label-bagian { margin-bottom: -0.4rem; }
   .tanya-foto { border-radius: 16px; overflow: hidden; aspect-ratio: 16 / 10; }
   .tanya-foto :global(img) { width: 100%; height: 100%; object-fit: cover; }
   .tanya-panduan { display: inline-block; margin-top: 1.25rem; font-weight: 500; color: var(--color-pinus); text-decoration: underline; text-decoration-color: rgb(16 35 30 / 0.3); }
@@ -714,7 +800,60 @@ const faqSchema = {
   }
   .tanya-tanda::after { transform: rotate(90deg); }
   .tanya-item[open] .tanya-tanda::after { transform: rotate(0deg); }
-  .tanya-a { color: var(--color-lumut); max-width: 62ch; padding-bottom: 1.5rem; }
+  /* Jawaban FAQ: paragraf pendek, Inter 17/1.6 (HP 16/1.6), warna hampir hitam, rata kiri (acuan Notion/MongoDB/Figma). */
+  .tanya-a { display: grid; gap: 0.85rem; max-width: 64ch; padding-bottom: 1.75rem; font-size: var(--fs-17); line-height: 1.6; color: #24302b; }
+  .tanya-a b { font-weight: 600; color: var(--color-tinta); }
+  /* Visual di jawaban (acuan DESIGN.md Notion): permukaan level 0 = putih + garis tipis 1px, sudut 12px, label kecil
+     kapital renggang, angka tabular. Isi lengkapnya tetap ada di FAQPage schema (teksJawab). */
+  .tanya-kelompok, .vt-garansi > div, .vt-sudut li { background: var(--color-putih); border: 1px solid var(--color-garis); border-radius: 12px; }
+  .vt-label, .tanya-kelompok-judul, .vt-g-label { font-size: var(--fs-13); font-weight: 600; letter-spacing: 0.03em; line-height: 1.33; text-transform: uppercase; color: var(--color-lumut); }
+  /* Harga: tabel data ala Notion — judul kelompok di kepala kartu, baris dipisah garis tipis, harga tabular rata kanan. */
+  .tanya-kelompok { padding: 0.9rem 1.1rem 0.35rem; }
+  .tanya-kelompok-judul { text-transform: none; letter-spacing: 0; font-size: var(--fs-14); }
+  .tanya-rincian { margin-top: 0.4rem; }
+  .tanya-rincian > div { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding-block: 0.55rem; border-top: 1px solid var(--color-garis); }
+  .tanya-rincian dt { min-width: 0; font-weight: 600; color: var(--color-tinta); }
+  .tanya-rincian dd { flex: none; margin: 0; font-variant-numeric: tabular-nums lining-nums; color: var(--color-tinta); }
+  .tanya-rincian dd span { color: var(--color-lumut); font-size: 0.88em; }
+  /* Termin jasa: batang bersegmen sebanding persen (Pinus · Tunas · putih), keterangan sejajar di bawahnya. */
+  .vt-termin { display: grid; gap: 0.6rem; }
+  .vt-bar { display: flex; gap: 4px; }
+  .vt-bar span {
+    display: grid; place-items: center; min-height: 2.6rem; border-radius: 10px; font-weight: 600;
+    font-size: var(--fs-17); font-variant-numeric: tabular-nums; background: var(--color-pinus); color: var(--color-embun);
+  }
+  .vt-bar span:nth-child(2) { background: var(--color-tunas); color: var(--color-pinus); }
+  .vt-bar span:nth-child(3) { background: var(--color-putih); color: var(--color-pinus); box-shadow: inset 0 0 0 1px var(--color-garis); }
+  .vt-termin-ket { display: flex; gap: 4px; padding: 0; list-style: none; font-size: var(--fs-14); line-height: 1.43; color: var(--color-lumut); }
+  .vt-termin-ket li { min-width: 0; padding-right: 0.5rem; }
+  .vt-termin-ket b { display: block; color: var(--color-tinta); }
+  /* Dua garansi berdampingan: pabrik (putih) vs Atapura (Pinus). */
+  .vt-garansi { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
+  .vt-garansi > div { display: grid; align-content: start; gap: 0.35rem; padding: 1rem 1.1rem 1.1rem; }
+  .vt-garansi .vt-g-kita { background: var(--color-pinus); border-color: var(--color-pinus); color: var(--color-embun); }
+  .vt-g-kita .vt-g-label { color: var(--color-tunas); }
+  .vt-g-angka { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; }
+  .vt-g-isi { font-size: var(--fs-15); line-height: 1.45; color: var(--color-lumut); }
+  .vt-g-kita .vt-g-isi { color: var(--embun-redup); }
+  /* Batas kemiringan: garis miring digambar pada sudut sebenarnya. */
+  .vt-sudut { display: grid; gap: 8px; padding: 0; list-style: none; grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); }
+  .vt-sudut li { display: flex; align-items: center; gap: 0.8rem; padding: 0.75rem 0.9rem; line-height: 1.3; }
+  .vt-sudut svg { flex: none; width: 48px; height: 28px; fill: none; stroke: var(--color-pinus); stroke-width: 2.5; stroke-linecap: round; }
+  .vt-sudut svg .dasar { stroke: var(--color-garis); stroke-width: 1.5; }
+  .vt-sudut b { display: block; color: var(--color-tinta); }
+  .vt-s-angka { white-space: nowrap; }
+  .vt-sudut small { display: block; font-size: var(--fs-13); color: var(--color-lumut); }
+  /* Lama kerja: satu angka besar + konteksnya. */
+  .vt-lama { display: flex; align-items: center; gap: 0.9rem; }
+  .vt-lama b { font-size: 3rem; font-weight: 600; letter-spacing: -0.035em; line-height: 1; color: var(--color-pinus); }
+  .vt-lama span { font-size: var(--fs-15); line-height: 1.35; color: var(--color-lumut); }
+  @media (max-width: 47.99rem) {
+    .vt-termin-ket { flex-direction: column; gap: 0.4rem; }
+    .vt-termin-ket li { flex: none !important; position: relative; padding-left: 1.1rem; }
+    .vt-termin-ket li::before { content: ''; position: absolute; left: 0; top: 0.35em; width: 10px; height: 10px; border-radius: 3px; background: var(--color-pinus); }
+    .vt-termin-ket li:nth-child(2)::before { background: var(--color-tunas); }
+    .vt-termin-ket li:nth-child(3)::before { background: var(--color-putih); box-shadow: inset 0 0 0 1px var(--color-lumut); }
+  }
   .tanya-item::details-content {
     block-size: 0; overflow: clip;
     transition: block-size 500ms var(--ease-out), content-visibility 500ms allow-discrete;
@@ -832,6 +971,7 @@ const faqSchema = {
     .lyn-pita-judul { font-size: var(--hp-t3); }
 
     .tanya-q { font-size: var(--hp-t4); }
+    .tanya-a { font-size: var(--fs-16); line-height: 1.6; }
     .bukti-daftar b { font-size: 1.25rem; }
 
     /* Fakta jadi angka besar 2×2 yang menghitung naik (yang bukan angka disembunyikan di HP). */

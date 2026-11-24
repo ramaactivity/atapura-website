@@ -722,3 +722,21 @@ Experts). Data pengunjung Ops belum layak dipakai (61 kunjungan, 6 klik WA, seba
   1440): 0 elemen keluar layar, 0 galat JS; /produk, /hitung, /area, /area/depok, /cara-kerja, /garansi, /perusahaan dicek di HP.
 - Judul penutup (Rama, kata kunci "artikel"): "Artikel & panduan atap bitumen.", pengantar "Jelajahi artikel …", tautan
   "Jelajahi semua artikel".
+
+## 091 · 24 November 2026 · Tipografi isi ala Notion + tanya jawab bervisual
+Rama: teks tanya jawab "sangat bertumpuk", lalu minta belajar dari DESIGN.md Figma, MongoDB, dan Notion ("gua suka banget
+font2 yang dipake notion … terkenal dengan kerapihannya"), dan mengizinkan bentuk/tabel di FAQ.
+- **Temuan**: ketiganya memakai teks isi 16 px, baris ±1,5, spasi huruf **0**, rata kiri. Tracking -0,011 em warisan ritme Apple
+  (046) yang bikin paragraf panjang terasa rapat. Rata kanan-kiri dicoba (dengan Source Sans 3 + pemenggal suku kata buatan)
+  lalu dibatalkan: Chrome tidak punya pemenggalan bahasa Indonesia sehingga celah antarkata melebar di HP, dan referensi
+  semuanya rata kiri. Source Sans 3 & Geist Mono dibuang; tetap dua huruf (Public Sans + Inter).
+- **Global**: `body` baris 1,55, spasi huruf 0. Label bagian `.label-bagian` (token *eyebrow* Notion: 600, kapital, baris 1,33)
+  di atas semua judul bagian beranda, di lantai 13 px Atapura (Notion 12 px) dengan renggang 0,04 em.
+- **Tanya jawab**: jawaban Inter 17/1,6 (HP 16/1,6) warna #24302b, maks 64ch; nilai kunci ditebalkan di dalam kalimat (pola
+  modal Notion). Jawaban yang isinya angka diganti visual kecil, permukaan level 0 Notion (putih, garis 1 px, sudut 12 px):
+  harga = tabel bergaris tipis per kelompok; cara bayar = batang 40·30·30 sebanding persen (Pinus · Tunas · putih); garansi =
+  dua kartu "Dari pabrik" vs "Dari Atapura · pemasangan 5 tahun"; kemiringan = garis miring pada sudut sebenarnya (CTI 10°,
+  Tegola 14°, Maxxi 15°); lama kerja = angka besar "4–5 hari kerja untuk atap 120 m²". Semua angka dari `bisnis.ts`/`harga.ts`/
+  `estimasiPublik` (sinkron Ops); FAQPage schema tetap memuat teks lengkap lewat `skema`.
+- Tidak diambil dari Notion: judul bobot 700 (Rama menilai judul Atapura bobot 500 sudah "mirip"; bila mau diubah, tunjukkan
+  spesimen dulu), warna biru, sudut 4/8 px untuk tombol (Atapura tetap pill).

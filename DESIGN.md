@@ -227,7 +227,7 @@ Palet hijau hutan yang tenang dengan latar terang sedikit kehijauan, ditusuk sat
 ## Typography
 
 **Display Font:** Public Sans variable (USWDS, SIL OFL 1.1, subset Latin, self-host `/public/fonts/PublicSans-Variable-latin.woff2`, 27 KB), wght 100–900, tanpa italic. Token `--font-merek`. Dipakai untuk logo, h1–h3, dan teks besar yang bukan elemen judul (daftar selektor di `global.css`).
-**Body Font:** Inter variable (rsms, SIL OFL 1.1, self-host `/public/fonts/Inter-Variable-latin.woff2`, 47 KB). Token `--font-sans` (bawaan `html`). Teks isi, lead, label, tombol, harga kecil, remah. Ritme ala Apple: baris 1,5, tracking -0,011 em (DECISIONS 046, Rama 18 Nov 2026: "font besar dan utama tetap ciri khas Atapura, teks kecil boleh font lain yang lebih enak dibaca", sama di semua perangkat).
+**Body Font:** Inter variable (rsms, SIL OFL 1.1, self-host `/public/fonts/Inter-Variable-latin.woff2`, 47 KB). Token `--font-sans` (bawaan `html`). Teks isi, lead, label, tombol, harga kecil, remah. Ritme ala Notion/MongoDB/Figma: baris 1,55, tracking 0 (DECISIONS 091; dulu -0,011 em terasa rapat), rata kiri (DECISIONS 046, Rama 18 Nov 2026: "font besar dan utama tetap ciri khas Atapura, teks kecil boleh font lain yang lebih enak dibaca", sama di semua perangkat).
 
 **Larangan:** SF Pro tidak boleh dipasang sebagai font web (lisensi Apple: hanya untuk mock-up aplikasi di platform Apple, dilarang untuk "website content" dan embed). Jangan menambah font ketiga.
 
@@ -239,7 +239,9 @@ Diperbarui 23 Nov 2026 (DECISIONS 076) mengikuti situs yang tayang.
 - **Headline** (Public Sans 500, tracking -0.035em, line-height 1.08, maks 20ch): judul bagian beranda `clamp(1.9rem, 0.8rem + 2.1vw, 3rem)` (±39 px di 1230 px; rasio ±1,5 terhadap hero, mengikuti referensi Rama). HP: `--hp-t1` (26 px). Pengantar (`.lead`, sub hero) `--fs-18`, Lumut, baris 1,55, maks 44ch.
 - **Title** (Public Sans 500, 1.15–1.35rem): judul kartu, baris daftar, nama merek. HP: `--hp-t2`–`--hp-t4`.
 - **Teks kecil–sedang = token** di `global.css`: `--fs-13` label & keterangan (lantai), `--fs-14` catatan/kaki, `--fs-15` isi ringkas & kartu, `--fs-16` isi, `--fs-17` isi baca & label kontrol, `--fs-18` pengantar kecil. Jangan menulis rem lepas di bawah 1.15rem; pakai token.
-- **Isi**: HP 15–16 px (register ringkas, selera Rama dari Ops), laptop 16–18 px; jawaban tanya-jawab maks 62ch.
+- **Isi**: HP 15–16 px (register ringkas, selera Rama dari Ops), laptop 16–18 px; jawaban tanya-jawab Inter 17/1,6 (HP 16/1,6), #24302b, maks 64ch, nilai kunci `<b>` 600 di dalam kalimat.
+- **Label bagian** (`.label-bagian`, token *eyebrow* Notion): Inter 13 px 600, kapital, renggang 0,04 em, Lumut (di latar gelap Embun 60%), di atas tiap judul bagian.
+- **Visual dalam jawaban** (DECISIONS 091): permukaan level 0 = putih + garis 1 px `--color-garis` + sudut 12 px; tabel harga bergaris tipis; batang termin sebanding persen; dua kartu garansi (pabrik putih vs Atapura Pinus); angka besar Public Sans 600 proporsional. Teks lengkapnya wajib tetap di FAQPage schema.
 - **Angka besar** (Public Sans 500, proporsional): estimasi di slip; "Rp" dan satuan mengecil dengan `max(var(--fs-13), …em)` supaya tidak pernah di bawah 13 px.
 - Pengecualian lantai 13 px yang disengaja: label bilah tab bawah HP (ukuran native iOS ±10 px) dan label di dalam peta SVG.
 
