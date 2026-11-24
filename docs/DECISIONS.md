@@ -690,3 +690,14 @@ Putaran desain bersama Rama (nilai 1/10 → 4 → 5 → 8/10, "desain dan copywr
   perusahaan, tautan AKAL) dan menonjolkan hitung sendiri.
 - Foto `akal-*.jpg` tidak dipakai lagi di beranda (berkas tetap disimpan).
 
+## 089 · 24 November 2026 · Bagian lima lapis keluar dari beranda (tetap di /cara-kerja)
+Audit bagian "Atap bocor lagi setelah diperbaiki?": (1) janji "kami memotret setiap lapis… Foto itu Anda terima" (tidak ada di
+Ops, bumerang); (2) judul terkesan menawarkan perbaikan bocor, padahal jasa itu tidak ada di Ops; (3) di laptop label "Nok 5" dan
+"Genteng bitumen 4" melayang di ruang kosong ±300 px sebelum diagram terurai; (4) istilah "Standar Pasang AKAL"; (5) kotak
+keterangan gaya gambar teknik yang tidak berguna bagi pelanggan; (6) ±1.430 px. Rama: "keren tapi agak berat … jangan dihapus
+tapi pindah ke sub halaman lain". Diagram lengkap sudah ada di /cara-kerja#lapisan, jadi bagian beranda (duplikat versi ringkas)
+dihapus beserta skrip "teks menebal", gaya anatomi/lembar, dan aturan animasi diagram di desktop.css (hanya dipakai beranda).
+Pesan lima lapis tetap ada di kalimat hero dan tautan "Rincian enam tahap & lima lapis" di bagian Cara kerja. Beranda lebih
+pendek 1.431 px (laptop) dan 1.397 px (HP). llms.txt diperbarui. Catatan: /cara-kerja masih memuat janji "difoto satu per satu";
+dibahas saat halaman itu dikerjakan.
+

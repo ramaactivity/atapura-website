@@ -27,7 +27,7 @@ ${bisnis.nama} adalah aplikator sekaligus agen atap bitumen (genteng aspal, sira
 
 ## Halaman utama
 
-- [Beranda](${url('/')}): ringkasan layanan pasang atap bitumen, estimasi cepat per merek, lima lapis pemasangan, perbandingan merek, area layanan, tanya jawab
+- [Beranda](${url('/')}): ringkasan layanan pasang atap bitumen, nilai AKAL, cara kerja, perbandingan merek, estimasi cepat per merek, area layanan, tanya jawab
 - [Tentang Atapura](${url('/tentang')}): identitas usaha, badan usaha dan statusnya, pendiri, alamat, area survey gratis, pengalaman tim pemasang, merek yang dipasang
 - [Kontak](${url('/kontak')}): WhatsApp, email, alamat, yang perlu disiapkan sebelum menghubungi
 - [Untuk perusahaan](${url('/perusahaan')}): dokumen yang diterima pengadaan dan proyek, legalitas dan termin apa adanya, cara meminta penawaran resmi

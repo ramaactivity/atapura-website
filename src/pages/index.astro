@@ -2,7 +2,6 @@
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import Lapisan from '../components/Lapisan.astro';
 import PetaArea from '../components/PetaArea.astro';
 import PilihMerek from '../components/PilihMerek.astro';
 import AkalCerita from '../components/AkalCerita.astro';
@@ -222,38 +221,6 @@ const faqSchema = {
           <p class="lead">Prinsip AKAL kami jaga dari penawaran pertama sampai lama setelah atap terpasang.</p>
         </div>
         <AkalCerita />
-      </div>
-    </section>
-
-    <section id="lapisan" class="sek terang c-embun anatomi" aria-labelledby="judul-bocor">
-      <div class="wrap">
-        <div class="anatomi-kepala">
-          <h2 id="judul-bocor" class="judul-besar">Atap bocor lagi <span class="miring">setelah diperbaiki?</span></h2>
-          <div class="anatomi-isi">
-            <p class="lead">
-              Air yang menetes ke plafon sering masuk lewat lapisan di bawah genteng: alas yang tidak rata,
-              underlayment yang terpotong, atau flashing yang terlewat di tepi dinding.
-            </p>
-            <p class="teks-ungkap" data-ungkap>
-              Karena itu kami memasang atap bitumen sebagai satu sistem lima lapis, dan memotret setiap lapis
-              sebelum tertutup lapis berikutnya. Foto itu Anda terima, jadi bagian yang nanti tidak terlihat tetap bisa dicek.
-            </p>
-            <a class="tautan-lanjut" href="/cara-kerja#lapisan">Standar Pasang AKAL selengkapnya</a>
-          </div>
-        </div>
-        <div class="lembar">
-          <span class="lembar-sudut" aria-hidden="true"></span>
-          <Lapisan ringkas />
-          <div class="lembar-blok">
-            <h3 class="lembar-judul">Lima lapis di atas kepala Anda</h3>
-            <dl class="lembar-data">
-              <div><dt>Gambar</dt><dd>Penampang atap bitumen, terurai</dd></div>
-              <div><dt>Urutan pasang</dt><dd class="angka">1 sampai 5, dari bawah</dd></div>
-              <div><dt>Acuan</dt><dd>Standar Pasang AKAL</dd></div>
-              <div><dt>Skala</dt><dd>Tidak berskala</dd></div>
-            </dl>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -490,25 +457,6 @@ const faqSchema = {
     document.querySelectorAll('.bukti-daftar b').forEach((b) => io.observe(b));
   }
 
-  // Kalimat pernyataan menebal kata demi kata mengikuti gulir (referensi Framer "Perform").
-  for (const p of document.querySelectorAll<HTMLElement>('[data-ungkap]')) {
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) break;
-    const kata = p.textContent!.trim().split(/\s+/);
-    p.textContent = '';
-    const span = kata.map((k, i) => { const s = document.createElement('span'); s.textContent = k + (i < kata.length - 1 ? ' ' : ''); p.append(s); return s; });
-    let nyala = -1, antre = 0;
-    const ukur = () => {
-      antre = 0;
-      const r = p.getBoundingClientRect();
-      const prog = Math.min(1, Math.max(0, (innerHeight * 0.85 - r.top) / (r.height + innerHeight * 0.4)));
-      const n = Math.round(prog * span.length);
-      if (n === nyala) return;
-      nyala = n;
-      span.forEach((s, i) => s.classList.toggle('nyala', i < n));
-    };
-    addEventListener('scroll', () => { if (!antre) antre = requestAnimationFrame(ukur); }, { passive: true });
-    ukur();
-  }
 </script>
 
 <style>
@@ -521,8 +469,6 @@ const faqSchema = {
      dua–tiga baris seimbang yang menempel ke tepi kanan. Dipakai bagian yang judulnya diberi .judul-dua. */
   @media (min-width: 48rem) { .judul-besar.judul-dua { max-width: 32ch; } .judul-dua .miring { display: block; } }
   @media (min-width: 60rem) { .kepala:has(.judul-dua) .lead { justify-self: end; max-width: 32ch; text-wrap: balance; } }
-  .teks-ungkap span { opacity: 0.22; transition: opacity 350ms var(--ease-out); }
-  .teks-ungkap span.nyala { opacity: 1; }
   .c-embun { background: var(--color-embun); }
   .c-putih { background: var(--color-putih); }
   .c-pinus { background: var(--color-pinus); }
@@ -679,36 +625,6 @@ const faqSchema = {
   /* Judul section besar: tipis, rapat, satu kata miring. */
   .judul-besar { font-size: clamp(1.9rem, 0.8rem + 2.1vw, 3rem); font-weight: 500; letter-spacing: -0.035em; line-height: 1.08; max-width: 20ch; }
 
-  /* Anatomi: lembar gambar teknik di atas grid tipis. */
-  .anatomi {
-    background-image:
-      linear-gradient(rgb(76 94 85 / 0.07) 1px, transparent 1px),
-      linear-gradient(90deg, rgb(76 94 85 / 0.07) 1px, transparent 1px);
-    background-size: 48px 48px; background-position: -1px -1px;
-  }
-  .anatomi-kepala { display: grid; gap: 1.5rem 4rem; grid-template-columns: minmax(0, 1fr); }
-  @media (min-width: 60rem) { .anatomi-kepala { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: start; } }
-  .anatomi-isi { display: grid; gap: 1rem; color: var(--color-lumut); }
-  .lembar { position: relative; margin-top: clamp(3rem, 7vw, 6rem); padding-top: 1rem; }
-  .lembar-sudut { position: absolute; inset: 0; pointer-events: none; }
-  .lembar-sudut::before, .lembar-sudut::after {
-    content: ''; position: absolute; width: 22px; height: 22px; border-color: var(--color-lumut); border-style: solid; opacity: 0.6;
-  }
-  .lembar-sudut::before { top: 0; left: 0; border-width: 1px 0 0 1px; }
-  .lembar-sudut::after { bottom: 0; right: 0; border-width: 0 1px 1px 0; }
-  .lembar-blok {
-    margin-top: 2rem; display: grid; grid-template-columns: minmax(0, 1fr); border: 1px solid var(--color-tinta);
-    background: var(--color-embun);
-  }
-  @media (min-width: 60rem) { .lembar-blok { grid-template-columns: minmax(0, 1.1fr) minmax(0, 2fr); margin-left: auto; width: min(100%, 52rem); } }
-  .lembar-judul { padding: 0.9rem 1.1rem; font-size: 1.15rem; font-weight: 400; letter-spacing: -0.02em; border-bottom: 1px solid var(--color-tinta); }
-  @media (min-width: 60rem) { .lembar-judul { border-bottom: 0; border-right: 1px solid var(--color-tinta); } }
-  .lembar-data { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .lembar-data > div { padding: 0.6rem 1.1rem; border-left: 1px solid var(--color-garis); border-top: 1px solid var(--color-garis); }
-  .lembar-data > div:nth-child(-n+2) { border-top: 0; }
-  .lembar-data > div:nth-child(odd) { border-left: 0; }
-  .lembar-data dt { font-size: var(--fs-13); color: var(--color-lumut); }
-  .lembar-data dd { font-size: var(--fs-15); }
 
   /* Cara kerja */
 
@@ -859,7 +775,7 @@ const faqSchema = {
   /* ── HP: skala & ritme khusus layar kecil (token --hp-* di global.css, acuan iOS HIG). ───── */
   @media (max-width: 47.99rem) {
     .sek { padding-block: 3.25rem; }
-    .kepala, .anatomi-kepala, .merek-kepala { gap: 0.75rem; margin-bottom: 1.5rem; }
+    .kepala, .merek-kepala { gap: 0.75rem; margin-bottom: 1.5rem; }
     .judul-besar, .judul-2 { font-size: var(--hp-t1); line-height: 1.08; letter-spacing: -0.03em; max-width: 18ch; }
     .lead { font-size: var(--fs-16); line-height: 1.5; }
 
@@ -906,9 +822,6 @@ const faqSchema = {
     .ds-merek { font-size: var(--hp-t2); }
     .merek-hp li { padding: 1.1rem 0; }
     .merek-hp-harga { font-size: var(--hp-t3); }
-    .lembar-judul { font-size: var(--fs-16); }
-    .lembar-sudut { display: none; }
-    .lembar { margin-top: 2rem; }
     .tanya-q { font-size: var(--hp-t4); }
     .penutup-judul { font-size: 2rem; }
     .penutup-teks { font-size: var(--fs-16); }
@@ -929,8 +842,6 @@ const faqSchema = {
     .bukti-daftar li:nth-child(-n+2) { border-top: 0; }
     .bukti-daftar b { font-size: 2rem; font-variant-numeric: tabular-nums; }
     .bukti-daftar li > span { font-size: var(--fs-13); }
-    /* Kalimat pernyataan lebih besar supaya efek menebal terasa. */
-    .teks-ungkap { font-size: var(--hp-t3); line-height: 1.4; font-weight: 500; letter-spacing: -0.015em; color: var(--color-tinta); }
     /* Tombol utama: teks kiri, panah dalam bulatan di kanan (pola aplikasi). */
     .hero-utama, .pill-terang { justify-content: space-between; padding: 0 5px 0 1.35rem; min-height: 52px; }
     .hero-utama::after, .pill-terang::after {
@@ -946,7 +857,6 @@ const faqSchema = {
   .wa-apung { display: none; } /* digantikan tombol Chat di bilah tab bawah */
   }
 
-  .anatomi-isi .tautan-lanjut { justify-self: start; }
   .merek-semua { margin-top: 1.25rem; }
 
 

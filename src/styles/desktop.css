@@ -78,20 +78,10 @@
     .sek .miring { animation: jadi-miring linear both; }
     @keyframes jadi-miring { from { opacity: 1; } to { opacity: 0.55; } }
 
-    /* Diagram lapisan: tertumpuk rapat, lalu terurai mengikuti scroll. */
-    .lapisan-gambar .l { animation: urai linear both; }
-
 
     /* Lembar Rapor "diletakkan" ke meja saat masuk layar. */
     .rapor { animation: letakkan linear both; }
     @keyframes letakkan { from { rotate: -3deg; translate: 0 60px; } to { rotate: 0deg; translate: 0 0; } }
-    .lapisan-gambar { view-timeline-name: --lapisan; }
-    .lapisan-gambar .l-nok { --kumpul: 330px; }
-    .lapisan-gambar .l-genteng { --kumpul: 250px; }
-    .lapisan-gambar .l-flashing { --kumpul: 150px; }
-    .lapisan-gambar .l-underlayment { --kumpul: 110px; }
-    .lapisan-gambar .l-alas { --kumpul: 0px; }
-    @keyframes urai { from { translate: 0 var(--kumpul); } to { translate: 0 0; } }
   }
 }
 
@@ -103,7 +93,6 @@
     :where(html) main > .sek:not(:last-child),
     :where(html) main > .sek:not(:last-child)::after { animation-timeline: view(); animation-range: exit 0% exit 100%; }
     :where(html) .sek .miring { animation-timeline: view(); animation-range: entry 20% cover 40%; }
-    :where(html) .lapisan-gambar .l { animation-timeline: --lapisan; animation-range: entry 30% cover 55%; }
     :where(html) .rapor { animation-timeline: view(); animation-range: entry 0% cover 45%; }
   }
 }
