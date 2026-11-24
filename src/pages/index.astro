@@ -74,26 +74,24 @@ const hargaMulai = Math.min(...Object.values(harga.merek).map((m) => m.terpasang
 
 const panduanTerbaru =(await getCollection('panduan')).sort((a, b) => b.data.diperbarui.getTime() - a.data.diperbarui.getTime()).slice(0, 3);
 
+// Tanya jawab beranda (juga FAQPage schema). Isi sinkron dengan Ops: harga dari ops.json, cara bayar & garansi = S&K
+// penawaran Ops (src/lib/penawaran/syarat.ts), material saja / jasa saja = JENIS transaksi Ops. Urut dari yang paling dicari.
 const tanya = [
   {
-    q: 'Apakah Atapura melayani di luar Jabodetabek?',
-    a: `Ya. Basis kami di Jabodetabek, tempat survey gratis. Untuk lokasi di luar Jabodetabek, harga dihitung langsung bersama admin lewat WhatsApp karena ada akomodasi tukang dan pengiriman material (misalnya tiket pesawat atau ekspedisi antarpulau). Tiket dan ekspedisi bisa kami carikan atau Anda atur sendiri; kami tidak mengambil untung dari akomodasi. Tim pemasang kami berpengalaman mengerjakan atap hingga ${bisnis.survey.pengalamanLuar.join(', ')}.`,
-  },
-  {
-    q: 'Apa bedanya atap bitumen, genteng aspal, sirap aspal, dan shingle?',
-    a: `Keempatnya sebutan untuk produk yang sama: lembaran fiberglass berlapis aspal dengan butiran batu di permukaannya. Shingle adalah istilah Inggrisnya, sirap aspal sebutan lama, dan di toko bangunan lebih sering disebut genteng aspal. Atapura memasang ${bisnis.merek.length} merek: ${bisnis.merek.slice(0, -1).join(', ')}, dan ${bisnis.merek.at(-1)}.`,
-  },
-  {
     q: 'Berapa biaya pasang atap bitumen per meter persegi?',
-    a: `Di Jabodetabek, estimasi terpasang per m² (genteng, alas, underlayment, aksesoris, dan jasa pasang): CTI Rp${harga.merek.CTI.terpasang.map((n) => n / 1000).join('–')} ribu, Maxxi dan Javabitumen Rp${harga.merek.Maxxi.terpasang.map((n) => n / 1000).join('–')} ribu, Victory Rp${harga.merek.Victory.terpasang.map((n) => n / 1000).join('–')} ribu, Tegola Rp${harga.merek.Tegola.terpasang.map((n) => n / 1000).join('–')} ribu. Harga genteng saja: CTI Rp${harga.merek.CTI.genteng / 1000} ribu, Maxxi dan Javabitumen Rp${harga.merek.Maxxi.genteng / 1000} ribu, Victory Rp${harga.merek.Victory.genteng / 1000} ribu (Standar) per m². Rangka baja ringan baru, bila perlu, Rp${rentangRangka[0] / 1000}–${rentangRangka[1] / 1000} ribu per m² terpasang (material, aksesori, dan jasa), tergantung merek: K-Steel, Hi-Steel, atau Taso. Harga final kami tulis setelah survey gratis dan opname luas.`,
+    a: `Di Jabodetabek, estimasi terpasang per m² (genteng, alas, underlayment, aksesoris, dan jasa pasang): CTI Rp${harga.merek.CTI.terpasang.map((n) => n / 1000).join('–')} ribu, Maxxi dan Javabitumen Rp${harga.merek.Maxxi.terpasang.map((n) => n / 1000).join('–')} ribu, Victory Rp${harga.merek.Victory.terpasang.map((n) => n / 1000).join('–')} ribu, Tegola Rp${harga.merek.Tegola.terpasang.map((n) => n / 1000).join('–')} ribu. Harga genteng saja: CTI Rp${harga.merek.CTI.genteng / 1000} ribu, Maxxi dan Javabitumen Rp${harga.merek.Maxxi.genteng / 1000} ribu, Victory Rp${harga.merek.Victory.genteng / 1000} ribu (Standar) per m². Rangka baja ringan baru, bila perlu, Rp${rentangRangka[0] / 1000}–${rentangRangka[1] / 1000} ribu per m² terpasang (material, aksesori, dan jasa), tergantung merek: K-Steel, Hi-Steel, atau Taso. Harga final kami tulis setelah survey dan pengukuran luas.`,
   },
   {
-    q: 'Apakah atap bitumen cocok untuk rumah saya?',
+    q: 'Bisa beli material saja atau jasa pasang saja?',
+    a: 'Bisa. Selain paket material dan pemasangan, kami melayani pembelian material saja untuk dipasang tukang Anda, dan jasa pasang saja bila material sudah Anda siapkan. Garansi material ditanggung pabrik masing-masing merek; garansi pemasangan berlaku untuk pekerjaan yang kami pasang.',
+  },
+  {
+    q: 'Apakah atap bitumen cocok untuk bangunan saya?',
     a: 'Atap bitumen cocok untuk atap miring dengan rangka kayu atau baja ringan, karena bobotnya jauh lebih ringan dari genteng beton atau keramik. Batas kemiringannya mengikuti pabrik: Maxxi mulai 15 derajat, Tegola 14 derajat untuk pemasangan paku biasa, dan CTI mulai 10 derajat dengan cara pasang khusus. Kalau atap Anda lebih landai dari itu, kami sarankan material lain dan kami jelaskan alasannya saat survey.',
   },
   {
     q: 'Berapa lama pengerjaannya?',
-    a: `Atap 120 m² umumnya selesai ${estimasiPublik(120, 'CTI').hari.join('–')} hari kerja, tergantung cuaca dan bentuk atap. Kalkulator biaya di halaman Hitung biaya menampilkan perkiraan untuk luas atap Anda. Jadwal pasti kami kirim tertulis setelah survey.`,
+    a: `Atap 120 m² umumnya selesai ${estimasiPublik(120, 'CTI').hari.join('–')} hari kerja, tergantung cuaca dan bentuk atap. Kalkulator biaya di halaman Hitung biaya menampilkan perkiraan untuk luas atap Anda. Jadwal pastinya disepakati setelah survey.`,
   },
   {
     q: 'Garansinya seperti apa?',
@@ -101,7 +99,15 @@ const tanya = [
   },
   {
     q: 'Bagaimana cara bayarnya?',
-    a: `Survey gratis di Jabodetabek. Detail kesepakatan kami bahas bersama lewat WhatsApp. Material dibayar lunas sebelum dikirim ke lokasi. Jasa pasang dibayar bertahap ${bisnis.pembayaran.jasa.map((t) => `${t.persen}%`).join(', ')}: ${bisnis.pembayaran.jasa.map((t) => t.saat.toLowerCase()).join('; ')}.`,
+    a: `Detail kesepakatan kami bahas bersama lewat WhatsApp. Material dibayar lunas sebelum dikirim ke lokasi. Jasa pasang dibayar bertahap ${bisnis.pembayaran.jasa.map((t) => `${t.persen}%`).join(', ')}: ${bisnis.pembayaran.jasa.map((t) => t.saat.toLowerCase()).join('; ')}.`,
+  },
+  {
+    q: 'Apakah Atapura melayani di luar Jabodetabek?',
+    a: `Ya. Kami melayani seluruh Jabodetabek hingga luar Pulau Jawa. Untuk lokasi di luar Jabodetabek, harga dihitung langsung bersama admin lewat WhatsApp karena ada akomodasi tukang dan pengiriman material (misalnya tiket pesawat atau ekspedisi antarpulau). Tiket dan ekspedisi bisa kami carikan atau Anda atur sendiri; kami tidak mengambil untung dari akomodasi. Tim pemasang kami berpengalaman mengerjakan atap hingga ${bisnis.survey.pengalamanLuar.join(', ')}.`,
+  },
+  {
+    q: 'Apa bedanya atap bitumen, genteng aspal, sirap aspal, dan shingle?',
+    a: `Keempatnya sebutan untuk produk yang sama: lembaran fiberglass berlapis aspal dengan butiran batu di permukaannya. Shingle adalah istilah Inggrisnya, sirap aspal sebutan lama, dan di toko bangunan lebih sering disebut genteng aspal. Atapura memasang ${bisnis.merek.length} merek: ${bisnis.merek.slice(0, -1).join(', ')}, dan ${bisnis.merek.at(-1)}.`,
   },
 ];
 
@@ -317,13 +323,13 @@ const faqSchema = {
     <section id="tanya" class="sek terang c-embun" aria-labelledby="judul-tanya">
       <div class="wrap tanya">
         <div class="tanya-kiri">
-          <h2 id="judul-tanya" class="judul-2">Yang biasanya ditanyakan sebelum survey</h2>
+          <h2 id="judul-tanya" class="judul-2">Pertanyaan yang sering <span class="miring">kami terima.</span></h2>
           <div class="tanya-foto"><Foto desktop={terasHujan} alt="Ilustrasi hujan deras dilihat dari ruang tamu, air menetes rapi dari atap" sizes="(min-width: 60rem) 38vw, 100vw" /></div>
           <a class="tanya-panduan" href="/panduan">Baca panduan lengkap atap bitumen</a>
         </div>
         <div class="tanya-daftar" data-tanya>
-          {tanya.map((t, i) => (
-            <details class="tanya-item" name="tanya" open={i === 0}>
+          {tanya.map((t) => (
+            <details class="tanya-item" name="tanya">
               <summary><span class="tanya-q">{t.q}</span><span class="tanya-tanda" aria-hidden="true"></span></summary>
               <p class="tanya-a">{t.a}</p>
             </details>
@@ -686,6 +692,9 @@ const faqSchema = {
   .tanya-foto :global(img) { width: 100%; height: 100%; object-fit: cover; }
   .tanya-panduan { display: inline-block; margin-top: 1.25rem; font-weight: 500; color: var(--color-pinus); text-decoration: underline; text-decoration-color: rgb(16 35 30 / 0.3); }
   @media (min-width: 60rem) { .tanya-kiri { position: sticky; top: 2rem; } .tanya .judul-2 { position: static; } }
+  @media (min-width: 48rem) { .tanya .judul-2 .miring { display: block; } }
+  /* HP: foto suasana disembunyikan supaya daftar pertanyaan langsung terlihat. */
+  @media (max-width: 47.99rem) { .tanya-foto { display: none; } }
   .tanya-item summary {
     display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
     padding-block: 1.4rem; cursor: pointer; list-style: none;
