@@ -810,3 +810,8 @@ Rapor Proyek" belum dijalankan di lapangan dan tidak ada di Ops, jadi berisiko j
   (Jakarta menyalakan 5 wilayahnya). Seluruh baris bisa diklik ke halaman daerah. Tinggi Area laptop 1.098 → 1.023 px;
   HP baris dua tingkat (nama + label, lalu fakta).
 - Layanan: foto kartu 4:3 → 16:10 (beranda laptop 8.647 → 8.538 px).
+
+## 096 · 25 November 2026 · Jarak antarbagian beranda dirapatkan
+Lanjutan audit kesesuaian beranda (target ±7.000 px di laptop). Jarak atas-bawah tiap bagian `clamp(4.5rem, 9vw, 8rem)`
+(116 px di laptop 1288) → `clamp(4.5rem, 7vw, 6rem)` (±90 px, setara jarak antarbagian Notion), foto kartu artikel 16:10 →
+2:1. Beranda laptop 8.538 → 8.218 px; HP tidak berubah (jarak HP sudah 3.25rem).

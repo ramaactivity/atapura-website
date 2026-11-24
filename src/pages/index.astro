@@ -579,7 +579,7 @@ const faqSchema = {
 
 <style>
   main { position: relative; }
-  .sek { padding-block: clamp(4.5rem, 9vw, 8rem); }
+  .sek { padding-block: clamp(4.5rem, 7vw, 6rem); } /* ±90 px di laptop: ritme lega ala Notion tanpa ruang kosong berlebih (DECISIONS 096) */
   /* Layanan langsung menempel di bawah baris angka (sudah ada garis pemisah): jarak atas dipangkas supaya tidak ada pita kosong. */
   #layanan { padding-top: clamp(2.75rem, 4.5vw, 4rem); }
   /* Judul layanan dua baris di tablet/laptop: "Solusi layanan atap bitumen" / "sesuai kebutuhan proyek Anda." */
@@ -955,7 +955,7 @@ const faqSchema = {
   .pd-daftar::-webkit-scrollbar { display: none; }
   .pd-daftar li { scroll-snap-align: start; }
   .pd-kartu { position: relative; display: grid; gap: 0.5rem; align-content: start; height: 100%; padding: 8px 8px 1.25rem; border-radius: 1.25rem; background: var(--color-embun); color: var(--color-tinta); text-decoration: none; transition: transform 300ms var(--ease-out); }
-  .pd-kartu :global(.pd-foto) { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 0.85rem; margin-bottom: 0.5rem; }
+  .pd-kartu :global(.pd-foto) { width: 100%; height: auto; aspect-ratio: 2 / 1; object-fit: cover; border-radius: 0.85rem; margin-bottom: 0.5rem; }
   .pd-kat { padding-inline: 0.6rem; font-size: var(--fs-13); font-weight: 500; color: var(--color-lumut); }
   .pd-nama { padding: 0 3.5rem 0 0.6rem; font-family: var(--font-merek); font-size: var(--t-title); font-weight: var(--bobot-judul-kartu); letter-spacing: -0.006em; line-height: 1.4; }
   .pd-panah { position: absolute; right: 0.9rem; bottom: 1rem; display: grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: 50%; box-shadow: inset 0 0 0 1px var(--color-garis); color: var(--color-pinus); transition: background-color 250ms, color 250ms; }
