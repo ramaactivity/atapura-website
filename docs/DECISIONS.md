@@ -674,3 +674,19 @@ Aset turunan yang memuat nomor/QR (pricelist, product knowledge PDF, aset market
   (`npm run cheatsheet`), pricelist PDF lokal dicetak ulang (`npm run pricelist`, tidak di-commit). Gambar marketplace tidak
   memuat nomor. Ops: bawaan `src/lib/profil.ts` dikoreksi; tabel `business_settings` belum punya baris profil (pakai bawaan).
 
+## 088 · 24 November 2026 · AKAL jadi empat kartu nilai; tombol melayang dihapus
+Putaran desain bersama Rama (nilai 1/10 → 4 → 5 → 8/10, "desain dan copywritingnya bagus"):
+- Ditolak: tembok huruf raksasa A·K·A·L, lalu pola Aurel (foto tengah + 4 keterangan bergaris), 1/10.
+- Dipakai: kartu Embun · Tunas · Pinus · Embun ala Biztop (tombol di takik sudut kiri bawah), nomor 01–04 ala Redow, tepi atas
+  atap pelana landai ala Rent H&U (sudut & puncak membulat). Nama nilai jadi judul besar ("kurang ter-highlight" saat kecil).
+- Copy (Rama): AKAL = nilai/komitmen, bukan studi kasus dan bukan soal harga; pembaca bukan hanya pemilik rumah dan pekerjaan
+  bukan hanya ganti atap. Judul "Empat nilai yang kami pegang di setiap proyek atap.", pengantar "Prinsip AKAL kami jaga dari
+  penawaran pertama sampai lama setelah atap terpasang." Andal = pelayanan tim penjualan, tukang, purnajual; Kualitas = tukang
+  profesional + material asli dari pabrikan; Amanah = jujur, terbuka, kesepakatan dipegang; Lestari = atap awet, hubungan
+  terjaga setelah serah terima. Janji lama "tiap lapis difoto" dan "dikabari tiap tahap" dihapus (tidak ada di Ops, bumerang).
+- Latar: AKAL kini Putih (kartu hijau tua & lime butuh latar terang), Lima lapis kembali Embun.
+- Pola kepala bagian `.judul-dua` (judul dua baris + pengantar rata kanan) jadi aturan umum beranda.
+- Tombol melayang "Berapa biaya atap Anda? Hitung estimasi" di laptop dihapus: tiga kali menutupi konten (kartu layanan, pita
+  perusahaan, tautan AKAL) dan menonjolkan hitung sendiri.
+- Foto `akal-*.jpg` tidak dipakai lagi di beranda (berkas tetap disimpan).
+

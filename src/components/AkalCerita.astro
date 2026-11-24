@@ -1,79 +1,93 @@
 ---
-// AKAL: empat janji, masing-masing menaut ke buktinya. Desktop: kisi kartu foto (dulu panggung menempel 360vh,
-// diganti DECISIONS 072 karena 4,4 layar gulir untuk 4 kartu). HP: kartu foto digeser ke samping. Foto: Magnific gelombang 2 (docs/desain/prompt-magnific-gelombang-2.md), ilustrasi.
-import { getImage } from 'astro:assets';
-import { bisnis } from '../data/bisnis';
-import fotoAndal from '../../assets/gambar/magnific/akal-andal.jpg';
-import fotoKualitas from '../../assets/gambar/magnific/akal-kualitas.jpg';
-import fotoAmanah from '../../assets/gambar/magnific/akal-amanah.jpg';
-import fotoLestari from '../../assets/gambar/magnific/akal-lestari.jpg';
-
+// AKAL = empat nilai/komitmen Atapura (Rama, 24 Nov: nilai, bukan studi kasus; bukan soal harga). Kartu berwarna
+// Embun · Tunas · Pinus · Embun bertepi atas atap pelana landai (acuan Rent H&U + ciri Λ Atapura), nama nilai besar,
+// tombol tautan di takik sudut kiri bawah (acuan Biztop). Kalimat umum, tanpa janji prosedural (jangan over promise).
 const pilar = [
-  { id: 'andal', h: 'A', nama: 'Andal', takut: 'Tukang datang seenaknya, kerjaan molor?', dapat: 'Anda tahu tanggal mulai dan perkiraan selesai sebelum membayar apa pun, tertulis. Setiap tahap dikabari lewat chat.', bukti: '/cara-kerja', label: 'Lihat 6 tahap kerja', foto: fotoAndal, alt: 'Ilustrasi pemilik rumah menerima kabar jadwal sementara tim tiba membawa genteng' },
-  { id: 'kualitas', h: 'K', nama: 'Kualitas', takut: 'Takut bocor lagi padahal sudah bayar mahal?', dapat: 'Anda bisa melihat bagian atap yang nanti tertutup: setiap lapis difoto sebelum ditutup lapis berikutnya, lalu dikirim ke Anda.', bukti: '/cara-kerja#lapisan', label: 'Lihat kelima lapis', foto: fotoKualitas, alt: 'Ilustrasi tangan tukang memaku genteng aspal di atas underlayment, ponsel memotret pekerjaan' },
-  { id: 'amanah', h: 'A', nama: 'Amanah', takut: 'Takut harga membengkak atau tertipu?', dapat: 'Anda tahu kisaran biayanya sebelum bicara dengan siapa pun, lalu membayar material sebelum dikirim dan jasa pasang bertahap mengikuti progres.', bukti: '/garansi#bayar', label: 'Lihat termin bayar', foto: fotoAmanah, alt: 'Ilustrasi pemilik rumah meninjau rincian biaya dengan sampel genteng di meja' },
-  { id: 'lestari', h: 'L', nama: 'Lestari', takut: 'Ditinggal begitu lunas?', dapat: `Atap Anda tetap dijaga ${bisnis.garansiPemasanganTahun} tahun: bocor akibat pemasangan diperbaiki tanpa biaya. Klaim cukup lewat WhatsApp dengan foto.`, bukti: '/garansi', label: 'Lihat garansi', foto: fotoLestari, alt: 'Ilustrasi keluarga bersantai di teras saat hujan sore' },
+  { nama: 'Andal', warna: 'embun', isi: 'Pelayanan yang bisa diandalkan, dari tim penjualan, tukang di lapangan, sampai layanan purnajual.', bukti: '/cara-kerja', label: 'Cara kerja' },
+  { nama: 'Kualitas', warna: 'tunas', isi: 'Dikerjakan tukang profesional, dengan material asli langsung dari pabrikan.', bukti: '/produk', label: 'Material & merek' },
+  { nama: 'Amanah', warna: 'pinus', isi: 'Jujur dan terbuka sejak awal. Setiap kesepakatan kami pegang sampai pekerjaan selesai.', bukti: '/tentang', label: 'Tentang kami' },
+  { nama: 'Lestari', warna: 'embun', isi: 'Atap yang awet, dan hubungan yang tetap terjaga setelah serah terima.', bukti: '/garansi', label: 'Garansi' },
 ];
-const foto = await Promise.all(pilar.map(async (p) => ({ ...p, img: await getImage({ src: p.foto, width: 1100, format: 'webp', quality: 74 }) })));
 ---
 
-<div class="cerita">
-  <ol class="cerita-babak">
-      {foto.map((p, i) => (
-        <li class="babak">
-          <img class="babak-foto" src={p.img.src} alt={p.alt} width="1100" height="1375" loading="lazy" decoding="async" />
-          <div class="babak-isi">
-            <p class="babak-nama"><span class="babak-urut">{String(i + 1).padStart(2, '0')} / 04</span>{p.nama}</p>
-            <h3 class="babak-takut">{p.takut}</h3>
-            <p class="babak-dapat">{p.dapat}</p>
-            <a class="babak-bukti tautan-lanjut" href={p.bukti}>{p.label}</a>
-          </div>
-        </li>
-      ))}
-  </ol>
-</div>
-
+<ol class="akal-kartu">
+  {pilar.map((p, i) => (
+    <li class:list={['kartu-akal', `w-${p.warna}`]}>
+      <span class="ka-nomor">0{i + 1}</span>
+      <h3 class="ka-nama"><span class="ka-awal">{p.nama.charAt(0)}</span>{p.nama.slice(1)}</h3>
+      <p class="ka-isi">{p.isi}</p>
+      <span class="ka-takik">
+        <a class="ka-bukti" href={p.bukti}>{p.label}<span aria-hidden="true">→</span></a>
+      </span>
+    </li>
+  ))}
+</ol>
 
 <style>
-  /* HP: kartu foto per pilar */
-    .cerita-babak { display: grid; gap: 1.25rem; }
-  .babak { border-radius: 18px; overflow: hidden; background: var(--color-pinus-2); }
-  .babak-foto { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
-  .babak-isi { padding: 1.5rem 1.4rem 1.75rem; display: grid; gap: 0.6rem; }
-  .babak-nama {
-    font-size: clamp(2.6rem, 1.6rem + 4vw, 3.4rem); font-weight: 500; letter-spacing: -0.05em; line-height: 0.95; color: var(--color-tunas);
-    display: grid; gap: 0.5rem;
+  .akal-kartu { --latar: var(--color-putih); --r: 1.25rem; display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); }
+  .kartu-akal {
+    position: relative; display: flex; flex-direction: column; min-height: 100%;
+    padding: 2.25rem 1.5rem 4.75rem; border-radius: 1.5rem; background: var(--k-latar); color: var(--k-teks);
+    /* Tepi atas = atap pelana landai (naik 1.1rem ke tengah). Bawaan polygon; browser yang mendukung shape() dapat sudut
+       atas membulat supaya tidak tajam. Sudut bawah tetap dari border-radius. */
+    --s: 1.1rem;
+    clip-path: polygon(0 var(--s), 50% 0, 100% var(--s), 100% 100%, 0 100%);
   }
-  .babak-urut { font-size: var(--fs-13); font-weight: 500; letter-spacing: 0.02em; color: var(--embun-redup); }
-  .babak-takut { font-size: 1.45rem; font-weight: 500; letter-spacing: -0.03em; line-height: 1.2; color: var(--color-embun); }
-  .babak-dapat { color: var(--embun-redup); }
+  @supports (clip-path: shape(from 0 0, line to 1px 1px)) {
+    .kartu-akal {
+      clip-path: shape(
+        from 0 calc(var(--s) + 1.25rem),
+        curve to 1.25rem calc(var(--s) - 0.1rem) with 0 var(--s),
+        line to calc(50% - 1.75rem) 0.22rem,
+        curve to calc(50% + 1.75rem) 0.22rem with 50% -0.08rem,
+        line to calc(100% - 1.25rem) calc(var(--s) - 0.1rem),
+        curve to 100% calc(var(--s) + 1.25rem) with 100% var(--s),
+        line to 100% 100%, line to 0 100%, close);
+    }
+  }
+  .w-embun { --k-latar: var(--color-embun); --k-teks: var(--color-tinta); --k-redup: var(--color-lumut); --k-garis: rgb(16 35 30 / 0.14); }
+  .w-tunas { --k-latar: var(--color-tunas); --k-teks: var(--color-pinus); --k-redup: rgb(16 35 30 / 0.72); --k-garis: rgb(16 35 30 / 0.2); }
+  .w-pinus { --k-latar: var(--color-pinus); --k-teks: var(--color-embun); --k-redup: var(--embun-redup); --k-garis: rgb(242 244 241 / 0.2); }
+  .ka-nomor { align-self: flex-end; font-size: var(--fs-14); font-weight: 500; color: var(--k-redup); font-variant-numeric: tabular-nums; }
+  /* Nama pegangan = judul kartu, besar; huruf depan penuh, sisanya diredupkan supaya A-K-A-L terbaca berurutan. */
+  .ka-nama {
+    margin-top: 2.5rem; font-family: var(--font-merek); font-size: clamp(2.5rem, 1.4rem + 2.3vw, 3.5rem); font-weight: 500;
+    letter-spacing: -0.045em; line-height: 0.95; color: color-mix(in srgb, var(--k-teks) 58%, transparent);
+  }
+  .ka-awal { color: var(--k-teks); }
+  .ka-isi { margin-top: 1.1rem; padding-top: 1rem; border-top: 1px solid var(--k-garis); font-size: var(--fs-16); line-height: 1.5; color: var(--k-redup); max-width: 30ch; }
+
+  /* Takik: potongan sudut kiri bawah selatar bagian, sudut dalamnya melengkung (acuan Biztop). */
+  .ka-takik {
+    position: absolute; left: 0; bottom: 0; padding: 0.6rem 0.75rem 0 0; background: var(--latar);
+    border-top-right-radius: var(--r);
+  }
+  .ka-takik::before, .ka-takik::after { content: ''; position: absolute; width: var(--r); height: var(--r); pointer-events: none; }
+  .ka-takik::before { left: 0; top: calc(-1 * var(--r)); background: radial-gradient(circle at 100% 0, transparent calc(var(--r) - 0.5px), var(--latar) var(--r)); }
+  .ka-takik::after { right: calc(-1 * var(--r)); bottom: 0; background: radial-gradient(circle at 100% 0, transparent calc(var(--r) - 0.5px), var(--latar) var(--r)); }
+  .ka-bukti {
+    display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px; padding: 0 1.1rem; border-radius: 999px;
+    background: var(--k-latar); color: var(--k-teks); font-size: var(--fs-15); font-weight: 500; text-decoration: none;
+    transition: transform 250ms var(--ease-out);
+  }
+  .ka-bukti span { transition: transform 250ms var(--ease-out); }
+  .ka-bukti:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 3px; }
+  @media (hover: hover) and (pointer: fine) { .kartu-akal:hover .ka-bukti span { transform: translateX(4px); } }
+
+  @media (min-width: 48rem) { .akal-kartu { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 64rem) {
+    .kartu-akal { padding: 1.75rem 1.6rem 5rem; }
+  }
+  /* Empat kolom baru dari 75rem: di 1024 px judul kartu sempit sampai tiga baris, jadi 2×2 dulu. */
+  @media (min-width: 75rem) { .akal-kartu { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  /* HP: kartu digeser ke samping seperti Layanan, kartu berikutnya mengintip di tepi. */
   @media (max-width: 47.99rem) {
-    .babak-nama { font-size: 1.75rem; }
-    /* Empat kartu digeser ke samping, kartu berikutnya mengintip di tepi. */
-    .cerita-babak {
-      grid-auto-flow: column; grid-auto-columns: 84%; gap: 10px;
+    .akal-kartu {
+      grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 84%; gap: 10px;
       overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none;
       margin-inline: calc(-1 * var(--gutter)); padding: 0 var(--gutter) 6px; scroll-padding-inline: var(--gutter);
     }
-    .cerita-babak::-webkit-scrollbar { display: none; }
-    .babak { scroll-snap-align: start; }
-    .babak-foto { aspect-ratio: 16 / 10; }
-    .babak-isi { padding: 1.1rem 1.1rem 1.25rem; gap: 0.45rem; }
-    .babak-takut { font-size: var(--hp-t3); }
-    .babak-dapat { font-size: var(--fs-15); }
-  }
-  .babak-bukti { justify-self: start; margin-top: 0.1rem; }
-
-  /* Tablet: dua kolom; desktop: empat kartu sejajar. Nama pilar Embun (Satu Tunas Rule: maks satu kata Tunas per layar). */
-  @media (min-width: 48rem) { .cerita-babak { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (min-width: 64rem) {
-    .cerita-babak { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
-    .babak { display: flex; flex-direction: column; }
-    .babak-foto { aspect-ratio: 4 / 5; }
-    .babak-isi { flex: 1; align-content: start; padding: 1.4rem 1.3rem 1.5rem; gap: 0.55rem; }
-    .babak-nama { font-size: 2.4rem; color: var(--color-embun); }
-    .babak-takut { font-size: 1.2rem; line-height: 1.25; }
-    .babak-dapat { font-size: var(--fs-16); line-height: 1.5; }
-    .babak-bukti { margin-top: auto; padding-top: 0.6rem; }
+    .akal-kartu::-webkit-scrollbar { display: none; }
+    .kartu-akal { scroll-snap-align: start; }
   }
 </style>

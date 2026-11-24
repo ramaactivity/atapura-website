@@ -252,13 +252,13 @@ Diperbarui 23 Nov 2026 (DECISIONS 076) mengikuti situs yang tayang.
 
 **The Angka Tabular Rule.** Setiap angka yang dibandingkan atau berubah (estimasi, luas, harga di tabel, durasi) memakai `tabular-nums lining-nums`. Rupiah ditulis tanpa desimal.
 
-**The Huruf Pilar Rule.** Huruf A-K-A-L ditulis raksasa berat 300 (4.5rem di HP, sampai 8.5rem di desktop) sebagai jangkar tiap pilar, turun ke bawah membentuk satu kata.
+**The Huruf Pilar Rule.** (Diganti DECISIONS 088.) Nilai AKAL ditulis sebagai nama besar di kartu (Public Sans 500, clamp 2.5–3.5rem): huruf depan warna penuh, sisa kata diredupkan 58% supaya A-K-A-L terbaca berurutan.
 
 ## Layout
 
 Lebar penuh dengan gutter cair (20px sampai 72px), kontainer maks 90rem, dan konten sejajar judul; tidak ada kolom sempit di tengah. Breakpoint yang dipakai: 48rem (tabel jadi tabel, footer 3 kolom), 60rem (section dua kolom), 64rem (navigasi tampil, hero dua kolom, badan 18px).
 
-**Tata baris genteng.** Tiap section adalah satu "course": padding atas dan bawah = overlap (28px sampai 48px) + jarak section (56px sampai 112px), margin bawah negatif sebesar overlap, sehingga course di bawahnya terselip di bawah course di atasnya. Urutan tumpukan menurun dari atas ke bawah (z-index 7 sampai 1). Urutan beranda sejak DECISIONS 086 (pola referensi: layanan → kenapa kami → detail kualitas → proses → merek): hero → logo & angka (Putih) → Layanan (Embun) → AKAL (Pinus) → Lima lapis (Putih) → Cara kerja (Pinus) → Pilih merek (Embun) → Kalkulator (Pinus) → Area (Putih) → Tanya jawab (Embun) → penutup Pinus 2 → footer. Terang dan gelap selalu bergantian.
+**Tata baris genteng.** Tiap section adalah satu "course": padding atas dan bawah = overlap (28px sampai 48px) + jarak section (56px sampai 112px), margin bawah negatif sebesar overlap, sehingga course di bawahnya terselip di bawah course di atasnya. Urutan tumpukan menurun dari atas ke bawah (z-index 7 sampai 1). Urutan beranda sejak DECISIONS 086/088 (pola referensi: layanan → nilai → detail kualitas → proses → merek): hero → logo & angka (Putih) → Layanan (Embun) → AKAL (Putih) → Lima lapis (Embun) → Cara kerja (Pinus) → Pilih merek (Embun) → Kalkulator (Pinus) → Area (Putih) → Tanya jawab (Embun) → penutup Pinus 2 → footer. Terang dan gelap selalu bergantian.
 
 **Hero.** Satu ajakan saja (Rama, 23 Nov 2026): label kecil (di dalam h1 untuk SEO; chip kaca di desktop, garis Tunas di HP) → judul dua baris → kalimat pengantar (desktop saja) → satu tombol "Hitung estimasi biaya" → tiga baris berikon tentang layanan, bukan janji (Material lengkap, Jasa pasang tuntas, Bisa sekalian rangka). Janji seperti survey gratis, garansi, dan foto per lapis tidak ditaruh di hero karena bisa berbalik (Rama, 23 Nov 2026). Kartu contoh Hitung AKAL hanya informasi, bukan tautan. Desktop (≥64rem): tinggi `calc(100svh - 5.5rem)` supaya deret logo merek mengintip di layar pertama; tabir terang dari kiri (95% → 80% di 40% → transparan 66%).
 
@@ -348,6 +348,13 @@ Daftar `dt`/`dd`: nama pos Lumut di kiri, angka berat 600 di kanan, dihubungkan 
 
 ### Penampang lima lapis (signature)
 Diagram SVG lapisan atap + daftar tombol bernomor. Memilih satu lapis mengangkat lapis itu 22px dan memberinya garis Tunas, lapis lain meredup ke 15%. Nomor lapis: lingkaran 2.25rem bergaris Garis; aktif = Pinus dengan angka Tunas; baris aktif berlatar Putih radius 1rem.
+
+### Kartu nilai AKAL (bagian ke-4 beranda)
+Acuan Biztop (kartu putih · lime · hijau tua, tombol di takik) + Redow (nomor 01–04) + Rent H&U (tepi atas atap). Empat kartu Embun · Tunas · Pinus · Embun, radius 1.5rem, tepi atas atap pelana landai (naik 1.1rem, sudut & puncak membulat lewat `clip-path: shape()`, cadangan `polygon`). Isi: nomor kecil kanan atas, nama nilai besar, garis tipis, satu kalimat nilai (16px, maks 30ch), tombol pill di takik kiri bawah (lengkung ke dalam selatar bagian = Putih). Laptop ≥75rem 4 kolom, 48–75rem 2×2, HP digeser ke samping. Copy = nilai/komitmen umum ("kami"), bukan studi kasus dan bukan harga (Rama, 24 Nov 2026).
+
+**Kepala bagian `.judul-dua`.** Judul dua baris (frasa redup turun ke baris kedua, maks 32ch) + pengantar kanan menempel ke tepi kanan (maks 32ch, `text-wrap: balance`). Dipakai Layanan dan AKAL; bagian lain menyusul saat dikerjakan.
+
+**Tanpa tombol melayang di laptop.** Pill "Berapa biaya atap Anda? Hitung estimasi" dihapus (DECISIONS 088): menutupi konten dan menonjolkan hitung sendiri. Ajakan ada di header, hero, pita perusahaan, dan penutup; HP memakai bilah tab bawah.
 
 ### Kartu layanan (bagian ke-3 beranda)
 Acuan Forma Casa (kartu kategori) + Logamax (pita gelap). Empat kartu putih radius 1.25rem, padding 8px, bayangan lembut; foto 4:3 radius 0.85rem di atas, judul Public Sans 500 1.25rem, satu–dua kalimat Lumut 15px, tombol panah bulat 2.5rem bergaris di kanan bawah (hover: Pinus dengan panah Tunas, kartu terangkat 3px). Seluruh kartu menaut ke panduan yang relevan. Laptop 4 kolom, tablet 2×2, HP digeser ke samping (78%). Di bawahnya pita Pinus "Untuk perusahaan" dengan satu pill Tunas + tautan.
