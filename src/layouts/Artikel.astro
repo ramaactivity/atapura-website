@@ -78,7 +78,7 @@ const schema = [
       </header>
       {/* Semua sampul gambar AI (Magnific), jadi diberi keterangan terlihat, seperti galeri produk (DECISIONS 082). */}
       <figure class="wrap">
-        <Image src={sampul} alt={sampulAlt} widths={[640, 1024, 1600]} sizes="(min-width: 64rem) 1200px, 100vw" class="ar-sampul" loading="eager" />
+        <Image src={sampul} alt={sampulAlt} widths={[640, 720, 1024, 1600]} sizes="(min-width: 64rem) 1200px, calc(100vw - 2rem)" class="ar-sampul" loading="eager" />
         <figcaption class="ar-sampul-ket">{t.ilustrasi}</figcaption>
       </figure>
       <div class="wrap ar-badan">

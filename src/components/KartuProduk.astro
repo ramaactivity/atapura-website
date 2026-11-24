@@ -22,7 +22,7 @@ const MAKS = 5;
 
 <a class="kp" href={`/produk/${p.slug}`}>
   <div class="kp-foto">
-    {foto && <Image src={foto.src} alt={foto.alt} widths={[360, 640, 900]} sizes="(min-width: 64rem) 22vw, (min-width: 48rem) 33vw, 50vw" />}
+    {foto && <Image src={foto.src} alt={foto.alt} widths={[280, 360, 480, 640, 900]} sizes="(min-width: 64rem) 22vw, (min-width: 48rem) 33vw, 45vw" />}
   </div>
   <div class="kp-isi">
     <h3 class="kp-nama">{lengkap ? namaLengkap(p) : p.nama}</h3>

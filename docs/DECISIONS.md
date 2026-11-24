@@ -823,3 +823,7 @@ Lighthouse HP (live, sebelum): performa 90, aksesibilitas 97, best practices 100
   (peta 760 unit tampil ±450 px; beda tak terlihat, dicek berdampingan). Peta kecil Indonesia tetap 1 desimal (240 unit).
   `tools/peta/buat-peta.py` ikut diubah. HTML beranda 169 → 148 KB (gzip 51 → 44 KB).
 - Logo merek dibuat 72 px (dulu 112 px, tampil ±30 px); foto Layanan dapat ukuran 540 px supaya HP tidak mengambil 640 px.
+- Hasil live sesudahnya: beranda performa 96–99, aksesibilitas 100, best practices 100, SEO 100 (TBT 300 → 10–140 ms).
+- Halaman lain (/hitung, /produk, artikel, /area/depok, /garansi) performa 100; diperbaiki: label tab bawah HP Pinus 48%
+  (2,97:1) → Lumut; sampul artikel/area `sizes` = lebar sebenarnya + ukuran 720 px; foto kartu produk ukuran 280–480 px;
+  /garansi "Cara pembayaran" h3 → h2 (urutan judul).
