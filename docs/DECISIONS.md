@@ -836,3 +836,10 @@ Atapura … berlaku sejak …") karena angka di artikel mengacu ke daftar harga 
 "setelah survey gratis dan opname luas" → "setelah survey dan pengukuran luas" (sama dengan tanya jawab beranda).
 - Ikut disamakan (Rama, DECISIONS 090: "13 kota" → "seluruh Jabodetabek"): /tentang baris Survey gratis, meta /kontak dan
   /area, contoh chip & spanduk di /branding. llms.txt tetap menyebut jumlah + daftar wilayah (data untuk AI, bukan slogan).
+
+## 099 · 25 November 2026 · Gambar pratinjau tautan (OG) dibuat ulang
+`public/og/beranda.jpg` (dipakai semua halaman saat tautan dibagikan di WhatsApp/sosmed) masih versi lama: "Atap yang masuk
+AKAL." dengan huruf miring (dilarang), huruf lama, tanpa logo Λ. Dibuat ulang dari templat `tools/og/beranda.html` (foto hero
+asli, Inter 600, label spesialis, "Atap bitumen, / harga masuk akal.", tiga keunggulan hero, logo Inter baru), dirender Chrome
+1200×630 → JPEG kualitas 85 (126 KB). WhatsApp menyimpan pratinjau lama beberapa waktu; tautan baru/yang belum pernah
+dibagikan langsung memakai gambar baru.
