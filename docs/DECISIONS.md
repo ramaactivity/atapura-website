@@ -789,3 +789,6 @@ Rapor Proyek" belum dijalankan di lapangan dan tidak ada di Ops, jadi berisiko j
   (slip kalkulator 5rem, kolom kiri tanya jawab 5.5rem).
 - Rama: "lekukan si tombol dan shape utamanya kurang pas rounding-nya". Takik kartu AKAL: celah rata 8 px, sudut takik =
   radius tombol (22 px) + celah = 30 px sehingga sejajar dengan lengkung tombol; lekukan penyambung = sudut kartu 24 px.
+- Rama memilih bobot "600 judul, 500 judul kartu" (setelah sesi Ops sempat memasang 700 ala Notion): token baru
+  `--bobot-judul-kartu: 500` untuk semua tingkat title (judul kartu, pertanyaan FAQ, nama merek & langkah, harga kecil);
+  judul tetap `--bobot-judul: 600`. Ops dikabari untuk menyamakan.

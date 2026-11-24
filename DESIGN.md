@@ -48,7 +48,7 @@ typography:
   title:
     fontFamily: "Inter, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
     fontSize: "1.25rem"
-    fontWeight: 600
+    fontWeight: 500
     lineHeight: 1.4
     letterSpacing: "-0.006em"
   lead:
@@ -247,7 +247,7 @@ Palet hijau hutan yang tenang dengan latar terang sedikit kehijauan, ditusuk sat
 
 **Larangan:** SF Pro tidak boleh dipasang sebagai font web (lisensi Apple: hanya untuk mock-up aplikasi di platform Apple, dilarang untuk "website content" dan embed). Jangan menambah font kedua.
 
-**Character:** Fondasi tipografi Notion (getdesign.md/notion, "02 — Foundations"), disalin apa adanya kecuali bobot judul 600 (Notion 700, pilihan Rama "jangan terlalu tebal"). Hierarki datang dari ukuran dan jarak huruf yang makin rapat di ukuran besar; teks isi tenang di 400. Tanpa italic; penekanan bagian kalimat lewat warna diredupkan (`.miring` = opacity 0.55).
+**Character:** Fondasi tipografi Notion (getdesign.md/notion, "02 — Foundations"), disalin apa adanya kecuali bobot: judul 600 dan judul kartu 500 (Notion 700/600; Rama: "jangan terlalu tebal", lalu tetap ada beda tebal-tipis). Hierarki datang dari ukuran dan jarak huruf yang makin rapat di ukuran besar; teks isi tenang di 400. Tanpa italic; penekanan bagian kalimat lewat warna diredupkan (`.miring` = opacity 0.55).
 
 ### Hierarchy
 Token di `global.css` (`:root`): `--bobot-judul` 600, `--t-d1 … --t-title`. Tiap tingkat membawa ukuran + baris + jarak huruf sendiri — selalu tulis ketiganya bersama.
@@ -258,7 +258,7 @@ Token di `global.css` (`:root`): `--bobot-judul` 600, `--t-d1 … --t-title`. Ti
 | heading-1 `--t-h1` | 40 px (HP `--hp-t1` 26) | 600 | 1.1 | -0.025em | judul bagian (`.judul-besar`, `.hl-h2`, …), slogan footer |
 | heading-2 `--t-h2` | 26 px | 600 | 1.23 | -0.024em | sub-judul, h2 artikel, angka statistik & harga besar |
 | heading-3 `--t-h3` | 22 px | 600 | 1.27 | -0.011em | judul grup, judul kartu besar |
-| title `--t-title` | 20 px | 600 | 1.4 | -0.006em | judul kartu, pertanyaan FAQ, nama merek, nama langkah |
+| title `--t-title` | 20 px | 500 (`--bobot-judul-kartu`) | 1.4 | -0.006em | judul kartu, pertanyaan FAQ, nama merek, nama langkah |
 | lead | 18 px | 400 | 1.5 | 0 | pengantar di samping/bawah judul, Lumut |
 | body | 16 px semua lebar | 400 | 1.5 | 0 | teks isi, jawaban FAQ, isi artikel |
 | body-sm / caption | 15 / 14 px | 400 | 1.33–1.5 / 1.43 | 0 | isi ringkas kartu / keterangan |

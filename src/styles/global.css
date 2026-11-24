@@ -54,13 +54,14 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Skala judul = fondasi tipografi Notion (getdesign.md/notion, "02 — Foundations"), bobot 600 atas pilihan Rama
-   (Notion 700). Tiap tingkat membawa ukuran + baris + jarak huruf sendiri; makin kecil makin longgar.
+/* Skala judul = fondasi tipografi Notion (getdesign.md/notion, "02 — Foundations"), bobot judul 600 dan judul kartu 500
+   atas pilihan Rama (Notion 700/600). Tiap tingkat membawa ukuran + baris + jarak huruf sendiri; makin kecil makin longgar.
    display-1 64/1.0/-0.033em · display-2 54/1.04/-0.035em · heading-1 40/1.1/-0.025em · heading-2 26/1.23/-0.024em
    heading-3 22/1.27/-0.011em · title 20/1.4/-0.006em · body 16/1.5/0 · body-sm 15/1.33 · caption 14/1.43
    · eyebrow 12→13 (lantai Atapura)/600/1.33/0.01em kapital. */
 :root {
   --bobot-judul: 600;
+  --bobot-judul-kartu: 500; /* tingkat title (judul kartu, pertanyaan FAQ): tetap beda tebal-tipis dari judul (Rama 24 Nov) */
   --t-d1: clamp(2.75rem, 1.5rem + 3.1vw, 4rem);
   --t-d2: clamp(2.25rem, 0.9rem + 3.2vw, 3.375rem);
   --t-h1: clamp(1.75rem, 0.9rem + 2.2vw, 2.5rem);

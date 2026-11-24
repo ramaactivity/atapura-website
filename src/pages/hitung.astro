@@ -221,7 +221,7 @@ const schema = [
     background: var(--color-pinus); color: var(--color-putih); font-size: var(--fs-14); font-weight: 600; font-variant-numeric: tabular-nums;
   }
   .hk-langkah li:not(:last-child)::after { content: ''; position: absolute; left: calc(1rem - 0.5px); top: 2.4rem; bottom: 0.4rem; width: 1px; background: var(--color-garis); }
-  .hk-langkah-judul { font-family: var(--font-merek); font-size: var(--t-title); font-weight: var(--bobot-judul); letter-spacing: -0.006em; line-height: 1.4; }
+  .hk-langkah-judul { font-family: var(--font-merek); font-size: var(--t-title); font-weight: var(--bobot-judul-kartu); letter-spacing: -0.006em; line-height: 1.4; }
   .hk-langkah p { margin-top: 0.35rem; font-size: var(--fs-16); line-height: 1.5; color: var(--color-lumut); max-width: 40ch; }
   @media (min-width: 60rem) {
     .hk-langkah { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.5rem; }
@@ -239,10 +239,10 @@ const schema = [
     min-height: 4rem; padding: 1rem 0; color: var(--color-tinta); text-decoration: none; border-bottom: 1px solid var(--color-garis);
   }
   .hk-merek li:first-child a { border-top: 1px solid var(--color-tinta); }
-  .hk-merek-nama { grid-area: nama; font-family: var(--font-merek); font-size: var(--t-title); font-weight: var(--bobot-judul); letter-spacing: -0.006em; line-height: 1.4; }
+  .hk-merek-nama { grid-area: nama; font-family: var(--font-merek); font-size: var(--t-title); font-weight: var(--bobot-judul-kartu); letter-spacing: -0.006em; line-height: 1.4; }
   .hk-merek-ket { grid-area: ket; font-size: var(--fs-14); line-height: 1.4; color: var(--color-lumut); }
   .hk-titik { grid-area: titik; align-self: center; height: 1px; background: radial-gradient(circle, var(--color-lumut) 0.6px, transparent 0.8px) 0 0 / 6px 1px repeat-x; opacity: 0.55; }
-  .hk-merek-rp { grid-area: rp; font-family: var(--font-merek); font-size: var(--t-title); font-weight: var(--bobot-judul); letter-spacing: -0.006em; white-space: nowrap; line-height: 1.4; }
+  .hk-merek-rp { grid-area: rp; font-family: var(--font-merek); font-size: var(--t-title); font-weight: var(--bobot-judul-kartu); letter-spacing: -0.006em; white-space: nowrap; line-height: 1.4; }
   .hk-panah { grid-area: panah; align-self: center; width: 1.1rem; height: 1.1rem; fill: none; stroke: var(--color-lumut); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transition: transform 240ms var(--ease-out), stroke 200ms; }
   .hk-merek a:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 2px; border-radius: 8px; }
   @media (hover: hover) and (pointer: fine) {
