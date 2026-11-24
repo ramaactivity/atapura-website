@@ -4,7 +4,7 @@ cakupan:
   - { nama: 'Kota Tangerang', jenis: 'City' }
 wilayah: 'Jabodetabek'
 urut: 4
-judul: 'Pasang dan perbaikan atap bitumen di Kota Tangerang'
+judul: 'Jasa pasang atap bitumen di Kota Tangerang'
 ringkasan: 'Stasiun Geofisika Tangerang mencatat 2.139 mm hujan pada 2024. Yang perlu diperhatikan pada atap di Kota Tangerang, harga terpasang, dan survey gratis.'
 jawaban: 'Atapura memasang atap bitumen (genteng aspal) di Kota Tangerang dengan survey gratis. Stasiun Geofisika Tangerang mencatat 2.139 mm hujan sepanjang 2024, dengan bulan terbasah April (337 mm), Maret (321 mm), Januari (310 mm). Dari Januari sampai Juni 2024 saja tercatat 96 hari hujan.'
 diperbarui: 2026-11-03

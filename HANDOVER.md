@@ -23,8 +23,9 @@
   merek, label Ilustrasi sampul, /panduan per kategori, 404 berkerangka, catatan warna brosur CTI, Langsung ke isi, tablet bento.
   ✅ Hero beranda dirombak (085, masukan Rama + referensi-2): judul "Atap bitumen, harga masuk akal.", satu ajakan, Beranda
   di menu, deret logo merek satu warna + baris angka, skala judul dari referensi. ✅ 086: Layanan naik ke bagian ke-3
-  (kartu berfoto), urutan bagian diatur ulang. ✅ 088: AKAL = 4 kartu nilai (8/10 Rama). ⏳ Berikutnya (per bagian): Lima lapis, Cara kerja,
-  gabung Pilih merek + Kalkulator, Area, Tanya jawab, Penutup ("Hitung dulu, baru pasang." masih menonjolkan hitung).
+  (kartu berfoto), urutan bagian diatur ulang. ✅ 088: AKAL = 4 kartu nilai (8/10 Rama). ✅ 089: lima lapis keluar dari beranda (tetap di /cara-kerja). ✅ 090: Cara kerja 4
+  langkah, Merek & harga, Area, Tanya jawab, Penutup dirapikan; beranda −29% (laptop) / −31% (HP). ⏳ /cara-kerja masih memuat janji
+  "difoto satu per satu" — bahas dengan Rama.
   ⏳ Sisa audit di luar kode: Google Business Profile, direktori, ulasan,
   proyek pertama + Rapor asli. Isi NIB/NPWP di bisnis.ts
   begitu akta PT terbit (otomatis tampil di /tentang & /perusahaan). Temuan lama cek.mjs di artikel

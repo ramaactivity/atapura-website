@@ -701,3 +701,23 @@ Pesan lima lapis tetap ada di kalimat hero dan tautan "Rincian enam tahap & lima
 pendek 1.431 px (laptop) dan 1.397 px (HP). llms.txt diperbarui. Catatan: /cara-kerja masih memuat janji "difoto satu per satu";
 dibahas saat halaman itu dikerjakan.
 
+## 090 · 24 November 2026 · Beranda dirapikan per bagian setelah riset isi beranda
+Rama: "audit dulu … riset sebaiknya beranda berisi apa", lalu "jalankan semuanya step by step … be kreatif dan berani".
+Riset: beranda menjawab siapa/apa/cara menghubungi dalam ±5 detik; detail ke sub halaman; halaman layanan/kota lebih kuat untuk
+pencarian spesifik; untuk pembelian mahal halaman agak panjang wajar asal padat (NN/g, Roofr, JobNimbus, CXL, Conversion Rate
+Experts). Data pengunjung Ops belum layak dipakai (61 kunjungan, 6 klik WA, sebagian besar uji internal).
+- **Cara kerja**: enam tahap → empat langkah (Konsultasi · Survey & penawaran · Pemasangan · Serah terima) di garis waktu ala
+  Redow; judul "Dari chat pertama sampai atap terpasang." (tidak lagi soal uang). Janji "lapis yang tertutup tetap bisa Anda
+  lihat" dihapus.
+- **Merek & harga**: "Bingung pilih merek?" (pemilih + tabel) dan kalkulator "Lima merek, satu isian" digabung jadi lima kartu
+  merek ala Bau Cargo (±2.050 → ±750 px). Kalkulator & spesifikasi tetap di /hitung dan /produk; tanggal harga tidak ditulis (Rama).
+- **Area**: chip kota + peta dalam kartu; judul "Melayani seluruh Jabodetabek, hingga luar Pulau Jawa." (Rama: "13 kota" terlalu
+  sempit). Ikut disamakan: baris angka (Jabodetabek), footer, ajakan akhir artikel, keterangan peta, dan judul 9 halaman area
+  ("Jasa pasang atap bitumen di …", sebelumnya "Pasang dan perbaikan …").
+- **Tanya jawab**: tambah "Bisa beli material saja atau jasa pasang saja?" (sinkron JENIS Ops), "bangunan" bukan "rumah",
+  jadwal "disepakati" bukan "dikirim tertulis", kalimat survey nyasar di jawaban bayar dihapus, urut paling dicari, semua tertutup.
+- **Penutup**: "Hitung dulu, baru pasang." diganti kartu panduan + kartu ajakan "Punya proyek atap? Mulai dari satu chat." dengan
+  tombol WhatsApp (data-wa "penutup").
+- Hasil: tinggi beranda laptop 1288 px ±11.900 → 8.415 px, HP 390 px ±13.050 → 9.012 px. Sapu 5 lebar (360, 390, 1024, 1288,
+  1440): 0 elemen keluar layar, 0 galat JS; /produk, /hitung, /area, /area/depok, /cara-kerja, /garansi, /perusahaan dicek di HP.
+
