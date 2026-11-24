@@ -834,3 +834,5 @@ slip /produk/[merek], pengantar /produk, /hitung (pengantar, keterangan tabel ha
 harga di halaman /area/*. Harga tetap ditarik dari Ops (`ops.json`). Yang sengaja tetap: daftar sumber artikel ("Daftar harga
 Atapura … berlaku sejak …") karena angka di artikel mengacu ke daftar harga tanggal itu (klaim wajib bersumber). Kalimat /hitung
 "setelah survey gratis dan opname luas" → "setelah survey dan pengukuran luas" (sama dengan tanya jawab beranda).
+- Ikut disamakan (Rama, DECISIONS 090: "13 kota" → "seluruh Jabodetabek"): /tentang baris Survey gratis, meta /kontak dan
+  /area, contoh chip & spanduk di /branding. llms.txt tetap menyebut jumlah + daftar wilayah (data untuk AI, bukan slogan).
