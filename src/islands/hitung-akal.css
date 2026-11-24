@@ -26,7 +26,7 @@
   padding: clamp(1.6rem, 3vw, 2.6rem); display: grid; gap: 0.4rem;
   box-shadow: 0 30px 60px -30px rgb(16 35 30 / 0.55);
 }
-@media (min-width: 64rem) { .ha-slip { position: sticky; top: 2rem; } }
+@media (min-width: 64rem) { .ha-slip { position: sticky; top: 5rem; } }
 .ha-slip-kepala { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
 .ha-label-kecil { font-size: var(--fs-14); color: rgb(242 244 241 / 0.68); }
 .ha-slip .contoh { white-space: nowrap; flex: none; background: rgb(198 242 78 / 0.16); color: var(--color-tunas); }

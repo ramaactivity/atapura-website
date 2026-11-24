@@ -781,3 +781,11 @@ Rapor Proyek" belum dijalankan di lapangan dan tidak ada di Ops, jadi berisiko j
 - /branding (noindex, panduan konten internal): sebutan Rapor Proyek dinetralkan.
 - Dicek: tidak ada "difoto / foto progres / Rapor Proyek" di hasil build halaman publik; /cara-kerja, /garansi, /perusahaan,
   /tentang 0 elemen keluar layar, 0 galat JS.
+
+## 094 · 24 November 2026 · Bilah atas menempel di laptop + takik kartu AKAL sejajar
+- Rama: "navigasi atasnya hilang saat scroll, pengen tetep ada, tapi seamless dan tidak terlalu banyak menutupi konten".
+  Bilah atas kini `position: fixed` di semua lebar (dulu hanya HP). Di atas hero tetap transparan; setelah digulir 12 px jadi
+  kaca buram Embun 80% + garis rambut, tinggi 80 → 56 px (HP 52 px). Elemen sticky di laptop diturunkan supaya tidak tertutup
+  (slip kalkulator 5rem, kolom kiri tanya jawab 5.5rem).
+- Rama: "lekukan si tombol dan shape utamanya kurang pas rounding-nya". Takik kartu AKAL: celah rata 8 px, sudut takik =
+  radius tombol (22 px) + celah = 30 px sehingga sejajar dengan lengkung tombol; lekukan penyambung = sudut kartu 24 px.

@@ -24,7 +24,9 @@ const pilar = [
 </ol>
 
 <style>
-  .akal-kartu { --latar: var(--color-putih); --r: 1.25rem; display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); }
+  /* --r = lekukan penyambung (sama dengan sudut kartu 1.5rem); --celah = jarak rata takik ke tombol; sudut takik = radius
+     tombol (44 px / 2) + celah, supaya lengkungnya sejajar dengan lengkung tombol (Rama 24 Nov: "rounding-nya kurang pas"). */
+  .akal-kartu { --latar: var(--color-putih); --r: 1.5rem; --celah: 8px; --tombol: 44px; display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); }
   .kartu-akal {
     position: relative; display: flex; flex-direction: column; min-height: 100%;
     padding: 2.25rem 1.5rem 4.75rem; border-radius: 1.5rem; background: var(--k-latar); color: var(--k-teks);
@@ -59,14 +61,14 @@ const pilar = [
 
   /* Takik: potongan sudut kiri bawah selatar bagian, sudut dalamnya melengkung (acuan Biztop). */
   .ka-takik {
-    position: absolute; left: 0; bottom: 0; padding: 0.6rem 0.75rem 0 0; background: var(--latar);
-    border-top-right-radius: var(--r);
+    position: absolute; left: 0; bottom: 0; padding: var(--celah) var(--celah) 0 0; background: var(--latar);
+    border-top-right-radius: calc(var(--tombol) / 2 + var(--celah));
   }
   .ka-takik::before, .ka-takik::after { content: ''; position: absolute; width: var(--r); height: var(--r); pointer-events: none; }
   .ka-takik::before { left: 0; top: calc(-1 * var(--r)); background: radial-gradient(circle at 100% 0, transparent calc(var(--r) - 0.5px), var(--latar) var(--r)); }
   .ka-takik::after { right: calc(-1 * var(--r)); bottom: 0; background: radial-gradient(circle at 100% 0, transparent calc(var(--r) - 0.5px), var(--latar) var(--r)); }
   .ka-bukti {
-    display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px; padding: 0 1.1rem; border-radius: 999px;
+    display: inline-flex; align-items: center; gap: 0.5rem; height: var(--tombol); padding: 0 1.1rem; border-radius: 999px;
     background: var(--k-latar); color: var(--k-teks); font-size: var(--fs-15); font-weight: 500; text-decoration: none;
     transition: transform 250ms var(--ease-out);
   }

@@ -115,7 +115,7 @@ const kini = (href: string) => (href === '/' ? jalur === '/' : jalur === href ||
 <span id="isi" tabindex="-1"></span>
 
 <script>
-  // HP: bilah atas berubah jadi kaca buram setelah halaman digulir (seperti nav bar iOS).
+  // Semua lebar: bilah atas menempel; setelah digulir jadi kaca buram yang lebih pendek (seperti nav bar iOS / Notion).
   const kepala = document.querySelector<HTMLElement>('.kepala');
   if (kepala) {
     let antre = 0;
@@ -165,8 +165,24 @@ const kini = (href: string) => (href === '/' ? jalur === '/' : jalur === href ||
   .lompat-isi { position: fixed; z-index: 100; top: 12px; left: 12px; padding: 0.7rem 1.1rem; border-radius: 999px; background: var(--color-pinus); color: var(--color-embun); font-weight: 500; text-decoration: none; transform: translateY(-160%); }
   .lompat-isi:focus-visible { transform: none; outline: 2px solid var(--color-tunas); outline-offset: 2px; }
   #isi:focus { outline: none; }
-  .kepala { position: absolute; inset: 0 0 auto; z-index: 20; color: var(--color-putih); }
-  .kepala-isi { display: flex; align-items: center; gap: 2rem; min-height: 80px; }
+  /* Bilah atas menempel di semua lebar (Rama 24 Nov: "navigasi atas tetap ada, seamless, tidak banyak menutupi konten").
+     Di atas hero transparan; setelah digulir 12 px jadi kaca buram Embun dengan garis rambut, tinggi 80 → 56 px. */
+  .kepala {
+    position: fixed; inset: 0 0 auto; z-index: 20; color: var(--color-putih);
+    transition: background-color 300ms, color 300ms, box-shadow 300ms, -webkit-backdrop-filter 300ms, backdrop-filter 300ms;
+  }
+  .kepala-isi { display: flex; align-items: center; gap: 2rem; min-height: 80px; transition: min-height 300ms var(--ease-out); }
+  .kepala-gulir {
+    color: var(--color-pinus); background: rgb(242 244 241 / 0.8);
+    -webkit-backdrop-filter: blur(20px) saturate(1.6); backdrop-filter: blur(20px) saturate(1.6);
+    box-shadow: 0 0.5px 0 rgb(16 35 30 / 0.14);
+  }
+  .kepala-gulir .merek-kata { filter: none; }
+  @media (min-width: 48rem) {
+    .kepala-gulir .kepala-isi { min-height: 56px; }
+    .kepala-gulir .kepala-wa { min-height: 40px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .kepala, .kepala-isi { transition: none; } }
   .merek-kata { display: inline-flex; align-items: center; min-height: 44px; color: inherit; filter: drop-shadow(0 1px 8px rgb(0 0 0 / 0.3)); }
   .kepala-nav { display: none; gap: 1.75rem; margin-left: auto; font-size: var(--fs-15); }
   .kepala-nav a { color: inherit; text-decoration: none; padding-block: 0.6rem; opacity: 0.8; transition: opacity 200ms; white-space: nowrap; }
@@ -235,20 +251,11 @@ const kini = (href: string) => (href === '/' ? jalur === '/' : jalur === href ||
      bilah tab bawah 49 pt + area home indicator. Chat jadi aksi utama di tengah. */
   .tabbar { display: none; }
   @media (max-width: 47.99rem) {
-    .kepala {
-      position: fixed; padding-top: env(safe-area-inset-top);
-      transition: background-color 300ms, color 300ms, box-shadow 300ms, -webkit-backdrop-filter 300ms, backdrop-filter 300ms;
-    }
+    .kepala { padding-top: env(safe-area-inset-top); }
     .kepala-isi { min-height: 52px; gap: 0.75rem; }
     .kepala-wa { display: none; }
     .kepala-menu { margin-left: auto; min-height: 36px; padding: 0 0.85rem; font-size: var(--fs-13); position: relative; }
     .kepala-menu::after { content: ''; position: absolute; inset: -4px; } /* area sentuh 44 pt */
-    .kepala-gulir {
-      color: var(--color-pinus); background: rgb(242 244 241 / 0.78);
-      -webkit-backdrop-filter: blur(20px) saturate(1.6); backdrop-filter: blur(20px) saturate(1.6);
-      box-shadow: 0 0.5px 0 rgb(16 35 30 / 0.14);
-    }
-    .kepala-gulir .merek-kata { filter: none; }
     .kepala-gulir .kepala-menu { background: rgb(16 35 30 / 0.07); }
 
     .tabbar {
