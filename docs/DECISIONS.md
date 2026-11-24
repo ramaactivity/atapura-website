@@ -766,3 +766,18 @@ termasuk yang di logo". Mengganti DECISIONS 046 (Public Sans untuk judul) dan ba
 - Dicek: angka terukur di browser (hero Inter 64 px/600/-2,1 px/baris 64 px; isi 16 px/400/24 px), sapu 9 halaman × 360 &
   1288 px: 0 elemen keluar layar (selain kolom jebakan anti-spam yang memang di luar layar), 0 galat JS.
 - Ops perlu ikut (logo & huruf halaman klien/PDF masih Public Sans): dikabari, dikerjakan dari sisi Ops.
+
+## 093 · 24 November 2026 · Janji foto progres & Rapor Proyek disembunyikan
+Rama: "janji2 itu dihide dulu aja dan rapor proyek". Janji "foto tiap lapis sebelum ditutup / foto progres tiap termin /
+Rapor Proyek" belum dijalankan di lapangan dan tidak ada di Ops, jadi berisiko jadi bumerang.
+- Saklar `TAMPIL_FOTO_PROGRES = false` di `src/data/bisnis.ts` (pola sama dengan `TAMPIL_PLAFON`). Saat false: bagian Rapor
+  di /cara-kerja hilang, judul/pengantar/meta /cara-kerja tanpa "difoto", tahap Pengerjaan jadi "Dipasang berurutan, lapis
+  demi lapis" (pegang: kabar progres lewat chat), Serah terima tanpa Rapor; /garansi tanpa "foto progres" (pengantar & kartu
+  bayar); langkah klaim "Laporan" hilang (3 langkah); /perusahaan tanpa "Foto progres di setiap termin" dan Rapor; /tentang
+  tanpa kalimat & tautan Rapor; llms.txt ikut. Komponen RaporContoh tetap ada untuk dinyalakan lagi.
+- Artikel (4 file) diubah langsung: kalimat yang mengklaim Atapura mengirim foto/menyimpan Rapor dihapus atau diganti nasihat
+  umum ("minta foto setiap lapis sebelum ditutup" ke pemasang mana pun tetap ada, karena itu saran untuk pembaca, bukan janji).
+  Versi lama ada di git (commit 1c07c58).
+- /branding (noindex, panduan konten internal): sebutan Rapor Proyek dinetralkan.
+- Dicek: tidak ada "difoto / foto progres / Rapor Proyek" di hasil build halaman publik; /cara-kerja, /garansi, /perusahaan,
+  /tentang 0 elemen keluar layar, 0 galat JS.

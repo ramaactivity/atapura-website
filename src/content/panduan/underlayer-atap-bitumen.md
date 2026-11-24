@@ -116,7 +116,7 @@ Beberapa titik butuh perhatian lebih dari bidang atap biasa. ARMA menyebut under
 - Papan kering dan rata sebelum underlayer ditempel.
 - Genteng menyusul secepatnya. ARMA menyarankan genteng dipasang segera setelah underlayment.
 
-Anda tidak perlu naik ke atap untuk memeriksanya. Atapura mengirim foto setiap lapis sebelum ditutup lapis berikutnya, termasuk underlayer, dan pemasangan dilindungi garansi pemasangan tertulis 5 tahun untuk kebocoran dan kesalahan pasang.
+Anda tidak perlu naik ke atap untuk memeriksanya: minta foto setiap lapis sebelum ditutup lapis berikutnya, termasuk underlayer. Pemasangan Atapura dilindungi garansi pemasangan tertulis 5 tahun untuk kebocoran dan kesalahan pasang.
 
 ## Hitung biaya atap lengkap
 

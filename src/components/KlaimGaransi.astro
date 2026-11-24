@@ -1,7 +1,7 @@
 ---
 // Cara klaim garansi sebagai alur bersambung: ilustrasi garis per langkah, garis penghubung tergambar
 // dan langkah menyala berurutan saat bagian ini masuk layar. Tanpa JS/gerak: tampil lengkap dan diam.
-import { bisnis } from '../data/bisnis';
+import { bisnis, TAMPIL_FOTO_PROGRES } from '../data/bisnis';
 
 // Ilustrasi garis 64×64, stroke currentColor. Urutan mengikuti bisnis.garansi.klaim.
 const ikon = [
@@ -20,7 +20,7 @@ const sla = ['Hari ini', '≤ 3 hari kerja', 'Jadwal disepakati', 'Sebelum & ses
 <div class="klaim" data-klaim>
   <div class="klaim-kepala">
     <h2 class="klaim-judul">Klaim garansi <span class="klaim-redup">cukup lewat WhatsApp.</span></h2>
-    <p class="klaim-sub">Empat langkah, semuanya tercatat.</p>
+    <p class="klaim-sub">{TAMPIL_FOTO_PROGRES ? 'Empat langkah, semuanya tercatat.' : 'Tiga langkah, dari chat sampai perbaikan.'}</p>
   </div>
   <ol class="klaim-alur">
     <span class="klaim-garis" aria-hidden="true"><span></span></span>

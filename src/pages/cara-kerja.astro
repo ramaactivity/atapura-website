@@ -5,7 +5,7 @@ import Footer from '../components/Footer.astro';
 import CaraKerja from '../components/CaraKerja.astro';
 import Lapisan from '../components/Lapisan.astro';
 import RaporContoh from '../components/RaporContoh.astro';
-import { bisnis, waLink } from '../data/bisnis';
+import { bisnis, waLink, TAMPIL_FOTO_PROGRES } from '../data/bisnis';
 
 // Rincian proses yang dulu memenuhi beranda (DECISIONS 072): enam tahap, Standar Pasang AKAL lima lapis, format Rapor Proyek.
 const situs = new URL('/', Astro.site).href;
@@ -20,7 +20,9 @@ const schema = [{
 ---
 <Base
   title="Cara Kerja Pasang Atap Bitumen: 6 Tahap & 5 Lapis | Atapura"
-  description={`Enam tahap dari survey gratis sampai pelunasan, lima lapis Standar Pasang AKAL yang difoto sebelum tertutup, dan Rapor Proyek yang Anda simpan. Garansi pemasangan ${bisnis.garansiPemasanganTahun} tahun.`}
+  description={TAMPIL_FOTO_PROGRES
+    ? `Enam tahap dari survey gratis sampai pelunasan, lima lapis Standar Pasang AKAL yang difoto sebelum tertutup, dan Rapor Proyek yang Anda simpan. Garansi pemasangan ${bisnis.garansiPemasanganTahun} tahun.`
+    : `Enam tahap dari survey gratis sampai pelunasan dan lima lapis Standar Pasang AKAL, dari alas sampai nok. Garansi pemasangan ${bisnis.garansiPemasanganTahun} tahun.`}
   schema={schema}
 >
   <Header terang />
@@ -30,7 +32,7 @@ const schema = [{
         <nav class="remah" aria-label="Remah roti"><a href="/">Beranda</a><span aria-hidden="true">/</span><span>Cara kerja</span></nav>
         <div class="cj-kepala">
           <h1 class="cj-judul">Dari survey sampai serah terima, <span class="redup">semua tertulis.</span></h1>
-          <p class="cj-lead">Enam tahap kerja, lima lapis pemasangan yang difoto sebelum tertutup, dan Rapor Proyek yang Anda simpan setelah atap selesai.</p>
+          <p class="cj-lead">{TAMPIL_FOTO_PROGRES ? 'Enam tahap kerja, lima lapis pemasangan yang difoto sebelum tertutup, dan Rapor Proyek yang Anda simpan setelah atap selesai.' : 'Enam tahap kerja dan lima lapis pemasangan, dari survey sampai atap Anda terima.'}</p>
         </div>
       </div>
     </div>
@@ -48,14 +50,14 @@ const schema = [{
     <section id="lapisan" class="cj-sek" aria-labelledby="judul-lapisan">
       <div class="wrap">
         <div class="cj-sek-kepala">
-          <h2 id="judul-lapisan" class="cj-h2">Standar Pasang AKAL: <span class="redup">lima lapis, difoto satu per satu.</span></h2>
-          <p>Tiap lapis punya tugasnya sendiri, dan tiap lapis kami foto sebelum tertutup lapis berikutnya. Ketuk lapisnya untuk melihat gunanya dan di mana kebocoran biasanya bermula.</p>
+          <h2 id="judul-lapisan" class="cj-h2">Standar Pasang AKAL: <span class="redup">{TAMPIL_FOTO_PROGRES ? 'lima lapis, difoto satu per satu.' : 'lima lapis, satu per satu.'}</span></h2>
+          <p>Tiap lapis punya tugasnya sendiri{TAMPIL_FOTO_PROGRES ? ', dan tiap lapis kami foto sebelum tertutup lapis berikutnya' : ''}. Ketuk lapisnya untuk melihat gunanya dan di mana kebocoran biasanya bermula.</p>
         </div>
         <Lapisan />
       </div>
     </section>
 
-    <section id="rapor" class="cj-sek cj-putih" aria-labelledby="judul-rapor">
+    {TAMPIL_FOTO_PROGRES && <section id="rapor" class="cj-sek cj-putih" aria-labelledby="judul-rapor">
       <div class="wrap cj-rapor">
         <div class="cj-sek-kepala">
           <h2 id="judul-rapor" class="cj-h2">Bukti yang bisa <span class="redup">Anda simpan.</span></h2>
@@ -64,7 +66,7 @@ const schema = [{
         </div>
         <RaporContoh />
       </div>
-    </section>
+    </section>}
 
     <section class="cj-sek cj-tutup" aria-labelledby="judul-tutup">
       <div class="wrap">

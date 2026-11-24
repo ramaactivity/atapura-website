@@ -64,7 +64,7 @@ Genteng aspal tidak bisa dipaku langsung ke reng. Ongkos pasang di atas mencakup
 
 Paku, skrup, flashing, dan starter sendiri masuk ke baris material. Fungsi tiap sambungan di puncak dan tepi atap dijelaskan di [nok, flashing, dan talang](/panduan/nok-flashing-talang-atap-bitumen).
 
-Dua hal lain ikut di dalam ongkos jasa Atapura. Tim mengirim foto setiap lapis sebelum ditutup lapis berikutnya dan menyimpannya di Rapor Proyek. Hasil pemasangan bergaransi 5 tahun untuk kebocoran akibat pemasangan.
+Ongkos jasa Atapura juga sudah mencakup garansi pemasangan 5 tahun untuk kebocoran akibat pemasangan.
 
 ## Apa yang membuat angka jasa naik atau turun?
 

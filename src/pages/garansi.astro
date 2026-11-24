@@ -4,7 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import GaransiBayar from '../components/GaransiBayar.astro';
 import KlaimGaransi from '../components/KlaimGaransi.astro';
-import { bisnis, waLink } from '../data/bisnis';
+import { bisnis, waLink, TAMPIL_FOTO_PROGRES } from '../data/bisnis';
 
 // Cara bayar, garansi pemasangan, dan cara klaim (dulu bagian beranda, DECISIONS 072).
 const situs = new URL('/', Astro.site).href;
@@ -52,7 +52,7 @@ const schema = [
         <nav class="remah" aria-label="Remah roti"><a href="/">Beranda</a><span aria-hidden="true">/</span><span>Bayar &amp; garansi</span></nav>
         <div class="gr-kepala">
           <h1 class="gr-judul">Garansi pemasangan {n} tahun, <span class="redup">terpisah dari garansi pabrik.</span></h1>
-          <p class="gr-lead">Hasil pemasangan kami jamin tertulis sejak serah terima. Jasa pasang dibayar bertahap mengikuti kemajuan pekerjaan, setiap termin disertai foto progres.</p>
+          <p class="gr-lead">Hasil pemasangan kami jamin tertulis sejak serah terima. Jasa pasang dibayar bertahap mengikuti kemajuan pekerjaan{TAMPIL_FOTO_PROGRES ? ', setiap termin disertai foto progres' : ''}.</p>
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { bisnis, waLink } from '../data/bisnis';
+import { bisnis, waLink, TAMPIL_FOTO_PROGRES } from '../data/bisnis';
 import '../styles/halaman.css';
 
 // Untuk pengadaan & proyek (DECISIONS 075): yang diterima pembeli kantoran, apa adanya. Tidak menjanjikan kontrak (037),
@@ -13,8 +13,8 @@ const terima = [
   { b: 'Penawaran tertulis per item', s: 'Material, aksesoris, jasa, dan perkiraan hari kerja dirinci, siap diajukan ke atasan atau klien.' },
   { b: 'Spesifikasi teknis dari pabrik', s: 'Data teknis resmi merek yang dipilih, bila pabrik menyediakannya, untuk dilampirkan di RKS atau dokumen tender.' },
   { b: 'Jadwal kerja tertulis', s: 'Tanggal mulai dan perkiraan selesai, supaya pekerjaan lain di proyek bisa diatur.' },
-  { b: 'Foto progres di setiap termin', s: 'Tiap lapis difoto sebelum tertutup; foto menyertai tagihan termin jasa.' },
-  { b: 'Rapor Proyek dan kartu garansi', s: `Diserahkan saat serah terima, bersama hasil uji semprot dan opname luas. Garansi pemasangan ${bisnis.garansiPemasanganTahun} tahun.` },
+  ...(TAMPIL_FOTO_PROGRES ? [{ b: 'Foto progres di setiap termin', s: 'Tiap lapis difoto sebelum tertutup; foto menyertai tagihan termin jasa.' }] : []),
+  { b: TAMPIL_FOTO_PROGRES ? 'Rapor Proyek dan kartu garansi' : 'Kartu garansi', s: `Diserahkan saat serah terima, bersama hasil uji semprot dan opname luas. Garansi pemasangan ${bisnis.garansiPemasanganTahun} tahun.` },
   { b: 'Invoice dan kuitansi', s: 'Untuk setiap pembayaran material dan termin jasa.' },
 ];
 const schema = [{
@@ -28,7 +28,7 @@ const schema = [{
 ---
 <Base
   title="Atap Bitumen untuk Proyek & Perusahaan: Penawaran Resmi | Atapura"
-  description={`Penawaran tertulis per item, spesifikasi teknis pabrik, jadwal kerja, foto progres, dan garansi pemasangan ${bisnis.garansiPemasanganTahun} tahun untuk developer, kontraktor, arsitek, dan pengelola gedung.`}
+  description={`Penawaran tertulis per item, spesifikasi teknis pabrik, jadwal kerja, ${TAMPIL_FOTO_PROGRES ? 'foto progres, ' : ''}dan garansi pemasangan ${bisnis.garansiPemasanganTahun} tahun untuk developer, kontraktor, arsitek, dan pengelola gedung.`}
   schema={schema}
 >
   <Header terang />

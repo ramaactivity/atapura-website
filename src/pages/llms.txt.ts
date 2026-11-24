@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { alamatLengkap, bisnis, TAMPIL_PLAFON } from '../data/bisnis';
+import { alamatLengkap, bisnis, TAMPIL_PLAFON, TAMPIL_FOTO_PROGRES } from '../data/bisnis';
 import { harga } from '../data/harga';
 import { LINI, namaLengkap, produk, rentangProduk } from '../data/produk';
 import { getCollection } from 'astro:content';
@@ -31,7 +31,7 @@ ${bisnis.nama} adalah aplikator sekaligus agen atap bitumen (genteng aspal, sira
 - [Tentang Atapura](${url('/tentang')}): identitas usaha, badan usaha dan statusnya, pendiri, alamat, area survey gratis, pengalaman tim pemasang, merek yang dipasang
 - [Kontak](${url('/kontak')}): WhatsApp, email, alamat, yang perlu disiapkan sebelum menghubungi
 - [Untuk perusahaan](${url('/perusahaan')}): dokumen yang diterima pengadaan dan proyek, legalitas dan termin apa adanya, cara meminta penawaran resmi
-- [Cara kerja](${url('/cara-kerja')}): enam tahap dari survey gratis sampai pelunasan, Standar Pasang AKAL lima lapis yang difoto sebelum tertutup, format Rapor Proyek
+- [Cara kerja](${url('/cara-kerja')}): enam tahap dari survey gratis sampai pelunasan, Standar Pasang AKAL lima lapis${TAMPIL_FOTO_PROGRES ? ' yang difoto sebelum tertutup, format Rapor Proyek' : ''}
 - [Bayar & garansi](${url('/garansi')}): material lunas sebelum dikirim, jasa pasang bertahap, garansi pemasangan tertulis terpisah dari garansi pabrik, yang ditanggung dan tidak, cara klaim lewat WhatsApp
 - [Kalkulator Hitung AKAL](${url('/hitung')}): estimasi biaya terpasang per m² dan total untuk luas atap dan merek pilihan, apa yang sudah dan belum termasuk, cara bayar, harga per merek
 - [Produk & layanan](${url('/produk')}): katalog atap bitumen, ${TAMPIL_PLAFON ? 'plafon PVC, ' : ''}rangka baja ringan, dan aksesoris dengan harga per m²

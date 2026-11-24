@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { bisnis } from '../data/bisnis';
+import { bisnis, TAMPIL_FOTO_PROGRES } from '../data/bisnis';
 import { merekTermurah as merek } from '../data/produk';
 import { kisaranRupiah } from '../data/harga';
 import '../styles/halaman.css';
@@ -91,10 +91,10 @@ const schema = [
       <section class="hl-sek" aria-labelledby="judul-jujur">
         <h2 id="judul-jujur" class="hl-h2">Yang belum ada, <span class="hl-redup">tidak kami karang.</span></h2>
         <div>
-          <p class="hl-teks">Atapura perusahaan baru. Foto di situs ini ilustrasi dan diberi label, bukan proyek kami. Rapor Proyek pertama, berisi data dan foto tiap lapis, terbit setelah proyek pertama diserahterimakan.</p>
+          <p class="hl-teks">Atapura perusahaan baru. Foto di situs ini ilustrasi dan diberi label, bukan proyek kami.{TAMPIL_FOTO_PROGRES && ' Rapor Proyek pertama, berisi data dan foto tiap lapis, terbit setelah proyek pertama diserahterimakan.'}</p>
           <div class="hl-aksi">
             <a class="pill pill-tunas" href="/hitung">Hitung estimasi biaya</a>
-            <a class="tautan-lanjut" href="/cara-kerja#rapor">Lihat format Rapor Proyek</a>
+            {TAMPIL_FOTO_PROGRES && <a class="tautan-lanjut" href="/cara-kerja#rapor">Lihat format Rapor Proyek</a>}
             <a class="tautan-lanjut" href="/kontak">Hubungi kami</a>
           </div>
         </div>

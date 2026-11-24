@@ -1,7 +1,7 @@
 ---
 // Cara pembayaran + garansi pemasangan (dipindah dari beranda ke /garansi, DECISIONS 072).
 // Kartu termin berlatar Embun, kartu garansi berlatar Pinus: taruh di atas bidang Putih.
-import { bisnis } from '../data/bisnis';
+import { bisnis, TAMPIL_FOTO_PROGRES } from '../data/bisnis';
 ---
 <div class="gb">
   <div class="gb-termin">
@@ -19,7 +19,7 @@ import { bisnis } from '../data/bisnis';
         </li>
       ))}
     </ol>
-    <p class="gb-catatan">Setiap termin jasa disertai foto progres.</p>
+    {TAMPIL_FOTO_PROGRES && <p class="gb-catatan">Setiap termin jasa disertai foto progres.</p>}
   </div>
   <div class="gb-garansi">
     <p class="garansi-angka">{bisnis.garansiPemasanganTahun}<span>tahun</span></p>

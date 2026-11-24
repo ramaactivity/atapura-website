@@ -13,7 +13,7 @@ faq:
   - q: 'Multiplek atau GRC untuk alas?'
     a: 'Multiplek 12 mm adalah standar alas yang kami pakai; GRC 9 mm jadi pilihan untuk lokasi yang lembap. Pilihannya bergantung pada kondisi rangka dan kelembapan lokasi, dan dibahas saat survey.'
   - q: 'Bagaimana memastikan lapis yang tertutup dikerjakan benar?'
-    a: 'Minta foto setiap lapis sebelum ditutup lapis berikutnya. Atapura mengirimkan foto ini dan menyimpannya di Rapor Proyek.'
+    a: 'Minta foto setiap lapis sebelum ditutup lapis berikutnya, supaya bagian yang nanti tertutup tetap bisa dicek.'
 sumber:
   - nama: 'CTI, panduan pemasangan Rev. September 2024 (urutan lapis, paku, overlap underlayment), dicek 3 November 2026'
     url: 'https://www.ct-i.co.kr/wp-content/uploads/2024/12/CTI-Installation-Guide-Rev.-September-2024-Ind.pdf'
@@ -44,4 +44,4 @@ Bagian yang paling perlu diawasi justru yang tidak terlihat setelah atap jadi:
 
 ## Cara memeriksa pekerjaan yang sudah tertutup
 
-Anda tidak perlu naik ke atap. Mintalah **foto setiap lapis sebelum ditutup**: alas yang rata, underlayment yang tumpang tindih, flashing di tepi dinding, lalu genteng dan nok. Begitulah [cara kerja Atapura](/cara-kerja) di setiap proyek. Foto ini sekaligus menjadi bukti saat [klaim garansi](/garansi).
+Anda tidak perlu naik ke atap. Mintalah **foto setiap lapis sebelum ditutup**: alas yang rata, underlayment yang tumpang tindih, flashing di tepi dinding, lalu genteng dan nok. Foto ini sekaligus menjadi bukti saat [klaim garansi](/garansi).

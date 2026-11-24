@@ -58,4 +58,4 @@ Talang yang tersumbat atau terlalu kecil membuat air meluap ke dinding dan plafo
 
 ## Bagaimana Atapura menanganinya
 
-Flashing dan aksesori sambungan dihitung sebagai bagian dari harga terpasang. Rinciannya ada di [harga atap bitumen per m²](/panduan/harga-atap-bitumen-per-m2). Setiap titik sambungan kami foto sebelum ditutup, dan kebocoran akibat pemasangan masuk garansi pemasangan tertulis 5 tahun.
+Flashing dan aksesori sambungan dihitung sebagai bagian dari harga terpasang. Rinciannya ada di [harga atap bitumen per m²](/panduan/harga-atap-bitumen-per-m2). Kebocoran akibat pemasangan masuk garansi pemasangan tertulis 5 tahun.

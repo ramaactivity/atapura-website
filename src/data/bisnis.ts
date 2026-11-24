@@ -7,6 +7,10 @@
  * Data plafon di produk.ts & harga.ts TIDAK dihapus — ganti ke true untuk menampilkannya lagi.
  */
 export const TAMPIL_PLAFON = false as boolean;
+// Janji "foto tiap lapis / foto progres tiap termin / Rapor Proyek" disembunyikan (Rama 24 Nov 2026, DECISIONS 093) sampai
+// benar-benar dijalankan di lapangan dan tercatat di Ops. true = tampil lagi di /garansi, /cara-kerja, /perusahaan, /tentang,
+// llms.txt, dan langkah klaim "Laporan". Kalimat di artikel diubah langsung (versi lama di git, commit sebelum 093).
+export const TAMPIL_FOTO_PROGRES = false as boolean;
 
 export const bisnis = {
   // KONSEP: situs ini konsep untuk diajukan ke partner (2 Nov 2026). Termin, garansi, dan harga mengikuti
@@ -55,7 +59,7 @@ export const bisnis = {
       { nama: 'Kirim foto atau video', isi: 'Lewat WhatsApp, sertakan nama pemilik dan alamat.' },
       { nama: 'Pengecekan', isi: 'Kami nilai dari foto atau video. Bila ada kebocoran atau kerusakan, tim datang ke lokasi paling lambat 3 hari kerja.' },
       { nama: 'Perbaikan', isi: 'Bila tercakup garansi, diperbaiki tanpa biaya dengan jadwal yang disepakati bersama.' },
-      { nama: 'Laporan', isi: 'Foto sebelum dan sesudah dikirim, dicatat di Rapor Proyek.' },
+      ...(TAMPIL_FOTO_PROGRES ? [{ nama: 'Laporan', isi: 'Foto sebelum dan sesudah dikirim, dicatat di Rapor Proyek.' }] : []),
     ],
   },
   // Revisi Bang Yusuf (2 Nov 2026): material cash before delivery; jasa pasang termin 40/30/30.
