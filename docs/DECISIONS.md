@@ -740,3 +740,7 @@ font2 yang dipake notion … terkenal dengan kerapihannya"), dan mengizinkan ben
   `estimasiPublik` (sinkron Ops); FAQPage schema tetap memuat teks lengkap lewat `skema`.
 - Tidak diambil dari Notion: judul bobot 700 (Rama menilai judul Atapura bobot 500 sudah "mirip"; bila mau diubah, tunjukkan
   spesimen dulu), warna biru, sudut 4/8 px untuk tombol (Atapura tetap pill).
+- Disamakan dengan aturan 090 (jadwal "disepakati", bukan "tertulis"; klien bukan hanya pemilik rumah): langkah klaim
+  "Perbaikan" di `bisnis.ts`, label "Jadwal disepakati" di KlaimGaransi, jawaban klaim di /garansi, dan slogan footer
+  "Atap yang masuk AKAL, untuk setiap proyek." (dulu "untuk rumah di Jabodetabek"). Janji "foto progres / foto tiap lapis /
+  Rapor Proyek" di /garansi, /perusahaan, /cara-kerja, dan artikel BELUM diubah: tersebar luas dan butuh keputusan Rama.
