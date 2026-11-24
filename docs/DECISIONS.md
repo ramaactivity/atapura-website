@@ -720,4 +720,5 @@ Experts). Data pengunjung Ops belum layak dipakai (61 kunjungan, 6 klik WA, seba
   tombol WhatsApp (data-wa "penutup").
 - Hasil: tinggi beranda laptop 1288 px ±11.900 → 8.415 px, HP 390 px ±13.050 → 9.012 px. Sapu 5 lebar (360, 390, 1024, 1288,
   1440): 0 elemen keluar layar, 0 galat JS; /produk, /hitung, /area, /area/depok, /cara-kerja, /garansi, /perusahaan dicek di HP.
-
+- Judul penutup (Rama, kata kunci "artikel"): "Artikel & panduan atap bitumen.", pengantar "Jelajahi artikel …", tautan
+  "Jelajahi semua artikel".
