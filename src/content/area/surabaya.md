@@ -5,6 +5,9 @@ cakupan:
 wilayah: 'Luar Jabodetabek'
 urut: 16
 judul: 'Pasang atap bitumen di Surabaya'
+# Fakta singkat untuk tabel 'Catatan atap tiap daerah' di beranda — diambil dari ringkasan (bersumber), DECISIONS 095.
+sorot: 'Suhu sampai 37,4°C, 2.114 mm hujan (2025)'
+sorotJenis: 'panas'
 ringkasan: 'Surabaya mencatat 2.114 mm hujan dalam 155 hari pada 2025, suhu sampai 37,4°C, dan 22 kelurahan di tepi laut. Yang perlu diperhatikan pada atap di Surabaya.'
 jawaban: 'Atapura melayani pemasangan atap bitumen di Surabaya dengan harga yang dihitung bersama admin, karena ada akomodasi tukang dan pengiriman material. Stasiun Meteorologi Perak I mencatat 2.114 mm hujan dalam 155 hari hujan pada 2025, lebih dari separuhnya jatuh di November sampai Januari, dengan suhu tertinggi 37,4°C di bulan Oktober. Untuk rumah di 22 kelurahan tepi laut, bagian logam atap perlu dipilih dan diperiksa lebih teliti karena udara bergaram.'
 diperbarui: 2026-11-03

@@ -5,6 +5,9 @@ cakupan:
 wilayah: 'Luar Jabodetabek'
 urut: 13
 judul: 'Pasang atap bitumen di Batam'
+# Fakta singkat untuk tabel 'Catatan atap tiap daerah' di beranda — diambil dari ringkasan (bersumber), DECISIONS 095.
+sorot: '3.096 mm hujan, ketinggian 6,5 m (2025)'
+sorotJenis: 'hujan'
 ringkasan: 'Batam mencatat 3.096 mm hujan dan 163 hari hujan pada 2025, di ketinggian hanya 6,5 m. Yang perlu diperhatikan pada atap di kota kepulauan dekat laut.'
 jawaban: 'Atapura melayani pemasangan atap bitumen di Batam dengan harga yang dihitung bersama admin, karena ada akomodasi tukang dan pengiriman material antarpulau. BPS mencatat 3.096 mm hujan dan 163 hari hujan di Batam pada 2025, dengan ketinggian kota hanya 6,5 m. Sebagai kota kepulauan, udara bergaram mempercepat karat pada logam berlapis seng, sehingga rangka, sekrup, dan flashing perlu dipilih dengan teliti.'
 diperbarui: 2026-11-03

@@ -5,6 +5,9 @@ cakupan:
 wilayah: 'Jabodetabek'
 urut: 5
 judul: 'Jasa pasang atap bitumen di Kabupaten Tangerang'
+# Fakta singkat untuk tabel 'Catatan atap tiap daerah' di beranda — diambil dari ringkasan (bersumber), DECISIONS 095.
+sorot: '2.665 mm hujan setahun (2024)'
+sorotJenis: 'hujan'
 ringkasan: 'Stasiun Meteorologi Curug mencatat 2.665 mm hujan pada 2024. Yang perlu diperhatikan pada atap di Kabupaten Tangerang, harga terpasang, dan survey gratis.'
 jawaban: 'Atapura memasang atap bitumen (genteng aspal) di Kabupaten Tangerang dengan survey gratis. Stasiun Meteorologi Curug mencatat 2.665 mm hujan sepanjang 2024, dengan bulan terbasah November (613 mm), April (484 mm), Januari (323 mm). Dari Januari sampai Juni 2024 saja tercatat 119 hari hujan.'
 diperbarui: 2026-11-03

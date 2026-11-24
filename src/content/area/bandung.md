@@ -5,6 +5,9 @@ cakupan:
 wilayah: 'Luar Jabodetabek'
 urut: 11
 judul: 'Pasang atap bitumen di Bandung'
+# Fakta singkat untuk tabel 'Catatan atap tiap daerah' di beranda — diambil dari ringkasan (bersumber), DECISIONS 095.
+sorot: '2.215 mm hujan, ketinggian ±717 m (2024)'
+sorotJenis: 'hujan'
 ringkasan: 'Kota Bandung berada di ketinggian sekitar 717 m dan mencatat 2.215 mm hujan pada 2024, dengan Juli yang hampir kering. Cara Atapura melayani proyek di Bandung.'
 jawaban: 'Atapura melayani pemasangan atap bitumen di Bandung; tim pemasang kami sudah pernah mengerjakan atap di sana. Stasiun Geofisika Bandung mencatat 2.215 mm hujan pada 2024, dengan November sebagai bulan terbasah (512 mm) dan Juli paling kering (30 mm). Karena di luar Jabodetabek, harga dihitung bersama admin termasuk akomodasi tukang dan pengiriman material.'
 diperbarui: 2026-11-03

@@ -5,6 +5,9 @@ cakupan:
 wilayah: 'Luar Jabodetabek'
 urut: 14
 judul: 'Pasang atap bitumen di Palembang'
+# Fakta singkat untuk tabel 'Catatan atap tiap daerah' di beranda — diambil dari ringkasan (bersumber), DECISIONS 095.
+sorot: '3.275 mm hujan dalam 207 hari (2025)'
+sorotJenis: 'hujan'
 ringkasan: 'Palembang mencatat 3.275 mm hujan dalam 207 hari hujan pada 2025, lebih dari separuh tahun. Yang perlu diperhatikan pada atap di Palembang.'
 jawaban: 'Atapura melayani pemasangan atap bitumen di Palembang; tim pemasang kami sudah pernah mengerjakan atap di Sumatra. Stasiun Klimatologi Sumatera Selatan mencatat 3.275 mm hujan dalam 207 hari hujan sepanjang 2025, artinya hujan turun lebih dari separuh hari dalam setahun. Harga dihitung bersama admin karena ada akomodasi tukang dan pengiriman material.'
 diperbarui: 2026-11-03

@@ -5,6 +5,9 @@ cakupan:
 wilayah: 'Luar Jabodetabek'
 urut: 15
 judul: 'Pasang atap bitumen di Balikpapan'
+# Fakta singkat untuk tabel 'Catatan atap tiap daerah' di beranda — diambil dari ringkasan (bersumber), DECISIONS 095.
+sorot: '3.265 mm hujan dalam 197 hari (2022)'
+sorotJenis: 'hujan'
 ringkasan: 'Balikpapan mencatat 3.265 mm hujan dan 197 hari hujan pada 2022, dengan Agustus sebagai bulan terbasah. Yang perlu diperhatikan pada atap di Balikpapan.'
 jawaban: 'Atapura melayani pemasangan atap bitumen di Balikpapan; tim pemasang kami sudah pernah mengerjakan atap di Kalimantan. Data BMKG terbaru yang dimuat BPS Kalimantan Timur mencatat 3.265 mm hujan dalam 197 hari hujan pada 2022, dengan Agustus sebagai bulan terbasah (552 mm). Harga dihitung bersama admin karena ada akomodasi tukang dan pengiriman material.'
 diperbarui: 2026-11-03

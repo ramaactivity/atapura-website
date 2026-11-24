@@ -803,3 +803,10 @@ Rapor Proyek" belum dijalankan di lapangan dan tidak ada di Ops, jadi berisiko j
   peta dan sebaliknya (`data-kota`). "Pernah dikerjakan di luar Jabodetabek" jadi satu baris bertitik. Pengantar Area dilebarkan
   (5 → 3 baris di laptop).
 - /garansi: alur klaim mengikuti jumlah langkah (`--n`), 3 kolom penuh setelah langkah Laporan disembunyikan (093).
+- Area, versi 2 (Rama: "cari konsep penyajian data yang lain yang lebih baik"): daftar kota diganti tabel **"Catatan atap
+  tiap daerah"** ala tabel data Notion — satu baris per halaman /area dengan fakta atap bersumber (BMKG/BPS, dari ringkasan
+  halamannya; field baru `sorot` + `sorotJenis` di koleksi area) dan label pastel Hujan/Angin/Panas. Tab Jabodetabek (9) /
+  Luar Jabodetabek (6); di tab luar, peta Jabodetabek diganti peta kecil Indonesia. Baris ↔ wilayah peta menyala bersamaan
+  (Jakarta menyalakan 5 wilayahnya). Seluruh baris bisa diklik ke halaman daerah. Tinggi Area laptop 1.098 → 1.023 px;
+  HP baris dua tingkat (nama + label, lalu fakta).
+- Layanan: foto kartu 4:3 → 16:10 (beranda laptop 8.647 → 8.538 px).

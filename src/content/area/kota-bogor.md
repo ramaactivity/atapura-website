@@ -5,6 +5,9 @@ cakupan:
 wilayah: 'Jabodetabek'
 urut: 2
 judul: 'Jasa pasang atap bitumen di Kota Bogor'
+# Fakta singkat untuk tabel 'Catatan atap tiap daerah' di beranda — diambil dari ringkasan (bersumber), DECISIONS 095.
+sorot: '±4.800 mm hujan setahun (2024)'
+sorotJenis: 'hujan'
 ringkasan: 'Stasiun Klimatologi Bogor mencatat sekitar 4.800 mm hujan pada 2024, tanpa bulan yang benar-benar kering. Yang perlu diperhatikan pada atap di Kota Bogor.'
 jawaban: 'Atapura memasang atap bitumen di Kota Bogor dengan survey gratis. Bogor adalah salah satu daerah terbasah di Jabodetabek: Stasiun Klimatologi Bogor mencatat sekitar 4.800 mm hujan pada 2024, dan bulan terkeringnya pun masih di atas 120 mm. Atap di Bogor perlu lapis kedap air yang rapi, ventilasi untuk kelembapan, dan jadwal pasang yang menjaga papan alas tetap kering.'
 diperbarui: 2026-11-03

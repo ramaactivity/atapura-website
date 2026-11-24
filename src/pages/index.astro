@@ -159,7 +159,14 @@ const teksJawab = (t: (typeof tanya)[number]) => (t.skema ?? [
 ].join(' ')).replace(/<[^>]+>/g, '');
 
 // Kota yang sudah punya halaman /area/* jadi tautan (SEO internal); yang belum tetap teks biasa.
-const halamanArea = new Map((await getCollection('area')).flatMap((a) => a.data.cakupan.map((c) => [c.nama, `/area/${a.id}`] as const)));
+const semuaArea = (await getCollection('area')).sort((a, b) => a.data.urut - b.data.urut);
+// Tabel "Catatan atap tiap daerah" (DECISIONS 095): satu baris per halaman /area, dua tab.
+const tabArea = [
+  { id: 'jabo', nama: 'Jabodetabek', daftar: semuaArea.filter((a) => a.data.wilayah === 'Jabodetabek') },
+  { id: 'luar', nama: 'Luar Jabodetabek', daftar: semuaArea.filter((a) => a.data.wilayah === 'Luar Jabodetabek') },
+];
+const labelSorot = { hujan: 'Hujan', angin: 'Angin', panas: 'Panas' } as const;
+const halamanArea = new Map(semuaArea.flatMap((a) => a.data.cakupan.map((c) => [c.nama, `/area/${a.id}`] as const)));
 const wilayah = [
   { nama: 'DKI Jakarta', kota: bisnis.area.filter((a) => a.startsWith('Jakarta')) },
   { nama: 'Jawa Barat', kota: bisnis.area.filter((a) => /Bogor|Depok|Bekasi/.test(a)) },
@@ -346,26 +353,31 @@ const faqSchema = {
           <div class="kepala-judul"><p class="label-bagian">Area layanan</p><h2 id="judul-area" class="judul-besar judul-dua">Melayani seluruh Jabodetabek, <span class="miring">hingga luar Pulau Jawa.</span></h2></div>
           <p class="lead">Survey dan pengukuran di lokasi untuk Jabodetabek. Di luar Jabodetabek, ongkos kirim material dan akomodasi tukang dihitung bersama admin.</p>
         </div>
-        <!-- Daftar kota = legenda peta (DECISIONS 095): baris bergaris tipis ala tabel Notion, titik warna = warna wilayah di
-             peta; arahkan kursor ke kota → wilayahnya menyala di peta (dan sebaliknya). HP: peta disembunyikan, tersedia di /area. -->
+        <!-- Catatan atap tiap daerah (DECISIONS 095): tabel data ala Notion, satu baris per halaman /area dengan fakta atap
+             bersumber (BMKG/BPS) dan label jenis; tab Jabodetabek / Luar Jabodetabek. Baris ↔ wilayah peta menyala bersamaan.
+             Tanpa JS kedua tabel tampil. HP: peta disembunyikan, tersedia di /area. -->
         <div class="ar" data-ar>
           <div class="ar-kiri">
-            {wilayah.map((w) => (
-              <div class="ar-grup">
-                <h3 class="ar-nama">{w.nama}<span>{w.kota.length} wilayah</span></h3>
-                <ul class="ar-daftar">
-                  {w.kota.map((k) => (
-                    <li data-kota={k} class:list={{ 'ar-jkt': k.startsWith('Jakarta') }}>
-                      {halamanArea.has(k) ? <a href={halamanArea.get(k)}>{k}<span class="ar-panah" aria-hidden="true">→</span></a> : <span class="ar-baris">{k}</span>}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-            <div class="ar-grup">
-              <h3 class="ar-nama">Pernah dikerjakan di luar Jabodetabek</h3>
-              <p class="ar-jauh">{bisnis.survey.pengalamanLuar.join(' · ')}</p>
+            <div class="ar-tab" role="tablist" aria-label="Wilayah layanan">
+              {tabArea.map((t, i) => (
+                <button type="button" role="tab" id={`tab-${t.id}`} aria-controls={`panel-${t.id}`} aria-selected={i === 0 ? 'true' : 'false'} data-tab-ar={t.id}>
+                  {t.nama}<span>{t.daftar.length}</span>
+                </button>
+              ))}
             </div>
+            {tabArea.map((t) => (
+              <table class="ar-tabel" id={`panel-${t.id}`} role="tabpanel" aria-labelledby={`tab-${t.id}`} data-panel-ar={t.id}>
+                <thead><tr><th scope="col">Daerah</th><th scope="col">Catatan untuk atap</th></tr></thead>
+                <tbody>
+                  {t.daftar.map((a) => (
+                    <tr data-cakupan={a.data.cakupan.map((c) => c.nama).join('|')}>
+                      <th scope="row"><a href={`/area/${a.id}`}>{a.data.nama}</a></th>
+                      <td><span class:list={['ar-label', `ar-${a.data.sorotJenis}`]}>{labelSorot[a.data.sorotJenis]}</span><span class="ar-sorot">{a.data.sorot}</span><span class="ar-panah" aria-hidden="true">→</span></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ))}
             <a class="tautan-lanjut" href="/area">Lihat peta &amp; kondisi tiap daerah</a>
           </div>
           <div class="ar-peta"><PetaArea tautan={Object.fromEntries(halamanArea)} /></div>
@@ -473,12 +485,25 @@ const faqSchema = {
 </Base>
 
 <script>
-  // Area: kota di daftar ↔ wilayah di peta menyala bersamaan (DECISIONS 095).
+  // Area (DECISIONS 095): tab Jabodetabek / Luar Jabodetabek, dan baris tabel ↔ wilayah peta menyala bersamaan.
   const ar = document.querySelector<HTMLElement>('[data-ar]');
   if (ar) {
+    const tab = [...ar.querySelectorAll<HTMLButtonElement>('[data-tab-ar]')];
+    const pilih = (id: string) => {
+      tab.forEach((b) => b.setAttribute('aria-selected', String(b.dataset.tabAr === id)));
+      ar.querySelectorAll<HTMLElement>('[data-panel-ar]').forEach((p) => { p.hidden = p.dataset.panelAr !== id; });
+      ar.dataset.tab = id;
+    };
+    tab.forEach((b) => b.addEventListener('click', () => pilih(b.dataset.tabAr!)));
+    pilih('jabo');
     const nyala = (el: EventTarget | null, on: boolean) => {
-      const k = el instanceof Element ? el.closest<HTMLElement>('[data-kota]')?.dataset.kota : undefined;
-      if (k) ar.querySelectorAll(`[data-kota="${k}"]`).forEach((e) => e.classList.toggle('menyala', on));
+      if (!(el instanceof Element)) return;
+      const baris = el.closest<HTMLElement>('tr[data-cakupan]');
+      const kota = baris ? baris.dataset.cakupan!.split('|') : [el.closest<HTMLElement>('[data-kota]')?.dataset.kota].filter(Boolean) as string[];
+      if (!kota.length) return;
+      const terkait = baris ?? [...ar.querySelectorAll<HTMLElement>('tr[data-cakupan]')].find((r) => r.dataset.cakupan!.split('|').includes(kota[0]));
+      terkait?.classList.toggle('menyala', on);
+      for (const k of (terkait?.dataset.cakupan ?? kota[0]).split('|')) ar.querySelector(`[data-kota="${k}"]`)?.classList.toggle('menyala', on);
     };
     for (const [masuk, keluar] of [['pointerover', 'pointerout'], ['focusin', 'focusout']] as const) {
       ar.addEventListener(masuk, (e) => nyala(e.target, true));
@@ -681,7 +706,7 @@ const faqSchema = {
     box-shadow: 0 1px 2px rgb(16 35 30 / 0.06), 0 14px 30px -18px rgb(16 35 30 / 0.28);
     transition: box-shadow 300ms var(--ease-out), transform 300ms var(--ease-out);
   }
-  .lyn-kartu :global(.lyn-foto) { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 0.85rem; }
+  .lyn-kartu :global(.lyn-foto) { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 0.85rem; }
   .lyn-isi { display: grid; gap: 0.4rem; padding: 1rem 0.6rem 3.6rem; }
   .lyn-judul { font-family: var(--font-merek); font-size: var(--t-title); font-weight: var(--bobot-judul-kartu); letter-spacing: -0.006em; line-height: 1.4; }
   .lyn-teks { font-size: var(--fs-15); line-height: 1.5; color: var(--color-lumut); }
@@ -764,42 +789,61 @@ const faqSchema = {
     .mk-daftar { grid-auto-flow: row; grid-template-columns: repeat(5, minmax(0, 1fr)); overflow: visible; margin-inline: 0; padding: 0; }
   }
 
-  /* Area: daftar kota sebagai legenda peta (tabel bergaris tipis ala Notion, dua kolom) + peta dalam kartu. */
+  /* Area: tabel "Catatan atap tiap daerah" (tabel data ala Notion) + peta dalam kartu. */
   .ar { display: grid; gap: 2rem 3.5rem; grid-template-columns: minmax(0, 1fr); align-items: start; }
-  .ar-kiri { display: grid; gap: 1.75rem; align-content: start; }
-  .ar-nama {
-    display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--color-tinta); font-size: var(--fs-13); font-weight: 600; letter-spacing: 0.01em;
-    line-height: 1.33; text-transform: uppercase; color: var(--color-tinta);
+  .ar-kiri { display: grid; gap: 1.25rem; align-content: start; }
+  .ar-tab { display: inline-flex; justify-self: start; gap: 4px; padding: 4px; border-radius: 999px; background: var(--color-embun); }
+  .ar-tab button {
+    display: inline-flex; align-items: center; gap: 0.5rem; min-height: 40px; padding: 0 1rem; border-radius: 999px;
+    font-size: var(--fs-15); font-weight: 500; color: var(--color-lumut); cursor: pointer; transition: background-color 200ms, color 200ms;
   }
-  .ar-nama span { font-weight: 400; letter-spacing: 0; text-transform: none; color: var(--color-lumut); }
-  .ar-daftar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 1.5rem; }
-  .ar-daftar li { border-bottom: 1px solid var(--color-garis); }
-  .ar-daftar a, .ar-baris {
-    display: flex; align-items: center; gap: 0.6rem; min-height: 48px; font-size: var(--fs-16); font-weight: 500;
-    color: var(--color-tinta); text-decoration: none; transition: color 200ms;
+  .ar-tab button span { font-size: var(--fs-13); font-variant-numeric: tabular-nums; color: var(--color-lumut); }
+  .ar-tab button[aria-selected='true'] { background: var(--color-putih); color: var(--color-tinta); box-shadow: 0 1px 2px rgb(16 35 30 / 0.08), 0 0 0 1px rgb(16 35 30 / 0.06); }
+  .ar-tab button:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 2px; }
+  .ar-tabel { width: 100%; border-collapse: collapse; }
+  .ar-tabel[hidden] { display: none; }
+  .ar-tabel thead th {
+    padding: 0 0 0.5rem; border-bottom: 1px solid var(--color-tinta); text-align: left; font-size: var(--fs-13); font-weight: 600;
+    letter-spacing: 0.01em; line-height: 1.33; text-transform: uppercase; color: var(--color-tinta);
   }
-  /* Titik = warna wilayah di peta (Jakarta lebih tua), jadi daftar terbaca sebagai legenda. */
-  .ar-daftar a::before, .ar-baris::before {
-    content: ''; flex: none; width: 10px; height: 10px; border-radius: 3px; background: #cfe3d6;
-    box-shadow: inset 0 0 0 1px rgb(16 35 30 / 0.12); transition: background-color 200ms;
-  }
-  .ar-jkt a::before, .ar-jkt .ar-baris::before { background: #b0d0bc; }
-  .ar-panah { margin-left: auto; color: var(--color-lumut); transition: transform 250ms var(--ease-out), color 200ms; }
-  .ar-daftar li.menyala a, .ar-daftar li.menyala .ar-baris { color: var(--color-pinus); }
-  .ar-daftar li.menyala a::before, .ar-daftar li.menyala .ar-baris::before { background: #83b394; }
-  .ar-daftar li.menyala .ar-panah { transform: translateX(4px); color: var(--color-pinus); }
-  .ar-daftar a:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 2px; border-radius: 4px; }
-  .ar-jauh { text-wrap: balance; padding-top: 0.75rem; font-size: var(--fs-16); font-weight: 500; color: var(--color-tinta); }
+  .ar-tabel tbody tr { position: relative; border-bottom: 1px solid var(--color-garis); transition: background-color 200ms; }
+  .ar-tabel tbody th, .ar-tabel tbody td { padding: 0.8rem 0; vertical-align: middle; text-align: left; }
+  .ar-tabel tbody th { width: 30%; padding-right: 1rem; font-size: var(--fs-16); font-weight: 500; }
+  /* Seluruh baris bisa diklik: tautan di kolom daerah direntangkan ke satu baris. */
+  .ar-tabel tbody th a { color: var(--color-tinta); text-decoration: none; }
+  .ar-tabel tbody th a::after { content: ''; position: absolute; inset: 0; }
+  .ar-tabel tbody th a:focus-visible { outline: none; }
+  .ar-tabel tbody tr:has(a:focus-visible) { outline: 2px solid var(--color-pinus); outline-offset: -2px; }
+  .ar-tabel td { display: flex; align-items: center; gap: 0.75rem; font-size: var(--fs-15); color: var(--color-lumut); font-variant-numeric: tabular-nums; }
+  .ar-label { flex: none; display: inline-flex; align-items: center; min-height: 24px; padding: 0 0.6rem; border-radius: 999px; font-size: var(--fs-13); font-weight: 500; color: var(--color-pinus); }
+  .ar-hujan { background: #dcebe2; }
+  .ar-angin { background: var(--color-tunas-pucat); }
+  .ar-panas { background: #f7e3c6; }
+  .ar-sorot { min-width: 0; }
+  .ar-panah { margin-left: auto; padding-left: 0.5rem; color: var(--color-lumut); transition: transform 250ms var(--ease-out), color 200ms; }
+  .ar-tabel tbody tr.menyala { background: var(--color-embun); }
+  .ar-tabel tbody tr.menyala .ar-panah { transform: translateX(4px); color: var(--color-pinus); }
+  .ar-tabel tbody tr.menyala th a { color: var(--color-pinus); }
   .ar-kiri .tautan-lanjut { justify-self: start; }
   .ar-peta { padding: 1.25rem; border-radius: 1.5rem; background: var(--color-embun); }
-  @media (min-width: 60rem) { .ar { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); } }
-  /* Kartu Indonesia kecil di peta dobel dengan baris "luar Jabodetabek": disembunyikan di beranda (tetap di /area). */
+  @media (min-width: 60rem) { .ar { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); } }
+  /* Kartu Indonesia kecil di peta: disembunyikan di beranda (tetap di /area). */
   .ar-peta :global(.peta-sisip) { display: none; }
+  /* Tab Luar Jabodetabek: peta Jabodetabek diganti peta kecil Indonesia (pulau tempat tim pernah bekerja). */
+  .ar[data-tab='luar'] .ar-peta :global(.peta-utama), .ar[data-tab='luar'] .ar-peta :global(.peta-ket) { display: none; }
+  .ar[data-tab='luar'] .ar-peta :global(.peta-sisip) { display: grid; grid-template-columns: minmax(0, 1fr); margin-top: 0; }
   @media (max-width: 47.99rem) {
     .ar-peta { display: none; }
-    .ar-daftar { column-gap: 1rem; }
-    .ar-daftar a, .ar-baris { min-height: 44px; gap: 0.5rem; font-size: var(--fs-15); }
+    .ar-tab { justify-self: stretch; }
+    .ar-tab button { flex: 1; justify-content: center; padding: 0 0.6rem; font-size: var(--fs-14); }
+    /* HP: daerah di atas, label + fakta di bawahnya. */
+    .ar-tabel thead { display: none; }
+    .ar-tabel tbody tr { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: 'nama label' 'sorot sorot'; align-items: center; padding: 0.7rem 0; row-gap: 0.2rem; column-gap: 0.75rem; }
+    .ar-tabel tbody th, .ar-tabel tbody td { padding: 0; width: auto; }
+    .ar-tabel tbody th { grid-area: nama; }
+    .ar-tabel td { display: contents; }
+    .ar-label { grid-area: label; }
+    .ar-sorot { grid-area: sorot; font-size: var(--fs-14); }
     .ar-panah { display: none; }
   }
 

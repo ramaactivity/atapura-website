@@ -5,6 +5,9 @@ cakupan:
 wilayah: 'Jabodetabek'
 urut: 8
 judul: 'Jasa pasang atap bitumen di Kabupaten Bekasi'
+# Fakta singkat untuk tabel 'Catatan atap tiap daerah' di beranda — diambil dari ringkasan (bersumber), DECISIONS 095.
+sorot: 'Puting beliung di 14 desa; 10 desa tepi laut'
+sorotJenis: 'angin'
 ringkasan: 'Puting beliung tercatat di 14 desa Kabupaten Bekasi (2023–2024), dan 10 desa di utara berada di tepi laut. Yang perlu diperhatikan pada atapnya.'
 jawaban: 'Atapura memasang atap bitumen (genteng aspal) di Kabupaten Bekasi dengan survey gratis. BPS mencatat angin puting beliung di 14 desa dan kelurahan dalam periode Januari 2023 sampai April 2024, dan 10 desa di Muaragembong, Tarumajaya, dan Babelan berada di tepi laut. Kawasan permukiman seperti Tambun dan Cikarang berada di dataran rendah sekitar 15–35 m.'
 diperbarui: 2026-11-03

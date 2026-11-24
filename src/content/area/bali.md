@@ -5,6 +5,9 @@ cakupan:
 wilayah: 'Luar Jabodetabek'
 urut: 12
 judul: 'Pasang atap bitumen di Bali'
+# Fakta singkat untuk tabel 'Catatan atap tiap daerah' di beranda — diambil dari ringkasan (bersumber), DECISIONS 095.
+sorot: '3.222 mm hujan dalam 175 hari (2025)'
+sorotJenis: 'hujan'
 ringkasan: 'Denpasar mencatat 3.222 mm hujan dan 175 hari hujan pada 2025, dengan suhu rata-rata 28,1°C dan kelembapan 79,5%. Yang perlu diperhatikan pada atap di Bali.'
 jawaban: 'Atapura melayani pemasangan atap bitumen di Bali dengan harga yang dihitung bersama admin, karena ada akomodasi tukang dan pengiriman material antarpulau. Stasiun Geofisika Denpasar mencatat 3.222 mm hujan dalam 175 hari hujan sepanjang 2025, suhu rata-rata 28,1°C, dan kelembapan rata-rata 79,5%. Udara yang panas dan lembap seperti ini menuntut ventilasi di bawah atap yang baik.'
 diperbarui: 2026-11-03

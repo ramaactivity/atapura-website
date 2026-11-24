@@ -5,6 +5,9 @@ cakupan:
 wilayah: 'Jabodetabek'
 urut: 6
 judul: 'Jasa pasang atap bitumen di Tangerang Selatan'
+# Fakta singkat untuk tabel 'Catatan atap tiap daerah' di beranda — diambil dari ringkasan (bersumber), DECISIONS 095.
+sorot: '2.710 mm hujan setahun (2024)'
+sorotJenis: 'hujan'
 ringkasan: 'Stasiun Klimatologi Tangerang Selatan mencatat 2.710 mm hujan pada 2024. Yang perlu diperhatikan pada atap di Tangsel, harga terpasang, dan survey gratis.'
 jawaban: 'Atapura memasang atap bitumen (genteng aspal) di Tangerang Selatan dengan survey gratis. Stasiun Klimatologi Tangerang Selatan mencatat 2.710 mm hujan sepanjang 2024, dengan bulan terbasah November (464 mm), Maret (447 mm), Januari (431 mm). Dari Januari sampai Juni 2024 saja tercatat 118 hari hujan.'
 diperbarui: 2026-11-03

@@ -59,6 +59,9 @@ const area = defineCollection({
       cakupan: z.array(z.object({ nama: z.string(), jenis: z.enum(['City', 'AdministrativeArea']) })).min(1),
       wilayah: z.enum(['Jabodetabek', 'Luar Jabodetabek']),
       judul: z.string().max(70),
+      // Fakta singkat dari ringkasan untuk tabel daerah di beranda (DECISIONS 095); jenis = warna label.
+      sorot: z.string().max(48),
+      sorotJenis: z.enum(['hujan', 'angin', 'panas']),
       ringkasan: z.string().max(160),
       jawaban: z.string(),
       diperbarui: z.coerce.date(),

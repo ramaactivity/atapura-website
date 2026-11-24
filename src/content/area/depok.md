@@ -5,6 +5,9 @@ cakupan:
 wilayah: 'Jabodetabek'
 urut: 7
 judul: 'Jasa pasang atap bitumen di Depok'
+# Fakta singkat untuk tabel 'Catatan atap tiap daerah' di beranda — diambil dari ringkasan (bersumber), DECISIONS 095.
+sorot: 'Puting beliung di 13 dari 63 kelurahan'
+sorotJenis: 'angin'
 ringkasan: 'Angin puting beliung tercatat di 13 dari 63 kelurahan Depok (2023–2024), dan hampir separuh rumah beratap asbes. Yang perlu diperhatikan pada atap di Depok.'
 jawaban: 'Atapura memasang atap bitumen (genteng aspal) di Depok dengan survey gratis. Dua data resmi yang paling relevan untuk atap di Depok: angin puting beliung tercatat di 13 dari 63 kelurahan dalam periode Januari 2023 sampai April 2024, dan data BPS Jawa Barat 2019 mencatat hampir separuh rumah tangga di Depok beratap asbes. Atap di Depok perlu pemakuan yang kuat dan pemeriksaan rangka sebelum mengganti atap lama.'
 diperbarui: 2026-11-03
