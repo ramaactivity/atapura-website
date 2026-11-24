@@ -97,7 +97,7 @@ const schema = [
   .pr-buka { padding: 120px 0 clamp(2.5rem, 5vw, 4rem); }
   .ak-kepala { margin-top: 1.5rem; display: grid; gap: 1.25rem 4rem; grid-template-columns: minmax(0, 1fr); }
   @media (min-width: 60rem) { .ak-kepala { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); align-items: end; } }
-  .pr-judul { font-size: clamp(2.4rem, 1.3rem + 4vw, 4.8rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1; max-width: 15ch; }
+  .pr-judul { font-size: var(--t-d2); font-weight: var(--bobot-judul); letter-spacing: -0.035em; line-height: 1.04; max-width: 15ch; }
   .pr-lead { font-size: clamp(1.05rem, 1rem + 0.3vw, 1.2rem); line-height: 1.5; color: var(--color-lumut); max-width: 42ch; }
 
   .ak-lompat { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2.25rem; }
@@ -118,8 +118,8 @@ const schema = [
   @media (min-width: 60rem) { .seri-baris { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr) minmax(0, 1fr); } }
   @media (min-width: 60rem) { .seri-tanpa-foto { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); } }
   .seri-foto { width: 100%; max-width: 26rem; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 14px; display: block; }
-  .seri-nama { font-size: clamp(1.35rem, 1.1rem + 0.8vw, 1.75rem); font-weight: 500; letter-spacing: -0.03em; }
-  .seri-ringkas { margin-top: 0.4rem; color: var(--color-lumut); line-height: 1.6; max-width: 46ch; }
+  .seri-nama { font-size: var(--t-h3); font-weight: var(--bobot-judul); letter-spacing: -0.011em; line-height: 1.27; }
+  .seri-ringkas { margin-top: 0.4rem; color: var(--color-lumut); line-height: 1.5; max-width: 46ch; }
   .ak-tautan { display: inline-block; margin-top: 0.75rem; color: var(--color-pinus); font-weight: 500; text-underline-offset: 3px; }
   .rinci > div { display: flex; align-items: baseline; gap: 0.6rem; padding: 0.45rem 0; font-size: var(--fs-15); }
   .rinci dt { color: var(--color-lumut); display: flex; align-items: baseline; gap: 0.6rem; flex: 1; white-space: nowrap; }

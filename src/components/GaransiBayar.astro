@@ -40,7 +40,7 @@ import { bisnis } from '../data/bisnis';
 <style>
   .gb { display: grid; gap: 1.5rem; grid-template-columns: minmax(0, 1fr); }
   @media (min-width: 64rem) { .gb { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); } }
-  .gb-judul { font-size: 1.25rem; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 1.25rem; }
+  .gb-judul { font-size: var(--t-title); font-weight: var(--bobot-judul); letter-spacing: -0.006em; margin-bottom: 1.25rem; line-height: 1.4; }
   .gb-label { font-size: var(--fs-14); font-weight: 500; color: var(--color-lumut); margin-bottom: 0.6rem; }
   .gb-termin { padding: clamp(1.5rem, 3vw, 2.5rem); border-radius: 16px; background: var(--color-embun); color: var(--color-tinta); }
   .bayar-label { font-size: var(--fs-14); font-weight: 500; color: var(--color-lumut); }
@@ -50,13 +50,13 @@ import { bisnis } from '../data/bisnis';
   .bayar-label-jasa { margin-bottom: 0.6rem; }
   .termin { border-top: 1px solid var(--color-tinta); }
   .termin li { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 1rem; align-items: center; padding: 1.2rem 0; border-bottom: 1px solid var(--color-garis); }
-  .termin-persen { font-size: 3rem; font-weight: 500; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+  .termin-persen { font-size: 3rem; font-weight: var(--bobot-judul); letter-spacing: -0.035em; line-height: 1; font-variant-numeric: tabular-nums; }
   .termin-persen span { font-size: 0.45em; color: var(--color-lumut); margin-left: 0.05em; }
   .termin-teks { display: grid; color: var(--color-lumut); font-size: var(--fs-15); }
   .termin-teks b { color: var(--color-tinta); font-weight: 500; font-size: var(--fs-17); }
   .gb-catatan { margin-top: 1rem; font-size: var(--fs-14); color: var(--color-lumut); }
   .gb-garansi { padding: clamp(1.5rem, 3vw, 2.5rem); border-radius: 16px; background: var(--color-pinus); color: var(--color-embun); }
-  .garansi-angka { font-size: clamp(5rem, 3rem + 6vw, 8rem); font-weight: 500; letter-spacing: -0.05em; line-height: 0.9; }
+  .garansi-angka { font-size: clamp(5rem, 3rem + 6vw, 8rem); font-weight: var(--bobot-judul); letter-spacing: -0.04em; line-height: 0.9; }
   .garansi-angka span { font-size: max(var(--fs-13), 0.22em); letter-spacing: -0.01em; margin-left: 0.3em; color: var(--color-tunas); }
   .garansi-sub { margin-top: 0.75rem; color: var(--embun-redup); }
   .garansi-dua { margin-top: 2rem; display: grid; gap: 1.5rem; grid-template-columns: minmax(0, 1fr); }

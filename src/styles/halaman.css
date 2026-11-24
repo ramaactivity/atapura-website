@@ -7,13 +7,13 @@
 .hl-redup { opacity: 0.55; }
 .hl-kepala { margin: 2rem 0 3rem; display: grid; gap: 1.25rem 4rem; grid-template-columns: minmax(0, 1fr); }
 @media (min-width: 60rem) { .hl-kepala { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); align-items: end; } }
-.hl-judul { font-family: var(--font-merek); font-size: clamp(2.25rem, 1.2rem + 3vw, 3.75rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.02; max-width: 17ch; text-wrap: balance; }
-.hl-lead { font-size: var(--fs-18); color: var(--color-lumut); max-width: 44ch; line-height: 1.55; }
+.hl-judul { font-family: var(--font-merek); font-size: var(--t-d2); font-weight: var(--bobot-judul); letter-spacing: -0.035em; line-height: 1.04; max-width: 17ch; text-wrap: balance; }
+.hl-lead { font-size: var(--fs-18); color: var(--color-lumut); max-width: 44ch; line-height: 1.5; }
 
 .hl-sek { padding-block: clamp(3rem, 6vw, 5rem); border-top: 1px solid var(--color-garis); display: grid; gap: 1.5rem 5rem; grid-template-columns: minmax(0, 1fr); }
 @media (min-width: 60rem) { .hl-sek { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); align-items: start; } }
-.hl-h2 { font-family: var(--font-merek); font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.5rem); font-weight: 500; letter-spacing: -0.035em; line-height: 1.1; max-width: 18ch; }
-.hl-teks { font-size: var(--fs-17); line-height: 1.6; color: var(--color-lumut); max-width: 58ch; }
+.hl-h2 { font-family: var(--font-merek); font-size: var(--t-h1); font-weight: var(--bobot-judul); letter-spacing: -0.025em; line-height: 1.1; max-width: 18ch; }
+.hl-teks { font-size: var(--fs-16); line-height: 1.5; color: var(--color-lumut); max-width: 58ch; }
 .hl-teks + .hl-teks { margin-top: 0.75rem; }
 .hl-teks a, .hl-daftar a { color: var(--color-tinta); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 @media (min-width: 64rem) { .hl-teks { font-size: var(--fs-18); } }
@@ -21,8 +21,8 @@
 /* Daftar bernomor-garis: masalah → jawaban, atau yang Anda terima. */
 .hl-daftar { border-top: 1px solid var(--color-tinta); }
 .hl-daftar > li { display: grid; gap: 0.3rem; padding: 1.1rem 0; border-bottom: 1px solid var(--color-garis); }
-.hl-daftar b { font-family: var(--font-merek); font-size: 1.15rem; font-weight: 500; letter-spacing: -0.02em; color: var(--color-tinta); }
-.hl-daftar span { font-size: var(--fs-16); line-height: 1.55; color: var(--color-lumut); }
+.hl-daftar b { font-family: var(--font-merek); font-size: var(--t-title); font-weight: var(--bobot-judul); letter-spacing: -0.006em; color: var(--color-tinta); line-height: 1.4; }
+.hl-daftar span { font-size: var(--fs-16); line-height: 1.5; color: var(--color-lumut); }
 .hl-daftar .tautan-lanjut { justify-self: start; min-height: 36px; font-size: var(--fs-15); }
 
 /* Slip identitas: label di kiri, isi di kanan, titik penuntun seperti penawaran tukang (signature DESIGN.md). */
@@ -41,12 +41,12 @@
 @media (min-width: 48rem) { .hl-kartu-baris { grid-template-columns: minmax(0, 1.5fr) repeat(2, minmax(0, 1fr)); } }
 .hl-kartu { display: grid; align-content: start; gap: 0.5rem; padding: 1.4rem 1.4rem 1.5rem; border-radius: 18px; background: var(--color-putih); box-shadow: 0 1px 2px rgb(16 35 30 / 0.06), 0 18px 36px -30px rgb(16 35 30 / 0.4); }
 .hl-kartu .hl-kartu-label { font-size: var(--fs-14); color: var(--color-lumut); }
-.hl-kartu .hl-kartu-isi { font-family: var(--font-merek); color: inherit; font-size: 1.25rem; font-weight: 500; letter-spacing: -0.02em; line-height: 1.3; overflow-wrap: break-word; }
+.hl-kartu .hl-kartu-isi { font-family: var(--font-merek); color: inherit; font-size: var(--t-title); font-weight: var(--bobot-judul); letter-spacing: -0.006em; line-height: 1.4; overflow-wrap: break-word; }
 .hl-kartu p { font-size: var(--fs-15); line-height: 1.5; color: var(--color-lumut); }
 .hl-kartu .pill, .hl-kartu .tautan-lanjut, .hl-kartu .hl-tautan { justify-self: start; margin-top: 0.5rem; }
 .hl-kartu-utama { background: var(--color-pinus); color: var(--color-embun); --tautan: var(--color-embun); }
 .hl-kartu-utama .hl-kartu-label, .hl-kartu-utama p { color: var(--embun-redup); }
-.hl-kartu-utama .hl-kartu-isi { font-size: clamp(1.75rem, 1.2rem + 1.4vw, 2.5rem); letter-spacing: -0.03em; }
+.hl-kartu-utama .hl-kartu-isi { font-size: var(--t-h1); letter-spacing: -0.025em; font-weight: var(--bobot-judul); line-height: 1.1; }
 /* Aksi (email, peta): garis bawah tanpa panah; panah khusus tautan ke halaman rinci. */
 .hl-tautan { display: inline-flex; align-items: center; min-height: 44px; font-weight: 500; color: var(--color-pinus); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; justify-self: start; }
 

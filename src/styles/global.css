@@ -1,13 +1,7 @@
 @import "tailwindcss";
 
-/* Public Sans (USWDS, SIL OFL 1.1 — docs/lisensi/PublicSans-OFL.txt), variable 100–900, subset Latin.
-   Gaya acuan Rama: askmidnight.com — judul 500 dengan tracking -0.04em, isi 400, tanpa italic. */
-@font-face {
-  font-family: "Public Sans"; font-style: normal; font-weight: 100 900; font-display: swap;
-  src: url("/fonts/PublicSans-Variable-latin.woff2") format("woff2");
-}
-/* Inter (rsms, SIL OFL 1.1 — docs/lisensi/Inter-OFL.txt), variable, subset Latin. Teks kecil: isi, label,
-   harga kecil, tombol. Sama di semua perangkat (SF Pro tidak boleh dipasang di web). DECISIONS 046. */
+/* Satu huruf: Inter (rsms, SIL OFL 1.1 — docs/lisensi/Inter-OFL.txt), variable 100–900, subset Latin, untuk logo,
+   judul, dan teks — mengikuti fondasi tipografi Notion (Rama 24 Nov 2026, DECISIONS 092). SF Pro dilarang (lisensi). */
 @font-face {
   font-family: "Inter"; font-style: normal; font-weight: 100 900; font-display: swap;
   src: url("/fonts/Inter-Variable-latin.woff2") format("woff2");
@@ -15,7 +9,8 @@
 
 @theme {
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-  --font-merek: "Public Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* Nama lama dipertahankan supaya pemakai var(--font-merek) tidak perlu diubah; sekarang sama dengan Inter. */
+  --font-merek: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
   --color-pinus: #10231e;
   --color-pinus-2: #183129;
   --color-tinta: #151a18;
@@ -45,45 +40,40 @@ html {
   scroll-padding-top: 80px;
 }
 
-/* Tipografi hibrida (Rama 18 Nov 2026, DECISIONS 046): teks besar & utama = Public Sans (ciri Atapura),
-   teks kecil = Inter. Judul h1–h3 otomatis; teks besar yang bukan elemen judul didaftar di sini. */
-:where(h1, h2, h3,
-  .hero-judul, .judul-besar, .judul-2, .penutup-judul, .jurnal-judul, .jurnal-nama, .batas-judul, .tanya-q,
-  .bukti-daftar b, .bk-garansi b, .hk-angka, .kartu-angka, .ds-merek, .ds-harga td, .merek-hp-harga,
-  .termin-persen, .garansi-angka, .babak-nama, .babak-takut, .kaki-besar, .ck-judul, .ck-pegang, .pm-judul,
-  .hilang-judul, .rapor-judul, .klaim-judul, .ar-cta-judul, .hasil-angka, .teks-ungkap,
-  .b-judul, .s-display, .s-headline, .s-title, .s-angka, .j-a, .komp-harga, .pilar dt, .tulis-tagline, .spesimen-merek,
-  .vt-bar span, .vt-g-angka, .vt-lama b) {
-  font-family: var(--font-merek);
-}
-
-/* Label bagian di atas judul (token "eyebrow" Notion 600/1.33 kapital; DECISIONS 091) di lantai 13 px
-   Atapura (Notion 12 px). Inter kapital butuh sedikit lebih renggang dari 0.01em Notion supaya tidak rapat. */
-.label-bagian { font-size: var(--fs-13); font-weight: 600; letter-spacing: 0.04em; line-height: 1.33; text-transform: uppercase; color: var(--color-lumut); }
+/* Label bagian di atas judul (token "eyebrow" Notion 600/1.33/0.01em kapital; DECISIONS 091–092), di lantai 13 px. */
+.label-bagian { font-size: var(--fs-13); font-weight: 600; letter-spacing: 0.01em; line-height: 1.33; text-transform: uppercase; color: var(--color-lumut); }
 .gelap .label-bagian { color: rgb(242 244 241 / 0.6); }
 
 body {
-  font-size: var(--fs-16); /* 16px di HP: ukuran baca bawaan iOS/Android */
-  /* Teks isi ala Notion/MongoDB/Figma (DECISIONS 091): Inter, spasi huruf 0 (dulu -0,011 em terasa bertumpuk), baris 1,55. */
-  line-height: 1.55;
+  /* body-md Notion: 16 / 400 / 1.5 / 0 di semua lebar layar (DECISIONS 092). */
+  font-size: var(--fs-16);
+  line-height: 1.5;
   letter-spacing: 0;
   font-feature-settings: "kern", "liga";
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
 
-@media (min-width: 48rem) {
-  body { font-size: var(--fs-17); line-height: 1.6; }
-}
-@media (min-width: 64rem) {
-  body { font-size: var(--fs-18); }
+/* Skala judul = fondasi tipografi Notion (getdesign.md/notion, "02 — Foundations"), bobot 600 atas pilihan Rama
+   (Notion 700). Tiap tingkat membawa ukuran + baris + jarak huruf sendiri; makin kecil makin longgar.
+   display-1 64/1.0/-0.033em · display-2 54/1.04/-0.035em · heading-1 40/1.1/-0.025em · heading-2 26/1.23/-0.024em
+   heading-3 22/1.27/-0.011em · title 20/1.4/-0.006em · body 16/1.5/0 · body-sm 15/1.33 · caption 14/1.43
+   · eyebrow 12→13 (lantai Atapura)/600/1.33/0.01em kapital. */
+:root {
+  --bobot-judul: 600;
+  --t-d1: clamp(2.75rem, 1.5rem + 3.1vw, 4rem);
+  --t-d2: clamp(2.25rem, 0.9rem + 3.2vw, 3.375rem);
+  --t-h1: clamp(1.75rem, 0.9rem + 2.2vw, 2.5rem);
+  --t-h2: 1.625rem;
+  --t-h3: 1.375rem;
+  --t-title: 1.25rem;
 }
 
 h1, h2, h3 {
   text-wrap: balance;
-  letter-spacing: -0.035em;
-  line-height: 1.04;
-  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  font-weight: var(--bobot-judul);
 }
 
 /* Penekanan judul tanpa italic: bagian kalimat diredupkan (gaya askmidnight). */
@@ -116,7 +106,7 @@ a { text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
 .pill:active { transform: scale(0.97); }
 
 /* Skala teks kecil–sedang (DECISIONS 076): satu langkah per peran, lantai 13 px. Judul memakai clamp sendiri
-   (Public Sans) dan token --hp-* di HP. Pengecualian sengaja: label bilah tab bawah (ukuran native iOS) dan label peta. */
+   (Inter, skala Notion --t-*) dan token --hp-* di HP. Pengecualian sengaja: label bilah tab bawah (ukuran native iOS) dan label peta. */
 :root {
   --fs-13: 0.8125rem; /* label, keterangan kecil (minimal) */
   --fs-14: 0.875rem;  /* catatan, kaki */

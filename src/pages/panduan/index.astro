@@ -71,12 +71,12 @@ const tgl = (d: Date) => d.toLocaleDateString('id-ID', { day: 'numeric', month: 
   .remah a { color: inherit; }
   .pd-kepala { margin: 2rem 0 3rem; display: grid; gap: 1.25rem 4rem; grid-template-columns: minmax(0, 1fr); }
   @media (min-width: 60rem) { .pd-kepala { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); align-items: end; } }
-  .pd-judul { font-size: clamp(2.6rem, 1.3rem + 4.6vw, 5.4rem); font-weight: 500; letter-spacing: -0.04em; line-height: 0.98; max-width: 14ch; }
+  .pd-judul { font-size: var(--t-d2); font-weight: var(--bobot-judul); letter-spacing: -0.035em; line-height: 1.04; max-width: 14ch; }
   .redup { opacity: 0.55; }
   .pd-lead { font-size: 1.15rem; color: var(--color-lumut); max-width: 40ch; }
   .pd-en { color: var(--color-pinus); text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
   .pd-grup + .pd-grup { margin-top: clamp(2.5rem, 5vw, 4rem); }
-  .pd-h2 { scroll-margin-top: 96px; font-size: 1.5rem; font-weight: 500; letter-spacing: -0.03em; margin-bottom: 1rem; }
+  .pd-h2 { scroll-margin-top: 96px; font-size: var(--t-h3); font-weight: var(--bobot-judul); letter-spacing: -0.011em; margin-bottom: 1rem; line-height: 1.27; }
   .pd-daftar { display: grid; gap: 1.25rem; grid-template-columns: minmax(0, 1fr); }
   @media (min-width: 48rem) { .pd-daftar { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (min-width: 64rem) { .pd-daftar { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
@@ -84,7 +84,7 @@ const tgl = (d: Date) => d.toLocaleDateString('id-ID', { day: 'numeric', month: 
   .pd-tautan:hover { transform: translateY(-4px); box-shadow: 0 24px 40px -24px rgb(16 35 30 / 0.35); }
   .pd-foto { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
   .pd-isi { display: grid; gap: 0.6rem; padding: 1.5rem; align-content: start; }
-  .pd-kartu-judul { font-size: 1.35rem; font-weight: 500; letter-spacing: -0.03em; line-height: 1.2; }
+  .pd-kartu-judul { font-size: var(--t-title); font-weight: var(--bobot-judul); letter-spacing: -0.006em; line-height: 1.4; }
   .pd-ringkas { color: var(--color-lumut); font-size: var(--fs-15); }
   .pd-tgl { font-size: var(--fs-13); color: var(--color-lumut); }
 

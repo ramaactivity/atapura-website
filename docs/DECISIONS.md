@@ -744,3 +744,25 @@ font2 yang dipake notion … terkenal dengan kerapihannya"), dan mengizinkan ben
   "Perbaikan" di `bisnis.ts`, label "Jadwal disepakati" di KlaimGaransi, jawaban klaim di /garansi, dan slogan footer
   "Atap yang masuk AKAL, untuk setiap proyek." (dulu "untuk rumah di Jabodetabek"). Janji "foto progres / foto tiap lapis /
   Rapor Proyek" di /garansi, /perusahaan, /cara-kerja, dan artikel BELUM diubah: tersebar luas dan butuh keputusan Rama.
+
+## 092 · 24 November 2026 · Satu huruf Inter + fondasi tipografi Notion (termasuk logo)
+Rama (melihat getdesign.md/notion "02 — Foundations · Typography"): "kok ga sebagus yang notion", "kita enak dibacanya baru
+6/10", "pokoknya kita copy paste saja typography foundationnya notion", "tebalnya 600 cukup jangan terlalu tebal", "jarak antar
+teksnya, huruf dan sebagainya samakan saja dengan notion. kerning, margin", lalu "ganti aja total keseluruhannya jadi inter …
+termasuk yang di logo". Mengganti DECISIONS 046 (Public Sans untuk judul) dan bagian huruf dari 085/091.
+- **Huruf**: Inter saja untuk logo, judul, angka, dan teks. Public Sans dihapus (`@font-face`, preload, file woff2);
+  `--font-merek` tetap ada sebagai alias Inter supaya kode lama tidak perlu diubah. Pratinjau Notion di getdesign.md yang Rama
+  sukai memang dirender dengan Inter biasa ("Inter shown as substitute").
+- **Skala** (token `--t-d1 … --t-title`, `--bobot-judul` di `global.css`): display-1 64/1.0/-0.033em (hero), display-2
+  54/1.04/-0.035em (judul halaman & artikel, ajakan penutup, nama AKAL), heading-1 40/1.1/-0.025em (judul bagian), heading-2
+  26/1.23/-0.024em, heading-3 22/1.27/-0.011em, title 20/1.4/-0.006em; semua bobot 600 (Notion 700). Dulu: hero 80 px, judul
+  bagian 48 px, semua -0.04em — terlalu besar dan rapat di ukuran kecil.
+- **Teks**: body 16/1.5/0 di semua lebar layar (dulu 17–18/1.6 di laptop), artikel 16/1.5 (dulu 17/1.7), caption 14/1.43,
+  lead 18/1.5. Eyebrow 13 px/600/1.33/0.01em kapital (Notion 12; lantai Atapura 13), jarak eyebrow → judul 8 px.
+- **Logo**: dibangun ulang dari garis Inter SemiBold 600 (`tools/logo/build.py`, kerning bawaan Inter lewat HarfBuzz, jarak
+  huruf -0.033em); bentuk Λ atap pelana tetap, tebal kakinya mengikuti batang Inter 600. Semua turunan dibuat ulang dengan ukuran
+  sama (PNG 2400 px, simbol 1024, favicon 16/32/48 + .ico, ikon 180/512, avatar 1080) dan `atapura-brand-kit.zip`; /branding
+  diperbarui. Perbandingan ukuran logo 6930/1768 → 7285/1908.
+- Dicek: angka terukur di browser (hero Inter 64 px/600/-2,1 px/baris 64 px; isi 16 px/400/24 px), sapu 9 halaman × 360 &
+  1288 px: 0 elemen keluar layar (selain kolom jebakan anti-spam yang memang di luar layar), 0 galat JS.
+- Ops perlu ikut (logo & huruf halaman klien/PDF masih Public Sans): dikabari, dikerjakan dari sisi Ops.

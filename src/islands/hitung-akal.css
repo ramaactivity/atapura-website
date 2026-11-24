@@ -32,7 +32,7 @@
 .ha-slip .contoh { white-space: nowrap; flex: none; background: rgb(198 242 78 / 0.16); color: var(--color-tunas); }
 /* Angka harga: proporsional (bukan tabular), tipis, "Rp" dan satuan mengecil supaya angka yang bicara. */
 .hasil-angka {
-  font-size: clamp(2.2rem, 1.2rem + 4vw, 4.8rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1;
+  font-size: clamp(2.2rem, 1.2rem + 4vw, 4.8rem); font-weight: var(--bobot-judul); letter-spacing: -0.033em; line-height: 1;
   font-variant-numeric: proportional-nums lining-nums; white-space: nowrap; margin: 0.6rem 0 0.2rem;
 }
 .hasil-rp { font-size: 0.36em; letter-spacing: 0; vertical-align: 0.95em; margin-right: 0.18em; color: rgb(242 244 241 / 0.7); }
@@ -107,8 +107,8 @@
 
 /* Lokasi di luar Jabodetabek: harga tidak ditampilkan, diganti ajakan ke admin. */
 .ha-luar-kotak { display: grid; gap: 0.35rem; padding-block: 0.25rem 0.5rem; }
-.ha-luar-judul { font-size: clamp(1.4rem, 1.1rem + 1.2vw, 1.9rem); font-weight: 500; letter-spacing: -0.035em; line-height: 1.1; }
-.ha-luar-isi { font-size: var(--fs-15); line-height: 1.55; opacity: 0.8; max-width: 46ch; }
+.ha-luar-judul { font-size: var(--t-h2); font-weight: var(--bobot-judul); letter-spacing: -0.024em; line-height: 1.23; }
+.ha-luar-isi { font-size: var(--fs-15); line-height: 1.5; opacity: 0.8; max-width: 46ch; }
 
 /* Publik: cakupan harga — yang sudah dan belum termasuk (pengganti pilihan spek). */
 .ha-cakup { display: grid; gap: 1rem 1.5rem; grid-template-columns: minmax(0, 1fr); margin-top: 1.1rem; padding: 1rem 1.1rem; border-radius: 12px; background: rgb(242 244 241 / 0.06); }

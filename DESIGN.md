@@ -15,62 +15,79 @@ colors:
   senja: "#f2b66b"
   embun-redup: "rgb(242 244 241 / 0.72)"
 typography:
-  display:
-    fontFamily: "Public Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
-    fontSize: "clamp(3.1rem, 1.6rem + 6.4vw, 6rem)"
-    fontWeight: 500
-    lineHeight: 0.95
-    letterSpacing: "-0.04em"
-  display-strong:
-    fontFamily: "Public Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
-    fontSize: "clamp(3.1rem, 1.6rem + 6.4vw, 6rem)"
-    fontWeight: 400
-    lineHeight: 0.95
-    letterSpacing: "-0.04em"
-  headline:
-    fontFamily: "Public Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
-    fontSize: "clamp(2rem, 1.3rem + 2.6vw, 3.6rem)"
-    fontWeight: 500
-    lineHeight: 1.08
-    letterSpacing: "-0.025em"
-  title:
-    fontFamily: "Public Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
-    fontSize: "clamp(1.35rem, 1.1rem + 0.8vw, 1.75rem)"
-    fontWeight: 400
-    lineHeight: 1.08
-    letterSpacing: "-0.025em"
-  figure:
-    fontFamily: "Public Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
-    fontSize: "clamp(1.9rem, 1.4rem + 2vw, 2.6rem)"
-    fontWeight: 400
-    lineHeight: 1.1
+  display-1:
+    fontFamily: "Inter, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
+    fontSize: "clamp(2.75rem, 1.5rem + 3.1vw, 4rem)"
+    fontWeight: 600
+    lineHeight: 1
+    letterSpacing: "-0.033em"
+  display-2:
+    fontFamily: "Inter, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
+    fontSize: "clamp(2.25rem, 0.9rem + 3.2vw, 3.375rem)"
+    fontWeight: 600
+    lineHeight: 1.04
     letterSpacing: "-0.035em"
-    fontFeature: "tnum, lnum"
+  heading-1:
+    fontFamily: "Inter, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
+    fontSize: "clamp(1.75rem, 0.9rem + 2.2vw, 2.5rem)"
+    fontWeight: 600
+    lineHeight: 1.1
+    letterSpacing: "-0.025em"
+  heading-2:
+    fontFamily: "Inter, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
+    fontSize: "1.625rem"
+    fontWeight: 600
+    lineHeight: 1.23
+    letterSpacing: "-0.024em"
+  heading-3:
+    fontFamily: "Inter, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
+    fontSize: "1.375rem"
+    fontWeight: 600
+    lineHeight: 1.27
+    letterSpacing: "-0.011em"
+  title:
+    fontFamily: "Inter, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
+    fontSize: "1.25rem"
+    fontWeight: 600
+    lineHeight: 1.4
+    letterSpacing: "-0.006em"
   lead:
-    fontFamily: "Inter, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
-    fontSize: "clamp(1.125rem, 1.05rem + 0.4vw, 1.35rem)"
-    fontWeight: 400
-    lineHeight: 1.5
-  body:
-    fontFamily: "Inter, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
-    fontSize: "1.0625rem"
-    fontWeight: 400
-    lineHeight: 1.6
-  body-desktop:
     fontFamily: "Inter, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
     fontSize: "1.125rem"
     fontWeight: 400
-    lineHeight: 1.6
-  label:
+    lineHeight: 1.5
+    letterSpacing: "0"
+  body:
     fontFamily: "Inter, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
-    fontSize: "0.95rem"
+    fontSize: "1rem"
+    fontWeight: 400
+    lineHeight: 1.5
+    letterSpacing: "0"
+  body-sm:
+    fontFamily: "Inter, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
+    fontSize: "0.9375rem"
+    fontWeight: 400
+    lineHeight: 1.33
+    letterSpacing: "0"
+  button:
+    fontFamily: "Inter, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
+    fontSize: "1rem"
     fontWeight: 500
-    lineHeight: 1.45
+    lineHeight: 1.5
+    letterSpacing: "0"
   caption:
     fontFamily: "Inter, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
-    fontSize: "0.85rem"
+    fontSize: "0.875rem"
     fontWeight: 400
-    lineHeight: 1.45
+    lineHeight: 1.43
+    letterSpacing: "0"
+  eyebrow:
+    fontFamily: "Inter, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
+    fontSize: "0.8125rem"
+    fontWeight: 600
+    lineHeight: 1.33
+    letterSpacing: "0.01em"
+    textTransform: "uppercase"
 rounded:
   course: "6px"
   sm: "0.75rem"
@@ -181,7 +198,7 @@ Yang ditolak secara visual: pola kontraktor standar (foto rumah stok + kartu iko
 ### Aturan dasar pemilik (lintas proyek, tetap berlaku)
 
 - Rasa: bersih, modern, lembut. Hindari kaku/"jadul 2010" dan gaya template AI.
-- Huruf: sans-serif, tidak pernah serif. Proyek ini memakai Public Sans (pilihan Rama, acuan askmidnight.com); Plus Jakarta Sans, Switzer, dan Uncut Sans sudah ditolak/diganti 2 Nov 2026.
+- Huruf: sans-serif, tidak pernah serif. Proyek ini memakai Inter saja (Rama 24 Nov 2026, DECISIONS 092: "ganti total jadi Inter, termasuk logo"); Public Sans (2–24 Nov), Plus Jakarta Sans, Switzer, Uncut Sans, Source Sans 3 sudah diganti/ditolak.
 - Komponen: tombol & chip berbentuk pill; kartu rounded dengan bayangan lembut; aksen warna pastel.
 - Tidak memakai kontrol bawaan browser: confirm/alert, select, input color, textarea polos. Pakai komponen sendiri + toast.
 - Mobile-first: cek tampilan di layar HP; target sentuh minimal 44px.
@@ -191,7 +208,7 @@ Yang ditolak secara visual: pola kontraktor standar (foto rumah stok + kartu iko
 - Estimasi terlihat di layar pertama, termasuk di HP.
 - Section bertumpuk seperti baris genteng (overlap + bayangan jatuh ke bawah).
 - Hijau pinus, bukan hitam; satu aksen lime (Tunas) yang sangat hemat.
-- Dua huruf: Public Sans 500 untuk judul & angka besar, Inter untuk teks; penekanan lewat satu frasa diredupkan.
+- Satu huruf: Inter untuk logo, judul, dan teks, skala ala Notion (DECISIONS 092); penekanan lewat satu frasa diredupkan.
 - Semua angka tabular; rupiah tanpa desimal.
 - Semua kontrol custom berbentuk pill, target sentuh minimal 44px.
 
@@ -226,35 +243,41 @@ Palet hijau hutan yang tenang dengan latar terang sedikit kehijauan, ditusuk sat
 
 ## Typography
 
-**Display Font:** Public Sans variable (USWDS, SIL OFL 1.1, subset Latin, self-host `/public/fonts/PublicSans-Variable-latin.woff2`, 27 KB), wght 100–900, tanpa italic. Token `--font-merek`. Dipakai untuk logo, h1–h3, dan teks besar yang bukan elemen judul (daftar selektor di `global.css`).
-**Body Font:** Inter variable (rsms, SIL OFL 1.1, self-host `/public/fonts/Inter-Variable-latin.woff2`, 47 KB). Token `--font-sans` (bawaan `html`). Teks isi, lead, label, tombol, harga kecil, remah. Ritme ala Notion/MongoDB/Figma: baris 1,55, tracking 0 (DECISIONS 091; dulu -0,011 em terasa rapat), rata kiri (DECISIONS 046, Rama 18 Nov 2026: "font besar dan utama tetap ciri khas Atapura, teks kecil boleh font lain yang lebih enak dibaca", sama di semua perangkat).
+**Font:** Inter variable (rsms, SIL OFL 1.1, self-host `/public/fonts/Inter-Variable-latin.woff2`, 47 KB, wght 100–900), satu-satunya huruf situs: logo, judul, angka, teks isi, label, tombol. Token `--font-sans`; `--font-merek` dipertahankan sebagai alias Inter supaya kode lama tidak perlu diubah. Public Sans dihapus 24 Nov 2026 (DECISIONS 092).
 
-**Larangan:** SF Pro tidak boleh dipasang sebagai font web (lisensi Apple: hanya untuk mock-up aplikasi di platform Apple, dilarang untuk "website content" dan embed). Jangan menambah font ketiga.
+**Larangan:** SF Pro tidak boleh dipasang sebagai font web (lisensi Apple: hanya untuk mock-up aplikasi di platform Apple, dilarang untuk "website content" dan embed). Jangan menambah font kedua.
 
-**Character:** Gaya askmidnight.com: judul bobot 500 dengan tracking -0.04em, isi 400, label/nama 500. Tanpa italic; penekanan bagian kalimat lewat warna diredupkan (`.miring` = opacity 0.55), atau Tunas untuk "akal." di hero HP. Angka di kolom harga tabular; angka besar kalkulator proporsional dengan "Rp" & satuan mengecil.
+**Character:** Fondasi tipografi Notion (getdesign.md/notion, "02 — Foundations"), disalin apa adanya kecuali bobot judul 600 (Notion 700, pilihan Rama "jangan terlalu tebal"). Hierarki datang dari ukuran dan jarak huruf yang makin rapat di ukuran besar; teks isi tenang di 400. Tanpa italic; penekanan bagian kalimat lewat warna diredupkan (`.miring` = opacity 0.55).
 
 ### Hierarchy
-Diperbarui 23 Nov 2026 (DECISIONS 076) mengikuti situs yang tayang.
-- **Display** (Public Sans 500, tracking -0.04em, line-height 1): judul hero beranda `clamp(2.75rem, 0.9rem + 3.6vw, 5rem)` (±59 px di 1230 px, 44 px di HP), dua baris, baris kedua diredupkan. Judul halaman dalam `clamp(2.25rem, …, 3.75rem)`. Judul penutup beranda `clamp(2.25rem, 0.9rem + 3vw, 4rem)`. Tidak ada judul bagian yang lebih besar dari judul hero (DECISIONS 085).
-- **Headline** (Public Sans 500, tracking -0.035em, line-height 1.08, maks 20ch): judul bagian beranda `clamp(1.9rem, 0.8rem + 2.1vw, 3rem)` (±39 px di 1230 px; rasio ±1,5 terhadap hero, mengikuti referensi Rama). HP: `--hp-t1` (26 px). Pengantar (`.lead`, sub hero) `--fs-18`, Lumut, baris 1,55, maks 44ch.
-- **Title** (Public Sans 500, 1.15–1.35rem): judul kartu, baris daftar, nama merek. HP: `--hp-t2`–`--hp-t4`.
-- **Teks kecil–sedang = token** di `global.css`: `--fs-13` label & keterangan (lantai), `--fs-14` catatan/kaki, `--fs-15` isi ringkas & kartu, `--fs-16` isi, `--fs-17` isi baca & label kontrol, `--fs-18` pengantar kecil. Jangan menulis rem lepas di bawah 1.15rem; pakai token.
-- **Isi**: HP 15–16 px (register ringkas, selera Rama dari Ops), laptop 16–18 px; jawaban tanya-jawab Inter 17/1,6 (HP 16/1,6), #24302b, maks 64ch, nilai kunci `<b>` 600 di dalam kalimat.
-- **Label bagian** (`.label-bagian`, token *eyebrow* Notion): Inter 13 px 600, kapital, renggang 0,04 em, Lumut (di latar gelap Embun 60%), di atas tiap judul bagian.
-- **Visual dalam jawaban** (DECISIONS 091): permukaan level 0 = putih + garis 1 px `--color-garis` + sudut 12 px; tabel harga bergaris tipis; batang termin sebanding persen; dua kartu garansi (pabrik putih vs Atapura Pinus); angka besar Public Sans 600 proporsional. Teks lengkapnya wajib tetap di FAQPage schema.
-- **Angka besar** (Public Sans 500, proporsional): estimasi di slip; "Rp" dan satuan mengecil dengan `max(var(--fs-13), …em)` supaya tidak pernah di bawah 13 px.
-- Pengecualian lantai 13 px yang disengaja: label bilah tab bawah HP (ukuran native iOS ±10 px) dan label di dalam peta SVG.
+Token di `global.css` (`:root`): `--bobot-judul` 600, `--t-d1 … --t-title`. Tiap tingkat membawa ukuran + baris + jarak huruf sendiri — selalu tulis ketiganya bersama.
+| Tingkat | Ukuran (laptop) | Bobot | Baris | Jarak huruf | Dipakai |
+|---|---|---|---|---|---|
+| display-1 `--t-d1` | 64 px (HP 44) | 600 | 1.0 | -0.033em | judul hero beranda |
+| display-2 `--t-d2` | 54 px (HP 36) | 600 | 1.04 | -0.035em | judul halaman dalam, judul artikel, judul ajakan penutup, nama nilai AKAL |
+| heading-1 `--t-h1` | 40 px (HP `--hp-t1` 26) | 600 | 1.1 | -0.025em | judul bagian (`.judul-besar`, `.hl-h2`, …), slogan footer |
+| heading-2 `--t-h2` | 26 px | 600 | 1.23 | -0.024em | sub-judul, h2 artikel, angka statistik & harga besar |
+| heading-3 `--t-h3` | 22 px | 600 | 1.27 | -0.011em | judul grup, judul kartu besar |
+| title `--t-title` | 20 px | 600 | 1.4 | -0.006em | judul kartu, pertanyaan FAQ, nama merek, nama langkah |
+| lead | 18 px | 400 | 1.5 | 0 | pengantar di samping/bawah judul, Lumut |
+| body | 16 px semua lebar | 400 | 1.5 | 0 | teks isi, jawaban FAQ, isi artikel |
+| body-sm / caption | 15 / 14 px | 400 | 1.33–1.5 / 1.43 | 0 | isi ringkas kartu / keterangan |
+| eyebrow `.label-bagian` | 13 px (Notion 12; lantai Atapura 13) | 600 | 1.33 | 0.01em kapital | label di atas judul bagian, jarak ke judul 8 px |
+- **Teks kecil = token** `--fs-13…18`; jangan menulis rem lepas di bawah 1.15rem. Lantai 13 px (kecuali label bilah tab bawah HP dan label peta SVG).
+- **Spasi**: kelipatan 8 px ala Notion (4 · 8 · 12 · 16 · 24 · 32); eyebrow → judul 8 px; antarblok jawaban 12 px.
+- **Visual dalam jawaban** (DECISIONS 091): permukaan level 0 = putih + garis 1 px `--color-garis` + sudut 12 px; tabel harga bergaris tipis; batang termin sebanding persen; dua kartu garansi (pabrik putih vs Atapura Pinus). Teks lengkapnya wajib tetap di FAQPage schema.
+- **Angka besar** (Inter 600, proporsional): estimasi di slip; "Rp" dan satuan mengecil dengan `max(var(--fs-13), …em)`.
 
 ### Named Rules
 **The Satu Frasa Rule.** Paling banyak satu frasa diredupkan per judul; tidak pernah untuk paragraf.
 
-**The Redup Sebagai Aksen Rule.** Penekanan judul datang dari meredupkan sebagian kalimat (opacity 0.55) di judul berbobot 500 — bukan italic, bukan warna-warni, bukan mengganti font di tengah judul.
+**The Redup Sebagai Aksen Rule.** Penekanan judul datang dari meredupkan sebagian kalimat (opacity 0.55) di judul berbobot 600 — bukan italic, bukan warna-warni, bukan mengganti font di tengah judul.
 
-**The Dua Huruf Rule.** Besar & utama = Public Sans; kecil & dibaca = Inter. Teks besar baru (angka sorotan, judul kartu besar) yang bukan h1–h3 wajib ditambahkan ke daftar `--font-merek` di `global.css`.
+**The Satu Huruf Rule.** Inter untuk semuanya (DECISIONS 092). Judul baru wajib memakai satu tingkat skala di atas (ukuran + baris + jarak huruf + `--bobot-judul`), bukan angka lepas.
 
 **The Angka Tabular Rule.** Setiap angka yang dibandingkan atau berubah (estimasi, luas, harga di tabel, durasi) memakai `tabular-nums lining-nums`. Rupiah ditulis tanpa desimal.
 
-**The Huruf Pilar Rule.** (Diganti DECISIONS 088.) Nilai AKAL ditulis sebagai nama besar di kartu (Public Sans 500, clamp 2.5–3.5rem): huruf depan warna penuh, sisa kata diredupkan 58% supaya A-K-A-L terbaca berurutan.
+**The Huruf Pilar Rule.** (Diganti DECISIONS 088.) Nilai AKAL ditulis sebagai nama besar di kartu (Inter 600, `--t-d2`): huruf depan warna penuh, sisa kata diredupkan 58% supaya A-K-A-L terbaca berurutan.
 
 ## Layout
 
@@ -366,7 +389,7 @@ Acuan Biztop (kartu putih · lime · hijau tua, tombol di takik) + Redow (nomor 
 **Tanpa tombol melayang di laptop.** Pill "Berapa biaya atap Anda? Hitung estimasi" dihapus (DECISIONS 088): menutupi konten dan menonjolkan hitung sendiri. Ajakan ada di header, hero, pita perusahaan, dan penutup; HP memakai bilah tab bawah.
 
 ### Kartu layanan (bagian ke-3 beranda)
-Acuan Forma Casa (kartu kategori) + Logamax (pita gelap). Empat kartu putih radius 1.25rem, padding 8px, bayangan lembut; foto 4:3 radius 0.85rem di atas, judul Public Sans 500 1.25rem, satu–dua kalimat Lumut 15px, tombol panah bulat 2.5rem bergaris di kanan bawah (hover: Pinus dengan panah Tunas, kartu terangkat 3px). Seluruh kartu menaut ke panduan yang relevan. Laptop 4 kolom, tablet 2×2, HP digeser ke samping (78%). Di bawahnya pita Pinus "Untuk perusahaan" dengan satu pill Tunas + tautan.
+Acuan Forma Casa (kartu kategori) + Logamax (pita gelap). Empat kartu putih radius 1.25rem, padding 8px, bayangan lembut; foto 4:3 radius 0.85rem di atas, judul Inter 600 (`--t-title`) 1.25rem, satu–dua kalimat Lumut 15px, tombol panah bulat 2.5rem bergaris di kanan bawah (hover: Pinus dengan panah Tunas, kartu terangkat 3px). Seluruh kartu menaut ke panduan yang relevan. Laptop 4 kolom, tablet 2×2, HP digeser ke samping (78%). Di bawahnya pita Pinus "Untuk perusahaan" dengan satu pill Tunas + tautan.
 
 ### Deret merek + baris angka (di bawah hero)
 Menggantikan bento bukti (DECISIONS 085). Baris atas: label "Merek yang kami pasang" + lima logo satu warna Pinus (opasitas 78%, penuh saat disorot), masing-masing menaut ke `/produk/<merek>`. Tinggi logo diseimbangkan menurut rasio lebarnya (`1 / √(rasio/3)` em) supaya logo lebar tidak terlihat lebih besar. File dari `tools/logo/satu-warna.py` (bagian putih di logo berwarna dilubangi; logo putih Javabitumen dipakai bentuk aslinya). Garis 1px, lalu tiga angka fakta (13 kota, ±4–5 hari kerja untuk 120 m², harga terpasang mulai Rp…rb/m² dari data Ops) dengan garis pemisah tegak di desktop; HP 2 + 1 lebar penuh dan logo dua baris di tengah. Tidak mengulang isi hero/logo.

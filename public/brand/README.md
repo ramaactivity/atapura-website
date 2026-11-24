@@ -1,6 +1,6 @@
 # Logo Atapura — "Λtapura"
 
-Dipilih Rama 2 November 2026 (arah A dari tiga sketsa). Panduan lengkap (warna, huruf, penerapan, sosial media): halaman **/branding** di website. Huruf: Public Sans Medium (500), jarak huruf −0,04 em, sama dengan judul website. Semua huruf sudah diubah jadi garis vektor, jadi file tidak bergantung pada font.
+Dipilih Rama 2 November 2026 (arah A dari tiga sketsa). Panduan lengkap (warna, huruf, penerapan, sosial media): halaman **/branding** di website. Huruf: Inter SemiBold (600), jarak huruf −0,033 em dengan kerning bawaan Inter, sama dengan judul website (diganti dari Public Sans Medium 24 Nov 2026, DECISIONS 092). Semua huruf sudah diubah jadi garis vektor, jadi file tidak bergantung pada font.
 
 **Cerita bentuk:** huruf A pertama tanpa palang tengah menjadi atap pelana dengan puncak runcing seperti bubungan. Λ setinggi huruf kapital dan diberi jarak lega sebelum "tapura", sesuai sketsa yang disetujui Rama.
 
@@ -28,7 +28,7 @@ PNG berlatar transparan kecuali favicon, ikon, dan avatar (latar pinus).
 - Jangan: mengganti huruf, memberi bayangan/gradasi/garis tepi, memiringkan, meregangkan, mengganti Λ dengan A biasa, atau menaruh logo pinus di atas foto gelap.
 
 ## Mengubah bentuk
-`tools/logo/build.py` membangun ulang semua SVG ke `./out/`; salin ke `public/brand/`, buat ulang `atapura-brand-kit.zip` (`zip -X atapura-brand-kit.zip README.md *.svg *.png favicon.ico`), dan salin `favicon.ico` ke `public/`. dari Public Sans (unduh `PublicSans[wght].ttf` dari github.com/google/fonts, ofl/publicsans, lalu instance ke wght 500). Lisensi font: `docs/lisensi/PublicSans-OFL.txt` (logo dari garis huruf OFL boleh dipakai komersial).
+`tools/logo/build.py` membangun ulang semua SVG ke `./out/`; salin ke `public/brand/`, buat ulang `atapura-brand-kit.zip` (`zip -X atapura-brand-kit.zip README.md *.svg *.png favicon.ico`), dan salin `favicon.ico` ke `public/`. dari Inter 600 (cara membuat `Inter-600.ttf` ada di kepala skrip; butuh `pip install uharfbuzz brotli fonttools`). Lisensi font: `docs/lisensi/Inter-OFL.txt` (logo dari garis huruf OFL boleh dipakai komersial).
 
 ## Sebelum dicetak / didaftarkan
 Pencarian "atapura" di PDKI (mode Normal) 2 Nov 2026: tidak ada data. Ulangi dengan mode **Fonetik**, lalu daftarkan merek atas nama PT (minimal kelas 37) begitu PT terbit.

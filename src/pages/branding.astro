@@ -40,13 +40,13 @@ const warna = [
 ];
 
 const skala = [
-  { nama: 'Display', spek: 'Public Sans 500 · 96 px · −0,04 em · baris 0,95', contoh: 'Hitung dulu,', redup: 'baru pasang.', kelas: 's-display' },
-  { nama: 'Headline', spek: 'Public Sans 500 · 56 px · −0,035 em · baris 1,05', contoh: 'Tiga merek,', redup: 'satu standar pasang.', kelas: 's-headline' },
-  { nama: 'Title', spek: 'Public Sans 400 · 28 px · −0,025 em', contoh: 'Underlayment menahan air yang lolos', kelas: 's-title' },
-  { nama: 'Lead', spek: 'Inter 400 · 21 px · baris 1,5', contoh: 'Hitung estimasi biaya dalam satu menit, lihat standar pasangnya, lalu putuskan.', kelas: 's-lead' },
-  { nama: 'Body', spek: 'Inter 400 · 17–18 px · baris 1,6', contoh: 'Setiap lapis difoto sebelum tertutup lapis berikutnya. Foto itu Anda terima, jadi bagian yang nanti tidak terlihat tetap bisa dicek.', kelas: 's-body' },
+  { nama: 'Display', spek: 'Inter 600 · 64 px · −0,033 em · baris 1,0', contoh: 'Hitung dulu,', redup: 'baru pasang.', kelas: 's-display' },
+  { nama: 'Heading', spek: 'Inter 600 · 40 px · −0,025 em · baris 1,1', contoh: 'Tiga merek,', redup: 'satu standar pasang.', kelas: 's-headline' },
+  { nama: 'Title', spek: 'Inter 600 · 20 px · −0,006 em · baris 1,4', contoh: 'Underlayment menahan air yang lolos', kelas: 's-title' },
+  { nama: 'Lead', spek: 'Inter 400 · 18 px · baris 1,5 · Lumut', contoh: 'Hitung estimasi biaya dalam satu menit, lihat standar pasangnya, lalu putuskan.', kelas: 's-lead' },
+  { nama: 'Body', spek: 'Inter 400 · 16 px · baris 1,5 · jarak huruf 0', contoh: 'Setiap lapis difoto sebelum tertutup lapis berikutnya. Foto itu Anda terima, jadi bagian yang nanti tidak terlihat tetap bisa dicek.', kelas: 's-body' },
   { nama: 'Label', spek: 'Inter 500 · 15 px', contoh: 'Luas atap (m²)', kelas: 's-label' },
-  { nama: 'Caption', spek: 'Inter 400 · 13 px · Lumut', contoh: 'Harga per 2 November 2026. Angka contoh untuk uji tampilan.', kelas: 's-caption' },
+  { nama: 'Caption', spek: 'Inter 400 · 14 px · baris 1,43 · Lumut', contoh: 'Harga per 2 November 2026. Angka contoh untuk uji tampilan.', kelas: 's-caption' },
 ];
 
 const unduhan = [
@@ -102,7 +102,7 @@ const dilarang = ['solusi terbaik', 'terpercaya No.1', 'profesional dan berpenga
         <div class="b-sek-kepala">
           <p class="eyebrow">01 · Logo</p>
           <h2 class="b-h2">Λtapura. <span class="miring">Huruf A yang jadi atap.</span></h2>
-          <p class="b-teks">Huruf A pertama tanpa palang tengah menjadi atap pelana dengan puncak runcing seperti bubungan. Sisanya huruf kecil yang tenang. Hurufnya Public Sans Medium, sama dengan judul website, dan sudah diubah jadi garis vektor.</p>
+          <p class="b-teks">Huruf A pertama tanpa palang tengah menjadi atap pelana dengan puncak runcing seperti bubungan. Sisanya huruf kecil yang tenang. Hurufnya Inter SemiBold (600), sama dengan judul website, dan sudah diubah jadi garis vektor.</p>
         </div>
         <div class="b-dua">
           <figure class="papan papan-terang"><Logo tinggi="clamp(3rem, 2rem + 4vw, 5.5rem)" /><figcaption>Logo utama · Pinus di latar terang</figcaption></figure>
@@ -184,26 +184,17 @@ const dilarang = ['solusi terbaik', 'terpercaya No.1', 'profesional dan berpenga
       <div class="wrap">
         <div class="b-sek-kepala">
           <p class="eyebrow">03 · Huruf</p>
-          <h2 class="b-h2">Dua huruf, <span class="miring">satu suara.</span></h2>
-          <p class="b-teks">Public Sans untuk logo, judul, dan angka besar: bobot 500, jarak huruf rapat −0,04 em. Inter untuk teks isi, label, harga kecil, dan tombol, karena lebih jelas dibaca di ukuran kecil dan tampil sama di semua perangkat. Tanpa huruf miring, tanpa serif. Penekanan datang dari meredupkan sebagian kalimat, paling banyak satu frasa per judul.</p>
+          <h2 class="b-h2">Satu huruf, <span class="miring">satu suara.</span></h2>
+          <p class="b-teks">Inter untuk semuanya: logo, judul, angka, teks isi, label, dan tombol. Skala dan jarak hurufnya mengikuti fondasi tipografi Notion: judul 600 dengan jarak huruf makin rapat di ukuran besar (−0,033 em di 64 px, hampir 0 di 20 px), teks isi 400 pada 16 px, baris 1,5, jarak huruf 0. Tanpa huruf miring, tanpa serif. Penekanan datang dari meredupkan sebagian kalimat, paling banyak satu frasa per judul.</p>
           <div class="b-aksi">
-            <a class="pill pill-gelap" href="https://fonts.google.com/specimen/Public+Sans" target="_blank" rel="noopener">Unduh Public Sans (gratis)</a>
             <a class="pill pill-gelap" href="https://fonts.google.com/specimen/Inter" target="_blank" rel="noopener">Unduh Inter (gratis)</a>
-          </div>
-        </div>
-        <div class="spesimen">
-          <p class="spesimen-besar spesimen-merek" aria-hidden="true">Aa</p>
-          <div class="spesimen-info">
-            <p class="spesimen-nama spesimen-merek">Public Sans · judul & angka besar</p>
-            <p class="b-teks">Lisensi SIL Open Font License, boleh dipakai komersial di website, Canva, Figma, dan cetak. Bobot yang dipakai: 400 Regular dan 500 Medium.</p>
-            <p class="spesimen-set angka spesimen-merek">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br />abcdefghijklmnopqrstuvwxyz<br />0123456789 Rp m² · – — ( ) ?</p>
           </div>
         </div>
         <div class="spesimen">
           <p class="spesimen-besar" aria-hidden="true">Aa</p>
           <div class="spesimen-info">
-            <p class="spesimen-nama">Inter · teks isi, label, tombol</p>
-            <p class="b-teks">Lisensi SIL Open Font License, bebas dipakai komersial. Bobot 400 untuk isi, 500 untuk label dan tombol. Di HP ukurannya 13–16 px.</p>
+            <p class="spesimen-nama">Inter · logo, judul, dan teks</p>
+            <p class="b-teks">Lisensi SIL Open Font License, bebas dipakai komersial. Bobot 400 untuk isi, 500 untuk label dan tombol, 600 untuk judul dan angka besar. Teks paling kecil 13 px.</p>
             <p class="spesimen-set angka">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br />abcdefghijklmnopqrstuvwxyz<br />0123456789 Rp m² · – — ( ) ?</p>
           </div>
         </div>
@@ -534,7 +525,7 @@ const dilarang = ['solusi terbaik', 'terpercaya No.1', 'profesional dan berpenga
 
   .eyebrow { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-lumut); }
   .b-hero { padding-block: clamp(48px, 8vw, 104px) clamp(32px, 5vw, 56px); }
-  .b-judul { margin-top: 1rem; font-size: clamp(2.6rem, 1.4rem + 5vw, 5.5rem); line-height: 0.96; letter-spacing: -0.04em; max-width: 14ch; }
+  .b-judul { margin-top: 1rem; font-size: var(--t-d2); font-weight: var(--bobot-judul); line-height: 1.04; letter-spacing: -0.035em; max-width: 14ch; }
   .b-lead { margin-top: 1.5rem; max-width: 60ch; font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem); line-height: 1.5; color: var(--color-lumut); }
   .b-menu { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
   .b-menu a { display: inline-flex; align-items: center; min-height: 40px; padding-inline: 1rem; border-radius: 999px; border: 1px solid var(--color-garis); background: var(--color-putih); color: var(--color-pinus); text-decoration: none; font-size: 0.92rem; font-weight: 500; transition: background-color 200ms, color 200ms; }
@@ -545,7 +536,7 @@ const dilarang = ['solusi terbaik', 'terpercaya No.1', 'profesional dan berpenga
   .b-sek-pinus { background: var(--color-pinus); color: var(--color-embun); }
   .b-sek-pinus .eyebrow, .b-sek-pinus .b-teks { color: var(--embun-redup); }
   .b-sek-kepala { display: grid; gap: 1rem; max-width: 62rem; margin-bottom: clamp(28px, 4vw, 48px); }
-  .b-h2 { font-size: clamp(2rem, 1.3rem + 2.6vw, 3.6rem); line-height: 1.04; letter-spacing: -0.04em; max-width: 20ch; }
+  .b-h2 { font-size: var(--t-h1); font-weight: var(--bobot-judul); line-height: 1.1; letter-spacing: -0.025em; max-width: 20ch; }
   .b-h3 { font-size: 1.35rem; letter-spacing: -0.025em; margin: 3rem 0 1rem; }
   .b-teks { color: var(--color-lumut); max-width: 62ch; }
   .b-teks.kecil { font-size: 0.92rem; margin-top: 1rem; }
@@ -585,7 +576,7 @@ const dilarang = ['solusi terbaik', 'terpercaya No.1', 'profesional dan berpenga
   .jangan :global(.j-lime) { background-color: var(--color-tunas) !important; }
   .jangan :global(.j-bayang) { filter: drop-shadow(3px 3px 0 rgb(16 35 30 / 0.35)); background: linear-gradient(90deg, #10231e, #4c5e55) !important; }
   .jangan :global(.j-miring) { transform: rotate(-12deg); }
-  .j-a { font-size: 1.85rem; font-weight: 500; letter-spacing: -0.04em; }
+  .j-a { font-size: 1.85rem; font-weight: var(--bobot-judul); letter-spacing: -0.033em; }
   .jangan-foto { background: var(--color-pinus); }
   .jangan-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.55); }
   .jangan :global(.j-pinus) { position: relative; background-color: var(--color-pinus) !important; }
@@ -614,8 +605,8 @@ const dilarang = ['solusi terbaik', 'terpercaya No.1', 'profesional dan berpenga
 
   .spesimen { display: grid; gap: 2rem; grid-template-columns: minmax(0, 1fr); align-items: center; padding: clamp(24px, 4vw, 48px); background: var(--color-putih); border: 1px solid var(--color-garis); border-radius: 24px; }
   @media (min-width: 52rem) { .spesimen { grid-template-columns: auto minmax(0, 1fr); gap: 4rem; } }
-  .spesimen-besar { font-size: clamp(7rem, 4rem + 12vw, 13rem); font-weight: 500; letter-spacing: -0.05em; line-height: 0.8; color: var(--color-pinus); }
-  .spesimen-nama { font-size: 1.75rem; font-weight: 500; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+  .spesimen-besar { font-size: clamp(7rem, 4rem + 12vw, 13rem); font-weight: var(--bobot-judul); letter-spacing: -0.033em; line-height: 0.8; color: var(--color-pinus); }
+  .spesimen-nama { font-size: 1.75rem; font-weight: var(--bobot-judul); letter-spacing: -0.024em; margin-bottom: 0.5rem; }
   .spesimen-set { margin-top: 1.25rem; font-size: clamp(1rem, 0.9rem + 0.5vw, 1.3rem); letter-spacing: 0.02em; line-height: 1.5; overflow-wrap: anywhere; }
   .skala { margin-top: 2rem; display: grid; }
   .skala li { display: grid; gap: 0.5rem 2rem; grid-template-columns: minmax(0, 1fr); padding-block: 1.5rem; border-top: 1px solid var(--color-garis); }
@@ -623,14 +614,14 @@ const dilarang = ['solusi terbaik', 'terpercaya No.1', 'profesional dan berpenga
   .skala-spek { font-size: 0.82rem; color: var(--color-lumut); }
   .skala-nama { font-weight: 500; color: var(--color-tinta); font-size: 0.95rem; }
   .skala li > p { min-width: 0; overflow-wrap: break-word; }
-  .s-display { font-size: clamp(2.6rem, 1.4rem + 5vw, 6rem); font-weight: 500; letter-spacing: -0.04em; line-height: 0.95; }
-  .s-headline { font-size: clamp(2rem, 1.3rem + 2.6vw, 3.5rem); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05; }
-  .s-title { font-size: clamp(1.35rem, 1.1rem + 0.8vw, 1.75rem); letter-spacing: -0.025em; line-height: 1.15; }
-  .s-lead { font-size: clamp(1.125rem, 1.05rem + 0.4vw, 1.3rem); line-height: 1.5; max-width: 42ch; }
-  .s-body { max-width: 62ch; }
+  .s-display { font-size: var(--t-d1); font-weight: var(--bobot-judul); letter-spacing: -0.033em; line-height: 1; }
+  .s-headline { font-size: var(--t-h1); font-weight: var(--bobot-judul); letter-spacing: -0.025em; line-height: 1.1; }
+  .s-title { font-size: var(--t-title); font-weight: var(--bobot-judul); letter-spacing: -0.006em; line-height: 1.4; }
+  .s-lead { font-size: var(--fs-18); line-height: 1.5; max-width: 42ch; color: var(--color-lumut); }
+  .s-body { font-size: var(--fs-16); line-height: 1.5; max-width: 62ch; }
   .s-label { font-size: 0.95rem; font-weight: 500; }
-  .s-caption { font-size: 0.82rem; color: var(--color-lumut); }
-  .s-angka { font-size: clamp(1.9rem, 1.4rem + 2vw, 2.6rem); letter-spacing: -0.035em; }
+  .s-caption { font-size: var(--fs-14); line-height: 1.43; color: var(--color-lumut); }
+  .s-angka { font-size: var(--t-h1); font-weight: var(--bobot-judul); letter-spacing: -0.025em; }
 
   .komp-grid { display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); }
   @media (min-width: 52rem) { .komp-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -644,7 +635,7 @@ const dilarang = ['solusi terbaik', 'terpercaya No.1', 'profesional dan berpenga
   .komp-label { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; opacity: 0.7; }
   .komp-baris { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; }
   .komp-ket { font-size: 0.88rem; opacity: 0.75; max-width: 46ch; }
-  .komp-harga { font-size: 1.6rem; letter-spacing: -0.03em; }
+  .komp-harga { font-size: 1.6rem; letter-spacing: -0.024em; }
   .chip-fakta { display: inline-flex; align-items: center; min-height: 36px; padding-inline: 0.9rem; border-radius: 999px; background: rgb(16 35 30 / 0.72); border: 1px solid rgb(242 244 241 / 0.16); color: var(--color-embun); font-size: 0.85rem; font-weight: 500; white-space: nowrap; }
   .chip-tunas { background: var(--color-tunas); color: var(--color-pinus); border-color: transparent; }
   .token { margin-top: 2rem; display: grid; }
@@ -676,12 +667,12 @@ const dilarang = ['solusi terbaik', 'terpercaya No.1', 'profesional dan berpenga
   .feed::before, .story::before, .yt::before { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgb(16 35 30 / 0.7), rgb(16 35 30 / 0.05) 45%, rgb(16 35 30 / 0.75)); }
   .feed-isi, .story-isi, .yt-isi { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; padding: 7cqw; }
   .feed-logo { color: #fff; line-height: 0; }
-  .feed-judul { margin-top: 5cqw; font-size: 9.5cqw; font-weight: 500; letter-spacing: -0.04em; line-height: 1; max-width: 12ch; }
+  .feed-judul { margin-top: 5cqw; font-size: 9.5cqw; font-weight: var(--bobot-judul); letter-spacing: -0.033em; line-height: 1; max-width: 12ch; }
   .feed-chip { margin-top: auto; display: flex; flex-wrap: wrap; gap: 2cqw; }
   .feed-chip .chip-fakta { min-height: 0; padding: 1.4cqw 3cqw; font-size: 3.4cqw; }
   .feed-bilah { margin-top: 4cqw; padding-top: 3cqw; border-top: 1px solid rgb(255 255 255 / 0.3); display: flex; justify-content: space-between; gap: 2cqw; font-size: 3cqw; color: rgb(255 255 255 / 0.85); }
   .story-isi { padding: 7cqw; padding-top: 16cqw; padding-bottom: 24cqw; }
-  .story-judul { margin-top: 6cqw; font-size: 11cqw; font-weight: 500; letter-spacing: -0.04em; line-height: 1; }
+  .story-judul { margin-top: 6cqw; font-size: 11cqw; font-weight: var(--bobot-judul); letter-spacing: -0.033em; line-height: 1; }
   .story-tombol { margin-top: auto; align-self: flex-start; min-height: 0; padding: 3cqw 6cqw; font-size: 5cqw; }
   .aman { position: absolute; left: 0; right: 0; z-index: 3; display: grid; place-items: center; font-size: 4cqw; color: rgb(255 255 255 / 0.8); background: repeating-linear-gradient(45deg, rgb(255 255 255 / 0.1) 0 4px, transparent 4px 9px); border-color: rgb(255 255 255 / 0.5); border-style: dashed; border-width: 0; }
   .aman-atas { top: 0; height: 13%; border-bottom-width: 1px; }
@@ -689,20 +680,20 @@ const dilarang = ['solusi terbaik', 'terpercaya No.1', 'profesional dan berpenga
   .carousel { aspect-ratio: 4 / 5; border-radius: 10px; background: var(--color-embun); color: var(--color-tinta); padding: 7cqw; display: flex; flex-direction: column; }
   .carousel-logo { color: var(--color-pinus); }
   .carousel-no { margin-top: 6cqw; font-size: 3.4cqw; color: var(--color-lumut); }
-  .carousel-tanya { margin-top: 2cqw; font-size: 7cqw; font-weight: 500; letter-spacing: -0.035em; line-height: 1.08; }
-  .carousel-angka { margin-top: auto; font-size: 16cqw; font-weight: 500; letter-spacing: -0.045em; line-height: 1; color: var(--color-pinus); }
+  .carousel-tanya { margin-top: 2cqw; font-size: 7cqw; font-weight: var(--bobot-judul); letter-spacing: -0.035em; line-height: 1.08; }
+  .carousel-angka { margin-top: auto; font-size: 16cqw; font-weight: var(--bobot-judul); letter-spacing: -0.033em; line-height: 1; color: var(--color-pinus); }
   .carousel-angka small { font-size: 5cqw; font-weight: 400; letter-spacing: -0.02em; color: var(--color-lumut); }
   .carousel-ket { margin-top: 2cqw; font-size: 4.2cqw; color: var(--color-lumut); }
   .carousel-sumber { margin-top: 4cqw; padding-top: 3cqw; border-top: 1px solid var(--color-garis); font-size: 3cqw; color: var(--color-lumut); }
   .yt-isi { justify-content: flex-end; padding: 5cqw; }
   .yt-isi .feed-logo { position: absolute; top: 5cqw; left: 5cqw; }
-  .yt-judul { font-size: 6.5cqw; font-weight: 500; letter-spacing: -0.04em; line-height: 1; max-width: 13ch; }
+  .yt-judul { font-size: 6.5cqw; font-weight: var(--bobot-judul); letter-spacing: -0.033em; line-height: 1; max-width: 13ch; }
   .sos-aturan { margin-top: 3rem; display: grid; gap: 2rem; grid-template-columns: minmax(0, 1fr); }
   @media (min-width: 60rem) { .sos-aturan { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4rem; } }
   .sos-aturan .b-h3 { margin-top: 0; }
   .pilar { display: grid; }
   .pilar div { display: grid; grid-template-columns: 4.5rem minmax(0, 1fr); gap: 1rem; padding-block: 0.9rem; border-top: 1px solid rgb(242 244 241 / 0.14); }
-  .pilar dt { font-size: 1.6rem; font-weight: 500; letter-spacing: -0.03em; color: var(--color-tunas); line-height: 1.1; }
+  .pilar dt { font-size: 1.6rem; font-weight: var(--bobot-judul); letter-spacing: -0.024em; color: var(--color-tunas); line-height: 1.1; }
   .pilar dd { color: var(--embun-redup); font-size: 0.95rem; }
   .pilar b, .caption-urut b { color: var(--color-embun); font-weight: 500; }
   .caption-urut { list-style: decimal; padding-left: 1.25rem; display: grid; gap: 0.4rem; color: var(--embun-redup); font-size: 0.95rem; }
@@ -719,7 +710,7 @@ const dilarang = ['solusi terbaik', 'terpercaya No.1', 'profesional dan berpenga
   .kn-depan { background: var(--color-pinus); color: var(--color-embun); display: grid; place-items: center; }
   .kn-belakang { background: var(--color-putih); color: var(--color-tinta); }
   .kn-isi { position: relative; height: 100%; padding: 8cqw; }
-  .kn-nama { font-size: 7.5cqw; font-weight: 500; letter-spacing: -0.03em; line-height: 1.1; }
+  .kn-nama { font-size: 7.5cqw; font-weight: var(--bobot-judul); letter-spacing: -0.024em; line-height: 1.1; }
   .kn-jabatan { font-size: 5cqw; color: var(--color-lumut); }
   .kn-kontak { position: absolute; left: 8cqw; bottom: 7cqw; font-size: 4.6cqw; line-height: 1.45; }
   .kn-simbol { position: absolute; right: 8cqw; bottom: 8cqw; width: 9cqw; height: auto; }
@@ -743,7 +734,7 @@ const dilarang = ['solusi terbaik', 'terpercaya No.1', 'profesional dan berpenga
   .tulis-grid { display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); }
   @media (min-width: 52rem) { .tulis-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   .tulis-kartu { background: var(--color-embun); border-radius: 24px; padding: 1.5rem; display: grid; gap: 0.75rem; align-content: start; }
-  .tulis-tagline { font-size: clamp(2rem, 1.4rem + 2vw, 3rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1; color: var(--color-pinus); }
+  .tulis-tagline { font-size: clamp(2rem, 1.4rem + 2vw, 3rem); font-weight: var(--bobot-judul); letter-spacing: -0.033em; line-height: 1; color: var(--color-pinus); }
   .tulis-akal { opacity: 0.55; }
   .insight { display: grid; gap: 0.5rem; font-size: 1.1rem; letter-spacing: -0.01em; }
   .tulis-ya { font-size: 1.1rem; color: var(--color-pinus); }

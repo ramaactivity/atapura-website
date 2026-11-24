@@ -24,7 +24,7 @@
   ✅ Hero beranda dirombak (085, masukan Rama + referensi-2): judul "Atap bitumen, harga masuk akal.", satu ajakan, Beranda
   di menu, deret logo merek satu warna + baris angka, skala judul dari referensi. ✅ 086: Layanan naik ke bagian ke-3
   (kartu berfoto), urutan bagian diatur ulang. ✅ 088: AKAL = 4 kartu nilai (8/10 Rama). ✅ 089: lima lapis keluar dari beranda (tetap di /cara-kerja). ✅ 090: Cara kerja 4
-  langkah, Merek & harga, Area, Tanya jawab, Penutup dirapikan; beranda −29% (laptop) / −31% (HP). ✅ 091: tipografi isi ala Notion (spasi huruf 0, baris 1,55, label bagian kapital) + tanya jawab bervisual (tabel harga, batang termin, kartu garansi, sudut kemiringan, angka lama kerja); judul bobot 700 ala Notion belum diambil (tunggu spesimen untuk Rama). ⏳ /cara-kerja masih memuat janji
+  langkah, Merek & harga, Area, Tanya jawab, Penutup dirapikan; beranda −29% (laptop) / −31% (HP). ✅ 091: tipografi isi ala Notion (spasi huruf 0, baris 1,55, label bagian kapital) + tanya jawab bervisual (tabel harga, batang termin, kartu garansi, sudut kemiringan, angka lama kerja); ✅ 092: satu huruf **Inter** (logo ikut dibangun ulang) + skala tipografi Notion (judul 600, isi 16/1,5) di seluruh situs; Ops dikabari untuk menyamakan logo & huruf halaman klien/PDF. ⏳ /cara-kerja masih memuat janji
   "difoto satu per satu" — bahas dengan Rama.
   ⏳ Sisa audit di luar kode: Google Business Profile, direktori, ulasan,
   proyek pertama + Rapor asli. Isi NIB/NPWP di bisnis.ts

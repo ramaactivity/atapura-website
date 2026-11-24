@@ -93,9 +93,9 @@ const schema = [
   .redup { opacity: 0.55; }
   .gr-kepala { margin: 2rem 0 3rem; display: grid; gap: 1.25rem 4rem; grid-template-columns: minmax(0, 1fr); }
   @media (min-width: 60rem) { .gr-kepala { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); align-items: end; } }
-  .gr-judul { font-family: var(--font-merek); font-size: clamp(2.25rem, 1.2rem + 3vw, 3.75rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.02; max-width: 17ch; text-wrap: balance; }
-  .gr-lead { font-size: var(--fs-18); color: var(--color-lumut); max-width: 42ch; line-height: 1.55; }
-  .gr-h2 { font-family: var(--font-merek); font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.5rem); font-weight: 500; letter-spacing: -0.035em; line-height: 1.1; }
+  .gr-judul { font-family: var(--font-merek); font-size: var(--t-d2); font-weight: var(--bobot-judul); letter-spacing: -0.035em; line-height: 1.04; max-width: 17ch; text-wrap: balance; }
+  .gr-lead { font-size: var(--fs-18); color: var(--color-lumut); max-width: 42ch; line-height: 1.5; }
+  .gr-h2 { font-family: var(--font-merek); font-size: var(--t-h1); font-weight: var(--bobot-judul); letter-spacing: -0.025em; line-height: 1.1; }
 
   .gr-sek { padding-block: clamp(3.5rem, 7vw, 6rem); }
   .gr-putih { background: var(--color-putih); }
@@ -114,7 +114,7 @@ const schema = [
   .gr-tanda::before, .gr-tanda::after { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 1.5px; margin-top: -0.75px; background: currentColor; transition: transform 240ms var(--ease-out); }
   .gr-tanda::after { transform: rotate(90deg); }
   .gr-daftar details[open] .gr-tanda::after { transform: rotate(0deg); }
-  .gr-daftar details p { padding: 0 0 1.25rem; font-size: var(--fs-17); line-height: 1.6; color: var(--color-lumut); max-width: 62ch; }
+  .gr-daftar details p { padding: 0 0 1.25rem; font-size: var(--fs-16); line-height: 1.5; color: var(--color-lumut); max-width: 62ch; }
   .gr-aksi { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 2rem; margin-top: 1.75rem; }
   .gr-tautan { display: inline-flex; align-items: center; min-height: 44px; font-weight: 500; color: var(--color-pinus); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
   .gr-aksi a:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 3px; }
