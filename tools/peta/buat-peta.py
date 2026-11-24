@@ -123,7 +123,10 @@ def main(sumber, sumber_indonesia):
                     continue
                 if j == 0 and luas > terbesar[0]:
                     terbesar = (luas, tb)
-                jalur.append('M' + 'L'.join(f'{x:.1f} {y:.1f}' for x, y in r[:-1]) + 'Z')
+                # Bilangan bulat cukup untuk peta 760 unit yang tampil ±450 px; titik kembar setelah dibulatkan dibuang (DECISIONS 097).
+                t = [(round(x), round(y)) for x, y in r[:-1]]
+                t = [p for k, p in enumerate(t) if k == 0 or p != t[k - 1]]
+                if len(t) >= 3: jalur.append('M' + 'L'.join(f'{x} {y}' for x, y in t) + 'Z')
         if not jalur:
             continue
         wilayah.append({

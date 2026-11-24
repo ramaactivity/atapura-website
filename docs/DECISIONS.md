@@ -815,3 +815,11 @@ Rapor Proyek" belum dijalankan di lapangan dan tidak ada di Ops, jadi berisiko j
 Lanjutan audit kesesuaian beranda (target ±7.000 px di laptop). Jarak atas-bawah tiap bagian `clamp(4.5rem, 9vw, 8rem)`
 (116 px di laptop 1288) → `clamp(4.5rem, 7vw, 6rem)` (±90 px, setara jarak antarbagian Notion), foto kartu artikel 16:10 →
 2:1. Beranda laptop 8.538 → 8.218 px; HP tidak berubah (jarak HP sudah 3.25rem).
+
+## 097 · 25 November 2026 · Beranda lebih ringan di HP (Lighthouse)
+Lighthouse HP (live, sebelum): performa 90, aksesibilitas 97, best practices 100, SEO 100; 342 KB; LCP 2,1 s; TBT 300 ms.
+- Kontras: frasa redup kartu ajakan diredupkan dua kali (warna 55% × opacity .55 → 2,56:1). Kini hanya `.miring` (±4,8:1).
+- Peta beranda = separuh HTML (84 KB). Koordinat wilayah Jabodetabek dibulatkan ke bilangan bulat + titik kembar dibuang
+  (peta 760 unit tampil ±450 px; beda tak terlihat, dicek berdampingan). Peta kecil Indonesia tetap 1 desimal (240 unit).
+  `tools/peta/buat-peta.py` ikut diubah. HTML beranda 169 → 148 KB (gzip 51 → 44 KB).
+- Logo merek dibuat 72 px (dulu 112 px, tampil ±30 px); foto Layanan dapat ukuran 540 px supaya HP tidak mengambil 640 px.
