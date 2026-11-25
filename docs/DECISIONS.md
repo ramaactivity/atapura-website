@@ -880,3 +880,8 @@ Pemicu: Dokter Atap memegang kotak peta #1, organik #3 (halaman proyek Rancamaya
 - **Daftar isi samping di semua artikel & halaman area (desktop ≥60rem)**: Rama: "halaman better penuh kanan kiri" — kolom
   kiri dulu kosong di bawah jawaban singkat. Kini jawaban singkat lalu daftar isi menempel (bagian aktif disorot,
   ±35% tinggi layar) + tautan Hitung AKAL. Isi tetap ±60 karakter per baris. HP tidak berubah.
+
+## 102 · 25 November 2026 · IndexNow dipasang
+Butir 14 audit 2 Nov (belum dikerjakan). Kunci di `public/<kunci>.txt`, kirim semua URL sitemap lewat `npm run indexnow`
+setelah deploy yang mengubah isi. Gratis; Bing (dipakai ChatGPT search & Copilot), Yandex, Seznam. Google tidak memakai
+IndexNow; untuk Google tetap sitemap + Search Console.
