@@ -17,7 +17,7 @@ faq:
   - q: 'Genteng tanah liat biasa lebih berat dari genteng aspal?'
     a: 'Ya. Pedoman pembebanan PPURG 1987 menghitung atap genteng beserta reng dan usuknya 50 kg per m². Genteng aspal 8,5–12,3 kg per m², ditambah papan alas dan underlayer. Genteng tanah liat juga dipasang di reng dengan kemiringan yang ditentukan produsennya, jadi atap genteng tanah liat lama umumnya cukup curam untuk diganti genteng aspal.'
   - q: 'Lebih awet mana, genteng aspal atau genteng keramik?'
-    a: 'Genteng aspal bergaransi pabrik 25–30 tahun tergantung merek, dan umur nyatanya ditentukan pemasangan dan perawatan. Kami tidak menemukan angka umur genteng keramik dari sumber yang bisa kami kutip, jadi tidak kami bandingkan dengan angka. Keduanya bisa diganti per keping atau per lembar bila ada yang rusak.'
+    a: 'Umumnya genteng keramik. Tabel perkiraan umur dari Amerika Serikat menulis 40 sampai 100 tahun lebih untuk genteng tanah liat dan beton, dan 20–30 tahun untuk genteng aspal, dengan catatan iklim panas memangkas umur genteng aspal. Garansi pabrik genteng aspal Maxxi dan CTI 25–30 tahun. Pada keduanya, sambungan dan talang umumnya rusak lebih dulu daripada gentengnya.'
   - q: 'Kalau genteng pecah atau rusak, bisa diganti sebagian?'
     a: 'Bisa untuk keduanya. Genteng keramik diganti per keping, selama model yang sama masih tersedia. Genteng aspal yang rusak diganti per lembar tanpa membongkar seluruh atap.'
   - q: 'Mana yang lebih murah?'
@@ -71,7 +71,7 @@ Bedanya ada di komponen lain. Genteng aspal butuh papan alas, underlayer, dan fl
 
 ## Yang sering terlewat
 
-- **Umur dan garansi.** Genteng aspal bergaransi pabrik 25–30 tahun tergantung merek, dan Atapura memberi garansi pemasangan tertulis 5 tahun untuk kebocoran dan kesalahan pasang. Umur nyatanya ditentukan pemasangan dan perawatan; penjelasannya ada di [atap bitumen tahan berapa lama](/panduan/atap-bitumen-tahan-berapa-lama).
+- **Umur dan garansi.** Genteng aspal bergaransi pabrik 25–30 tahun tergantung merek, dan Atapura memberi garansi pemasangan tertulis 5 tahun untuk kebocoran dan kesalahan pasang. Umur nyatanya ditentukan pemasangan dan perawatan; penjelasannya ada di [atap bitumen tahan berapa lama](/panduan/atap-bitumen-tahan-berapa-lama). Perbandingan umur genteng keramik, beton, metal, dan genteng aspal dari tabel pihak ketiga ada di [jenis atap rumah paling awet](/panduan/jenis-atap-rumah-paling-awet).
 - **Retak rambut pada genteng berglasir.** Produsen genteng keramik menyebut retak rambut (crazing) pada lapisan glasir sebagai kondisi alami, bukan cacat. Kalau Anda melihatnya di genteng lama, itu belum tentu tanda bocor.
 - **Genteng aspal bergantung pada pemasangnya.** Papan alas, underlayer, dan flashing tertutup setelah genteng terpasang. Urutan lapisannya ada di [lima lapis pemasangan atap bitumen](/panduan/lima-lapis-pemasangan-atap-bitumen).
 - **Lumut di sisi teduh.** Keduanya bisa ditumbuhi lumut di bawah pohon. Untuk genteng aspal, cara mencegahnya ada di [atap villa di Puncak dan Bogor](/panduan/atap-villa-puncak-bogor).

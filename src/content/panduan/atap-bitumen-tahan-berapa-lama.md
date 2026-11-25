@@ -46,6 +46,8 @@ Garansi adalah janji pabrik atas produknya, dengan syarat yang berbeda tiap mere
 
 ## Tiga hal yang menentukan umur atap
 
+Sebagai pembanding, tabel perkiraan umur dari asosiasi inspektur rumah Amerika Serikat menulis 20 tahun untuk genteng aspal satu lapis dan 30 tahun untuk yang berlapis, dengan catatan iklim panas memangkas umurnya. Perbandingan dengan genteng keramik, beton, dan metal ada di [jenis atap rumah paling awet](/panduan/jenis-atap-rumah-paling-awet).
+
 **1. Pemasangan.** Paku di posisi yang salah, tumpukan genteng yang kurang, atau flashing yang tidak rapat membuka jalan bagi air. Kerusakannya tidak terlihat dari luar sampai papan alas mulai lapuk. Lihat [lima lapis pemasangan](/panduan/lima-lapis-pemasangan-atap-bitumen) dan minta foto setiap lapis sebelum ditutup.
 
 **2. Papan alas dan ventilasi.** Papan harus kering saat dipasang dan sambungannya diberi celah kecil; ARMA mencatat papan basah dan sambungan rapat sebagai penyebab genteng bergelombang. Setelah terpasang, ventilasi di bawah atap membuang panas dan uap air. Penelitian LBNL mencatat panas yang terjebak karena ventilasi kurang mempercepat penuaan genteng aspal. Di lokasi yang lembap, alas GRC bisa dipertimbangkan.

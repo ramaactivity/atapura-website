@@ -1030,3 +1030,20 @@ atapasphalt, ataprumahkita. Niat pencari = JUMLAH material, sedangkan /hitung ha
 - Anchor tautan masuk: 5 artikel harga/biaya kini menaut dengan teks "kalkulator atap bitumen" (sebelumnya semua "Hitung AKAL"),
   artikel ukuran-harga menaut ke `/hitung#kebutuhan`.
 - Catatan: faktor underlayer 1,1 kini tampil publik di tabel; bila Bang Yusuf menaikkannya (catatan 106), tabel ikut otomatis.
+
+## 110 · 25 November 2026 · Artikel "jenis atap rumah paling awet" — jujur walau genteng aspal kalah (Rama: "oke lanjutkan")
+Riset SerpApi 25 Nov: halaman 1 untuk "jenis atap rumah yang paling awet" / "genteng yang bagus dan awet" / "atap rumah yang bagus
+pakai apa" diisi daftar umum toko cat & bahan bangunan (kansaipaint, mitra10, lalamove, smsperkasa, gnetindonesia) tanpa angka
+bersumber; AI Overview menjawab keramik, beton, tanah liat (+ UPVC untuk korosi).
+- Angka umur dari tabel pihak ketiga yang dimuat ulang di lampiran Port of Seattle (2025): NAHB 2007, InterNACHI, Fannie Mae
+  4099.F 2019, DCA 2011. Situs InterNACHI menolak akses otomatis (403) dan auto mode memblokir jalan pintas (UA palsu, arsip),
+  jadi angkanya dibaca dari lampiran itu.
+- Jawaban jujur: genteng tanah liat/keramik/beton paling lama (>50 NAHB, 100+ InterNACHI, tetapi 40 Fannie Mae = metal; DCA 30
+  < metal 40 → disebut terang). Genteng aspal 20–30 tahun + "iklim panas memangkas umurnya" (InterNACHI). Garansi pabrik ditulis
+  sebagai janji bersyarat, bukan perkiraan umur, dan dibatasi ke Maxxi & CTI (Tegola Eco Roof 20 tahun).
+- Nilai jual dari sudut lain: yang rusak duluan sambungan & talang (InterNACHI flashing; talang 10–20 tahun), pilihan menurut
+  keadaan rumah (berat, sudut, bentuk), asbes (WHO, 52,1% DKI). Ajakan kirim foto rangka lewat WhatsApp di titik keputusan.
+- Diulas 7 sudut pandang + cek fakta (2 agen). Temuan dibetulkan: Fannie Mae punya baris genteng 40 tahun, "aman" di PPURG 50 kg
+  terlalu yakin, sudut genteng aspal mulai 15° (10–15° merek tertentu), garansi 25–30 bukan semua merek.
+- FAQ "lebih awet mana" di artikel vs keramik diperbarui (sebelumnya "tidak ada angka bersumber"); tautan masuk dari artikel itu
+  dan dari "tahan berapa lama".
