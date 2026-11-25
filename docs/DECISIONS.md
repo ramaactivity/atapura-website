@@ -1006,6 +1006,7 @@ lengkap" (24); tak ada teks < 13 px.
 - Sorot Rancamaya tanpa nama dobel ("±430 mdpl, berkontur & banyak pohon tua", sesuai isi halamannya).
 - Judul kartu artikel HP 20 → 17 px (`--hp-t4`, sama dengan kartu Layanan; 4 → 3 baris).
 - Tanya jawab HP: daftar pertanyaan langsung di bawah judul; "Baca panduan lengkap" pindah ke bawah daftar (dulu di antara judul dan daftar, ±100 px kosong). Tablet/laptop tidak berubah.
+- Laptop: tabel daerah 1.4fr → 1.65fr (peta sedikit mengecil) + nama daerah tidak dipatah — di 1.230 px semua 11 baris satu baris dan sama tinggi (dulu "Kabupaten Tangerang" pecah 2 baris).
 - Beranda HP 9.688 → 9.250 px. Layanan (±1.030 px) dibiarkan: kartu geser + blok perusahaan sudah ringkas, tidak ada ruang kosong.
 
 ## 108 · 25 November 2026 · Kit listing marketplace sebagai data untuk Atapura Ops

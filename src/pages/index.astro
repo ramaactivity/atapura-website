@@ -821,6 +821,7 @@ const faqSchema = {
   .ar-tabel tbody tr { position: relative; border-bottom: 1px solid var(--color-garis); transition: background-color 200ms; }
   .ar-tabel tbody th, .ar-tabel tbody td { padding: 0.8rem 0; vertical-align: middle; text-align: left; }
   .ar-tabel tbody th { width: 30%; padding-right: 1rem; font-size: var(--fs-16); font-weight: 500; }
+  @media (min-width: 48rem) { .ar-tabel tbody th { white-space: nowrap; } } /* "Kabupaten Tangerang" satu baris, tinggi baris seragam */
   /* Seluruh baris bisa diklik: tautan di kolom daerah direntangkan ke satu baris. */
   .ar-tabel tbody th a { color: var(--color-tinta); text-decoration: none; }
   .ar-tabel tbody th a::after { content: ''; position: absolute; inset: 0; }
@@ -849,7 +850,7 @@ const faqSchema = {
   .ar-kiri .tautan-lanjut { justify-self: start; }
   .ar-peta { padding: 1.25rem; border-radius: 1.5rem; background: var(--color-embun); }
   @media (min-width: 60rem) {
-    .ar { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); }
+    .ar { grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); }
     /* Tabel lebih panjang dari peta (11 baris): peta ikut menempel di bawah bilah atas supaya selalu di samping baris yang dibaca. */
     .ar-peta { position: sticky; top: 5.5rem; }
   }
