@@ -896,8 +896,10 @@ IndexNow; untuk Google tetap sitemap + Search Console.
   Tidak ada stasiun BMKG Sentul di BPS → hujan dikutip dari Dramaga & Citeko dan ditulis terang begitu.
   `cakupan` = "Babakan Madang, Kabupaten Bogor" (bukan "Kabupaten Bogor") supaya peta beranda tetap menautkan Kabupaten
   Bogor ke halamannya sendiri. `sorotJenis` mendapat nilai baru `aturan` (label "Aturan", latar #e3e8ee).
-- **Kepala artikel/area desktop dua kolom** (Rama: "kok kurang enak dilihat ya"): judul setengah layar + sampul selebar
-  layar setinggi ±1 layar → kanan atas kosong dan jawaban singkat jauh di bawah. Mulai 60rem: judul kiri (1.15fr), sampul
-  3:2 kanan (1fr), rata bawah. HP tidak berubah.
+- **Kepala artikel/area desktop = sampul sinematik** (Rama: "kok kurang enak dilihat ya", lalu dua kolom judul|foto
+  "kurang proporsional… judulnya di atas fotonya, foto penuh kiri dan kanan", acuan hero beranda & kartu CTA). Mulai 64rem:
+  foto penuh sampai tepi kanan layar, bergeser 26% ke kanan dan memudar ke kiri (mask) ke warna Embun; lapisan Embun di
+  atas (navigasi terbaca) dan kiri (judul gelap); tinggi clamp(36rem, 78svh, 48rem); keterangan "Ilustrasi" di pojok foto.
+  Di bawah 64rem tetap: judul lalu sampul membulat.
 - **Telepon resmi = nomor WA 0896-1138-4767** (Rama setuju 25 Nov). `bisnis.telepon` diisi; JSON-LD sudah memakai nomor
   ini lewat fallback, footer kini menampilkan "Telepon +62 896-1138-4767". Nomor yang sama wajib dipakai di GBP & marketplace.
