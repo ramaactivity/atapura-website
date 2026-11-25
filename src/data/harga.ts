@@ -18,7 +18,7 @@ const rentang = (kode: string): Rentang => {
 const genteng = (kode: string) => {
   const x = v(kode);
   if (!x.isiKemasan) throw new Error(`${kode} di Ops tidak punya isi per bundel`);
-  return { genteng: x.harga, m2PerBundel: x.isiKemasan };
+  return { kode, genteng: x.harga, m2PerBundel: x.isiKemasan };
 };
 
 // Riwayat angka (sebelum dipindah ke Ops):

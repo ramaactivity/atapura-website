@@ -1006,3 +1006,12 @@ lengkap" (24); tak ada teks < 13 px.
 - Sorot Rancamaya tanpa nama dobel ("±430 mdpl, berkontur & banyak pohon tua", sesuai isi halamannya).
 - Judul kartu artikel HP 20 → 17 px (`--hp-t4`, sama dengan kartu Layanan; 4 → 3 baris).
 - Beranda HP 9.688 → 9.286 px.
+
+## 108 · 25 November 2026 · Kit listing marketplace sebagai data untuk Atapura Ops
+- `/unduh/marketplace/kit.json` (endpoint statis): semua listing dari `listing.ts` + gambar yang sudah diekspor + `kode` varian
+  Ops yang harganya dipakai listing itu (genteng per seri lewat `seriGenteng`; "Eco Roof"/"Top Shingles" = semua seri
+  berawalan namanya; aksesoris lewat peta slug → kode; aluminium foil = single & double). Tegola Master belum berkode karena
+  harganya masih draf di Ops.
+- Dipakai Ops → Harga marketplace (Ops DECISIONS 250) supaya foto, judul, deskripsi, dan harga tayang ada di satu meja
+  unggah. Isi sama dengan /internal/kit-marketplace (tanpa harga/modal), jadi tidak membuka data baru.
+- `genteng()` di `harga.ts` kini ikut mengembalikan `kode`.
