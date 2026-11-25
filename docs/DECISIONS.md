@@ -1004,4 +1004,5 @@ lengkap" (24); tak ada teks < 13 px.
   tetap 11 baris). Tab Area & tautan panduan jadi 44 px.
 - Kartu ajakan HP: judul `--hp-t1` (26 px, 4 → 3 baris), foto 14 → 11rem.
 - Sorot Rancamaya tanpa nama dobel ("±430 mdpl, berkontur & banyak pohon tua", sesuai isi halamannya).
-- Beranda HP 9.688 → 9.334 px.
+- Judul kartu artikel HP 20 → 17 px (`--hp-t4`, sama dengan kartu Layanan; 4 → 3 baris).
+- Beranda HP 9.688 → 9.286 px.
