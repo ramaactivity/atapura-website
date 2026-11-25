@@ -170,7 +170,7 @@ const isi = [...daftar, ...(faq.length ? [{ slug: 'faq-judul', text: t.faq }] : 
   .ar-sampul-ket { margin-top: 0.55rem; font-size: var(--fs-13); color: var(--color-lumut); }
   @media (min-width: 64rem) {
     .ar { padding-top: 0; }
-    .ar-atas { position: relative; isolation: isolate; overflow: clip; display: flex; align-items: flex-end; min-height: clamp(36rem, 78svh, 48rem); }
+    .ar-atas { position: relative; isolation: isolate; overflow: clip; display: flex; align-items: flex-end; min-height: 26rem; }
     .ar-sampul-bingkai {
       position: absolute; inset: 0 0 0 26%; z-index: -2; max-width: none; margin: 0; padding: 0;
       -webkit-mask-image: linear-gradient(90deg, transparent, #000 38%); mask-image: linear-gradient(90deg, transparent, #000 38%);
@@ -182,7 +182,7 @@ const isi = [...daftar, ...(faq.length ? [{ slug: 'faq-judul', text: t.faq }] : 
       background: linear-gradient(180deg, rgb(242 244 241 / 0.9), rgb(242 244 241 / 0) 8.5rem),
         linear-gradient(90deg, rgb(242 244 241 / 0.85), rgb(242 244 241 / 0.5) 34%, rgb(242 244 241 / 0) 52%);
     }
-    .ar-kepala { width: 100%; padding-block: 9rem 3.5rem; }
+    .ar-kepala { width: 100%; padding-block: 7.5rem 3rem; }
     .ar-judul { max-width: 15ch; }
     .ar-sampul-ket { position: absolute; right: var(--gutter); bottom: 0.9rem; margin: 0; color: rgb(255 255 255 / 0.88); text-shadow: 0 1px 2px rgb(0 0 0 / 0.45); }
   }

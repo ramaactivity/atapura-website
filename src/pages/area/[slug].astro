@@ -19,7 +19,7 @@ const url = new URL(`/area/${a.id}`, Astro.site).href;
 // Tetangga dulu (wilayah sama), lalu sisanya: tautan antar-daerah tanpa halaman yatim.
 const lain = [...semua.filter((x) => x.id !== a.id && x.data.wilayah === d.wilayah), ...semua.filter((x) => x.data.wilayah !== d.wilayah)]
   .slice(0, 3)
-  .map((x) => ({ href: `/area/${x.id}`, label: x.data.wilayah, judul: x.data.judul }));
+  .map((x) => ({ href: `/area/${x.id}`, label: x.data.wilayah, judul: x.data.judul, ringkasan: x.data.ringkasan, sampul: x.data.sampul }));
 
 const layanan = {
   '@context': 'https://schema.org',
