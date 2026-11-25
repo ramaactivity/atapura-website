@@ -20,7 +20,7 @@ sumber:
   - nama: 'Daftar harga Atapura untuk Jabodetabek, berlaku sejak 20 November 2026'
 ---
 
-Anda sudah tanya harga genteng aspal (sebutan lain atap bitumen, [sirap aspal, atau shingle](/panduan/atap-bitumen-genteng-aspal-sirap-shingle)) ke toko, lalu kaget saat penawaran pasangnya hampir tiga kali lipat. Selisih itu wajar, asalkan Anda tahu isinya.
+Anda sudah tanya harga genteng aspal (sebutan lain [atap bitumen](/panduan/atap-bitumen-adalah), [sirap aspal, atau shingle](/panduan/atap-bitumen-genteng-aspal-sirap-shingle)) ke toko, lalu kaget saat penawaran pasangnya hampir tiga kali lipat. Selisih itu wajar, asalkan Anda tahu isinya.
 
 ## Harga per m² di Jabodetabek
 

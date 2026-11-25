@@ -35,7 +35,7 @@ sumber:
     url: 'https://www.asphaltroofing.org/frequently-asked-questions/'
 ---
 
-Atap bitumen adalah penutup atap berbahan aspal (bitumen). Di pasaran bentuknya tiga: genteng aspal atau shingle yang dipaku bersusun di atas papan, lembaran bergelombang yang disekrup ke reng, dan membran gulungan untuk dak. Genteng aspal sendiri dibedakan lagi menurut bentuk potongannya.
+Atap bitumen adalah penutup atap berbahan aspal (bitumen). Di pasaran bentuknya tiga: genteng aspal atau shingle yang dipaku bersusun di atas papan, lembaran bergelombang yang disekrup ke reng, dan membran gulungan untuk dak. Genteng aspal sendiri dibedakan lagi menurut bentuk potongannya. Pengantar singkat soal harga, kelebihan, dan pemasangannya ada di [atap bitumen adalah](/panduan/atap-bitumen-adalah).
 
 ## Jenis atap bitumen di pasaran
 

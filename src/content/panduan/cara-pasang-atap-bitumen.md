@@ -1,5 +1,5 @@
 ---
-judul: 'Cara pasang atap bitumen: 9 langkah dari rangka sampai nok'
+judul: 'Cara pemasangan atap bitumen: 9 langkah dari rangka sampai nok'
 ringkasan: 'Urutan pasang genteng aspal sesuai panduan pabrik: rangka dan jarak reng, papan alas, flashing, underlayer, starter, 4 paku per lembar, jurai dalam, dan nok.'
 jawaban: 'Atap bitumen (genteng aspal) dipasang dari bawah ke atas dalam sembilan langkah: rangka dan reng berjarak 405 mm, papan alas multiplek atau GRC minimal 9 mm yang disekrup tiap 300 mm, flashing di sekeliling papan, underlayer dengan sambungan 100–150 mm, starter di tepi bawah, genteng dengan tumpang tindih 190 mm dan 4 paku per lembar, jurai dalam, lalu nok dari lembar yang dipotong tiga.'
 kategori: 'Pemasangan'
@@ -31,7 +31,7 @@ sumber:
     url: 'https://www.asphaltroofing.org/nail-application-of-asphalt-strip-shingles-for-new-and-recover-roofing/'
 ---
 
-Genteng aspal dipasang dari bawah ke atas, dan sebagian besar langkahnya nanti tertutup genteng, jadi kesalahannya baru terlihat saat bocor. Angka di bawah diambil dari Petunjuk Pemasangan CTI revisi September 2024 dan halaman tanya jawab CTI. Merek lain memakai angka yang mirip, tetapi selalu ikuti panduan merek yang dipasang.
+Genteng aspal ([atap bitumen](/panduan/atap-bitumen-adalah) yang paling umum di rumah) dipasang dari bawah ke atas, dan sebagian besar langkahnya nanti tertutup genteng, jadi kesalahannya baru terlihat saat bocor. Angka di bawah diambil dari Petunjuk Pemasangan CTI revisi September 2024 dan halaman tanya jawab CTI. Merek lain memakai angka yang mirip, tetapi selalu ikuti panduan merek yang dipasang.
 
 Video demo memperlihatkan gerakan tangan; di sini angkanya dicatat satu per satu supaya bisa dicocokkan di lapangan. Kalau Anda pemilik rumah dan tidak akan naik ke atap, langsung saja ke [daftar yang perlu dicek](#yang-perlu-dicek-pemilik-rumah).
 

@@ -29,7 +29,7 @@ sumber:
     url: 'https://www.ct-i.co.kr/tanya-jawab/'
 ---
 
-Sebelum memutuskan, Anda layak mendengar kekurangannya dari orang yang menjual atap bitumen. Kalau istilahnya masih membingungkan, baca dulu [beda atap bitumen, genteng aspal, sirap, dan shingle](/panduan/atap-bitumen-genteng-aspal-sirap-shingle).
+Sebelum memutuskan, Anda layak mendengar kekurangannya dari orang yang menjual atap bitumen. Kalau masih baru dengan atap ini, baca dulu [atap bitumen adalah](/panduan/atap-bitumen-adalah) untuk pengertian, jenis, dan harganya, atau [jenis atap bitumen](/panduan/atap-bitumen-genteng-aspal-sirap-shingle) untuk beda tiap sebutannya.
 
 ## Kelebihan
 

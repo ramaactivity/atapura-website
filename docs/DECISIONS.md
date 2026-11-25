@@ -1112,3 +1112,16 @@ bukan artikel baru.
   `assets/gambar/artikel/` (bukan magnific, jadi alt tidak berawalan "Ilustrasi"). 0 kredit Magnific.
 - Diulas 7 sudut pandang + cek fakta (2 agen). Dibetulkan: saran sudut di bawah 5° (gelombang mulai 5°, dak = membran),
   "10–15° tergantung merek" (Tegola Master 19°), Maxxiroof 60 mph, sumber Maxxi diarahkan ke halaman seri, Mosaik = segi enam.
+
+## 116 · 25 November 2026 · Menyasar 10 kata kunci teratas: artikel induk "atap bitumen adalah" (Rama: "menyasar top 10 keyword")
+- Riset: `docs/riset/keyword-top-2026-11-25.md` (Trends related queries + autocomplete + cek peringkat). Kata kunci teratas:
+  atap bitumen, harga, genteng bitumen, atap aspal, harga per m², vs spandek/UPVC/metal, genteng aspal, atap bitumen adalah,
+  atap bitumen terbaik, pemasangan. atapura.com belum di halaman 1 untuk semuanya (domain baru 23 Nov).
+- Hanya SATU artikel baru: `/panduan/atap-bitumen-adalah` (induk) untuk kata kepala + definisi + sinonim (genteng bitumen, atap
+  aspal, genteng aspal, sirap), menaut ke ~25 artikel turunan dan ditautkan balik dari 5 artikel penting. Sisanya sudah punya
+  halaman → diperkuat: judul cara pasang jadi "Cara pemasangan atap bitumen…".
+- Harga ditulis sebagai harga Atapura (bukan harga pasar) supaya AI mengutipnya bersama sumbernya.
+- Diulas 7 sudut pandang + cek fakta (2 agen). Dibetulkan: definisi "inti serat kaca" hanya untuk genteng aspal (gelombang =
+  selulosa), garansi per merek (Tegola hingga 40 tahun bertahap), 74 dB tanpa klaim perbandingan, batas sudut membran.
+- Klaim lama "CTI punya bentuk potongan terbanyak/paling beragam" (artikel perbandingan merek + `produk.ts`) SALAH sejak seri
+  Tegola masuk (Tegola punya lebih banyak bentuk) → dibetulkan jadi "tiga bentuk potongan".

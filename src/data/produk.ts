@@ -100,7 +100,7 @@ const semuaProduk: Produk[] = [
     ringkas: 'Genteng aspal CTI dalam tiga bentuk potongan: 3-tab, potongan tidak beraturan, dan segi enam. Garansi produk 30 tahun dari pabrik.',
     tentang: [
       'CTI adalah merek genteng aspal yang diproduksi PT Bitutek. Lembarannya memakai aspal yang dimodifikasi SBS, tulangan serat kaca, permukaan butiran batu berwarna, dan perekat yang dilindungi plastik film.',
-      'Pilihan bentuknya paling beragam di antara merek yang kami pasang: CT3 untuk tampilan rapi yang paling umum, CT5 dengan potongan tidak beraturan, dan CT6 berbentuk segi enam.',
+      'Tiga bentuk potongan dalam satu merek: CT3 untuk tampilan rapi yang paling umum, CT5 dengan potongan tidak beraturan, dan CT6 berbentuk segi enam.',
     ],
     fakta: [
       { label: 'Produsen', nilai: 'PT Bitutek' },
