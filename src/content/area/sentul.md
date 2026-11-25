@@ -23,6 +23,8 @@ faq:
     a: 'Boleh bila disetujui pengelola. Tata tertib Sentul City melarang mengubah tampak atas atau atap dan warna luar rumah dari pedoman desain cluster tanpa persetujuan. Genteng aspal tersedia dalam banyak warna, jadi pilih warna yang paling dekat dengan pedoman cluster Anda dan lampirkan contohnya saat mengajukan izin.'
   - q: 'Hari apa tukang boleh bekerja di Sentul City?'
     a: 'Senin sampai Sabtu pukul 08.00–17.00. Hari Sabtu tidak boleh ada pekerjaan yang bising dan berdebu, sedangkan Minggu dan hari libur nasional semua pekerjaan berhenti. Bongkar atap lama karena itu dijadwalkan Senin sampai Jumat.'
+  - q: 'Apakah Bukit Sentul sama dengan Sentul City?'
+    a: 'Ya. Bukit Sentul adalah nama lama Sentul City. Pengembangnya bernama PT Bukit Sentul Tbk pada 1997–2006 sebelum berganti nama menjadi PT Sentul City Tbk, jadi rumah beralamat Bukit Sentul mengikuti tata tertib kawasan Sentul City yang sama. Survey di sana juga gratis.'
   - q: 'Berapa lama pasang atap bitumen di Sentul?'
     a: 'Satu tim memasang sekitar {m2-hari} per hari. Di kawasan dengan jam kerja terbatas, jumlah hari kerja dihitung dari Senin sampai Jumat untuk pekerjaan bongkar dan pasang, sehingga jadwal lengkapnya kami tulis di penawaran setelah survey.'
 sumber:
@@ -30,6 +32,8 @@ sumber:
     url: 'https://myspringvalley.sentulcity.co.id/file-download/FILE13'
   - nama: 'Sentul City, Layanan Gratis untuk Warga Sentul City (PT Sukaputra Graha Cemerlang, 24 Januari 2024)'
     url: 'https://sentulcity.co.id/news/read/Layanan-Gratis-untuk-Warga-Sentul-City!-Praktis-Mudah-dan-Tanpa-Biaya'
+  - nama: 'Wikipedia, Sentul City (sebelumnya Bukit Sentul): riwayat nama PT Sentul City Tbk'
+    url: 'https://en.wikipedia.org/wiki/Sentul_City,_Indonesia'
   - nama: 'Kecamatan Babakan Madang, profil wilayah (ketinggian 200–450 mdpl, hulu Ciliwung)'
     url: 'https://kecamatanbabakanmadang.bogorkab.go.id/tentang-kami'
   - nama: 'detikProperti, Perjalanan Sentul sejak 1994 (7 Oktober 2024)'
@@ -38,7 +42,7 @@ sumber:
     url: 'https://jabar.bps.go.id/id/statistics-table/2/MjM4IzI=/jumlah-curah-hujan--mm-.html'
 ---
 
-Sentul adalah kawasan perumahan di Kecamatan Babakan Madang, Kabupaten Bogor, di kaki perbukitan sebelah barat dan utara Pegunungan Jonggol. Rumah di sini kebanyakan berdiri di dalam kawasan yang dikelola: yang menentukan cara mengganti atapnya bukan hanya cuaca, tetapi juga tata tertib kawasan.
+Sentul adalah kawasan perumahan di Kecamatan Babakan Madang, Kabupaten Bogor, di kaki perbukitan sebelah barat dan utara Pegunungan Jonggol. Kawasan terbesarnya, Sentul City, dulu bernama Bukit Sentul: pengembangnya memakai nama PT Bukit Sentul Tbk sampai 2006 sebelum menjadi PT Sentul City Tbk, sehingga alamat "Bukit Sentul" dan "Sentul City" merujuk ke kawasan yang sama. Rumah di sini kebanyakan berdiri di dalam kawasan yang dikelola: yang menentukan cara mengganti atapnya bukan hanya cuaca, tetapi juga tata tertib kawasan.
 
 ## Sentul dalam angka
 

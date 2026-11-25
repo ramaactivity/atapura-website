@@ -917,3 +917,7 @@ IndexNow; untuk Google tetap sitemap + Search Console.
   menang atas "sukabumi" di alamat (tes ditambah).
 - Sampul desktop: `object-position: 50% 12%` (Rama: "gentengnya ga keliatan" di Sentul) — subjek sampul = atap di sepertiga
   atas, jadi potongan diambil dari bawah. Sampul Rancamaya: pojok kanan bawah berisi tulisan mirip watermark → dipotong (2700×1800 → 2400×1600).
+- **Bukit Sentul** (Rama: "boleh bukit sentul") = nama lama Sentul City (PT Bukit Sentul Tbk 1997–2006 → PT Sentul City Tbk),
+  jadi tidak dibuat halaman terpisah (isinya kembar → kanibal). Ditambahkan ke `/area/sentul`: kalimat pembuka + FAQ + sumber.
+- **Summarecon Bogor** (Cibanon, Sukaraja; ±500 ha; penjualan mulai 29 Sep 2020): belum dibuat halaman — rumah tertua ±5 tahun,
+  atap bawaan pengembang jarang diganti secepat itu, dan belum ada isi lokal bersumber yang cukup. Tinjau lagi bila ada lead/proyek di sana.
