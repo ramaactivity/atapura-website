@@ -934,3 +934,8 @@ IndexNow; untuk Google tetap sitemap + Search Console.
   sepertiga atas (default tetap 50% 12%).
 - Berikutnya, satu per satu: atap bitumen gelombang vs genteng aspal → berisik saat hujan (butuh angka dB bersumber) →
   vs genteng keramik/tanah liat → naskah reel dari artikel.
+- Artikel `/panduan/atap-bitumen-gelombang-vs-genteng-aspal` (25 Nov). Mulai artikel ini, sebelum tayang tiap artikel diulas
+  dari tujuh sudut (Rama: "povnya lengkap… AI, ahli seo, geo, digital marketer, copy writer, pembaca, pebisnis"): dua agen
+  pengulas independen (AI/SEO/GEO + cek fakta; pembaca/copywriter/marketer/pebisnis), sarannya digabung. Temuan nyata: berat
+  gelombang 4,2 kg/m² hanya untuk >10° (5–10°: 0,78 lembar → ±5,1 kg/m²) → artikel berat ikut dikoreksi; Rw 28 dB = insulasi
+  suara udara, bukan bising hujan → ditulis terang; klaim "lebih murah" tanpa harga gelombang diganti "komponen lebih sedikit".

@@ -55,7 +55,7 @@ Karena lentur, genteng aspal dipaku di atas papan rata (multiplek atau GRC), buk
 | **Bentuk khusus** | Potongan tidak beraturan atau segi enam | CTI CT5, CTI CT6 |
 | **Gelombang bitumen** | Lembaran besar bergelombang, dipasang di reng | Bukan jenis yang dipasang Atapura |
 
-Yang sering membuat bingung: atap gelombang juga disebut "atap bitumen", tapi cara pasang dan tampilannya beda sama sekali dengan shingle.
+Yang sering membuat bingung: atap gelombang juga disebut "atap bitumen", tapi cara pasang dan tampilannya beda sama sekali dengan shingle. Mana yang cocok untuk atap Anda dibahas di [atap bitumen gelombang vs genteng aspal](/panduan/atap-bitumen-gelombang-vs-genteng-aspal).
 
 ## Mana yang cocok untuk rumah Anda?
 

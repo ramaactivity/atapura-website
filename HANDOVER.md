@@ -40,7 +40,8 @@
 - ✅ Artikel `/panduan/atap-villa-puncak-bogor` tayang 25 Nov. ✅ Daftar isi samping desktop di semua artikel/area.
 - ✅ `/area/sentul` ("Pasang atap bitumen Sentul Bogor", aturan estate Sentul City) + sampul sinematik desktop di artikel/area + kartu "Area lain" berfoto + telepon resmi (DECISIONS 103).
 - ✅ `/area/rancamaya` (Ciawi, Tajur, Cicurug; Cicurug dilayani seperti Bogor, juga di Ops `wilayah.ts`) (DECISIONS 104).
-- ✅ Riset pesaing 28 kata kunci + 4 artikel dimajukan + `/panduan/berat-atap-bitumen-per-m2` (DECISIONS 105). Berikutnya: gelombang vs genteng aspal, berisik saat hujan, vs keramik, naskah reel.
+- ✅ Riset pesaing 28 kata kunci + 4 artikel dimajukan + `/panduan/berat-atap-bitumen-per-m2` + `/panduan/atap-bitumen-gelombang-vs-genteng-aspal` (DECISIONS 105; tiap artikel diulas 7 sudut pandang). Berikutnya: berisik saat hujan (sumber: BRE IP2/06, Qiram & Rubiono 2016), vs keramik/tanah liat.
+- ⏳ RENCANA (setelah Rama membuat akun sosmed Atapura): reel pendek dari tiap artikel — reel Instagram = sumber kutipan AI Overview nomor 1 (29× dari 28 kata kunci, riset 25 Nov). Naskah: angka bersumber, teks di layar, caption = jawaban singkat; rekaman proyek asli. Artikel dulu (Rama 25 Nov).
 - ⏳ Butuh Rama: Google Business Profile (panduan di chat 25 Nov, nomor 0896-1138-4767), ulasan.
 - ⏳ Berikutnya: koleksi `/proyek` (studi kasus dari Rapor Ops) begitu ada proyek pertama di Bogor; etalase marketplace
   berlokasi Bogor; direktori lokal dengan NAP identik.
