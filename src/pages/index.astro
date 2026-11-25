@@ -378,6 +378,7 @@ const faqSchema = {
                 </tbody>
               </table>
             ))}
+            <button type="button" class="ar-semua" data-semua-ar hidden></button>
             <a class="tautan-lanjut" href="/area">Lihat peta &amp; kondisi tiap daerah</a>
           </div>
           <div class="ar-peta"><PetaArea tautan={Object.fromEntries(halamanArea)} /></div>
@@ -493,7 +494,18 @@ const faqSchema = {
       tab.forEach((b) => b.setAttribute('aria-selected', String(b.dataset.tabAr === id)));
       ar.querySelectorAll<HTMLElement>('[data-panel-ar]').forEach((p) => { p.hidden = p.dataset.panelAr !== id; });
       ar.dataset.tab = id;
+      perbaruiSemua();
     };
+    // HP: lipat tabel ke 6 baris; tombol menampilkan sisanya untuk tab yang aktif.
+    const semua = ar.querySelector<HTMLButtonElement>('[data-semua-ar]')!;
+    const perbaruiSemua = () => {
+      const panel = ar.querySelector<HTMLElement>('[data-panel-ar]:not([hidden])');
+      const sisa = panel && !panel.hasAttribute('data-semua') ? panel.querySelectorAll('tbody tr').length - 6 : 0;
+      semua.hidden = sisa <= 0;
+      semua.textContent = `Lihat ${sisa} daerah lainnya`;
+    };
+    semua.addEventListener('click', () => { ar.querySelector('[data-panel-ar]:not([hidden])')?.setAttribute('data-semua', ''); perbaruiSemua(); });
+    ar.dataset.lipat = '';
     tab.forEach((b) => b.addEventListener('click', () => pilih(b.dataset.tabAr!)));
     pilih('jabo');
     const nyala = (el: EventTarget | null, on: boolean) => {
@@ -794,7 +806,7 @@ const faqSchema = {
   .ar-kiri { display: grid; gap: 1.25rem; align-content: start; }
   .ar-tab { display: inline-flex; justify-self: start; gap: 4px; padding: 4px; border-radius: 999px; background: var(--color-embun); }
   .ar-tab button {
-    display: inline-flex; align-items: center; gap: 0.5rem; min-height: 40px; padding: 0 1rem; border-radius: 999px;
+    display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px; padding: 0 1rem; border-radius: 999px;
     font-size: var(--fs-15); font-weight: 500; color: var(--color-lumut); cursor: pointer; transition: background-color 200ms, color 200ms;
   }
   .ar-tab button span { font-size: var(--fs-13); font-variant-numeric: tabular-nums; color: var(--color-lumut); }
@@ -823,6 +835,15 @@ const faqSchema = {
   .ar-sorot { min-width: 0; }
   .ar-panah { margin-left: auto; padding-left: 0.5rem; color: var(--color-lumut); transition: transform 250ms var(--ease-out), color 200ms; }
   .ar-tabel tbody tr.menyala { background: var(--color-embun); }
+  /* HP: tabel dilipat ke 6 baris + tombol "Lihat … daerah lainnya" (hanya bila JS jalan; tanpa JS semua baris tampil). */
+  .ar-semua { display: none; }
+  @media (max-width: 47.99rem) {
+    .ar[data-lipat] .ar-tabel:not([data-semua]) tbody tr:nth-child(n+7) { display: none; }
+    .ar[data-lipat] .ar-semua:not([hidden]) {
+      display: inline-flex; align-items: center; justify-content: center; justify-self: stretch; min-height: 44px;
+      border-radius: 999px; background: var(--color-embun); font-size: var(--fs-15); font-weight: 500; color: var(--color-pinus);
+    }
+  }
   .ar-tabel tbody tr.menyala .ar-panah { transform: translateX(4px); color: var(--color-pinus); }
   .ar-tabel tbody tr.menyala th a { color: var(--color-pinus); }
   .ar-kiri .tautan-lanjut { justify-self: start; }
@@ -866,7 +887,7 @@ const faqSchema = {
   .tanya-kiri .label-bagian { margin-bottom: -0.75rem; } /* eyebrow → judul 8 px */
   .tanya-foto { border-radius: 16px; overflow: hidden; aspect-ratio: 16 / 10; }
   .tanya-foto :global(img) { width: 100%; height: 100%; object-fit: cover; }
-  .tanya-panduan { display: inline-block; margin-top: 1.25rem; font-weight: 500; color: var(--color-pinus); text-decoration: underline; text-decoration-color: rgb(16 35 30 / 0.3); }
+  .tanya-panduan { display: inline-flex; align-items: center; min-height: 44px; margin-top: 0.75rem; font-weight: 500; color: var(--color-pinus); text-decoration: underline; text-decoration-color: rgb(16 35 30 / 0.3); }
   @media (min-width: 60rem) { .tanya-kiri { position: sticky; top: 5.5rem; } .tanya .judul-2 { position: static; } }
   @media (min-width: 48rem) { .tanya .judul-2 .miring { display: block; } }
   /* HP: foto suasana disembunyikan supaya daftar pertanyaan langsung terlihat. */
@@ -987,6 +1008,10 @@ const faqSchema = {
   .ajak-tautan { display: inline-flex; align-items: center; min-height: 44px; color: rgb(242 244 241 / 0.8); text-decoration: underline; text-decoration-color: rgb(242 244 241 / 0.3); text-underline-offset: 0.3em; }
   .ajak-tautan:hover { color: var(--color-tunas); }
   .ajak-foto { position: relative; min-height: 14rem; }
+  @media (max-width: 47.99rem) {
+    .ajak-judul { font-size: var(--hp-t1); letter-spacing: -0.024em; line-height: 1.23; } /* HP: 4 baris → 3 */
+    .ajak-foto { min-height: 11rem; }
+  }
   .ajak-foto :global(picture), .ajak-foto :global(img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   @media (min-width: 64rem) {
     .ajak { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: 26rem; }

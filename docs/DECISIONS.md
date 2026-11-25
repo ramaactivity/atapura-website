@@ -996,3 +996,12 @@ IndexNow; untuk Google tetap sitemap + Search Console.
   2025 + koefisien kepala tukang/mandor yang berubah, BUK 10–15%, dan underlayer 1,1 vs sambungan 100–150 mm).
 - PERLU KEPUTUSAN RAMA/YUSUF: faktor underlayer di Ops (`faktorLapisKedap` 1,1) mungkin kurang. Roll lebar 1 m dengan sambungan
   100–150 mm memberi lebar efektif 0,85–0,90 m → faktor 1,11–1,18 sebelum sambungan ujung. Angka bisnis, tidak diubah sepihak.
+
+## 107 · 25 November 2026 · Beranda versi HP dipoles (pilihan Rama: "rapikan beranda versi HP")
+Audit HP 390 px (skill antislop-layoutmobile): tinggi 9.688 px; target sentuh < 44 px: tab Area (40) dan "Baca panduan
+lengkap" (24); tak ada teks < 13 px.
+- Tabel daerah di HP dilipat ke 6 baris + tombol "Lihat N daerah lainnya" (hanya bila JS jalan; tanpa JS semua tampil; laptop
+  tetap 11 baris). Tab Area & tautan panduan jadi 44 px.
+- Kartu ajakan HP: judul `--hp-t1` (26 px, 4 → 3 baris), foto 14 → 11rem.
+- Sorot Rancamaya tanpa nama dobel ("±430 mdpl, berkontur & banyak pohon tua", sesuai isi halamannya).
+- Beranda HP 9.688 → 9.334 px.

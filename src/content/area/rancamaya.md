@@ -10,7 +10,7 @@ cakupan:
 wilayah: 'Jabodetabek'
 urut: 2.5
 judul: 'Pasang atap bitumen Rancamaya Bogor: Ciawi, Tajur, dan Cicurug'
-sorot: 'Rancamaya ±430 mdpl, kontur & pohon tua'
+sorot: '±430 mdpl, berkontur & banyak pohon tua'
 sorotJenis: 'angin'
 ringkasan: 'Harga pasang atap bitumen di Rancamaya, Tajur, Ciawi, dan Cicurug, plus yang perlu disiapkan untuk rumah di lereng berpohon tua di selatan Bogor.'
 jawaban: 'Atapura memasang atap bitumen di Rancamaya dan sekitarnya: Tajur, Ciawi, sampai Cicurug. Harga terpasang {harga-rentang}. Rancamaya Golf Estate berada di ketinggian sekitar 430 mdpl dengan kontur alami dan pohon berusia puluhan tahun, jadi yang paling perlu diperhatikan adalah lumut di sisi atap yang teduh, paku tambahan di lereng terbuka, dan aturan renovasi dari pengelola kawasan.'
