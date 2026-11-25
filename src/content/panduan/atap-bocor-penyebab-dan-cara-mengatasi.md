@@ -58,6 +58,6 @@ Atap yang dirawat sesuai [jadwal perawatan sederhana](/panduan/atap-bitumen-taha
 
 **Pertimbangkan ganti atap** bila genteng lama sudah banyak yang pecah, rangka melendut karena beban, atau biaya tambal tiap musim hujan terus berulang. Genteng aspal jauh lebih ringan dari genteng beton, jadi [beban rangka berkurang](/panduan/atap-bitumen-vs-genteng-beton-beban-rangka) saat diganti.
 
-## Minta dicek
+## Siapa yang dihubungi
 
-Atapura mengecek atap bocor di Jabodetabek tanpa biaya survey, lalu menuliskan titik bocor dan pilihan perbaikannya. Kalau penggantian lebih masuk akal, Anda bisa melihat estimasi biayanya dulu di [Hitung AKAL](/hitung).
+Atap yang dipasang Atapura bergaransi pemasangan 5 tahun: kirim foto atau video bocornya lewat WhatsApp, dan perbaikan yang tercakup [garansi](/garansi) dikerjakan tanpa biaya. Untuk atap dari pemasang lain, hubungi pemasangnya dulu; Atapura tidak mengerjakan tambal bocor terpisah. Kalau atap lama lebih masuk akal diganti, survey di Jabodetabek tanpa biaya, dan estimasi biayanya bisa dilihat dulu di [Hitung AKAL](/hitung). Penyebab khas pada genteng aspal dibahas di [atap bitumen bocor](/panduan/atap-bitumen-bocor).

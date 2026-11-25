@@ -92,6 +92,6 @@ Laporannya dimulai dengan foto atau video lewat WhatsApp, lengkap dengan nama pe
 
 Pada atap bitumen (genteng aspal), lembar yang rusak bisa diganti per lembar tanpa membongkar seluruh atap. ARMA menyarankan perbaikan itu dikerjakan tukang atap yang terlatih. Karena itu bocor satu titik biasanya cukup ditangani setelah hujan reda, asalkan airnya tertampung dan plafonnya aman.
 
-## Survey atap bocor di Jabodetabek
+## Setelah hujan reda
 
-Atapura mengecek atap bocor di Jabodetabek tanpa biaya survey. Kirim foto dan video yang Anda ambil semalam lewat WhatsApp, supaya tim bisa menilai apakah perlu datang dan bagian mana yang diperiksa lebih dulu. Lihat juga kondisi hujan di wilayah Anda di halaman [area layanan](/area), misalnya [Jakarta](/area/jakarta), [Depok](/area/depok), atau [Kota Bekasi](/area/kota-bekasi). Kalau atap lama ternyata lebih masuk akal diganti, perkiraan biayanya bisa dihitung di [Hitung AKAL](/hitung).
+Kalau atap Anda dipasang Atapura, kirim foto dan video yang Anda ambil semalam lewat WhatsApp untuk klaim [garansi](/garansi). Untuk atap dari pemasang lain, hubungi pemasangnya dulu; Atapura tidak mengerjakan tambal bocor terpisah, tetapi bisa men-survey tanpa biaya di Jabodetabek bila atap lama lebih masuk akal diganti. Penyebab khas pada genteng aspal ada di [atap bitumen bocor](/panduan/atap-bitumen-bocor). Lihat juga kondisi hujan di wilayah Anda di halaman [area layanan](/area), misalnya [Jakarta](/area/jakarta), [Depok](/area/depok), atau [Kota Bekasi](/area/kota-bekasi). Perkiraan biaya penggantiannya bisa dihitung di [Hitung AKAL](/hitung).

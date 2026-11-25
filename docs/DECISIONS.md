@@ -956,3 +956,10 @@ IndexNow; untuk Google tetap sitemap + Search Console.
   + 2 di area genteng (bukan 4 di area bayangan). Jarak reng 605 mm berlaku untuk multiplek/GRC 12 mm (tanya jawab CTI).
   Sampul v1 ditolak: paku tampak di permukaan genteng (cara pasang salah) → v2 tanpa paku terlihat, kiri dipotong (posisi reng
   meragukan). Artikel ini = dasar naskah video YouTube/reel cara pasang (rencana setelah akun sosmed).
+- Artikel `/panduan/atap-bitumen-bocor` (25 Nov), peta gejala → penyebab khas → perbaikan, bersumber ARMA/CTI, diulas 7 sudut
+  pandang. Selaras dengan keputusan Ops (lib/crm/lead.ts: "Perbaikan bocor dihapus, Rama 19 Nov 2026: Atapura tidak punya
+  jasanya"): atap pasangan Atapura → klaim garansi 5 tahun (respons ≤3 hari kerja, sesuai bisnis.garansi); atap pemasang lain →
+  hubungi pemasangnya, Atapura bisa material atau pasang ulang (survey gratis). Kalimat "Atapura mengecek atap bocor…" di
+  `atap-bocor-penyebab-dan-cara-mengatasi` dan `atap-bocor-24-jam-pertama` (tayang 11 Des) diganti dengan pembagian yang sama.
+  Koreksi pengulas: "2–4 galon" ARMA = galon AS → ditulis 7,5–15 liter (galon di Indonesia = 19 L); klaim "sisi teduh lebih
+  lambat merekat" dihapus (tidak ada di sumber); gelombang acak = underlayer, mengikuti sambungan = papan.
