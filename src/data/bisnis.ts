@@ -81,7 +81,9 @@ export const bisnis = {
     pengalamanLuar: ['Bandung', 'Sumatra', 'Kalimantan', 'Sulawesi', 'Papua'],
   },
   // Kata kunci kota untuk mengenali lokasi di dalam Jabodetabek (kolom Kota di Hitung AKAL).
-  kataJabodetabek: ['jakarta', 'bogor', 'depok', 'tangerang', 'bekasi', 'tangsel', 'cibubur', 'bintaro', 'serpong', 'cikarang', 'cibinong', 'ciputat', 'pamulang', 'cileungsi', 'jaksel', 'jaktim', 'jakbar', 'jakut', 'jakpus', 'bsd'],
+  kataJabodetabek: ['jakarta', 'bogor', 'depok', 'tangerang', 'bekasi', 'tangsel', 'cibubur', 'bintaro', 'serpong', 'cikarang', 'cibinong', 'ciputat', 'pamulang', 'cileungsi', 'jaksel', 'jaktim', 'jakbar', 'jakut', 'jakpus', 'bsd',
+    // Kawasan Bogor yang sering ditulis tanpa 'Bogor'; Cicurug (Kab. Sukabumi) dilayani seperti Bogor (Rama 25 Nov 2026).
+    'sentul', 'citeureup', 'ciawi', 'cisarua', 'puncak', 'rancamaya', 'tajur', 'cicurug'],
   sosmed: [] as string[], // URL profil resmi untuk JSON-LD sameAs — isi saat akun sudah dibuat
   // Ikon sosial di footer. url null = akun belum ada: ikon tampil redup tanpa tautan ("segera").
   sosial: [

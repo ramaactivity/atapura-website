@@ -175,7 +175,8 @@ const isi = [...daftar, ...(faq.length ? [{ slug: 'faq-judul', text: t.faq }] : 
       position: absolute; inset: 0 0 0 26%; z-index: -2; max-width: none; margin: 0; padding: 0;
       -webkit-mask-image: linear-gradient(90deg, transparent, #000 38%); mask-image: linear-gradient(90deg, transparent, #000 38%);
     }
-    .ar-sampul { height: 100%; max-height: none; border-radius: 0; }
+    /* Subjek sampul = atap, biasanya di sepertiga atas foto: potong dari bawah, bukan dari tengah (Rama: "gentengnya ga keliatan"). */
+    .ar-sampul { height: 100%; max-height: none; border-radius: 0; object-position: 50% 12%; }
     /* Atas: bilah navigasi tetap terbaca di foto apa pun. Kiri: judul gelap di atas warna halaman. */
     .ar-atas::before {
       content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;

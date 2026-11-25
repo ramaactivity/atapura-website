@@ -64,7 +64,7 @@ Sebagai pembanding, Stasiun Kemayoran di Jakarta mencatat 2.697 mm pada 2025. Di
 
 ## Enam kecamatan di Kota Bogor
 
-Kota Bogor terbagi menjadi enam kecamatan: Bogor Utara, Bogor Selatan, Bogor Tengah, Bogor Barat, Bogor Timur, dan Tanah Sareal. Survey gratis berlaku di semuanya. Kantor kami berada di Jl. Raya Puncak, Cisarua, Kabupaten Bogor.
+Kota Bogor terbagi menjadi enam kecamatan: Bogor Utara, Bogor Selatan, Bogor Tengah, Bogor Barat, Bogor Timur, dan Tanah Sareal. Survey gratis berlaku di semuanya. Kantor kami berada di Jl. Raya Puncak, Cisarua, Kabupaten Bogor. Kawasan perumahan di selatan dan timur kota, seperti Rancamaya dan Tajur, dibahas di [atap bitumen Rancamaya](/area/rancamaya).
 
 | Jenis rumah | Yang kami cek saat survey |
 |---|---|

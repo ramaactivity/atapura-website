@@ -69,3 +69,4 @@ Total 22 Nov: 455 kredit. Saldo sebelum: 35.134.
 
 | 25 Nov 2026 | Sampul artikel villa Puncak (villa lereng, pinus menaungi satu sisi atap, kabut, kebun teh) | mode auto, 2K, 3:2 | 135 | ✅ `assets/gambar/magnific/artikel-villa-puncak-3x2.jpg` (dicek diperbesar: atap rapi) | Dokumenter, tanpa orang/teks/logo |
 | 25 Nov 2026 | Sampul /area/sentul (rumah modern 2 lantai di perumahan berbukit, jalan estate basah, bukit berkabut) | mode auto, 2K, 3:2 | 135 | ✅ `assets/gambar/magnific/area-sentul-3x2.jpg` (dicek diperbesar: genteng & bubungan rapi) | Dokumenter, tanpa orang/teks/logo/mobil |
+| 25 Nov 2026 | Sampul /area/rancamaya (rumah besar atap perisai di estate golf berbukit, pohon tua, gunung berkabut) | mode auto, 2K, 3:2 | 135 | ✅ `assets/gambar/magnific/area-rancamaya-3x2.jpg` (dicek diperbesar: atap rapi; pojok kanan bawah ada tulisan mirip watermark → dipotong) | Dokumenter, tanpa orang/teks/logo/mobil |

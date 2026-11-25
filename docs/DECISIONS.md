@@ -903,3 +903,17 @@ IndexNow; untuk Google tetap sitemap + Search Console.
   Di bawah 64rem tetap: judul lalu sampul membulat.
 - **Telepon resmi = nomor WA 0896-1138-4767** (Rama setuju 25 Nov). `bisnis.telepon` diisi; JSON-LD sudah memakai nomor
   ini lewat fallback, footer kini menampilkan "Telepon +62 896-1138-4767". Nomor yang sama wajib dipakai di GBP & marketplace.
+
+## 104 · 25 November 2026 · Halaman kawasan Rancamaya (Ciawi, Tajur, Cicurug), sampul dipotong dari bawah, Cicurug = dekat
+- Rama: "bikin juga kawasan rancamaya dan sekitarnya seperti ciawi, tajur dan cicurug. banyak perumahan juga". Rancamaya =
+  halaman Dokter Atap yang dikutip AI Overview untuk "atap bitumen bogor" → dibuat `/area/rancamaya` sebagai lawan langsung.
+  Isi bersumber: Rancamaya Golf Estate 500 ha, ±430 mdpl menurut pengembang, kontur & pohon tua dipertahankan, diakuisisi
+  Sinar Mas Land Okt 2024 (realestat.id, 12 Agu 2025); kelurahan Rancamaya (Bogor Selatan) & Tajur (Bogor Timur); Tol Bocimi
+  Seksi II Cigombong–Cibadak 11,9 km diresmikan 4 Agu 2023 di GT Parungkuda (detikJabar). Aturan renovasi Rancamaya tidak
+  publik → ditulis terang, dirujuk ke contoh Sentul City. Hujan dari Dramaga dengan catatan tidak ada stasiun lokal.
+- **Cicurug (Kab. Sukabumi) dilayani seperti Bogor** (Rama: "masih deket banget dari bogor jadi free transport"): survey
+  gratis, harga sama, tanpa ongkos transport. Website: `kataJabodetabek` + kawasan Bogor yang sering ditulis tanpa "Bogor"
+  (sentul, citeureup, ciawi, cisarua, puncak, rancamaya, tajur, cicurug). Ops: `wilayah.ts` daftar DEKAT = ["cicurug"]
+  menang atas "sukabumi" di alamat (tes ditambah).
+- Sampul desktop: `object-position: 50% 12%` (Rama: "gentengnya ga keliatan" di Sentul) — subjek sampul = atap di sepertiga
+  atas, jadi potongan diambil dari bawah. Sampul Rancamaya: pojok kanan bawah berisi tulisan mirip watermark → dipotong (2700×1800 → 2400×1600).
