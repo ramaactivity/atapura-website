@@ -13,7 +13,7 @@ faq:
   - q: 'Apakah kafe harus tutup selama atap diganti?'
     a: 'Tidak harus. Pekerjaan dibagi per area dan dijadwalkan, misalnya bagian dapur dulu lalu ruang makan, dengan atap lama hanya dibuka seluas yang bisa ditutup kembali hari itu.'
   - q: 'Kamar kos bocor dan penghuni mengeluh. Ditambal atau diganti?'
-    a: 'Kalau bocor muncul di satu titik dan sebabnya jelas, tambal dulu. Kalau bocor berulang di banyak kamar, biasanya lapisan di bawah genteng sudah rusak dan penggantian per blok kamar lebih masuk akal.'
+    a: 'Kalau bocor muncul di satu titik dan sebabnya jelas, menambal titik itu biasanya cukup; hubungi pemasang atapnya lebih dulu. Kalau bocor berulang di banyak kamar, biasanya lapisan di bawah genteng sudah rusak dan penggantian atap per blok kamar lebih masuk akal. Atapura mengerjakan penggantian atapnya, bukan tambal bocor.'
 ---
 
 Ruko, kafe, dan kos punya satu kesamaan: setiap hari atap dikerjakan adalah hari pendapatan yang terganggu. Pilihan atap dan cara memasangnya perlu dipikirkan dari sisi itu.
@@ -24,7 +24,7 @@ Ruko, kafe, dan kos punya satu kesamaan: setiap hari atap dikerjakan adalah hari
 |---|---|---|
 | Ruko | Pertemuan dengan dinding ruko sebelah, talang bersama | Step flashing dan counter flashing di setiap pertemuan dinding; talang dicek kapasitasnya |
 | Kafe | Tidak lama tutup, suasana saat hujan, atap yang terlihat pelanggan | Kerja per area di luar jam ramai; genteng di atas papan alas sehingga suara hujan teredam; warna dipilih dari sampel fisik |
-| Kos | Banyak kamar, keluhan bocor dari penghuni | Kerja per blok kamar; pemeriksaan sumber bocor sebelum memutuskan tambal atau ganti |
+| Kos | Banyak kamar, keluhan bocor dari penghuni | Ganti atap per blok kamar, sehingga kamar lain tetap bisa dihuni |
 | Villa sewa | Bentuk atap rumit, citra di foto pemesanan | Genteng aspal mengikuti atap curam, lengkung, sampai dinding |
 
 Untuk villa di dataran tinggi yang sering berkabut dan berangin, persiapannya dibahas di [atap villa di Puncak dan Bogor](/panduan/atap-villa-puncak-bogor), dan gazebo untuk area duduk kafe atau villa di [atap gazebo](/panduan/atap-gazebo).
