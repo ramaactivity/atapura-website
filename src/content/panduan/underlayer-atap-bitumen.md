@@ -3,8 +3,8 @@ judul: 'Underlayer atap bitumen: fungsi, jenis, tebal, dan harga per m²'
 ringkasan: 'Underlayer menahan air yang lolos dari sela genteng aspal. Jenis, tebal, sambungan per kemiringan menurut panduan CTI, dan harga per m² di Jabodetabek.'
 jawaban: 'Underlayer atap bitumen adalah lapis kedap air di antara papan alas dan genteng aspal. Panduan CTI memasangnya di semua kemiringan, dengan sambungan tumpang 150 mm untuk atap 10–15° dan 100 mm di atas 15°. Harga Atapura untuk underlayer self-adhesive Rp600 rb per roll 10 m², atau sekitar Rp60 rb/m² sebelum dikurangi sambungan.'
 kategori: 'Pemasangan'
-terbit: 2026-12-08
-diperbarui: 2026-12-08
+terbit: 2026-11-25
+diperbarui: 2026-11-25
 sampul: '../../../assets/gambar/magnific/aksesoris-underlayer-3x2.jpg'
 sampulAlt: 'Ilustrasi tukang membuka gulungan underlayer hitam dan melepas plastik pelindungnya di atas papan alas atap'
 faq:

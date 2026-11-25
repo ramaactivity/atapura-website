@@ -38,10 +38,12 @@ Contoh: atap rumah 100 m² dengan CTI berarti sekitar **Rp40–45 juta** terpasa
 
 ## Apa saja yang ada di harga terpasang?
 
+Porsi jasa pasang di dalam angka ini dirinci di [harga jasa pasang atap bitumen per m²](/panduan/ongkos-jasa-pasang-atap-bitumen).
+
 Atap bitumen tersusun dari [lima lapis](/panduan/lima-lapis-pemasangan-atap-bitumen). Gentengnya hanya lapis paling atas:
 
 1. **Alas papan rata**: multiplek atau GRC, dipasang di atas rangka.
-2. **Lapis kedap air**: underlayer atau membran, menahan air yang lolos dari genteng.
+2. **Lapis kedap air**: [underlayer](/panduan/underlayer-atap-bitumen) atau membran, menahan air yang lolos dari genteng.
 3. **Flashing**: pelindung di tepi atap, talang, dan pertemuan dengan dinding.
 4. **Genteng aspal** dengan paku khusus.
 5. **Jasa pasang** oleh tim yang terbiasa dengan genteng aspal.

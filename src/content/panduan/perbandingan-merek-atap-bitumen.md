@@ -3,8 +3,8 @@ judul: 'Merek atap bitumen terbaik? Perbandingan Maxxi, CTI, Tegola, Victory'
 ringkasan: 'Data pabrik Maxxi, CTI, Tegola, Victory, dan Javabitumen berdampingan: ukuran, isi bundel, garansi, dan harga per m² Jabodetabek, plus cara memilihnya.'
 jawaban: 'Tidak ada satu merek atap bitumen terbaik untuk semua rumah. Pilihannya tergantung anggaran, tampilan, kemiringan atap, dan garansi yang Anda cari. Maxxi dan Javabitumen paling hemat, CTI punya bentuk potongan terbanyak dan bisa dipasang mulai 10°, Victory menawarkan 3-tab dua nada, dan Tegola memberi garansi pabrik terpanjang, hingga 40 tahun bertahap.'
 kategori: 'Perbandingan'
-terbit: 2026-12-25
-diperbarui: 2026-12-25
+terbit: 2026-11-25
+diperbarui: 2026-11-25
 sampul: '../../../assets/gambar/magnific/artikel-perbandingan-merek-3x2.jpg'
 sampulAlt: 'Ilustrasi tekstur empat seri genteng aspal: CTI CT6, Maxxi Promaxxi, Tegola Premium Mosaik, dan Victory Two Tone'
 faq:

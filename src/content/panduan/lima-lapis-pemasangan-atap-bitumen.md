@@ -26,7 +26,7 @@ sumber:
 | Lapis | Bahan umum | Tugasnya |
 |---|---|---|
 | 1. Alas | Multiplek 12 mm atau GRC 9 mm | Permukaan rata tempat genteng dipaku |
-| 2. Underlayment | Membran bitumen self-adhesive, gulungan 1 × 10 m | Menahan air yang lolos dari genteng |
+| 2. Underlayment | Membran bitumen self-adhesive, gulungan 1 × 10 m ([jenis dan tebalnya](/panduan/underlayer-atap-bitumen)) | Menahan air yang lolos dari genteng |
 | 3. Flashing | Pelat logam, profil Z atau U | Menutup pertemuan atap dengan dinding, talang, dan tepi |
 | 4. Genteng bitumen | Shingle 3-tab atau laminasi | Lapisan luar: tahan cuaca, memberi warna |
 | 5. Nok | Potongan shingle di bubungan | Menutup sambungan paling atas |

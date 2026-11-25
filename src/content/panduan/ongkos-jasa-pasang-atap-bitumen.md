@@ -3,8 +3,8 @@ judul: 'Harga jasa pasang atap bitumen per m² 2026: apa saja isinya'
 ringkasan: 'Jasa pasang atap bitumen Atapura Rp70–120 rb/m² di Jabodetabek. Pekerjaan per lapis yang tercakup, yang dihitung terpisah, dan yang membuat angkanya bergeser.'
 jawaban: 'Harga jasa pasang atap bitumen per m² di Atapura berkisar Rp70–120 ribu untuk Jabodetabek. Angka itu mencakup pemasangan alas multiplek atau GRC, flashing, lapis kedap air, starter, genteng, dan nok. Posisinya di rentang itu ditentukan bentuk atap, kemiringan, dan akses. Rangka baru, bongkar atap lama, dan scaffolding dihitung terpisah.'
 kategori: 'Biaya'
-terbit: 2026-12-04
-diperbarui: 2026-12-04
+terbit: 2026-11-25
+diperbarui: 2026-11-25
 sampul: '../../../assets/gambar/magnific/artikel-tukang-pasang-3x2.jpg'
 sampulAlt: 'Ilustrasi dua tukang bertali pengaman memasang genteng aspal abu tua di atas underlayer dan papan alas'
 faq:

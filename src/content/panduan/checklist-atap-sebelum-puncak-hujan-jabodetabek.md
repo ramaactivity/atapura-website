@@ -3,8 +3,8 @@ judul: 'Cek atap sebelum puncak hujan Februari 2027 di Jabodetabek'
 ringkasan: 'BMKG memperkirakan puncak hujan Jabodetabek sekitar Februari 2027. Daftar cek atap bitumen yang bisa dilakukan dari bawah, dan kapan perlu survey.'
 jawaban: 'BMKG memperkirakan puncak hujan di banyak zona Jabodetabek sekitar Februari 2027, tidak lama setelah musim hujan dimulai. Periksa atap di bulan Desember: talang dan lembah atap yang tersumbat, flashing di pertemuan dinding, nok, genteng yang terangkat, dan noda baru di plafon. Semuanya bisa dilihat dari bawah atau dari loteng tanpa naik ke atap.'
 kategori: 'Perawatan'
-terbit: 2026-12-01
-diperbarui: 2026-12-01
+terbit: 2026-11-25
+diperbarui: 2026-11-25
 sampul: '../../../assets/gambar/magnific/artikel-cek-atap-hujan-3x2.jpg'
 sampulAlt: 'Ilustrasi pemilik rumah memotret talang atap bitumen dari halaman saat mendung menjelang hujan'
 faq:
