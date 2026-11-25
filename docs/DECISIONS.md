@@ -1048,3 +1048,22 @@ bersumber; AI Overview menjawab keramik, beton, tanah liat (+ UPVC untuk korosi)
   terlalu yakin, sudut genteng aspal mulai 15° (10–15° merek tertentu), garansi 25–30 bukan semua merek.
 - FAQ "lebih awet mana" di artikel vs keramik diperbarui (sebelumnya "tidak ada angka bersumber"); tautan masuk dari artikel itu
   dan dari "tahan berapa lama".
+
+## 111 · 25 November 2026 · "Jasa pasang atap bitumen" lewat judul beranda + artikel "detail atap bitumen" bergambar potongan (Rama: "lanjut")
+- "jasa pasang atap bitumen" (riset SerpApi 25 Nov): halaman 1 = halaman layanan + paket peta Google (lokal), bukan artikel.
+  Artikel baru akan bersaing dengan beranda & artikel harga jasa → TIDAK dibuat. Judul tag beranda jadi "Jasa Pasang Atap
+  Bitumen Jabodetabek, Hitung Biaya | Atapura" (deskripsi sudah "Spesialis jasa pasang…"). Paket peta butuh Google Business
+  Profile (masih menunggu Rama).
+- Artikel `/panduan/detail-atap-bitumen` untuk "detail atap bitumen" (+ PAA jarak reng, rangka apa, alas apa, material apa;
+  "detail atap bitumen DWG"). Halaman 1 diisi salinan Scribd panduan CTI, model SketchUp, dan panduan pesaing.
+- Dua gambar potongan (tepi bawah & nok) DIBUAT SENDIRI sebagai SVG dari angka panduan CTI (dibaca per halaman: flashing U 50/80 mm,
+  sekrup 50 mm dari tepi, starter 190, tumpukan 190 → 127,5 terlihat untuk CT3 317,5 mm, paku 25 mm di atas celah daun, nok
+  30 × 13 cm berjarak 130 mm). File di `public/unduh/detail/` (bisa diunduh), versi HP terpisah lewat `<picture>` karena gambar
+  1200 px tak terbaca di 360 px; keterangan bernomor ditulis sebagai teks (terbaca Google/AI). Skrip pembuatnya tidak di repo
+  (sekali pakai); ubah lewat file SVG.
+- `Artikel.astro`: gaya `figure.detail` (bingkai putih bergaris, figcaption).
+- Sampul Magnific v1 ditolak (kepala paku terlihat), v2 dipakai.
+- Diulas 7 sudut pandang + cek fakta per halaman PDF CTI (2 agen). Dibetulkan: ukuran CT3 = 1.000 × 333 mm (bukan 317,5 =
+  CT5/CT6) → 143 mm terlihat; nok CT3 "30 × 13 cm" = 30 cm melintang bubungan + 13 cm terlihat (juga di artikel cara pasang);
+  sekrup papan di bawah underlayer; reng profil topi; kepala paku nok tertutup potongan berikutnya; tampak atas nok berskala;
+  jarak reng 405/605 dikaitkan ke tanya jawab CTI; bagian "Jarak reng atap bitumen" sendiri (PAA).

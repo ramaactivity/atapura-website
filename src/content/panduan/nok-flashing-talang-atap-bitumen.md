@@ -38,7 +38,7 @@ Atap baru terlihat rapi dari jalan, lalu setahun kemudian ada noda di pojok plaf
 
 ## Nok: puncak yang menerima angin paling kencang
 
-Nok menutup celah di puncak, tempat dua bidang atap bertemu. Panduan CTI membuatnya dari lembar genteng yang dipotong menjadi tiga, ditekuk di tengah mengikuti punggung atap, lalu dipaku di area yang nanti tertutup potongan berikutnya. Di daerah berangin kencang, CTI menganjurkan sealant tambahan.
+Nok menutup celah di puncak, tempat dua bidang atap bertemu. Panduan CTI membuatnya dari lembar genteng yang dipotong menjadi tiga, ditekuk di tengah mengikuti punggung atap, lalu dipaku di area yang nanti tertutup potongan berikutnya. Di daerah berangin kencang, CTI menganjurkan sealant tambahan. Gambar potongan nok berukuran ada di [detail atap bitumen](/panduan/detail-atap-bitumen).
 
 ## Lembah: jalur air terbesar
 

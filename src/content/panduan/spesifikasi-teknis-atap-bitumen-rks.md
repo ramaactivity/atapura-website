@@ -13,7 +13,7 @@ faq:
   - q: 'Apakah ada SNI untuk genteng aspal shingle?'
     a: 'Kami belum menemukan SNI khusus untuk genteng aspal jenis shingle. Spesifikasi yang lazim dirujuk adalah dokumen teknis pabrikan dan standar uji internasional seperti ASTM D3462 untuk genteng aspal bertulang serat kaca.'
   - q: 'Apakah ada gambar detail atau file CAD?'
-    a: 'Panduan pemasangan CTI memuat gambar detail lapisan, pola paku, nok, dan jurai. Untuk proyek, kami menyiapkan gambar kerja sesuai bentuk atap setelah survey.'
+    a: 'Panduan pemasangan CTI memuat gambar detail lapisan, pola paku, nok, dan jurai. Gambar potongan tepi atap dan nok yang bisa diunduh (SVG) ada di artikel detail atap bitumen. Untuk proyek, kami menyiapkan gambar kerja sesuai bentuk atap setelah survey.'
 sumber:
   - nama: 'CTI, panduan pemasangan Rev. September 2024 (rangka, reng, papan, sekrup, underlayment, paku, tumpukan baris, nok, jurai)'
     url: 'https://www.ct-i.co.kr/wp-content/uploads/2024/12/CTI-Installation-Guide-Rev.-September-2024-Ind.pdf'
@@ -57,4 +57,4 @@ Koefisien bahan dan contoh analisa harga satuan per m² untuk RAB, termasuk kena
 
 ## Untuk mahasiswa
 
-Urutan lapisan dan titik rawannya dibahas di [lima lapis pemasangan](/panduan/lima-lapis-pemasangan-atap-bitumen), detail sambungan di [nok, flashing, dan talang](/panduan/nok-flashing-talang-atap-bitumen), dan perhitungan beban dibandingkan genteng beton di [artikel beban rangka](/panduan/atap-bitumen-vs-genteng-beton-beban-rangka). Semua artikel kami mencantumkan sumber angkanya di bagian bawah.
+Gambar potongan berukuran ada di [detail atap bitumen](/panduan/detail-atap-bitumen). Urutan lapisan dan titik rawannya dibahas di [lima lapis pemasangan](/panduan/lima-lapis-pemasangan-atap-bitumen), detail sambungan di [nok, flashing, dan talang](/panduan/nok-flashing-talang-atap-bitumen), dan perhitungan beban dibandingkan genteng beton di [artikel beban rangka](/panduan/atap-bitumen-vs-genteng-beton-beban-rangka). Semua artikel kami mencantumkan sumber angkanya di bagian bawah.

@@ -86,7 +86,7 @@ Untuk cara anyam, panduan CTI juga menulis "beri jarak 300–457 mm dari luar ga
 
 ## 9. Nok
 
-Nok (penutup bubungan di puncak atap) dibuat dari lembar genteng yang dipotong menjadi tiga, lalu bagian tengah tiap potongan dilipat membentuk siku. Untuk genteng CTI seri CT3, ukuran potongannya 30 × 13 cm. Setiap potongan dipaku di area bayangan dan disusun menumpuk sampai seluruh bubungan tertutup.
+Nok (penutup bubungan di puncak atap) dibuat dari lembar genteng yang dipotong menjadi tiga, lalu bagian tengah tiap potongan dilipat membentuk siku. Untuk genteng CTI seri CT3, panduannya menulis ukuran nok 30 cm melintang bubungan dan 13 cm terlihat, jadi potongan dipasang tiap 130 mm. Setiap potongan dipaku di area bayangan dan disusun menumpuk sampai seluruh bubungan tertutup. Gambar potongan tepi atap dan nok lengkap dengan ukurannya ada di [detail atap bitumen](/panduan/detail-atap-bitumen).
 
 ## Yang perlu dicek pemilik rumah
 

@@ -233,6 +233,11 @@ const isi = [...daftar, ...(faq.length ? [{ slug: 'faq-judul', text: t.faq }] : 
   .prosa :global(p > img) { display: block; width: 100%; height: auto; border-radius: 16px; }
   .prosa :global(p:has(> img) + p:has(> em:only-child)) { margin: 0 0 2rem; font-size: var(--fs-13); color: var(--color-lumut); }
   .prosa :global(p:has(> img) + p > em:only-child) { font-style: normal; }
+  /* Gambar detail teknis (SVG buatan Atapura): versi HP terpisah lewat <picture>, keterangan di <figcaption>. */
+  .prosa :global(figure.detail) { margin: 2rem 0; }
+  .prosa :global(figure.detail img) { display: block; width: 100%; height: auto; border-radius: 16px; border: 1px solid var(--color-garis); background: var(--color-putih); }
+  .prosa :global(figure.detail figcaption) { margin-top: 0.6rem; font-size: var(--fs-13); line-height: 1.5; color: var(--color-lumut); }
+  .prosa :global(figure.detail figcaption a) { color: inherit; }
 
   .ar-faq, .ar-sumber { margin-top: 3.5rem; }
   .ar-faq h2, .ar-sumber h2, .ar-lain h2 { font-size: var(--t-h3); font-weight: var(--bobot-judul); letter-spacing: -0.011em; margin-bottom: 1rem; line-height: 1.27; }
@@ -273,17 +278,17 @@ const isi = [...daftar, ...(faq.length ? [{ slug: 'faq-judul', text: t.faq }] : 
   /* Skala HP (token --hp-* di global.css); harus setelah aturan dasar supaya tidak tertimpa. */
   @media (max-width: 47.99rem) {
     .ar { padding-top: 96px; }
-    .ar-judul { font-size: var(--hp-t1); line-height: 1.15; }
+    .ar-judul { font-size: var(--hp-t1); line-height: 1.23; letter-spacing: -0.024em; }
     .ar-meta { font-size: var(--fs-13); }
     .ar-jawab { padding: 1.25rem; }
     .ar-jawab-isi { font-size: var(--fs-16); }
-    .prosa :global(h2) { font-size: var(--hp-t2); margin: 2.25rem 0 0.75rem; }
+    .prosa :global(h2) { font-size: var(--hp-t2); line-height: 1.27; letter-spacing: -0.011em; margin: 2.25rem 0 0.75rem; }
     .prosa :global(h3) { font-size: var(--hp-t3); }
     .prosa :global(table) { font-size: var(--fs-15); }
     .ar-faq h2, .ar-sumber h2, .ar-lain h2 { font-size: var(--hp-t2); }
     .ar-faq dt { font-size: var(--hp-t4); }
     .ar-faq dd, .ar-sumber li { font-size: var(--fs-15); }
-    .ar-cta-judul { font-size: var(--hp-t2); }
+    .ar-cta-judul { font-size: var(--hp-t2); line-height: 1.27; letter-spacing: -0.011em; }
     .ar-kartu { grid-template-columns: 88px minmax(0, 1fr); grid-template-rows: auto; align-items: center; gap: 0.9rem; padding: 0.6rem; border-radius: 16px; }
     .ar-kartu :global(.ar-kartu-foto) { aspect-ratio: 1; border-radius: 11px; }
     .ar-kartu-teks { padding: 0.15rem 0.4rem 0.15rem 0; gap: 0.3rem; }
