@@ -1067,3 +1067,12 @@ bersumber; AI Overview menjawab keramik, beton, tanah liat (+ UPVC untuk korosi)
   CT5/CT6) → 143 mm terlihat; nok CT3 "30 × 13 cm" = 30 cm melintang bubungan + 13 cm terlihat (juga di artikel cara pasang);
   sekrup papan di bawah underlayer; reng profil topi; kepala paku nok tertutup potongan berikutnya; tampak atas nok berskala;
   jarak reng 405/605 dikaitkan ke tanya jawab CTI; bagian "Jarak reng atap bitumen" sendiri (PAA).
+
+## 112 · 25 November 2026 · Judul versi HP ikut tingkat Notion utuh (Rama: "apakah sudah ikut typography foundation notion?")
+- Diukur di 12 halaman (390 px): isi 16/1,5, label 13 px, judul bagian beranda sudah sesuai. Yang meleset: aturan HP hanya
+  mengecilkan ukuran (`--hp-t1` 26 px) tetapi jarak baris & jarak huruf tetap ikut tingkat desktop (1,1 / -0,025 em).
+- Aturan: di HP tiap judul turun satu tingkat **utuh** — 26 px = heading-2 (1,23 / -0,024 em), 22 px = heading-3
+  (1,27 / -0,011 em), 16–18 px = title (1,4 / -0,006 em), label 14 px = caption (1,43 / 0). Diperbaiki di 16 aturan
+  (halaman.css, garansi, hitung, cara-kerja, area, panduan, produk, artikel, klaim garansi, diagnosa bocor, label garansi).
+- Pembanding situs Notion di HP (diukur 25 Nov): isi 16, judul bagian 26, judul artikel 26/1,23, hero 40–42,
+  teks pendukung 14, judul kartu 16–18. Ukuran Atapura sudah sama, kecuali hero (44) dan teks pendukung/judul kartu (15–22).

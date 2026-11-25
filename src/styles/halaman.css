@@ -59,7 +59,7 @@
   .hl-kepala { margin: 1.5rem 0; }
   .hl-judul { font-size: var(--hp-display); line-height: 1.05; }
   .hl-lead, .hl-teks { font-size: var(--fs-16); }
-  .hl-h2 { font-size: var(--hp-t1); }
+  .hl-h2 { font-size: var(--hp-t1); line-height: 1.23; letter-spacing: -0.024em; }
   .hl-sek { margin: 0 calc(8px - var(--gutter)) 8px; padding: 2rem var(--gutter); border-top: 0; border-radius: 28px; background: var(--color-embun); }
   .hl-daftar b { font-size: var(--hp-t4); }
   .hl-daftar span { font-size: var(--fs-15); }
