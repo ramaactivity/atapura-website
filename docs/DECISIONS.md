@@ -987,3 +987,5 @@ IndexNow; untuk Google tetap sitemap + Search Console.
   syarat material saja dari Ops syarat.ts (ongkir Jabodetabek termasuk, lunas sebelum kirim, garansi material dari pabrik).
   Catatan perawatan: angka harga di artikel ini dan harga-atap-bitumen-per-m2 ditulis tetap (bertanggal) — ikut diperbarui
   bila daftar harga Ops berubah.
+- (25 Nov sore) Tabel daerah jadi 11 baris setelah halaman kawasan Rancamaya & Sentul ditambahkan (103–104), lebih panjang dari
+  peta → di laptop peta `position: sticky` di bawah bilah atas, jadi selalu tampil di samping baris yang sedang dibaca.

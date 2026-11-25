@@ -827,7 +827,11 @@ const faqSchema = {
   .ar-tabel tbody tr.menyala th a { color: var(--color-pinus); }
   .ar-kiri .tautan-lanjut { justify-self: start; }
   .ar-peta { padding: 1.25rem; border-radius: 1.5rem; background: var(--color-embun); }
-  @media (min-width: 60rem) { .ar { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); } }
+  @media (min-width: 60rem) {
+    .ar { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); }
+    /* Tabel lebih panjang dari peta (11 baris): peta ikut menempel di bawah bilah atas supaya selalu di samping baris yang dibaca. */
+    .ar-peta { position: sticky; top: 5.5rem; }
+  }
   /* Kartu Indonesia kecil di peta: disembunyikan di beranda (tetap di /area). */
   .ar-peta :global(.peta-sisip) { display: none; }
   /* Tab Luar Jabodetabek: peta Jabodetabek diganti peta kecil Indonesia (pulau tempat tim pernah bekerja). */
