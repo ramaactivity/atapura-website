@@ -1,6 +1,6 @@
 {
   "versi": "JABODETABEK-20261120",
-  "berlakuSejak": "2026-11-20",
+  "berlakuSejak": "2026-08-26",
   "varian": {
     "GT-JAVABITUMEN": {
       "nama": "Javabitumen",
@@ -260,6 +260,9 @@
       45
     ],
     "tambahanHari": 1,
+    "faktorAlas": 1.05,
+    "faktorLapisKedap": 1.1,
+    "lebarStarterM": 0.125,
     "m2PerHariPlafon": [
       15,
       25
