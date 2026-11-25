@@ -1,0 +1,205 @@
+---
+// Diagnosa bocor interaktif di awal /panduan/atap-bitumen-bocor (Rama 25 Nov: "lebih kreatif dan berani"). Pembaca menunjuk
+// letak basah di penampang rumah (atau memilih chip), lalu slip menampilkan penyebab, perbaikan, tingkat mendesak, dan
+// langkah berikutnya sesuai siapa pemasangnya. Isi gejala selaras dengan tabel "Cocokkan gejala" di artikel itu; ubah keduanya
+// bersamaan. Atapura tidak membuka tambal bocor untuk atap pihak lain (Ops lib/crm/lead.ts, Rama 19 Nov 2026).
+import { bisnis } from '../data/bisnis';
+
+type Gejala = { id: string; label: string; titik: [number, number]; penyebab: string; perbaikan: string; mendesak: 1 | 2 | 3; catatan: string; bagian: string };
+const gejala: Gejala[] = [
+  { id: 'dinding', label: 'Dekat dinding lantai atas', titik: [330, 171], penyebab: 'Flashing di pertemuan atap dan dinding', perbaikan: 'Flashing dipasang ulang atau ditambah.', mendesak: 3, catatan: 'Air masuk setiap kali hujan dan membasahi papan alas. Tangani sebelum hujan berikutnya.', bagian: 'penyebab-atap-bitumen-bocor-yang-khas' },
+  { id: 'lembah', label: 'Di bawah lembah atap', titik: [418, 104], penyebab: 'Jurai dalam: genteng di lembah tidak rapi, atau underlayer di bawahnya rusak', perbaikan: 'Genteng di lembah dibuka, underlayer diperiksa.', mendesak: 3, catatan: 'Lembah menampung air dari dua bidang atap. Tangani sebelum hujan berikutnya.', bagian: 'penyebab-atap-bitumen-bocor-yang-khas' },
+  { id: 'landai', label: 'Atap landai, saat hujan berangin', titik: [178, 194], penyebab: 'Kemiringan di bawah batas pabrik, sambungan underlayer kurang lebar', perbaikan: 'Kemiringan dan underlayer dicek; rangka dinaikkan bila di bawah batas.', mendesak: 3, catatan: 'Akan berulang setiap hujan deras berangin. Tangani sebelum musim hujan.', bagian: 'penyebab-atap-bitumen-bocor-yang-khas' },
+  { id: 'paku', label: 'Noda kecil berderet', titik: [528, 110], penyebab: 'Paku miring, kurang dalam, atau terangkat', perbaikan: 'Paku diperbaiki; lembar yang berlubang diganti.', mendesak: 2, catatan: 'Biasanya merembes sedikit demi sedikit. Jadwalkan dalam waktu dekat.', bagian: 'penyebab-atap-bitumen-bocor-yang-khas' },
+  { id: 'terangkat', label: 'Genteng terangkat setelah angin', titik: [372, 112], penyebab: 'Lem perekat belum menempel, atau paku kurang', perbaikan: 'Genteng direkatkan ulang atau diganti.', mendesak: 3, catatan: 'Lembar yang terangkat makin mudah lepas di angin berikutnya.', bagian: 'penyebab-atap-bitumen-bocor-yang-khas' },
+  { id: 'gelombang', label: 'Genteng tampak bergelombang', titik: [478, 72], penyebab: 'Papan menyerap air dan bergerak, atau underlayer berkerut', perbaikan: 'Bagian itu dibuka; papan dan underlayer diperiksa.', mendesak: 2, catatan: 'Belum tentu bocor, tetapi tanda lapisan bawah pernah basah.', bagian: 'penyebab-atap-bitumen-bocor-yang-khas' },
+  { id: 'embun', label: 'Plafon lembap tanpa hujan', titik: [214, 236], penyebab: 'Embun dari uap di dalam rumah, atau pipa AC dan pipa air yang bocor', perbaikan: 'Pipa diperiksa dulu, lalu ventilasi ruang bawah atap.', mendesak: 2, catatan: 'Cek pipa hari ini. Bila bukan pipa, ventilasinya yang diperbaiki.', bagian: 'penyebab-atap-bitumen-bocor-yang-khas' },
+  { id: 'lubang', label: 'Setelah pasang antena atau AC', titik: [553, 92], penyebab: 'Lubang baru tanpa flashing', perbaikan: 'Lubang diberi flashing di sekelilingnya.', mendesak: 3, catatan: 'Lubang terbuka di atap. Tangani sebelum hujan berikutnya.', bagian: 'penyebab-atap-bitumen-bocor-yang-khas' },
+  { id: 'lumut', label: 'Tepi genteng terangkat di sisi teduh', titik: [86, 205], penyebab: 'Lumut yang menumpuk di bawah dahan', perbaikan: 'Lumut dibersihkan, dahan dipangkas, lembar dicek.', mendesak: 1, catatan: 'Bisa dijadwalkan, sebelum lumut menebal.', bagian: 'penyebab-atap-bitumen-bocor-yang-khas' },
+];
+const tingkat = { 1: 'Bisa dijadwalkan', 2: 'Dalam waktu dekat', 3: 'Sebelum hujan berikutnya' } as const;
+const data = gejala.map(({ titik, ...g }) => ({ ...g, tingkat: tingkat[g.mendesak] }));
+---
+<section class="db" aria-labelledby="db-judul" data-wa={bisnis.whatsapp ?? ''} data-gejala={JSON.stringify(data)}>
+  <div class="db-panel">
+    <h2 id="db-judul" class="db-judul">Di mana Anda melihat basahnya?</h2>
+    <p class="db-sub">Ketuk titiknya di gambar, atau pilih gejala di bawahnya.</p>
+    <svg class="db-rumah" viewBox="0 0 640 330" role="group" aria-label="Penampang rumah dengan titik-titik bocor yang bisa dipilih">
+      <defs>
+        <clipPath id="db-atap-atas"><polygon points="310,126 460,46 610,126" /></clipPath>
+        <clipPath id="db-atap-bawah"><polygon points="40,214 330,166 330,176 44,222" /></clipPath>
+        <pattern id="db-baris" width="640" height="9" patternUnits="userSpaceOnUse"><line x1="0" y1="8.5" x2="640" y2="8.5" /></pattern>
+      </defs>
+      <g class="db-garis">
+        <line x1="0" y1="320" x2="640" y2="320" />
+        <!-- rumah dua lantai -->
+        <rect x="332" y="124" width="256" height="196" class="db-dinding" />
+        <rect x="446" y="250" width="34" height="70" class="db-tipis" />
+        <polygon class="db-atap" points="310,126 460,46 610,126" />
+        <rect class="db-baris" x="300" y="40" width="320" height="90" clip-path="url(#db-atap-atas)" />
+        <polyline points="398,126 441,94 484,126" />
+        <line x1="441" y1="94" x2="441" y2="72" class="db-tipis" />
+        <rect x="380" y="164" width="44" height="54" class="db-tipis" /><rect x="496" y="164" width="44" height="54" class="db-tipis" />
+        <!-- antena -->
+        <line x1="553" y1="96" x2="553" y2="44" /><line x1="538" y1="54" x2="568" y2="54" /><line x1="542" y1="64" x2="564" y2="64" />
+        <!-- genteng terangkat -->
+        <path d="M356 118 l20 -10 l6 6" class="db-tipis" />
+        <!-- gelombang -->
+        <path d="M454 76 q6 -6 12 0 t12 0 t12 0" class="db-tipis" />
+        <!-- paku berderet -->
+        <g class="db-titik-paku"><circle cx="510" cy="112" r="1.8" /><circle cx="522" cy="112" r="1.8" /><circle cx="534" cy="112" r="1.8" /><circle cx="546" cy="112" r="1.8" /></g>
+        <!-- sayap satu lantai, atap landai -->
+        <rect x="58" y="210" width="274" height="110" class="db-dinding" />
+        <rect x="96" y="252" width="40" height="36" class="db-tipis" />
+        <polygon class="db-atap" points="40,214 330,166 330,176 44,222" />
+        <rect class="db-baris" x="30" y="160" width="310" height="70" clip-path="url(#db-atap-bawah)" />
+        <rect x="30" y="214" width="16" height="9" rx="2" class="db-tipis" />
+        <!-- potongan dalam: plafon, pipa AC -->
+        <line x1="58" y1="232" x2="332" y2="232" class="db-putus" />
+        <path d="M236 232 v18 h40" class="db-tipis" />
+        <ellipse cx="214" cy="236" rx="16" ry="4" class="db-noda" />
+        <!-- pohon -->
+        <path d="M0 132 C40 140 80 160 120 182" />
+        <g class="db-daun"><circle cx="20" cy="126" r="22" /><circle cx="56" cy="138" r="18" /><circle cx="92" cy="158" r="14" /></g>
+      </g>
+      {gejala.map((g) => (
+        <g class="db-pin" data-id={g.id} tabindex="-1" aria-hidden="true">
+          <circle class="db-pin-raba" cx={g.titik[0]} cy={g.titik[1]} r="24" />
+          <circle class="db-pin-cincin" cx={g.titik[0]} cy={g.titik[1]} r="13" />
+          <circle class="db-pin-inti" cx={g.titik[0]} cy={g.titik[1]} r="6" />
+        </g>
+      ))}
+    </svg>
+    <div class="db-chip" role="group" aria-label="Pilih gejala">
+      {gejala.map((g) => <button type="button" data-id={g.id} aria-pressed="false">{g.label}</button>)}
+    </div>
+  </div>
+
+  <div class="db-slip" aria-live="polite">
+    <p class="db-kosong" data-kosong>Pilih satu gejala. Penyebab yang paling mungkin, perbaikannya, dan langkah berikutnya muncul di sini.</p>
+    <div class="db-hasil" data-hasil hidden>
+      <dl>
+        <div><dt>Penyebab paling mungkin</dt><dd data-isi="penyebab"></dd></div>
+        <div><dt>Perbaikannya</dt><dd data-isi="perbaikan"></dd></div>
+        <div><dt>Seberapa mendesak</dt><dd><span class="db-meter" data-meter><i></i><i></i><i></i></span><b data-isi="tingkat"></b><span class="db-catatan" data-isi="catatan"></span></dd></div>
+      </dl>
+      <p class="db-tanya">Siapa yang memasang atap Anda?</p>
+      <div class="db-segmen" role="group" aria-label="Pemasang atap">
+        <button type="button" data-pemasang="atapura" aria-pressed="false">Atapura</button>
+        <button type="button" data-pemasang="lain" aria-pressed="false">Pemasang lain</button>
+      </div>
+      <div data-cabang="atapura" hidden>
+        <p>Atap kami bergaransi pemasangan tertulis {bisnis.garansiPemasanganTahun} tahun sejak serah terima. Kirim foto bocornya; bila terlihat ada kebocoran, tim datang paling lambat 3 hari kerja. Laporkan ke kami dulu sebelum memanggil tukang lain.</p>
+        <a class="db-tombol db-utama" data-wa-link="atapura" href="/garansi" target="_blank" rel="noopener" data-wa="diagnosa-garansi">Klaim garansi lewat WhatsApp</a>
+      </div>
+      <div data-cabang="lain" hidden>
+        <p>Hubungi pemasangnya dulu dan cek surat garansinya. Atapura tidak mengerjakan tambal bocor untuk atap pemasang lain. Kalau atapnya memang sudah waktunya diganti, survey di Jabodetabek tanpa biaya.</p>
+        <a class="db-tombol db-garis-tombol" data-wa-link="lain" href="/kontak" target="_blank" rel="noopener" data-wa="diagnosa-ganti">Tanya penggantian atap</a>
+      </div>
+      <a class="db-baca" data-baca href="#penyebab-atap-bitumen-bocor-yang-khas">Baca penjelasan penyebabnya</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  for (const akar of document.querySelectorAll<HTMLElement>('.db')) {
+    const data: { id: string; label: string; penyebab: string; perbaikan: string; mendesak: number; tingkat: string; catatan: string; bagian: string }[] = JSON.parse(akar.dataset.gejala!);
+    const wa = akar.dataset.wa ?? '';
+    const tautanWa = (pesan: string) => `https://wa.me/${wa}?text=${encodeURIComponent(pesan)}`;
+    const hasil = akar.querySelector<HTMLElement>('[data-hasil]')!;
+    const kosong = akar.querySelector<HTMLElement>('[data-kosong]')!;
+    let pilih: (typeof data)[number] | null = null;
+
+    const pilihGejala = (id: string) => {
+      pilih = data.find((g) => g.id === id) ?? null;
+      if (!pilih) return;
+      for (const el of akar.querySelectorAll<HTMLElement>('[data-id]')) {
+        const aktif = el.dataset.id === id;
+        el.classList.toggle('aktif', aktif);
+        if (el.tagName === 'BUTTON') el.setAttribute('aria-pressed', String(aktif));
+      }
+      for (const k of ['penyebab', 'perbaikan', 'tingkat', 'catatan'] as const) akar.querySelector(`[data-isi="${k}"]`)!.textContent = pilih[k];
+      akar.querySelector<HTMLElement>('[data-meter]')!.dataset.n = String(pilih.mendesak);
+      akar.querySelector<HTMLAnchorElement>('[data-baca]')!.href = `#${pilih.bagian}`;
+      kosong.hidden = true;
+      hasil.hidden = false;
+      perbaruiWa();
+    };
+    const perbaruiWa = () => {
+      if (!pilih) return;
+      akar.querySelector<HTMLAnchorElement>('[data-wa-link="atapura"]')!.href = tautanWa(`Halo Atapura, saya mau klaim garansi atap. Gejala: ${pilih.label.toLowerCase()}. Nama pemilik: … Alamat: …`);
+      akar.querySelector<HTMLAnchorElement>('[data-wa-link="lain"]')!.href = tautanWa(`Halo Atapura, atap bitumen saya dipasang pihak lain dan bocor (${pilih.label.toLowerCase()}). Saya mau tanya kemungkinan ganti atap.`);
+    };
+
+    akar.querySelectorAll<HTMLElement>('.db-chip button, .db-pin').forEach((el) => el.addEventListener('click', () => pilihGejala(el.dataset.id!)));
+    akar.querySelectorAll<HTMLButtonElement>('[data-pemasang]').forEach((b) =>
+      b.addEventListener('click', () => {
+        for (const x of akar.querySelectorAll<HTMLButtonElement>('[data-pemasang]')) x.setAttribute('aria-pressed', String(x === b));
+        for (const c of akar.querySelectorAll<HTMLElement>('[data-cabang]')) c.hidden = c.dataset.cabang !== b.dataset.pemasang;
+      }),
+    );
+  }
+</script>
+
+<style>
+  .db { display: grid; gap: 0.75rem; margin-bottom: 2.5rem; }
+  .db-panel { background: var(--color-pinus); color: var(--color-embun); border-radius: 20px; padding: 1.5rem 1.5rem 1.25rem; }
+  .db-judul { font-size: var(--t-h3); font-weight: var(--bobot-judul); letter-spacing: -0.011em; line-height: 1.27; }
+  .db-sub { margin-top: 0.35rem; font-size: var(--fs-14); color: rgb(242 244 241 / 0.72); }
+  .db-rumah { display: block; width: 100%; height: auto; margin: 1rem 0 0.5rem; overflow: visible; }
+  .db-garis { fill: none; stroke: rgb(242 244 241 / 0.5); stroke-width: 1.6; stroke-linejoin: round; stroke-linecap: round; }
+  .db-tipis { stroke: rgb(242 244 241 / 0.34); stroke-width: 1.2; }
+  .db-putus { stroke: rgb(242 244 241 / 0.4); stroke-dasharray: 4 5; }
+  .db-atap { fill: rgb(242 244 241 / 0.07); }
+  .db-dinding { fill: rgb(242 244 241 / 0.035); }
+  .db-baris { fill: url(#db-baris); stroke: none; }
+  .db-baris :global(line), pattern line { stroke: rgb(242 244 241 / 0.16); stroke-width: 1; }
+  .db-noda { fill: rgb(242 182 107 / 0.35); stroke: none; }
+  .db-titik-paku circle { fill: rgb(242 244 241 / 0.6); stroke: none; }
+  .db-daun circle { fill: rgb(242 244 241 / 0.08); stroke: rgb(242 244 241 / 0.3); }
+  .db-pin { cursor: pointer; }
+  .db-pin-raba { fill: transparent; stroke: none; }
+  .db-pin-cincin { fill: rgb(242 244 241 / 0.1); stroke: rgb(242 244 241 / 0.55); stroke-width: 1.4; transition: r 300ms var(--ease-out, ease), fill 300ms; }
+  .db-pin-inti { fill: var(--color-embun); stroke: none; transition: fill 300ms; }
+  .db-pin:hover .db-pin-cincin { fill: rgb(242 244 241 / 0.2); }
+  .db-pin.aktif .db-pin-cincin { r: 17; fill: rgb(198 242 78 / 0.22); stroke: var(--color-tunas); }
+  .db-pin.aktif .db-pin-inti { fill: var(--color-tunas); }
+  .db-chip { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .db-chip button, .db-segmen button {
+    min-height: 44px; padding: 0 1rem; border-radius: 999px; font-size: var(--fs-14); font-weight: 500; cursor: pointer;
+    transition: background-color 200ms, color 200ms, box-shadow 200ms;
+  }
+  .db-chip button { background: rgb(242 244 241 / 0.08); color: var(--color-embun); box-shadow: inset 0 0 0 1px rgb(242 244 241 / 0.18); }
+  .db-chip button:hover { background: rgb(242 244 241 / 0.14); }
+  .db-chip button[aria-pressed='true'] { background: var(--color-embun); color: var(--color-pinus); box-shadow: none; }
+  .db-chip button:focus-visible, .db-segmen button:focus-visible, .db-tombol:focus-visible { outline: 2px solid var(--color-tunas); outline-offset: 2px; }
+
+  .db-slip { background: var(--color-putih); border: 1px solid var(--color-garis); border-radius: 16px; padding: 1.25rem 1.5rem; }
+  .db-kosong { font-size: var(--fs-15); color: var(--color-lumut); }
+  .db-hasil dl { display: grid; gap: 1rem; }
+  .db-hasil dl > div { display: grid; gap: 0.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--color-garis); }
+  .db-hasil dt { font-size: var(--fs-13); font-weight: 500; color: var(--color-lumut); }
+  .db-hasil dd { font-size: var(--fs-16); line-height: 1.5; }
+  .db-meter { display: inline-flex; gap: 3px; margin-right: 0.6rem; vertical-align: middle; }
+  .db-meter i { width: 18px; height: 6px; border-radius: 3px; background: var(--color-garis); }
+  .db-meter[data-n='1'] i:nth-child(-n + 1), .db-meter[data-n='2'] i:nth-child(-n + 2), .db-meter[data-n='3'] i { background: var(--color-pinus); }
+  .db-hasil dd b { font-weight: 600; }
+  .db-catatan { display: block; margin-top: 0.25rem; font-size: var(--fs-15); color: var(--color-lumut); }
+  .db-tanya { margin-top: 1.25rem; font-weight: 500; }
+  .db-segmen { display: inline-flex; gap: 0.25rem; margin-top: 0.6rem; padding: 4px; border-radius: 999px; background: var(--color-embun); }
+  .db-segmen button { background: transparent; color: var(--color-tinta); min-height: 40px; }
+  .db-segmen button[aria-pressed='true'] { background: var(--color-pinus); color: var(--color-embun); }
+  [data-cabang] p { margin-top: 1rem; font-size: var(--fs-15); line-height: 1.5; color: var(--color-tinta); }
+  .db-tombol { display: inline-flex; align-items: center; min-height: 48px; margin-top: 0.85rem; padding: 0 1.4rem; border-radius: 999px; font-weight: 500; text-decoration: none; }
+  .db-utama { background: var(--color-tunas); color: var(--color-pinus); }
+  .db-garis-tombol { color: var(--color-pinus); box-shadow: inset 0 0 0 1.5px var(--color-pinus); }
+  .db-baca { display: inline-block; margin-top: 1.1rem; font-size: var(--fs-14); color: var(--color-pinus); text-decoration: underline; }
+  @media (max-width: 47.99rem) {
+    .db-panel { padding: 1.25rem 1rem 1rem; border-radius: 16px; }
+    .db-slip { padding: 1.1rem 1.1rem; }
+    .db-judul { font-size: var(--hp-t3, 1.25rem); }
+    .db-chip { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .db-chip button { min-height: 48px; padding: 0.4rem 0.8rem; border-radius: 14px; font-size: var(--fs-13); line-height: 1.3; text-align: left; }
+  }
+  @media (prefers-reduced-motion: reduce) { .db-pin-cincin, .db-pin-inti, .db-chip button { transition: none; } }
+</style>

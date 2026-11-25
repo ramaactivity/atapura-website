@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
+import DiagnosaBocor from '../../components/DiagnosaBocor.astro';
 import Artikel from '../../layouts/Artikel.astro';
 import { namaLengkap, produk } from '../../data/produk';
 
@@ -59,5 +60,6 @@ const artikel = {
   faq={d.faq} sumber={d.sumber} lain={lain} schema={[artikel]}
   waPesan={`Halo Atapura, saya baru membaca panduan "${d.judul}" dan mau bertanya.`} dataWa="artikel"
 >
+  {d.alat === 'diagnosa-bocor' && <DiagnosaBocor slot="awal" />}
   <Content />
 </Artikel>

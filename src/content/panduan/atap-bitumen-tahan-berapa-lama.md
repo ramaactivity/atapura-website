@@ -61,7 +61,7 @@ Garansi adalah janji pabrik atas produknya, dengan syarat yang berbeda tiap mere
 | Setelah hujan deras pertama | Cek plafon dan dinding atas dari noda baru |
 | Setiap beberapa tahun | Periksa [nok, flashing, dan talang](/panduan/nok-flashing-talang-atap-bitumen) dari dekat |
 
-Pabrikan CTI menyebut perawatannya cukup dibersihkan atau disapu dari debu dan daun secara berkala. Pemilik rumah sebaiknya tidak naik ke atap sendiri. Kalau terpaksa, lakukan pagi hari: ARMA mencatat lapisan aspal melunak saat cuaca panas.
+Pabrikan CTI menyebut perawatannya cukup dibersihkan atau disapu dari debu dan daun secara berkala. Cara lengkapnya, termasuk membersihkan lumut, ada di [perawatan atap bitumen](/panduan/perawatan-atap-bitumen). Pemilik rumah sebaiknya tidak naik ke atap sendiri. Kalau terpaksa, lakukan pagi hari: ARMA mencatat lapisan aspal melunak saat cuaca panas.
 
 ## Garansi pemasangan Atapura
 

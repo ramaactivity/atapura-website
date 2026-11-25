@@ -227,6 +227,12 @@ const isi = [...daftar, ...(faq.length ? [{ slug: 'faq-judul', text: t.faq }] : 
   @media (min-width: 48rem) { .prosa :global(table) { display: table; } }
   .prosa :global(th), .prosa :global(td) { text-align: left; vertical-align: top; padding: 0.75rem 1rem 0.75rem 0; border-bottom: 1px solid var(--color-garis); }
   .prosa :global(thead th) { font-weight: 500; color: var(--color-lumut); font-size: var(--fs-14); border-bottom: 1px solid var(--color-tinta); }
+  /* Gambar di isi artikel (Rama 25 Nov: "biar ga boring… 1 atau 2 foto, bukan hanya di cover"). Markdown: ![alt](…jpg) lalu
+     baris berikutnya *Ilustrasi, bukan proyek Atapura. …* → jadi keterangan kecil di bawah gambar. */
+  .prosa :global(p:has(> img)) { margin: 2rem 0 0.5rem; }
+  .prosa :global(p > img) { display: block; width: 100%; height: auto; border-radius: 16px; }
+  .prosa :global(p:has(> img) + p:has(> em:only-child)) { margin: 0 0 2rem; font-size: var(--fs-13); color: var(--color-lumut); }
+  .prosa :global(p:has(> img) + p > em:only-child) { font-style: normal; }
 
   .ar-faq, .ar-sumber { margin-top: 3.5rem; }
   .ar-faq h2, .ar-sumber h2, .ar-lain h2 { font-size: var(--t-h3); font-weight: var(--bobot-judul); letter-spacing: -0.011em; margin-bottom: 1rem; line-height: 1.27; }

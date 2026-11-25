@@ -40,6 +40,7 @@ const artikel = <K extends [string, ...string[]]>(base: string, kategori: K) =>
       sampul: image(),
       sampulAlt: z.string(),
       sampulFokus: z.string().optional(), // object-position sampul desktop, mis. '50% 70%'
+      alat: z.enum(['diagnosa-bocor']).optional(), // alat interaktif di awal artikel (DECISIONS 106)
       faq: z.array(z.object({ q: z.string(), a: z.string() })).default([]),
       sumber: z.array(z.object({ nama: z.string(), url: z.string().url().optional() })).default([]),
       /** Slug artikel padanan di bahasa lain (untuk hreflang), bila ada. */

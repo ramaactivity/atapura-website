@@ -963,3 +963,18 @@ IndexNow; untuk Google tetap sitemap + Search Console.
   `atap-bocor-penyebab-dan-cara-mengatasi` dan `atap-bocor-24-jam-pertama` (tayang 11 Des) diganti dengan pembagian yang sama.
   Koreksi pengulas: "2–4 galon" ARMA = galon AS → ditulis 7,5–15 liter (galon di Indonesia = 19 L); klaim "sisi teduh lebih
   lambat merekat" dihapus (tidak ada di sumber); gelombang acak = underlayer, mengikuti sambungan = papan.
+
+## 106 · 25 November 2026 · Artikel bergambar di isi + alat interaktif di artikel (Diagnosa bocor)
+- Rama: "biar ga boring… ditambahkan 1 atau 2 foto / gambar / ilustrasi… bukan hanya di cover", lalu "lebih kreatif dan berani lagi…
+  jangan terlimitasi". Isi artikel kini boleh memuat gambar markdown (`![alt](…jpg)`) dengan baris keterangan miring tepat di
+  bawahnya ("*Ilustrasi, bukan proyek Atapura. …*", wajib untuk gambar AI); gaya di `Artikel.astro` (`.prosa p:has(> img)`).
+- Frontmatter artikel `alat` (enum) menyisipkan alat interaktif di awal isi lewat slot `awal`. Alat pertama
+  `DiagnosaBocor.astro` di `/panduan/atap-bitumen-bocor`: penampang rumah SVG dengan 9 titik basah yang bisa diketuk (+ chip
+  untuk keyboard/HP), slip hasil (penyebab, perbaikan, tingkat mendesak), lalu cabang "siapa pemasangnya": Atapura → klaim
+  garansi WA berisi gejala; pemasang lain → jujur tidak ada tambal bocor, tombol tanya penggantian. Gejala selaras dengan tabel
+  "Cocokkan gejala" di artikel (ubah keduanya bersamaan). Tanpa dependensi baru (Astro + skrip kecil).
+- Artikel `/panduan/perawatan-atap-bitumen` (jadwal, cek tanpa naik, daun, talang, lumut dengan pemutih 1:1 + keamanan,
+  larangan, memilih tukang, kapan ganti, garansi per pemasang), 2 gambar isi, diulas 7 sudut pandang. Jadwal ditulis terang
+  sebagai saran Atapura (pabrik/ARMA hanya "berkala"); "Oktober–November" dihapus (bentrok dengan artikel BMKG).
+- Berikutnya (alat lain, satu per satu): kalkulator berat atap, diagram posisi paku/lapisan untuk cara pasang, pemilih
+  gelombang vs genteng aspal dan keramik vs genteng aspal.

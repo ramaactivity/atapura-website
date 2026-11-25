@@ -3,6 +3,7 @@ judul: 'Atap bitumen bocor: penyebab khas dan cara memperbaiki genteng aspal'
 ringkasan: 'Cocokkan gejala atap bitumen (genteng aspal) bocor dengan penyebabnya: flashing, paku, jurai dalam, kemiringan, lubang baru, embun, dan cara memperbaikinya.'
 jawaban: 'Atap bitumen (genteng aspal) jarang bocor lewat permukaan genteng yang utuh. Air biasanya masuk lewat flashing (pelindung di pertemuan atap dan dinding), paku yang salah posisi atau terangkat, jurai dalam (lembah tempat dua bidang atap bertemu), atap yang lebih landai dari batas pabrik, atau lubang baru bekas antena dan dudukan AC. Banyak kerusakan bisa diperbaiki per lembar tanpa membongkar seluruh atap, asalkan papan alas di bawahnya masih kering dan kuat.'
 kategori: 'Perawatan'
+alat: 'diagnosa-bocor'
 terbit: 2026-11-25
 diperbarui: 2026-11-25
 sampul: '../../../assets/gambar/magnific/artikel-bitumen-bocor-3x2.jpg'
@@ -77,7 +78,7 @@ Titik-titik rawan ini dijelaskan satu per satu di [nok, flashing, dan talang](/p
 
 **Lubang baru.** Pemasangan antena, dudukan AC outdoor (bracket), atau panel surya sering membuat lubang di atap. Tanpa flashing di sekeliling lubang, air masuk di sana. ARMA memasukkan pemasangan flashing di lubang baru sebagai salah satu perbaikan yang bisa dikerjakan cepat.
 
-**Lumut.** Di sisi atap yang teduh dan lama basah, lumut bisa mengangkat tepi bawah genteng sehingga lebih mudah terangkat angin, dan pada kasus berat mengalirkan air ke samping sampai merembes ke papan alas. Pencegahannya ada di [atap villa di Puncak dan Bogor](/panduan/atap-villa-puncak-bogor).
+**Lumut.** Di sisi atap yang teduh dan lama basah, lumut bisa mengangkat tepi bawah genteng sehingga lebih mudah terangkat angin, dan pada kasus berat mengalirkan air ke samping sampai merembes ke papan alas. Cara membersihkannya ada di [perawatan atap bitumen](/panduan/perawatan-atap-bitumen), dan kondisi di daerah berpohon di [atap villa di Puncak dan Bogor](/panduan/atap-villa-puncak-bogor).
 
 ## Cara memperbaiki atap bitumen yang bocor
 
