@@ -183,14 +183,15 @@ export function hitungEstimasi(luas: number, p: Pilihan = PILIHAN_AWAL): Estimas
   const fl = harga.flashing[p.flashing];
 
   const bundel = ceil((luas * (1 + harga.susut)) / m.m2PerBundel);
-  const lembar = ceil((luas * 1.05) / alas.m2);
-  const roll = ceil((luas * (1 + harga.susut)) / lapis.m2);
+  // Faktor alas, faktor lapis kedap, lebar starter, tambahan hari = Angka Bisnis Ops (website DECISIONS 100, Ops 234; dulu dikunci di sini).
+  const lembar = ceil((luas * ops.angka.faktorAlas) / alas.m2);
+  const roll = ceil((luas * ops.angka.faktorLapisKedap) / lapis.m2);
   // Flashing per meter lari di semua tepi keliling atap (10×10 m → 40 m); dari luas saja = keliling persegi 4 × √luas
   // (Rama 19 Nov 2026; sama dengan Resep Pasang Atapura Ops). Survey mengganti perkiraan ini dengan hasil ukur.
   const batang = ceil((4 * Math.sqrt(luas)) / fl.panjang);
   // Starter bitumen (Rama 19 Nov 2026): strip lembar genteng tanpa daun selebar 12,5 cm di keliling atap → m² = keliling × 0,125,
   // dihargai genteng per m² merek terpilih (cocok invoice Olen & penawaran Naryo). Sama dengan Atapura Ops (DECISIONS 096).
-  const starter = Math.round(4 * Math.sqrt(luas) * 0.125 * 100) / 100;
+  const starter = Math.round(4 * Math.sqrt(luas) * ops.angka.lebarStarterM * 100) / 100;
   const paku = bulat(luas * harga.paku.perM2, 100);
   const skrup = lembar * harga.skrup.perLembarAlas;
 
@@ -211,7 +212,7 @@ export function hitungEstimasi(luas: number, p: Pilihan = PILIHAN_AWAL): Estimas
   const jasa = baris[baris.length - 1].rentang;
   const total: Rentang = [bulat(material[0] + jasa[0], 50_000), bulat(material[1] + jasa[1], 50_000)];
   const perM2: Rentang = [bulat(total[0] / luas, 1000), bulat(total[1] / luas, 1000)];
-  const hari: Rentang = [ceil(luas / harga.m2PerHari[1]) + 1, ceil(luas / harga.m2PerHari[0]) + 1];
+  const hari: Rentang = [ceil(luas / harga.m2PerHari[1]) + ops.angka.tambahanHari, ceil(luas / harga.m2PerHari[0]) + ops.angka.tambahanHari];
 
   return {
     kebutuhan: [

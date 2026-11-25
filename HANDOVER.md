@@ -33,6 +33,11 @@
 
 - **Lead otomatis ke Ops** (22 Nov 2026, DECISIONS 068 / Ops 150): kalkulator publik punya isian Nama & No. WA opsional → `api/kirim-lead.mjs` (Vercel Function) → Ops `/api/lead`. Env `LEAD_SECRET` di Vercel proyek `atapura`.
 - **Harga = dari Atapura Ops** (20 Nov 2026, website DECISIONS 055 / Ops 123): `src/data/ops.json` ditarik otomatis tiap jam oleh `sinkron-ops.yml`; ubah harga di Ops, bukan di `harga.ts`. `npm run tarik-ops` untuk tarik manual.
+## Terbaru (25 November 2026) — sinkron harga dari Ops dijaga (DECISIONS 100)
+- Sinkron gagal 24–25 Nov (pricelist Ops teracak Data contoh, dibetulkan di Ops 233/235/236); sekarang berhasil lagi, ops.json
+  JABODETABEK-20261120 berlaku 20 Nov. Workflow melapor hasilnya ke Ops (merah di Hari ini bila gagal); kalkulator membaca
+  faktor alas/lapis/starter/tambahan hari dari Ops; tes kalkulator tidak lagi memakai rupiah tetap.
+
 ## Mesin artikel SEO/GEO + backoffice di Ops (22 November 2026, DECISIONS 065; Ops 137)
 - Keputusan Rama: borongan bulanan (±8 artikel/sesi), tayang otomatis Selasa & Jumat, bisa ditahan dari Ops; peringkat
   kompetitor lewat Serper.dev gratis; situs dibuka untuk Google begitu domain aktif. Fokus pembaca: Indonesia, khususnya Jabodetabek.

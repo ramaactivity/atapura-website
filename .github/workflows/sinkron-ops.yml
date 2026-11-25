@@ -31,7 +31,8 @@ jobs:
         env:
           SINKRON_SECRET: ${{ secrets.SINKRON_SECRET }}
           OPS_URL: ${{ vars.OPS_URL }}
-        run: node scripts/tarik-ops.mjs
+        # stderr juga ditulis ke berkas supaya pesan galatnya bisa dilaporkan ke Ops (langkah terakhir).
+        run: node scripts/tarik-ops.mjs 2> >(tee -a sinkron-galat.txt >&2)
       # Artikel (DECISIONS 067): kirim daftar artikel ke Ops, tarik slug yang ditahan pemilik. Gagal = peringatan, daftar lama dipakai.
       - name: Sinkron artikel dengan Ops
         env:
@@ -44,7 +45,7 @@ jobs:
           if git diff --quiet -- src/data/artikel-ditahan.json; then echo "artikel=false" >> "$GITHUB_OUTPUT"; else echo "artikel=true" >> "$GITHUB_OUTPUT"; fi
       - name: Tes kalkulator dengan angka baru
         if: steps.beda.outputs.ada == 'true'
-        run: node --experimental-strip-types --no-warnings src/data/harga.test.ts
+        run: node --experimental-strip-types --no-warnings src/data/harga.test.ts 2> >(tee -a sinkron-galat.txt >&2)
       - name: Buat ulang PDF product knowledge
         if: steps.beda.outputs.ada == 'true'
         env:
@@ -63,6 +64,13 @@ jobs:
           git commit -m "chore(data): sinkron dari Atapura Ops $(node -p "require('./src/data/ops.json').versi") — harga ${{ steps.beda.outputs.ada }}, artikel ditahan ${{ steps.beda.outputs.artikel }}"
           git push
           echo "berubah=true" >> "$GITHUB_OUTPUT"
+      # Ops DECISIONS 234: lapor berhasil/gagal ke Ops (Hari ini pemilik menampilkan sinkron yang gagal). Jalan walau langkah lain gagal.
+      - name: Lapor hasil ke Ops
+        if: always()
+        env:
+          SINKRON_SECRET: ${{ secrets.SINKRON_SECRET }}
+          OPS_URL: ${{ vars.OPS_URL }}
+        run: node scripts/lapor-ops.mjs "${{ job.status }}"
 
   deploy:
     needs: tarik

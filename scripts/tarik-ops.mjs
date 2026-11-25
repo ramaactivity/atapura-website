@@ -45,6 +45,10 @@ for (const k of KODE_WAJIB) {
   const v = d.varian[k];
   varian[k] = { nama: v.nama, satuan: v.satuan, harga: angka(v.harga, `${k}.harga`), hargaMaks: v.hargaMaks === null ? null : angka(v.hargaMaks, `${k}.hargaMaks`), isiKemasan: v.isiKemasan, cakupan: angka(v.cakupan, `${k}.cakupan`) };
 }
+/** Angka bisnis yang dibaca src/data/harga.ts (website DECISIONS 100). Tambah di sini bila harga.ts membaca angka baru. */
+const ANGKA_WAJIB = ['wastePct', 'pakuPerM2', 'skrupPerLembar', 'm2PerHari', 'tambahanHari', 'm2PerHariPlafon', 'faktorAlas', 'faktorLapisKedap', 'lebarStarterM'];
+const angkaHilang = ANGKA_WAJIB.filter((k) => d.angka?.[k] === undefined);
+if (angkaHilang.length) throw new Error(`angka bisnis wajib tidak ada di Ops: ${angkaHilang.join(', ')}`);
 for (const [k, v] of Object.entries(d.angka)) (Array.isArray(v) ? v : [v]).forEach((x, i) => angka(x, `angka.${k}[${i}]`));
 const isi = { versi: d.versi, berlakuSejak: d.berlakuSejak, varian, angka: d.angka };
 

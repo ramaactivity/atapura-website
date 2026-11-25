@@ -846,3 +846,18 @@ dibagikan langsung memakai gambar baru.
 - Meta description (Google): beranda disamakan dengan hero ("Spesialis jasa pasang atap bitumen (genteng aspal) … Material
   lengkap, jasa pasang tuntas." — dulu menonjolkan "hitung dalam satu menit, cara pasang per lapis, survey gratis"); /panduan
   dan /tentang dipendekkan ≤ 160 karakter. Judul artikel 63–70 karakter dan ringkasan Tegola (181) dibiarkan.
+
+## 100 · 25 November 2026 · Sinkron harga dari Ops: tidak berhenti diam-diam, angka kalkulator dari Ops
+- Audit Ops (Paket 5, Ops DECISIONS 233–234): 24–25 Nov sinkron-ops.yml gagal 3× tanpa ada yang tahu (pricelist berlaku Ops
+  teracak oleh Data contoh — dibetulkan di Ops). Tiga celah di sisi website ditutup:
+  1. **Lapor ke Ops**: langkah terakhir workflow (`if: always()`) menjalankan `scripts/lapor-ops.mjs` → POST
+     `/api/publik/sinkron-status` (kunci SINKRON_SECRET) berisi berhasil/gagal + baris galat terakhir (stderr tarik & tes
+     ditulis ke `sinkron-galat.txt`). Gagal → Hari ini pemilik di Ops merah. Tidak pernah menggagalkan workflow.
+  2. **Angka tidak dikunci**: `harga.ts` membaca `faktorAlas`, `faktorLapisKedap` (dulu waste genteng), `lebarStarterM`,
+     `tambahanHari` dari ops.json (dulu 1,05 / 1+waste / 0,125 / +1). `tarik-ops.mjs` menolak bila angka wajib itu hilang.
+  3. **Tes tanpa rupiah tetap**: `harga.test.ts` menghitung harapan yang bergantung pada data Ops (harga starter, rangka,
+     plafon, Two Tone, jumlah bundel/lembar/roll, hari) dari ops.json; rupiah tetap hanya untuk kisaran terpasang milik
+     pemasaran website. Dibuktikan: harga Ops diubah (rangka, plafon, CTI, Two Tone, paku) → tes baru lulus, tes lama gagal;
+     rumus dirusak → tes baru gagal.
+- Catatan: jadwal "tiap jam" GitHub Actions nyatanya 3–6 jam (cron gratis tidak dijamin tepat); bisa dipicu manual dari tab
+  Actions. Pemicu langsung dari Ops butuh token GitHub khusus (belum ada).
