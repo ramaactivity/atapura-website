@@ -29,7 +29,7 @@ Anda sudah menyempitkan pilihan ke atap ringan, lalu bingung karena tiap toko me
 ## Perbandingan singkat
 
 - **Dudukan.** Atap bitumen: papan rata di atas rangka. Spandek dan UPVC: langsung di gording. Genteng metal berpasir: reng.
-- **Suara hujan.** Atap bitumen: teredam papan. Spandek: lebih berisik tanpa peredam. UPVC: tergantung produk. Genteng metal berpasir: tergantung dudukan dan peredam.
+- **Suara hujan.** Atap bitumen: teredam papan. Spandek: lebih berisik tanpa peredam. UPVC: tergantung produk. Genteng metal berpasir: tergantung dudukan dan peredam. Data uji laboratorium dan cara meredam atap logam ada di [apakah atap bitumen berisik saat hujan](/panduan/atap-bitumen-berisik-saat-hujan).
 - **Kemiringan.** Atap bitumen: mulai 10–15°, tergantung merek. Spandek: beberapa produk sampai 2–3°. UPVC dan genteng metal berpasir: cek batas pabrik.
 - **Bentuk atap rumit.** Atap bitumen: sangat lentur, bisa sampai dinding. Spandek dan UPVC: terbatas. Genteng metal berpasir: sedang.
 - **Tampilan.** Atap bitumen: tekstur sirap, rata. Spandek dan UPVC: bergelombang. Genteng metal berpasir: seperti genteng.

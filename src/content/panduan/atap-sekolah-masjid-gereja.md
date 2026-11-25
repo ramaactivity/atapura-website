@@ -11,7 +11,7 @@ faq:
   - q: 'Kenapa masjid terasa panas setelah atapnya diganti?'
     a: 'Penelitian di sebuah masjid tua di Banda Aceh mencatat bangunan menjadi tidak nyaman setelah atap rumbia diganti atap logam dan bukaan ventilasi atapnya ditutup kaca mati. Ventilasi ikut menentukan, bukan hanya bahan atap.'
   - q: 'Apakah suara hujan di atap mengganggu kegiatan?'
-    a: 'Ya. Penelitian di ruang kelas beratap logam menemukan kemampuan mengenali ucapan turun nyata ketika suara hujan makin keras. Di uji laboratorium standar ISO, atap logam trapesium tunggal menghasilkan 74 dB, dan lapisan peredam menurunkannya ke 52 dB.'
+    a: 'Ya. Uji dengar memakai rekaman hujan di atap logam pada model ruang kelas menemukan ucapan makin banyak salah ditangkap ketika bising hujan makin keras. Di uji laboratorium standar ISO, atap logam trapesium tunggal memancarkan bunyi 74 dB, dan lapisan peredam menurunkannya ke 52 dB.'
   - q: 'Apa yang perlu ada di dokumen pengadaan?'
     a: 'Spesifikasi teknis yang jelas untuk rangka, papan alas, lapis kedap, penutup, paku, nok, dan jurai, serta nilai TKDN produk yang dicek di inventaris Kemenperin. Contohnya ada di panduan spesifikasi teknis kami.'
 sumber:
@@ -43,9 +43,9 @@ Pelajarannya: saat mengganti atap bangunan ibadah atau sekolah, pertahankan atau
 
 ## 2. Suara hujan
 
-Di uji laboratorium dengan hujan buatan sesuai ISO 10140, atap logam trapesium tunggal menghasilkan bising 74 dB, dan susunan dengan lapisan peredam turun ke 52 dB. Penelitian lain di ruang kelas beratap logam menemukan kemampuan mendengar dan mengenali ucapan turun nyata saat hujan makin keras. Untuk ruang kelas, ruang salat, dan ruang ibadah yang banyak berbicara dan mendengar, peredaman perlu dipikirkan sejak awal.
+Di uji laboratorium dengan hujan buatan sesuai ISO 10140, atap logam trapesium tunggal menghasilkan bising 74 dB, dan susunan dengan lapisan peredam turun ke 52 dB. Uji dengar lain yang memakai rekaman hujan di atap logam pada model ruang kelas menemukan ucapan makin banyak salah ditangkap saat bising hujan makin keras. Untuk ruang kelas, ruang salat, dan ruang ibadah yang banyak berbicara dan mendengar, peredaman perlu dipikirkan sejak awal.
 
-Genteng aspal selalu dipasang di atas papan alas, bukan lembaran yang menggantung di rangka. Kami belum menemukan pengukuran dB hujan untuk genteng aspal, jadi kami tidak memberi angkanya.
+Genteng aspal selalu dipasang di atas papan alas, bukan lembaran yang menggantung di rangka. Kami belum menemukan pengukuran dB hujan untuk genteng aspal, jadi kami tidak memberi angkanya. Penyebab dan cara meredamnya dibahas di [apakah atap bitumen berisik saat hujan](/panduan/atap-bitumen-berisik-saat-hujan).
 
 ## 3. Keamanan rangka
 

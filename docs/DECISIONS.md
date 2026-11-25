@@ -939,3 +939,8 @@ IndexNow; untuk Google tetap sitemap + Search Console.
   pengulas independen (AI/SEO/GEO + cek fakta; pembaca/copywriter/marketer/pebisnis), sarannya digabung. Temuan nyata: berat
   gelombang 4,2 kg/m² hanya untuk >10° (5–10°: 0,78 lembar → ±5,1 kg/m²) → artikel berat ikut dikoreksi; Rw 28 dB = insulasi
   suara udara, bukan bising hujan → ditulis terang; klaim "lebih murah" tanpa harga gelombang diganti "komponen lebih sedikit".
+- Artikel `/panduan/atap-bitumen-berisik-saat-hujan` (25 Nov), diulas 7 sudut pandang. Data: Wittmann dkk. 2022 (LIA 74 → 52 dB
+  dengan lapis kedua + glasswool + pita karet), BRE IP 2/06 (intensitas bunyi atap, hujan buatan 40 mm/jam), Qiram & Rubiono 2016
+  (DOI benar `10.29303/d.v6i2.12`; versi `dtm.` 404). Pengulas fakta menemukan: angka lab = bunyi yang dipancarkan atap, bukan
+  bising di kamar (ditulis terang); Chen & Li 2021 = uji dengar rekaman di model kelas (klaim di artikel sekolah ikut dikoreksi).
+  Sampul pertama dengan arahan Rama "angle berani": sudut rendah dari bawah teritis (aturan sampul variatif).
