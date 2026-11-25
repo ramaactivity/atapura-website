@@ -77,7 +77,7 @@ Lem perekat itu aktif oleh panas matahari. Di Puncak, sisi atap yang selalu tedu
 
 Villa di dataran tinggi sering beratap curam: model segitiga (A-frame), jurai bertingkat, atau atap yang turun sampai dekat tanah. Genteng aspal lentur, sehingga bisa mengikuti bidang curam, lengkung, dan pertemuan dengan dinding tanpa potongan kaku. Kemiringan di atas 60° masuk kategori yang butuh paku lebih banyak. Batas bawahnya dijelaskan di [kemiringan atap bitumen minimal](/panduan/kemiringan-atap-bitumen-minimal).
 
-Atap yang ringan juga mengurangi beban di bagian atas bangunan, hal yang berarti untuk villa di tanah miring. Perbandingannya ada di [atap bitumen vs genteng beton](/panduan/atap-bitumen-vs-genteng-beton-beban-rangka).
+Atap yang ringan juga mengurangi beban di bagian atas bangunan, hal yang berarti untuk villa di tanah miring. Perbandingannya ada di [atap bitumen vs genteng beton](/panduan/atap-bitumen-vs-genteng-beton-beban-rangka). Gazebo di taman villa dibahas tersendiri di [atap gazebo](/panduan/atap-gazebo).
 
 ## Villa sewa: jadwal kerja dan akses
 

@@ -44,6 +44,7 @@ Kami tidak menulis peringkat harga bahan lain karena harganya berbeda jauh antar
 - **Atap dengan banyak jurai, lembah, kubah, atau lengkungan.** Genteng aspal bisa dipotong dan mengikuti bentuk apa pun.
 - **Fasad yang ingin terlihat menyatu** dari atap ke dinding. Maxxi mencantumkan pemasangan sampai 90 derajat.
 - **Renovasi dari genteng berat** di atas rangka lama yang masih sehat.
+- **Gazebo dan saung** berbentuk limas atau segi delapan; pembahasannya di [atap gazebo](/panduan/atap-gazebo).
 
 Daftar plus-minusnya secara lengkap ada di [kelebihan dan kekurangan atap bitumen](/panduan/kelebihan-dan-kekurangan-atap-bitumen).
 

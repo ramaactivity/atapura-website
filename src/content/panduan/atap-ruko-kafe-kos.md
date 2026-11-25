@@ -27,7 +27,7 @@ Ruko, kafe, dan kos punya satu kesamaan: setiap hari atap dikerjakan adalah hari
 | Kos | Banyak kamar, keluhan bocor dari penghuni | Kerja per blok kamar; pemeriksaan sumber bocor sebelum memutuskan tambal atau ganti |
 | Villa sewa | Bentuk atap rumit, citra di foto pemesanan | Genteng aspal mengikuti atap curam, lengkung, sampai dinding |
 
-Untuk villa di dataran tinggi yang sering berkabut dan berangin, persiapannya dibahas di [atap villa di Puncak dan Bogor](/panduan/atap-villa-puncak-bogor).
+Untuk villa di dataran tinggi yang sering berkabut dan berangin, persiapannya dibahas di [atap villa di Puncak dan Bogor](/panduan/atap-villa-puncak-bogor), dan gazebo untuk area duduk kafe atau villa di [atap gazebo](/panduan/atap-gazebo).
 
 ## Kerja per bagian
 

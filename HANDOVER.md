@@ -45,6 +45,7 @@
 - ✅ `/hitung` diarahkan ke "kalkulator atap bitumen" + bagian "Cara menghitung kebutuhan atap bitumen" (tabel 100 m² dari angka Ops) (DECISIONS 109).
 - ✅ `/panduan/jenis-atap-rumah-paling-awet` (umur tiap bahan dari tabel pihak ketiga, jujur genteng aspal di bawah tanah liat/beton) (DECISIONS 110).
 - ✅ Beranda berjudul "Jasa Pasang Atap Bitumen Jabodetabek…" + `/panduan/detail-atap-bitumen` dengan gambar potongan SVG sendiri di `public/unduh/detail/` (DECISIONS 111).
+- ✅ `/panduan/atap-gazebo` (biaya dihitung per komponen untuk atap kecil) (DECISIONS 114). ⏳ Tanya Yusuf: biaya minimum/mobilisasi pekerjaan kecil?
 - ⏳ RENCANA (setelah Rama membuat akun sosmed Atapura): reel pendek dari tiap artikel — reel Instagram = sumber kutipan AI Overview nomor 1 (29× dari 28 kata kunci, riset 25 Nov). Naskah: angka bersumber, teks di layar, caption = jawaban singkat; rekaman proyek asli. Artikel dulu (Rama 25 Nov).
 - ⏳ Butuh Rama: Google Business Profile (panduan di chat 25 Nov, nomor 0896-1138-4767), ulasan.
 - ⏳ Berikutnya: koleksi `/proyek` (studi kasus dari Rapor Ops) begitu ada proyek pertama di Bogor; etalase marketplace

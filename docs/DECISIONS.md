@@ -1086,3 +1086,17 @@ bersumber; AI Overview menjawab keramik, beton, tanah liat (+ UPVC untuk korosi)
 - Isi 15 px sedikit di bawah Notion (16): keputusan selera Rama, dicatat supaya tidak "dibetulkan" balik.
 - Kotak isian kalkulator ditulis 16 px tetap (bukan token): di bawah 16 px iPhone memperbesar layar saat kotak diketuk.
 - Laptop tidak berubah. Beranda HP 9.250 → 9.006 px.
+
+## 114 · 25 November 2026 · Artikel "atap gazebo" (Rama: "lanjut artikel berikutnya")
+Riset SerpApi 25 Nov: "atap gazebo yang bagus" diisi daftar ide umum (ruparupa, mitra10, Pinterest, terjemahan Inggris);
+"atap gazebo bitumen" tanpa artikel sama sekali. "jenis atap bitumen" sudah tercakup artikel sirap/shingle → diperluas nanti,
+bukan artikel baru.
+- `/panduan/atap-gazebo`: bahan (berat + umur dari tabel NAHB/InterNACHI/Fannie Mae), bentuk limas/segi delapan (aturan CTI
+  bidang segitiga dari garis as), kolong atap terlihat (CTI: multiplek ≥15 mm atau sekrup dicat), panas & bunyi hujan tanpa
+  plafon (FSEC, Wittmann 74 dB), rumus luas (÷ cos sudut; segi delapan 0,83 × D²), biaya.
+- Biaya ditulis dari hitungan PER KOMPONEN (`hitungEstimasi`, sama dengan penawaran Ops): 3 × 3 m Rp8,6–9,6 jt, bukan harga
+  per m² atap rumah (Rp7–8,3 jt), karena atap kecil tetap butuh bundel/papan/flashing utuh (Rp440–520 rb/m²). Artikel
+  menyebut terang bahwa /hitung (harga per m² atap rumah) menunjukkan angka lebih rendah untuk atap sekecil ini.
+- Diulas 7 sudut pandang + cek fakta (2 agen). Sampul v1 ditolak (tepi mirip sirap kayu, kasau bersilangan), v2 dipakai.
+- CATATAN untuk Rama/Yusuf: apakah ada biaya minimum/mobilisasi untuk pekerjaan kecil seperti gazebo? Belum ada di data, jadi
+  tidak ditulis.
