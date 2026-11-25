@@ -16,6 +16,8 @@ interface Props {
   diperbarui: Date;
   sampul: ImageMetadata;
   sampulAlt: string;
+  /** Titik fokus sampul desktop (object-position), bila subjeknya bukan atap di sepertiga atas. */
+  sampulFokus?: string;
   induk: { nama: string; href: string };
   label: string;
   faq: { q: string; a: string }[];
@@ -42,7 +44,7 @@ const TEKS = {
 } as const;
 
 const {
-  judul, ringkasan, jawaban, penulis, diperbarui, sampul, sampulAlt, induk, label, faq, sumber, waPesan, dataWa, lain, halaman = [], daftar = [],
+  judul, ringkasan, jawaban, penulis, diperbarui, sampul, sampulAlt, sampulFokus, induk, label, faq, sumber, waPesan, dataWa, lain, halaman = [], daftar = [],
   cta = `Masukkan luas dan merek, estimasinya langsung terlihat. Melayani seluruh Jabodetabek hingga luar Pulau Jawa.`,
   lang = 'id',
   alternates = [],
@@ -85,7 +87,7 @@ const isi = [...daftar, ...(faq.length ? [{ slug: 'faq-judul', text: t.faq }] : 
       </header>
       {/* Semua sampul gambar AI (Magnific), jadi diberi keterangan terlihat, seperti galeri produk (DECISIONS 082). */}
       <figure class="wrap ar-sampul-bingkai">
-        <Image src={sampul} alt={sampulAlt} widths={[640, 1024, 1600, 2400]} sizes="(min-width: 64rem) 75vw, calc(100vw - 2rem)" class="ar-sampul" loading="eager" />
+        <Image src={sampul} alt={sampulAlt} widths={[640, 1024, 1600, 2400]} sizes="(min-width: 64rem) 75vw, calc(100vw - 2rem)" class="ar-sampul" loading="eager" style={sampulFokus && `--fokus: ${sampulFokus}`} />
         <figcaption class="ar-sampul-ket">{t.ilustrasi}</figcaption>
       </figure>
       </div>
@@ -176,7 +178,7 @@ const isi = [...daftar, ...(faq.length ? [{ slug: 'faq-judul', text: t.faq }] : 
       -webkit-mask-image: linear-gradient(90deg, transparent, #000 38%); mask-image: linear-gradient(90deg, transparent, #000 38%);
     }
     /* Subjek sampul = atap, biasanya di sepertiga atas foto: potong dari bawah, bukan dari tengah (Rama: "gentengnya ga keliatan"). */
-    .ar-sampul { height: 100%; max-height: none; border-radius: 0; object-position: 50% 12%; }
+    .ar-sampul { height: 100%; max-height: none; border-radius: 0; object-position: var(--fokus, 50% 12%); }
     /* Atas: bilah navigasi tetap terbaca di foto apa pun. Kiri: judul gelap di atas warna halaman. */
     .ar-atas::before {
       content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;

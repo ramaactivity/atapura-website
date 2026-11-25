@@ -921,3 +921,16 @@ IndexNow; untuk Google tetap sitemap + Search Console.
   jadi tidak dibuat halaman terpisah (isinya kembar → kanibal). Ditambahkan ke `/area/sentul`: kalimat pembuka + FAQ + sumber.
 - **Summarecon Bogor** (Cibanon, Sukaraja; ±500 ha; penjualan mulai 29 Sep 2020): belum dibuat halaman — rumah tertua ±5 tahun,
   atap bawaan pengembang jarang diganti secepat itu, dan belum ada isi lokal bersumber yang cukup. Tinjau lagi bila ada lead/proyek di sana.
+
+## 105 · 25 November 2026 · Tandingan pesaing: 4 artikel dimajukan + artikel berat per m², titik fokus sampul
+- Riset 28 kata kunci (`docs/riset/serp-pesaing-2026-11-25.md`). AI Overview paling sering mengutip reel Instagram (29×),
+  lalu Onduline, YouTube, Atapomah (178+ artikel), Dokter Atap. Ongkos jasa pasang, underlayer, merek, dan cek musim hujan
+  dimajukan dari Desember ke 25 Nov (tautan masuk ditambah dari artikel lama).
+- Artikel baru `/panduan/berat-atap-bitumen-per-m2`: halaman 1 Google untuk kata kunci ini diisi situs spam luar negeri.
+  Berat per seri dari data pabrik (Maxxi dihitung dari 27 kg per bundel; Tegola dari TDS); CTI/Javabitumen/Victory tidak
+  mencantumkan berat → ditulis terang, tanpa tebakan. Atap gelombang disebut umum (aturan DECISIONS 087: merek lain tidak
+  disebut; sumber dicatat tanpa tautan ke situs merek itu).
+- `sampulFokus` (opsional, koleksi artikel): object-position sampul desktop untuk sampul yang subjeknya bukan atap di
+  sepertiga atas (default tetap 50% 12%).
+- Berikutnya, satu per satu: atap bitumen gelombang vs genteng aspal → berisik saat hujan (butuh angka dB bersumber) →
+  vs genteng keramik/tanah liat → naskah reel dari artikel.

@@ -59,4 +59,4 @@ Sebelum memutuskan, Anda layak mendengar kekurangannya dari orang yang menjual a
 
 Atap bitumen paling masuk akal untuk rumah tinggal, villa, dan kafe yang ingin tenang saat hujan, punya bentuk atap tidak sederhana, atau sedang mengganti genteng berat di rangka lama. Kalau anggaran sangat ketat dan atapnya landai sederhana, [bahan lain](/panduan/atap-bitumen-vs-upvc-spandek-genteng-metal) bisa lebih cocok.
 
-Kalau sudah condong ke bitumen, bandingkan berat, garansi, dan harga tiap merek di [perbandingan merek atap bitumen](/panduan/perbandingan-merek-atap-bitumen). Penasaran biayanya untuk rumah Anda? Coba [Hitung AKAL](/hitung), lalu kami cek langsung saat survey gratis di Jabodetabek.
+Kalau sudah condong ke bitumen, lihat [berat atap bitumen per m²](/panduan/berat-atap-bitumen-per-m2) per seri, lalu bandingkan garansi dan harga tiap merek di [perbandingan merek atap bitumen](/panduan/perbandingan-merek-atap-bitumen). Penasaran biayanya untuk rumah Anda? Coba [Hitung AKAL](/hitung), lalu kami cek langsung saat survey gratis di Jabodetabek.

@@ -39,7 +39,7 @@ Pertanyaan "berapa beban atap per m²" biasanya datang dari dua orang: mahasiswa
 | Genteng aspal Promaxxi (laminasi) | ±11,6 kg/m², genteng saja | Dihitung dari data pabrik: 27 kg per 2,32 m² |
 | Atap genteng + reng + usuk | 50 kg/m² bidang atap | PPURG 1987 |
 
-Untuk atap bitumen, berat papan alas (multiplek atau GRC) dan lapis kedap air perlu ditambahkan dalam perhitungan. Data beratnya ikuti spesifikasi produk papan yang dipakai.
+Untuk atap bitumen, berat papan alas (multiplek atau GRC) dan lapis kedap air perlu ditambahkan dalam perhitungan. Data beratnya ikuti spesifikasi produk papan yang dipakai. Berat genteng per seri dan merek ada di [berat atap bitumen per m²](/panduan/berat-atap-bitumen-per-m2).
 
 ## Apa kata penelitian soal rangka baja ringan
 

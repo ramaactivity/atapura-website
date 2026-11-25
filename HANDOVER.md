@@ -40,6 +40,7 @@
 - ✅ Artikel `/panduan/atap-villa-puncak-bogor` tayang 25 Nov. ✅ Daftar isi samping desktop di semua artikel/area.
 - ✅ `/area/sentul` ("Pasang atap bitumen Sentul Bogor", aturan estate Sentul City) + sampul sinematik desktop di artikel/area + kartu "Area lain" berfoto + telepon resmi (DECISIONS 103).
 - ✅ `/area/rancamaya` (Ciawi, Tajur, Cicurug; Cicurug dilayani seperti Bogor, juga di Ops `wilayah.ts`) (DECISIONS 104).
+- ✅ Riset pesaing 28 kata kunci + 4 artikel dimajukan + `/panduan/berat-atap-bitumen-per-m2` (DECISIONS 105). Berikutnya: gelombang vs genteng aspal, berisik saat hujan, vs keramik, naskah reel.
 - ⏳ Butuh Rama: Google Business Profile (panduan di chat 25 Nov, nomor 0896-1138-4767), ulasan.
 - ⏳ Berikutnya: koleksi `/proyek` (studi kasus dari Rapor Ops) begitu ada proyek pertama di Bogor; etalase marketplace
   berlokasi Bogor; direktori lokal dengan NAP identik.
