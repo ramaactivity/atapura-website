@@ -891,7 +891,15 @@ const faqSchema = {
   @media (min-width: 60rem) { .tanya-kiri { position: sticky; top: 5.5rem; } .tanya .judul-2 { position: static; } }
   @media (min-width: 48rem) { .tanya .judul-2 .miring { display: block; } }
   /* HP: foto suasana disembunyikan supaya daftar pertanyaan langsung terlihat. */
-  @media (max-width: 47.99rem) { .tanya-foto { display: none; } }
+  /* HP: daftar pertanyaan langsung di bawah judul, tautan panduan pindah ke bawah daftar (urutan baca: tanya dulu, panduan lengkap sesudahnya). */
+  @media (max-width: 47.99rem) {
+    .tanya-foto { display: none; }
+    .tanya { gap: 0; }
+    .tanya-kiri { display: contents; }
+    .tanya-kiri .label-bagian { margin-bottom: 0.5rem; }
+    .tanya-daftar { margin-top: 1.5rem; }
+    .tanya-panduan { order: 1; margin-top: 0.75rem; }
+  }
   .tanya-item summary {
     display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
     padding-block: 1.4rem; cursor: pointer; list-style: none;

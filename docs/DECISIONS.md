@@ -1005,7 +1005,8 @@ lengkap" (24); tak ada teks < 13 px.
 - Kartu ajakan HP: judul `--hp-t1` (26 px, 4 → 3 baris), foto 14 → 11rem.
 - Sorot Rancamaya tanpa nama dobel ("±430 mdpl, berkontur & banyak pohon tua", sesuai isi halamannya).
 - Judul kartu artikel HP 20 → 17 px (`--hp-t4`, sama dengan kartu Layanan; 4 → 3 baris).
-- Beranda HP 9.688 → 9.286 px.
+- Tanya jawab HP: daftar pertanyaan langsung di bawah judul; "Baca panduan lengkap" pindah ke bawah daftar (dulu di antara judul dan daftar, ±100 px kosong). Tablet/laptop tidak berubah.
+- Beranda HP 9.688 → 9.250 px. Layanan (±1.030 px) dibiarkan: kartu geser + blok perusahaan sudah ringkas, tidak ada ruang kosong.
 
 ## 108 · 25 November 2026 · Kit listing marketplace sebagai data untuk Atapura Ops
 - `/unduh/marketplace/kit.json` (endpoint statis): semua listing dari `listing.ts` + gambar yang sudah diekspor + `kode` varian
