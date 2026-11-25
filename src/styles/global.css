@@ -130,6 +130,11 @@ a { text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
   --hp-angka: 2.25rem;    /* 36 */
   --hp-tombol: 44px;
 }
+/* HP versi ringkas (Rama 25 Nov 2026, DECISIONS 113): judul bagian 24, judul kartu 16, isi 15, pendukung 14.
+   Kotak isian tetap 16 px (hitung-akal.css) — di bawah itu iPhone memperbesar layar saat kotak diketuk. */
+@media (max-width: 47.99rem) {
+  :root { --hp-t1: 1.5rem; --hp-t2: 1.25rem; --hp-t3: 1rem; --hp-t4: 1rem; --fs-15: 0.875rem; --fs-16: 0.9375rem; }
+}
 @media (max-width: 47.99rem) {
   .pill { min-height: var(--hp-tombol); padding: 0 1.15rem; font-size: var(--fs-15); }
   /* Ruang untuk bilah tab bawah (Header.astro) + bilah atas yang menempel. */

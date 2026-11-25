@@ -334,7 +334,9 @@ const schema = [
     .hk { background: #dde2dc; padding: 96px 0 4rem; }
     .kartu-buka { margin: 0 calc(8px - var(--gutter)) 8px; padding: 1.5rem var(--gutter) 0.25rem; border-radius: 28px; background: var(--color-embun); }
     .hk-kepala { margin: 1.5rem 0 1.5rem; }
-    .hk-judul { font-size: var(--hp-display); line-height: 1.05; }
+    .hk-judul { font-size: var(--hp-display); line-height: 1.04; max-width: none; }
+    /* Judul dua kalimat: kalimat kedua jadi anak judul tingkat heading-2 supaya tidak 5 baris raksasa. */
+    .hk-judul .redup { display: block; margin-top: 0.5rem; font-size: var(--hp-t1); line-height: 1.23; letter-spacing: -0.024em; }
     .hk-lead { font-size: var(--fs-16); }
     .hk-alat { margin: 0 8px; border-radius: 28px; padding-block: 1.75rem 2rem; }
     .hk-h2 { font-size: var(--hp-t1); line-height: 1.23; letter-spacing: -0.024em; }

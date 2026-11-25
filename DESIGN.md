@@ -263,6 +263,7 @@ Token di `global.css` (`:root`): `--bobot-judul` 600, `--t-d1 … --t-title`. Ti
 | body | 16 px semua lebar | 400 | 1.5 | 0 | teks isi, jawaban FAQ, isi artikel |
 | body-sm / caption | 15 / 14 px | 400 | 1.33–1.5 / 1.43 | 0 | isi ringkas kartu / keterangan |
 | eyebrow `.label-bagian` | 13 px (Notion 12; lantai Atapura 13) | 600 | 1.33 | 0.01em kapital | label di atas judul bagian, jarak ke judul 8 px |
+- **Skala HP ringkas** (≤ 47.99rem, DECISIONS 113, pilihan Rama 25 Nov): hero beranda 40 · judul halaman 36 (`--hp-display`) · judul bagian 24 (`--hp-t1`, baris 1.23 / -0.024em) · sub-judul 20 (`--hp-t2`, 1.27 / -0.011em) · judul kartu 16 (`--hp-t3/t4`, 1.4 / -0.006em) · isi 15 (`--fs-16` diturunkan) · pendukung 14 (`--fs-15` diturunkan) · label 13. Aturan HP selalu menulis ukuran + baris + jarak huruf bersama (DECISIONS 112). **Kotak isian tetap 16 px** (`font-size: 1rem`), di bawahnya iPhone memperbesar layar saat diketuk.
 - **Teks kecil = token** `--fs-13…18`; jangan menulis rem lepas di bawah 1.15rem. Lantai 13 px (kecuali label bilah tab bawah HP dan label peta SVG).
 - **Spasi**: kelipatan 8 px ala Notion (4 · 8 · 12 · 16 · 24 · 32); eyebrow → judul 8 px; antarblok jawaban 12 px.
 - **Visual dalam jawaban** (DECISIONS 091): permukaan level 0 = putih + garis 1 px `--color-garis` + sudut 12 px; tabel harga bergaris tipis; batang termin sebanding persen; dua kartu garansi (pabrik putih vs Atapura Pinus). Teks lengkapnya wajib tetap di FAQPage schema.

@@ -1076,3 +1076,13 @@ bersumber; AI Overview menjawab keramik, beton, tanah liat (+ UPVC untuk korosi)
   (halaman.css, garansi, hitung, cara-kerja, area, panduan, produk, artikel, klaim garansi, diagnosa bocor, label garansi).
 - Pembanding situs Notion di HP (diukur 25 Nov): isi 16, judul bagian 26, judul artikel 26/1,23, hero 40–42,
   teks pendukung 14, judul kartu 16–18. Ukuran Atapura sudah sama, kecuali hero (44) dan teks pendukung/judul kartu (15–22).
+
+## 113 · 25 November 2026 · Skala huruf HP versi ringkas (Rama: "teks dan ukuran fontnya masih terlalu besar di smartphone")
+- Ukuran Atapura di HP sebelumnya sudah sama dengan Notion (isi 16, judul bagian 26). Rama tetap merasa terlalu besar, lalu
+  memilih "versi ringkas" dari perbandingan berdampingan (sekarang vs ringkas, 4 bagian beranda).
+- Di HP saja (`@media (max-width: 47.99rem)` di global.css): `--hp-t1` 26 → 24, `--hp-t2` 22 → 20, `--hp-t3`/`--hp-t4`
+  18/17 → 16, `--fs-16` 16 → 15 (isi), `--fs-15` 15 → 14 (teks pendukung). Hero beranda 44 → 40 (seperti hero Notion di HP,
+  2 baris). Judul /hitung: kalimat kedua jadi anak judul 24 px (dulu 5 baris raksasa).
+- Isi 15 px sedikit di bawah Notion (16): keputusan selera Rama, dicatat supaya tidak "dibetulkan" balik.
+- Kotak isian kalkulator ditulis 16 px tetap (bukan token): di bawah 16 px iPhone memperbesar layar saat kotak diketuk.
+- Laptop tidak berubah. Beranda HP 9.250 → 9.006 px.

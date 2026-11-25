@@ -139,7 +139,7 @@
   .stepper-btn::after { content: ''; position: absolute; inset: -3px; }
   .stepper-btn svg { width: 14px; height: 14px; }
   .stepper-isi { padding-inline: 0.45rem; }
-  .stepper-input { width: 3.3ch; font-size: var(--fs-16); }
+  .stepper-input { width: 3.3ch; font-size: 1rem; /* 16 px: di bawahnya iPhone memperbesar layar saat diketuk */ }
   .stepper-satuan { font-size: var(--fs-13); }
   .slider { height: 32px; }
   .slider-jempol { width: 24px; height: 24px; margin: -12px 0 0 -12px; }
@@ -148,7 +148,7 @@
   /* Merek: kisi 3 kolom rata seperti kontrol segmen iOS. */
   .segmen[aria-label="Merek"], .segmen[aria-label="Merek plafon"] { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .segmen[aria-label="Merek"] .segmen-btn, .segmen[aria-label="Merek plafon"] .segmen-btn { padding: 0 0.3rem; }
-  .ha-teks { min-height: 44px; padding: 0 0.9rem; border-radius: 10px; font-size: var(--fs-16); }
+  .ha-teks { min-height: 44px; padding: 0 0.9rem; border-radius: 10px; font-size: 1rem; }
   .ha-kontak { gap: 0.5rem; }
   .ha-slip { padding: 1.25rem; border-radius: 16px; gap: 0.25rem; }
   .ha-label-kecil { font-size: var(--fs-13); }
