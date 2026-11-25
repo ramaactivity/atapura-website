@@ -105,7 +105,7 @@ const kolom = en ? kolomEn : kolomId;
           <p class="kaki-judul">{k.judul}</p>
           <ul>
             {k.tautan.map((t) => (
-              <li><a href={t.href} {...(t.luar ? { target: '_blank', rel: 'noopener', 'data-wa': 'footer' } : {})}>{t.label}</a></li>
+              <li><a href={t.href} {...(t.luar ? { target: '_blank', rel: 'noopener', 'data-wa': 'footer' } : {})}>{t.label.startsWith('Telepon ') ? <>Telepon <span class="kaki-nomor">{t.label.slice(8)}</span></> : t.label}</a></li>
             ))}
           </ul>
         </div>
@@ -187,4 +187,5 @@ const kolom = en ? kolomEn : kolomId;
     display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; justify-content: space-between; font-size: var(--fs-14); line-height: 1.43; color: rgb(242 244 241 / 0.5);
   }
   @media (max-width: 47.99rem) { .kaki-besar { font-size: var(--hp-t2); } }
+  .kaki-nomor { white-space: nowrap; } /* nomor telepon tidak dipatah di tanda hubung (HP) */
 </style>
