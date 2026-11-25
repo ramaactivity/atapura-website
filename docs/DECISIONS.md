@@ -1100,3 +1100,15 @@ bukan artikel baru.
 - Diulas 7 sudut pandang + cek fakta (2 agen). Sampul v1 ditolak (tepi mirip sirap kayu, kasau bersilangan), v2 dipakai.
 - CATATAN untuk Rama/Yusuf: apakah ada biaya minimum/mobilisasi untuk pekerjaan kecil seperti gazebo? Belum ada di data, jadi
   tidak ditulis.
+
+## 115 · 25 November 2026 · Artikel lama "sirap/shingle" diperluas jadi "Jenis atap bitumen" (Rama: "lanjut ke artikel selanjutnya")
+- "jenis atap bitumen" (riset SerpApi 25 Nov): halaman 1 diisi daftar "7 jenis"/"4 jenis" pesaing & pabrik; AI Overview
+  membagi shingle, gelombang, tile, membran. Artikel lama `/panduan/atap-bitumen-genteng-aspal-sirap-shingle` (tayang 2 Nov)
+  sudah membahas sebutan & 3-tab/laminasi → DIPERLUAS di URL yang sama (tidak bikin artikel kembar): tiga kelompok (genteng
+  aspal, gelombang + varian kecil, membran torching/berbutir), definisi "atap shingle adalah", tabel 6 potongan per seri dari
+  `produk.ts`, kekurangan/panas/biaya (PAA), pilihan per sudut (dak <5° membran; 5–10° gelombang/metal; 10–15° merek tertentu).
+- Gambar katalog 6 potongan dari foto tekstur BROSUR ASLI (`assets/gambar/seri`), disusun PIL dengan Inter; versi laptop 3 kolom
+  dan HP 2 kolom lewat `<picture>` di `public/gambar/artikel/`. Sampul = susunan pita miring 5 tekstur brosur, disimpan di
+  `assets/gambar/artikel/` (bukan magnific, jadi alt tidak berawalan "Ilustrasi"). 0 kredit Magnific.
+- Diulas 7 sudut pandang + cek fakta (2 agen). Dibetulkan: saran sudut di bawah 5° (gelombang mulai 5°, dak = membran),
+  "10–15° tergantung merek" (Tegola Master 19°), Maxxiroof 60 mph, sumber Maxxi diarahkan ke halaman seri, Mosaik = segi enam.

@@ -55,7 +55,7 @@ Genteng aspal (shingle) adalah produk yang berbeda: lembaran tipis berlapis buti
 | Garansi dari pabrik | Kebocoran 15 tahun, dengan syarat | Produk 25–30 tahun |
 | Tampilan | Bergelombang, mirip seng | Rata bertekstur, mirip sirap |
 
-Berat lembaran gelombang per m² bergantung pada tumpang tindihnya: di atap 5–10° dipakai 0,78 lembar per m² (±5,1 kg), di atas 10° cukup 0,65 lembar (±4,2 kg). Angka berat genteng aspal per seri ada di [berat atap bitumen per m²](/panduan/berat-atap-bitumen-per-m2), dan sebutan-sebutan yang membingungkan dijelaskan di [apa bedanya atap bitumen, genteng aspal, sirap, dan shingle](/panduan/atap-bitumen-genteng-aspal-sirap-shingle).
+Berat lembaran gelombang per m² bergantung pada tumpang tindihnya: di atap 5–10° dipakai 0,78 lembar per m² (±5,1 kg), di atas 10° cukup 0,65 lembar (±4,2 kg). Angka berat genteng aspal per seri ada di [berat atap bitumen per m²](/panduan/berat-atap-bitumen-per-m2), dan sebutan-sebutan yang membingungkan dijelaskan di [jenis atap bitumen dan sebutan-sebutannya](/panduan/atap-bitumen-genteng-aspal-sirap-shingle).
 
 ## Pertanyaan pertama: atap untuk bangunan apa?
 
