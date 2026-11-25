@@ -52,6 +52,6 @@ Panas dari genteng ke ruangan melewati beberapa lapis:
 
 1. **Pilih warna dengan sadar.** Hitam dan abu gelap terlihat modern tetapi menyerap panas paling banyak. Lihat [panduan warna atap](/panduan/warna-atap-bitumen-rumah-minimalis).
 2. **Beri jalan keluar untuk udara panas.** ARMA menganjurkan luas bukaan ventilasi bersih minimal 1/300 dari luas ruang di bawah atap, dan 1/150 lebih disarankan. Ventilasi juga membuang uap air, sehingga papan alas tetap kering.
-3. **Diskusikan plafon dan insulasinya.** Ruang di bawah atap yang tertutup plafon menjadi pembatas sebelum panas masuk ke kamar. Kebutuhannya kami lihat per rumah saat survey.
+3. **Diskusikan plafon dan insulasinya.** Ruang di bawah atap yang tertutup plafon menjadi pembatas sebelum panas masuk ke kamar. Kebutuhannya kami lihat per rumah saat survey. Hasil penelitian soal ventilasi, plafon berlapis foil, dan warna atap di rumah tropis ada di [atap rumah yang bagus dan tidak panas](/panduan/atap-rumah-yang-bagus-dan-tidak-panas).
 
 Panas yang terjebak juga berpengaruh ke umur genteng. Penjelasannya ada di [atap bitumen tahan berapa lama](/panduan/atap-bitumen-tahan-berapa-lama). Estimasi biaya atapnya bisa Anda lihat dulu di [Hitung AKAL](/hitung).

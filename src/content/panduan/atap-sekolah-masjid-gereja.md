@@ -53,4 +53,4 @@ Studi kasus di sebuah SD di Gunungkidul mencatat rangka baja ringan dengan penut
 
 ## Untuk dokumen pengadaan
 
-Contoh uraian spesifikasi teknis, standar uji, dan cara mengecek TKDN di inventaris Kemenperin ada di [spesifikasi teknis atap bitumen](/panduan/spesifikasi-teknis-atap-bitumen-rks). Untuk survey bangunan di Jabodetabek, kami datang tanpa biaya dan menuliskan kondisi rangka sebelum memberi penawaran.
+Contoh uraian spesifikasi teknis, standar uji, dan cara mengecek TKDN di inventaris Kemenperin ada di [spesifikasi teknis atap bitumen](/panduan/spesifikasi-teknis-atap-bitumen-rks). Untuk bangunan usaha yang tetap buka selama pekerjaan, lihat [atap ruko, kafe, dan kos](/panduan/atap-ruko-kafe-kos). Untuk survey bangunan di Jabodetabek, kami datang tanpa biaya dan menuliskan kondisi rangka sebelum memberi penawaran.

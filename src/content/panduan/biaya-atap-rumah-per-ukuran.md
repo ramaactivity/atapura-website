@@ -51,7 +51,7 @@ Dihitung dari harga terpasang per m² di Jabodetabek (CTI Rp400–450 ribu, Maxx
 2. **Kalikan 1,3** untuk perkiraan kasar. Atap yang lebih curam atau tritisan yang lebar membuat angkanya lebih besar.
 3. **Kalikan dengan harga per m²** sesuai merek.
 
-Untuk hitungan yang lebih teliti, cara mengukur kemiringan dan pengaruhnya ke luas bidang atap ada di [kemiringan atap bitumen](/panduan/kemiringan-atap-bitumen-minimal). Kalau Anda membandingkan dengan genteng beton, ingat bahwa beban rangkanya sangat berbeda: [hitungan bebannya ada di sini](/panduan/atap-bitumen-vs-genteng-beton-beban-rangka).
+Untuk hitungan yang lebih teliti, cara mengukur kemiringan dan pengaruhnya ke luas bidang atap ada di [kemiringan atap bitumen](/panduan/kemiringan-atap-bitumen-minimal). Kalau Anda membandingkan dengan genteng beton, ingat bahwa beban rangkanya sangat berbeda: [hitungan bebannya ada di sini](/panduan/atap-bitumen-vs-genteng-beton-beban-rangka). Kalau RAB Anda memakai format analisa harga satuan, koefisien bahan dan upahnya per m² ada di [analisa harga satuan atap bitumen](/panduan/analisa-harga-satuan-atap-bitumen).
 
 ## Bayarnya bagaimana?
 

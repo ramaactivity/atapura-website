@@ -51,7 +51,7 @@ Perkiraan biaya per ukuran rumah ada di [biaya atap rumah per ukuran](/panduan/b
 
 Bisa, dengan dua syarat. Pertama, atap dibongkar per bagian, hanya seluas yang bisa ditutup kembali hari itu, sehingga rumah tetap terlindung setiap malam. Kedua, pekerjaan dijadwalkan di luar puncak hujan, karena papan alas harus kering saat dipasang.
 
-Yang perlu Anda siapkan: kosongkan atau tutup barang di kamar yang atapnya sedang dikerjakan, karena debu dan sisa material bisa jatuh dari celah plafon.
+Yang perlu Anda siapkan: kosongkan atau tutup barang di kamar yang atapnya sedang dikerjakan, karena debu dan sisa material bisa jatuh dari celah plafon. Kalau atap lama Anda asbes, pembongkarannya perlu lebih hati-hati; yang perlu ditanyakan sebelum dibongkar ada di [ganti atap asbes](/panduan/ganti-atap-asbes).
 
 ## Sebelum mulai
 

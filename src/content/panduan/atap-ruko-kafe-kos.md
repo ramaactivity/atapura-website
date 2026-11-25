@@ -43,4 +43,4 @@ Atap ruko sering bertemu dinding ruko sebelah atau dinding lantai atas. Di setia
 
 ## Biaya dan cara bayar
 
-Harga terpasang di Jabodetabek: CTI Rp400–450 ribu per m², Maxxi dan Javabitumen Rp380–430 ribu per m², spek standar. Material dibayar sebelum dikirim, jasa pasang bertahap 40/30/30. Survey gratis di Jabodetabek, termasuk pemeriksaan sumber bocor.
+Harga terpasang di Jabodetabek: CTI Rp400–450 ribu per m², Maxxi dan Javabitumen Rp380–430 ribu per m², spek standar. Material dibayar sebelum dikirim, jasa pasang bertahap 40/30/30. Survey gratis di Jabodetabek, termasuk pemeriksaan sumber bocor. Untuk sekolah dan rumah ibadah yang butuh dokumen pengadaan, lihat [atap sekolah, masjid, dan gereja](/panduan/atap-sekolah-masjid-gereja).
