@@ -989,3 +989,10 @@ IndexNow; untuk Google tetap sitemap + Search Console.
   bila daftar harga Ops berubah.
 - (25 Nov sore) Tabel daerah jadi 11 baris setelah halaman kawasan Rancamaya & Sentul ditambahkan (103–104), lebih panjang dari
   peta → di laptop peta `position: sticky` di bawah bilah atas, jadi selalu tampil di samping baris yang sedang dibaca.
+- Artikel `/panduan/analisa-harga-satuan-atap-bitumen` (25 Nov): item AHSP PUPR yang berlaku (SE Dirjen Bina Konstruksi
+  182/SE/Dk/2025 Lampiran VI, 3.1.3.6 atap aspal/bitumen & 3.1.3.13 nok; edisi lama A.4.5.2.33/37) menghitung lembaran 0,8 × 1 m
+  di atas plywood 6 mm, bukan shingle → analisa sendiri lewat jalur Permen PUPR 8/2023 Pasal 17(1). Koefisien bahan dari angka
+  hitung Ops; contoh CTI CT3 = Rp400–450 rb/m² (cocok dengan harga terpasang). Diulas 7 sudut pandang (pengulas menemukan edisi
+  2025 + koefisien kepala tukang/mandor yang berubah, BUK 10–15%, dan underlayer 1,1 vs sambungan 100–150 mm).
+- PERLU KEPUTUSAN RAMA/YUSUF: faktor underlayer di Ops (`faktorLapisKedap` 1,1) mungkin kurang. Roll lebar 1 m dengan sambungan
+  100–150 mm memberi lebar efektif 0,85–0,90 m → faktor 1,11–1,18 sebelum sambungan ujung. Angka bisnis, tidak diubah sepihak.

@@ -53,7 +53,7 @@ Asosiasi pabrikan atap aspal AS (ARMA) merangkum standar yang dipakai industri: 
 
 ## Untuk pengadaan pemerintah
 
-Bila dokumen pengadaan mensyaratkan nilai TKDN, cek produknya langsung di [inventaris resmi Kemenperin](https://tkdn.kemenperin.go.id) sebelum dicantumkan. Kami tidak mencantumkan nilai TKDN produk di situs ini.
+Koefisien bahan dan contoh analisa harga satuan per m² untuk RAB, termasuk kenapa item AHSP genteng aspal 0,8 × 1 m tidak cocok untuk shingle, ada di [analisa harga satuan atap bitumen](/panduan/analisa-harga-satuan-atap-bitumen). Bila dokumen pengadaan mensyaratkan nilai TKDN, cek produknya langsung di [inventaris resmi Kemenperin](https://tkdn.kemenperin.go.id) sebelum dicantumkan. Kami tidak mencantumkan nilai TKDN produk di situs ini.
 
 ## Untuk mahasiswa
 
