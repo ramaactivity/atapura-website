@@ -976,5 +976,14 @@ IndexNow; untuk Google tetap sitemap + Search Console.
 - Artikel `/panduan/perawatan-atap-bitumen` (jadwal, cek tanpa naik, daun, talang, lumut dengan pemutih 1:1 + keamanan,
   larangan, memilih tukang, kapan ganti, garansi per pemasang), 2 gambar isi, diulas 7 sudut pandang. Jadwal ditulis terang
   sebagai saran Atapura (pabrik/ARMA hanya "berkala"); "Oktober–November" dihapus (bentrok dengan artikel BMKG).
-- Berikutnya (alat lain, satu per satu): kalkulator berat atap, diagram posisi paku/lapisan untuk cara pasang, pemilih
-  gelombang vs genteng aspal dan keramik vs genteng aspal.
+- Alat kecil lain (kalkulator berat, diagram paku, pemilih) DITUNDA (Rama 25 Nov: "tools alat kecil ini belum perlu… lebih baik
+  fokus ke keyword, isi, copy writing"). Alasan: alat tidak dibaca AI dan tidak menambah ranking langsung; nilai SEO/GEO ada di teks.
+  Diagnosa bocor tetap tayang. Peluang tercatat: halaman /hitung belum diarahkan ke "kalkulator atap bitumen" / "hitung kebutuhan
+  genteng aspal" (halaman 1 diisi kalkulator gelombang, keramik, dan kalkulator Inggris terjemahan).
+- Artikel `/panduan/ukuran-harga-genteng-aspal-per-lembar` (25 Nov), keyword dari penelusuran terkait 30 kata kunci ("harga atap
+  bitumen per lembar/per pack", "ukuran per lembar", "isi 1 bundel", "tebal"). Harga per bundel = harga per m² Ops × isi m² bundel;
+  per lembar hanya bila jumlah lembar resmi ada. Diulas 7 sudut pandang. Temuan: Hitung AKAL publik hanya estimasi terpasang
+  (bukan daftar bundel) → klaim dibetulkan; CT6 17 lembar/2,32 m² dari brosur cetak (web CTI masih 22/3 m²) → ditulis terang;
+  syarat material saja dari Ops syarat.ts (ongkir Jabodetabek termasuk, lunas sebelum kirim, garansi material dari pabrik).
+  Catatan perawatan: angka harga di artikel ini dan harga-atap-bitumen-per-m2 ditulis tetap (bertanggal) — ikut diperbarui
+  bila daftar harga Ops berubah.

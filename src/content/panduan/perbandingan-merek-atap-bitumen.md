@@ -66,6 +66,8 @@ Semua merek di atas adalah genteng aspal jenis shingle, yaitu lembaran kecil yan
 
 ## Ukuran lembar dan isi per bundel
 
+Harga per bundel dan per lembar tiap seri dihitung di [harga & ukuran atap bitumen per lembar](/panduan/ukuran-harga-genteng-aspal-per-lembar).
+
 | Seri | Ukuran lembar | Isi per bundel |
 |---|---|---|
 | Maxxiroof | 1.000 × 333 mm | 21 lembar (3,10 m²) |

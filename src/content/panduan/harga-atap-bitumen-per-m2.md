@@ -24,6 +24,8 @@ Anda sudah tanya harga genteng aspal (sebutan lain atap bitumen, [sirap aspal, a
 
 ## Harga per m² di Jabodetabek
 
+Kalau Anda membandingkan dengan harga per lembar atau per pack di toko, konversinya per seri ada di [harga & ukuran atap bitumen per lembar](/panduan/ukuran-harga-genteng-aspal-per-lembar).
+
 | Merek | Genteng saja | Terpasang lengkap* |
 |---|---|---|
 | CTI | Rp155 rb/m² | Rp400–450 rb/m² |
