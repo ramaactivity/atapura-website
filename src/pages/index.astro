@@ -165,7 +165,7 @@ const tabArea = [
   { id: 'jabo', nama: 'Jabodetabek', daftar: semuaArea.filter((a) => a.data.wilayah === 'Jabodetabek') },
   { id: 'luar', nama: 'Luar Jabodetabek', daftar: semuaArea.filter((a) => a.data.wilayah === 'Luar Jabodetabek') },
 ];
-const labelSorot = { hujan: 'Hujan', angin: 'Angin', panas: 'Panas' } as const;
+const labelSorot = { hujan: 'Hujan', angin: 'Angin', panas: 'Panas', aturan: 'Aturan' } as const;
 const halamanArea = new Map(semuaArea.flatMap((a) => a.data.cakupan.map((c) => [c.nama, `/area/${a.id}`] as const)));
 const wilayah = [
   { nama: 'DKI Jakarta', kota: bisnis.area.filter((a) => a.startsWith('Jakarta')) },
@@ -819,6 +819,7 @@ const faqSchema = {
   .ar-hujan { background: #dcebe2; }
   .ar-angin { background: var(--color-tunas-pucat); }
   .ar-panas { background: #f7e3c6; }
+  .ar-aturan { background: #e3e8ee; }
   .ar-sorot { min-width: 0; }
   .ar-panah { margin-left: auto; padding-left: 0.5rem; color: var(--color-lumut); transition: transform 250ms var(--ease-out), color 200ms; }
   .ar-tabel tbody tr.menyala { background: var(--color-embun); }

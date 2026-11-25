@@ -25,7 +25,8 @@ export const bisnis = {
     `Aplikator dan agen atap bitumen (genteng aspal) Maxxi, CTI, Javabitumen, Tegola, dan Victory untuk rumah, villa, kafe, dan proyek, juga ${TAMPIL_PLAFON ? 'plafon PVC dan ' : ''}rangka atap baja ringan. Berbasis di Jabodetabek, melayani proyek di luar Jabodetabek.`,
   // Format internasional tanpa "+" untuk wa.me. null = belum ada; tombol WA tetap tampil tapi diarahkan ke halaman kontak WA umum.
   whatsapp: '6289611384767' as string | null, // 0896-1138-4767, dikoreksi Rama 23 Nov 2026 (sebelumnya salah ketik 0896-1139-4867)
-  telepon: null as string | null,
+  // Nomor resmi = nomor WA yang sama (Rama 25 Nov 2026): satu nomor di website, Google Business Profile, marketplace, kartu nama.
+  telepon: '6289611384767' as string | null,
   email: 'atapurakaryalestari@gmail.com',
   jamKerja: null as string | null,
   // Alamat sementara dari Rama (4 Nov 2026). Dipakai footer, JSON-LD, dan llms.txt — samakan persis dengan Google Business Profile.

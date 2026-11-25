@@ -55,4 +55,4 @@ Di Puncak, musim keringnya lebih jelas. Di sekitar Dramaga, hujan turun hampir s
 
 ## Harga dan survey di Kabupaten Bogor
 
-Harga terpasang sama dengan wilayah Jabodetabek lain untuk kelima merek, seperti di rincian layanan di atas. Biaya akses khusus, bila ada, kami tulis terpisah setelah survey. Kantor kami berada di Jl. Raya Puncak, Cisarua, jadi kawasan Puncak dekat dari kami. Untuk villa di dataran tinggi, baca juga [atap villa di Puncak dan Bogor](/panduan/atap-villa-puncak-bogor). Untuk wilayah kota, lihat [Kota Bogor](/area/kota-bogor).
+Harga terpasang sama dengan wilayah Jabodetabek lain untuk kelima merek, seperti di rincian layanan di atas. Biaya akses khusus, bila ada, kami tulis terpisah setelah survey. Kantor kami berada di Jl. Raya Puncak, Cisarua, jadi kawasan Puncak dekat dari kami. Untuk villa di dataran tinggi, baca juga [atap villa di Puncak dan Bogor](/panduan/atap-villa-puncak-bogor). Untuk rumah di kawasan perumahan Sentul, aturan renovasi kawasannya dibahas di [atap bitumen Sentul](/area/sentul). Untuk wilayah kota, lihat [Kota Bogor](/area/kota-bogor).

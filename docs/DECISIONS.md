@@ -885,3 +885,19 @@ Pemicu: Dokter Atap memegang kotak peta #1, organik #3 (halaman proyek Rancamaya
 Butir 14 audit 2 Nov (belum dikerjakan). Kunci di `public/<kunci>.txt`, kirim semua URL sitemap lewat `npm run indexnow`
 setelah deploy yang mengubah isi. Gratis; Bing (dipakai ChatGPT search & Copilot), Yandex, Seznam. Google tidak memakai
 IndexNow; untuk Google tetap sitemap + Search Console.
+
+## 103 · 25 November 2026 · Halaman kawasan Sentul, kepala artikel dua kolom, nomor telepon resmi
+- **Sentul** (Rama: "sentul juga sebagai kawasan perumahan elit di bogor penting dipertimbangkan", kata kunci "Sentul Bogor").
+  SERP "atap bitumen sentul" / "pasang atap bitumen sentul city" (SerpApi, lokasi Bogor) tidak punya halaman khusus Sentul
+  di 8 besar → peluang terbuka. Dibuat `/area/sentul` (koleksi area, bukan artikel, karena niat pencariannya transaksional).
+  Isi lokal yang tidak dimiliki pesaing: Tata Tertib Kawasan Sentul City Revisi 3 (tampak & warna atap ikut pedoman
+  desain cluster, izin tertulis + PBG, deposit/akses jalan, jam kerja Sen–Sab 08–17, material & puing), layanan gratis
+  SGC (izin renovasi kecil, pangkas pohon), ketinggian 200–450 mdpl (situs kecamatan), luas Sentul City (detik 2024).
+  Tidak ada stasiun BMKG Sentul di BPS → hujan dikutip dari Dramaga & Citeko dan ditulis terang begitu.
+  `cakupan` = "Babakan Madang, Kabupaten Bogor" (bukan "Kabupaten Bogor") supaya peta beranda tetap menautkan Kabupaten
+  Bogor ke halamannya sendiri. `sorotJenis` mendapat nilai baru `aturan` (label "Aturan", latar #e3e8ee).
+- **Kepala artikel/area desktop dua kolom** (Rama: "kok kurang enak dilihat ya"): judul setengah layar + sampul selebar
+  layar setinggi ±1 layar → kanan atas kosong dan jawaban singkat jauh di bawah. Mulai 60rem: judul kiri (1.15fr), sampul
+  3:2 kanan (1fr), rata bawah. HP tidak berubah.
+- **Telepon resmi = nomor WA 0896-1138-4767** (Rama setuju 25 Nov). `bisnis.telepon` diisi; JSON-LD sudah memakai nomor
+  ini lewat fallback, footer kini menampilkan "Telepon +62 896-1138-4767". Nomor yang sama wajib dipakai di GBP & marketplace.

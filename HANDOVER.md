@@ -38,7 +38,8 @@
   dulu hanya sales di sana, bukan pemilik). Atapura belum masuk 8 besar (domain dibuka 23 Nov).
 - ✅ Halaman Kota Bogor ("Pasang atap bitumen Bogor…") + Kabupaten Bogor (Puncak/Cibinong), harga di jawaban singkat.
 - ✅ Artikel `/panduan/atap-villa-puncak-bogor` tayang 25 Nov. ✅ Daftar isi samping desktop di semua artikel/area.
-- ⏳ Butuh Rama: Google Business Profile (panduan di chat 25 Nov), nomor telepon resmi (`bisnis.telepon` null), ulasan.
+- ✅ `/area/sentul` ("Pasang atap bitumen Sentul Bogor", aturan estate Sentul City) + kepala artikel dua kolom + telepon resmi (DECISIONS 103).
+- ⏳ Butuh Rama: Google Business Profile (panduan di chat 25 Nov, nomor 0896-1138-4767), ulasan.
 - ⏳ Berikutnya: koleksi `/proyek` (studi kasus dari Rapor Ops) begitu ada proyek pertama di Bogor; etalase marketplace
   berlokasi Bogor; direktori lokal dengan NAP identik.
 

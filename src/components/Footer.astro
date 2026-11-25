@@ -78,7 +78,7 @@ const kolomId: Kolom = [
       { label: 'WhatsApp', href: waLink(waPesan), luar: true },
       { label: 'Email', href: `mailto:${bisnis.email}` },
       { label: 'Alamat & kontak', href: '/kontak' },
-      ...(bisnis.telepon ? [{ label: `+${bisnis.telepon}`, href: `tel:+${bisnis.telepon}` }] : []),
+      ...(bisnis.telepon ? [{ label: `Telepon +62 ${bisnis.telepon.slice(2, 5)}-${bisnis.telepon.slice(5, 9)}-${bisnis.telepon.slice(9)}`, href: `tel:+${bisnis.telepon}` }] : []),
     ],
   },
   {

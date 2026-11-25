@@ -61,7 +61,7 @@ const area = defineCollection({
       judul: z.string().max(70),
       // Fakta singkat dari ringkasan untuk tabel daerah di beranda (DECISIONS 095); jenis = warna label.
       sorot: z.string().max(48),
-      sorotJenis: z.enum(['hujan', 'angin', 'panas']),
+      sorotJenis: z.enum(['hujan', 'angin', 'panas', 'aturan']),
       ringkasan: z.string().max(160),
       jawaban: z.string(),
       diperbarui: z.coerce.date(),
