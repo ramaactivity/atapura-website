@@ -30,7 +30,7 @@ sumber:
 | Dudukan | Papan rata (multiplek/GRC) di atas rangka | Reng di atas rangka |
 | Rangka yang umum | Baja ringan atau kayu | Kayu atau baja ringan yang lebih rapat |
 
-Angka genteng aspal di atas belum termasuk papan alasnya. Walau papan ditambahkan, selisih bebannya tetap beberapa ton, kira-kira setara beberapa mobil kecil yang tidak lagi "diparkir" di atas rumah Anda. Angka tepatnya untuk rumah Anda dihitung dari luas, jenis papan, dan rangkanya.
+Angka genteng aspal di atas belum termasuk papan alasnya. Walau papan ditambahkan, selisih bebannya tetap beberapa ton, kira-kira setara beberapa mobil kecil yang tidak lagi "diparkir" di atas rumah Anda. Angka tepatnya untuk rumah Anda dihitung dari luas, jenis papan, dan rangkanya. Untuk genteng keramik, beratnya per model dan perbandingan kemiringannya ada di [genteng aspal vs genteng keramik dan tanah liat](/panduan/atap-bitumen-vs-genteng-keramik-tanah-liat).
 
 ## Kapan beban ini paling terasa?
 

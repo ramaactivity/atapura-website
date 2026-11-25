@@ -944,3 +944,9 @@ IndexNow; untuk Google tetap sitemap + Search Console.
   (DOI benar `10.29303/d.v6i2.12`; versi `dtm.` 404). Pengulas fakta menemukan: angka lab = bunyi yang dipancarkan atap, bukan
   bising di kamar (ditulis terang); Chen & Li 2021 = uji dengar rekaman di model kelas (klaim di artikel sekolah ikut dikoreksi).
   Sampul pertama dengan arahan Rama "angle berani": sudut rendah dari bawah teritis (aturan sampul variatif).
+- Artikel `/panduan/atap-bitumen-vs-genteng-keramik-tanah-liat` (25 Nov), judul "Genteng aspal vs genteng keramik dan tanah liat",
+  diulas 7 sudut pandang. Pengulas fakta: berat keramik 39–46 kg/m² (bukan 44–53; satu ukuran efektif di halaman distributor
+  salah ketik, dan 53 kg/m² genteng saja mustahil di atas PPURG 50 kg/m² yang sudah termasuk reng & usuk), harga per keping
+  Rp10.800–21.800 (halaman 2 distributor). Kutipan "ahli HAKI di Kompas" dari ringkasan mesin pencari TIDAK ada di artikelnya →
+  tidak dipakai; gempa ditulis dari SNI 1726:2019 (V = Cs × W) saja. Papan alas disekrup ke reng (bukan menggantikan reng),
+  sesuai artikel multiplek. Ditambah opsi "perbaiki per keping dulu" di tabel keputusan.
