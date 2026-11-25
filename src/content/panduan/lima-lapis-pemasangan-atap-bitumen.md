@@ -31,7 +31,7 @@ sumber:
 | 4. Genteng bitumen | Shingle 3-tab atau laminasi | Lapisan luar: tahan cuaca, memberi warna |
 | 5. Nok | Potongan shingle di bubungan | Menutup sambungan paling atas |
 
-Genteng dipasang dari bawah ke atas. Panduan CTI memakai paku 2,5 cm berkepala minimal 7 mm, 4 paku per lembar di area yang nanti tertutup lembar berikutnya, dan 6 paku atau lebih untuk daerah berangin kencang. Di atap 10–15°, sambungan underlayment dilebihkan menjadi 150 mm; batas kemiringan tiap merek ada di [kemiringan atap bitumen minimal](/panduan/kemiringan-atap-bitumen-minimal).
+Genteng dipasang dari bawah ke atas; urutan kerjanya langkah demi langkah ada di [cara pasang atap bitumen](/panduan/cara-pasang-atap-bitumen). Panduan CTI memakai paku 2,5 cm berkepala minimal 7 mm, 4 paku per lembar di area yang nanti tertutup lembar berikutnya, dan 6 paku atau lebih untuk daerah berangin kencang. Di atap 10–15°, sambungan underlayment dilebihkan menjadi 150 mm; batas kemiringan tiap merek ada di [kemiringan atap bitumen minimal](/panduan/kemiringan-atap-bitumen-minimal).
 
 ## Titik rawan di lapis yang tertutup
 

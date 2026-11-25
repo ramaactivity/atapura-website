@@ -950,3 +950,9 @@ IndexNow; untuk Google tetap sitemap + Search Console.
   Rp10.800–21.800 (halaman 2 distributor). Kutipan "ahli HAKI di Kompas" dari ringkasan mesin pencari TIDAK ada di artikelnya →
   tidak dipakai; gempa ditulis dari SNI 1726:2019 (V = Cs × W) saja. Papan alas disekrup ke reng (bukan menggantikan reng),
   sesuai artikel multiplek. Ditambah opsi "perbaiki per keping dulu" di tabel keputusan.
+- Artikel `/panduan/cara-pasang-atap-bitumen` (25 Nov), 9 langkah dari panduan CTI Rev. Sept 2024, diulas 7 sudut pandang. Angka
+  yang ambigu di teks PDF dicek ke gambar halaman (underlayment 150 mm untuk 10–15°, 100 mm di atas 15°); kalimat jurai
+  "300–457 mm dari luar garis jurai" tidak jelas di gambar → dikutip apa adanya, tidak ditafsirkan. Pada CT5 paku 2 di area bayangan
+  + 2 di area genteng (bukan 4 di area bayangan). Jarak reng 605 mm berlaku untuk multiplek/GRC 12 mm (tanya jawab CTI).
+  Sampul v1 ditolak: paku tampak di permukaan genteng (cara pasang salah) → v2 tanpa paku terlihat, kiri dipotong (posisi reng
+  meragukan). Artikel ini = dasar naskah video YouTube/reel cara pasang (rencana setelah akun sosmed).
