@@ -75,16 +75,20 @@ const isi = [...daftar, ...(faq.length ? [{ slug: 'faq-judul', text: t.faq }] : 
   <Header terang lang={lang} />
   <main class="ar">
     <article>
-      <header class="wrap ar-kepala">
+      {/* Desktop: judul kiri, sampul kanan (Rama 25 Nov: judul setengah layar + sampul selebar layar terasa kosong dan
+          mendorong jawaban jauh ke bawah). HP: judul lalu sampul penuh, seperti sebelumnya. */}
+      <div class="wrap ar-atas">
+      <header class="ar-kepala">
         <nav class="remah" aria-label={t.remah}><a href="/">{t.beranda}</a><span aria-hidden="true">/</span><a href={induk.href}>{induk.nama}</a><span aria-hidden="true">/</span><span>{label}</span></nav>
         <h1 class="ar-judul">{judul}</h1>
         <p class="ar-meta">{t.oleh} {penulis}<span class="ar-pisah" aria-hidden="true"></span>{t.diperbarui} <time datetime={diperbarui.toISOString()}>{tgl(diperbarui)}</time></p>
       </header>
       {/* Semua sampul gambar AI (Magnific), jadi diberi keterangan terlihat, seperti galeri produk (DECISIONS 082). */}
-      <figure class="wrap">
-        <Image src={sampul} alt={sampulAlt} widths={[640, 720, 1024, 1600]} sizes="(min-width: 64rem) 1200px, calc(100vw - 2rem)" class="ar-sampul" loading="eager" />
+      <figure>
+        <Image src={sampul} alt={sampulAlt} widths={[640, 720, 1024, 1600]} sizes="(min-width: 60rem) 560px, calc(100vw - 2rem)" class="ar-sampul" loading="eager" />
         <figcaption class="ar-sampul-ket">{t.ilustrasi}</figcaption>
       </figure>
+      </div>
       <div class="wrap ar-badan">
         <div class="ar-samping">
           <aside class="ar-jawab" aria-label={t.jawaban}>
@@ -163,6 +167,11 @@ const isi = [...daftar, ...(faq.length ? [{ slug: 'faq-judul', text: t.faq }] : 
   .ar-meta { margin-top: 1.25rem; font-size: var(--fs-15); color: var(--color-lumut); display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }
   .ar-pisah { width: 18px; height: 1px; background: currentColor; }
   .ar-sampul { width: 100%; max-height: 34rem; object-fit: cover; border-radius: 18px; }
+  @media (min-width: 60rem) {
+    .ar-atas { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 4rem; align-items: end; }
+    .ar-kepala { padding-bottom: 1.6rem; } /* sejajarkan meta dengan dasar gambar (di atas keterangan) */
+    .ar-sampul { aspect-ratio: 3 / 2; max-height: none; }
+  }
   .ar-sampul-ket { margin-top: 0.55rem; font-size: var(--fs-13); color: var(--color-lumut); }
   /* Lebar penuh sejajar judul (DESIGN.md: tanpa kolom sempit di tengah). Mulai 60rem dua kolom: kolom samping kiri
      (jawaban singkat, lalu daftar isi yang menempel sepanjang halaman), isi di kanan dengan panjang baris nyaman dibaca. */
