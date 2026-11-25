@@ -4,7 +4,8 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import HitungAkal from '../islands/HitungAkal';
 import { bisnis, waLink } from '../data/bisnis';
-import { harga, kisaranRupiah, rentangRangka, type Merek } from '../data/harga';
+import { harga, hitungEstimasi, kisaranRupiah, PILIHAN_AWAL, rentangRangka, seriGenteng, type Merek } from '../data/harga';
+import ops from '../data/ops.json' with { type: 'json' };
 import { produk } from '../data/produk';
 import { getCollection } from 'astro:content';
 
@@ -12,7 +13,8 @@ import { getCollection } from 'astro:content';
 // "kalkulator / biaya pasang atap bitumen". Beranda hanya memuat kartu hitung cepat yang menaut ke sini.
 const situs = new URL('/', Astro.site).href;
 // Artikel terjadwal belum ada di build sebelum tanggal terbitnya: tautan hanya muncul kalau artikelnya sudah tayang.
-const artikelLuas = (await getCollection('panduan')).some((a) => a.id === 'cara-menghitung-luas-atap');
+const panduan = await getCollection('panduan');
+const artikelLuas = panduan.some((a) => a.id === 'cara-menghitung-luas-atap');
 const termin = bisnis.pembayaran.jasa.map((t) => `${t.persen}%`).join(', ');
 const rb = (n: number) => (n / 1000).toLocaleString('id-ID');
 
@@ -20,6 +22,30 @@ const rb = (n: number) => (n / 1000).toLocaleString('id-ID');
 const merek = (Object.keys(harga.merek) as Merek[])
   .sort((a, b) => harga.merek[a].terpasang[0] - harga.merek[b].terpasang[0])
   .map((m) => ({ nama: m, ...harga.merek[m], slug: produk.find((p) => p.lini === 'atap' && p.nama === m)?.slug }));
+
+// Cara menghitung kebutuhan (keyword "cara menghitung kebutuhan atap bitumen", riset SERP 25 Nov): contoh 100 m² dihitung
+// dengan rumus yang sama dengan kalkulator internal & penawaran Ops, jadi tabel ikut berubah bila Angka Bisnis Ops berubah.
+const CONTOH = 100;
+const contoh = hitungEstimasi(CONTOH, PILIHAN_AWAL).kebutuhan;
+const koma = (n: number) => n.toLocaleString('id-ID', { maximumFractionDigits: 2 });
+const al = harga.alas[PILIHAN_AWAL.alas], lk = harga.lapisKedap[PILIHAN_AWAL.lapis], fl = harga.flashing[PILIHAN_AWAL.flashing];
+const isiBundel = harga.merek[PILIHAN_AWAL.merek].m2PerBundel;
+const cadangan = 1 + harga.susut;
+const rumus = [
+  `Luas × ${koma(cadangan)} ÷ ${koma(isiBundel)} m² isi satu bundel`,
+  `Luas × ${koma(ops.angka.faktorAlas)} ÷ ${koma(al.m2)} m² (lembar 122 × 244 cm)`,
+  `Luas × ${koma(ops.angka.faktorLapisKedap)} ÷ ${koma(lk.m2)} m² per roll`,
+  `Panjang tepi atap ÷ ${koma(fl.panjang)} m per batang`,
+  `Panjang tepi atap × ${ops.angka.lebarStarterM.toLocaleString('id-ID')} m`,
+  `${ops.angka.skrupPerLembar} skrup per lembar alas`,
+  `${ops.angka.pakuPerM2} paku per m² atap`,
+];
+const butuh = contoh.map((k, i) => ({ ...k, nama: i === 0 ? 'Genteng bitumen' : k.nama === 'Skrup' ? 'Skrup alas' : k.nama, rumus: rumus[i], satuan: k.satuan === 'pcs' ? 'butir' : k.satuan }));
+// Isi per bundel semua seri yang dijual (2,3–3,5 m²) → jumlah bundel 100 m² paling banyak & paling sedikit.
+const isiSemua = [...Object.values(harga.merek), ...Object.values(seriGenteng).flatMap((s) => Object.values(s!))].map((x) => x.m2PerBundel);
+const [isiMin, isiMaks] = [Math.min(...isiSemua), Math.max(...isiSemua)];
+const bundelUntuk = (isi: number) => Math.ceil((CONTOH * cadangan) / isi - 1e-9);
+const artikelUkuran = panduan.some((a) => a.id === 'ukuran-harga-genteng-aspal-per-lembar');
 
 const langkah = [
   { judul: bisnis.survey.jabodetabek === 'Gratis' ? 'Survey gratis' : 'Survey', isi: 'Tim datang mengukur atap, memeriksa rangka, dan membawa sampel warna. Di Jabodetabek tanpa biaya.' },
@@ -31,6 +57,10 @@ const tanya = [
   {
     q: 'Kenapa hasilnya berupa kisaran, bukan satu angka?',
     a: 'Angka akhir bergantung pada luas yang terukur saat survey, bentuk atap, kondisi rangka, dan panjang flashing di tepi atap dan dinding. Karena itu harga final kami tulis setelah survey gratis dan opname luas, lalu kami kirim sebagai penawaran tertulis per item.',
+  },
+  {
+    q: 'Berapa bundel genteng aspal untuk 1 m² atap?',
+    a: `Untuk seri berisi ${koma(isiBundel)} m² per bundel, 1 m² atap butuh sekitar ${koma(Math.round((cadangan / isiBundel) * 100) / 100)} bundel setelah ditambah cadangan potong ${Math.round(harga.susut * 100)}%. Isi satu bundel berbeda per seri, ${koma(isiMin)}–${koma(isiMaks)} m², jadi atap ${CONTOH} m² butuh ${bundelUntuk(isiMaks)}–${bundelUntuk(isiMin)} bundel. Jumlahnya selalu dibulatkan ke atas per bundel.`,
   },
   {
     q: 'Apa saja yang sudah termasuk?',
@@ -63,8 +93,8 @@ const schema = [
 ];
 ---
 <Base
-  title="Kalkulator Biaya Pasang Atap Bitumen per m² | Atapura"
-  description={`Hitung estimasi biaya pasang atap bitumen Maxxi, CTI, Javabitumen, Victory, dan Tegola di Jabodetabek: material, aksesoris, dan jasa pasang.`}
+  title="Kalkulator Atap Bitumen: Biaya per m² & Kebutuhan Material | Atapura"
+  description={`Kalkulator atap bitumen: estimasi biaya terpasang per m² merek Maxxi, CTI, Javabitumen, Victory, Tegola, plus cara menghitung bundel, multiplek, dan underlayer.`}
   schema={schema}
 >
   <Header terang />
@@ -73,8 +103,8 @@ const schema = [
       <div class="kartu-buka">
         <nav class="remah" aria-label="Remah roti"><a href="/">Beranda</a><span aria-hidden="true">/</span><span>Hitung biaya</span></nav>
         <div class="hk-kepala">
-          <h1 class="hk-judul">Hitung biaya atap bitumen <span class="redup">sebelum bicara dengan siapa pun.</span></h1>
-          <p class="hk-lead">Isi luas atap dan pilih merek. Estimasi sudah termasuk genteng, alas, lapis kedap, flashing, dan jasa pasang di Jabodetabek.</p>
+          <h1 class="hk-judul">Kalkulator atap bitumen. <span class="redup">Hitung sendiri sebelum bicara dengan siapa pun.</span></h1>
+          <p class="hk-lead">Isi luas atap dan pilih merek. Estimasi sudah termasuk genteng, alas, lapis kedap, flashing, dan jasa pasang di Jabodetabek. Jumlah bundel, lembar, dan roll ada di <a href="#kebutuhan">cara menghitung kebutuhan</a>.</p>
         </div>
       </div>
     </div>
@@ -114,6 +144,23 @@ const schema = [
         </div>
       </section>
 
+      <section id="kebutuhan" class="hk-butuh" aria-labelledby="judul-butuh">
+        <div class="hk-butuh-teks">
+          <h2 id="judul-butuh" class="hk-h2">Cara menghitung kebutuhan atap bitumen</h2>
+          <p>Mulai dari luas bidang miring atap. Genteng dihitung per bundel: luas ditambah {Math.round(harga.susut * 100)}% untuk potongan, lalu dibagi isi satu bundel. Alas multiplek dihitung per lembar, underlayer per roll {koma(lk.m2)} m², flashing per batang {koma(fl.panjang)} m di sepanjang tepi atap, dan paku sekitar {ops.angka.pakuPerM2} butir per m².</p>
+          <p class="hk-kecil">Isi satu bundel {koma(isiMin)}–{koma(isiMaks)} m², tergantung seri.{artikelUkuran && <> <a href="/panduan/ukuran-harga-genteng-aspal-per-lembar">Isi bundel dan ukuran lembar per seri</a>.</>} Atap dengan banyak jurai dan lembah butuh potongan lebih banyak, jadi angka hasil survey bisa sedikit di atas tabel ini.</p>
+        </div>
+        <table class="hk-tabel">
+          <caption>Contoh atap {CONTOH} m² denah persegi (tepi atap {koma(4 * Math.sqrt(CONTOH))} m), seri {koma(isiBundel)} m² per bundel</caption>
+          <thead><tr><th scope="col">Material</th><th scope="col">Cara hitung</th><th scope="col">{CONTOH} m²</th></tr></thead>
+          <tbody>
+            {butuh.map((k) => (
+              <tr><th scope="row">{k.nama}</th><td class="hk-rumus">{k.rumus}</td><td class="hk-jumlah"><b class="angka">{koma(k.jumlah)}</b> {k.satuan}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+
       <section class="hk-lanjut" aria-labelledby="judul-lanjut">
         <h2 id="judul-lanjut" class="hk-h2">Setelah estimasi terkirim, <span class="redup">belum ada yang perlu dibayar.</span></h2>
         <ol class="hk-langkah">
@@ -144,7 +191,7 @@ const schema = [
       </section>
 
       <section class="hk-tanya" aria-labelledby="judul-tanya">
-        <h2 id="judul-tanya" class="hk-h2">Pertanyaan soal harga</h2>
+        <h2 id="judul-tanya" class="hk-h2">Pertanyaan soal biaya dan kebutuhan</h2>
         <div class="hk-tanya-daftar">
           {tanya.map((t, i) => (
             <details name="tanya-harga" open={i === 0}>
@@ -211,6 +258,24 @@ const schema = [
   .hk-luas-hasil b { font-variant-numeric: proportional-nums lining-nums; font-family: var(--font-merek); font-size: var(--t-h2); font-weight: var(--bobot-judul); letter-spacing: -0.024em; color: var(--color-tinta); line-height: 1.23; }
   .hk-luas-pakai:focus-visible, .hk-wa:focus-visible { outline: 2px solid var(--color-pinus); outline-offset: 3px; }
 
+  .hk-lead a { color: var(--color-tinta); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+
+  /* Cara menghitung kebutuhan: jawaban di kiri, tabel rumus seperti slip rincian di kanan. */
+  .hk-butuh { padding-block: clamp(3.5rem, 7vw, 6rem); border-top: 1px solid var(--color-garis); display: grid; gap: 1.75rem 5rem; grid-template-columns: minmax(0, 1fr); scroll-margin-top: 80px; }
+  @media (min-width: 60rem) { .hk-butuh { grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr); align-items: start; } }
+  .hk-butuh-teks { display: grid; gap: 1rem; }
+  .hk-butuh-teks > p:not(.hk-kecil) { font-size: var(--fs-16); line-height: 1.5; max-width: 56ch; }
+  .hk-butuh-teks a { color: var(--color-tinta); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .hk-tabel { width: 100%; border-collapse: collapse; font-size: var(--fs-15); line-height: 1.4; }
+  .hk-tabel caption { caption-side: bottom; text-align: start; padding-top: 0.9rem; font-size: var(--fs-14); color: var(--color-lumut); }
+  .hk-tabel thead th { padding: 0 0 0.6rem; text-align: start; font-size: var(--fs-14); font-weight: 500; color: var(--color-lumut); border-bottom: 1px solid var(--color-tinta); }
+  .hk-tabel thead th:last-child, .hk-jumlah { text-align: end; }
+  .hk-tabel tbody th, .hk-tabel td { padding: 0.85rem 0; border-bottom: 1px solid var(--color-garis); vertical-align: baseline; }
+  .hk-tabel tbody th { padding-inline-end: 1rem; text-align: start; font-family: var(--font-merek); font-size: var(--fs-16); font-weight: var(--bobot-judul-kartu); letter-spacing: -0.006em; }
+  .hk-rumus { padding-inline-end: 1rem; color: var(--color-lumut); }
+  .hk-jumlah { white-space: nowrap; color: var(--color-lumut); }
+  .hk-jumlah b { font-family: var(--font-merek); font-size: var(--t-title); font-weight: var(--bobot-judul-kartu); color: var(--color-tinta); }
+
   /* Setelah estimasi terkirim: tiga langkah bersambung garis, bukan tiga kartu. */
   .hk-lanjut { padding-block: clamp(3.5rem, 7vw, 6rem); border-top: 1px solid var(--color-garis); }
   .hk-langkah { counter-reset: lk; display: grid; gap: 0; margin-top: 2.25rem; grid-template-columns: minmax(0, 1fr); }
@@ -263,7 +328,7 @@ const schema = [
   .hk-tanya details[open] .hk-tanda::after { transform: rotate(0deg); }
   .hk-tanya details p { padding: 0 0 1.25rem; font-size: var(--fs-16); line-height: 1.5; color: var(--color-lumut); max-width: 62ch; }
 
-  @media (min-width: 64rem) { .hk-luas-teks > p:not(.hk-kecil), .hk-tanya details p { font-size: var(--fs-18); } }
+  @media (min-width: 64rem) { .hk-luas-teks > p:not(.hk-kecil), .hk-butuh-teks > p:not(.hk-kecil), .hk-tanya details p { font-size: var(--fs-18); } }
 
   @media (max-width: 47.99rem) {
     .hk { background: #dde2dc; padding: 96px 0 4rem; }
@@ -274,7 +339,7 @@ const schema = [
     .hk-alat { margin: 0 8px; border-radius: 28px; padding-block: 1.75rem 2rem; }
     .hk-h2 { font-size: var(--hp-t1); }
     /* Bagian setelah kalkulator jadi kartu membulat di atas latar abu, seperti beranda HP. */
-    .hk-luas, .hk-lanjut, .hk-harga, .hk-tanya {
+    .hk-luas, .hk-butuh, .hk-lanjut, .hk-harga, .hk-tanya {
       margin: 8px calc(8px - var(--gutter)) 0; padding: 2rem var(--gutter); border-radius: 28px; border-top: 0; background: var(--color-embun);
     }
     .hk-luas-alat { justify-items: stretch; background: none; box-shadow: none; padding: 1.25rem 0 0; border-top: 1px solid var(--color-tinta); border-radius: 0; }
@@ -285,5 +350,14 @@ const schema = [
     .hk-tanya summary { font-size: var(--hp-t4); }
     .hk-tanya details p, .hk-luas-teks > p:not(.hk-kecil) { font-size: var(--fs-16); }
     .hk-wa { width: 100%; }
+    /* Tabel kebutuhan di HP: nama + jumlah sebaris, rumus di bawahnya; judul kolom hanya untuk pembaca layar. */
+    .hk-tabel thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+    .hk-tabel tbody tr { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: 'nama jumlah' 'rumus rumus'; gap: 0.15rem 0.75rem; padding: 0.8rem 0; border-bottom: 1px solid var(--color-garis); }
+    .hk-tabel tbody tr:first-child { border-top: 1px solid var(--color-tinta); }
+    .hk-tabel tbody th, .hk-tabel td { padding: 0; border: 0; }
+    .hk-tabel tbody th { grid-area: nama; }
+    .hk-rumus { grid-area: rumus; padding: 0; font-size: var(--fs-14); }
+    .hk-jumlah { grid-area: jumlah; }
+    .hk-butuh-teks > p:not(.hk-kecil) { font-size: var(--fs-16); }
   }
 </style>

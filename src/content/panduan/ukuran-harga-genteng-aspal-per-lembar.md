@@ -108,14 +108,14 @@ Contoh untuk atap 100 m²:
 | Promaxxi | 2,32 m² | 48 bundel |
 
 Starter (lajur dasar di tepi bawah atap) dan nok (penutup puncak atap, dibuat dari lembar genteng yang dipotong tiga) dihitung terpisah dari seri yang sama, begitu juga papan alas, underlayer, flashing, paku, dan sekrup. Detail nok dan flashing ada di [nok, flashing, dan talang](/panduan/nok-flashing-talang-atap-bitumen).
-
+ Rumus dan jumlah papan alas, underlayer, flashing, dan paku untuk atap 100 m² ada di [cara menghitung kebutuhan atap bitumen](/hitung#kebutuhan).
 ## Membandingkan dengan harga di marketplace
 
 Sebelum membandingkan, tanyakan empat hal ke penjual: seri apa, isi berapa lembar per bundel atau pack, menutup berapa m², dan apakah sudah termasuk ongkos kirim. Bagi harganya dengan luas tutup untuk mendapat harga per m². Harga per lembar yang lebih rendah bisa berarti lembarnya lebih sempit atau isinya lebih sedikit. Penawaran kontraktor per m² biasanya sudah memuat papan alas, underlayer, dan jasa pasang, jadi bandingkan dengan harga terpasang, bukan harga genteng saja.
 
 ## Harga genteng saja vs harga terpasang
 
-Harga di atas adalah harga gentengnya saja. Genteng aspal harus dipasang di atas papan alas, bukan langsung di reng, jadi masih ada biaya papan alas, underlayer, flashing, paku, dan jasa pasang. Di daftar harga Atapura, genteng Maxxi, Javabitumen, dan CTI Rp145–155 ribu per m², sedangkan terpasang lengkap Rp380–450 ribu per m². Rinciannya ada di [harga atap bitumen per m²](/panduan/harga-atap-bitumen-per-m2), dan isi jasa pasangnya di [harga jasa pasang atap bitumen](/panduan/ongkos-jasa-pasang-atap-bitumen). Estimasi biaya terpasang untuk luas atap Anda bisa dicoba di [Hitung AKAL](/hitung).
+Harga di atas adalah harga gentengnya saja. Genteng aspal harus dipasang di atas papan alas, bukan langsung di reng, jadi masih ada biaya papan alas, underlayer, flashing, paku, dan jasa pasang. Di daftar harga Atapura, genteng Maxxi, Javabitumen, dan CTI Rp145–155 ribu per m², sedangkan terpasang lengkap Rp380–450 ribu per m². Rinciannya ada di [harga atap bitumen per m²](/panduan/harga-atap-bitumen-per-m2), dan isi jasa pasangnya di [harga jasa pasang atap bitumen](/panduan/ongkos-jasa-pasang-atap-bitumen). Estimasi biaya terpasang untuk luas atap Anda bisa dicoba di [kalkulator atap bitumen](/hitung).
 
 ## Beli material saja atau sekalian dipasang
 

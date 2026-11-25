@@ -33,7 +33,7 @@ ${bisnis.nama} adalah aplikator sekaligus agen atap bitumen (genteng aspal, sira
 - [Untuk perusahaan](${url('/perusahaan')}): dokumen yang diterima pengadaan dan proyek, legalitas dan termin apa adanya, cara meminta penawaran resmi
 - [Cara kerja](${url('/cara-kerja')}): enam tahap dari survey gratis sampai pelunasan, Standar Pasang AKAL lima lapis${TAMPIL_FOTO_PROGRES ? ' yang difoto sebelum tertutup, format Rapor Proyek' : ''}
 - [Bayar & garansi](${url('/garansi')}): material lunas sebelum dikirim, jasa pasang bertahap, garansi pemasangan tertulis terpisah dari garansi pabrik, yang ditanggung dan tidak, cara klaim lewat WhatsApp
-- [Kalkulator Hitung AKAL](${url('/hitung')}): estimasi biaya terpasang per m² dan total untuk luas atap dan merek pilihan, apa yang sudah dan belum termasuk, cara bayar, harga per merek
+- [Kalkulator atap bitumen Hitung AKAL](${url('/hitung')}): estimasi biaya terpasang per m² dan total untuk luas atap dan merek pilihan, cara menghitung kebutuhan bundel, multiplek, underlayer, flashing, dan paku (contoh atap 100 m²), apa yang sudah dan belum termasuk, cara bayar, harga per merek
 - [Produk & layanan](${url('/produk')}): katalog atap bitumen, ${TAMPIL_PLAFON ? 'plafon PVC, ' : ''}rangka baja ringan, dan aksesoris dengan harga per m²
 - [Panduan](${url('/panduan')}): artikel tanya-jawab atap bitumen
 - [Area layanan](${url('/area')}): kondisi iklim dan atap per daerah, Jabodetabek dan luar Jabodetabek

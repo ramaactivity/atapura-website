@@ -65,4 +65,4 @@ Material dibayar lunas sebelum dikirim. Jasa pasang dibayar bertahap 40/30/30: s
 
 ## Hitung untuk atap Anda
 
-Masukkan luas atap dan merek di [Hitung AKAL](/hitung) untuk melihat estimasi per m² dan totalnya. Belum tahu luasnya? Untuk atap miring, kira-kira luas lantai teratas dikali 1,3. Angka final kami tulis setelah survey gratis di Jabodetabek.
+Masukkan luas atap dan merek di [kalkulator atap bitumen Hitung AKAL](/hitung) untuk melihat estimasi per m² dan totalnya. Belum tahu luasnya? Untuk atap miring, kira-kira luas lantai teratas dikali 1,3. Angka final kami tulis setelah survey gratis di Jabodetabek.

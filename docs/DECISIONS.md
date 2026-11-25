@@ -1015,3 +1015,17 @@ lengkap" (24); tak ada teks < 13 px.
 - Dipakai Ops → Harga marketplace (Ops DECISIONS 250) supaya foto, judul, deskripsi, dan harga tayang ada di satu meja
   unggah. Isi sama dengan /internal/kit-marketplace (tanpa harga/modal), jadi tidak membuka data baru.
 - `genteng()` di `harga.ts` kini ikut mengembalikan `kode`.
+
+## 109 · 25 November 2026 · /hitung diarahkan ke "kalkulator atap bitumen" + cara menghitung kebutuhan (pilihan Rama: "gas nomor 1")
+Riset SerpApi 25 Nov (3 kata kunci, semua ber-AI Overview): "kalkulator atap bitumen" dimenangkan histeel (kalkulator lembaran
+gelombang), kalkulator aspal jalan, dan kalkulator Inggris terjemahan; "cara menghitung kebutuhan atap bitumen" dijawab AI dengan
+langkah luas miring → bagi isi per bundel → tambah 5–10% → aksesoris (alas, underlayer, paku), mengutip histeel, Dokter Atap,
+atapasphalt, ataprumahkita. Niat pencari = JUMLAH material, sedangkan /hitung hanya memberi rupiah.
+- Judul tag, H1 ("Kalkulator atap bitumen."), deskripsi, dan llms.txt memuat kata kunci. Gaya kalimat lama dipertahankan.
+- Bagian teks baru `#kebutuhan` "Cara menghitung kebutuhan atap bitumen": paragraf jawaban + tabel 3 kolom (material, cara hitung,
+  atap 100 m²). Angkanya dihitung saat build dari `hitungEstimasi(100, PILIHAN_AWAL)` + Angka Bisnis Ops, jadi tabel ikut berubah
+  bila Ops mengubah waste/faktor alas/faktor lapis kedap/paku. FAQ baru "Berapa bundel genteng aspal untuk 1 m² atap?" (FAQPage).
+- Kalkulatornya sendiri TIDAK diubah (publik tetap luas + merek → rupiah, keputusan 3 Nov); alat kecil tetap ditunda (106).
+- Anchor tautan masuk: 5 artikel harga/biaya kini menaut dengan teks "kalkulator atap bitumen" (sebelumnya semua "Hitung AKAL"),
+  artikel ukuran-harga menaut ke `/hitung#kebutuhan`.
+- Catatan: faktor underlayer 1,1 kini tampil publik di tabel; bila Bang Yusuf menaikkannya (catatan 106), tabel ikut otomatis.

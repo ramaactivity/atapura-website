@@ -116,6 +116,6 @@ Di RAB, hasil analisa masuk sebagai satu baris: uraian "Penutup atap genteng asp
 
 ## Untuk pemilik rumah yang menerima RAB
 
-Cek empat hal di baris atap: alasnya multiplek atau GRC minimal 9 mm, bukan plywood 6 mm; underlayer, flashing, dan starter tertulis; volumenya luas atap miring, bukan luas lantai; rangka dan bongkar atap lama ditulis sebagai baris sendiri. Untuk membandingkan harganya, masukkan luas dan merek di [Hitung AKAL](/hitung).
+Cek empat hal di baris atap: alasnya multiplek atau GRC minimal 9 mm, bukan plywood 6 mm; underlayer, flashing, dan starter tertulis; volumenya luas atap miring, bukan luas lantai; rangka dan bongkar atap lama ditulis sebagai baris sendiri. Untuk membandingkan harganya, masukkan luas dan merek di [kalkulator atap bitumen](/hitung).
 
 Spesifikasi teknis untuk RKS, dari rangka sampai nok, ada di [spesifikasi teknis atap bitumen](/panduan/spesifikasi-teknis-atap-bitumen-rks), dan urutan pekerjaannya di [cara pasang atap bitumen](/panduan/cara-pasang-atap-bitumen). Untuk proyek dengan volume besar, kirim gambar kerja atau BoQ (daftar volume per item pekerjaan) lewat WhatsApp; admin mengirim [penawaran tertulis](/perusahaan) yang merinci material, aksesoris, jasa, dan perkiraan hari kerja. Survey di Jabodetabek tanpa biaya; proyek di luar Jabodetabek dihitung bersama admin.
