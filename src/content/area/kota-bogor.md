@@ -4,23 +4,31 @@ cakupan:
   - { nama: 'Kota Bogor', jenis: 'City' }
 wilayah: 'Jabodetabek'
 urut: 2
-judul: 'Jasa pasang atap bitumen di Kota Bogor'
+judul: 'Pasang atap bitumen Bogor: harga per m² dan survey gratis'
 # Fakta singkat untuk tabel 'Catatan atap tiap daerah' di beranda — diambil dari ringkasan (bersumber), DECISIONS 095.
 sorot: '±4.800 mm hujan setahun (2024)'
 sorotJenis: 'hujan'
-ringkasan: 'Stasiun Klimatologi Bogor mencatat sekitar 4.800 mm hujan pada 2024, tanpa bulan yang benar-benar kering. Yang perlu diperhatikan pada atap di Kota Bogor.'
-jawaban: 'Atapura memasang atap bitumen di Kota Bogor dengan survey gratis. Bogor adalah salah satu daerah terbasah di Jabodetabek: Stasiun Klimatologi Bogor mencatat sekitar 4.800 mm hujan pada 2024, dan bulan terkeringnya pun masih di atas 120 mm. Atap di Bogor perlu lapis kedap air yang rapi, ventilasi untuk kelembapan, dan jadwal pasang yang menjaga papan alas tetap kering.'
-diperbarui: 2026-11-03
+ringkasan: 'Harga atap bitumen terpasang di Kota Bogor, survey gratis di enam kecamatan, dan yang perlu diperhatikan di kota dengan sekitar 4.800 mm hujan setahun.'
+jawaban: 'Atapura memasang atap bitumen di seluruh Kota Bogor dengan survey gratis. Harga terpasang {harga-rentang}, sudah termasuk alas, lapis kedap, flashing, dan jasa pasang. Bogor salah satu daerah terbasah di Jabodetabek, sekitar 4.800 mm hujan pada 2024, jadi lapis kedap air yang rapi dan ventilasi di bawah atap sama pentingnya dengan merek.'
+diperbarui: 2026-11-25
 sampul: '../../../assets/gambar/magnific/hujan-hp.jpg'
 sampulAlt: 'Ilustrasi hujan deras di kawasan perumahan berbukit'
 faq:
+  - q: 'Berapa harga atap bitumen di Bogor per m²?'
+    a: 'Harga terpasang di Kota Bogor sama dengan wilayah Jabodetabek lain: {harga-merek}, spek standar, sudah termasuk alas, lapis kedap, flashing, dan jasa pasang. Angka pasti kami tulis setelah survey, karena luas bidang miring, jumlah nok, dan talang tiap rumah berbeda.'
+  - q: 'Bisa beli material atap bitumen saja di Bogor?'
+    a: 'Bisa. Selain paket material dan pemasangan, kami melayani material saja untuk dipasang tukang Anda, dan jasa pasang saja bila material sudah Anda siapkan.'
+  - q: 'Berapa lama pasang atap bitumen di Bogor?'
+    a: 'Satu tim memasang sekitar {m2-hari} per hari. Di Bogor, atap lama hanya dibuka seluas yang bisa ditutup kembali pada hari yang sama, sehingga hujan sore tidak masuk ke rumah.'
   - q: 'Apakah atap bitumen cocok untuk Bogor yang sering hujan?'
     a: 'Cocok, dengan syarat lapis kedap air di bawah genteng dipasang rapi, kemiringan atap memenuhi batas pabrik, dan ruang di bawah atap berventilasi supaya lembap tidak terjebak.'
   - q: 'Kalau hampir setiap bulan hujan, kapan atap bisa dipasang?'
     a: 'Pada 2024, Juli dan Agustus adalah bulan paling kering di Stasiun Klimatologi Bogor (140 mm dan 123 mm). Di luar itu kami bekerja per bagian: atap lama hanya dibuka seluas yang bisa ditutup kembali pada hari yang sama.'
   - q: 'Apakah survey di Kota Bogor gratis?'
-    a: 'Ya, survey gratis untuk Kota Bogor dan Kabupaten Bogor.'
+    a: 'Ya, survey gratis di enam kecamatan Kota Bogor dan di Kabupaten Bogor. Kantor kami di Cisarua, Kabupaten Bogor.'
 sumber:
+  - nama: 'BPS Kota Bogor, wilayah administrasi (6 kecamatan)'
+    url: 'https://bogorkota.bps.go.id/'
   - nama: 'BPS Provinsi Jawa Barat, Jumlah Curah Hujan 2024 (Stasiun Klimatologi Bogor)'
     url: 'https://jabar.bps.go.id/id/statistics-table/2/MjM4IzI=/jumlah-curah-hujan--mm-.html'
   - nama: 'BPS Jawa Barat, Tinggi Wilayah dan Jarak ke Ibukota, 2021'
@@ -53,6 +61,20 @@ Sebagai pembanding, Stasiun Kemayoran di Jakarta mencatat 2.697 mm pada 2025. Di
 **Noda gelap dari alga.** Di iklim yang hangat dan lembap, atap bisa muncul noda gelap kecokelatan sampai hitam. Itu soal tampilan, dibersihkan dengan lembut tanpa semprotan bertekanan tinggi.
 
 **Talang dan lembah atap.** Volume air yang besar membuat talang dan lembah atap cepat penuh daun dan lumpur. Rumah di Bogor yang dekat pepohonan perlu membersihkannya lebih sering. Jadwal perawatannya ada di [atap bitumen tahan berapa lama](/panduan/atap-bitumen-tahan-berapa-lama).
+
+## Enam kecamatan di Kota Bogor
+
+Kota Bogor terbagi menjadi enam kecamatan: Bogor Utara, Bogor Selatan, Bogor Tengah, Bogor Barat, Bogor Timur, dan Tanah Sareal. Survey gratis berlaku di semuanya. Kantor kami berada di Jl. Raya Puncak, Cisarua, Kabupaten Bogor.
+
+| Jenis rumah | Yang kami cek saat survey |
+|---|---|
+| Rumah lama bergenteng tanah liat atau beton | Kondisi rangka kayu, sambungan, dan beban yang bisa dikurangi |
+| Rumah cluster dua lantai | Kemiringan atap dan pertemuan atap dengan dinding lantai atas |
+| Rumah di bawah pepohonan | Talang, lembah atap, dan dahan yang menaungi atap |
+
+## Mengganti genteng lama dengan bitumen
+
+Banyak rumah lama di Bogor masih memakai genteng tanah liat atau beton yang berat. Genteng aspal jauh lebih ringan, sehingga beban di rangka berkurang saat atap diganti. Rangka tetap kami periksa dulu: kayu yang lapuk karena bertahun-tahun lembap harus diganti, bukan ditutup. Perbandingan bebannya ada di [atap bitumen vs genteng beton](/panduan/atap-bitumen-vs-genteng-beton-beban-rangka), dan pilihan merek beserta harganya di [halaman produk](/produk).
 
 ## Harga dan survey di Kota Bogor
 

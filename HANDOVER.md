@@ -33,6 +33,15 @@
 
 - **Lead otomatis ke Ops** (22 Nov 2026, DECISIONS 068 / Ops 150): kalkulator publik punya isian Nama & No. WA opsional → `api/kirim-lead.mjs` (Vercel Function) → Ops `/api/lead`. Env `LEAD_SECRET` di Vercel proyek `atapura`.
 - **Harga = dari Atapura Ops** (20 Nov 2026, website DECISIONS 055 / Ops 123): `src/data/ops.json` ditarik otomatis tiap jam oleh `sinkron-ops.yml`; ubah harga di Ops, bukan di `harga.ts`. `npm run tarik-ops` untuk tarik manual.
+## Terbaru (25 November 2026) — kejar Dokter Atap di Bogor (DECISIONS 101)
+- Riset SERP "atap bitumen bogor": `docs/riset/serp-atap-bitumen-bogor-2026-11-25.md`. Dokter Atap = pesaing utama (Bang Yusuf
+  dulu hanya sales di sana, bukan pemilik). Atapura belum masuk 8 besar (domain dibuka 23 Nov).
+- ✅ Halaman Kota Bogor ("Pasang atap bitumen Bogor…") + Kabupaten Bogor (Puncak/Cibinong), harga di jawaban singkat.
+- ✅ Artikel `/panduan/atap-villa-puncak-bogor` tayang 25 Nov. ✅ Daftar isi samping desktop di semua artikel/area.
+- ⏳ Butuh Rama: Google Business Profile (panduan di chat 25 Nov), nomor telepon resmi (`bisnis.telepon` null), ulasan.
+- ⏳ Berikutnya: koleksi `/proyek` (studi kasus dari Rapor Ops) begitu ada proyek pertama di Bogor; etalase marketplace
+  berlokasi Bogor; direktori lokal dengan NAP identik.
+
 ## Terbaru (25 November 2026) — sinkron harga dari Ops dijaga (DECISIONS 100)
 - Sinkron gagal 24–25 Nov (pricelist Ops teracak Data contoh, dibetulkan di Ops 233/235/236); sekarang berhasil lagi, ops.json
   JABODETABEK-20261120 berlaku 20 Nov. Workflow melapor hasilnya ke Ops (merah di Hari ini bila gagal); kalkulator membaca

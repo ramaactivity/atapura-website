@@ -32,15 +32,17 @@ interface Props {
   lang?: 'id' | 'en';
   /** Versi bahasa lain (hreflang), diteruskan ke Base. */
   alternates?: { hreflang: string; href: string }[];
+  /** Judul bagian (h2) untuk daftar isi di kolom samping desktop; dari `render().headings` (+ bagian slot bila ada). */
+  daftar?: { slug: string; text: string }[];
 }
 
 const TEKS = {
-  id: { beranda: 'Beranda', remah: 'Remah roti', oleh: 'Oleh', diperbarui: 'Diperbarui', jawaban: 'Jawaban singkat', faq: 'Pertanyaan terkait', sumber: 'Sumber angka', ctaJudul: 'Hitung biaya untuk atap Anda.', ctaHitung: 'Buka Hitung AKAL', ctaWa: 'Tanya lewat WhatsApp', lain: 'Baca juga', ilustrasi: 'Ilustrasi, bukan proyek Atapura.', locale: 'id-ID' },
-  en: { beranda: 'Home', remah: 'Breadcrumb', oleh: 'By', diperbarui: 'Updated', jawaban: 'Short answer', faq: 'Related questions', sumber: 'Sources', ctaJudul: 'Talk to us about your roof.', ctaHitung: 'Open the cost estimator (Indonesian)', ctaWa: 'Chat on WhatsApp', lain: 'Read next', ilustrasi: 'Illustration, not an Atapura project.', locale: 'en-GB' },
+  id: { beranda: 'Beranda', remah: 'Remah roti', oleh: 'Oleh', diperbarui: 'Diperbarui', jawaban: 'Jawaban singkat', faq: 'Pertanyaan terkait', sumber: 'Sumber angka', ctaJudul: 'Hitung biaya untuk atap Anda.', ctaHitung: 'Buka Hitung AKAL', ctaWa: 'Tanya lewat WhatsApp', lain: 'Baca juga', ilustrasi: 'Ilustrasi, bukan proyek Atapura.', isi: 'Di halaman ini', locale: 'id-ID' },
+  en: { beranda: 'Home', remah: 'Breadcrumb', oleh: 'By', diperbarui: 'Updated', jawaban: 'Short answer', faq: 'Related questions', sumber: 'Sources', ctaJudul: 'Talk to us about your roof.', ctaHitung: 'Open the cost estimator (Indonesian)', ctaWa: 'Chat on WhatsApp', lain: 'Read next', ilustrasi: 'Illustration, not an Atapura project.', isi: 'On this page', locale: 'en-GB' },
 } as const;
 
 const {
-  judul, ringkasan, jawaban, penulis, diperbarui, sampul, sampulAlt, induk, label, faq, sumber, waPesan, dataWa, lain, halaman = [],
+  judul, ringkasan, jawaban, penulis, diperbarui, sampul, sampulAlt, induk, label, faq, sumber, waPesan, dataWa, lain, halaman = [], daftar = [],
   cta = `Masukkan luas dan merek, estimasinya langsung terlihat. Melayani seluruh Jabodetabek hingga luar Pulau Jawa.`,
   lang = 'id',
   alternates = [],
@@ -65,6 +67,8 @@ const schema = [
     ? [{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) }]
     : []),
 ];
+// Daftar isi samping (desktop): judul bagian + tanya jawab, supaya kolom kiri terisi sepanjang halaman.
+const isi = [...daftar, ...(faq.length ? [{ slug: 'faq-judul', text: t.faq }] : [])];
 ---
 
 <Base title={`${judul} | Atapura`} description={ringkasan} schema={schema} lang={lang} alternates={alternates}>
@@ -82,10 +86,19 @@ const schema = [
         <figcaption class="ar-sampul-ket">{t.ilustrasi}</figcaption>
       </figure>
       <div class="wrap ar-badan">
-        <aside class="ar-jawab" aria-label={t.jawaban}>
-          <p class="ar-jawab-label">{t.jawaban}</p>
-          <p class="ar-jawab-isi">{jawaban}</p>
-        </aside>
+        <div class="ar-samping">
+          <aside class="ar-jawab" aria-label={t.jawaban}>
+            <p class="ar-jawab-label">{t.jawaban}</p>
+            <p class="ar-jawab-isi">{jawaban}</p>
+          </aside>
+          {isi.length > 1 && (
+            <nav class="ar-isi" aria-label={t.isi}>
+              <p class="ar-isi-label">{t.isi}</p>
+              <ol>{isi.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol>
+              <a class="tautan-lanjut" href="/hitung">{t.ctaHitung}</a>
+            </nav>
+          )}
+        </div>
         <div class="ar-utama">
         <slot name="awal" />
         <div class="prosa"><slot /></div>
@@ -151,13 +164,24 @@ const schema = [
   .ar-pisah { width: 18px; height: 1px; background: currentColor; }
   .ar-sampul { width: 100%; max-height: 34rem; object-fit: cover; border-radius: 18px; }
   .ar-sampul-ket { margin-top: 0.55rem; font-size: var(--fs-13); color: var(--color-lumut); }
-  /* Lebar penuh sejajar judul (DESIGN.md: tanpa kolom sempit di tengah). Mulai 60rem dua kolom:
-     jawaban singkat menempel di kiri, isi di kanan dengan panjang baris tetap nyaman dibaca. */
+  /* Lebar penuh sejajar judul (DESIGN.md: tanpa kolom sempit di tengah). Mulai 60rem dua kolom: kolom samping kiri
+     (jawaban singkat, lalu daftar isi yang menempel sepanjang halaman), isi di kanan dengan panjang baris nyaman dibaca. */
   .ar-badan { padding-top: 3rem; display: grid; gap: 2.5rem 4rem; grid-template-columns: minmax(0, 1fr); align-items: start; }
   @media (min-width: 60rem) {
     .ar-badan { grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); }
-    .ar-jawab { position: sticky; top: 6.5rem; }
+    .ar-samping { align-self: stretch; display: flex; flex-direction: column; gap: 2.5rem; }
+    .ar-isi { display: block; position: sticky; top: 6.5rem; }
   }
+  @media (max-width: 59.99rem) { .ar-isi { display: none; } }
+  .ar-isi-label { font-size: var(--fs-13); font-weight: 500; color: var(--color-lumut); margin-bottom: 0.75rem; }
+  .ar-isi ol { border-inline-start: 1px solid var(--color-garis); }
+  .ar-isi li a {
+    display: block; margin-inline-start: -1px; padding: 0.45rem 0 0.45rem 1rem; border-inline-start: 2px solid transparent;
+    font-size: var(--fs-15); line-height: 1.4; color: var(--color-lumut); text-decoration: none; transition: color 0.2s, border-color 0.2s;
+  }
+  .ar-isi li a:hover { color: var(--color-tinta); }
+  .ar-isi li a[aria-current] { color: var(--color-tinta); font-weight: 500; border-inline-start-color: var(--color-pinus); }
+  .ar-isi .tautan-lanjut { margin-top: 1.5rem; }
   .ar-utama { min-width: 0; }
   .ar-utama > .prosa { margin-top: 0; }
   .ar-utama > .prosa > :global(:first-child) { margin-top: 0; }
@@ -244,3 +268,15 @@ const schema = [
     .ar-kartu-daftar { margin-top: 0.25rem; gap: 0.5rem; }
   }
 </style>
+
+<script>
+  // Tandai bagian yang sedang dibaca di daftar isi samping.
+  const tautan = [...document.querySelectorAll<HTMLAnchorElement>('.ar-isi li a')];
+  const bagian = tautan.map((a) => document.getElementById(decodeURIComponent(a.hash.slice(1))));
+  const tandai = () => {
+    let aktif = 0;
+    bagian.forEach((b, i) => { if (b && b.getBoundingClientRect().top <= innerHeight * 0.35) aktif = i; });
+    tautan.forEach((a, i) => (i === aktif ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current')));
+  };
+  if (tautan.length) { addEventListener('scroll', tandai, { passive: true }); tandai(); }
+</script>

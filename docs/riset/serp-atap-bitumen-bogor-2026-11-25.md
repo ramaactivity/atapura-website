@@ -28,8 +28,8 @@ dan dikutip AI. Syarat: tanpa iklan berbayar.
 - Hanya 11 ulasan; nama profil Google berisiko ditangguhkan.
 
 ## Catatan bisnis
-Dokter Atap (PT Dua Sinar Sinergi) tercatat sebagai perusahaan Bang Yusuf (memori Ops). Memperebutkan kata kunci yang sama
-= dua usaha satu orang saling makan; tautan dari dokteratap.co.id ke atapura.com = sinyal gratis paling kuat. Keputusan Rama/Bang Yusuf.
+Koreksi Rama (25 Nov): Dokter Atap (PT Dua Sinar Sinergi) **bukan** milik Bang Yusuf; ia hanya sales di sana dan sedang
+keluar untuk membangun Atapura. Dokter Atap = pesaing langsung, boleh dikejar penuh. Proyek lamanya bukan portofolio Atapura.
 
 ## Rencana gratis (urut dampak)
 1. Google Business Profile Atapura (alamat Cisarua, area layanan Kota/Kab. Bogor + Jabodetabek, kategori kontraktor atap,

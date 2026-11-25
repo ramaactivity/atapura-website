@@ -4,13 +4,13 @@ cakupan:
   - { nama: 'Kabupaten Bogor', jenis: 'AdministrativeArea' }
 wilayah: 'Jabodetabek'
 urut: 3
-judul: 'Jasa pasang atap bitumen di Kabupaten Bogor dan Puncak'
+judul: 'Atap bitumen Puncak, Cibinong, dan Kabupaten Bogor'
 # Fakta singkat untuk tabel 'Catatan atap tiap daerah' di beranda — diambil dari ringkasan (bersumber), DECISIONS 095.
 sorot: '±4.800 mm hujan; Puncak 3.747 mm (2024)'
 sorotJenis: 'hujan'
 ringkasan: 'Kabupaten Bogor punya dua iklim: sekitar 4.800 mm hujan di Stasiun Klimatologi Bogor dan 3.747 mm di Citeko, Puncak. Yang perlu diperhatikan pada atapnya.'
 jawaban: 'Atapura memasang atap bitumen di Kabupaten Bogor, termasuk kawasan Puncak, dengan survey gratis. Wilayahnya beragam: Stasiun Klimatologi Bogor di Dramaga mencatat sekitar 4.800 mm hujan pada 2024, sedangkan Stasiun Meteorologi Citeko di Puncak mencatat 3.747 mm dengan musim kering yang lebih jelas (Agustus 55 mm). Rumah di lereng dan dataran tinggi perlu perhatian pada lembap, angin, dan akses material.'
-diperbarui: 2026-11-03
+diperbarui: 2026-11-25
 sampul: '../../../assets/gambar/magnific/segmen-villa-4x5.jpg'
 sampulAlt: 'Ilustrasi rumah beratap genteng aspal di dataran tinggi berkabut'
 faq:
@@ -55,4 +55,4 @@ Di Puncak, musim keringnya lebih jelas. Di sekitar Dramaga, hujan turun hampir s
 
 ## Harga dan survey di Kabupaten Bogor
 
-Harga terpasang sama dengan wilayah Jabodetabek lain untuk kelima merek, seperti di rincian layanan di atas. Biaya akses khusus, bila ada, kami tulis terpisah setelah survey. Untuk wilayah kota, lihat [Kota Bogor](/area/kota-bogor).
+Harga terpasang sama dengan wilayah Jabodetabek lain untuk kelima merek, seperti di rincian layanan di atas. Biaya akses khusus, bila ada, kami tulis terpisah setelah survey. Kantor kami berada di Jl. Raya Puncak, Cisarua, jadi kawasan Puncak dekat dari kami. Untuk villa di dataran tinggi, baca juga [atap villa di Puncak dan Bogor](/panduan/atap-villa-puncak-bogor). Untuk wilayah kota, lihat [Kota Bogor](/area/kota-bogor).

@@ -8,7 +8,7 @@ export async function getStaticPaths() {
 }
 
 const { a, semua } = Astro.props;
-const { Content } = await render(a);
+const { Content, headings } = await render(a);
 const d = a.data;
 const url = new URL(`/en/guides/${a.id}`, Astro.site).href;
 const situs = new URL('/', Astro.site).href;
@@ -29,7 +29,7 @@ const artikel = {
 };
 ---
 
-<Artikel
+<Artikel daftar={headings.filter((h) => h.depth === 2)}
   lang="en"
   judul={d.judul} ringkasan={d.ringkasan} jawaban={d.jawaban} penulis={d.penulis === 'Tim Atapura' ? 'Atapura team' : d.penulis} diperbarui={d.diperbarui}
   sampul={d.sampul} sampulAlt={d.sampulAlt} induk={{ nama: 'Guides', href: '/en/guides' }} label={d.kategori}

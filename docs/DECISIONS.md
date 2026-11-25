@@ -861,3 +861,22 @@ dibagikan langsung memakai gambar baru.
      rumus dirusak → tes baru gagal.
 - Catatan: jadwal "tiap jam" GitHub Actions nyatanya 3–6 jam (cron gratis tidak dijamin tepat); bisa dipicu manual dari tab
   Actions. Pemicu langsung dari Ops butuh token GitHub khusus (belum ada).
+
+## 101 · 25 November 2026 · Kejar Dokter Atap di "atap bitumen bogor" (tanpa iklan): halaman Bogor, artikel Puncak, daftar isi samping
+Pemicu: Dokter Atap memegang kotak peta #1, organik #3 (halaman proyek Rancamaya), dan kutipan AI Overview untuk
+"atap bitumen bogor". Rama: kalahkan Dokter Atap, khususnya di Kota Bogor; gratis dulu. Riset: `docs/riset/serp-atap-bitumen-bogor-2026-11-25.md`.
+- **Halaman Kota Bogor jadi halaman sasaran "atap bitumen bogor"**: judul "Pasang atap bitumen Bogor: harga per m² dan
+  survey gratis" (usul Rama, meniru pola "pasang … rancamaya bogor"); jawaban singkat memuat harga terpasang (Dokter Atap
+  tidak menulis harga); bagian enam kecamatan + kantor Cisarua; ganti genteng lama; FAQ harga, material saja, lama pasang.
+  Tanpa klaim pengalaman proyek (Atapura belum punya proyek). Slug `/area/kota-bogor` tetap (umur 2 hari, kata kunci di
+  URL bobotnya kecil, ganti slug = redirect + tautan berubah).
+- **Kabupaten Bogor** dijuruskan ke Puncak/Cibinong ("Atap bitumen Puncak, Cibinong, dan Kabupaten Bogor") supaya tidak
+  bersaing dengan halaman Kota Bogor.
+- **Isian otomatis di halaman area**: `{harga-merek}`, `{harga-rentang}` (termurah–termahal), `{m2-hari}` di jawaban & FAQ,
+  dari data Ops, supaya angka yang dikutip AI tidak basi.
+- **Artikel "Atap villa di Puncak dan Bogor" dimajukan** dari 2 Mar 2027 ke 25 Nov 2026 (Rama: "kalau bisa hari ini"):
+  data BMKG/BPS Citeko (910 m, 3.747 mm, bulan kering), ARMA lumut vs alga, CTI paku angin, Polres Bogor one way
+  situasional; sampul Magnific baru (135 kredit, mode auto). Foto proyek villa asli menyusul.
+- **Daftar isi samping di semua artikel & halaman area (desktop ≥60rem)**: Rama: "halaman better penuh kanan kiri" — kolom
+  kiri dulu kosong di bawah jawaban singkat. Kini jawaban singkat lalu daftar isi menempel (bagian aktif disorot,
+  ±35% tinggi layar) + tautan Hitung AKAL. Isi tetap ±60 karakter per baris. HP tidak berubah.

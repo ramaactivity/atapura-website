@@ -3,7 +3,7 @@ import { getCollection, render } from 'astro:content';
 import Artikel from '../../layouts/Artikel.astro';
 import LayananArea from '../../components/LayananArea.astro';
 import { bisnis } from '../../data/bisnis';
-import { kisaranRupiah } from '../../data/harga';
+import { harga, kisaranRupiah } from '../../data/harga';
 import { merekTermurah } from '../../data/produk';
 
 export async function getStaticPaths() {
@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 }
 
 const { a, semua } = Astro.props;
-const { Content } = await render(a);
+const { Content, headings } = await render(a);
 const d = a.data;
 const situs = new URL('/', Astro.site).href;
 const url = new URL(`/area/${a.id}`, Astro.site).href;
@@ -33,18 +33,22 @@ const layanan = {
   url,
   ...(d.sumber.length && { subjectOf: d.sumber.filter((s) => s.url).map((s) => ({ '@type': 'CreativeWork', name: s.nama, url: s.url })) }),
 };
-// FAQ boleh memakai {harga-merek}: harga lima merek dari data, supaya jawaban (juga di FAQPage schema) tidak basi.
+// Jawaban & FAQ boleh memakai {harga-merek} (harga lima merek), {harga-rentang} (termurah–termahal), dan {m2-hari} (kecepatan pasang) dari data Ops, supaya
+// angka yang dikutip mesin pencari/AI (juga di FAQPage schema) tidak basi.
 const kelompokHarga = Map.groupBy(merekTermurah.filter((m) => m.r), (m) => kisaranRupiah(m.r!));
 const bagian = [...kelompokHarga].map(([k, ms]) => `${ms.map((m) => m.p.nama).join(' dan ')} ${k.replace(/ rb$/, ' ribu')}`);
 const hargaMerek = `${bagian.slice(0, -1).join(', ')}, dan ${bagian.at(-1)} per m²`;
-const faq = d.faq.map((f) => ({ ...f, a: f.a.replaceAll('{harga-merek}', hargaMerek) }));
+const ada = merekTermurah.flatMap((m) => (m.r ? [m.r] : []));
+const hargaRentang = `${kisaranRupiah([Math.min(...ada.map((r) => r[0])), Math.max(...ada.map((r) => r[1]))]).replace(/ rb$/, ' ribu')} per m², tergantung merek`;
+const isian = (t: string) => t.replaceAll('{harga-merek}', hargaMerek).replaceAll('{harga-rentang}', hargaRentang).replaceAll('{m2-hari}', `${harga.m2PerHari[0]}–${harga.m2PerHari[1]} m²`);
+const faq = d.faq.map((f) => ({ ...f, a: isian(f.a) }));
 const cta = d.wilayah === 'Jabodetabek'
   ? `Masukkan luas dan merek, estimasinya langsung terlihat. Survey gratis untuk lokasi di ${d.nama}.`
   : `${bisnis.survey.luar}. Ceritakan lokasi dan luas atap Anda lewat WhatsApp.`;
 ---
 
-<Artikel
-  judul={d.judul} ringkasan={d.ringkasan} jawaban={d.jawaban} penulis="Tim Atapura" diperbarui={d.diperbarui}
+<Artikel daftar={[{ slug: 'la-judul', text: `Layanan di ${d.nama}` }, ...headings.filter((h) => h.depth === 2)]}
+  judul={d.judul} ringkasan={d.ringkasan} jawaban={isian(d.jawaban)} penulis="Tim Atapura" diperbarui={d.diperbarui}
   sampul={d.sampul} sampulAlt={d.sampulAlt} induk={{ nama: 'Area layanan', href: '/area' }} label={d.wilayah}
   faq={faq} sumber={d.sumber} lain={lain} lainJudul="Area lain" schema={[layanan]} cta={cta}
   waPesan={`Halo Atapura, saya di ${d.nama} dan mau tanya soal atap.`} dataWa="area"

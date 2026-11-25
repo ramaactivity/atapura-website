@@ -27,6 +27,8 @@ Ruko, kafe, dan kos punya satu kesamaan: setiap hari atap dikerjakan adalah hari
 | Kos | Banyak kamar, keluhan bocor dari penghuni | Kerja per blok kamar; pemeriksaan sumber bocor sebelum memutuskan tambal atau ganti |
 | Villa sewa | Bentuk atap rumit, citra di foto pemesanan | Genteng aspal mengikuti atap curam, lengkung, sampai dinding |
 
+Untuk villa di dataran tinggi yang sering berkabut dan berangin, persiapannya dibahas di [atap villa di Puncak dan Bogor](/panduan/atap-villa-puncak-bogor).
+
 ## Kerja per bagian
 
 Tim kami memasang sekitar 30–45 m² per hari. Untuk tempat usaha, pekerjaan dibagi per area: atap lama hanya dibuka seluas yang bisa ditutup kembali pada hari yang sama, dan pekerjaan besar dijadwalkan di luar puncak hujan. Ruang yang tidak sedang dikerjakan tetap bisa dipakai. Lama kerja menurut ukuran ada di [biaya atap rumah per ukuran](/panduan/biaya-atap-rumah-per-ukuran).

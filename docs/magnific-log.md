@@ -66,3 +66,5 @@ Total 20 Nov (cover rakitan): 540 kredit. Saldo setelahnya: ±35.280.
 | 22 Nov 2026 | Sampul artikel borongan 1 (izin Rama di chat: "kalau mau generate gambar pake magnific juga boleh"): cek atap hujan, tukang memasang, bocor & ember, angin, foto udara cluster | Nano Banana 2.1, 2K, 3:2 | 6 × 65 + 65 ulang | ✅ 5 dipakai `assets/gambar/magnific/artikel-*.jpg`; ❌ ruang tamu bocor v1 (interior gaya Amerika, tetesan tidak ke ember) → diulang dengan "small modern terraced house in a Jakarta suburb" ✅; ❌ sampel 5 genteng (potongan 3-tab salah: celah di tengah lembar) → diganti kolase foto seri yang ada (`artikel-perbandingan-merek-3x2.jpg`, tanpa kredit) | Dokumenter, tanpa teks/logo; foto udara dipotong 3% bawah (coretan mirip huruf di jalan) |
 
 Total 22 Nov: 455 kredit. Saldo sebelum: 35.134.
+
+| 25 Nov 2026 | Sampul artikel villa Puncak (villa lereng, pinus menaungi satu sisi atap, kabut, kebun teh) | mode auto, 2K, 3:2 | 135 | ✅ `assets/gambar/magnific/artikel-villa-puncak-3x2.jpg` (dicek diperbesar: atap rapi) | Dokumenter, tanpa orang/teks/logo |

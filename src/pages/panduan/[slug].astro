@@ -10,7 +10,7 @@ export async function getStaticPaths() {
 
 const { a, semua } = Astro.props;
 // Tanpa hreflang: artikel Inggris (/en/guides) untuk ekspat isinya berbeda, bukan terjemahan (DECISIONS 078).
-const { Content } = await render(a);
+const { Content, headings } = await render(a);
 const d = a.data;
 const url = new URL(`/panduan/${a.id}`, Astro.site).href;
 const situs = new URL('/', Astro.site).href;
@@ -52,7 +52,7 @@ const artikel = {
 };
 ---
 
-<Artikel
+<Artikel daftar={headings.filter((h) => h.depth === 2)}
   halaman={halaman}
   judul={d.judul} ringkasan={d.ringkasan} jawaban={d.jawaban} penulis={d.penulis} diperbarui={d.diperbarui}
   sampul={d.sampul} sampulAlt={d.sampulAlt} induk={{ nama: 'Panduan', href: '/panduan' }} label={d.kategori}
