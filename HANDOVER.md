@@ -47,7 +47,7 @@
 - ✅ Beranda berjudul "Jasa Pasang Atap Bitumen Jabodetabek…" + `/panduan/detail-atap-bitumen` dengan gambar potongan SVG sendiri di `public/unduh/detail/` (DECISIONS 111).
 - ✅ `/panduan/atap-gazebo` (biaya dihitung per komponen untuk atap kecil) (DECISIONS 114). ⏳ Tanya Yusuf: biaya minimum/mobilisasi pekerjaan kecil?
 - ✅ Artikel sirap/shingle diperluas jadi "Jenis atap bitumen" + gambar katalog 6 potongan dari foto brosur (DECISIONS 115).
-- ✅ Riset 10 kata kunci teratas (`docs/riset/keyword-top-2026-11-25.md`) + artikel induk `/panduan/atap-bitumen-adalah` (DECISIONS 116). ⏳ Pasang Google Search Console untuk data impresi asli.
+- ✅ Riset 10 kata kunci teratas (`docs/riset/keyword-top-2026-11-25.md`) + artikel induk `/panduan/atap-bitumen-adalah` (DECISIONS 116). Search Console SUDAH aktif sejak 23 Nov (lihat atas); data impresi & status indeks bisa ditarik lewat service account `GSC_SA_KEY` di Ops `.env.local` (pola `Ops src/lib/gsc.ts`). Cek 25 Nov malam: 14 tayang s.d. 23 Nov; beranda, /hitung, harga per m², ganti asbes, Kota Bogor, detail, gazebo terindeks; artikel induk & perbandingan merek belum dikenal; cara pasang "di-crawl, belum diindeks".
 - ⏳ RENCANA (setelah Rama membuat akun sosmed Atapura): reel pendek dari tiap artikel — reel Instagram = sumber kutipan AI Overview nomor 1 (29× dari 28 kata kunci, riset 25 Nov). Naskah: angka bersumber, teks di layar, caption = jawaban singkat; rekaman proyek asli. Artikel dulu (Rama 25 Nov).
 - ⏳ Butuh Rama: Google Business Profile (panduan di chat 25 Nov, nomor 0896-1138-4767), ulasan.
 - ⏳ Berikutnya: koleksi `/proyek` (studi kasus dari Rapor Ops) begitu ada proyek pertama di Bogor; etalase marketplace
