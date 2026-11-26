@@ -41,7 +41,7 @@ Dihitung dari harga terpasang per m² di Jabodetabek (CTI Rp400–450 ribu, Maxx
 | Pekerjaan | Perkiraan |
 |---|---|
 | Rangka baja ringan baru | Rp195–230 ribu per m² atap, tergantung merek (tipe 36: ±Rp9–11 jt; 6 × 12: ±Rp18–22 jt). Lihat [pilihan merek rangka](/produk/rangka-baja-ringan) |
-| Bongkar atap lama | Ditulis setelah survey |
+| Bongkar atap lama | Ditulis setelah survey; tahapan ganti atap lengkap ada di [jasa ganti atap rumah](/panduan/jasa-ganti-atap-rumah) |
 | Talang, plafon, dan perbaikan dinding | Di luar pekerjaan atap |
 | Lokasi di luar Jabodetabek | Akomodasi tukang dan pengiriman material, dihitung bersama admin |
 

@@ -55,4 +55,4 @@ Yang perlu Anda siapkan: kosongkan atau tutup barang di kamar yang atapnya sedan
 
 ## Sebelum mulai
 
-Minta rincian biaya yang memisahkan bongkar, rangka, dan atap baru, lalu minta foto setiap lapis sebelum ditutup. Penjelasan lapisannya ada di [lima lapis pemasangan](/panduan/lima-lapis-pemasangan-atap-bitumen). Kalau penggantian dipicu kebocoran, baca juga [penyebab atap bocor](/panduan/atap-bocor-penyebab-dan-cara-mengatasi).
+Minta rincian biaya yang memisahkan bongkar, rangka, dan atap baru (contoh angkanya per ukuran rumah ada di [jasa ganti atap rumah](/panduan/jasa-ganti-atap-rumah)), lalu tanyakan bagaimana Anda bisa memeriksa lapis yang nanti tertutup. Penjelasan lapisannya ada di [lima lapis pemasangan](/panduan/lima-lapis-pemasangan-atap-bitumen). Kalau penggantian dipicu kebocoran, baca juga [penyebab atap bocor](/panduan/atap-bocor-penyebab-dan-cara-mengatasi).

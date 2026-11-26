@@ -58,4 +58,4 @@ Angka Podes menghitung desa yang terkena, bukan jumlah kejadian.
 
 ## Harga dan survey di Kabupaten Bekasi
 
-Harga terpasang sama dengan wilayah Jabodetabek lain untuk kelima merek, seperti di rincian layanan di atas. Rinciannya ada di [harga atap bitumen per m²](/panduan/harga-atap-bitumen-per-m2). Survey gratis.
+Harga terpasang sama dengan wilayah Jabodetabek lain untuk semua merek, seperti di rincian layanan di atas. Rinciannya ada di [harga atap bitumen per m²](/panduan/harga-atap-bitumen-per-m2). Survey gratis.

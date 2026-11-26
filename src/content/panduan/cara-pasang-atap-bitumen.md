@@ -14,9 +14,9 @@ faq:
     a: 'CTI merekomendasikan rangka baja ringan atau baja berat profil C, dengan kuda-kuda berjarak 800–1.200 mm. Jarak reng 405 mm untuk multiplek atau GRC 9 mm, dan 605 mm untuk papan 12 mm. Rangka kayu juga dipakai; kelebihan dan risikonya dibahas di artikel rangka atap bitumen.'
   - q: 'Berapa jarak reng atap bitumen?'
     a: 'Panduan CTI memakai reng berjarak 405 mm di bawah multiplek atau GRC 9 mm. Untuk papan 12 mm, tanya jawab CTI menyebut jarak reng 605 mm. Kuda-kuda baja ringan di bawahnya berjarak 800–1.200 mm.'
-  - q: 'Bagaimana susunan atap bitumen?'
+  - q: 'Bagaimana urutan dan susunan pemasangan atap bitumen?'
     a: 'Urutan pasangnya: rangka, reng, papan alas (multiplek atau GRC), flashing di sekeliling papan, underlayer (lapis kedap air), starter di tepi bawah, genteng aspal, lalu nok di puncak. Pertemuan atap dengan dinding diberi flashing tambahan.'
-  - q: 'Berapa lama pasang atap bitumen?'
+  - q: 'Berapa lama proses pemasangan atap bitumen?'
     a: 'Satu tim memasang sekitar 30–45 m² per hari, tergantung bentuk atap dan cuaca. Waktu membongkar atap lama, memperbaiki rangka, dan hari hujan dihitung terpisah. Atap lama dibuka per bagian, hanya seluas yang bisa ditutup kembali hari itu.'
   - q: 'Bisa pasang atap bitumen sendiri?'
     a: 'Langkahnya bisa dipelajari dari panduan pabrik, tetapi kesalahan paling sering terjadi di bagian yang nanti tertutup: posisi paku, sambungan underlayer, dan flashing. Kesalahan itu baru terlihat saat atap bocor, dan pemasangan sendiri tidak punya garansi pemasangan yang menanggung perbaikannya. Pekerjaan ini juga dilakukan di ketinggian dan sebagian memakai torching gun (alat api), jadi butuh alat pengaman.'
@@ -39,7 +39,7 @@ Video demo memperlihatkan gerakan tangan; di sini angkanya dicatat satu per satu
 
 Panduan CTI mencantumkan perlengkapan ini: paku genteng panjang 2,5 cm dengan diameter kepala minimal 7 mm, palu, cutter, meteran, sipatan (benang kapur untuk membuat garis lurus), sealant bitumen, gerinda tangan, bor tangan, dan torching gun. Bahannya: papan alas, underlayer, flashing, genteng aspal, dan sekrup papan.
 
-Kalau ini penggantian atap, atap lama dibongkar per bagian, hanya seluas yang bisa ditutup kembali hari itu. Rangka dicek dulu sebelum papan dipasang. Caranya dibahas di [ganti atap rumah tanpa pindah](/panduan/ganti-atap-rumah-izin-lama-tanpa-pindah).
+Kalau ini penggantian atap, atap lama dibongkar per bagian, hanya seluas yang bisa ditutup kembali hari itu. Rangka dicek dulu sebelum papan dipasang. Caranya dibahas di [ganti atap rumah tanpa pindah](/panduan/ganti-atap-rumah-izin-lama-tanpa-pindah), dan seluruh tahapan renovasinya di [jasa ganti atap rumah](/panduan/jasa-ganti-atap-rumah).
 
 ## 1. Rangka dan jarak reng
 

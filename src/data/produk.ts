@@ -570,8 +570,8 @@ const semuaProduk: Produk[] = [
     nama: 'Rangka baja ringan',
     lini: 'rangka',
     rentang: rentangRangka,
-    judul: 'Rangka atap baja ringan Taso, Hi-Steel, K-Steel terpasang',
-    ringkas: 'Rangka atap baja ringan terpasang untuk rumah baru atau pengganti rangka lama, dengan tiga pilihan merek. Harga sudah termasuk aksesori dan jasa pasang.',
+    judul: 'Jasa pasang rangka atap baja ringan per m²: Taso, Hi-Steel, K-Steel',
+    ringkas: 'Rangka atap baja ringan terpasang untuk rumah baru atau pengganti rangka lama, harga per m² sudah termasuk aksesori dan jasa pasang. Ada juga jasa pasang saja.',
     tentang: [
       'Rangka baja ringan dipakai untuk rumah baru, atau saat rangka kayu lama sudah lapuk, dimakan rayap, atau melendut. Di atasnya kami pasang papan alas lalu atap bitumen.',
       'Harga per m² sudah termasuk material, aksesori (screw dan dynabolt), dan jasa pasang. Kalau materialnya sudah Anda sediakan, jasa pasang rangka saja Rp55 ribu per m².',

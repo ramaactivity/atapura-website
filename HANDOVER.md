@@ -48,6 +48,12 @@
 - ✅ `/panduan/atap-gazebo` (biaya dihitung per komponen untuk atap kecil) (DECISIONS 114). ⏳ Tanya Yusuf: biaya minimum/mobilisasi pekerjaan kecil?
 - ✅ Artikel sirap/shingle diperluas jadi "Jenis atap bitumen" + gambar katalog 6 potongan dari foto brosur (DECISIONS 115).
 - ✅ Riset 10 kata kunci teratas (`docs/riset/keyword-top-2026-11-25.md`) + artikel induk `/panduan/atap-bitumen-adalah` (DECISIONS 116). Search Console SUDAH aktif sejak 23 Nov (lihat atas); data impresi & status indeks bisa ditarik lewat service account `GSC_SA_KEY` di Ops `.env.local` (pola `Ops src/lib/gsc.ts`). Cek 25 Nov malam: 14 tayang s.d. 23 Nov; beranda, /hitung, harga per m², ganti asbes, Kota Bogor, detail, gazebo terindeks; artikel induk & perbandingan merek belum dikenal; cara pasang "di-crawl, belum diindeks".
+- ✅ 26 Nov: celah kata kunci komersial (`docs/riset/keyword-komersial-2026-11-26.md`) → `/panduan/jasa-ganti-atap-rumah` +
+  `/panduan/cara-memilih-kontraktor-atap-bitumen` (gantikan topik checklist penawaran Feb 2027), judul /produk "Jual atap bitumen…",
+  /produk/rangka-baja-ringan "Jasa pasang rangka…", FAQ borongan & urutan pemasangan, "lima merek" dibersihkan (DECISIONS 117).
+  ⏳ Tautkan `biaya-ganti-atap-rumah-baja-ringan` dari jasa-ganti-atap begitu tayang 15 Des. ⏳ Seragamkan urutan lapis
+  (lima-lapis & cara-kerja.ts vs CTI). ⏳ Tanya Rama: garansi rangka baja ringan yang kami pasang? perancah disewa siapa?
+  bongkar asbes kami kerjakan sendiri?
 - ⏳ RENCANA (setelah Rama membuat akun sosmed Atapura): reel pendek dari tiap artikel — reel Instagram = sumber kutipan AI Overview nomor 1 (29× dari 28 kata kunci, riset 25 Nov). Naskah: angka bersumber, teks di layar, caption = jawaban singkat; rekaman proyek asli. Artikel dulu (Rama 25 Nov).
 - ⏳ Butuh Rama: Google Business Profile (panduan di chat 25 Nov, nomor 0896-1138-4767), ulasan.
 - ⏳ Berikutnya: koleksi `/proyek` (studi kasus dari Rapor Ops) begitu ada proyek pertama di Bogor; etalase marketplace

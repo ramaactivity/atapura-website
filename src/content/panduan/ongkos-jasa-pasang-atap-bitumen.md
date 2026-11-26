@@ -10,6 +10,8 @@ sampulAlt: 'Ilustrasi dua tukang bertali pengaman memasang genteng aspal abu tua
 faq:
   - q: 'Berapa upah pasang genteng aspal per meter?'
     a: 'Di Atapura, jasa pasang atap bitumen Rp70–120 ribu per m² untuk Jabodetabek. Angka ini hanya ongkos kerja. Material seperti genteng, multiplek, underlayer, flashing, paku, dan skrup dihitung di baris material, sehingga harga terpasang lengkapnya Rp380–450 ribu per m² untuk Maxxi, Javabitumen, dan CTI.'
+  - q: 'Berapa harga borongan pasang atap bitumen per m²?'
+    a: 'Tergantung apa yang diborongkan. Borongan jasa saja (upah tukang, material dari Anda) di Atapura Rp70–120 ribu per m². Borongan lengkap dengan material, yaitu genteng, papan alas, lapis kedap air, flashing, paku, dan skrup, sekitar Rp380–450 ribu per m² untuk Maxxi, Javabitumen, dan CTI. Rangka baja ringan baru dihitung terpisah.'
   - q: 'Apakah harga jasa pasang sudah termasuk multiplek dan underlayer?'
     a: 'Ongkos memasangnya sudah termasuk, barangnya belum. Multiplek atau GRC, underlayer atau membrane, dan flashing masuk ke harga material. Keduanya digabung di harga terpasang per m² yang tertulis di penawaran.'
   - q: 'Apakah jasa pasang atap termasuk rangka?'
@@ -82,7 +84,7 @@ Angka final di rentang Rp70–120 ribu kami tulis setelah survey, karena faktor-
 ## Yang tidak termasuk dalam harga jasa
 
 - **Rangka baru.** Bila rangka lama lapuk atau melendut, rangka baja ringan dihitung per m² terpasang. Pilihan mereknya ada di [rangka baja ringan](/produk/rangka-baja-ringan).
-- **Bongkar atap lama.** Dihitung saat survey, karena bahan dan kondisi atap lama berbeda-beda.
+- **Bongkar atap lama.** Dihitung saat survey, karena bahan dan kondisi atap lama berbeda-beda. Seluruh tahapan renovasi atap, dari bongkar sampai serah terima, ada di [jasa ganti atap rumah](/panduan/jasa-ganti-atap-rumah).
 - **Scaffolding.**
 - **Talang, plafon, dan perbaikan dinding.** Di luar pekerjaan atap.
 - **Lokasi di luar Jabodetabek.** Transport tukang, tempat tinggal tukang bila tidak bisa menginap di proyek, dan ongkos kirim material dihitung bersama admin.
@@ -100,11 +102,11 @@ Minta setiap penawaran menuliskan hal-hal ini secara tertulis:
 1. Lapis yang dipasang, dari alas sampai nok, dan siapa yang menyediakan materialnya.
 2. Tumpang tindih underlayment dan jumlah paku per lembar sesuai panduan pabrik merek yang dipasang.
 3. Pekerjaan yang dihitung terpisah: bongkar, rangka, scaffolding.
-4. Foto setiap lapis sebelum ditutup.
+4. Cara Anda bisa memeriksa lapis yang nanti tertutup.
 5. Garansi pemasangan, apa yang dicakup, dan cara klaimnya.
 
-Bila satu tarif per m² jauh lebih rendah, cek apakah ada lapis atau pekerjaan yang tidak tertulis. Atap yang landai juga perlu dicek dulu terhadap [kemiringan minimal pabrik](/panduan/kemiringan-atap-bitumen-minimal) sebelum dibandingkan harganya.
+Bila satu tarif per m² jauh lebih rendah, cek apakah ada lapis atau pekerjaan yang tidak tertulis. Rincian harga per lapis dan tanda bahaya sebelum membayar DP ada di [memilih kontraktor atap bitumen](/panduan/cara-memilih-kontraktor-atap-bitumen). Atap yang landai juga perlu dicek dulu terhadap [kemiringan minimal pabrik](/panduan/kemiringan-atap-bitumen-minimal) sebelum dibandingkan harganya.
 
 ## Hitung untuk atap Anda
 
-Masukkan luas atap dan merek di [kalkulator atap bitumen](/hitung) untuk melihat estimasi terpasang per m² dan totalnya. Survey di Jabodetabek tanpa biaya, dan setelah itu rincian jasa, material, dan pekerjaan tambahan ditulis terpisah. Kami melayani [Jakarta](/area/jakarta), [Depok](/area/depok), [Kota Bogor](/area/kota-bogor), [Kabupaten Bogor](/area/kabupaten-bogor), [Tangerang Selatan](/area/tangerang-selatan), [Kota Tangerang](/area/kota-tangerang), [Kota Bekasi](/area/kota-bekasi), dan [Kabupaten Bekasi](/area/kabupaten-bekasi).
+Masukkan luas atap dan merek di [kalkulator atap bitumen](/hitung) untuk melihat estimasi terpasang per m² dan totalnya. Survey di Jabodetabek tanpa biaya, dan setelah itu rincian jasa, material, dan pekerjaan tambahan ditulis terpisah. Kami melayani [Jakarta](/area/jakarta), [Depok](/area/depok), [Kota Bogor](/area/kota-bogor), [Kabupaten Bogor](/area/kabupaten-bogor), [Tangerang Selatan](/area/tangerang-selatan), [Kota Tangerang](/area/kota-tangerang), [Kabupaten Tangerang](/area/kabupaten-tangerang), [Kota Bekasi](/area/kota-bekasi), dan [Kabupaten Bekasi](/area/kabupaten-bekasi).

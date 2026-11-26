@@ -78,4 +78,4 @@ Banyak rumah lama di Bogor masih memakai genteng tanah liat atau beton yang bera
 
 ## Harga dan survey di Kota Bogor
 
-Harga terpasang sama dengan wilayah Jabodetabek lain untuk kelima merek, seperti di rincian layanan di atas. Survey gratis, dan pilihan alas (multiplek 12 mm atau GRC) kami tentukan setelah melihat kondisi lokasi. Untuk area di luar kota, lihat [Kabupaten Bogor dan Puncak](/area/kabupaten-bogor).
+Harga terpasang sama dengan wilayah Jabodetabek lain untuk semua merek, seperti di rincian layanan di atas. Survey gratis, dan pilihan alas (multiplek 12 mm atau GRC) kami tentukan setelah melihat kondisi lokasi. Untuk area di luar kota, lihat [Kabupaten Bogor dan Puncak](/area/kabupaten-bogor).

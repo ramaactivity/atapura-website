@@ -49,4 +49,4 @@ Tiga stasiun BMKG di Tangerang Raya pada 2024: Stasiun Geofisika Tangerang 2.139
 
 ## Harga dan survey di Kota Tangerang
 
-Harga terpasang sama dengan wilayah Jabodetabek lain untuk kelima merek, seperti di rincian layanan di atas. Rinciannya ada di [harga atap bitumen per m²](/panduan/harga-atap-bitumen-per-m2). Survey gratis. Wilayah tetangga: [Kabupaten Tangerang](/area/kabupaten-tangerang) dan [Tangerang Selatan](/area/tangerang-selatan).
+Harga terpasang sama dengan wilayah Jabodetabek lain untuk semua merek, seperti di rincian layanan di atas. Rinciannya ada di [harga atap bitumen per m²](/panduan/harga-atap-bitumen-per-m2). Survey gratis. Wilayah tetangga: [Kabupaten Tangerang](/area/kabupaten-tangerang) dan [Tangerang Selatan](/area/tangerang-selatan).

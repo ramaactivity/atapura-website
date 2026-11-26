@@ -57,4 +57,4 @@ Sebagai pembanding, pada periode yang sama tidak ada satu pun kelurahan di Kota 
 
 ## Harga dan survey di Depok
 
-Harga terpasang sama dengan wilayah Jabodetabek lain untuk kelima merek, seperti di rincian layanan di atas. Bongkar atap lama dan perbaikan rangka, bila perlu, ditulis terpisah setelah survey. Rinciannya ada di [harga atap bitumen per m²](/panduan/harga-atap-bitumen-per-m2). Survey gratis.
+Harga terpasang sama dengan wilayah Jabodetabek lain untuk semua merek, seperti di rincian layanan di atas. Bongkar atap lama dan perbaikan rangka, bila perlu, ditulis terpisah setelah survey. Rinciannya ada di [harga atap bitumen per m²](/panduan/harga-atap-bitumen-per-m2). Survey gratis.

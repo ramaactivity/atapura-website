@@ -1125,3 +1125,30 @@ bukan artikel baru.
   selulosa), garansi per merek (Tegola hingga 40 tahun bertahap), 74 dB tanpa klaim perbandingan, batas sudut membran.
 - Klaim lama "CTI punya bentuk potongan terbanyak/paling beragam" (artikel perbandingan merek + `produk.ts`) SALAH sejak seri
   Tegola masuk (Tegola punya lebih banyak bentuk) → dibetulkan jadi "tiga bentuk potongan".
+
+## 117 · 26 November 2026 · Celah kata kunci komersial: jasa ganti atap, memilih kontraktor, judul produk (Rama: "oke gas eksekusi semua satu persatu")
+- Riset: `docs/riset/keyword-komersial-2026-11-26.md` (autocomplete 201 frasa + Trends). Celah terbesar: "ganti atap"/"renovasi atap"
+  (±1/3 volume "atap bitumen") tanpa halaman; "kontraktor/tukang/aplikator atap bitumen" tanpa halaman (SERP kontraktor diisi
+  direktori & grup FB); "jual/supplier atap bitumen" tidak ada di judul mana pun.
+- Artikel baru `/panduan/jasa-ganti-atap-rumah` (tahapan, keputusan rangka, biaya 6x12, jadwal hari). Tabel biaya per ukuran TIDAK
+  diulang (milik `biaya-atap-rumah-per-ukuran`), halaman ini memegang "6x12" + borongan per m². Rangka 20–30 m²/hari ditulis
+  sebagai perkiraan riset (belum angka Ops).
+- Artikel baru `/panduan/cara-memilih-kontraktor-atap-bitumen` menggantikan topik kalender "checklist-penawaran-atap" (2027-02-23).
+  Pembeda: rincian harga per lapis dari `hitungEstimasi` (CTI 100 m² = 404–454 rb/m², dijelaskan kenapa sedikit di atas 400–450),
+  8 pertanyaan survey, isi penawaran (RAB) wajib tertulis, tanda bahaya. Klaim "aplikator bersertifikat" sengaja tidak dipakai
+  (memancing pertanyaan balik ke Atapura). Saran "hindari puncak hujan" diganti "bongkar per bagian, berhenti saat hujan" supaya
+  tidak menunda order Desember.
+- Kedua artikel diulas 7 sudut pandang + cek fakta (4 agen); sampul baru Magnific 2 × 135 kredit (foto udara atap setengah dibongkar;
+  kontraktor & pemilik dari belakang menatap atap tua).
+- Diperkuat tanpa halaman baru: FAQ borongan di ongkos jasa, FAQ "urutan/proses pemasangan" di cara pasang, tautan masuk dari 6
+  artikel. Beranda sudah memuat "genteng aspal" 9× → tidak diubah.
+- `/produk` judul jadi "Jual atap bitumen, … | Atapura" + deskripsi "Supplier atap bitumen … beli material saja atau sekalian
+  dipasang"; `/produk/rangka-baja-ringan` judul jadi "Jasa pasang rangka atap baja ringan per m²: …" (layanan rangka saja Rp55 rb
+  memang ada, `harga.rangka.jasaSaja`).
+- Aturan "tanpa batas jumlah" ditegakkan: "5/lima/kelima merek" diganti "semua/tiap/setiap merek" di /produk, 404, kontak, tentang,
+  10 halaman area, tombol PilihMerek.
+- "Minta foto setiap lapis" dihapus dari ongkos jasa & artikel izin (fitur foto progres masih mati, 093). Sisa: `lima-lapis` bagian
+  "Cara memeriksa pekerjaan yang sudah tertutup" masih menyuruh minta foto — tunggu keputusan Rama soal foto progres.
+- Catatan terbuka: urutan lapis situs belum seragam (`lima-lapis` & `cara-kerja.ts`: alas → underlayment → flashing; CTI/cara pasang/
+  ongkos/artikel baru: alas → flashing tepi → underlayer → starter). Artikel baru `biaya-ganti-atap-rumah-baja-ringan` (15 Des)
+  perlu ditaut dari `jasa-ganti-atap-rumah` setelah tayang.

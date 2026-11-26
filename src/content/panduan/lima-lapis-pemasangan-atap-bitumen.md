@@ -44,4 +44,4 @@ Bagian yang paling perlu diawasi justru yang tidak terlihat setelah atap jadi:
 
 ## Cara memeriksa pekerjaan yang sudah tertutup
 
-Anda tidak perlu naik ke atap. Mintalah **foto setiap lapis sebelum ditutup**: alas yang rata, underlayment yang tumpang tindih, flashing di tepi dinding, lalu genteng dan nok. Foto ini sekaligus menjadi bukti saat [klaim garansi](/garansi).
+Anda tidak perlu naik ke atap. Mintalah **foto setiap lapis sebelum ditutup**: alas yang rata, underlayment yang tumpang tindih, flashing di tepi dinding, lalu genteng dan nok. Foto ini sekaligus menjadi bukti saat [klaim garansi](/garansi). Pertanyaan yang perlu diajukan ke pemasang sebelum Anda membayar ada di [memilih kontraktor atap bitumen](/panduan/cara-memilih-kontraktor-atap-bitumen).

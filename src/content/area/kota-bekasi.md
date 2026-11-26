@@ -50,4 +50,4 @@ Total tahunan kami jumlahkan dari angka bulanan di tabel BPS. Ketinggian Kota Be
 
 ## Harga dan survey di Kota Bekasi
 
-Harga terpasang sama dengan wilayah Jabodetabek lain untuk kelima merek, seperti di rincian layanan di atas. Rinciannya ada di [harga atap bitumen per m²](/panduan/harga-atap-bitumen-per-m2). Survey gratis. Atap sudah merembes? Mulai dari [cara menemukan titik bocornya](/panduan/atap-bocor-penyebab-dan-cara-mengatasi).
+Harga terpasang sama dengan wilayah Jabodetabek lain untuk semua merek, seperti di rincian layanan di atas. Rinciannya ada di [harga atap bitumen per m²](/panduan/harga-atap-bitumen-per-m2). Survey gratis. Atap sudah merembes? Mulai dari [cara menemukan titik bocornya](/panduan/atap-bocor-penyebab-dan-cara-mengatasi).

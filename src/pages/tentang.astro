@@ -13,7 +13,7 @@ const situs = new URL('/', Astro.site).href;
 const a = bisnis.alamat;
 const daftar = (x: readonly string[]) => (x.length > 1 ? `${x.slice(0, -1).join(', ')}, dan ${x.at(-1)}` : x[0]);
 const masalah = [
-  { takut: 'Tidak tahu harga yang wajar', jawab: 'Harga terpasang per m² kami tulis terbuka untuk kelima merek, dan Hitung AKAL menghitung totalnya sebelum Anda bicara dengan siapa pun.', href: '/hitung', label: 'Hitung biaya atap' },
+  { takut: 'Tidak tahu harga yang wajar', jawab: 'Harga terpasang per m² kami tulis terbuka untuk setiap merek, dan Hitung AKAL menghitung totalnya sebelum Anda bicara dengan siapa pun.', href: '/hitung', label: 'Hitung biaya atap' },
   { takut: 'Tidak bisa menilai hasil pemasangan', jawab: 'Kami memasang mengikuti Standar Pasang AKAL lima lapis dan memotret tiap lapis sebelum tertutup, jadi bagian yang nanti tidak terlihat tetap bisa Anda periksa.', href: '/cara-kerja', label: 'Lihat cara kerja' },
   { takut: 'Takut ditinggal setelah lunas', jawab: `Garansi pemasangan ${bisnis.garansiPemasanganTahun} tahun kami tulis terpisah dari garansi pabrik, dan klaimnya cukup lewat WhatsApp dengan foto.`, href: '/garansi', label: 'Lihat garansi' },
 ];
