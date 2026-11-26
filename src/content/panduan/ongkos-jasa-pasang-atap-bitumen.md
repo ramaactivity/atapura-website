@@ -97,15 +97,7 @@ Jadwal hariannya ikut aturan bahan. Papan alas dan lapis kedap air harus kering 
 
 ## Cara membandingkan dua penawaran jasa
 
-Minta setiap penawaran menuliskan hal-hal ini secara tertulis:
-
-1. Lapis yang dipasang, dari alas sampai nok, dan siapa yang menyediakan materialnya.
-2. Tumpang tindih underlayment dan jumlah paku per lembar sesuai panduan pabrik merek yang dipasang.
-3. Pekerjaan yang dihitung terpisah: bongkar, rangka, scaffolding.
-4. Cara Anda bisa memeriksa lapis yang nanti tertutup.
-5. Garansi pemasangan, apa yang dicakup, dan cara klaimnya.
-
-Bila satu tarif per m² jauh lebih rendah, cek apakah ada lapis atau pekerjaan yang tidak tertulis. Rincian harga per lapis dan tanda bahaya sebelum membayar DP ada di [memilih kontraktor atap bitumen](/panduan/cara-memilih-kontraktor-atap-bitumen). Atap yang landai juga perlu dicek dulu terhadap [kemiringan minimal pabrik](/panduan/kemiringan-atap-bitumen-minimal) sebelum dibandingkan harganya.
+Tarif jasa per m² baru bisa dibandingkan bila kedua penawaran menuliskan lapis yang sama, dari alas sampai nok, dan memisahkan bongkar, rangka, serta perancah. Bila satu tarif jauh lebih rendah, cek lapis atau pekerjaan mana yang tidak tertulis; daftar isi penawaran yang wajib ada, rincian harga per lapis, dan tanda bahaya sebelum membayar DP ada di [memilih kontraktor atap bitumen](/panduan/cara-memilih-kontraktor-atap-bitumen). Atap yang landai juga perlu dicek dulu terhadap [kemiringan minimal pabrik](/panduan/kemiringan-atap-bitumen-minimal) sebelum dibandingkan harganya.
 
 ## Hitung untuk atap Anda
 

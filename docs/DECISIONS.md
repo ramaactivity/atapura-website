@@ -1149,6 +1149,9 @@ bukan artikel baru.
   10 halaman area, tombol PilihMerek.
 - "Minta foto setiap lapis" dihapus dari ongkos jasa & artikel izin (fitur foto progres masih mati, 093). Sisa: `lima-lapis` bagian
   "Cara memeriksa pekerjaan yang sudah tertutup" masih menyuruh minta foto — tunggu keputusan Rama soal foto progres.
-- Catatan terbuka: urutan lapis situs belum seragam (`lima-lapis` & `cara-kerja.ts`: alas → underlayment → flashing; CTI/cara pasang/
-  ongkos/artikel baru: alas → flashing tepi → underlayer → starter). Artikel baru `biaya-ganti-atap-rumah-baja-ringan` (15 Des)
+- Urutan lapis diseragamkan (lanjutan 26 Nov): `lima-lapis` tetap tabel SUSUNAN lapis, ditambah kalimat bahwa urutan kerja CTI =
+  flashing tepi dulu, underlayment di atasnya, flashing dinding bersama baris genteng; `cara-kerja.ts` jadi "alas, flashing tepi,
+  underlayment, genteng, nok". Saran foto di `lima-lapis` jadi "sepakati cara memeriksa lapis, misalnya lewat foto" (tanpa janji
+  Atapura). Bagian "membandingkan penawaran" di ongkos jasa diringkas + tautan ke artikel kontraktor (hindari kanibal). Guide EN:
+  rangka baru "about 220,000" → 195,000–230,000. IndexNow dijalankan (79 URL, HTTP 200). Artikel baru `biaya-ganti-atap-rumah-baja-ringan` (15 Des)
   perlu ditaut dari `jasa-ganti-atap-rumah` setelah tayang.

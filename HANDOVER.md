@@ -51,8 +51,8 @@
 - ✅ 26 Nov: celah kata kunci komersial (`docs/riset/keyword-komersial-2026-11-26.md`) → `/panduan/jasa-ganti-atap-rumah` +
   `/panduan/cara-memilih-kontraktor-atap-bitumen` (gantikan topik checklist penawaran Feb 2027), judul /produk "Jual atap bitumen…",
   /produk/rangka-baja-ringan "Jasa pasang rangka…", FAQ borongan & urutan pemasangan, "lima merek" dibersihkan (DECISIONS 117).
-  ⏳ Tautkan `biaya-ganti-atap-rumah-baja-ringan` dari jasa-ganti-atap begitu tayang 15 Des. ⏳ Seragamkan urutan lapis
-  (lima-lapis & cara-kerja.ts vs CTI). ⏳ Tanya Rama: garansi rangka baja ringan yang kami pasang? perancah disewa siapa?
+  ⏳ Tautkan `biaya-ganti-atap-rumah-baja-ringan` dari jasa-ganti-atap begitu tayang 15 Des. ✅ Urutan lapis diseragamkan,
+  IndexNow dikirim. ⏳ Rama: Minta pengindeksan GSC untuk 2 artikel baru (kuota 26 Nov habis). ⏳ Tanya Rama: garansi rangka baja ringan yang kami pasang? perancah disewa siapa?
   bongkar asbes kami kerjakan sendiri?
 - ⏳ RENCANA (setelah Rama membuat akun sosmed Atapura): reel pendek dari tiap artikel — reel Instagram = sumber kutipan AI Overview nomor 1 (29× dari 28 kata kunci, riset 25 Nov). Naskah: angka bersumber, teks di layar, caption = jawaban singkat; rekaman proyek asli. Artikel dulu (Rama 25 Nov).
 - ⏳ Butuh Rama: Google Business Profile (panduan di chat 25 Nov, nomor 0896-1138-4767), ulasan.

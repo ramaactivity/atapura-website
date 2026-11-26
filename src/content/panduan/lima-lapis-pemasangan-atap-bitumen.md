@@ -13,7 +13,7 @@ faq:
   - q: 'Multiplek atau GRC untuk alas?'
     a: 'Multiplek 12 mm adalah standar alas yang kami pakai; GRC 9 mm jadi pilihan untuk lokasi yang lembap. Pilihannya bergantung pada kondisi rangka dan kelembapan lokasi, dan dibahas saat survey.'
   - q: 'Bagaimana memastikan lapis yang tertutup dikerjakan benar?'
-    a: 'Minta foto setiap lapis sebelum ditutup lapis berikutnya, supaya bagian yang nanti tertutup tetap bisa dicek.'
+    a: 'Sepakati dengan pemasang sebelum pekerjaan mulai bagaimana Anda bisa memeriksa tiap lapis sebelum ditutup lapis berikutnya, misalnya lewat foto atau melihat langsung, supaya bagian yang nanti tertutup tetap bisa dicek.'
 sumber:
   - nama: 'CTI, panduan pemasangan Rev. September 2024 (urutan lapis, paku, overlap underlayment), dicek 3 November 2026'
     url: 'https://www.ct-i.co.kr/wp-content/uploads/2024/12/CTI-Installation-Guide-Rev.-September-2024-Ind.pdf'
@@ -31,7 +31,7 @@ sumber:
 | 4. Genteng bitumen | Shingle 3-tab atau laminasi | Lapisan luar: tahan cuaca, memberi warna |
 | 5. Nok | Potongan shingle di bubungan | Menutup sambungan paling atas |
 
-Genteng dipasang dari bawah ke atas; urutan kerjanya langkah demi langkah ada di [cara pasang atap bitumen](/panduan/cara-pasang-atap-bitumen). Panduan CTI memakai paku 2,5 cm berkepala minimal 7 mm, 4 paku per lembar di area yang nanti tertutup lembar berikutnya, dan 6 paku atau lebih untuk daerah berangin kencang. Di atap 10–15°, sambungan underlayment dilebihkan menjadi 150 mm; batas kemiringan tiap merek ada di [kemiringan atap bitumen minimal](/panduan/kemiringan-atap-bitumen-minimal).
+Tabel ini adalah susunan lapis, belum urutan kerja persis. Panduan CTI memasang flashing tepi di sekeliling papan alas lebih dulu, baru underlayment di atasnya, sedangkan flashing di pertemuan atap dengan dinding dipasang bersama baris genteng. Genteng dipasang dari bawah ke atas; urutan kerjanya langkah demi langkah ada di [cara pasang atap bitumen](/panduan/cara-pasang-atap-bitumen). Panduan CTI memakai paku 2,5 cm berkepala minimal 7 mm, 4 paku per lembar di area yang nanti tertutup lembar berikutnya, dan 6 paku atau lebih untuk daerah berangin kencang. Di atap 10–15°, sambungan underlayment dilebihkan menjadi 150 mm; batas kemiringan tiap merek ada di [kemiringan atap bitumen minimal](/panduan/kemiringan-atap-bitumen-minimal).
 
 ## Titik rawan di lapis yang tertutup
 
@@ -44,4 +44,4 @@ Bagian yang paling perlu diawasi justru yang tidak terlihat setelah atap jadi:
 
 ## Cara memeriksa pekerjaan yang sudah tertutup
 
-Anda tidak perlu naik ke atap. Mintalah **foto setiap lapis sebelum ditutup**: alas yang rata, underlayment yang tumpang tindih, flashing di tepi dinding, lalu genteng dan nok. Foto ini sekaligus menjadi bukti saat [klaim garansi](/garansi). Pertanyaan yang perlu diajukan ke pemasang sebelum Anda membayar ada di [memilih kontraktor atap bitumen](/panduan/cara-memilih-kontraktor-atap-bitumen).
+Anda tidak perlu naik ke atap. Sebelum pekerjaan mulai, sepakati dengan pemasang cara Anda memeriksa lapis yang nanti tertutup, misalnya lewat foto: alas yang rata, underlayment yang tumpang tindih, flashing di tepi dinding, lalu genteng dan nok. Catatan pemeriksaan ini juga berguna bila kelak ada [klaim garansi](/garansi). Pertanyaan yang perlu diajukan ke pemasang sebelum Anda membayar ada di [memilih kontraktor atap bitumen](/panduan/cara-memilih-kontraktor-atap-bitumen).

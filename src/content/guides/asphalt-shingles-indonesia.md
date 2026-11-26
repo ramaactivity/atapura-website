@@ -37,7 +37,7 @@ You are building or renovating in Indonesia and a contractor has suggested an as
 | Maxxi | IDR 145,000 / m² | IDR 380,000–430,000 / m² |
 | Javabitumen | IDR 145,000 / m² | IDR 380,000–430,000 / m² |
 
-*12 mm plywood deck, self-adhesive underlayment, flashing, nails and screws, labour, on an existing roof frame. A new light-steel frame adds about IDR 220,000 per m².
+*12 mm plywood deck, self-adhesive underlayment, flashing, nails and screws, labour, on an existing roof frame. A new light-steel frame adds about IDR 195,000–230,000 per m² installed, depending on the brand.
 
 As a rough example, a roof of about 100 m² with CTI shingles comes to roughly IDR 40–45 million installed. Shingles are only about a third of the installed price; the deck, underlayment, flashing, and labour make up the rest.
 
