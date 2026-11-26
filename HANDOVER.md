@@ -54,6 +54,8 @@
   ⏳ Tautkan `biaya-ganti-atap-rumah-baja-ringan` dari jasa-ganti-atap begitu tayang 15 Des. ✅ Urutan lapis diseragamkan,
   IndexNow dikirim. ⏳ Rama: Minta pengindeksan GSC untuk 2 artikel baru (kuota 26 Nov habis). ⏳ Tanya Rama: garansi rangka baja ringan yang kami pasang? perancah disewa siapa?
   bongkar asbes kami kerjakan sendiri?
+- ✅ 26 Nov (lanjutan): 3 artikel terjadwal 1/4/8 Des (ganti genteng beton, 12 kesalahan pemasangan, cara memilih atap bitumen),
+  2 topik kalender dibuang, berat Eco Roof dibetulkan 9,4 kg/m² (DECISIONS 118). ⏳ Pasang tautan masuk ke ketiganya setelah tayang.
 - ⏳ RENCANA (setelah Rama membuat akun sosmed Atapura): reel pendek dari tiap artikel — reel Instagram = sumber kutipan AI Overview nomor 1 (29× dari 28 kata kunci, riset 25 Nov). Naskah: angka bersumber, teks di layar, caption = jawaban singkat; rekaman proyek asli. Artikel dulu (Rama 25 Nov).
 - ⏳ Butuh Rama: Google Business Profile (panduan di chat 25 Nov, nomor 0896-1138-4767), ulasan.
 - ⏳ Berikutnya: koleksi `/proyek` (studi kasus dari Rapor Ops) begitu ada proyek pertama di Bogor; etalase marketplace

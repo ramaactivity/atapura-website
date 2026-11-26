@@ -253,7 +253,7 @@ const semuaProduk: Produk[] = [
         spek: [
           { label: 'Motif', nilai: 'Rectangular, Traditional, Hexagonal' },
           { label: 'Ukuran per lembar', nilai: '1.000 × 340 mm (Hexagonal 337 mm)' },
-          { label: 'Berat', nilai: '±8,5 kg/m²' },
+          { label: 'Berat', nilai: '±9,4 kg/m² (Rectangular)' },
           { label: 'Isi per bundel', nilai: '2,32 m² (Hexagonal 2,30 m²)' },
           { label: 'Garansi pabrik', nilai: '20 tahun' },
           { label: 'Genteng saja', nilai: '±Rp315–350 ribu per m²' },
@@ -263,7 +263,7 @@ const semuaProduk: Produk[] = [
       {
         nama: 'Top Shingles',
         foto: seriFoto('tegola-top-shingles-rectangular'),
-        ringkas: 'Satu lapis potongan persegi dengan lapisan aspal lebih tebal dari Eco Roof, garansi lebih panjang.',
+        ringkas: 'Satu lapis potongan persegi, bundel lebih luas dari Eco Roof, dan garansi pabrik lebih panjang.',
         spek: [
           { label: 'Motif', nilai: 'Rectangular' },
           { label: 'Ukuran per lembar', nilai: '1.000 × 340 mm' },

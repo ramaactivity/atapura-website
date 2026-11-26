@@ -1,7 +1,7 @@
 ---
 judul: 'Genteng aspal vs genteng keramik dan tanah liat: berat, sudut, biaya'
-ringkasan: 'Genteng aspal 8,5–12,3 kg/m², genteng keramik 39–46 kg/m². Bandingkan kemiringan minimal, harga per m², dan kapan genteng keramik lama layak diganti.'
-jawaban: 'Genteng aspal (atap bitumen) jauh lebih ringan: 8,5–12,3 kg per m², sedangkan genteng keramik sekitar 39–46 kg per m² menurut data distributor, atau 3–5 kali lebih berat. Genteng aspal bisa dipasang mulai kemiringan 10–15°, genteng keramik butuh 25–30°. Genteng keramik dan tanah liat dipasang langsung di reng dan unggul di tampilan klasik. Genteng aspal butuh papan alas dan cocok untuk rangka lama atau atap yang lebih landai.'
+ringkasan: 'Genteng aspal 8,7–12,3 kg/m², genteng keramik 39–46 kg/m². Bandingkan kemiringan minimal, harga per m², dan kapan genteng keramik lama layak diganti.'
+jawaban: 'Genteng aspal (atap bitumen) jauh lebih ringan: 8,7–12,3 kg per m², sedangkan genteng keramik sekitar 39–46 kg per m² menurut data distributor, atau 3–5 kali lebih berat. Genteng aspal bisa dipasang mulai kemiringan 10–15°, genteng keramik butuh 25–30°. Genteng keramik dan tanah liat dipasang langsung di reng dan unggul di tampilan klasik. Genteng aspal butuh papan alas dan cocok untuk rangka lama atau atap yang lebih landai.'
 kategori: 'Perbandingan'
 terbit: 2026-11-25
 diperbarui: 2026-11-25
@@ -9,13 +9,13 @@ sampul: '../../../assets/gambar/magnific/artikel-bitumen-vs-keramik-3x2.jpg'
 sampulAlt: 'Ilustrasi atap dari atas yang terbelah diagonal: genteng keramik merah berglasir dan genteng aspal abu arang'
 faq:
   - q: 'Mana yang lebih ringan, genteng aspal atau genteng keramik?'
-    a: 'Genteng aspal sekitar 8,5–12,3 kg per m² menurut data pabrik. Genteng keramik sekitar 39–46 kg per m², dihitung dari berat per keping (2,85–3,8 kg) dan jumlah keping per m² yang dicantumkan distributor. Jadi genteng aspal kira-kira 3–5 kali lebih ringan. Setelah papan alas ikut dihitung selisihnya mengecil, tetapi tetap jauh lebih ringan.'
+    a: 'Genteng aspal sekitar 8,7–12,3 kg per m² menurut data pabrik. Genteng keramik sekitar 39–46 kg per m², dihitung dari berat per keping (2,85–3,8 kg) dan jumlah keping per m² yang dicantumkan distributor. Jadi genteng aspal kira-kira 3–5 kali lebih ringan. Setelah papan alas ikut dihitung selisihnya mengecil, tetapi tetap jauh lebih ringan.'
   - q: 'Berapa kemiringan minimal genteng keramik dan genteng aspal?'
     a: 'Produsen genteng keramik mencantumkan minimal 25–30° tergantung model. Genteng aspal bisa mulai 10–15° tergantung merek: Maxxi 15–90°, CTI punya cara khusus untuk 10–15°. Atap yang terlalu landai untuk genteng keramik masih bisa memakai genteng aspal.'
   - q: 'Genteng keramik lama mau diganti genteng aspal, bisa?'
     a: 'Bisa, dan kemiringannya hampir selalu cukup, karena genteng keramik sendiri butuh minimal 25–30°. Genteng lama dibongkar per bagian, lalu papan alas multiplek atau GRC disekrup ke reng dan ditutup underlayer serta genteng aspal. Reng dan rangka yang ada dicek saat survey: dipakai kalau masih baik, diganti atau ditambah kalau lapuk atau jaraknya tidak cocok dengan papan.'
   - q: 'Genteng tanah liat biasa lebih berat dari genteng aspal?'
-    a: 'Ya. Pedoman pembebanan PPURG 1987 menghitung atap genteng beserta reng dan usuknya 50 kg per m². Genteng aspal 8,5–12,3 kg per m², ditambah papan alas dan underlayer. Genteng tanah liat juga dipasang di reng dengan kemiringan yang ditentukan produsennya, jadi atap genteng tanah liat lama umumnya cukup curam untuk diganti genteng aspal.'
+    a: 'Ya. Pedoman pembebanan PPURG 1987 menghitung atap genteng beserta reng dan usuknya 50 kg per m². Genteng aspal 8,7–12,3 kg per m², ditambah papan alas dan underlayer. Genteng tanah liat juga dipasang di reng dengan kemiringan yang ditentukan produsennya, jadi atap genteng tanah liat lama umumnya cukup curam untuk diganti genteng aspal.'
   - q: 'Lebih awet mana, genteng aspal atau genteng keramik?'
     a: 'Umumnya genteng keramik. Tabel perkiraan umur dari Amerika Serikat menulis 40 sampai 100 tahun lebih untuk genteng tanah liat dan beton, dan 20–30 tahun untuk genteng aspal, dengan catatan iklim panas memangkas umur genteng aspal. Garansi pabrik genteng aspal Maxxi dan CTI 25–30 tahun. Pada keduanya, sambungan dan talang umumnya rusak lebih dulu daripada gentengnya.'
   - q: 'Kalau genteng pecah atau rusak, bisa diganti sebagian?'
@@ -25,7 +25,7 @@ faq:
 sumber:
   - nama: 'Lembar data produsen genteng keramik berglasir: 13,6 keping per m², kemiringan minimal 25° (model lain 30°), jarak reng 27 cm, retak rambut (crazing) alami pada genteng berglasir (dicek 25 November 2026)'
   - nama: 'Spesifikasi distributor genteng keramik: berat 2,85–3,8 kg per keping, jumlah keping per m² per model (11,5–14,5), harga Rp10.800–21.800 per keping (dicek 25 November 2026)'
-  - nama: 'Lembar data teknis pabrik genteng aspal: Maxxiroof 8,7 kg/m², Promaxxi 11,6 kg/m², Tegola 8,5–12,3 kg/m²; Maxxi rentang kemiringan 15–90°, garansi 25 dan 30 tahun'
+  - nama: 'Lembar data teknis pabrik genteng aspal: Maxxiroof 8,7 kg/m², Promaxxi 11,6 kg/m², Tegola 9,0–12,3 kg/m²; Maxxi rentang kemiringan 15–90°, garansi 25 dan 30 tahun'
     url: 'https://maxxiroof.com/promaxxi/'
   - nama: 'CTI, panduan pemasangan Rev. September 2024: papan alas, underlayment, cara khusus untuk 10–15°'
     url: 'https://www.ct-i.co.kr/wp-content/uploads/2024/12/CTI-Installation-Guide-Rev.-September-2024-Ind.pdf'
@@ -43,7 +43,7 @@ Genteng keramik dan genteng tanah liat adalah atap yang paling banyak dikenal di
 
 | Hal | Genteng aspal (bitumen) | Genteng keramik / tanah liat |
 |---|---|---|
-| Berat genteng | 8,5–12,3 kg/m² | Keramik 39–46 kg/m² |
+| Berat genteng | 8,7–12,3 kg/m² | Keramik 39–46 kg/m² |
 | Dipasang di | Papan alas + underlayer | Reng, langsung |
 | Kemiringan minimal | 10–15°, tergantung merek | 25–30°, tergantung model |
 | Bentuk atap | Dipotong mengikuti jurai, lengkung | Keping jurai dan nok per model |

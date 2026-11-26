@@ -20,7 +20,7 @@ faq:
   - q: 'Atap rumah apa yang aman untuk kesehatan?'
     a: 'Yang perlu diwaspadai adalah atap lembaran asbes. WHO menyatakan semua jenis asbes bersifat karsinogenik, dan risikonya muncul terutama saat lembaran dipotong, dibor, pecah, atau dibongkar. Studi berbasis data BPS mencatat 52,1% rumah di DKI Jakarta beratap asbes, jadi penggantiannya perlu direncanakan dengan aman.'
   - q: 'Atap apa yang ringan tapi tetap awet?'
-    a: 'Atap metal dan genteng aspal. Genteng aspal 8,5–12,3 kg per m², 3–5 kali lebih ringan dari genteng keramik (39–46 kg per m²), dan bergaransi pabrik 25–30 tahun untuk Maxxi dan CTI. Atap metal ringan dan tercatat 40–80 tahun di bagan InterNACHI. Keduanya cocok untuk mengganti atap di rangka lama.'
+    a: 'Atap metal dan genteng aspal. Genteng aspal 8,7–12,3 kg per m², 3–5 kali lebih ringan dari genteng keramik (39–46 kg per m²), dan bergaransi pabrik 25–30 tahun untuk Maxxi dan CTI. Atap metal ringan dan tercatat 40–80 tahun di bagan InterNACHI. Keduanya cocok untuk mengganti atap di rangka lama.'
 sumber:
   - nama: 'Port of Seattle, SEA-SIPP Technical Report Appendix C: Life Expectancy of Building Materials (diunggah Februari 2025), memuat ulang tabel NAHB, Fannie Mae, InterNACHI, dan DCA Office of Affordable Housing 2011'
     url: 'https://www.portseattle.org/sites/default/files/2025-02/SEA-SIPP%20Technical%20Report%20Appendix%20C%20Life%20Expectancy%20of%20Building%20Materials.pdf'
@@ -35,7 +35,7 @@ sumber:
     url: 'https://doi.org/10.3961/jpmph.24.749'
   - nama: 'Spesifikasi distributor genteng keramik: berat 2,85–3,8 kg per keping, 11,5–14,5 keping per m² (dicek 25 November 2026)'
   - nama: 'Lembar data produsen genteng keramik berglasir: kemiringan minimal 25° (model lain 30°) (dicek 25 November 2026)'
-  - nama: 'Lembar data teknis pabrik genteng aspal: Maxxiroof 8,7 kg/m², Promaxxi 11,6 kg/m², Tegola 8,5–12,3 kg/m²; garansi Maxxi 25 dan 30 tahun'
+  - nama: 'Lembar data teknis pabrik genteng aspal: Maxxiroof 8,7 kg/m², Promaxxi 11,6 kg/m², Tegola 9,0–12,3 kg/m²; garansi Maxxi 25 dan 30 tahun'
     url: 'https://maxxiroof.com/promaxxi/'
   - nama: 'CTI, tanya jawab: garansi produk 30 tahun'
     url: 'https://www.ct-i.co.kr/tanya-jawab/'
@@ -99,7 +99,7 @@ Rangka memiliki umur paling panjang di ketiga tabel. Fannie Mae menulis lebih da
 
 ## Paling awet belum tentu paling cocok
 
-Genteng yang paling lama umurnya juga yang paling berat. Genteng keramik sekitar 39–46 kg per m² menurut spesifikasi distributor, genteng aspal 8,5–12,3 kg per m² menurut lembar data pabrik. Pedoman pembebanan PPURG 1987 menghitung atap genteng beserta reng dan usuknya 50 kg per m². Genteng keramik yang berat bisa melewati angka itu setelah reng dan usuk dihitung, jadi cocokkan berat produk dengan hitungan rangkanya. Rumah yang rangkanya sudah tua, atau yang ditambah lantai, perlu dicek lebih dulu. Hitungannya ada di [genteng aspal vs genteng beton: beban rangka](/panduan/atap-bitumen-vs-genteng-beton-beban-rangka).
+Genteng yang paling lama umurnya juga yang paling berat. Genteng keramik sekitar 39–46 kg per m² menurut spesifikasi distributor, genteng aspal 8,7–12,3 kg per m² menurut lembar data pabrik. Pedoman pembebanan PPURG 1987 menghitung atap genteng beserta reng dan usuknya 50 kg per m². Genteng keramik yang berat bisa melewati angka itu setelah reng dan usuk dihitung, jadi cocokkan berat produk dengan hitungan rangkanya. Rumah yang rangkanya sudah tua, atau yang ditambah lantai, perlu dicek lebih dulu. Hitungannya ada di [genteng aspal vs genteng beton: beban rangka](/panduan/atap-bitumen-vs-genteng-beton-beban-rangka).
 
 Berat atap juga ikut dihitung saat gempa. Dalam SNI 1726:2019, gaya gempa yang ditahan bangunan sebanding dengan berat seismik efektifnya, dan berat atap termasuk di dalamnya.
 

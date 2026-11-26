@@ -1,7 +1,7 @@
 ---
 judul: 'Atap gazebo yang bagus: jenis bahan, bentuk, umur, dan biayanya'
 ringkasan: 'Bahan atap gazebo dari genteng aspal, tanah liat, sirap kayu, sampai metal: berat, umur, dan cocok untuk bentuk apa. Plus cara menghitung luas dan biayanya.'
-jawaban: 'Atap gazebo yang bagus mengikuti bentuk dan kekuatan rangkanya. Untuk gazebo limas atau segi delapan berangka ramping, genteng aspal di atas papan multiplek paling mudah dibentuk dan beratnya hanya 8,5–12,3 kg per m². Genteng tanah liat dan beton lebih panjang umurnya tetapi butuh rangka kuat, dan genteng keramik butuh sudut minimal 25–30°. Atap gazebo 3 × 3 m dengan teritis 50 cm dan sudut 30° luasnya sekitar 18,5 m².'
+jawaban: 'Atap gazebo yang bagus mengikuti bentuk dan kekuatan rangkanya. Untuk gazebo limas atau segi delapan berangka ramping, genteng aspal di atas papan multiplek paling mudah dibentuk dan beratnya hanya 8,7–12,3 kg per m². Genteng tanah liat dan beton lebih panjang umurnya tetapi butuh rangka kuat, dan genteng keramik butuh sudut minimal 25–30°. Atap gazebo 3 × 3 m dengan teritis 50 cm dan sudut 30° luasnya sekitar 18,5 m².'
 kategori: 'Dasar'
 terbit: 2026-11-25
 diperbarui: 2026-11-25
@@ -9,7 +9,7 @@ sampul: '../../../assets/gambar/magnific/artikel-gazebo-3x2.jpg'
 sampulAlt: 'Ilustrasi kolong atap gazebo limas dilihat dari bawah: empat jurai kayu bertemu di tiang puncak, kasau sejajar, papan multiplek dicat putih gading, lampu rotan, dan tepi tipis genteng aspal di pinggir atap'
 faq:
   - q: 'Atap gazebo yang bagus pakai apa?'
-    a: 'Tergantung bentuk dan rangkanya. Genteng aspal paling mudah mengikuti bentuk limas dan segi delapan, ringan (8,5–12,3 kg per m²), dan bergaransi pabrik 25–30 tahun untuk Maxxi dan CTI. Genteng tanah liat atau beton lebih panjang umurnya menurut tabel umur bangunan, tetapi butuh rangka yang kuat, dan genteng keramik butuh sudut minimal 25–30°.'
+    a: 'Tergantung bentuk dan rangkanya. Genteng aspal paling mudah mengikuti bentuk limas dan segi delapan, ringan (8,7–12,3 kg per m²), dan bergaransi pabrik 25–30 tahun untuk Maxxi dan CTI. Genteng tanah liat atau beton lebih panjang umurnya menurut tabel umur bangunan, tetapi butuh rangka yang kuat, dan genteng keramik butuh sudut minimal 25–30°.'
   - q: 'Atap apa yang paling tahan lama untuk gazebo?'
     a: 'Menurut tabel umur bangunan Amerika Serikat, genteng tanah liat, keramik, dan beton: lebih dari 50 tahun menurut NAHB dan 100 tahun lebih menurut InterNACHI, walau tabel Fannie Mae memberi 40 tahun. Genteng aspal tercatat 20–30 tahun dan bergaransi pabrik 25–30 tahun untuk Maxxi dan CTI. Untuk gazebo, kekuatan rangka ikut menentukan pilihan.'
   - q: 'Atap gazebo yang bagus merek apa?'
@@ -27,7 +27,7 @@ sumber:
     url: 'https://www.ct-i.co.kr/wp-content/uploads/2024/12/CTI-Installation-Guide-Rev.-September-2024-Ind.pdf'
   - nama: 'CTI, tanya jawab: rangka baja ringan atau kanal C, garansi produk 30 tahun'
     url: 'https://www.ct-i.co.kr/tanya-jawab/'
-  - nama: 'Lembar data teknis pabrik genteng aspal: Maxxiroof 8,7 kg/m², Promaxxi 11,6 kg/m², Tegola 8,5–12,3 kg/m²; garansi Maxxi 25 dan 30 tahun'
+  - nama: 'Lembar data teknis pabrik genteng aspal: Maxxiroof 8,7 kg/m², Promaxxi 11,6 kg/m², Tegola 9,0–12,3 kg/m²; garansi Maxxi 25 dan 30 tahun'
     url: 'https://maxxiroof.com/promaxxi/'
   - nama: 'Port of Seattle, SEA-SIPP Technical Report Appendix C (2025), memuat ulang tabel umur NAHB 2007, InterNACHI, dan Fannie Mae 2019 (genteng tanah liat/beton, metal, genteng aspal, sirap kayu)'
     url: 'https://www.portseattle.org/sites/default/files/2025-02/SEA-SIPP%20Technical%20Report%20Appendix%20C%20Life%20Expectancy%20of%20Building%20Materials.pdf'
@@ -47,7 +47,7 @@ Atap gazebo berbeda dari atap rumah dalam dua hal. Atapnya terlihat dari segala 
 
 | Bahan | Berat dan umur | Catatan untuk gazebo |
 |---|---|---|
-| Genteng aspal (atap bitumen) | 8,5–12,3 kg per m²; tabel umur Amerika 20–30 tahun, garansi pabrik Maxxi dan CTI 25–30 tahun | Mudah dipotong mengikuti limas dan segi delapan; butuh papan alas |
+| Genteng aspal (atap bitumen) | 8,7–12,3 kg per m²; tabel umur Amerika 20–30 tahun, garansi pabrik Maxxi dan CTI 25–30 tahun | Mudah dipotong mengikuti limas dan segi delapan; butuh papan alas |
 | Genteng tanah liat, keramik, beton | Keramik 39–46 kg per m²; lebih dari 50 tahun (NAHB), 100 tahun lebih (InterNACHI), 40 tahun (Fannie Mae) | Butuh rangka dan tiang yang kuat; genteng keramik butuh sudut minimal 25–30° |
 | Sirap kayu | Tabel umur Amerika 25–30 tahun untuk sirap kayu cedar | Tampilan alami; umur sirap kayu lokal tidak tercantum |
 | Metal (spandek, genteng metal) | Ringan; tabel umur 40–80 tahun | Bisa sangat landai; tanpa plafon, bunyi hujan langsung terdengar ke bawah |
@@ -55,7 +55,7 @@ Atap gazebo berbeda dari atap rumah dalam dua hal. Atapnya terlihat dari segala 
 
 Angka umur diambil dari tabel umur bangunan Amerika Serikat yang dimuat ulang dalam satu laporan teknis (sumber di bawah). Perbandingan lengkapnya ada di [jenis atap rumah paling awet](/panduan/jenis-atap-rumah-paling-awet).
 
-Untuk gazebo, berat atap menentukan besar tiang dan rangkanya. Pedoman pembebanan PPURG 1987 menghitung atap genteng beserta reng dan usuknya 50 kg per m², sedangkan genteng aspal hanya 8,5–12,3 kg per m² untuk gentengnya, ditambah underlayer dan papan alas. Hitungan berat terpasangnya ada di [berat atap bitumen per m²](/panduan/berat-atap-bitumen-per-m2). Gazebo yang sudah berdiri dengan tiang ramping biasanya lebih aman memakai atap ringan.
+Untuk gazebo, berat atap menentukan besar tiang dan rangkanya. Pedoman pembebanan PPURG 1987 menghitung atap genteng beserta reng dan usuknya 50 kg per m², sedangkan genteng aspal hanya 8,7–12,3 kg per m² untuk gentengnya, ditambah underlayer dan papan alas. Hitungan berat terpasangnya ada di [berat atap bitumen per m²](/panduan/berat-atap-bitumen-per-m2). Gazebo yang sudah berdiri dengan tiang ramping biasanya lebih aman memakai atap ringan.
 
 ## Bentuk atap gazebo: limas, segi delapan, pelana
 

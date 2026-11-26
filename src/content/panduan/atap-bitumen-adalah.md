@@ -1,7 +1,7 @@
 ---
 judul: 'Atap bitumen adalah: pengertian, jenis, harga, cara pasang'
 ringkasan: 'Atap bitumen adalah penutup atap berbahan aspal yang diperkuat serat dan dilapisi butiran batu. Jenis, harga per m² 2026, kelebihan, kekurangan, cara pasang.'
-jawaban: 'Atap bitumen adalah penutup atap berbahan aspal (bitumen) yang diperkuat serat dan dilapisi butiran batu atau mineral. Untuk rumah, bentuk yang paling umum adalah genteng aspal (shingle): lembaran tipis berinti serat kaca, 8,5–12,3 kg per m², yang dipaku bersusun di atas papan alas. Di Jabodetabek, harga terpasang Atapura untuk Maxxi, Javabitumen, dan CTI Rp380–450 ribu per m² (20 November 2026), belum termasuk rangka baru.'
+jawaban: 'Atap bitumen adalah penutup atap berbahan aspal (bitumen) yang diperkuat serat dan dilapisi butiran batu atau mineral. Untuk rumah, bentuk yang paling umum adalah genteng aspal (shingle): lembaran tipis berinti serat kaca, 8,7–12,3 kg per m², yang dipaku bersusun di atas papan alas. Di Jabodetabek, harga terpasang Atapura untuk Maxxi, Javabitumen, dan CTI Rp380–450 ribu per m² (20 November 2026), belum termasuk rangka baru.'
 kategori: 'Dasar'
 terbit: 2026-11-25
 diperbarui: 2026-11-25
@@ -27,7 +27,7 @@ sumber:
     url: 'https://www.asphaltroofing.org/frequently-asked-questions/'
   - nama: 'Maxxiroof dan Promaxxi, halaman produk: 8,7 dan 11,6 kg/m², garansi 25 dan 30 tahun, kemiringan 15–90°'
     url: 'https://maxxiroof.com/promaxxi/'
-  - nama: 'Tegola Canadese, lembar data teknis: 8,5 kg/m² (Eco Roof) sampai 12,3 kg/m² (Master); garansi terbatas hingga 40 tahun bertahap'
+  - nama: 'Tegola Canadese, lembar data teknis: 9,0 kg/m² (Premium Mosaik) sampai 12,3 kg/m² (Master); garansi terbatas hingga 40 tahun bertahap'
     url: 'https://tegolacanadese.com/'
   - nama: 'CTI, panduan pemasangan Rev. September 2024 dan tanya jawab (garansi produk 30 tahun, cara khusus untuk 10–15°)'
     url: 'https://www.ct-i.co.kr/tanya-jawab/'
@@ -84,7 +84,7 @@ Survey di Jabodetabek tanpa biaya, dan pemasangan Atapura bergaransi tertulis 5 
 ## Kelebihan dan kekurangan atap bitumen
 
 **Kelebihan:**
-- **Ringan.** Gentengnya 8,5–12,3 kg per m², genteng keramik 39–46 kg per m². Papan alas menambah berat, tetapi totalnya tetap jauh di bawah atap genteng beton. Rinciannya di [berat atap bitumen per m²](/panduan/berat-atap-bitumen-per-m2).
+- **Ringan.** Gentengnya 8,7–12,3 kg per m², genteng keramik 39–46 kg per m². Papan alas menambah berat, tetapi totalnya tetap jauh di bawah atap genteng beton. Rinciannya di [berat atap bitumen per m²](/panduan/berat-atap-bitumen-per-m2).
 - **Cocok untuk bentuk atap rumit.** Lembarannya dipotong di tempat, jadi bisa mengikuti atap berjurai banyak, kubah, lengkung, sampai bidang yang hampir tegak, selama kemiringannya di atas batas pabrik.
 - **Tenang saat hujan.** Lembarannya menempel di atas papan alas, jadi tidak bergetar seperti lembaran logam tipis. Uji hujan buatan khusus genteng aspal belum ada yang terbuka; sebagai pembanding, atap logam trapesium satu lapis tercatat 74 dB di laboratorium.
 - **Garansi pabrik panjang.** 25 tahun untuk Maxxiroof, 30 tahun untuk Promaxxi dan CTI, hingga 40 tahun bertahap untuk Tegola. Syaratnya berbeda tiap merek.

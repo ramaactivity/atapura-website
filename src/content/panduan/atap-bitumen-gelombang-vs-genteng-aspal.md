@@ -25,7 +25,7 @@ faq:
 sumber:
   - nama: 'Lembar data produsen atap bitumen gelombang: serat selulosa berbitumen, 200 × 95 cm, tebal 3 mm, 6,5 kg per lembar, luas efektif 1,28–1,54 m², pemakaian 0,78 lembar/m² (5–10°) dan 0,65 lembar/m² (di atas 10°), Rw 28 dB, garansi kebocoran 15 tahun dengan syarat (dicek 25 November 2026)'
   - nama: 'Lembar data produsen yang sama, varian genteng gelombang kecil: 1,33 kg per lembar, 3,21 lembar per m², kemiringan di atas 15° (dicek 25 November 2026)'
-  - nama: 'Lembar data teknis pabrik genteng aspal: Maxxiroof 8,7 kg/m², Promaxxi 11,6 kg/m², Tegola 8,5–12,3 kg/m²'
+  - nama: 'Lembar data teknis pabrik genteng aspal: Maxxiroof 8,7 kg/m², Promaxxi 11,6 kg/m², Tegola 9,0–12,3 kg/m²'
     url: 'https://maxxiroof.com/promaxxi/'
   - nama: 'Maxxiroof dan Promaxxi, halaman produk: rentang kemiringan 15–90°, garansi 25 dan 30 tahun'
     url: 'https://maxxiroof.com/maxxiroof/'
@@ -50,7 +50,7 @@ Genteng aspal (shingle) adalah produk yang berbeda: lembaran tipis berlapis buti
 |---|---|---|
 | Bentuk | Lembaran bergelombang, 200 × 95 cm | Lembaran tipis berbutir batu, bersusun |
 | Dipasang di | Reng (bilah di atas usuk), disekrup langsung | Papan alas + underlayer (lapis kedap air) |
-| Berat | 4,2–5,1 kg/m², tergantung kemiringan | 8,5–12,3 kg/m², belum termasuk alas |
+| Berat | 4,2–5,1 kg/m², tergantung kemiringan | 8,7–12,3 kg/m², belum termasuk alas |
 | Kemiringan minimal | 5° | 10–15°, tergantung merek |
 | Garansi dari pabrik | Kebocoran 15 tahun, dengan syarat | Produk 25–30 tahun |
 | Tampilan | Bergelombang, mirip seng | Rata bertekstur, mirip sirap |

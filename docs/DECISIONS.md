@@ -1155,3 +1155,20 @@ bukan artikel baru.
   Atapura). Bagian "membandingkan penawaran" di ongkos jasa diringkas + tautan ke artikel kontraktor (hindari kanibal). Guide EN:
   rangka baru "about 220,000" → 195,000–230,000. IndexNow dijalankan (79 URL, HTTP 200). Artikel baru `biaya-ganti-atap-rumah-baja-ringan` (15 Des)
   perlu ditaut dari `jasa-ganti-atap-rumah` setelah tayang.
+
+## 118 · 26 November 2026 · Tiga artikel Desember dimajukan, dua topik dibuang, berat Eco Roof dibetulkan (Rama: "kerjain artikelnya")
+- Dibuang dari kalender: `tukang-atap-bocor-cara-memilih` (Atapura tidak terima tambal bocor; bentrok dengan artikel kontraktor) dan
+  `berapa-hari-pasang-atap-bitumen` (sudah terjawab di 4 artikel; tulis ulang hanya bila ada catatan proyek asli). Ops ikut menghapus.
+- Dimajukan & ditulis, slot Selasa/Jumat kosong: `ganti-genteng-beton-ke-bitumen` (1 Des; sudut: bagian atap lama yang dipakai lagi,
+  reng keramik 27 cm < 40,5 cm CTI jadi tumpuan papan, kapan tidak pindah), `kesalahan-pemasangan-atap-bitumen` (4 Des; 12 kesalahan
+  per tahap + angka CTI/ARMA + tanda yang terlihat di atap baru; tidak mengulang tabel gejala `atap-bitumen-bocor`),
+  `cara-memilih-atap-bitumen` (8 Des; slug awal "bagus-vs-murahan" diganti sebelum tayang karena semua contohnya merek yang kita jual
+  → kesan "Maxxiroof murahan"; isi: cara membaca lembar data, rumus berat per m², mitos SBS, garansi Tegola 40 th hanya Premium/Master).
+- Tiap artikel diulas 7 sudut pandang + cek fakta (6 agen); sampul Magnific 4 × 135 kredit (1 ditolak: paku "benar" di area terbuka =
+  cara pasang salah).
+- Koreksi data tayang: Eco Roof 8,5 kg/m² (angka katalog distributor, bertentangan dengan TDS) → 9,4 kg/m² (TDS Rectangular) di artikel
+  berat, sumber artikel induk, dan `produk.ts`; rentang genteng aspal "8,5–12,3" → "8,7–12,3" (Maxxiroof terendah) di 8 artikel,
+  khusus Tegola "9,0–12,3". Blurb Top Shingles "lapisan aspal lebih tebal dari Eco Roof" dibuang (TDS keduanya >1.000 g/m²).
+- ⏳ Tautan masuk ke 3 artikel terjadwal dipasang setelah tayang (link ke halaman yang belum tayang = 404): dari `jasa-ganti-atap-rumah`
+  (baris genteng beton → ganti-genteng-beton), `cara-pasang` & `lima-lapis` (→ kesalahan-pemasangan), `perbandingan-merek` &
+  `berat` (→ cara-memilih-atap-bitumen). Catatan lain: `branding.astro` masih "8,5–13 kg/m²" (halaman merek internal).

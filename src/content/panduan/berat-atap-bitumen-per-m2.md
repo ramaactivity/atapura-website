@@ -1,7 +1,7 @@
 ---
 judul: 'Berat atap bitumen per m²: genteng aspal vs gelombang, per merek'
-ringkasan: 'Berat genteng aspal 8,5–12,3 kg/m² dan atap bitumen gelombang 4,2–5,1 kg/m² menurut data pabrik, plus berat terpasang bersama alas dan underlayer.'
-jawaban: 'Genteng aspal (atap bitumen jenis shingle) beratnya sekitar 8,5–12,3 kg per m² menurut data pabrik: Maxxiroof 8,7 kg, Promaxxi 11,6 kg, dan Tegola Master 12,3 kg. Atap bitumen gelombang (lembaran bergelombang) lebih ringan, sekitar 4,2–5,1 kg per m² tergantung kemiringan. Genteng aspal dipasang di atas papan alas dan underlayer (±1,6 kg/m²), jadi berat terpasangnya lebih besar dari gentengnya saja, tetapi tetap jauh di bawah atap genteng beton.'
+ringkasan: 'Berat genteng aspal 8,7–12,3 kg/m² dan atap bitumen gelombang 4,2–5,1 kg/m² menurut data pabrik, plus berat terpasang bersama alas dan underlayer.'
+jawaban: 'Genteng aspal (atap bitumen jenis shingle) beratnya sekitar 8,7–12,3 kg per m² menurut data pabrik: Maxxiroof 8,7 kg, Promaxxi 11,6 kg, dan Tegola Master 12,3 kg. Atap bitumen gelombang (lembaran bergelombang) lebih ringan, sekitar 4,2–5,1 kg per m² tergantung kemiringan. Genteng aspal dipasang di atas papan alas dan underlayer (±1,6 kg/m²), jadi berat terpasangnya lebih besar dari gentengnya saja, tetapi tetap jauh di bawah atap genteng beton.'
 kategori: 'Teknis'
 terbit: 2026-11-25
 diperbarui: 2026-11-25
@@ -10,7 +10,7 @@ sampulFokus: '50% 72%'
 sampulAlt: 'Ilustrasi satu bundel genteng aspal di atas timbangan lantai di lokasi proyek, dengan tumpukan multiplek dan gulungan underlayer'
 faq:
   - q: 'Berapa berat genteng aspal per m²?'
-    a: 'Menurut data pabrik, sekitar 8,5–12,3 kg per m². Genteng satu lapis (3-tab) seperti Maxxiroof sekitar 8,7 kg, genteng laminasi dua lapis seperti Promaxxi sekitar 11,6 kg, dan seri Tegola berkisar 8,5 kg (Eco Roof) sampai 12,3 kg (Master).'
+    a: 'Menurut data pabrik, sekitar 8,7–12,3 kg per m². Genteng satu lapis (3-tab) seperti Maxxiroof sekitar 8,7 kg, genteng laminasi dua lapis seperti Promaxxi sekitar 11,6 kg, dan seri Tegola berkisar 9,0 kg (Premium Mosaik dan Gothik) sampai 12,3 kg (Master).'
   - q: 'Lebih berat mana, genteng aspal atau atap bitumen gelombang?'
     a: 'Per m², genteng aspal kira-kira 2–3 kali lebih berat dari atap bitumen gelombang (4,2–5,1 kg/m²). Bedanya, atap gelombang berupa lembaran yang disekrup langsung ke reng, sedangkan genteng aspal butuh papan alas dan underlayer di bawahnya. Keduanya tetap tergolong penutup atap ringan.'
   - q: 'Berapa berat satu bundel genteng aspal?'
@@ -39,10 +39,9 @@ sumber:
 |---|---|---|
 | Atap bitumen gelombang, lembaran besar | 4,2–5,1 kg | Dihitung: 6,5 kg × 0,65–0,78 lembar per m² |
 | Genteng bitumen gelombang kecil | ±4,3 kg | Dihitung: 1,33 kg × 3,21 lembar per m² |
-| Tegola Eco Roof | ±8,5 kg | Lembar data teknis pabrik |
 | Maxxiroof (3-tab) | ±8,7 kg | Dihitung: 27 kg per bundel, ±3,10 m² |
 | Tegola Premium Mosaik, Premium Gothik | ±9,0 kg | Lembar data teknis pabrik |
-| Tegola Top Shingles | ±9,4 kg | Lembar data teknis pabrik |
+| Tegola Top Shingles, Eco Roof Rectangular | ±9,4 kg | Lembar data teknis pabrik |
 | Tegola Premium Rectangular, Premium Traditional | ±10,7 kg | Lembar data teknis pabrik |
 | Promaxxi (laminasi) | ±11,6 kg | Dihitung: 27 kg per bundel, 2,32 m² |
 | Tegola Master (dua lapis) | ±12,3 kg | Lembar data teknis pabrik |
@@ -55,7 +54,7 @@ Genteng aspal tidak bisa dipaku langsung ke reng. Ia dipasang di atas papan alas
 
 | Lapisan genteng aspal | Berat per m² |
 |---|---|
-| Genteng aspal | 8,5–12,3 kg (tabel di atas) |
+| Genteng aspal | 8,7–12,3 kg (tabel di atas) |
 | Underlayer (CTI UnderMaster) | ±1,6 kg (16 kg per gulungan 10 m²) |
 | Papan alas, multiplek atau GRC | Tergantung jenis dan tebal papan, lihat lembar data papan yang dipakai |
 
